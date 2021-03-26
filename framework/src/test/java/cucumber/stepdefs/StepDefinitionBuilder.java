@@ -3,15 +3,12 @@ package cucumber.stepdefs;
 import cucumber.reusablesteps.ReusableRunner;
 import org.openqa.selenium.By;
 import org.testng.Assert;
-import ui.utils.BPPLogManager;
-import ui.utils.Conditions;
-import ui.utils.Reporter;
-import ui.utils.SeleniumHelper;
+import ui.utils.*;
 import ui.utils.bpp.TestParametersController;
 
 public class StepDefinitionBuilder extends SeleniumHelper {
 
-    private SeleniumHelper seleniumHelper = new SeleniumHelper();
+    private final SeleniumHelper seleniumHelper = new SeleniumHelper();
 
     private By locator;
     private boolean condition = true;
@@ -67,7 +64,14 @@ public class StepDefinitionBuilder extends SeleniumHelper {
     public StepDefinitionBuilder setActionWithLocator(String actionName) {
         switch (actionName) {
             case "click":
-                action = () -> clickOnElement(locator);
+                action = () -> clickOnElement(locator,
+                        UiHandlers.PF_SCROLL_HANDLER,
+                        UiHandlers.ACCEPT_ALERT,
+                        UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
+                        UiHandlers.PAGE_NOT_LOAD_HANDLER,
+                        UiHandlers.PF_SPINNER_HANDLER,
+                        UiHandlers.PF_PREMATURE_MENU_CLICK_HANDLER,
+                        UiHandlers.DEFAULT_HANDLER);
                 break;
             case "double click":
                 action = () -> doubleClick(locator);
