@@ -93,30 +93,36 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @When("^I click on the \"([^\"]*)\" \"([^\"]*)\" if \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_click_on_element_with_parameter_special_if(String elementLocator, String elementType, String conditionParameter, String condition) {
-        Conditions conditions = new Conditions();
-        if(conditions.checkCondition(condition,conditionParameter)){
-            Reporter.log("Executing step: I click on the '" + elementLocator + "' " + elementType);
-            if(specialLocatorsMap.containsKey(elementType)) {
-                String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
-                String xpathTemplate = specialLocatorsMap.get(elementType);
-                String resultingXpath = xpathTemplate.replaceAll("PARAMETER", processedLocator);
-                clickOnElement(initElementLocator(resultingXpath),
-                        UiHandlers.PF_SCROLL_HANDLER,
-                        UiHandlers.ACCEPT_ALERT,
-                        UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
-                        UiHandlers.PAGE_NOT_LOAD_HANDLER,
-                        UiHandlers.PF_SPINNER_HANDLER,
-                        UiHandlers.PF_PREMATURE_MENU_CLICK_HANDLER,
-                        UiHandlers.DEFAULT_HANDLER);
-                if(!elementLocator.equals(processedLocator)){
-                    Reporter.log("<pre>[input test parameter] " + elementLocator + "' -> '" + processedLocator + "' [output value]</pre>");
-                }
-            } else {
-                Reporter.fail("No such locator template key");
-            }
-        } else{
-            Reporter.log("Condition " + conditionParameter + condition + " is not true, so '" + elementLocator + elementType + "' element step will not be clicked");
-        }
+//        Conditions conditions = new Conditions();
+//        if(conditions.checkCondition(condition,conditionParameter)){
+//            Reporter.log("Executing step: I click on the '" + elementLocator + "' " + elementType);
+//            if(specialLocatorsMap.containsKey(elementType)) {
+//                String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
+//                String xpathTemplate = specialLocatorsMap.get(elementType);
+//                String resultingXpath = xpathTemplate.replaceAll("PARAMETER", processedLocator);
+//                clickOnElement(initElementLocator(resultingXpath),
+//                        UiHandlers.PF_SCROLL_HANDLER,
+//                        UiHandlers.ACCEPT_ALERT,
+//                        UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
+//                        UiHandlers.PAGE_NOT_LOAD_HANDLER,
+//                        UiHandlers.PF_SPINNER_HANDLER,
+//                        UiHandlers.PF_PREMATURE_MENU_CLICK_HANDLER,
+//                        UiHandlers.DEFAULT_HANDLER);
+//                if(!elementLocator.equals(processedLocator)){
+//                    Reporter.log("<pre>[input test parameter] " + elementLocator + "' -> '" + processedLocator + "' [output value]</pre>");
+//                }
+//            } else {
+//                Reporter.fail("No such locator template key");
+//            }
+//        } else{
+//            Reporter.log("Condition " + conditionParameter + condition + " is not true, so '" + elementLocator + elementType + "' element step will not be clicked");
+//        }
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(elementLocator,elementType)
+                .setActionWithLocator("click")
+                .setCondition(conditionParameter,condition)
+                .setLog("Executing step: I click on the '" + elementLocator + "' " + elementType)
+                .execute();
     }
 
     /**

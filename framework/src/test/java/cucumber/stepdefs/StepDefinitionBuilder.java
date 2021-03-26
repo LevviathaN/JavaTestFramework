@@ -3,10 +3,13 @@ package cucumber.stepdefs;
 import cucumber.reusablesteps.ReusableRunner;
 import org.openqa.selenium.By;
 import org.testng.Assert;
-import ui.utils.*;
+import ui.utils.BPPLogManager;
+import ui.utils.Conditions;
+import ui.utils.Reporter;
+import ui.utils.SeleniumHelper;
 import ui.utils.bpp.TestParametersController;
 
-public class StepDefinition extends SeleniumHelper {
+public class StepDefinitionBuilder extends SeleniumHelper {
 
     private SeleniumHelper seleniumHelper = new SeleniumHelper();
 
@@ -16,23 +19,25 @@ public class StepDefinition extends SeleniumHelper {
     private String reporterLog;
     private String log;
 
-    public StepDefinition() {
+    public StepDefinitionBuilder() {
 
     }
 
-    public void setLocator(String element) {
+    public StepDefinitionBuilder setLocator(String element) {
         locator = initElementLocator(element);
+        return this;
     }
 
-    public void setCondition(String conditionParameter, String conditionStatement) {
+    public StepDefinitionBuilder setCondition(String conditionParameter, String conditionStatement) {
         Conditions conditions = new Conditions();
         if(!conditions.checkCondition(conditionStatement,conditionParameter)){
             condition = false;
             Reporter.log("Condition " + conditionParameter + " " + conditionStatement + " is not true");
         }
+        return this;
     }
 
-    public void setLocator(String elementLocator, String elementType) {
+    public StepDefinitionBuilder setLocator(String elementLocator, String elementType) {
         if(specialLocatorsMap.containsKey(elementType)) {
             String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
             String xpathTemplate = specialLocatorsMap.get(elementType);
@@ -44,9 +49,10 @@ public class StepDefinition extends SeleniumHelper {
         } else {
             Reporter.fail("No such locator template key");
         }
+        return this;
     }
 
-    public void setAction(String actionName, String parameter) {
+    public StepDefinitionBuilder setAction(String actionName, String parameter) {
         switch (actionName) {
             case "wait":
                 action = () -> sleepFor(Integer.parseInt(parameter));
@@ -55,9 +61,10 @@ public class StepDefinition extends SeleniumHelper {
                 action = () -> ReusableRunner.getInstance().executeReusable(parameter);
                 break;
         }
+        return this;
     }
 
-    public void setActionWithLocator(String actionName) {
+    public StepDefinitionBuilder setActionWithLocator(String actionName) {
         switch (actionName) {
             case "click":
                 action = () -> clickOnElement(locator);
@@ -78,9 +85,10 @@ public class StepDefinition extends SeleniumHelper {
                 action = () -> Assert.assertFalse(seleniumHelper.isElementPresentAndDisplay(locator));
                 break;
         }
+        return this;
     }
 
-    public void setActionWithLocatorAndString(String actionName, String parameter) {
+    public StepDefinitionBuilder setActionWithLocatorAndString(String actionName, String parameter) {
         switch (actionName) {
             case "set text":
                 action = () -> setText(locator, parameter);
@@ -89,14 +97,17 @@ public class StepDefinition extends SeleniumHelper {
                 action = () -> hoverItem(locator);
                 break;
         }
+        return this;
     }
 
-    public void setReporterLog(String message) {
+    public StepDefinitionBuilder setReporterLog(String message) {
         reporterLog = message;
+        return this;
     }
 
-    public void setLog(String message) {
+    public StepDefinitionBuilder setLog(String message) {
         log = message;
+        return this;
     }
 
     public void execute() {
