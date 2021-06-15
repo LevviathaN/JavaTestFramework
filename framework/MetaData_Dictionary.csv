@@ -23,6 +23,10 @@ MD_PRODUCTFACTORYJUNIORPRODUCTSETTER,craigolivant@bpp.com,descr.
 MD_PRODUCTFACTORYJUNIORPSPASSWORD,Password1,descr.
 MD_TOTARAADMINUSER,bppadmin@bpp.com,descr.
 MD_TOTARAADMINPASSWORD,Password1!!!,descr.
+MD_SALESFORCECSA,automationcsa@bpp.com.noahuat,descr.
+MD_SALESFORCECSAPASSWORD,12space34,descr.
+MD_SALESFORCESALES,automationsales@bpp.com.noahuat,descr.
+MD_SALESFORCESALESPASSWORD,12space34,descr.
 MD_BUILDEMPIREADMINUSER,apprenticeships@bpptest.com,descr.
 MD_BUILDEMPIREADMINPASSWORD,Test Password003!,descr.
 MD_BUILDEMPIREMANAGERINUSER,waltdisney@mailinator.com,descr.
@@ -37,6 +41,8 @@ MD_SALESFORCECPQUSER,oksanasysadmincpq@bpp.com.noahqa,descr.
 MD_SALESFORCECPQPASSWORD,12space34,descr.
 MD_QUARKUSER,yzosin,descr.
 MD_QUARKPASSWORD,Welcome9@,descr.
+MD_PRODUCTFACTORYUSER,yuriizosin@bpp.com,descr.
+MD_PRODUCTFACTORYPASSWORD,Welcome9@,descr.
 MD_ENTER,ENTER,descr.
 MD_REFRESH,F5,descr.
 MD_INSPECT,F12,descr.
@@ -65,9 +71,29 @@ MD_PRODUCTFACTORYURLNEW,https://qa2-products.bpp.com/,descr.
 MD_PRODUCTFACTORYDATABASEURLNEW,http://ec2-3-10-141-78.eu-west-2.compute.amazonaws.com:7474/,descr.
 MD_SALESFORCEINSTANCE,https://bpp-13fd3e55182--noahqa.lightning.force.com/lightning/r/Instance__c/a43g00000008940AAA/view,descr.
 MD_QUARKURL,7.0.12.124/workspace/login.qsp#,descr.
+MD_BPPBANNERURL,http://pprdbpp-sis-stage.apolloglobal.int/,descr.
+MD_SALESFORCEINSTANCE,https://bpp-13fd3e55182--noahuat.lightning.force.com/lightning/r/Instance__c/a5Cg0000000ZaxTEAS/view,descr.
+MD_SALESFORCESECONDINSTANCE,https://bpp-13fd3e55182--noahuat.lightning.force.com/lightning/r/Instance__c/a5Cg0000000ZbMuEAK/view,descr.
+MD_SALESFORCETHIRDINSTANCE,https://bpp-13fd3e55182--noahuat.lightning.force.com/lightning/r/Instance__c/a5Cg0000000ZbMzEAK/view,descr.
+MD_BUILDEMPIREBESPOKEURL,https://web-stage-bppdigital.bppuniversity.com/account?registration_type=rbs,descr.
+MD_BUILDEMPIREURL,https://web-stage-bppdigital.bppuniversity.com/account,descr.
+MD_BUILDEMPIREADMINURL,https://admin-stage-bppdigital.bppuniversity.com,descr.
+MD_BUILDEMPIRELOGINURL,https://web-stage-bppdigital.bppuniversity.com/account,descr.
+MD_BUILDEMPIRECHANNELISLANDURL,https://web-stage-bppdigital.bppuniversity.com/account?registration_type=jersey,descr.
+MD_BPPDIGITALINSIGHTSURL,https://web-stage-bppdigital.bppuniversity.com/insights,descr.
+MD_BPPDIGITALINDEXURL,https://web-stage-bppdigital.bppuniversity.com,descr.
+MD_BPPPDTESTCOURSEURL,https://web-stage-bppdigital.bppuniversity.com/courses/accountancy/test-automation,descr.
+MD_BPPBARCLEYCARDURL,https://ca-test.barclaycardsmartpay.com/ca/ca/login.shtml,descr.
+MD_BPPADMINISTRATEURL,https://bppsandbox.administrateapp.com,descr.
+MD_TOTARALOGINURL,https://totara-stage-bppdigital.bppuniversity.com,descr.
+MD_PDCOURSEURL,http://web-stage-bppdigital.bppuniversity.com/courses/accountancy-and-tax/oksana-adm-course-1,descr.
+MD_PRODUCTFACTORYURLNEW,https://uat-products.bpp.com/,descr.
 MD_CUSTOMERGROUP,SELFFUND,descr.
 MD_MSCMANAGEMENTOFFERING,MSc Management CRO PTD 201819 for student application,descr.
 MD_SFOFFERING,2381626,descr.
 MD_SFCPQPRODUCT,SF CPQ test - SF CPQ test - SF CPQ flow test - London - Classroom - AutoTest Sitting,descr.
+MD_SFCPQPRODUCTSECOND,CIMA - Operational Level - F1 Financial Reporting - Region 1 - Course Type 1 - QA 2021,descr.
 MD_SFCPQINSTANCENUMBER,I-1443,descr.
+MD_SFCPQSECONDINSTANCENUMBER,I-2916,descr.
+MD_SFCPQTHIRDINSTANCENUMBER,I-2917,descr.
 MD_CPQBOOKINGLINES,(5),descr.

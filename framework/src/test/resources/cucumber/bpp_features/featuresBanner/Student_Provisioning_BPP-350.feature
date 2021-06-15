@@ -33,7 +33,7 @@ Feature: Admitting a single student in Banner - BPP-350
     And I should see the "Decision Processed" message in "Banner Frame" frame
     And I wait for "25" seconds
     #Navigate to Salesforce
-    Given I am on "https://bpp-13fd3e55182--noahqa.lightning.force.com/" URL
+    Given I execute "Log In To Salesforce" reusable step
     #Search for student
     And I fill the "Salesforce Main Header Search" field with "EC_PROFILE_ID"
     And I press "MD_COMMON_KEYBOARD_ENTER" for "Salesforce Main Header Search"

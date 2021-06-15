@@ -7,6 +7,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import ui.utils.bpp.PropertiesHelper;
 
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
@@ -251,5 +252,14 @@ public class Tools {
             return  removedZero;
         }
         return trimmedNumber;
+    }
+
+    public static String determineEffectivePropertyValue(String key) {
+
+        if (null != System.getProperty(key)) {
+            return System.getProperty(key);
+        } else {
+            return FileIO.getConfigProperty(key);
+        }
     }
 }

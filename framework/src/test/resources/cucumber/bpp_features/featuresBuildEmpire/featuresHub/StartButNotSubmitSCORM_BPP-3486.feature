@@ -16,6 +16,7 @@ Feature: SCORM Asessment Not Submit
     When I am on "MD_COMMON_LINKS_TOTARALOGINURL" URL
     And I execute "Logout as Admin Totara" reusable step if "Totara Account Expandable Menu" "element is present"
     And Browser deletes cookies
+    And I wait for "5" seconds
     Then I execute "Login as Admin Totara" reusable step
     When I click on the "Totara Volodymyr Course" link by JS
     And I click on the "Totara Left Menu Users link" link by JS
@@ -32,7 +33,7 @@ Feature: SCORM Asessment Not Submit
     And I click on the "Mini Course for Volodymyr" "Build Empire Homepage My Learning Course"
     And I click on the "SCORM Topic" "Build Empire Course Topic"
     And I validate text "CONTAINS=You haven't attempted this assessment yet" to be displayed for "Direct App Topic Assessment Status Results" element
-    And I click on the "Take the test" "Build Empire button"
+    And I click on the "Hub Submit Button For Activity" button
     And I wait for "10" seconds
     Then I execute "window.stop()" JS code
     Then I switch to window with index "3"

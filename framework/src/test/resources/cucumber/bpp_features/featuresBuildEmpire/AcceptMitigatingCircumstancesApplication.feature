@@ -3,9 +3,8 @@ Feature: Accept Mitigating Circumstances Application
 
   @PositiveEmails  @Smoke #TC-1266 #TC-1257 #TC-1264
   Scenario: Mitigating Circumstances Send Emails to Students
-    Given I execute "Register New Student Account" reusable step replacing some steps
-      | 5 | I set "Auto[EMAIL-NADA]" text to the "Email" "Build Empire text field"|
-    Then I execute "Nada Student Email Verification" reusable step
+    Given I execute "Register New Student Account" reusable step
+    Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     And I wait for "2" seconds
     When I execute "Create Mitigating Circumstances Application" reusable step

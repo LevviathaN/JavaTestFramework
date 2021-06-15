@@ -22,4 +22,4 @@ Feature: As a Totara admin, I expect to be able to bulk edit deadlines in course
     And I select "KW_AUTO_SELECT" from "Totara Bulk Expected Completed Hour" element
     And I click on the "Totara Save On Update Page" button by JS
     And I click on the "Totara Continue" button by JS
-    And I validate text "CONTAINS=October" to be displayed for "Totara Bulk Update Basic Assignment Two Completed Date" element
+    And I validate text "CONTAINS=May" to be displayed for "Totara Bulk Update Basic Assignment Two Completed Date" element

@@ -92,13 +92,6 @@ Feature: Redirect to Requested URL after Authentication - BPP-844
       |1|I am on "EC_SAVED_URL" URL|
     Then I should see the "Clients" element
 #todo temporary fix
-    When I click on the "Miscellaneous" "Product Factory navigation item"
-    When I click on the "Streams" "Product Factory navigation sub item"
-    Then I capture current URL as "EC_SAVED_URL" variable
-    When I click on the "exit_to_app" button
-    And I execute "Log In" reusable step replacing some steps
-      |1|I am on "EC_SAVED_URL" URL|
-    Then I should see the "Streams" element
 
 #    When I click on the "Miscellaneous" "Product Factory navigation item"
 #    When I click on the "Deactivation Reasons" "Product Factory navigation sub item"
@@ -118,6 +111,14 @@ Feature: Redirect to Requested URL after Authentication - BPP-844
     And I execute "Log In" reusable step replacing some steps
       |1|I am on "EC_SAVED_URL" URL|
     Then I should see the "Pricing Matrices" element
+
+    When I click on the "Miscellaneous" "Product Factory navigation item"
+    When I click on the "Streams" "Product Factory navigation sub item"
+    Then I capture current URL as "EC_SAVED_URL" variable
+    When I click on the "exit_to_app" button
+    And I execute "Log In" reusable step replacing some steps
+      |1|I am on "EC_SAVED_URL" URL|
+    Then I should see the "Streams" element
 
     When I click on the "Financials" "Product Factory navigation item"
     When I click on the "VAT Rules" "Product Factory navigation sub item"
@@ -334,15 +335,6 @@ Feature: Redirect to Requested URL after Authentication - BPP-844
       |4|I fill the "Product Factory Password" field with "MD_COMMON_CREDENTIALS_PRODUCTFACTORYJUNIORPSPASSWORD"|
     Then I should see the "Clients" element
 
-    When I click on the "Miscellaneous" "Product Factory navigation item"
-    When I click on the "Streams" "Product Factory navigation sub item"
-    Then I capture current URL as "EC_SAVED_URL" variable
-    When I click on the "exit_to_app" button
-    And I execute "Log In" reusable step replacing some steps
-      |1|I am on "EC_SAVED_URL" URL|
-      |3|I fill the "Product Factory Email" field with "MD_COMMON_CREDENTIALS_PRODUCTFACTORYJUNIORPRODUCTSETTER"|
-      |4|I fill the "Product Factory Password" field with "MD_COMMON_CREDENTIALS_PRODUCTFACTORYJUNIORPSPASSWORD"|
-    Then I should see the "Streams" element
 
   @Positive @Regression @P1 #TC-3446
   Scenario: Redirect to URL after Authentication 2 - Simple Product Setter
@@ -358,6 +350,16 @@ Feature: Redirect to Requested URL after Authentication - BPP-844
       |3|I fill the "Product Factory Email" field with "MD_COMMON_CREDENTIALS_PRODUCTFACTORYJUNIORPRODUCTSETTER"|
       |4|I fill the "Product Factory Password" field with "MD_COMMON_CREDENTIALS_PRODUCTFACTORYJUNIORPSPASSWORD"|
     Then I should see the "Deactivation Reasons" element
+
+    When I click on the "Miscellaneous" "Product Factory navigation item"
+    When I click on the "Streams" "Product Factory navigation sub item"
+    Then I capture current URL as "EC_SAVED_URL" variable
+    When I click on the "exit_to_app" button
+    And I execute "Log In" reusable step replacing some steps
+      |1|I am on "EC_SAVED_URL" URL|
+      |3|I fill the "Product Factory Email" field with "MD_COMMON_CREDENTIALS_PRODUCTFACTORYJUNIORPRODUCTSETTER"|
+      |4|I fill the "Product Factory Password" field with "MD_COMMON_CREDENTIALS_PRODUCTFACTORYJUNIORPSPASSWORD"|
+    Then I should see the "Streams" element
 
     When I click on the "Financials" "Product Factory navigation item"
     When I click on the "Prices" "Product Factory navigation sub item"

@@ -4,18 +4,27 @@ Feature: Product Factory
   I want to be able to log into Product Factory
   In order to (just cause)
 
-  Background:
-    Given I execute "Generate ISBN" reusable step
-    And I execute "Log In" reusable step
-
   Scenario Outline: Remember Variables <type>
     And I remember "AutoDeactivationReasonDescription<varName>" text as "EC_DEACTIVATION_REASON_DESCRIPTION<ecName>" variable
     And I remember "AutoDeactivationReasonDescriptionPrevent<varName>" text as "EC_DEACTIVATION_REASON_DESCRIPTION_PREVENT<ecName>" variable
     And I remember "22/02/2022" text as "EC_SITTING_START_DATE" variable
     And I remember "10/10/2025" text as "EC_SITTING_END_DATE" variable
+    And I remember "AutoProgrammeName<varName>" text as "EC_PROGRAMME_NAME<ecName>" variable
+    And I remember "AutoProgrammeCode<varName>" text as "EC_PROGRAMME_CODE<ecName>" variable
+    And I remember "AutoCohortName<varName>" text as "EC_COHORT_NAME<ecName>" variable
+    And I remember "AutoModuleSectionName<varName>" text as "EC_MODULE_SECTION_NAME<ecName>" variable
+    And I remember "1233456" text as "EC_SIS_TERM_CODE<ecName>" variable
     And I remember "AutoStreamName<varName>" text as "EC_STREAM_NAME<ecName>" variable
     And I remember "AutoBodyFDCode<varName>" text as "EC_BODY_FD_CODE<ecName>" variable
     And I remember "AutoBodyFDDescription<varName>" text as "EC_BODY_FD_DESCRIPTION<ecName>" variable
+    And I remember "AutoMaterialFDCode<varName>" text as "EC_MATERIAL_FD_CODE<ecName>" variable
+    And I remember "AutoMaterialFDDescription<varName>" text as "EC_MATERIAL_FD_DESCRIPTION<ecName>" variable
+    And I remember "AutoCourseFDCode<varName>" text as "EC_COURSE_FD_CODE<ecName>" variable
+    And I remember "AutoCourseFDDescription<varName>" text as "EC_COURSE_FD_DESCRIPTION<ecName>" variable
+    And I remember "AutoMaterialFDCode<varName>" text as "EC_MATERIAL_FD_CODE<ecName>" variable
+    And I remember "AutoMaterialFDDescription<varName>" text as "EC_MATERIAL_FD_DESCRIPTION<ecName>" variable
+    And I remember "AutoCourseFDCode<varName>" text as "EC_COURSE_FD_CODE<ecName>" variable
+    And I remember "AutoCourseFDDescription<varName>" text as "EC_COURSE_FD_DESCRIPTION<ecName>" variable
     And I remember "AutoVerticalName<varName>" text as "EC_VERTICAL_NAME<ecName>" variable
     And I remember "AutoBodyShortName<varName>" text as "EC_BODY_SHORT_NAME<ecName>" variable
     And I remember "AutoBodyName<varName>" text as "EC_BODY_NAME<ecName>" variable
@@ -56,11 +65,12 @@ Feature: Product Factory
     Examples:
       |type        |varName     |ecName       |shortVar|shortEc|
       |            |            |             |        |       |
-#    |Two         |$Two        |_TWO         |$Two    |_TWO   |
-#    |Three       |$Three      |_THREE       |$Tre    |_TRE   |
-#    |Edit        |$Edit       |_EDIT        |$Edt    |_EDT   |
-#    |Draft CBA   |$DraftCBA   |_DRAFT_CBA   |$DCB    |_DCB   |
-#    |Draft Course|$DraftCourse|_DRAFT_COURSE|$DCO    |_DCO   |
+      |Two         |Two        |_TWO         |Two    |_TWO   |
+      |Three       |Three      |_THREE       |Tre    |_TRE   |
+      |Edit        |Edit       |_EDIT        |Edt    |_EDT   |
+      |Draft CBA   |DraftCBA   |_DRAFT_CBA   |DCB    |_DCB   |
+      |Draft Course|DraftCourse|_DRAFT_COURSE|DCO    |_DCO   |
+      |Dont Touch  |DontTouch  |_DONT_TOUCH  |DT     |_DT    |
 
       #______________________________Remember Variables__________________________
   Scenario Outline: Remember Variables For Creation <type>
@@ -68,9 +78,22 @@ Feature: Product Factory
     And I remember "AutoDeactivationReasonDescriptionPrevent<varName>" text as "EC_DEACTIVATION_REASON_DESCRIPTION_PREVENT" variable
     And I remember "23/10/2020" text as "EC_SITTING_START_DATE" variable
     And I remember "10/10/2025" text as "EC_SITTING_END_DATE" variable
+    And I remember "AutoProgrammeName<varName>" text as "EC_PROGRAMME_NAME" variable
+    And I remember "AutoProgrammeCode<varName>" text as "EC_PROGRAMME_CODE" variable
+    And I remember "AutoCohortName<varName>" text as "EC_COHORT_NAME" variable
+    And I remember "AutoModuleSectionName<varName>" text as "EC_MODULE_SECTION_NAME" variable
+    And I remember "1233456" text as "EC_SIS_TERM_CODE" variable
     And I remember "AutoStreamName<varName>" text as "EC_STREAM_NAME" variable
     And I remember "AutoBodyFDCode<varName>" text as "EC_BODY_FD_CODE" variable
     And I remember "AutoBodyFDDescription<varName>" text as "EC_BODY_FD_DESCRIPTION" variable
+    And I remember "AutoMaterialFDCode<varName>" text as "EC_MATERIAL_FD_CODE" variable
+    And I remember "AutoMaterialFDDescription<varName>" text as "EC_MATERIAL_FD_DESCRIPTION" variable
+    And I remember "AutoCourseFDCode<varName>" text as "EC_COURSE_FD_CODE" variable
+    And I remember "AutoCourseFDDescription<varName>" text as "EC_COURSE_FD_DESCRIPTION*" variable
+    And I remember "AutoMaterialFDCode<varName>" text as "EC_MATERIAL_FD_CODE" variable
+    And I remember "AutoMaterialFDDescription<varName>" text as "EC_MATERIAL_FD_DESCRIPTION" variable
+    And I remember "AutoCourseFDCode<varName>" text as "EC_COURSE_FD_CODE" variable
+    And I remember "AutoCourseFDDescription<varName>" text as "EC_COURSE_FD_DESCRIPTION" variable
     And I remember "AutoVerticalName<varName>" text as "EC_VERTICAL_NAME" variable
     And I remember "AutoBodyShortName<varName>" text as "EC_BODY_SHORT_NAME" variable
     And I remember "AutoBodyName<varName>" text as "EC_BODY_NAME" variable
@@ -110,27 +133,54 @@ Feature: Product Factory
 
     Examples:
       |type        |varName     |ecName       |shortVar|shortEc|
+#    |Z           |$Z          |_Z           |$Z      |_Z     |
+#    |X           |$X          |_X           |$X      |_X     |
+#    |W           |$W          |_W           |$W      |_W     |
+#    |O           |$O          |_O           |$O      |_O     |
       |            |            |             |        |       |
-#    |Two         |$Two        |_TWO         |$Two    |_TWO   |
-#    |Three       |$Three      |_THREE       |$Tre    |_TRE   |
-#    |Edit        |$Edit       |_EDIT        |$Edt    |_EDT   |
-#    |Draft CBA   |$DraftCBA   |_DRAFT_CBA   |$DCB    |_DCB   |
-#    |Draft Course|$DraftCourse|_DRAFT_COURSE|$DCO    |_DCO   |
+      |Two         |Two        |_TWO         |Two    |_TWO   |
+      |Three       |Three      |_THREE       |Tre    |_TRE   |
+      |Edit        |Edit       |_EDIT        |Edt    |_EDT   |
+      |Draft CBA   |DraftCBA   |_DRAFT_CBA   |DCB    |_DCB   |
+      |Draft Course|DraftCourse|_DRAFT_COURSE|DCO    |_DCO   |
+      |Dont Touch  |DontTouch  |_DONT_TOUCH  |DT     |_DT    |
 
     #_________________________________Create Reference Data Set____________________________
-  @CreateDataDriven
+  @CreateDataDriven @Run
   Scenario Outline: Create Reference Data Set <type>
+    Given I am on "https://generate.plus/en/number/isbn" URL
+    And I click on the " generate" "button"
+    And I capture text data "ISBN Generator Number Field" as "EC_ISBN" variable
+    Given I am on "MD_COMMON_LINKS_PRODUCTFACTORYURLNEW" URL
+    When I click on the "Sign in with Auth0" button
+    And I fill the "Product Factory Email" field with "MD_COMMON_CREDENTIALS_PRODUCTFACTORYUSER"
+    And I fill the "Product Factory Password" field with "MD_COMMON_CREDENTIALS_PRODUCTFACTORYPASSWORD"
+    And I click on the "Product Factory Login" button
+
     Given I execute "Create Deactivation Reason" reusable step replacing some steps
       |4|I set "$Auto[DeactivationReasonDescription]<varName>" text to the "Description" "Product Factory text field"|
     And I execute modified "Create Deactivation Reason" reusable step
       |4|Replace|I set "$Auto[DeactivationReasonDescriptionPrevent]<varName>" text to the "Description" "Product Factory text field"|
       |5|Add|I click on the "Prevent Reactivation" "Product Factory checkbox"|
       |7|Replace|I should see the "EC_DEACTIVATION_REASON_DESCRIPTION_PREVENT<ecName>" element|
+    And I execute "Create Programme" reusable step replacing some steps
+      |4|I set "$Auto[ProgrammeCode]<varName>" text to the "Code" "Product Factory text field"|
+      |5|I set "$Auto[ProgrammeName]<varName>" text to the "Name" "Product Factory text field"|
+    And I execute "Create Programme Cohort" reusable step replacing some steps
+      |7|I set "$Auto[CohortName]<varName>" text to the "Name" "Product Factory text field"|
+    And I execute "Create Module Section" reusable step replacing some steps
+      |6|I set "$Auto[ModuleSectionName]<varName>" text to the "Name" "Product Factory text field"|
     And I execute "Create Stream" reusable step replacing some steps
       |4|I set "$Auto[StreamName]<varName>" text to the "Name" "Product Factory text field"|
     When I execute "Create Body Financial Dimension" reusable step replacing some steps
       |4|I set "$Auto[BodyFDCode]<varName>" text to the "Code" "Product Factory text field"|
       |5|I set "$Auto[BodyFDDescription]<varName>" text to the "Description" "Product Factory text field"|
+    When I execute "Create Material Financial Dimension" reusable step replacing some steps
+      |4|I set "$Auto[MaterialFDCode]<varName>" text to the "Code" "Product Factory text field"|
+      |5|I set "$Auto[MaterialFDDescription]<varName>" text to the "Description" "Product Factory text field"|
+    When I execute "Create Course Financial Dimension" reusable step replacing some steps
+      |4|I set "$Auto[CourseFDCode]<varName>" text to the "Code" "Product Factory text field"|
+      |5|I set "$Auto[CourseFDDescription]<varName>" text to the "Description" "Product Factory text field"|
     And I execute "Create Vertical" reusable step replacing some steps
       |4|I set "$Auto[VerticalName]<varName>" text to the "Name" "Product Factory text field"|
     And I execute "Create Body" reusable step replacing some steps
@@ -206,14 +256,14 @@ Feature: Product Factory
       |4|I set "$Auto[ClientName]<varName>" text to the "Name" "Product Factory text field"|
     And I execute "Create Material" reusable step replacing some steps
       |6|I set "~Price[2000]" text to the "Price (£)" "Product Factory text field"|
-      |7|I set "~Weight[10]" text to the "Weight (kg)" "Product Factory text field"|
+      |8|I set "~Weight[10]" text to the "Weight (kg)" "Product Factory text field"|
     Then I execute "Create Course" reusable step
     And I execute "Create Course Instance" reusable step
     And I execute modified "Create CBA Record" reusable step
-      |5|Replace|I click on the "EC_CBA_SESSION_DURATION_DESCRIPTION<ecName>" "Product Factory select button"|
-      |14|Replace|I should see the "EC_CBA_SESSION_DURATION_DESCRIPTION<ecName>" element                         |
-    And I execute modified "Create CBA Course" reusable step
-      |11|Replace|I should see the "EC_CBA_PAPER_NAME<ecName>" element|
+      |4|Replace|I click on the "EC_CBA_SESSION_DURATION_DESCRIPTION<ecName>" "Product Factory select button"|
+      |22|Replace|I click on the "EC_CBA_PAPER_NAME" "Product Factory dropdown option"                       |
+#    And I execute modified "Create CBA Course" reusable step
+#      |11|Replace|I should see the "EC_CBA_PAPER_NAME<ecName>" element|
     And I execute "Create Digital Content" reusable step
     And I execute "Create Stream" reusable step replacing some steps
       |4|I set "$Auto[StreamName]<varName>" text to the "Name" "Product Factory text field"|
@@ -225,7 +275,8 @@ Feature: Product Factory
 #    |W           |$W          |             |$W      |       |
     |            |            |             |        |       |
     |Two         |$Two        |             |$Two    |   |
-#    |Three       |$Three      |             |$Tre    |   |
+    |Three       |$Three      |             |$Tre    |   |
     |Edit        |$Edit       |             |$Edt    |   |
     |Draft CBA   |$DraftCBA   |             |$DCB    |   |
     |Draft Course|$DraftCourse|             |$DCO    |   |
+    |Dont Touch  |$DontTouch  |             |$DT     |   |

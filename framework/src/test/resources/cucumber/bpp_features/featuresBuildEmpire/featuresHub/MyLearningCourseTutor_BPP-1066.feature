@@ -41,7 +41,7 @@ Feature: BPP University Hub My Learning Course Tutor
     #Login As student
     And I execute "Log In to Hub as Student Fixed" reusable step
     #Validate My Learning Course Tutor Name
-    And I wait for "3" seconds
+    And I wait for "5" seconds
     And I click on the "Direct App Student Left Hand Nav Second Item" link by JS
     And I validate text "CONTAINS=test ---" to be displayed for "Direct App My Learning First Course Tutor Name" element
     #Student Logout

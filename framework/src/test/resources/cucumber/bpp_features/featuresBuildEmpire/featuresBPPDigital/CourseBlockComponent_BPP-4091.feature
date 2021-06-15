@@ -23,7 +23,7 @@ Feature: As an admin, I expect the ability to add a "course block" component,
     When I should scroll to the "top" of the page
     Then I execute "Publish a CMS or Blog Post page" reusable step
     And I wait for "2" seconds
-    When I am on "https://web-stage-bppdigital.bppuniversity.com/university-board/<EC_AUTO_CMS_URL>" URL
+    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/<EC_AUTO_CMS_URL>" URL
     And I click on the "Subject" "element"
     And I should see the "Business" element
     And I should see the "Accountancy and Tax" element

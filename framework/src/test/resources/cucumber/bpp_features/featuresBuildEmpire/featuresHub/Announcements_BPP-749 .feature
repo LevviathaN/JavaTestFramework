@@ -28,6 +28,7 @@ Feature: BPP University Hub Announcements
     When I execute "Log Out from Hub Admin" reusable step
     And I wait for "2" seconds
     And I execute "Log In to Hub as Student" reusable step
+    Then I wait for "5" seconds
     Then I validate text "EC_AUTO_ANNOUNCEMENT_CONTENT" to be displayed for "Direct App Announcement Text" element
     Then I click on the "Close" "BPP Digital Search Label Button"
     Then I shouldn't see the "EC_AUTO_ANNOUNCEMENT_CONTENT" message

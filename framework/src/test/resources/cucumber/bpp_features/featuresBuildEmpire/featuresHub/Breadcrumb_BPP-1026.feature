@@ -15,10 +15,10 @@ Feature: The Hub - Breadcrumb
     And I should see the "Chartered Manager Degree Apprenticeship" "Build Empire Breadcrumb Not Clickable Tab"
     And I click on the "Eligibility criteria" "Build Empire application section"
     And I should see the "Eligibility criteria" "Build Empire Breadcrumb Not Clickable Tab"
-    Then I click on the "Chartered Manager Degree Apprenticeship" "Build Empire Breadcrumb Tab"
+    Then I click on the "Chartered Manager Degree Apprenticeship" "Build Empire Breadcrumb Tab" by JS
     And I click on the "Personal details" "Build Empire application section"
     And I should see the "Personal details" "Build Empire Breadcrumb Not Clickable Tab"
-    Then I click on the "Chartered Manager Degree Apprenticeship" "Build Empire Breadcrumb Tab"
+    Then I click on the "Chartered Manager Degree Apprenticeship" "Build Empire Breadcrumb Tab" by JS
     And I click on the "Yes" "text contained in element"
     And I wait for "1" seconds
     And I click on the "Additional information" "Build Empire application section"
@@ -28,16 +28,16 @@ Feature: The Hub - Breadcrumb
     And I click on the "Direct App Go To Application" element if "Emergency contact,Build Empire application section" "special element is absent"
     And I click on the "Emergency contact" "Build Empire application section"
     And I should see the "Emergency contact" "Build Empire Breadcrumb Not Clickable Tab"
-    Then I click on the "Chartered Manager Degree Apprenticeship" "Build Empire Breadcrumb Tab"
+    Then I click on the "Chartered Manager Degree Apprenticeship" "Build Empire Breadcrumb Tab" by JS
     And I click on the "Nationality" "Build Empire application section"
     And I should see the "Nationality" "Build Empire Breadcrumb Not Clickable Tab"
-    Then I click on the "Chartered Manager Degree Apprenticeship" "Build Empire Breadcrumb Tab"
+    Then I click on the "Chartered Manager Degree Apprenticeship" "Build Empire Breadcrumb Tab" by JS
     And I click on the "Education history" "Build Empire application section"
     And I should see the "Education history" "Build Empire Breadcrumb Not Clickable Tab"
-    Then I click on the "Chartered Manager Degree Apprenticeship" "Build Empire Breadcrumb Tab"
+    Then I click on the "Chartered Manager Degree Apprenticeship" "Build Empire Breadcrumb Tab" by JS
     And I click on the "Company" "Build Empire application section"
     And I should see the "Company" "Build Empire Breadcrumb Not Clickable Tab"
-    Then I click on the "Chartered Manager Degree Apprenticeship" "Build Empire Breadcrumb Tab"
+    Then I click on the "Chartered Manager Degree Apprenticeship" "Build Empire Breadcrumb Tab" by JS
     And I click on the "Yes" "text contained in element"
     And I wait for "1" seconds
     And I click on the "Apprenticeship Privacy Notice" "Build Empire application section"

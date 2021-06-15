@@ -530,7 +530,7 @@ public class Reporter {
             BPPLogManager.getLogger().info("Unable to create folder to store EC variables");
         }
 
-        String fileName = "EC_" + "Test" + testCaseName.replace("\"", "_") + "_" + formattedDateTime + ".html";
+        String fileName = testCaseName.replace("\"", "_") + "_" + formattedDateTime + ".html";
         String tempFile = ecFolder + File.separator + fileName;
         File file = new File(tempFile);
 
@@ -637,22 +637,23 @@ public class Reporter {
         node("qTest Execution Link", link);
     }
 
+    //https://automate.browserstack.com/dashboard/v2/builds/7c8b609afec733f8009687fb45014e5efe9278a2/sessions/bbcd18b49789624603a57d2bfcd9522073f21ea3
     // ============= BROWSER STACK ====================
     public static String getScreencastLinkFromBrowserStack(String sessionId) {
         if (System.getProperties().containsKey("BstackPlan")
                 && System.getProperty("BstackPlan").equalsIgnoreCase("Mobile")) {
-            return String.format("https://api.browserstack.com/automate/builds/" + FileIO.getConfigProperty("browserStackMobileBuild") + "/sessions/" + sessionId);
+            return String.format("https://automate.browserstack.com/dashboard/v2/builds/" + FileIO.getConfigProperty("browserStackMobileBuild") + "/sessions/" + sessionId);
         } else if (System.getProperties().containsKey("BstackPlan")
                 && System.getProperty("BstackPlan").equalsIgnoreCase("Venus")) {
-            return String.format("https://api.browserstack.com/automate/builds/" + FileIO.getConfigProperty("browserStackVenusBuild") + "/sessions/" + sessionId);
+            return String.format("https://automate.browserstack.com/dashboard/v2/builds/" + FileIO.getConfigProperty("browserStackVenusBuild") + "/sessions/" + sessionId);
         } else if (System.getProperties().containsKey("BstackPlan")
                 && System.getProperty("BstackPlan").equalsIgnoreCase("Terra")) {
-            return String.format("https://api.browserstack.com/automate/builds/" + FileIO.getConfigProperty("browserStackTerraBuild") + "/sessions/" + sessionId);
+            return String.format("https://automate.browserstack.com/dashboard/v2/builds/" + FileIO.getConfigProperty("browserStackTerraBuild") + "/sessions/" + sessionId);
         } else if (System.getProperties().containsKey("BstackPlan")
                 && System.getProperty("BstackPlan").equalsIgnoreCase("Terra")) {
-            return String.format("https://api.browserstack.com/automate/builds/" + FileIO.getConfigProperty("browserStackTitanBuild") + "/sessions/" + sessionId);
+            return String.format("https://automate.browserstack.com/dashboard/v2/builds/" + FileIO.getConfigProperty("browserStackTitanBuild") + "/sessions/" + sessionId);
         } else
-            return String.format("https://api.browserstack.com/automate/builds/" + FileIO.getConfigProperty("browserStackBuild") + "/sessions/" + sessionId);
+            return String.format("https://automate.browserstack.com/dashboard/v2/builds/" + FileIO.getConfigProperty("browserStackBuild") + "/sessions/" + sessionId);
     }
 
 
@@ -746,14 +747,13 @@ public class Reporter {
         testStorage.get(Thread.currentThread().getId()).pass(log);
     }
 
-    public static String getQuarkImagesFolder() {
+    public static synchronized String getQuarkImagesFolder() {
         try {
             Path rootPath = getQuarkScreenshotsPath();
-            Path testFolder = Paths.get(rootPath.toString(), Reporter.getCurrentTestName());
             if (Files.notExists(rootPath))
-                quarkPath = Files.createDirectories(testFolder);
+                quarkPath = Files.createDirectories(rootPath);
             else
-                quarkPath = testFolder;
+                quarkPath = rootPath;
         } catch (IOException e) {
             e.printStackTrace();
         }

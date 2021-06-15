@@ -24,7 +24,7 @@ Feature: The Hub - Dashboard / Timeline - Activity Deadline
     Then I click on the "Scorm Deadline Assignment" "Totara Edit Activity Edit Settings option" by JS
     Then I wait for "2" seconds
     Then I select "EC_DEADLINEDAY" from "Totara Assignment Due Date Day" element
-    #Then I select "EC_DEADLINEMONTH" from "Totara Assignment Due Date Day" element
+    Then I select "EC_DEADLINEMONTH" from "Totara Assignment Due Date Month" element
     And I select "2021" from "Totara Assignment Due Date Year" element
     And I click on the "Save and return to course" "element by value"
     Then I wait for "2" seconds
@@ -33,7 +33,7 @@ Feature: The Hub - Dashboard / Timeline - Activity Deadline
     Given I execute "Log In to Hub as Student" reusable step replacing some steps
       | 2 | I set "autoselinarichard2247@guerrillamail.info" text to the "Email" "Build Empire text field" |
       | 3 | I set "A@polloGlobal2020" text to the "Password" "Build Empire text field"        |
-    And I should see the "Automation Test Course" "Build Empire My Learning Right Block Course name"
+    #And I should see the "Automation Test Course" "Build Empire My Learning Right Block Course name"
     And I should see the "DEADLINES" "element"
     And I should see the "Assignment Deadline" "Hub Deadline Activity Name"
     And I should see the "Scorm Deadline Assignment" "Hub Deadline Activity Name Second"

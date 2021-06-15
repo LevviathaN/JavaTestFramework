@@ -7,47 +7,42 @@ Feature: Financial Dimension - Select Material Code - Initial Selection - BPP-24
   Background:
     Given I execute "Generate ISBN" reusable step
     Given I execute "Log In" reusable step
-    When I execute "Create Body Financial Dimension" reusable step
-    And I execute "Create Body" reusable step
-    And I execute "Create Level" reusable step
-    And I execute "Create Sitting" reusable step
-    And I execute "Create VAT Rule" reusable step
-    And I execute "Create Material Type Financial Dimension" reusable step
-    And I execute "Create Material Financial Dimension" reusable step
-    And I execute "Create Material Type" reusable step
-    And I execute "Create Paper" reusable step
-    And I execute "Link Body To Paper" reusable step
-    And I execute "Link Body To Level" reusable step
+    And I execute "Remember Variables " reusable step
 
   @Positive @P1 #TC-1667
   Scenario: Material Page Filters Validation
-    Given I execute "Create Material" reusable step
+    When I click on the "Products" "Product Factory navigation item"
+    When I click on the "Materials" "Product Factory navigation sub item"
 
     Then I set "EC_MATERIAL_TYPE_NAME" text to the "Search" "Product Factory text field" from keyboard
     And I click on the "submit" "element by type"
     Then I should see the "EC_MATERIAL_TYPE_NAME" element
-    And I should see the "Product Factory Materials Page Entry" element in quantity of "2"
+    And I store "Product Factory Materials Page Entry" elements number in "EC_TOTAL_MATERIALS_ENTRIES" variable
+    And I store "EC_MATERIAL_TYPE_NAME" elements number in "EC_SELECTED_MATERIALS_ENTRIES" variable
+    And I verify that "<EC_TOTAL_MATERIALS_ENTRIES,EC_SELECTED_MATERIALS_ENTRIES>" "values are equal"
     And I click on the "Clear the search text" "element by title"
     Then Attribute "value" of "Search" "Product Factory text field" should have value ""
 
     Then I set "EC_BODY_SHORT_NAME" text to the "Search" "Product Factory text field" from keyboard
     And I click on the "submit" "element by type"
     Then I should see the "EC_BODY_SHORT_NAME" element
-    And I should see the "Product Factory Materials Page Entry" element in quantity of "2"
+    And I store "Product Factory Materials Page Entry" elements number in "EC_TOTAL_MATERIALS_ENTRIES" variable
+    And I store "EC_BODY_SHORT_NAME" elements number in "EC_SELECTED_MATERIALS_ENTRIES" variable
+    And I verify that "<EC_TOTAL_MATERIALS_ENTRIES,EC_SELECTED_MATERIALS_ENTRIES>" "values are equal"
     And I click on the "Clear the search text" "element by title"
     Then Attribute "value" of "Search" "Product Factory text field" should have value ""
 
     Then I set "EC_LEVEL_SHORT_NAME" text to the "Search" "Product Factory text field" from keyboard
     And I click on the "submit" "element by type"
-    And Attribute "title" of "1 Levels" "element" should have value "EC_LEVEL_SHORT_NAME"
-    And I should see the "Product Factory Materials Page Entry" element in quantity of "2"
+    And For each "1 Levels" "1 Levels":
+      |Attribute "title" of "1 Levels" "element" should have value "EC_LEVEL_SHORT_NAME"|
     And I click on the "Clear the search text" "element by title"
     Then Attribute "value" of "Search" "Product Factory text field" should have value ""
 
     Then I set "EC_SITTING_NAME" text to the "Search" "Product Factory text field" from keyboard
     And I click on the "submit" "element by type"
-    And Attribute "title" of "1 Sittings" "element" should have value "EC_SITTING_NAME"
-    And I should see the "Product Factory Materials Page Entry" element in quantity of "2"
+    And For each "1 Sittings" "element":
+      |Attribute "title" of "1 Sittings" "element" should have value "EC_SITTING_NAME"|
     And I click on the "Clear the search text" "element by title"
     Then Attribute "value" of "Search" "Product Factory text field" should have value ""
 

@@ -6,56 +6,8 @@ Feature: Digital Content List - add Search Filter - BPP-8380
 
   Background:
     Given I execute "Log In" reusable step
-
-    And I remember "AutoStreamName" text as "EC_STREAM_NAME" variable
-    And I remember "AutoBodyFDCode" text as "EC_BODY_FD_CODE" variable
-    And I remember "AutoBodyFDDescription" text as "EC_BODY_FD_DESCRIPTION" variable
-    And I remember "AutoBodyShortName" text as "EC_BODY_SHORT_NAME" variable
-    And I remember "AutoBodyName" text as "EC_BODY_NAME" variable
-    And I remember "AutoVatRuleCode" text as "EC_VAT_RULE_CODE" variable
-    And I remember "AutoVatRuleDescription" text as "EC_VAT_RULE_DESCRIPTION" variable
-    And I remember "AutoCourseTypeFDCode" text as "EC_COURSE_TYPE_FD_CODE" variable
-    And I remember "AutoCourseTypeFDDescription" text as "EC_COURSE_TYPE_FD_DESCRIPTION" variable
-    And I remember "AutoCourseTypeDescription" text as "EC_COURSE_TYPE_DESCRIPTION" variable
-    And I remember "AutoLocationFDCode" text as "EC_LOCATION_FD_CODE" variable
-    And I remember "AutoLocationFDDescription" text as "EC_LOCATION_FD_DESCRIPTION" variable
-    And I remember "AutoRegionFDCode" text as "EC_REGION_FD_CODE" variable
-    And I remember "AutoRegionFDDescription" text as "EC_REGION_FD_DESCRIPTION" variable
-    And I remember "AutoRegionName" text as "EC_REGION_NAME" variable
-    And I remember "AutoLocationName" text as "EC_LOCATION_NAME" variable
-    And I remember "AutoLocationAddress" text as "EC_LOCATION_ADDRESS" variable
-    And I remember "AutoLevelName" text as "EC_LEVEL_NAME" variable
-    And I remember "AutoLevelShortName" text as "EC_LEVEL_SHORT_NAME" variable
-    And I remember "AtPprSN" text as "EC_PPR_SN" variable
-    And I remember "AutoPaperName" text as "EC_PAPER_NAME" variable
-    And I remember "AutoPaperDescription" text as "EC_PAPER_DESCRIPTION" variable
-    And I remember "AutoSittingName" text as "EC_SITTING_NAME" variable
-    And I remember "22/02/2021" text as "EC_SITTING_START_DATE" variable
-    And I remember "10/10/2025" text as "EC_SITTING_END_DATE" variable
-
-    And I remember "AutoStreamNameTwo" text as "EC_STREAM_NAME_TWO" variable
-    And I remember "AutoBodyFDCodeTwo" text as "EC_BODY_FD_CODE_TWO" variable
-    And I remember "AutoBodyFDDescriptionTwo" text as "EC_BODY_FD_DESCRIPTION_TWO" variable
-    And I remember "AutoBodyShortNameTwo" text as "EC_BODY_SHORT_NAME_TWO" variable
-    And I remember "AutoBodyNameTwo" text as "EC_BODY_NAME_TWO" variable
-    And I remember "AutoVatRuleCodeTwo" text as "EC_VAT_RULE_CODE_TWO" variable
-    And I remember "AutoVatRuleDescriptionTwo" text as "EC_VAT_RULE_DESCRIPTION_TWO" variable
-    And I remember "AutoCourseTypeFDCodeTwo" text as "EC_COURSE_TYPE_FD_CODE_TWO" variable
-    And I remember "AutoCourseTypeFDDescriptionTwo" text as "EC_COURSE_TYPE_FD_DESCRIPTION_TWO" variable
-    And I remember "AutoCourseTypeDescriptionTwo" text as "EC_COURSE_TYPE_DESCRIPTION_TWO" variable
-    And I remember "AutoLocationFDCodeTwo" text as "EC_LOCATION_FD_CODE_TWO" variable
-    And I remember "AutoLocationFDDescriptionTwo" text as "EC_LOCATION_FD_DESCRIPTION_TWO" variable
-    And I remember "AutoRegionFDCodeTwo" text as "EC_REGION_FD_CODE_TWO" variable
-    And I remember "AutoRegionFDDescriptionTwo" text as "EC_REGION_FD_DESCRIPTION_TWO" variable
-    And I remember "AutoRegionNameTwo" text as "EC_REGION_NAME_TWO" variable
-    And I remember "AutoLocationNameTwo" text as "EC_LOCATION_NAME_TWO" variable
-    And I remember "AutoLocationAddressTwo" text as "EC_LOCATION_ADDRESS_TWO" variable
-    And I remember "AutoLevelNameTwo" text as "EC_LEVEL_NAME_TWO" variable
-    And I remember "AutoLevelShortNameTwo" text as "EC_LEVEL_SHORT_NAME_TWO" variable
-    And I remember "AtPprSNTwo" text as "EC_PPR_SN_TWO" variable
-    And I remember "AutoPaperNameTwo" text as "EC_PAPER_NAME_TWO" variable
-    And I remember "AutoPaperDescriptionTwo" text as "EC_PAPER_DESCRIPTION_TWO" variable
-    And I remember "AutoSittingNameTwo" text as "EC_SITTING_NAME_TWO" variable
+    And I execute "Remember Variables " reusable step
+    And I execute "Remember Variables Two" reusable step
 
   @Positive @P1 #TC-3568
   Scenario: Digital Content Page Filters Validation

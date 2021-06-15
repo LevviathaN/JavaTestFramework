@@ -41,6 +41,10 @@ public class Conditions extends SeleniumHelper {
                 return conditionParameter.isEmpty();
             case "value is not empty":
                 return !conditionParameter.isEmpty();
+            case "values are equal":
+                String value1 = TestParametersController.checkIfSpecialParameter(conditionParameter.split(",")[0]);
+                String value2 = TestParametersController.checkIfSpecialParameter(conditionParameter.split(",")[1]);
+                return value1.equals(value2);
             default:
                 return false;
         }

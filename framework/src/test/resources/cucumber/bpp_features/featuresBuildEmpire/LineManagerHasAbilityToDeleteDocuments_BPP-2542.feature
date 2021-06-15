@@ -1,13 +1,12 @@
 @BuildEmpire @DirectApps @UniversityDegreeApprenticeships
 Feature: Line Manager has an Ability to Delete Documents that was Uploaded by Mistake
 
-  Background:
+  @Positive @BPP-2542 #TC-3632
+  Scenario: Line Manager has an Ability to Delete Documents that were Uploaded by Mistake
     Given I execute "Register New Student Account" reusable step
     Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
-
-  @Positive @BPP-2542 #TC-3632
-  Scenario: Line Manager has an Ability to Delete Documents that were Uploaded by Mistake
+    And I wait for "2" seconds
     When I execute "Create University Degree Apprenticeships Application" reusable step
     And I execute "Complete University Degree Apprenticeships Application Chartered Manager" reusable step
     Then I execute "Submit Application Hub" reusable step

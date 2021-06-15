@@ -31,7 +31,7 @@ Feature: As a user, viewing a "content download RFI",
     When I should scroll to the "top" of the page
     Then I execute "Publish a CMS or Blog Post page" reusable step
     Then I execute "Log Out from Hub Admin" reusable step
-    When I am on "https://web-stage-bppdigital.bppuniversity.com/university-board/<EC_AUTO_CMS_URL>" URL
+    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/<EC_AUTO_CMS_URL>" URL
     Then I should see the "CMS Form" "BPP Digital Web Site CMS Anchors ID"
     And I should see the "EC_FORM_TITLE" element
     And I should see the "EC_FORM_DESCRIPTION" element

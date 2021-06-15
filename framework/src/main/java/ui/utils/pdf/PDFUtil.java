@@ -84,22 +84,12 @@ public class PDFUtil {
         this.bCompareAllPages = flag;
     }
 
-    public int getPageCount(String file)  {
+    public int getPageCount(String file) throws IOException {
         BPPLogManager.getLogger().info("file :" + file);
-        PDDocument doc = null;
-        try {
-            doc = PDDocument.load(new File(file));
-        } catch (IOException e) {
-            e.printStackTrace();
-            Reporter.failTryTakingScreenshot("PDF FILE: " +  file + " NOT FOUND");
-        }
+        PDDocument doc = PDDocument.load(new File(file));
         int pageCount = doc.getNumberOfPages();
         BPPLogManager.getLogger().info("pageCount :" + pageCount);
-        try {
-            doc.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        doc.close();
         return pageCount;
     }
 
@@ -229,7 +219,7 @@ public class PDFUtil {
         int pgCount2 = this.getPageCount(file2);
         if (pgCount1 != pgCount2) {
             BPPLogManager.getLogger().warn("files page counts do not match - returning false");
-            return false;
+            return this.convertToImageAndCompare(file1, file2, this.startPage, this.endPage);
         } else {
             if (this.bHighlightPdfDifference) {
                 this.createImageDestinationDirectory(file2);

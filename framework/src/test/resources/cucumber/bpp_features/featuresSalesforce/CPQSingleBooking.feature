@@ -2,7 +2,7 @@
 Feature: Create a Single Booking
   Description
 
-  @Positive #TC-2609
+  @Positive @SingleBooking #TC-2609
   Scenario: CPQ Single Booking
     Given I execute "Log In To Salesforce" reusable step replacing some steps
       |2|I fill the "Salesforce Username" field with "MD_COMMON_CREDENTIALS_SALESFORCECPQUSER"|
@@ -19,13 +19,15 @@ Feature: Create a Single Booking
     Then I wait for "2" seconds
     Then I execute "Create Business Account" reusable step
     And I execute "Create Address Business Account" reusable step
+    Then I wait for "2" seconds
     Then I execute "Create Business Opportunity" reusable step
     #Add Quote
     And I click on the "EC_AUTO_OPPORTUNITY" "Salesforce link"
+    And I wait for "2" seconds
     Then I click on the "Salesforce Create Quote" element
     And I wait for "2" seconds
     And I click on the "Salesforce Quote Save" button
-    And I wait for "2" seconds
+    And I wait for "3" seconds
     And I click on the "Salesforce Quotes Quick Link Tab" element
     Then I click on the "Salesforce Quotes First Link" element
     And I wait for "2" seconds
@@ -34,7 +36,7 @@ Feature: Create a Single Booking
     Then I wait for "15" seconds
     And I hover over the "Salesforce Quotes Add Products" button
     And I click on the "Salesforce Quotes Add Products" element
-    Then I fill the "Salesforce Quotes Search Products" field with "MD_COMMON_VALIDDATA_SFCPQPRODUCT"
+    Then I fill the "Salesforce Quotes Search Products" field with "MD_COMMON_VALIDDATA_SFCPQPRODUCTSECOND"
     And I press "MD_COMMON_KEYBOARD_ENTER" for "Salesforce Quotes Search Products"
     Then I click on the "Salesforce Quotes Product Checkbox" option
     And I click on the "Salesforce Quotes Select Product Button" element
@@ -52,14 +54,24 @@ Feature: Create a Single Booking
     And I click on the "Salesforce Orders Quick Link Tab on Quote Page" element
     Then I click on the "Salesforce Orders First Link" link
     And I should scroll to the "top" of the page
+    Then I click on the "Salesforce Order Activate" button
+    And I click on the "Salesforce Order Activate Popup" button
+    And Browser performs "REFRESH" command
+    And I wait for "5" seconds
     Then I click on the "Salesforce Account Related Tab" element
     Then I execute "Add A Booking" reusable step
+
     Given I am on "MD_COMMON_LINKS_SALESFORCEINSTANCE" URL
     And Browser performs "REFRESH" command
     And I wait for "10" seconds
     And I should see the "[SUM(EC_AVAILABILITY,-1)]" element
     And I capture text data "Salesforce Instance Availability Data Field" as "EC_MINUSONE_BOOKING" variable
-    And I click on the "Salesforce Instance Page First Booking Link" element
+    And I click on the "Salesforce Instance Page View All Bookings" element
+    And I click on the "Salesforce Booking Number Column Header" element by JS
+    And I wait for "2" seconds
+    And I hover over the "Salesforce Recent Booking Link" element
+    Then I click on the "Salesforce Recent Booking Link" element by JS
+    Then I click on the "Salesforce Recent Booking Link Active Cell" element by JS
     Then I click on the "Salesforce Quotes Edit" element
     And I wait for "2" seconds
     And I click on the "Status" "Salesforce booking dropdown field" by JS

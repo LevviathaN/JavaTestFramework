@@ -1,19 +1,22 @@
 @BuildEmpire @DirectApps @UniversityDegreeApprenticeships
 Feature: BPP University Degree Line Manager Pop up confirmation for application without completed actions
 
-  Background:
-    Given I execute "Register New Student Account" reusable step
-    Then I execute "Harakirimail Verify Email" reusable step
-    Then I execute "Log In to Hub as Student" reusable step
-
   @Positive @Popup #TC-1574
   Scenario: BPP University Degree Line Manager Pop up confirmation for application without completed actions
-    When I execute "Create University Degree Apprenticeships Application" reusable step
-    And I execute "Complete University Degree Apprenticeships Application Chartered Manager" reusable step
+    Given I execute "Log In to Hub as Student" reusable step replacing some steps
+      | 2 | I set "AutoAhmadBarrett4462@harakirimail.com" text to the "Email" "Build Empire text field" |
+      | 3 | I set "A@polloGlobal2020" text to the "Password" "Build Empire text field"               |
+    Then I remember "AutoAtkinson" text as "EC_AUTO_LASTNAME" variable
+    And I wait for "5" seconds
+    And I click on the "Direct App My Applications Left Menu Link" link by JS
+    When I execute "Create University Degree Apprenticeships Application" reusable step replacing some steps
+      | 1 | I click on the "Direct App Start New Application Button" button |
+    And I execute "Complete University Degree Apprenticeships Application With Existing Student" reusable step
     Then I execute "Submit Application Hub" reusable step
     And I execute "Log Out from Hub Student" reusable step
     And I execute "Log In to Hub as Admin" reusable step
-    And I execute "Pre Approve Apprenticeships Application As Admin" reusable step
+    And I execute "Pre Approve Apprenticeships Application As Admin" reusable step replacing some steps
+      | 4 | I fill the "Direct App Admin Filter By User" field with "AutoAhmadBarrett4462@harakirimail.com" |
     And I execute "Attach Automation Line Manager Apprenticeships" reusable step replacing some steps
       |4|I fill the "Direct App Admin Attach Line Manger Text Field" field with "automationLinemanager8@harakirimail.com"|
       |5|I click on the "Automation8 Linemanager8" "Build Empire line manager option"|

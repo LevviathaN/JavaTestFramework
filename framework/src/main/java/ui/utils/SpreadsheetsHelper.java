@@ -145,6 +145,7 @@ public class SpreadsheetsHelper {
     }
 
     public static void manageSpreadsheet(String application) {
+        SpreadsheetsAPI.app = application;
         initializeColumns();
         SpreadsheetsAPI.initiate();
         updateRegressionResults(application);

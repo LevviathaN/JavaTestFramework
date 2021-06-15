@@ -248,7 +248,7 @@ public class TestParametersController {
                 }
                 else if (element.startsWith("EMAIL")){
                     resultingValueSimplified.append(KeywordsHandler.getValueByKeyword("AUTO_FIRSTNAME"));
-                    resultingValueSimplified.append(KeywordsHandler.getValueByKeyword("AUTO_LASTNAME"));
+                    resultingValueSimplified.append(KeywordsHandler.getValueByKeyword("AUTO_FIRSTNAME"));
                     resultingValueSimplified.append(KeywordsHandler.getValueByKeyword("AUTO_RANDOMNUMBER|####"));
                     if (element.contains("MAILDROP")){
                         resultingValueSimplified.append("@maildrop.cc");

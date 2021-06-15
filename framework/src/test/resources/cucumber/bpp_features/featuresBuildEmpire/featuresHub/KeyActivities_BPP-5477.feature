@@ -38,6 +38,7 @@ Feature: As an admin, setting up a course in Totara, I expect to see new control
     And I wait for "3" seconds
     And I click on the "Direct App My Learning Automation Course Name" element
     Then I should scroll to the "bottom" of the page
+    Then I hover over the "Direct App Topic Key Activities" element
     And I click on the "Direct App Topic Key Activities" element
     And I wait for "3" seconds
     Then I validate text "Topic to test adding activities" to be displayed for "Direct App Topic Name" element

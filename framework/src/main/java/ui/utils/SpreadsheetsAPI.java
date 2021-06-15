@@ -29,15 +29,16 @@ import java.util.List;
 public class SpreadsheetsAPI {
     private static final String APPLICATION_NAME = "BPP Automation";
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
-    private static final String TOKENS_DIRECTORY_PATH = "tokens";
+    private static String TOKENS_DIRECTORY_PATH = "tokens";
     private static Sheets service;
+    public static String app;
 
     /**
      * Global instance of the scopes required by this quickstart.
      * If modifying these scopes, delete your previously saved tokens/ folder.
      */
-    private static final List<String> SCOPES = Arrays.asList(SheetsScopes.SPREADSHEETS,SheetsScopes.DRIVE);
-    private static final String CREDENTIALS_FILE_PATH = "/credentials.json";
+    private static List<String> SCOPES = Arrays.asList(SheetsScopes.SPREADSHEETS,SheetsScopes.DRIVE);
+    private static String CREDENTIALS_FILE_PATH = "/credentials.json";
 
     /**
      * Creates an authorized Credential object.
@@ -45,6 +46,8 @@ public class SpreadsheetsAPI {
      * @return An authorized Credential object.
      */
     private static Credential getCredentials(final NetHttpTransport HTTP_TRANSPORT) {
+        CREDENTIALS_FILE_PATH = "/credentials" + app + ".json";
+        TOKENS_DIRECTORY_PATH = "tokens/" + app;
         // Load client secrets.
         try {
             InputStream in = SpreadsheetsAPI.class.getResourceAsStream(CREDENTIALS_FILE_PATH);

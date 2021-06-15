@@ -204,11 +204,11 @@ Feature: BuildEmpire
     And I wait for "1" seconds
     Then I click on the "Professional Career Development Programmes Scotland" "Build Empire application type"
     And I wait for "1" seconds
-    #And I hover over the "Direct App Programmes Programm Dropdown" button
-    #And I click on the "Direct App Programmes Programm Dropdown" element
-    #Then I wait for "1" seconds
-    #Then I click on the "Chartered Manager" "Build Empire application type"
-    #And I wait for "1" seconds
+    And I hover over the "Direct App Programmes Programm Dropdown" button
+    And I click on the "Direct App Programmes Programm Dropdown" element
+    Then I wait for "1" seconds
+    Then I click on the "Chartered Manager" "Build Empire application type"
+    And I wait for "1" seconds
     And I click on the "Direct App Create Application" button
     Then I wait for "1" seconds
 
@@ -336,7 +336,7 @@ Feature: BuildEmpire
     And I click on the "Direct App Save Review And Back" button
     And I wait for "1" seconds
     And Browser performs "Refresh" command
-    And I wait for "5" seconds
+    And I wait for "10" seconds
     And I click on the "Application documents" "Build Empire application section"
     #And I click on the "Download Application of" "Build Empire application section"
     #Then I switch to window with index "0"
@@ -465,11 +465,12 @@ Feature: BuildEmpire
     And I set "Manager Lastname" text to the "Manager Last Name" "Build Empire employment element"
     And I set "AutoTitle" text to the "Manager Job Title" "Build Empire employment element"
     And I set "automation11@mail.com" text to the "Manager Email" "Build Empire employment element"
-    And I fill the "Direct App Line Manager Telephone" field with "0913<KW_AUTO_RANDOMNUMBER|#######>"
+    And I fill the "Direct App Line Manager Telephone" field with "[PHONE-0913]"
     And I set "Address 1" text to the "Address Line 1" "Build Empire employment element"
     And I set "London" text to the "Company/Employer City" "Build Empire employment element"
     And I set "Employee" text to the "Employee" "Build Empire employment element"
-    And I set "Division" text to the "Division" "Build Empire employment element"
+    And I click on the "Direct App Company Division Dropdown" element
+    Then I click on the "NatWest Markets" "Build Empire dropdown option"
     And I set "Subdivision" text to the "Subdivision" "Build Empire employment element"
     And I click on the "Direct App Company Health And Safety" element
     And I fill the "Direct App When You Start At Company" field with "05/05/2018"
@@ -710,7 +711,7 @@ Feature: BuildEmpire
     And I set "Manager Lastname" text to the "Manager Last Name" "Build Empire employment element"
     And I set "AutoTitle" text to the "Manager Job Title" "Build Empire employment element"
     And I set "automation11@mail.com" text to the "Manager Email" "Build Empire employment element"
-    And I fill the "Direct App Line Manager Telephone" field with "0913<KW_AUTO_RANDOMNUMBER|#######>"
+    And I fill the "Direct App Line Manager Telephone" field with "[PHONE-0913]"
     And I set "Address 1" text to the "Address Line 1" "Build Empire employment element"
     And I set "London" text to the "Company/Employer City" "Build Empire employment element"
     And I set "Employee" text to the "Company/Employer Name" "Build Empire employment element"
@@ -951,7 +952,7 @@ Feature: BuildEmpire
     And I set "Manager Lastname" text to the "Manager Last Name" "Build Empire employment element"
     And I set "AutoTitle" text to the "Manager Job Title" "Build Empire employment element"
     And I set "automation11@mail.com" text to the "Manager Email" "Build Empire employment element"
-    And I fill the "Direct App Line Manager Telephone" field with "0913<KW_AUTO_RANDOMNUMBER|#######>"
+    And I fill the "Direct App Line Manager Telephone" field with "[PHONE-0913]"
     And I click on the "Do you know how to raise" "Build Empire radiobutton yes"
     And I set "Address 1" text to the "Address Line 1" "Build Empire employment element"
     And I set "London" text to the "Company/Employer City" "Build Empire employment element"
@@ -1088,7 +1089,7 @@ Feature: BuildEmpire
     And I click on the "Direct App Mark As Complete Checkbox" button
     And I click on the "Direct App Next" button
     And I set "AutoTitle" text to the "Manager Job Title" "Build Empire employment element"
-    And I fill the "Direct App Line Manager Telephone" field with "0913<KW_AUTO_RANDOMNUMBER|#######>"
+    And I fill the "Direct App Line Manager Telephone" field with "1234567890"
     And I click on the "Direct App Mark As Complete Checkbox" button
     And I click on the "Direct App Next" button
     And I click on the "Direct App Privacy Notice By Email" button
@@ -1105,7 +1106,7 @@ Feature: BuildEmpire
     And I set "AutoCMSPage[#####]" text to the "Name *" "BPP Digital Mandatory input field"
     And I select "CMS page" from "Page type *" "BPP Digital Mandatory select field"
     And I set "AutoCMSUrl[#####]" text to the "Path *" "BPP Digital Mandatory input field"
-    And I select "About us > BPP University > University board" from "Parent" "BPP Digital Mandatory select field"
+    And I select "About Us" from "Parent" "BPP Digital Mandatory select field"
     And I set "Title[####]" text to the "Title" "BPP Digital Mandatory input field"
     And I set "Summary[####]" text to the "Summary" "BPP Digital Mandatory text area field"
     And I set "MetaDescription[####]" text to the "Meta description" "BPP Digital Mandatory text area field"
@@ -1149,7 +1150,7 @@ Feature: BuildEmpire
     And I wait for "2" seconds
     And I hover over the "Direct App Programmes Programm Dropdown" element
     And I click on the "Direct App Programmes Programm Dropdown" element
-    Then I click on the "UAT Accounting Assitant" "Build Empire application type"
+    Then I click on the "UAT Accounting Assistant" "Build Empire application type"
     And I wait for "2" seconds
     #And I hover over the "Direct App Location Dropdown" button
     #And I click on the "Direct App Location Dropdown" element
@@ -1173,7 +1174,7 @@ Feature: BuildEmpire
     And I hover over the "Direct App Programmes Programm Dropdown" button
     And I click on the "Direct App Programmes Programm Dropdown" element
     And I wait for "2" seconds
-    Then I click on the "UAT Accounting Assitant" "Build Empire application type"
+    Then I click on the "UAT Accounting Assistant" "Build Empire application type"
     And I wait for "2" seconds
     #And I hover over the "Direct App Location Dropdown" button
     #And I click on the "Direct App Location Dropdown" element
@@ -1283,7 +1284,7 @@ Feature: BuildEmpire
     And I set "Manager Lastname" text to the "Manager Last Name" "Build Empire employment element"
     And I set "AutoTitle" text to the "Manager Job Title" "Build Empire employment element"
     And I set "automation11@mail.com" text to the "Manager Email" "Build Empire employment element"
-    And I fill the "Direct App Line Manager Telephone" field with "0913<KW_AUTO_RANDOMNUMBER|#######>"
+    And I fill the "Direct App Line Manager Telephone" field with "[PHONE-0913]"
     And I set "Address 1" text to the "Address Line 1" "Build Empire employment element"
     And I set "London" text to the "Company/Employer City" "Build Empire employment element"
     And I set "Employee" text to the "Company/Employer Name" "Build Empire employment element"
@@ -1539,7 +1540,7 @@ Feature: BuildEmpire
       And I set "AutoTitle" text to the "Manager Job Title" "Build Empire employment element"
       And I set "automation11@mail.com" text to the "Manager Email" "Build Empire employment element"
       And Attribute "class" of "Direct App Inactive Status Button" should have value "step-actions disabled"
-      And I fill the "Direct App Line Manager Telephone" field with "0913<KW_AUTO_RANDOMNUMBER|#######>"
+      And I fill the "Direct App Line Manager Telephone" field with "[PHONE-0913]"
       And I set "Address 1" text to the "Address Line 1" "Build Empire employment element"
       And Attribute "class" of "Direct App Inactive Status Button" should have value "step-actions disabled"
       And I set "London" text to the "Company/Employer City" "Build Empire employment element"
@@ -1736,7 +1737,7 @@ Feature: BuildEmpire
     And I set "Manager Lastname" text to the "Manager Last Name" "Build Empire employment element"
     And I set "AutoTitle" text to the "Manager Job Title" "Build Empire employment element"
     And I set "automation11@mail.com" text to the "Manager Email" "Build Empire employment element"
-    And I fill the "Direct App Line Manager Telephone" field with "0913<KW_AUTO_RANDOMNUMBER|#######>"
+    And I fill the "Direct App Line Manager Telephone" field with "[PHONE-0913]"
     And I click on the "Do you know how to raise" "Build Empire radiobutton yes"
     And I set "Address 1" text to the "Address Line 1" "Build Empire employment element"
     And I set "London" text to the "Company/Employer City" "Build Empire employment element"
@@ -1760,3 +1761,44 @@ Feature: BuildEmpire
     And I wait for "3" seconds
     And I click on the "Delete" "Totara button"
     And I wait for "3" seconds
+
+  Scenario: Complete Professional Apprenticeships Application Chartered Manager Existing Student
+    Given I click on the "Direct App Start Application" button
+    And I click on the "Eligibility criteria" "Build Empire application section"
+    And I click on the "Are you aged over 15" "Build Empire bespoke Scotland eligibility"
+    And I click on the "Do you have a husband, wife," "Build Empire bespoke Scotland eligibility"
+    And I click on the "Direct App Right To Work in England?" element
+    And I click on the "Direct App Do You Spend 50 Percent" element
+    And I click on the "Direct App Bespoke Enrolled On Another Apprenticeship No" element
+    And I click on the "Direct App Are You In Employment" element
+    And I click on the "Direct App Are You Working At Least 16 Hours" element
+    And I click on the "Are you applying for a programme" "Build Empire bespoke Scotland eligibility"
+    And I click on the "Do you confirm that your job is a new" "Build Empire bespoke Scotland eligibility"
+    And I click on the "You confirm that you have discussed" "Build Empire bespoke Scotland eligibility"
+    And I wait for "2" seconds
+    And I click on the "Direct App Next" button
+    And I click on the "Direct App Mark As Complete Checkbox" button
+    And I wait for "2" seconds
+    And I click on the "Direct App Next" button
+    And I wait for "2" seconds
+    And I click on the "employment status?:" "Build Empire nationality dropdown"
+    And I click on the "I have work experience in this sector of up to 2 years" "Build Empire nationality option"
+    And I click on the "Direct App Mark As Complete Checkbox" button
+    And I wait for "2" seconds
+    And I click on the "Direct App Next" button
+    And I click on the "Direct App Mark As Complete Checkbox" button
+    And I wait for "2" seconds
+    And I click on the "Direct App Next" button
+    And I click on the "Direct App Mark As Complete Checkbox" button
+    And I wait for "2" seconds
+    And I click on the "Direct App Next" button
+    And I click on the "Direct App Mark As Complete Checkbox" button
+    And I wait for "2" seconds
+    And I click on the "Direct App Next" button
+    And I click on the "Direct App Mark As Complete Checkbox" button
+    And I click on the "Direct App Next" button
+    And I click on the "Direct App Mark As Complete Checkbox" button
+    And I click on the "Direct App Next" button
+    And I click on the "Direct App Mark As Complete Checkbox" button
+    Then I wait for "1" seconds
+    And I click on the "Direct App Save And Return" button

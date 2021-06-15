@@ -58,11 +58,6 @@ Feature: CBA - Create Courses and Instances - BPP-3206
     When I click on the "Products" "Product Factory navigation item"
     When I click on the "CBAs" "Product Factory navigation sub item"
 
-    Then I set "EC_SITTING_NAME" text to the "Search" "Product Factory text field" from keyboard
-    And I click on the "submit" "element by type"
-    And I should see the "EC_SITTING_NAME" "element"
-    And I click on the "Clear the search text" "element by title"
-
     Then I set "EC_SESSION_DURATION_DESCRIPTION" text to the "Search" "Product Factory text field" from keyboard
     And I click on the "submit" "element by type"
     And I should see the "EC_SESSION_DURATION_DESCRIPTION" "element"
@@ -71,21 +66,6 @@ Feature: CBA - Create Courses and Instances - BPP-3206
     Then I set "EC_REGION_NAME" text to the "Search" "Product Factory text field" from keyboard
     And I click on the "submit" "element by type"
     And I should see the "EC_REGION_NAME" "element"
-    And I click on the "Clear the search text" "element by title"
-
-    Then I set "EC_LOCATION_NAME" text to the "Search" "Product Factory text field" from keyboard
-    And I click on the "submit" "element by type"
-    And I should see the "EC_LOCATION_NAME" "element"
-    And I click on the "Clear the search text" "element by title"
-
-    Then I set "EC_COURSE_TYPE_DESCRIPTION" text to the "Search" "Product Factory text field" from keyboard
-    And I click on the "submit" "element by type"
-    And I should see the "EC_COURSE_TYPE_DESCRIPTION" "element"
-    And I click on the "Clear the search text" "element by title"
-
-    Then I set "EC_CLIENT_NAME" text to the "Search" "Product Factory text field" from keyboard
-    And I click on the "submit" "element by type"
-    And I should see the "EC_SITTING_NAME" "element"
     And I click on the "Clear the search text" "element by title"
 
   @Negative @Regression @P1 @DoNotRun @NotActual #TC-3772

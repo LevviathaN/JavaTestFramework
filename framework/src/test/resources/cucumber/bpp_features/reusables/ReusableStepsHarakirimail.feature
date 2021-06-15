@@ -121,7 +121,8 @@ Feature: Harakirimail, Guerrillamail
     Then I click on the "Harakirimail Get Inbox" button
     Then I click on the "Harakirimail First Email" element by JS
     And I wait for "2" seconds
-    And I click on the "document.getElementsByClassName('adsbygoogle adsbygoogle-noablate')[2].remove();" button with JS if "Harakirimail Adds Banner" "element is present"
+    #And I click on the "document.getElementsByClassName('adsbygoogle adsbygoogle-noablate')[2].remove();" button with JS if "Harakirimail Adds Banner" "element is present"
+    Then I execute "document.getElementsByClassName('adsbygoogle adsbygoogle-noablate')[2].remove();" JS code if "Harakirimail Adds Banner" "element is present"
     And I wait for "6" seconds
     Then I click on the "Harakirimail First Email" element if "Harakirimail First Email" "element is present"
     Then I click on the "Harakirimail Verify Email" button by JS

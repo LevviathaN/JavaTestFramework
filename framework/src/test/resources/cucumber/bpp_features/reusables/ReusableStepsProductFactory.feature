@@ -133,6 +133,8 @@ Feature: Product Factory
     And I set "PprSN[#####]" text to the "Short Name" "Product Factory text field"
     And I set "PaperName[#####]" text to the "Name" "Product Factory text field"
     And I set "PaperDescription[######]" text to the "Description" "Product Factory text field"
+    And I click on the "Exam Schedule" "Product Factory dropdown"
+    And I click on the "Not Applicable" "Product Factory dropdown option"
     And I click on the "Save" "Product Factory button"
     And I wait for "5" seconds
     And I click on the "Search" "Product Factory text field"
@@ -166,7 +168,7 @@ Feature: Product Factory
     When I click on the "Sittings" "Product Factory navigation sub item"
     Then I click on the "Create" "Product Factory button"
     And I set "SittingName[######]" text to the "Name" "Product Factory text field"
-    And I remember "KW_AUTO_TODAY|DD/MM/YYYY" text as "EC_SITTING_START_DATE" variable
+    And I remember "22/02/2022" text as "EC_SITTING_START_DATE" variable
     And I set "EC_SITTING_START_DATE" text to the "Start Date" "Product Factory text field"
     And I remember "10/10/2025" text as "EC_SITTING_END_DATE" variable
     And I set "EC_SITTING_END_DATE" text to the "End Date" "Product Factory text field"
@@ -235,6 +237,37 @@ Feature: Product Factory
     And I click on the "Save" "Product Factory button"
     Then I should see the "EC_MATERIAL_TYPE_DESCRIPTION" element
 
+  Scenario: Create Programme
+    When I click on the "Programme" "Product Factory navigation item"
+    When I click on the "University Programmes" "Product Factory navigation sub item"
+    Then I click on the "Create" "Product Factory button"
+    And I set "ProgrammeCode[######]" text to the "Code" "Product Factory text field"
+    And I set "ProgrammeName[######]" text to the "Name" "Product Factory text field"
+    And I click on the "Save" "Product Factory button"
+    Then I should see the "EC_PROGRAMME_NAME" element
+
+  Scenario: Create Programme Cohort
+    When I click on the "Delivery" "Product Factory navigation item"
+    When I click on the "Programme Cohorts" "Product Factory navigation sub item"
+    Then I click on the "Create" "Product Factory button"
+    And I click on the "University Programme" "Product Factory change button"
+    And I click on the "EC_PROGRAMME_CODE" "Product Factory select button"
+    And I set "~CohortStartDate[TODAY]" text to the "Start Teaching Date" "Product Factory text field"
+    And I set "CohortName[######]" text to the "Name" "Product Factory text field"
+    And I click on the "Save" "Product Factory button"
+    Then I should see the "EC_COHORT_NAME" element
+
+  Scenario: Create Module Section
+    When I click on the "Delivery" "Product Factory navigation item"
+    When I click on the "Module Sections" "Product Factory navigation sub item"
+    Then I click on the "Create" "Product Factory button"
+    And I click on the "Programme Cohort" "Product Factory change button"
+    And I click on the "EC_COHORT_NAME" "Product Factory select button"
+    And I set "ModuleSectionName[######]" text to the "Name" "Product Factory text field"
+    And I set "~SISTermCode[######]" text to the "SIS Term Code" "Product Factory text field"
+    And I click on the "Save" "Product Factory button"
+    Then I should see the "EC_MODULE_SECTION_NAME" element
+
   Scenario: Create Client
     When I click on the "Miscellaneous" "Product Factory navigation item"
     When I click on the "Clients" "Product Factory navigation sub item"
@@ -302,6 +335,7 @@ Feature: Product Factory
     Then I click on the "Create" "Product Factory button"
     And I set "VatRuleCode[######]" text to the "Code" "Product Factory text field"
     And I set "VatRuleDescription[######]" text to the "Description" "Product Factory text field"
+    And I set "~VatRuleRate[70]" text to the "VAT Rate (%)" "Product Factory text field"
     And I click on the "Save" "Product Factory button"
     Then I should see the "EC_VAT_RULE_CODE" element
 
@@ -319,13 +353,12 @@ Feature: Product Factory
     And I click on the "BPP Learning Media" "Product Factory button"
     And I click on the "EC_MATERIAL_TYPE_NAME" "Product Factory select button"
     And I set "~Price[####]" text to the "Price (£)" "Product Factory text field"
+    And I set "~Cost[####]" text to the "Cost (£)" "Product Factory text field"
     And I set "~Weight[##]" text to the "Weight (kg)" "Product Factory text field"
     And I set "EC_ISBN" text to the "ISBN" "Product Factory text field"
     And I set "From[TODAY]" text to the "Available From" "Product Factory text field"
     And I set "10/10/2022" text to the "Expiry Date" "Product Factory text field"
     And I set "1020" text to the "Edition" "Product Factory text field"
-    And I click on the "Production Method" "Product Factory dropdown"
-    And I click on the "Not Applicable" "Product Factory dropdown option"
     And I click on the "Learning Media VAT Rule" "Product Factory change button"
     And I click on the "EC_VAT_RULE_CODE" "Product Factory select button"
     And I click on the "Course Material VAT Rule" "Product Factory change button"
@@ -341,7 +374,7 @@ Feature: Product Factory
     And I click on the "Add Material Stock Site" "element by title"
     And I click on the "Stock Site" "Product Factory dropdown"
     And I click on the "EC_STOCK_SITE_NAME" "Product Factory dropdown option"
-    And I click on the "Production Method" "Product Factory dropdown two"
+    And I click on the "Production Method" "Product Factory dropdown"
     And I click on the "Managed" "Product Factory dropdown option"
     And I click on the "Save" "Product Factory button"
     And I click on the "Next" "Product Factory button"
@@ -363,7 +396,10 @@ Feature: Product Factory
     And I click on the "EC_REGION_NAME" "Product Factory select button"
     And I click on the "Product Factory Number Of Sessions Edit Button" button
     When I set "1" text to the "Number of Sessions" "Product Factory text field"
-    And I click on the "Save" "Product Factory button"
+    And I click on the "Yes" "Product Factory button title"
+    And I click on the "Product Factory Number Of Steps Edit Button" button
+    When I set "1" text to the "Number of Steps" "Product Factory text field"
+    And I click on the "Yes" "Product Factory button title"
     And I click on the "Finish" "Product Factory button"
 
   Scenario: Create Course Instance
@@ -423,32 +459,29 @@ Feature: Product Factory
     When I click on the "Products" "Product Factory navigation item"
     When I click on the "CBAs" "Product Factory navigation sub item"
     And I click on the "Create" "Product Factory button"
-    And I click on the "EC_SITTING_NAME" "Product Factory select button"
-    And I click on the "EC_SESSION_DURATION_DESCRIPTION" "Product Factory select button"
+    And I click on the "EC_CBA_SESSION_DURATION_DESCRIPTION" "Product Factory select button"
     And I click on the "Region" "Product Factory dropdown"
     And I click on the "EC_REGION_NAME" "element"
     And I click on the "Location" "Product Factory dropdown"
     And I click on the "EC_LOCATION_NAME" "element"
-    Then I set "EC_COURSE_TYPE_DESCRIPTION" text to the "Search" "Product Factory text field" from keyboard
-    And I click on the "submit" "element by type"
-    And I click on the "EC_COURSE_TYPE_DESCRIPTION" "Product Factory select button"
-    Then I should see the "EC_SITTING_NAME" element
-    Then I should see the "EC_SESSION_DURATION_DESCRIPTION" element
-    Then I should see the "EC_REGION_NAME" element
-    Then I should see the "EC_LOCATION_NAME" element
-    Then I should see the "EC_COURSE_TYPE_DESCRIPTION" element
-    And I set "[TODAY]" text to the "Date" "Product Factory text field"
-    And I set "~CBAStartTime[01:00AM]" text to the "Start Time" "Product Factory text field"
-    And I set "1" text to the "Capacity" "Product Factory text field"
-    And I click on the "Finish" "Product Factory button"
-    And I click on the "Default Institute Fee (£)" "Product Factory edit button"
+    And I fill the "Product Factory CBA Wizard Date" field with "[TODAY]"
+    And I fill the "Product Factory CBA Wizard Start Time" field with "~CBAStartTime[01:00AM]"
+    And I click on the "Add Date & Time" "element by title"
+    And I click on the "Next" "Product Factory button"
+    And I set "1" text to the "Default Capacity" "Product Factory text field"
     And I set "~DefaultInstituteFee[###]" text to the "Default Institute Fee (£)" "Product Factory text field"
-    And I click on the "Save" "Product Factory button"
-    When I click on the "Clients" "Product Factory button"
-    And I click on the "Edit" "Product Factory button"
-    And I "check" "EC_CLIENT_NAME" "Product Factory checkbox"
-    And I click on the "Save" "Product Factory button"
-    And I click on the "Courses" "Product Factory button"
+    And I click on the "Next" "Product Factory button"
+#    Then I set "EC_COURSE_TYPE_DESCRIPTION" text to the "Search" "Product Factory text field" from keyboard
+#    And I click on the "submit" "element by type"
+    And I click on the "EC_COURSE_TYPE_DESCRIPTION" "Product Factory select button"
+    And I click on the "Sitting" "Product Factory dropdown"
+    And I click on the "EC_SITTING_NAME" "Product Factory dropdown option"
+    And I click on the "Body" "Product Factory dropdown"
+    And I click on the "EC_BODY_NAME" "Product Factory dropdown option"
+    And I click on the "Paper" "Product Factory dropdown"
+    And I click on the "EC_CBA_PAPER_NAME" "Product Factory dropdown option"
+    And I click on the "Next" "Product Factory button"
+    And I click on the "Finish" "Product Factory button"
 
   Scenario: Create CBA Course
     When I click on the "Products" "Product Factory navigation item"
@@ -456,19 +489,26 @@ Feature: Product Factory
     Then I set "EC_COURSE_TYPE_DESCRIPTION" text to the "Search" "Product Factory text field" from keyboard
     And I click on the "submit" "element by type"
     And I click on the "EC_COURSE_TYPE_DESCRIPTION" "Product Factory edit button"
+    And I click on the "Courses" "element"
     When I click on the "Create" "Product Factory button"
-    And I "check" "EC_BODY_SHORT_NAME" "Product Factory checkbox"
-    And I click on the "Next" "Product Factory button"
-    And I click on the "Next" "Product Factory button"
-    Then I should see the "EC_BODY_SHORT_NAME" element
-    Then I should see the "EC_PAPER_NAME" element
-    Then I should see the "EC_LEVEL_SHORT_NAME" element
+#    Then I set "EC_COURSE_TYPE_DESCRIPTION" text to the "Search" "Product Factory text field" from keyboard
+#    And I click on the "submit" "element by type"
+    And I click on the "EC_COURSE_TYPE_DESCRIPTION" "Product Factory select button"
+    And I click on the "Sitting" "Product Factory dropdown"
+    And I click on the "EC_SITTING_NAME" "Product Factory dropdown option"
+    And I click on the "Body" "Product Factory dropdown"
+    And I click on the "EC_BODY_NAME" "Product Factory dropdown option"
+    And I click on the "Paper" "Product Factory dropdown"
+    And I click on the "EC_PAPER_NAME" "Product Factory dropdown option"
     And I click on the "Finish" "Product Factory button"
 
   Scenario: Create Digital Content
     When I click on the "Delivery" "Product Factory navigation item"
     When I click on the "Digital Content" "Product Factory navigation sub item"
     Then I click on the "Create" "Product Factory button"
+    And I click on the "Professional Qualifications" "text contained in SPAN element"
+    And I click on the "Totara" "Product Factory button"
+    And I click on the "Save" "Product Factory button"
     And I wait for "6" seconds
     And I click on the "Body" "Product Factory dropdown"
     And I click on the "EC_BODY_NAME" "Product Factory dropdown option"
@@ -493,6 +533,7 @@ Feature: Product Factory
   Scenario: Keep the Course Activated
     Given I click on the "Activate" "Product Factory button" if "Activate,Product Factory button" "special element is present"
     Given I click on the "Reactivate" "Product Factory button" if "(Deactivated)" "element is present"
+    When I click on the "Yes" "Product Factory button" if "Yes,Product Factory button" "special element is present"
     And I should see the "Deactivate" "Product Factory button"
 
   Scenario: Keep the Course Instance Activated
@@ -506,12 +547,25 @@ Feature: Product Factory
     And I click on the "submit" "element by type"
     And I click on the "EC_COURSE_TYPE_DESCRIPTION" "Product Factory edit button"
 
+  Scenario: Edit Material
+    When I click on the "Products" "Product Factory navigation item"
+    When I click on the "Materials" "Product Factory navigation sub item"
+    And I set "EC_MATERIAL_TYPE_NAME" text to the "Search" "Product Factory text field" from keyboard
+    And I click on the "submit" "element by type"
+    And I click on the "EC_MATERIAL_TYPE_NAME" "Product Factory edit button"
+
   Scenario: Populate Course Instance Session Dates
     When I click on the "EC_LOCATION_NAME" "Product Factory course instance sessions dropdown button"
     And I click on the "EC_LOCATION_NAME" "Product Factory Session Dates button"
     And I fill the "Product Factory Session Dates Popup Date Input Field" field with "EC_SITTING_START_DATE"
     And I fill the "Product Factory Session Dates Popup Start Time Input Field" field with "03:00AM"
     And I fill the "Product Factory Session Dates Popup End Time Input Field" field with "04:00AM"
+    And I click on the "Next" "Product Factory button"
+    And I click on the "Finish" "Product Factory button"
+
+  Scenario: Populate Course Instance Step Due Dates
+    And I click on the "Product Factory Change Course Step Due Date" button
+    And I set "[TODAY]" text to the "Due Date" "Product Factory text field"
     And I click on the "Next" "Product Factory button"
     And I click on the "Finish" "Product Factory button"
     

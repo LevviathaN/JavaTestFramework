@@ -2,10 +2,10 @@
 Feature: Submit Professional Apprenticeship Applications With New Line Manager
 
   Background:
-    Given I execute "Register New Student Account" reusable step replacing some steps
-      | 5 | I set "Auto[EMAIL-NADA]" text to the "Email" "Build Empire text field"|
-    Then I execute "Nada Student Email Verification" reusable step
+    Given I execute "Register New Student Account" reusable step
+    Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
+    And I wait for "2" seconds
 
   @Positive @CreateLineManager @UATAccounting #TC-1025 #TC-1021 #TC-1022
   Scenario: Professional Apprenticeships Create And Attach Line Manager
@@ -40,17 +40,13 @@ Feature: Submit Professional Apprenticeship Applications With New Line Manager
     And I click on the "Direct App Save Review And Next" button
     And I click on the "Direct App Line Manager Review Health And Safety Checkbox" button
     And I click on the "Direct App Save Review And Back" button
-    And I wait for "2" seconds
-    And I execute "Log Out from Hub Student" reusable step
-    Given I am on "MD_COMMON_LINKS_BUILDEMPIREURL" URL
-    And I set "EC_LINEMANAGER_EMAIL" text to the "Email" "Build Empire text field"
-    And I set "Welcome2@#!Welc" text to the "Password" "Build Empire text field"
-    Then I click on the "Direct App Login Button" button
-    And I wait for "2" seconds
-    Given I click on the "Direct App My Approvals Tab" link by JS
-    And I click on the "Direct App Line Manager Review Application" button
-    And I wait for "2" seconds
+    And I wait for "3" seconds
+    Then Browser performs "REFRESH" command
+    #Given I click on the "Direct App My Approvals Tab" link by JS
+    #And I click on the "Direct App Line Manager Review Application" button
+    And I wait for "5" seconds
     And I click on the "Application documents" "Build Empire application section"
+    Then I wait for "3" seconds
     And I click on the "Download Application of" "Build Empire application section"
     Then I switch to window with index "2"
     Then I upload "application_pack_document.pdf" file to "Direct App Apprenticeships Upload Documents" element

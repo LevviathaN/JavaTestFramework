@@ -352,6 +352,18 @@
     "value": "xpath=//div[contains(@class,'single-section')][1]/a"
   },
   {
+    "name": "BPP Digital Student AutomationTopic Course Sticker",
+    "value": "xpath=(//div[contains(text(),'AutomationTopic')]/parent::div[contains(@class,'section-data')]/following-sibling::a)[1]"
+  },
+  {
+    "name": "BPP Digital Student Automation Topic for CTA Topic Sticker",
+    "value": "xpath=//div[contains(@class,'single-section')]/div[normalize-space()='Automation Topic for CTA']/following-sibling::a"
+  },
+  {
+    "name": "BPP Digital Student Automation Topic To Complete label",
+    "value": "xpath=//h5/div[normalize-space()='Automation Topic To Complete']"
+  },
+  {
     "name": "BPP Digital Student Icaew Course Page Open Automation Restrictions C Topic Sticker",
     "value": "xpath=(//div[text()='Automation Restrictions Completion C']/following::a)[1]"
   },
@@ -362,6 +374,14 @@
   {
     "name": "BPP Digital Student Sub Topic Quiz svg element",
     "value": "xpath=//span[contains(@class,'sub-topic-status')]/*[name()='svg']"
+  },
+  {
+    "name": "Build Empire Quiz One Activity checkbox",
+    "value": "xpath=//a[text()='Quiz 1']/ancestor::li/span/*[name()='svg']"
+  },
+  {
+    "name": "Build Empire Quiz Two Activity checkbox",
+    "value": "xpath=//a[text()='Quiz 2']/ancestor::li/span/*[name()='svg']"
   },
   {
     "name": "BPP Digital Student Icaew Course Page Open Second Topic Sticker",
@@ -582,6 +602,54 @@
   {
     "name": "BPP Digital Pages Main Sub Menu link",
     "value": "xpath=//a[@class='dropdown-item' and normalize-space()='Pages']"
+  },
+  {
+    "name": "BPP Digital Dates and Prices Number of Sessions field",
+    "value": "xpath=//*[text()='Weekday' and text()='sessions']"
+  },
+  {
+    "name": "BPP Digital Dates and Prices Number of Sessions For Multiple Address",
+    "value": "xpath=//div[@class='table-content row open ']//div[contains(@class,'course-timings-and-address')]//div[@class='row']//p"
+  },
+  {
+    "name": "BPP Digital Dates and Prices Location For Instance",
+    "value": "xpath=//div[@class='table-content row open ']//div[contains(@class,'location-address')]//p"
+  },
+  {
+    "name": "BPP Digital Dates and Prices Second Location For Instance",
+    "value": "xpath=(//div[@class='table-content row open ']//div[contains(@class,'location-address')]//p)[2]"
+  },
+  {
+    "name": "BPP Digital Dates and Prices Active Instance Google Pin",
+    "value": "xpath=//*[@class='bi bi-geo-alt']"
+  },
+  {
+    "name": "BPP Digital Dates and Prices Papers dropdown",
+    "value": "xpath=//button[span[@class='paper-name']]"
+  },
+  {
+    "name": "BPP Digital Dates and Prices Course Instance entry",
+    "value": "xpath=//div[@id='course-instances-list']/*"
+  },
+  {
+    "name": "BPP Digital Dates and Prices Course And Timings Section",
+    "value": "xpath=//div[@class='table-content row open ']//div[contains(@class,'course-timings-and-address')]"
+  },
+  {
+    "name": "BPP Digital Dates and Prices Type of Session First Instance",
+    "value": "xpath=(//div[@class='sessions col']/p)[1]"
+  },
+  {
+    "name": "BPP Digital Dates and Prices Type of Session Second Instance",
+    "value": "xpath=(//div[@class='sessions col']/p)[3]"
+  },
+  {
+    "name": "BPP Digital Dates and Prices Course Type Tooltip",
+    "value": "xpath=(//div[@class='col courseType']//following-sibling::div)[1]"
+  },
+  {
+    "name": "BPP Digital Dates and Prices Tooltip Content",
+    "value": "xpath=//div[@class='tip-content']"
   },
   {
     "name": "Banner Username",
@@ -1040,6 +1108,10 @@
     "value": "xpath=//*[contains(.,'Mitigating circumstances application')]/../div[@class='card-body']/div[@class='row'][1]//div[2]"
   },
   {
+    "name": "Direct App Admin Status Changed for Programmes",
+    "value": "xpath=//*[contains(.,'Programme application')]/../div[@class='card-body']/div[@class='row'][1]//div[2]"
+  },
+  {
     "name": "Direct App Admin Status Full Application",
     "value": "xpath=//div[@class='container content-container']/div/div/div[2]//tbody/tr[7]/td[2]"
   },
@@ -1117,7 +1189,7 @@
   },
   {
     "name": "Direct App Application Progress Percentage",
-    "value": "xpath=//div[@class='intro-app completed']//div[@class='app-progress']"
+    "value": "xpath=(//div[@class='app-progress'])[1]"
   },
   {
     "name": "Direct App Application Progress Percentage After Review",
@@ -1204,6 +1276,10 @@
     "value": "xpath=//div[contains(@class,'cta-banner')]"
   },
   {
+    "name": "Direct App CTA Button",
+    "value": "xpath=(//a[@class='btn-book-exam'])[1]"
+  },
+  {
     "name": "Direct App Channel Islands Accepted Applciation",
     "value": "xpath=//div[@class='confirm-dialog-body']/div[1]"
   },
@@ -1246,6 +1322,10 @@
   {
     "name": "Direct App Company Country Dropdown UK Option",
     "value": "xpath=(//ul[@role='listbox']/li[1])[last()]"
+  },
+  {
+    "name": "Direct App Company Division Dropdown",
+    "value": "xpath=//label[contains(.,'Division')]//following-sibling::div[1]/div"
   },
   {
     "name": "Direct App Company Health And Safety",
@@ -1568,6 +1648,10 @@
     "value": "xpath=//a[contains(.,'My Learning')]"
   },
   {
+    "name": "Direct App Home first element Left Menu Link",
+    "value": "xpath=(//a[contains(.,'Home')])[1]"
+  },
+  {
     "name": "Direct App My Learning No Course Placeholder",
     "value": "css=div.intro-empty>p"
   },
@@ -1697,7 +1781,7 @@
   },
   {
     "name": "Direct App Scorm Topic",
-    "value": "xpath=//div[contains(@class,'single-section')][5]/a"
+    "value": "xpath=//div[text()='SCORM Topic']/parent::div[@class='section-data']/following-sibling::a"
   },
   {
     "name": "Direct App Sit Assesment Yes",
@@ -1773,7 +1857,7 @@
   },
   {
     "name": "Direct App Topic Key Activities",
-    "value": "xpath=//div[contains(@class,'single-section')][12]/a"
+    "value": "xpath=(//div[contains(.,'Topic to test adding activities')]/a)[last()]"
   },
   {
     "name": "Direct App Topic Name",
@@ -1833,7 +1917,7 @@
   },
   {
     "name": "Direct App Validate As Student Application Accepted",
-    "value": "xpath=//div[@class='app-state']/span[@class='msg-state']"
+    "value": "xpath=(//div[@class='app-state']/span[@class='msg-state'])[1]"
   },
   {
     "name": "Direct App What Are You Applying For Dropdown",
@@ -2093,7 +2177,11 @@
   },
   {
     "name": "Harakirimail Adds Banner",
-    "value": "xpath=//*[@class='adsbygoogle adsbygoogle-noablate']"
+    "value": "xpath=(//*[@class='adsbygoogle adsbygoogle-noablate'])[last()]"
+  },
+  {
+    "name": "Hub Submit Button For Activity",
+    "value": "xpath=//div[@class='take-test-details']/following::*[1]"
   },
   {
     "name": "Hub VPE Active First Topic",
@@ -2329,7 +2417,7 @@
   },
   {
     "name": "Hub Scorm Deadline View",
-    "value": "xpath=//p[contains(.,'Scorm Deadline Assignment')]/../div//a"
+    "value": "xpath=//h2[contains(.,'Scorm Deadline Assignment')]/../div//a"
   },
   {
     "name": "Build Empire Course Topic Section Message",
@@ -2485,7 +2573,7 @@
   },
   {
     "name": "Product Factory Materials Page Entry",
-    "value": "xpath=//tr"
+    "value": "xpath=//tr//button"
   },
   {
     "name": "Product Factory Name Filed Validation Error Message",
@@ -2497,7 +2585,11 @@
   },
   {
     "name": "Product Factory Number Of Sessions Edit Button",
-    "value": "xpath=//label[text()='Number of Sessions']/../following-sibling::div/button"
+    "value": "xpath=//label[text()='Number of Sessions']/../../following-sibling::div/button"
+  },
+  {
+    "name": "Product Factory Number Of Steps Edit Button",
+    "value": "xpath=//label[text()='Number of Steps']/../../following-sibling::div/button"
   },
   {
     "name": "Product Factory Number Of Sessions Edit Field",
@@ -2576,8 +2668,52 @@
     "value": "xpath=//div[span[contains(text(),'paper: ')]]/*[2]"
   },
   {
+    "name": "Product Factory CBA Wizard Date",
+    "value": "xpath=(//tfoot//input)[1]"
+  },
+  {
+    "name": "Product Factory CBA Wizard Start Time",
+    "value": "xpath=(//tfoot//input)[2]"
+  },
+  {
     "name": "Product Factory Clear Course Type Additional Filter",
     "value": "xpath=//div[span[contains(text(),'course type: ')]]/*[2]"
+  },
+  {
+    "name": "Product Factory CBA Course BPP Fee",
+    "value": "xpath=//tr/td[6]/div"
+  },
+  {
+    "name": "Product Factory Change Course Step Due Date",
+    "value": "xpath=//h6[text()='Steps']/following-sibling::table//button"
+  },
+  {
+    "name": "Product Factory Course Instance Delete",
+    "value": "xpath=//button[@aria-label='DeleteInstance']"
+  },
+  {
+    "name": "Product Factory Course Reference ID edit button",
+    "value": "xpath=//label[text()='Course Reference ID']/../following-sibling::div/button"
+  },
+  {
+    "name": "Product Factory Course Creation Wizard Number of Sessions",
+    "value": "xpath=//label[text()='Number of Sessions']/../following-sibling::div/p"
+  },
+  {
+    "name": "Product Factory Course Creation Wizard Number of Steps",
+    "value": "xpath=//label[text()='Number of Steps']/../following-sibling::div/p"
+  },
+  {
+    "name": "Product Factory Delete Course Material button",
+    "value": "xpath=//span[text()='Material Delivery Default']/../../../../div[3]/button"
+  },
+  {
+    "name": "Product Factory Material Edit Page Price Readonly Field",
+    "value": "xpath=//label[text()='Price (£)']/following-sibling::*"
+  },
+  {
+    "name": "Product Factory Material Edit Page Cost Readonly Field",
+    "value": "xpath=//label[text()='Cost (£)']/following-sibling::*"
   },
   {
     "name": "Salesforce Account Creation Save button",
@@ -2697,7 +2833,7 @@
   },
   {
     "name": "Salesforce First Qualification Subject",
-    "value": "xpath=(//ul[contains(@class,'lookup__list')]//div[contains(@class,'primaryLabel')])[1]"
+    "value": "xpath=(//div[@role='listbox']//ul//span[2])[1]"
   },
   {
     "name": "Salesforce Frame",
@@ -2765,15 +2901,23 @@
   },
   {
     "name": "Salesforce Qualification Institution Capture information",
-    "value": "xpath=//span[normalize-space()='Qualification Institution']/following::span[@class='pillText']"
+    "value": "xpath=//*[text()='Qualification Institution']/following::input[1]"
   },
   {
     "name": "Salesforce Qualification Subject Capture information",
-    "value": "xpath=//span[normalize-space()='Qualification Subject']/following::span[@class='pillText']"
+    "value": "xpath=//*[text()='Qualification Subject']/following::input[1]"
   },
   {
     "name": "Salesforce Qualification Type Capture information",
-    "value": "xpath=//span[normalize-space()='Qualification Type']/following::span[@class='pillText']"
+    "value": "xpath=//*[text()='Qualification Type']/following::input[1]"
+  },
+  {
+    "name": "Salesforce Qualification Tariff Points",
+    "value": "xpath=(//*[text()='Tariff Points']/following::input[1])[2]"
+  },
+  {
+    "name": "Salesforce Address Type First Link",
+    "value": "xpath=(//div[@class='windowViewMode-normal oneContent active lafPageHost']//parent::td/preceding-sibling::th//a)[1]"
   },
   {
     "name": "Salesforce Qualifications link",
@@ -2809,7 +2953,7 @@
   },
   {
     "name": "Salesforce Submit Application",
-    "value": "xpath=//div[contains(@class,'active lafPageHost')]//li//button[normalize-space()='Submit Application LEX']"
+    "value": "xpath=//div[contains(@class,'active lafPageHost')]//li//button[normalize-space()='Submit Application']"
   },
   {
     "name": "Salesforce User Menu Icon",
@@ -2818,14 +2962,6 @@
   {
     "name": "Salesforce Username",
     "value": "id=username"
-  },
-  {
-    "name": "Salesforce Qualification Used for Offer checkbox",
-    "value": "xpath=//div[@class='windowViewMode-normal oneRecordActionWrapper isModal active lafPageHost']//label[normalize-space()='Used for Offer']/following-sibling::input"
-  },
-  {
-    "name": "Salesforce Qualification Naric indicator checkbox",
-    "value": "xpath=//div[@class='windowViewMode-normal oneRecordActionWrapper isModal active lafPageHost']//label[normalize-space()='NARIC Indicator']/following-sibling::input"
   },
   {
     "name": "Salesforce Qualification Status value",
@@ -2937,7 +3073,7 @@
   },
   {
     "name": "Salesforce Quotes Product Checkbox",
-    "value": "inframe=Salesforce Frame>xpath=//sb-group[contains(@class,'th style-scope')]"
+    "value": "inframe=Salesforce Frame>xpath=(//sb-group[contains(@class,'th style-scope')]/../../../following-sibling::div//sb-group[1])[1]"
   },
   {
     "name": "Salesforce Quotes Select Product Button",
@@ -2976,6 +3112,14 @@
     "value": "xpath=//div[@class='windowViewMode-normal oneContent active lafPageHost']//*[contains(text(),'Order Number')]//following::tbody/tr//th/span/a"
   },
   {
+    "name": "Salesforce Order Activate",
+    "value": "xpath=//div[@class='windowViewMode-normal oneContent active lafPageHost']//div[@title='Activate']"
+  },
+  {
+    "name": "Salesforce Order Activate Popup",
+    "value": "xpath=//button[@title='Activate']"
+  },
+  {
     "name": "Salesforce Booking Search Account",
     "value": "xpath=(//label[contains(.,'Student')]//following::input[@title='Search Accounts'])[1]"
   },
@@ -2996,8 +3140,20 @@
     "value": "xpath=//*[text()='Availability']//following-sibling::p/slot//slot/*"
   },
   {
-    "name": "Salesforce Instance Page First Booking Link",
-    "value": "xpath=//*[text()='Booking Number']//following::tr[1]//th[1]//a"
+    "name": "Salesforce Instance Page View All Bookings",
+    "value": "xpath=(//span[@title='Bookings']//following::span[contains(text(),'View All')])[1]"
+  },
+  {
+    "name": "Salesforce Booking Number Column Header",
+    "value": "xpath=//div[@class='windowViewMode-normal oneContent active lafPageHost']//span[@title='Booking Number']"
+  },
+  {
+    "name": "Salesforce Recent Booking Link",
+    "value": "xpath=//div[@class='windowViewMode-normal oneContent active lafPageHost']//span[contains(.,'EC_BOOKING')]"
+  },
+  {
+    "name": "Salesforce Recent Booking Link Active Cell",
+    "value": "xpath=//div[@class='windowViewMode-normal oneContent active lafPageHost']//a[contains(.,'EC_BOOKING')]"
   },
   {
     "name": "Salesforce Address Primary Delivery",
@@ -3066,6 +3222,22 @@
   {
     "name": "Salesforce Product Catalog Item Dropdown",
     "value": "xpath=(//a[contains(.,'Related')]/../following::span[text()='Product Catalog Items']//following::div//button)[1]"
+  },
+  {
+    "name": "Salesforce Instance Edit",
+    "value": "xpath=//div[contains(@class,'active lafPageHost')]//li//button[normalize-space()='Edit']"
+  },
+  {
+    "name": "Salesforce Instance Start Date Calendar Icon",
+    "value": "xpath=//div[contains(@class,'active lafPageHost')]"
+  },
+  {
+    "name": "Salesforce Invoices First Link",
+    "value": "xpath=//th[@title='Invoice Number']/../../following-sibling::tbody/tr/th/div/a"
+  },
+  {
+    "name": "Salesforce Usages Number",
+    "value": "xpath=(//span[@title='Usages']//following-sibling::span)[last()]"
   },
   {
     "name": "Totara Account Expandable Menu",
@@ -3148,6 +3320,14 @@
     "value": "inframe=TotaraScromFrame>xpath=//input[@id='qm_SUB']"
   },
   {
+    "name": "Totara Assessment Title",
+    "value": "inframe=TotaraScromFrame>xpath=//*[@class='qm_TITLE']"
+  },
+  {
+    "name": "Totara Assessment Column Description",
+    "value": "inframe=TotaraScromFrame>xpath=//*[@class='qm_BOX_COL']"
+  },
+  {
     "name": "Totara Assignment Description",
     "value": "id=id_introeditoreditable"
   },
@@ -3216,6 +3396,34 @@
     "value": "xpath=(//h3[contains(text(),'Group restriction')]/following::a[contains(@title,'Click to show')])[1]"
   },
   {
+    "name": "Totara Group Restriction EYE icon click to Hide",
+    "value": "xpath=(//h3[contains(text(),'Group restriction')]/following::a[contains(@title,'Click to hide')])[1]"
+  },
+  {
+    "name": "Totara CTA Button edit link",
+    "value": "xpath=(//span[text()='CTA Button']/following::a[@role='menuitem'])[1]"
+  },
+  {
+    "name": "Totara Date Restriction EYE icon click to Hide",
+    "value": "xpath=(//h3[contains(text(),'Date restriction')]/following::a[contains(@title,'Click to hide')])[1]"
+  },
+  {
+    "name": "Totara Set Of One Restriction EYE icon click to Hide",
+    "value": "xpath=(//h3[contains(text(),'Set of 1 restriction')]/following::a[contains(@title,'Click to hide')])[1]"
+  },
+  {
+    "name": "Totara Set Of Two Restriction EYE icon click to Hide",
+    "value": "xpath=(//h3[contains(text(),'Set of 2 restriction')]/following::a[contains(@title,'Click to hide')])[1]"
+  },
+  {
+    "name": "Totara Activity One Restriction EYE icon click to Hide",
+    "value": "xpath=(//h3[contains(text(),'1: Activity completion restriction')]/following::a[contains(@title,'Click to hide')])[1]"
+  },
+  {
+    "name": "Totara Activity Two Restriction EYE icon click to Hide",
+    "value": "xpath=(//h3[contains(text(),'2: Activity completion restriction')]/following::a[contains(@title,'Click to hide')])[1]"
+  },
+  {
     "name": "Totara Activity Completion Restriction EYE icon",
     "value": "xpath=(//h3[contains(text(),'Activity completion restriction')]/following::a[contains(@class,'availability-eye')])[1]"
   },
@@ -3240,24 +3448,24 @@
     "value": "xpath=(//div[normalize-space()=\"Automation Expandable Label\"]/following::a[text()='Edit'])[1]"
   },
   {
-    "name": "Totara Automation First Topic Edit button",
-    "value": "xpath=(//h3[@class='sectionname']/ancestor::div[@class='content']/preceding-sibling::div[contains(@class,'right side')]//a)[1]"
+    "name": "Totara Automation Topic Edit button",
+    "value": "xpath=(//a[contains(text(),'AutomationTopic')]/ancestor::li//a)[1]"
   },
   {
     "name": "Totara Automation First Automation Topic Edit button",
-    "value": "xpath=(//h3[@class='sectionname'][contains(normalize-space(),'AutomationTopic')]/ancestor::div[@class='content']/preceding-sibling::div[contains(@class,'right side')]//a)[1]"
+    "value": "xpath=(//li[contains(normalize-space(),'AutomationTopic')]//a[@role='menuitem'])[1]"
   },
   {
     "name": "Totara Automation First Topic Delete button",
-    "value": "xpath=(//h3[@class='sectionname']/ancestor::div[@class='content']/preceding-sibling::div[contains(@class,'right side')]//li/a[@title='Delete topic'])[1]"
+    "value": "xpath=(//h3[@class='sectionname']/ancestor::div[@class='content']/preceding-sibling::div[contains(@class,'right side')]//li/a[@title='Delete topic'])[5]"
   },
   {
     "name": "Totara Automation First Automation Topic Delete button",
     "value": "xpath=(//h3[@class='sectionname'][contains(normalize-space(),'AutomationTopic')]/ancestor::div[@class='content']/preceding-sibling::div[contains(@class,'right side')]//li/a[@title='Delete topic'])[1]"
   },
   {
-    "name": "Totara Automation First Topic Edit Topic button",
-    "value": "xpath=(//h3[@class='sectionname']/ancestor::div[@class='content']/preceding-sibling::div[contains(@class,'right side')]//li/a[@title='Edit topic'])[1]"
+    "name": "Totara Automation Fifth Topic Edit Topic button",
+    "value": "xpath=(//h3[@class='sectionname']/ancestor::div[@class='content']/preceding-sibling::div[contains(@class,'right side')]//li/a[@title='Edit topic'])[5]"
   },
   {
     "name": "Totara Add Topic Plus icon",
@@ -3269,7 +3477,7 @@
   },
   {
     "name": "Totara Edit Topic Name icon",
-    "value": "xpath=//a[contains(text(),'Topic 1')]//span[@data-flex-icon='core|t/editstring']"
+    "value": "xpath=//a[contains(text(),'Topic 5')]//span[@data-flex-icon='core|t/editstring']"
   },
   {
     "name": "Totara Automation Restrictionas Date B Edit button",
@@ -3528,6 +3736,10 @@
     "value": "xpath=//a[@title='Only for Automation ']"
   },
   {
+    "name": "Totara Automation CTA Button Course",
+    "value": "xpath=//a[@title='Automation CTA Button Course']"
+  },
+  {
     "name": "Totara Key Activities Administration Link",
     "value": "xpath=(//div[@class='content block-content']//a[text()='Key Activities'])[1]"
   },
@@ -3612,6 +3824,10 @@
     "value": "xpath=//a[@aria-controls='id_availabilityconditions']"
   },
   {
+    "name": "Totara Restrictions Header Expandable link",
+    "value": "xpath=//a[@aria-controls='id_availabilityconditionsheader']"
+  },
+  {
     "name": "Totara Volodymyr Course",
     "value": "xpath=//*[contains(text(),'Mini Course for Volodymyr')]"
   },
@@ -3674,6 +3890,10 @@
   {
     "name": "Totara Automation Course Restrictions Group C disabled",
     "value": "xpath=//div[normalize-space()='Automation Restrictions Completion D']/ancestor::div[1]"
+  },
+  {
+    "name": "Totara Delete Restriction button",
+    "value": "xpath=(//span[@title='Delete'])[1]"
   },
   {
     "name": "VLE Website Usermenu",
@@ -3801,7 +4021,7 @@
   },
   {
     "name": "Quark Publish",
-    "value": "xpath=//span[contains(.,'Publish')]"
+    "value": "xpath=//span[text()='Publish']"
   },
   {
     "name": "Quark Home Menu",
@@ -3818,6 +4038,10 @@
   {
     "name": "Quark Publish BPP PDF",
     "value": "xpath=//*[contains(@id,'publishContextMenuItem-workbookPdfUsingFlattenXml')]//span[contains(.,'BPP PDF')]"
+  },
+  {
+    "name": "Quark Microsoft Username",
+    "value": "name=loginfmt"
   },
   {
     "name": "Quark Generating Output Window",

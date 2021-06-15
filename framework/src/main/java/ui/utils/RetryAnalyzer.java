@@ -14,7 +14,7 @@ public class RetryAnalyzer implements IRetryAnalyzer {
 
     public static ConcurrentHashMap<String, Integer> counterMap = new ConcurrentHashMap<>();
     public static ConcurrentHashMap<String, String> passMap = new ConcurrentHashMap<>();
-    public static int limit = Integer.parseInt(FileIO.getConfigProperty("retryExecutionLimit"));
+    public static int limit = Integer.parseInt(Tools.determineEffectivePropertyValue("retryExecutionLimit"));
 
     public synchronized boolean retry(ITestResult result) {
         String scenarioName;

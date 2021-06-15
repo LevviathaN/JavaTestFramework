@@ -7,46 +7,10 @@ Feature: Abilit to specify Material Delivery Defaults during Product Setup - BPP
   Background:
     Given I execute "Generate ISBN" reusable step
     Given I execute "Log In" reusable step
-#    And I remember "AutoBodyShortName" text as "EC_BODY_SHORT_NAME" variable
-#    And I remember "AutoLocationName" text as "EC_LOCATION_NAME" variable
-#    And I remember "AutoMaterialTypeName" text as "EC_MATERIAL_TYPE_NAME" variable
-#    And I remember "AutoVatRuleCode" text as "EC_VAT_RULE_CODE" variable
-#    And I remember "AutoBodyName" text as "EC_BODY_NAME" variable
-#    And I remember "AutoLevelName" text as "EC_LEVEL_NAME" variable
-#    And I remember "AutoSittingName" text as "EC_SITTING_NAME" variable
-    When I execute "Create Body Financial Dimension" reusable step
-    And I execute "Create Vertical" reusable step
-    And I execute "Create Body" reusable step
-    And I execute "Create VAT Rule" reusable step
-    And I execute "Create Course Type Financial Dimension" reusable step
-    And I execute "Create Course Type" reusable step
-    And I execute "Create Location Financial Dimension" reusable step
-    And I execute "Create Region Financial Dimension" reusable step
-    And I execute "Create Region" reusable step
-    And I execute "Create Location" reusable step
-    And I execute "Create Level" reusable step
-    And I execute "Create Paper" reusable step
-    And I execute "Link Body To Level" reusable step
-    And I execute "Link Body To Paper" reusable step
-    And I execute "Link Paper To Level" reusable step
-    And I execute "Create Sitting" reusable step
-    And I execute "Create Pricing Matrix" reusable step
-    And I execute "Create Pricing Matrix Full" reusable step
-    And I execute "Create Material Type Financial Dimension" reusable step
-    And I execute "Create Material Type" reusable step
-    And I execute "Create Session Duration" reusable step
-    And I execute "Create Client" reusable step
-
-    Given I execute "Create Material" reusable step
-    Given I execute "Create Digital Content" reusable step
-    And I execute "Create Course" reusable step
-    And I execute "Create Course Instance" reusable step
-
+    And I execute "Remember Variables " reusable step
 
   @Positive @P1 #TC-3556
   Scenario: Verify Ability to specify Material Delivery Default during Product Setup
-#    Given I execute "Create Material" reusable step
-#    And I execute "Create Course Instance" reusable step
     When I click on the "Products" "Product Factory navigation item"
     When I click on the "Courses" "Product Factory navigation sub item"
     And I set "EC_BODY_SHORT_NAME" text to the "Search" "Product Factory text field" from keyboard
@@ -59,40 +23,52 @@ Feature: Abilit to specify Material Delivery Defaults during Product Setup - BPP
     Then I click on the "Material Delivery Default" "Product Factory dropdown"
     When I click on the "Student" element
     Then I should see the "Student" element
+    And I click on the "2000" "Product Factory Material Delete by price button"
+    And I click on the "Yes" "Product Factory button"
+    And I wait for "4" seconds
 
   @Negative @P1 #TC-3557
   Scenario: Verify Not Selected Material Delivery Default during Product Setup
-#    Given I execute "Create Material" reusable step
-#    And I execute "Create Course Instance" reusable step
     When I click on the "Products" "Product Factory navigation item"
     When I click on the "Courses" "Product Factory navigation sub item"
     And I set "EC_BODY_SHORT_NAME" text to the "Search" "Product Factory text field" from keyboard
     And I click on the "submit" "element by type"
     And I click on the "EC_BODY_SHORT_NAME" "Product Factory edit button"
     And I click on the "Materials" element
+    #precondition
+    Given For each "EC_MATERIAL_TYPE_DESCRIPTION" element:
+      |I click on the "EC_MATERIAL_TYPE_DESCRIPTION" "Product Factory Material Delete button"|
+      |I click on the "Yes" "Product Factory button"|
+      |I wait for "3" seconds                       |
+
     And I click on the "Add Material" "button"
     Then I "check" "EC_MATERIAL_TYPE_NAME" "Product Factory checkbox"
     And I click on the "Save" "button"
-    When I click on the "Activate" "Product Factory button"
+    When I click on the "Activate" "Product Factory button" if "Activate,Product Factory button" "special element is present"
+    When I click on the "Publish" "Product Factory button" if "Publish,Product Factory button" "special element is present"
+    When I click on the "Yes" "Product Factory button" if "Yes,Product Factory button" "special element is present"
     Then I should see the "The Material Delivery Default has not been set for all Course Materials" message
+    Then I click on the "No" "Product Factory button" if "No,Product Factory button" "special element is present"
+    #cleanup
+    Given For each "EC_MATERIAL_TYPE_DESCRIPTION" element:
+      |I click on the "EC_MATERIAL_TYPE_DESCRIPTION" "Product Factory Material Delete button"|
+      |I click on the "Yes" "Product Factory button"|
+      |I wait for "3" seconds                       |
 
   @Negative @P1 #TC-3558
   Scenario: Edit Course With Selected Material Delivery Default
     And I remember "23/10/2020" text as "EC_SITTING_START_DATE" variable
     And I remember "10/10/2025" text as "EC_SITTING_END_DATE" variable
-
-#    And I remember "AutoCourseTypeDescription" text as "EC_COURSE_TYPE_DESCRIPTION" variable
-#    And I remember "AutoMaterialTypeDescription" text as "EC_MATERIAL_TYPE_DESCRIPTION" variable
     And I execute "Edit Course" reusable step
-    And I execute "Populate Course Instance Session Dates" reusable step
+#    And I execute "Populate Course Instance Session Dates" reusable step
     Then I execute "Keep the Course Activated" reusable step
     And I execute "Keep the Course Instance Activated" reusable step
-    And I execute "Edit Course" reusable step
     And I click on the "Materials" element
-#    Given For each "EC_MATERIAL_TYPE_DESCRIPTION" element:
-#      |I click on the "FOR_ITEM" "Product Factory Material Delete by price button"|
-#      |I click on the "Yes" "Product Factory button"|
-#      |I wait for "3" seconds                       |
+    #precondition
+    Given For each "EC_MATERIAL_TYPE_DESCRIPTION" element:
+      |I click on the "EC_MATERIAL_TYPE_DESCRIPTION" "Product Factory Material Delete button"|
+      |I click on the "Yes" "Product Factory button"|
+      |I wait for "3" seconds                       |
     And I click on the "Add Material" "button"
     Then I "check" "EC_MATERIAL_TYPE_NAME" "Product Factory checkbox"
     And I click on the "Save" "button"
@@ -101,35 +77,34 @@ Feature: Abilit to specify Material Delivery Defaults during Product Setup - BPP
     When I click on the "Publish" "Product Factory button"
     And I click on the "Yes" "Product Factory button"
     Then I shouldn't see the "The Material Delivery Default has not been set for all Course Materials" message
+    #cleanup
+    Given For each "EC_MATERIAL_TYPE_DESCRIPTION" element:
+      |I click on the "EC_MATERIAL_TYPE_DESCRIPTION" "Product Factory Material Delete button"|
+      |I click on the "Yes" "Product Factory button"|
+      |I wait for "3" seconds                       |
 
   @Negative @P1 #TC-3559
   Scenario: Edit Course Without Selecting Material Delivery Default
-#    And I remember "AutoCourseTypeDescription" text as "EC_COURSE_TYPE_DESCRIPTION" variable
-    When I click on the "Products" "Product Factory navigation item"
-    When I click on the "Courses" "Product Factory navigation sub item"
-    And I set "EC_COURSE_TYPE_DESCRIPTION" text to the "Search" "Product Factory text field" from keyboard
-    And I click on the "submit" "element by type"
-    And I click on the "EC_COURSE_TYPE_DESCRIPTION" "Product Factory edit button"
-    When I click on the "EC_LOCATION_NAME" "Product Factory course instance sessions dropdown button"
-    And I click on the "EC_LOCATION_NAME" "Product Factory Session Dates button"
-    And I fill the "Product Factory Session Dates Popup Date Input Field" field with "EC_SITTING_START_DATE"
-    And I fill the "Product Factory Session Dates Popup Start Time Input Field" field with "03:00AM"
-    And I fill the "Product Factory Session Dates Popup End Time Input Field" field with "04:00AM"
-    And I click on the "Next" "Product Factory button"
-    And I click on the "Finish" "Product Factory button"
-    Then I click on the "Activate" "Product Factory button"
-    And I should see the "Deactivate" "Product Factory button"
-    And I click on the "EC_LOCATION_NAME" "Product Factory course instance Activate button"
-    And I shouldn't see the "EC_LOCATION_NAME" "Product Factory course instance Delete button"
-    When I click on the "Products" "Product Factory navigation item"
-    When I click on the "Courses" "Product Factory navigation sub item"
-    And I set "EC_BODY_SHORT_NAME" text to the "Search" "Product Factory text field" from keyboard
-    And I click on the "submit" "element by type"
-    And I click on the "EC_BODY_SHORT_NAME" "Product Factory edit button"
+    And I remember "23/10/2020" text as "EC_SITTING_START_DATE" variable
+    And I remember "10/10/2025" text as "EC_SITTING_END_DATE" variable
+    And I execute "Edit Course" reusable step
+    And I execute "Populate Course Instance Session Dates" reusable step
+    And I execute "Populate Course Instance Step Due Dates" reusable step
     And I click on the "Materials" element
+    Given For each "EC_MATERIAL_TYPE_DESCRIPTION" element:
+      |I click on the "EC_MATERIAL_TYPE_DESCRIPTION" "Product Factory Material Delete button"|
+      |I click on the "Yes" "Product Factory button"|
+      |I wait for "3" seconds                       |
+    Then I execute "Keep the Course Activated" reusable step
     And I click on the "Add Material" "button"
     Then I "check" "EC_MATERIAL_TYPE_NAME" "Product Factory checkbox"
     And I click on the "Save" "button"
+    And I wait for "3" seconds
     When I click on the "Publish" "Product Factory button"
     And I click on the "Yes" "Product Factory button"
     Then I should see the "The Material Delivery Default has not been set for all Course Materials" message
+    Then I click on the "No" "Product Factory button" if "No,Product Factory button" "special element is present"
+    Given For each "EC_MATERIAL_TYPE_DESCRIPTION" element:
+      |I click on the "EC_MATERIAL_TYPE_DESCRIPTION" "Product Factory Material Delete button"|
+      |I click on the "Yes" "Product Factory button"|
+      |I wait for "3" seconds                       |

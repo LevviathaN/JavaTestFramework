@@ -34,10 +34,10 @@ Feature: BPP University Hub Sub Topics and Labels
     When I click on the "Dashboard" "text contained in SPAN element"
     When I click on the "Totara Automation Only Course" link by JS
     And I click on the "Turn editing on" "BPP Digital Admin Value attribute button"
-    And I execute "Course Topic Clean Up" reusable step if "Totara Automation First Topic Edit button" "element is present"
+    And I execute "Course Topic Clean Up" reusable step if "Totara Automation Topic Edit button" "element is present"
     And Browser performs "Refresh" command
     And I wait for "2" seconds
-    And I execute "Course Topic Clean Up" reusable step if "Totara Automation First Topic Edit button" "element is present"
+    And I execute "Course Topic Clean Up" reusable step if "Totara Automation Topic Edit button" "element is present"
     And I wait for "2" seconds
     And Browser performs "Refresh" command
     And I wait for "5" seconds
@@ -48,8 +48,8 @@ Feature: BPP University Hub Sub Topics and Labels
     And I fill the "Totara Set Topic Name field" field with "AutomationTopic[###]"
     And I press "MD_COMMON_KEYBOARD_ENTER" for "Totara Set Topic Name field"
     And I wait for "1" seconds
-    And I click on the "Totara Automation First Topic Edit button" element
-    And I click on the "Totara Automation First Topic Edit Topic button" element
+    And I click on the "Totara Automation First Automation Topic Edit button" element
+    And I click on the "Totara Automation Fifth Topic Edit Topic button" element
     And I set "AutomationTopicSummary[####]" text to the element with ID "id_summary_editoreditable" using JS
     And I wait for "2" seconds
     And I click on the "Save changes" "BPP Digital Admin Value attribute button"
@@ -90,6 +90,7 @@ Feature: BPP University Hub Sub Topics and Labels
     And I fill the "Totara Adding a New Label Text Field" field with "AutomationFileDescription[###]"
     And I "check" "Totara Display Description on a Course checkbox" checkbox
     And I click on the "Add..." "Totara role button with title name"
+    And I click on the "Upload a file" "Totara side menu option"
     And I upload "resident.pdf" file to "BPP Digital Upload File Button" element
     And I set "AutomationFile[######]" text to the "title" "VLE Login Fields"
     And I click on the "Totara Upload This File" element
@@ -108,7 +109,7 @@ Feature: BPP University Hub Sub Topics and Labels
     #Navigate to Created Sub Topics
     And I click on the "Direct App My Learning Left Menu Link" link by JS
     And I click on the "BPP Digital Student My Learning Page Open First Course Sticker" element
-    And I click on the "BPP Digital Student Icaew Course Page Open First Topic Sticker" element
+    And I click on the "BPP Digital Student AutomationTopic Course Sticker" element
     Then I should see the "EC_AUTOMATION_TOPIC" element
     Then I should see the "EC_AUTOMATION_SUB_TOPIC" element
     Then I should see the "EC_AUTOMATION_SUB_TOPIC_DESCRIPTION" element
@@ -131,6 +132,6 @@ Feature: BPP University Hub Sub Topics and Labels
     When I click on the "Dashboard" "text contained in SPAN element"
     When I click on the "Totara Automation Only Course" link by JS
     And I click on the "Turn editing on" "BPP Digital Admin Value attribute button"
-    And I execute "Course Topic Clean Up" reusable step if "Totara Automation First Topic Edit button" "element is present"
+    And I execute "Course Topic Clean Up" reusable step if "Totara Automation Topic Edit button" "element is present"
     And Browser performs "Refresh" command
     And I wait for "2" seconds

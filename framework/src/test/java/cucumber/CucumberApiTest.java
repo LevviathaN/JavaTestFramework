@@ -32,8 +32,8 @@ public class CucumberApiTest extends BaseApiTest {
     @Test(
             groups = {"BPP API Automation"},
             dataProvider = "scenarios",
-            invocationCount = 5,
-            threadPoolSize = 5
+            invocationCount = 10,
+            threadPoolSize = 10
     )
     public void runScenario(PickleEventWrapper pickleWrapper, CucumberFeatureWrapper featureWrapper) throws Throwable {
         scenarioName = pickleWrapper.getPickleEvent().pickle.getName();

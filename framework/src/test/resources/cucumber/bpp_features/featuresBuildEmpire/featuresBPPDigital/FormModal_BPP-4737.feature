@@ -11,7 +11,7 @@ Feature: As an admin I can set a form display as Modal and can access it via lin
     And I set "AutoCMSPage[#####]" text to the "Name *" "BPP Digital Mandatory input field"
     And I select "CMS page" from "Page type *" "BPP Digital Mandatory select field"
     And I set "AutoCMSUrl[#####]" text to the "Path *" "BPP Digital Mandatory input field"
-    And I select "About us > BPP University > University board" from "Parent" "BPP Digital Mandatory select field"
+    And I select "About Us" from "Parent" "BPP Digital Mandatory select field"
     And I set "Title[####]" text to the "Title" "BPP Digital Mandatory input field"
     And I set "Summary[####]" text to the "Summary" "BPP Digital Mandatory text area field"
     And I set "MetaDescription[####]" text to the "Meta description" "BPP Digital Mandatory text area field"
@@ -49,7 +49,7 @@ Feature: As an admin I can set a form display as Modal and can access it via lin
     Then I execute "Publish a CMS or Blog Post page" reusable step
     And I wait for "2" seconds
     And I execute "Log Out from Hub Admin" reusable step
-    When I am on "https://web-stage-bppdigital.bppuniversity.com/university-board/<EC_AUTO_CMS_URL>" URL
+    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/<EC_AUTO_CMS_URL>" URL
     And I click on the "#cmsformmodal" "text contained in A element"
     And I should see the "EC_MODAL_TITLE" element
     And I should see the "EC_MODAL_DESCRIPTION" element

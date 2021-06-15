@@ -56,6 +56,7 @@ public class ReusableSteps {
             String currentStep = pickleStep.getText();
             currentStep = currentStep.replaceAll("<", "&lt;");
             currentStep = currentStep.replaceAll(">", "&gt;");
+            currentStep = currentStep.replaceAll("&", "&amp;");
             step = step + "<step>" + currentStep + "</step>";
         }
         step = step + "</reusable>";

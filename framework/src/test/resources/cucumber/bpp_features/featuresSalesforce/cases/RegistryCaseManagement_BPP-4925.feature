@@ -83,9 +83,9 @@ Feature: Registry Case Management
    #VLE
     And I execute "Create Assesments Registry Case" reusable step replacing some steps
       | 9  | I click on the "VLE" "Salesforce cases dropdown option"                   |
-      | 11 | I click on the "Cant login to the VLE" "Salesforce cases dropdown option" |
+      | 11 | I click on the "Missing or wrong modules" "Salesforce cases dropdown option" |
     And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=Admin Automation" to be displayed for "Salesforce Case Owner Data Field" element
+    And I validate text "CONTAINS=Student Records" to be displayed for "Salesforce Case Owner Data Field" element
     And I execute "Create Assesments Registry Case" reusable step replacing some steps
       | 9  | I click on the "VLE" "Salesforce cases dropdown option"                                 |
       | 11 | I click on the "Cant see submission link on the VLE" "Salesforce cases dropdown option" |
@@ -160,10 +160,6 @@ Feature: Registry Case Management
       | 11 | I click on the "Group number" "Salesforce cases dropdown option" |
     And I should scroll to the "top" of the page
     And I validate text "CONTAINS=Student Records" to be displayed for "Salesforce Case Owner Data Field" element
-    #Complaint
-    And I execute "Create Complaints Registry Case" reusable step
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=Head of Student Experience" to be displayed for "Salesforce Case Owner Data Field" element
 
   @AssignmentRules @GDL #TC-3975,3984,3974,3983,3982,3973,3966,3965,3964,3981,3976,3978,3980,3977,3979
   Scenario: Registry Case Management Verify Case Assignment GDL Law Schools

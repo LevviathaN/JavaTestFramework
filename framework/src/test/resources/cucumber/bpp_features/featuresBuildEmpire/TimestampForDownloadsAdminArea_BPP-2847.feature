@@ -2,40 +2,20 @@
 Feature: As an admin, viewing my downloads in the admin area,
   I expect to see a timestamp of when document was generated
 
-  Background:
-    Given I execute "Register New Student Account" reusable step
-    Then I execute "Harakirimail Verify Email" reusable step
-    Then I execute "Log In to Hub as Student" reusable step
-    When I execute "Create Academic Appeals Application" reusable step
-
   Scenario: As an Admin, I Expect to See a Timestamp of When Document Was Generated
+    Given I execute "Log In to Hub as Student" reusable step replacing some steps
+      | 2 | I set "AutoShaunReid3104@harakirimail.com" text to the "Email" "Build Empire text field" |
+      | 3 | I set "A@polloGlobal2020" text to the "Password" "Build Empire text field"               |
+    And I wait for "5" seconds
+    And I click on the "Direct App My Applications Left Menu Link" link by JS
+    When I execute "Create Academic Appeals Application" reusable step replacing some steps
+      | 1 | I click on the "Direct App Start New Application Button" button |
     Given I click on the "Direct App Start Application" button
     And I click on the "Eligibility criteria" "Build Empire application section"
     And I click on the "Direct App Final Award In Relation To Programme" button
     And I click on the "Direct App Next" button
-    And I fill the "Diret App Phone Number" field with "EC_PHONE"
-    And I click on the "Direct App Country Dropdown" button
-    And I click on the "Direct App Country Dropdown UK Option" button
-    And I set "Address 1" text to the "Address Line 1*" "Build Empire text field"
-    And I set "Address 1" text to the "Address Line 2" "Build Empire text field"
-    And I set "London" text to the "Town/City*" "Build Empire text field"
-    And I fill the "Diret App Postal Code" field with "12345"
-    Then I remember "KW_AUTO_DOB|DD/MM/YYYY_21" text as "EC_DOB" variable
-    And I fill the "Direct App DOB" field with "EC_DOB"
-    And I press "MD_COMMON_KEYBOARD_ENTER" for "Direct App DOB"
-    And I set "London" text to the "Town/City*" "Build Empire text field"
     And I click on the "Direct App Mark As Complete Checkbox" button
     And I click on the "Direct App Next" button
-    And I set "12345" text to the "SRN" "Build Empire course details element"
-    And I set "Auto Location" text to the "Location" "Build Empire course details element"
-    And I set "Automation" text to the "Programme" "Build Empire course details element"
-    And I set "Automation" text to the "Programme Leader" "Build Empire course details element"
-    And I click on the "Direct App Course Details Mode" element
-    And I click on the "Direct App Course Details Mode Part One" element
-    And I fill the "Direct App Course Details Start Date" field with "12/2020"
-    And I press "MD_COMMON_KEYBOARD_ENTER" for "Direct App Course Details Start Date"
-    And I click on the "Direct App Course Details School" element
-    And I click on the "Direct App Course Details School Law" element
     And I click on the "Direct App Mark As Complete Checkbox" button
     And I click on the "Direct App Next" button
     And I click on the "Direct App Add Assesment" button
@@ -71,7 +51,8 @@ Feature: As an admin, viewing my downloads in the admin area,
     Then I validate text "CONTAINS=100" to be displayed for "Direct App Application Progress Percentage" element
     And I execute "Log Out from Hub Student" reusable step
     And I execute "Log In to Hub as Admin" reusable step
-    And I execute "Accept Academic Appeals As Admin" reusable step
+    And I execute "Accept Academic Appeals As Admin" reusable step replacing some steps
+    |4|I fill the "Direct App Admin Filter By User" field with "AutoShaunReid3104@harakirimail.com"|
     Then I validate text "CONTAINS=Accepted" to be displayed for "Direct App Admin Status Changed for Academic Appeals" element
     Then I click on the "Direct App Admin Download Menu" button
     And I click on the "Direct App Admin Download Menu Salesforce CSV" button

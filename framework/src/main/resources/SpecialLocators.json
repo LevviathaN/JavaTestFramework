@@ -51,6 +51,7 @@
     "name": "BPP Digital Admin Page Button",
     "value": "xpath=//a[@class='btn btn-secondary'][normalize-space()='PARAMETER']"
   },
+
   {
     "name": "BPP Digital Admin Page Header name",
     "value": "xpath=//div[@class='page-header']//h1[normalize-space()='PARAMETER']"
@@ -179,6 +180,35 @@
     "name": "BPP Digital Admin Grid Bottom Margin",
     "value": "xpath=//*[contains(.,'Bottom margin')]/../following::div[contains(.,'PARAMETER')]/input"
   },
+  {
+    "name": "BPP Digital dropdown",
+    "value": "xpath=//label[text()='PARAMETER']/following-sibling::select"
+  },
+  {
+    "name": "BPP Digital dropdown option",
+    "value": "xpath=//option[text()='PARAMETER']"
+  },
+  {
+    "name": "BPP Digital View Dates and Prices button",
+    "value": "xpath=//div[text()='PARAMETER' and @class='card-title']/following-sibling::div//button[text()='View dates & prices']"
+  },
+  {
+    "name": "BPP Digital dropdown item",
+    "value": "xpath=//*[@class='dropdown-item' and text()='PARAMETER']"
+  },
+  {
+    "name": "BPP Digital Dates and Prices Course Filter radiobutton",
+    "value": "xpath=(//span[text()='PARAMETER'])[2]"
+  },
+  {
+    "name": "BPP Digital Dates and Prices Filter By",
+    "value": "xpath=//div[@class='button-text' and contains(.,'PARAMETER')]/parent::button[contains(@class,'btn dropdown-toggle')]"
+  },
+  {
+    "name": "BPP Digital Dates and Prices Start date filter option",
+    "value": "xpath=//div[@class='button-text' and contains(.,'Start date')]//following::div[@class='dropdown-menu']//span[contains(.,'PARAMETER')]"
+  },
+
   {
     "name": "Build Empire Breadcrumb Not Clickable Tab",
     "value": "xpath=//ul[@class='breadcrumb ember-view']/li//li[contains(.,'PARAMETER')]"
@@ -336,12 +366,16 @@
     "value": "xpath=//label[contains(normalize-space(),'PARAMETER')]/following-sibling::*/descendant-or-self::input"
   },
   {
+    "name": "Direct App Country Dropdown Option",
+    "value": "xpath=(//ul[@role='listbox']/li[contains(.,'PARAMETER')])[last()]"
+  },
+  {
     "name": "Hub Deadline Activity Name",
     "value": "xpath=//h2[text()='PARAMETER']"
   },
   {
     "name": "Hub Deadline Activity Name Second",
-    "value": "xpath=//p[text()='PARAMETER']"
+    "value": "xpath=//h2[text()='PARAMETER']"
   },
   {
     "name": "Product Factory CBA Course Institute Fee edit button",
@@ -400,6 +434,14 @@
     "value": "xpath=(//tr[PARAMETER]/td[2]/div/div/input)[2]"
   },
   {
+    "name": "Product Factory Pricing Matrix dropdown",
+    "value": "xpath=(//*[@aria-expanded='true'])[last()]/following-sibling::*//*[text()='PARAMETER']"
+  },
+  {
+    "name": "Product Factory Pricing Matrix change button",
+    "value": "xpath=(//*[@aria-expanded='true'])[last()]/following-sibling::*//*[text()='PARAMETER']/following-sibling::button"
+  },
+  {
     "name": "Product Factory active button",
     "value": "xpath=//span[text()='PARAMETER']/parent::button[@tabindex='0']"
   },
@@ -408,8 +450,16 @@
     "value": "xpath=//span[text()='PARAMETER']/.."
   },
   {
+    "name": "Product Factory button last",
+    "value": "xpath=(//span[text()='PARAMETER']/..)[last()]"
+  },
+  {
     "name": "Product Factory button title",
     "value": "xpath=//button[@title='PARAMETER']"
+  },
+  {
+    "name": "Product Factory button title two",
+    "value": "xpath=(//button[@title='PARAMETER'])[2]"
   },
   {
     "name": "Product Factory button two",
@@ -489,23 +539,39 @@
   },
   {
     "name": "Product Factory text field",
-    "value": "xpath=//label[text()='PARAMETER']/following-sibling::div//input|//label[text()='PARAMETER']/following-sibling::textarea|//label[text()='PARAMETER']/following-sibling::div/textarea|//span[text()='PARAMETER']/following-sibling::div//input[@type!='hidden']"
+    "value": "xpath=//label[text()='PARAMETER']/following-sibling::div//input|//label[text()='PARAMETER']/following-sibling::textarea|//label[text()='PARAMETER']/following-sibling::div/textarea|//span[text()='PARAMETER']/following-sibling::div//input[@type!='hidden']|//*[text()='PARAMETER']/following-sibling::*//input[@type!='hidden']|//label[text()='PARAMETER']/../following-sibling::div//input"
   },
   {
     "name": "Product Factory text field two",
     "value": "xpath=(//label[text()='PARAMETER']/following-sibling::div//input)[2]|(//label[text()='PARAMETER']/following-sibling::textarea)[2]|(//label[text()='PARAMETER']/following-sibling::div/textarea)[2]"
   },
   {
+    "name": "Product Factory Material Delete button",
+    "value": "xpath=//p[text()='PARAMETER']/../../div[2]/div/div[3]/button"
+  },
+  {
     "name": "Product Factory Material Delete by price button",
     "value": "xpath=//span[text()='£PARAMETER']/../../../div[2]/div/div[3]/button"
   },
   {
-    "name": "Salesforce New Qualification input fields",
-    "value": "xpath=//div[contains(@class,'groupDependentFieldEnabled')]//span[text()='PARAMETER']/following::input[1]"
+    "name": "Product Factory Course Instance Delete button",
+    "value": "xpath=//p[text()='PARAMETER']/../../../following-sibling::div//button[@title='Delete']"
   },
   {
-    "name": "Salesforce Address Type link",
-    "value": "xpath=//div[@class='windowViewMode-normal oneContent active lafPageHost']//span[normalize-space()='PARAMETER']/parent::td/preceding-sibling::th//a"
+    "name": "Product Factory Change Course Step Due Date button",
+    "value": "xpath=(//h6[text()='Steps']/following-sibling::table//button)[PARAMETER]"
+  },
+  {
+    "name": "Product Factory readonly field",
+    "value": "xpath=//label[text()='PARAMETER']/following-sibling::*"
+  },
+  {
+    "name": "Salesforce New Qualification input fields",
+    "value": "xpath=//*[text()='PARAMETER']/following::input[1]"
+  },
+  {
+    "name": "Salesforce Qualification Subject",
+    "value": "xpath=//div[@role='listbox']//ul//*[@title='PARAMETER']"
   },
   {
     "name": "Salesforce Related Buttons link",
@@ -624,6 +690,10 @@
     "value": "inframe=SalesforceEditTiersFrame>xpath=//label[normalize-space()='PARAMETER']/following-sibling::select[1]/option"
   },
   {
+    "name": "Salesforce checkbox",
+    "value": "xpath=//div[contains(@class,'isModal inlinePanel oneRecordActionWrapper')]//span[text()='PARAMETER']//following::input[1]"
+  },
+  {
     "name": "Totara Assessment radiobutton",
     "value": "inframe=TotaraScromFrame>xpath=//span[contains(text(),'PARAMETER')]/../../preceding-sibling::td/input"
   },
@@ -637,7 +707,15 @@
   },
   {
     "name": "Totara Select field with title Parameter",
-    "value": "xpath=//select[@title=\"PARAMETER\"]"
+    "value": "xpath=(//select[@title=\"PARAMETER\"])[1]"
+  },
+  {
+    "name": "Totara Second Select field with title Parameter",
+    "value": "xpath=(//select[@title=\"PARAMETER\"])[2]"
+  },
+  {
+    "name": "Totara Select field with name Parameter",
+    "value": "xpath=//select[@name=\"PARAMETER\"]"
   },
   {
     "name": "Totara Moodle Quiz checkbox",
@@ -653,7 +731,7 @@
   },
   {
     "name": "Totara side menu option",
-    "value": "xpath=//span[text='PARAMETER']"
+    "value": "xpath=//span[text()='PARAMETER']"
   },
   {
     "name": "Totara text field",
@@ -670,6 +748,10 @@
   {
     "name": "Totara Move Right link by EC value",
     "value": "xpath=(//span[contains(text(),'PARAMETER')][@class='instancename']/following::span[@data-flex-icon='core|t/right']/following-sibling::span[2])[1]"
+  },
+  {
+    "name": "Totara Edit Activity link  by EC value",
+    "value": "xpath=(//span[contains(text(),'PARAMETER')][@class='instancename']/following::span[@data-flex-icon='core|t/edit']/following-sibling::span[2])[1]"
   },
   {
     "name": "Totara edit topic by name using EC value",
@@ -776,12 +858,20 @@
     "value": "xpath=//p[contains(text(),'PARAMETER')]"
   },
   {
+    "name": "contained in P element",
+    "value": "xpath=//p[contains(.,'PARAMETER')]"
+  },
+  {
     "name": "text contained in SPAN element",
     "value": "xpath=//span[contains(text(),'PARAMETER')]"
   },
   {
     "name": "text contained in element",
     "value": "xpath=//*[contains(text(),'PARAMETER')]"
+  },
+  {
+    "name": "text in div element",
+    "value": "xpath=//div[text()='PARAMETER']"
   },
   {
     "name": "Totara Edit Activity Dropdown Button",

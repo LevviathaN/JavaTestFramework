@@ -4,7 +4,8 @@ Feature: The Hub - Law School - Assignments/Emails - Inbox Overview
   I expect each assignment to display as a separate "email" on the left hand side of the page
 
   @Positive @AssignmentInbox #TC-1916, TC-2109, TC-2112, TC-2081, TC-2076, TC-2133, TC-2608, TC-2881,
-                        #TC-2096, TC-2098, TC-2085, TC-2087, TC-2090, TC-2101, TC-2110, TC-2725, TC-2880, TC-2878, TC-2136, TC-2621, TC-2108
+                        #TC-2096, TC-2098, TC-2085, TC-2087, TC-2090, TC-2101, TC-2110, TC-2725,
+                        # TC-2880, TC-2878, TC-2136, TC-2621, TC-2108, TC-4215
   Scenario: The Hub - Law School - Assignments and Emails - Inbox Overview
     Then I execute "Login as Admin Totara" reusable step
     When I click on the "VPE Course Automation" "element"
@@ -89,12 +90,17 @@ Feature: The Hub - Law School - Assignments/Emails - Inbox Overview
     And I remember "[TIMENOW-VPE]" text as "EC_CURRENT_DATE" variable
     And I should see the "Hub VPE Sent Email Notification" message
     Then I validate text "EC_TIMENOW" to be displayed for "Hub VPE Email Assignment Date" element
+    And I click on the "BPP-10456" "element"
+    Then I click on the "Hub VPE Resubmit" button
+    And I shouldn't see the "Direct App Upload File" element
+    And I set "Automation" text to the "Type your response here" "Build Empire RFI Textarea text item"
+    Then I click on the "SEND " "button"
+    And I should see the "Hub VPE Sent Email Notification" message
     And Browser deletes cookies
     And I switch to window with index "1"
     And I wait for "1" seconds
     When I execute "Log Out from Hub Student" reusable step
     And Browser deletes cookies
-    #And I should see the "Already registered? Log in" message
     When I am on "MD_COMMON_LINKS_TOTARALOGINURL" URL
     And I click on the "BPP Digital Log out button" button if "Totara Login Confirmation Popup window" "element is present"
     #Remove topic

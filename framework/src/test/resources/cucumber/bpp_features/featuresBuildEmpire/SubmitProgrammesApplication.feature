@@ -15,7 +15,7 @@ Feature: Submit BPP University Programmes Application
     And I click on the "Direct App Next" button
     And I fill the "Diret App Phone Number" field with "EC_PHONE"
     And I click on the "Direct App Country Dropdown" button
-    And I click on the "Direct App Country Dropdown UK Option" button
+    And I click on the "Austria" "Direct App Country Dropdown Option"
     And I set "Address 1" text to the "Address Line 1*" "Build Empire text field"
     And I set "Address 1" text to the "Address Line 2" "Build Empire text field"
     And I set "London" text to the "Town/City*" "Build Empire text field"
@@ -108,3 +108,8 @@ Feature: Submit BPP University Programmes Application
     Then I execute "Submit Application Hub" reusable step
     Then I validate text "CONTAINS=100" to be displayed for "Direct App Application Progress Percentage" element
     And I execute "Log Out from Hub Student" reusable step
+    And I execute "Log In to Hub as Admin" reusable step
+    Then  I execute modified "Accept Academic Appeals As Admin" reusable step
+    |3|Delete||
+    And I wait for "2" seconds
+    Then I validate text "CONTAINS=Accepted" to be displayed for "Direct App Admin Status Changed for Programmes" element

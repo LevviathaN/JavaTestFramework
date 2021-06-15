@@ -28,7 +28,7 @@ Feature: BPP Digital Validate CMS Page Accordion Component
     Then I execute "Publish a CMS or Blog Post page" reusable step
   #Navigate to CMS page
     Then I execute "Log Out from Hub Admin" reusable step
-    When I am on "https://web-stage-bppdigital.bppuniversity.com/university-board/<EC_AUTO_CMS_URL>" URL
+    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/<EC_AUTO_CMS_URL>" URL
   #Validate Component
     Then I should see the "CMS Accordion 2" "BPP Digital Web Site CMS Anchors ID"
     Then I should see the "EC_ACCORDION_TITLE_TWO" element

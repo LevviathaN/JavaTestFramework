@@ -709,28 +709,29 @@ public class SpecialStepDefs extends SeleniumHelper {
      * @author Ruslan Levytskyi
      */
     @When("^For each \"([^\"]*)\" \"([^\"]*)\":$")
-    public void for_each_special(String elementType, String elementLocator, List<String> steps) {
+    public void for_each_special(String elementLocator, String elementType,  List<String> steps) {
         if(specialLocatorsMap.containsKey(elementType)) {
             String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
             String xpathTemplate = specialLocatorsMap.get(elementType);
             String resultingXpath = xpathTemplate.replaceAll("PARAMETER", processedLocator);
 
-            Reporter.log("Executing step: For each '" + elementLocator + " " + elementType + "' element");
-            List<WebElement> elements = findElements(initElementLocator(resultingXpath));
-            String xpathLocator = "";
-            BPPLogManager.getLogger().info("There are " + elements.size() + " '" + elementLocator + " " + elementType + "' elements found on the page");
-            //todo: To be discussed, to move all cycling through elements and steps into separate method in ReusableRunner
-            for(int i = 1; i <= elements.size(); i++) {
-                BPPLogManager.getLogger().info("For " + i + " element");
-                for(String step : steps) {
-                    BPPLogManager.getLogger().info("Executing: " + step + " iteration " + i);
-                    if (specialLocatorsMap.containsKey(elementType)) {
-                        xpathLocator = specialLocatorsMap.get(elementType).replace("xpath=","xpath=(") + ")[" + i + "]";
-                    } else {
-                        xpathLocator = "xpath=(//*[text()='" + TestParametersController.checkIfSpecialParameter(elementLocator) + "'])[" + i + "]";
+            if(isElementPresentAndDisplay(initElementLocator(resultingXpath))) {
+
+                Reporter.log("Executing step: For each '" + elementLocator + " " + elementType + "' element");
+                List<WebElement> elements = findElements(initElementLocator(resultingXpath));
+                String xpathLocator = "";
+                BPPLogManager.getLogger().info("There are " + elements.size() + " '" + elementLocator + " " + elementType + "' elements found on the page");
+                //todo: To be discussed, to move all cycling through elements and steps into separate method in ReusableRunner
+                for (int i = 1; i <= elements.size(); i++) {
+                    BPPLogManager.getLogger().info("For " + i + " element");
+                    for (String step : steps) {
+                        BPPLogManager.getLogger().info("Executing: " + step + " iteration " + i);
+                        xpathLocator = resultingXpath.replace("xpath=", "xpath=(") + ")[" + i + "]";
+                        ReusableRunner.getInstance().executeStep(step.replace("FOR_ITEM", xpathLocator));
                     }
-                    ReusableRunner.getInstance().executeStep(step.replace("FOR_ITEM",xpathLocator));
                 }
+            } else {
+                Reporter.fail("No such elements present on the page");
             }
 
             if(!elementLocator.equals(processedLocator)){
@@ -738,6 +739,49 @@ public class SpecialStepDefs extends SeleniumHelper {
             }
         } else {
             Reporter.fail("No such locator template key");
+        }
+    }
+
+    /**
+     * Definition to double-click an element on the page
+     *
+     * @author Ruslan Levytskyi
+     * @param elementLocator name or value of needed element which replaces PARAMETER definiton in SpecialLocators.json
+     * @param elementType xpath template of needed element
+     */
+    @When("^I store \"([^\"]*)\" \"([^\"]*)\" elements number in \"([^\"]*)\" variable$")
+    public void i_count_elements_special(String elementLocator, String elementType, String varName) {
+        Reporter.log("Executing step: I count '" + elementLocator + "' " + elementType);
+        if(specialLocatorsMap.containsKey(elementType)) {
+            String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
+            String xpathTemplate = specialLocatorsMap.get(elementType);
+            String resultingXpath = xpathTemplate.replaceAll("PARAMETER", processedLocator);
+            BPPLogManager.getLogger().info("Counting: " + elementLocator + " elements");
+            int actualNumberOfElements = numberOfElements(initElementLocator(resultingXpath));
+            ExecutionContextHandler.setExecutionContextValueByKey(varName, TestParametersController.checkIfSpecialParameter(String.valueOf(actualNumberOfElements)));
+            if(!elementLocator.equals(processedLocator)){
+                Reporter.log("<pre>[input test parameter] " + elementLocator + "' -> '" + processedLocator + "' [output value]</pre>");
+            }
+        } else {
+            Reporter.fail("No such locator template key");
+        }
+    }
+
+
+    /**
+     * Definition to execute JS code if given condition is true
+     *
+     * @param jsCode JS code to execute
+     * @author yzosin
+     */
+    @When("^I execute \"([^\"]*)\" JS code if \"([^\"]*)\" \"([^\"]*)\"$")
+    public void i_execute_js_code_if(String jsCode, String conditionParameter, String condition) {
+        Conditions conditions = new Conditions();
+        if (conditions.checkCondition(condition, conditionParameter)) {
+            Reporter.log("Executing JS code: " + jsCode);
+            executeJSCode(TestParametersController.checkIfSpecialParameter(jsCode));
+        } else {
+            Reporter.log("Condition " + conditionParameter + condition + " is not true, so JS code will not be executed!");
         }
     }
 }
