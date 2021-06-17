@@ -208,7 +208,10 @@
     "name": "BPP Digital Dates and Prices Start date filter option",
     "value": "xpath=//div[@class='button-text' and contains(.,'Start date')]//following::div[@class='dropdown-menu']//span[contains(.,'PARAMETER')]"
   },
-
+  {
+    "name": "BPP Digital Dates and Prices Location filter option",
+    "value": "xpath=//div[@class='button-text' and contains(.,'Location')]//following::div[@class='dropdown-menu']//span[contains(.,'PARAMETER')]"
+  },
   {
     "name": "Build Empire Breadcrumb Not Clickable Tab",
     "value": "xpath=//ul[@class='breadcrumb ember-view']/li//li[contains(.,'PARAMETER')]"

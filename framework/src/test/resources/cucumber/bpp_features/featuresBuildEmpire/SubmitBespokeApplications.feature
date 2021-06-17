@@ -34,7 +34,7 @@ Feature: Submit Bespoke Applications
     And I execute "Log In to Hub as Student" reusable step
     And I execute "Validate Successful Application As Student" reusable step
 
-  @England @Smoke #TC-1202 TC-1204 TC-1217 TC-1218 TC-1219, TC-5200
+  @BespokeEngland @Smoke #TC-1202 TC-1204 TC-1217 TC-1218 TC-1219, TC-5200
   Scenario: Submit Bespoke England Application
     Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step

@@ -1,4 +1,4 @@
-@BuildEmpire @DigitalSite @DatesAndPrices @Filters @Mobile
+@BuildEmpire @DigitalSite @Filters @Mobile
 Feature: Dates & Prices - Filter tweaks - BPP-12913
   As a admin user
   I want to be able to view the "dates & prices" component in the same page with the marketing data

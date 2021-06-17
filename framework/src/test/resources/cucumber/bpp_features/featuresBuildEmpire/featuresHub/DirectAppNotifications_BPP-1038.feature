@@ -18,7 +18,7 @@ Feature: BPP University Hub Direct App Notifications
     And I click on the "Direct App What Are You Applying For Dropdown" element
     Then I click on the "BPP Professional Apprenticeships" "Build Empire application type"
     And I click on the "Direct App Programmes Programm Dropdown" element
-    Then I click on the "UAT Accounting Assitant" "Build Empire application type"
+    Then I click on the "UAT Accounting Assistant" "Build Empire application type"
     #And I hover over the "Direct App Location Dropdown" button
     #And I click on the "Direct App Location Dropdown" element
     #Then I wait for "1" seconds
@@ -41,14 +41,14 @@ Feature: BPP University Hub Direct App Notifications
     And I wait for "2" seconds
     And I click on the "Withdraw Application" "BPP Digital Search Label Button"
     And I click on the "Home" "Build Empire Navigation Menu elements"
-    Then I should see the "You withdrew your application for UAT Accounting Assitant. No further actions will be taken on this application." message
+    Then I should see the "You withdrew your application for UAT Accounting Assistant. No further actions will be taken on this application." "text contained in element"
     #Timeline for New Started Application
     Given I click on the "Direct App My Applications Left Menu Link" link by JS
     And I click on the "Direct App Start New Application Button" link by JS
     And I click on the "Direct App What Are You Applying For Dropdown" element
     Then I click on the "BPP Professional Apprenticeships" "Build Empire application type"
     And I click on the "Direct App Programmes Programm Dropdown" element
-    Then I click on the "UAT Accounting Assitant" "Build Empire application type"
+    Then I click on the "UAT Accounting Assistant" "Build Empire application type"
     #And I hover over the "Direct App Location Dropdown" button
     #And I click on the "Direct App Location Dropdown" element
     #Then I wait for "1" seconds
@@ -73,4 +73,4 @@ Feature: BPP University Hub Direct App Notifications
     And I click on the "Direct App Next" button
     #Navigate Home and verify timeline notification
     And I click on the "Home" "Build Empire Navigation Menu elements"
-    Then I should see the "You started an application for UAT Accounting Assitant" message
+    Then I should see the "You started an application for UAT Accounting Assistant" message
