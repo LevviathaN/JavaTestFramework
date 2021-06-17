@@ -1,13 +1,11 @@
 package cucumber.stepdefs;
 
 import cucumber.reusablesteps.ReusableRunner;
-import io.cucumber.java.en.*;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.hamcrest.Matchers;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import ui.utils.SeleniumHelper;
@@ -36,32 +34,10 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @When("^I click on the \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_click_on_element_with_parameter_special(String elementLocator, String elementType) {
-//        Reporter.log("Executing step: I click on the '" + elementLocator + "' " + elementType);
-//        if(specialLocatorsMap.containsKey(elementType)) {
-//            String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
-//            String xpathTemplate = specialLocatorsMap.get(elementType);
-//            String resultingXpath = xpathTemplate.replaceAll("PARAMETER", processedLocator);
-//            BPPLogManager.getLogger().info("Clicking on: " + elementLocator + " element");
-//            clickOnElement(initElementLocator(resultingXpath),
-//                    UiHandlers.PF_SPINNER_HANDLER,
-//                    UiHandlers.ACCEPT_ALERT,
-//                    UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
-//                    UiHandlers.PF_SCROLL_HANDLER,
-//                    UiHandlers.PAGE_NOT_LOAD_HANDLER,
-//                    UiHandlers.SF_CLICK_HANDLER,
-//                    UiHandlers.WAIT_HANDLER,
-//                    UiHandlers.PF_PREMATURE_MENU_CLICK_HANDLER,
-//                    UiHandlers.DEFAULT_HANDLER);
-//            if(!elementLocator.equals(processedLocator)){
-//                Reporter.log("<pre>[input test parameter] " + elementLocator + "' -> '" + processedLocator + "' [output value]</pre>");
-//            }
-//        } else {
-//            Reporter.fail("No such locator template key");
-//        }
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(elementLocator,elementType)
                 .setActionWithLocator("click")
-                .setLog("Executing step: I click on the '" + elementLocator + "' " + elementType)
+                .setMessage("Executing step: I click on the '" + elementLocator + "' " + elementType)
                 .execute();
     }
 
@@ -74,19 +50,11 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @When("^I click on the \"([^\"]*)\" \"([^\"]*)\" by JS$")
     public void i_click_on_element_with_parameter_by_js_special(String elementLocator, String elementType) {
-        Reporter.log("Executing step: I click on the '" + elementLocator + "' " + elementType);
-        if(specialLocatorsMap.containsKey(elementType)) {
-            String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
-            String xpathTemplate = specialLocatorsMap.get(elementType);
-            String resultingXpath = xpathTemplate.replaceAll("PARAMETER", processedLocator);
-            BPPLogManager.getLogger().info("Clicking on: " + elementLocator + " element with JS");
-            clickWithJS(initElementLocator(resultingXpath));
-            if(!elementLocator.equals(processedLocator)){
-                Reporter.log("<pre>[input test parameter] " + elementLocator + "' -> '" + processedLocator + "' [output value]</pre>");
-            }
-        } else {
-            Reporter.fail("No such locator template key");
-        }
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(elementLocator,elementType)
+                .setActionWithLocator("click with js")
+                .setMessage("Executing step: I click on the '" + elementLocator + "' " + elementType + " with JS")
+                .execute();
     }
 
     /**
@@ -98,35 +66,11 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @When("^I click on the \"([^\"]*)\" \"([^\"]*)\" if \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_click_on_element_with_parameter_special_if(String elementLocator, String elementType, String conditionParameter, String condition) {
-//        Conditions conditions = new Conditions();
-//        if(conditions.checkCondition(condition,conditionParameter)){
-//            Reporter.log("Executing step: I click on the '" + elementLocator + "' " + elementType);
-//            if(specialLocatorsMap.containsKey(elementType)) {
-//                String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
-//                String xpathTemplate = specialLocatorsMap.get(elementType);
-//                String resultingXpath = xpathTemplate.replaceAll("PARAMETER", processedLocator);
-//                clickOnElement(initElementLocator(resultingXpath),
-//                        UiHandlers.PF_SCROLL_HANDLER,
-//                        UiHandlers.ACCEPT_ALERT,
-//                        UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
-//                        UiHandlers.PAGE_NOT_LOAD_HANDLER,
-//                        UiHandlers.PF_SPINNER_HANDLER,
-//                        UiHandlers.PF_PREMATURE_MENU_CLICK_HANDLER,
-//                        UiHandlers.DEFAULT_HANDLER);
-//                if(!elementLocator.equals(processedLocator)){
-//                    Reporter.log("<pre>[input test parameter] " + elementLocator + "' -> '" + processedLocator + "' [output value]</pre>");
-//                }
-//            } else {
-//                Reporter.fail("No such locator template key");
-//            }
-//        } else{
-//            Reporter.log("Condition " + conditionParameter + condition + " is not true, so '" + elementLocator + elementType + "' element step will not be clicked");
-//        }
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(elementLocator,elementType)
                 .setActionWithLocator("click")
                 .setCondition(conditionParameter,condition)
-                .setLog("Executing step: I click on the '" + elementLocator + "' " + elementType)
+                .setMessage("Executing step: I click on the '" + elementLocator + "' " + elementType)
                 .execute();
     }
 
@@ -139,28 +83,10 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @When("^I click on the \"([^\"]*)\" \"([^\"]*)\" by JS if \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_click_on_element_with_parameter_by_js_special_if(String elementLocator, String elementType, String conditionParameter, String condition) {
-//        Conditions conditions = new Conditions();
-//        if(conditions.checkCondition(condition,conditionParameter)){
-//            Reporter.log("Executing step: I click on the '" + elementLocator + "' " + elementType);
-//            if(specialLocatorsMap.containsKey(elementType)) {
-//                String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
-//                String xpathTemplate = specialLocatorsMap.get(elementType);
-//                String resultingXpath = xpathTemplate.replaceAll("PARAMETER", processedLocator);
-//                clickWithJS(initElementLocator(resultingXpath));
-//                if(!elementLocator.equals(processedLocator)){
-//                    Reporter.log("<pre>[input test parameter] " + elementLocator + "' -> '" + processedLocator + "' [output value]</pre>");
-//                }
-//            } else {
-//                Reporter.fail("No such locator template key");
-//            }
-//        } else{
-//            Reporter.log("Condition " + conditionParameter + condition + " is not true, so '" + elementLocator + elementType + "' element step will not be clicked");
-//        }
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setLocator(elementLocator,elementType)
-                .setActionWithLocator("click with js")
+        stepDef.setActionWithLocator("click with js")
                 .setCondition(conditionParameter,condition)
-                .setLog("Executing step: I click on the '" + elementLocator + "' " + elementType + " with JS")
+                .setMessage("Executing step: I click on the '" + elementLocator + "' " + elementType + " with JS")
                 .execute();
     }
 
@@ -245,24 +171,10 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @When("^I set \"([^\"]*)\" text to the \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_set_text_special(String text, String elementLocator, String elementType) {
-//        Reporter.log("Executing step: I set '" + text + "' text to '" + elementLocator + "' " + elementType);
-//        if(specialLocatorsMap.containsKey(elementType)) {
-//            String processedText = TestParametersController.checkIfSpecialParameter(text);
-//            String xpathTemplate = specialLocatorsMap.get(elementType);
-//            String resultingXpath = xpathTemplate.replaceAll("PARAMETER",
-//                    TestParametersController.checkIfSpecialParameter(elementLocator));
-//            setText(initElementLocator(resultingXpath), processedText);
-//            if(!text.equals(processedText)){
-//                BPPLogManager.getLogger().info("Setting " + processedText + " to " + elementLocator + " element");
-//                Reporter.log("<pre>[input test parameter] " + text + "' -> '" + processedText + "' [output value]</pre>");
-//            }
-//        } else {
-//            Reporter.fail("No such locator template key");
-//        }
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(elementLocator,elementType)
                 .setActionWithLocatorAndString("set text", text)
-                .setLog("Executing step: I set '" + text + "' text to '" + elementLocator + "' " + elementType)
+                .setMessage("Executing step: I set '" + text + "' text to '" + elementLocator + "' " + elementType)
                 .execute();
     }
 
@@ -275,20 +187,10 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @When("^I should see the \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_should_see_special(String elementLocator, String elementType) {
-//        Reporter.log("Executing step: I should see the '" + elementLocator + "' " + elementType);
-//        if(specialLocatorsMap.containsKey(elementType)) {
-//            String xpathTemplate = specialLocatorsMap.get(elementType);
-//            String resultingXpath = xpathTemplate.replaceAll("PARAMETER",
-//                    TestParametersController.checkIfSpecialParameter(elementLocator));
-//            BPPLogManager.getLogger().info("Validating presence of " + elementLocator);
-//            Assert.assertTrue(isElementPresentAndDisplay(initElementLocator(resultingXpath)));
-//        } else {
-//            Reporter.fail("No such locator template key");
-//        }
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(elementLocator,elementType)
                 .setActionWithLocator("present")
-                .setLog("Executing step: I should see the '" + elementLocator + "' " + elementType)
+                .setMessage("Executing step: I should see the '" + elementLocator + "' " + elementType)
                 .execute();
     }
 
@@ -302,31 +204,10 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @When("^I should see \"([^\"]*)\" \"([^\"]*)\" in quantity of \"([^\"]*)\"$")
     public void i_should_see_number_of_elements_special(String elementLocator, String elementType, String expectedQuantity) {
-//        Reporter.log("Executing step: I should see the '" + elementLocator + "' " + elementType);
-//        if(specialLocatorsMap.containsKey(elementType)) {
-//            String xpathTemplate = specialLocatorsMap.get(elementType);
-//            String resultingXpath = xpathTemplate.replaceAll("PARAMETER",
-//                    TestParametersController.checkIfSpecialParameter(elementLocator));
-//            BPPLogManager.getLogger().info("Validating the number of elements is " + expectedQuantity);
-////            Assert.assertTrue(expectedQuantity.equals(numberOfElements(initElementLocator(resultingXpath))));
-//            int actualNumberOfElements = numberOfElements(initElementLocator(resultingXpath));
-//            if (expectedQuantity.contains("more than")) {
-//                BPPLogManager.getLogger().info("Expected quantity of " + elementLocator + " is more than " + expectedQuantity + ", but found " + actualNumberOfElements);
-//                Assert.assertTrue(actualNumberOfElements > Integer.parseInt(expectedQuantity.substring(10)));
-//            } else if (expectedQuantity.contains("less than")) {
-//                BPPLogManager.getLogger().info("Expected quantity of " + elementLocator + " is less than " + expectedQuantity + ", but found " + actualNumberOfElements);
-//                Assert.assertTrue(actualNumberOfElements < Integer.parseInt(expectedQuantity.substring(10)));
-//            } else {
-//                BPPLogManager.getLogger().info("Expected quantity of " + elementLocator + " is: " + expectedQuantity + ", but found " + actualNumberOfElements);
-//                Assert.assertTrue(expectedQuantity.equals(String.valueOf(actualNumberOfElements)));
-//            }
-//        } else {
-//            Reporter.fail("No such locator template key");
-//        }
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(elementLocator,elementType)
                 .setActionWithLocatorAndString("number of elements present",expectedQuantity)
-                .setLog("Executing step: I should see the '" + elementLocator + "' " + elementType + " in quantity of " + expectedQuantity)
+                .setMessage("Executing step: I should see the '" + elementLocator + "' " + elementType + " in quantity of " + expectedQuantity)
                 .execute();
     }
 
@@ -339,24 +220,10 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @Then("I shouldn't see the \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_should_not_see_the_element_special(String elementLocator, String elementType) {
-        Reporter.log("Executing step: I should not see the '" + elementLocator + "' " + elementType);
-
-        if(specialLocatorsMap.containsKey(elementType)) {
-            String xpathTemplate = specialLocatorsMap.get(elementType);
-            String resultingXpath = xpathTemplate.replaceAll("PARAMETER",
-                    TestParametersController.checkIfSpecialParameter(elementLocator));
-            if (checkIfElementNotExist(initElementLocator(resultingXpath))) {
-                Assert.assertTrue(false, "Element with " + elementLocator + "' " + elementType + " text is not displayed");
-            } else {
-                Assert.assertTrue(true, "Element with " + elementLocator + "' " + elementType + " Shouldn't be displayed");
-            }
-        } else {
-            Reporter.fail("No such locator template key");
-        }
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(elementLocator,elementType)
                 .setActionWithLocator("absent")
-                .setLog("Executing step: I should not see the '" + elementLocator + "' " + elementType)
+                .setMessage("Executing step: I should not see the '" + elementLocator + "' " + elementType)
                 .execute();
     }
 
@@ -381,11 +248,6 @@ public class SpecialStepDefs extends SeleniumHelper {
         } else {
             Reporter.fail("No such locator template key");
         }
-//        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-//        stepDef.setLocator(elementLocator,elementType)
-//                .setActionWithLocator("absent")
-//                .setLog("Executing step: I should not see the '" + elementLocator + "' " + elementType)
-//                .execute();
     }
 
     /**
@@ -492,24 +354,10 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @And("^I execute \"([^\"]*)\" JS code for \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_execute_js_code_for_element_special(String jsCode, String elementLocator, String elementType) {
-//        Reporter.log("Executing JS code: " + jsCode);
-//        if(specialLocatorsMap.containsKey(elementType)) {
-//            String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
-//            String xpathTemplate = specialLocatorsMap.get(elementType);
-//            String resultingXpath = xpathTemplate.replaceAll("PARAMETER", processedLocator);
-//            isElementPresentAndDisplay(initElementLocator(resultingXpath));
-//            BPPLogManager.getLogger().info("Executing JS code: " + jsCode + " for: " + elementLocator + " element");
-//            executeJSCodeForElement(initElementLocator(resultingXpath),jsCode);
-//            if(!elementLocator.equals(processedLocator)){
-//                Reporter.log("<pre>[input test parameter] " + elementLocator + "' -> '" + processedLocator + "' [output value]</pre>");
-//            }
-//        } else {
-//            Reporter.fail("No such locator template key");
-//        }
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(elementLocator,elementType)
                 .setActionWithLocatorAndString("execute js",jsCode)
-                .setLog("Executing JS code: '" + jsCode + "' for " + elementLocator + " " + elementType)
+                .setMessage("Executing JS code: '" + jsCode + "' for " + elementLocator + " " + elementType)
                 .execute();
     }
 
@@ -562,16 +410,10 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @When("^I hover over the \"([^\"]*)\" \"([^\"]*)\"$")
     public void hover_over_element_special(String elementLocator, String elementType) {
-//        Reporter.log("Executing step: I hover over the '" + elementLocator + "' element");
-//        String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
-//        String xpathTemplate = specialLocatorsMap.get(elementType);
-//        String resultingXpath = xpathTemplate.replaceAll("PARAMETER", processedLocator);
-//        BPPLogManager.getLogger().info("Clicking on: " + elementLocator + " element");
-//        hoverItem(initElementLocator(resultingXpath));
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(elementLocator,elementType)
                 .setActionWithLocator("hover")
-                .setLog("Executing step: I hover over the '" + elementLocator + "' element")
+                .setMessage("Executing step: I hover over the '" + elementLocator + "' element")
                 .execute();
     }
 
@@ -632,31 +474,10 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @When("^I doubleclick on the \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_doubleclick_on_element_with_parameter_special(String elementLocator, String elementType) {
-//        Reporter.log("Executing step: I double-click on the '" + elementLocator + "' " + elementType);
-//        if(specialLocatorsMap.containsKey(elementType)) {
-//            String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
-//            String xpathTemplate = specialLocatorsMap.get(elementType);
-//            String resultingXpath = xpathTemplate.replaceAll("PARAMETER", processedLocator);
-//            BPPLogManager.getLogger().info("Double clicking on: " + elementLocator + " element");
-//            doubleClick(initElementLocator(resultingXpath),
-//                    UiHandlers.PF_SPINNER_HANDLER,
-//                    UiHandlers.ACCEPT_ALERT,
-//                    UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
-//                    UiHandlers.PF_SCROLL_HANDLER,
-//                    UiHandlers.PAGE_NOT_LOAD_HANDLER,
-//                    UiHandlers.SF_CLICK_HANDLER,
-//                    UiHandlers.WAIT_HANDLER,
-//                    UiHandlers.DEFAULT_HANDLER);
-//            if(!elementLocator.equals(processedLocator)){
-//                Reporter.log("<pre>[input test parameter] " + elementLocator + "' -> '" + processedLocator + "' [output value]</pre>");
-//            }
-//        } else {
-//            Reporter.fail("No such locator template key");
-//        }
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(elementLocator,elementType)
                 .setActionWithLocator("double click")
-                .setLog("Executing step: I double-click on the '" + elementLocator + "' " + elementType)
+                .setMessage("Executing step: I double-click on the '" + elementLocator + "' " + elementType)
                 .execute();
     }
 
@@ -669,23 +490,10 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @When("^I perform right mouse click on the \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_right_click_on_element_with_parameter_special(String elementLocator, String elementType) {
-//        Reporter.log("Executing step: I perform right mouse click on the '" + elementLocator + "' " + elementType);
-//        if(specialLocatorsMap.containsKey(elementType)) {
-//            String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
-//            String xpathTemplate = specialLocatorsMap.get(elementType);
-//            String resultingXpath = xpathTemplate.replaceAll("PARAMETER", processedLocator);
-//            BPPLogManager.getLogger().info("Right mouse clicking on: " + elementLocator + " element");
-//            rightMouseClick(initElementLocator(resultingXpath));
-//            if(!elementLocator.equals(processedLocator)){
-//                Reporter.log("<pre>[input test parameter] " + elementLocator + "' -> '" + processedLocator + "' [output value]</pre>");
-//            }
-//        } else {
-//            Reporter.fail("No such locator template key");
-//        }
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(elementLocator,elementType)
                 .setActionWithLocator("right click")
-                .setLog("Executing step: I perform right mouse click on the '" + elementLocator + "' " + elementType)
+                .setMessage("Executing step: I perform right mouse click on the '" + elementLocator + "' " + elementType)
                 .execute();
     }
 

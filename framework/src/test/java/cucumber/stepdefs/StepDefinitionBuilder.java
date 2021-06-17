@@ -16,11 +16,12 @@ public class StepDefinitionBuilder extends SeleniumHelper {
 
     private By locator;
     private boolean condition = true;
-    private String loop, loopConditionParameter, loopConditionStatement;
+    private String loop = "";
+    private String loopConditionParameter, loopConditionStatement;
     private int loopLimit = 5;
     private Action action;
-    private String reporterLog;
-    private String log;
+    private String reporterLog = "";
+    private String log = "";
 
     public StepDefinitionBuilder() {
 
@@ -32,6 +33,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
     }
 
     public StepDefinitionBuilder setCondition(String conditionParameter, String conditionStatement) {
+        conditionParameter = TestParametersController.checkIfSpecialParameter(conditionParameter);
         if(!conditions.checkCondition(conditionStatement,conditionParameter)){
             condition = false;
             Reporter.log("Condition " + conditionParameter + " " + conditionStatement + " is not true");
@@ -66,7 +68,9 @@ public class StepDefinitionBuilder extends SeleniumHelper {
         return this;
     }
 
-    public StepDefinitionBuilder setAction(String actionName, String parameter) {
+    public StepDefinitionBuilder setAction(String actionName, String param) {
+        String parameter = TestParametersController.checkIfSpecialParameter(param);
+        Reporter.log("<pre>[input test parameter] " + param + "' -> '" + parameter + "' [output value]</pre>");
         switch (actionName) {
             case "go to url":
                 action = () -> driver().get(parameter);
@@ -78,7 +82,9 @@ public class StepDefinitionBuilder extends SeleniumHelper {
         return this;
     }
 
-    public StepDefinitionBuilder setActionWithParameter(String actionName, String parameter) {
+    public StepDefinitionBuilder setActionWithParameter(String actionName, String param) {
+        String parameter = TestParametersController.checkIfSpecialParameter(param);
+        Reporter.log("<pre>[input test parameter] " + param + "' -> '" + parameter + "' [output value]</pre>");
         switch (actionName) {
             case "wait":
                 action = () -> sleepFor(Integer.parseInt(parameter));
@@ -87,18 +93,26 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                 action = () -> ReusableRunner.getInstance().executeReusable(parameter);
                 break;
             case "go to url":
+                action = () -> {
+                    driver().get(parameter);
+                    waitForPageToLoad();
+                };
+                break;
+            case "validate page title":
                 action = () -> driver().get(parameter);
                 break;
         }
         return this;
     }
 
-    public StepDefinitionBuilder setActionWithTable(String actionName, String parameter, List table) {
+    public StepDefinitionBuilder setActionWithParameterAndTable(String actionName, String param, List table) {
+        String parameter = TestParametersController.checkIfSpecialParameter(param);
+        Reporter.log("<pre>[input test parameter] " + param + "' -> '" + parameter + "' [output value]</pre>");
         switch (actionName) {
-            case "wait":
-                action = () -> sleepFor(Integer.parseInt(parameter));
+            case "execute modified reusable":
+                action = () -> ReusableRunner.getInstance().executeReusableModified(parameter,table);
                 break;
-            case "execute reusable":
+            case "for each":
                 action = () -> ReusableRunner.getInstance().executeReusable(parameter);
                 break;
         }
@@ -141,15 +155,20 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                 action = () -> Assert.assertTrue(seleniumHelper.isElementPresentAndDisplay(locator));
                 break;
             case "absent":
-                action = () -> Assert.assertFalse(seleniumHelper.isElementPresentAndDisplay(locator));
+                action = () -> Assert.assertTrue(seleniumHelper.checkIfElementNotExist(locator));
                 break;
         }
         return this;
     }
 
-    public StepDefinitionBuilder setActionWithLocatorAndString(String actionName, String parameter) {
+    public StepDefinitionBuilder setActionWithLocatorAndString(String actionName, String param) {
+        String parameter = TestParametersController.checkIfSpecialParameter(param);
+        Reporter.log("<pre>[input test parameter] " + param + "' -> '" + parameter + "' [output value]</pre>");
         switch (actionName) {
             case "set text":
+                action = () -> setText(locator, parameter);
+                break;
+            case "set text with js":
                 action = () -> setText(locator, parameter);
                 break;
             case "number of elements present":
@@ -185,6 +204,12 @@ public class StepDefinitionBuilder extends SeleniumHelper {
         return this;
     }
 
+    public StepDefinitionBuilder setMessage(String message) {
+        log = message;
+        reporterLog = message;
+        return this;
+    }
+
     public void execute() {
         if(condition){
             Reporter.log(reporterLog);
@@ -204,7 +229,6 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                     action.execute();
                     break;
             }
-//            action.execute();
         }
     }
 }

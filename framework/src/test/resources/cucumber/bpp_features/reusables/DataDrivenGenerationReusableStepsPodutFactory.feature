@@ -146,7 +146,7 @@ Feature: Product Factory
       |Dont Touch  |DontTouch  |_DONT_TOUCH  |DT     |_DT    |
 
     #_________________________________Create Reference Data Set____________________________
-  @CreateDataDriven @Run
+  @CreateDataDriven
   Scenario Outline: Create Reference Data Set <type>
     Given I am on "https://generate.plus/en/number/isbn" URL
     And I click on the " generate" "button"
