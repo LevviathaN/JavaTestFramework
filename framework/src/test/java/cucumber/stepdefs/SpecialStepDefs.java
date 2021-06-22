@@ -1,6 +1,8 @@
 package cucumber.stepdefs;
 
 import cucumber.reusablesteps.ReusableRunner;
+import cucumber.stepdefs.Actions.ActionsWithLocator;
+import cucumber.stepdefs.Actions.ActionsWithLocatorAndParameter;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -36,7 +38,7 @@ public class SpecialStepDefs extends SeleniumHelper {
     public void i_click_on_element_with_parameter_special(String elementLocator, String elementType) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(elementLocator,elementType)
-                .setActionWithLocator("click")
+                .setAction(ActionsWithLocator.CLICK)
                 .setMessage("Executing step: I click on the '" + elementLocator + "' " + elementType)
                 .execute();
     }
@@ -52,7 +54,7 @@ public class SpecialStepDefs extends SeleniumHelper {
     public void i_click_on_element_with_parameter_by_js_special(String elementLocator, String elementType) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(elementLocator,elementType)
-                .setActionWithLocator("click with js")
+                .setAction(ActionsWithLocator.CLICK_WITH_JS)
                 .setMessage("Executing step: I click on the '" + elementLocator + "' " + elementType + " with JS")
                 .execute();
     }
@@ -68,7 +70,7 @@ public class SpecialStepDefs extends SeleniumHelper {
     public void i_click_on_element_with_parameter_special_if(String elementLocator, String elementType, String conditionParameter, String condition) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(elementLocator,elementType)
-                .setActionWithLocator("click")
+                .setAction(ActionsWithLocator.CLICK)
                 .setCondition(conditionParameter,condition)
                 .setMessage("Executing step: I click on the '" + elementLocator + "' " + elementType)
                 .execute();
@@ -84,7 +86,7 @@ public class SpecialStepDefs extends SeleniumHelper {
     @When("^I click on the \"([^\"]*)\" \"([^\"]*)\" by JS if \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_click_on_element_with_parameter_by_js_special_if(String elementLocator, String elementType, String conditionParameter, String condition) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setActionWithLocator("click with js")
+        stepDef.setAction(ActionsWithLocator.CLICK_WITH_JS)
                 .setCondition(conditionParameter,condition)
                 .setMessage("Executing step: I click on the '" + elementLocator + "' " + elementType + " with JS")
                 .execute();
@@ -173,7 +175,7 @@ public class SpecialStepDefs extends SeleniumHelper {
     public void i_set_text_special(String text, String elementLocator, String elementType) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(elementLocator,elementType)
-                .setActionWithLocatorAndString("set text", text)
+                .setAction(ActionsWithLocatorAndParameter.SET_TEXT, text)
                 .setMessage("Executing step: I set '" + text + "' text to '" + elementLocator + "' " + elementType)
                 .execute();
     }
@@ -189,7 +191,7 @@ public class SpecialStepDefs extends SeleniumHelper {
     public void i_should_see_special(String elementLocator, String elementType) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(elementLocator,elementType)
-                .setActionWithLocator("present")
+                .setAction(ActionsWithLocator.PRESENT)
                 .setMessage("Executing step: I should see the '" + elementLocator + "' " + elementType)
                 .execute();
     }
@@ -206,7 +208,7 @@ public class SpecialStepDefs extends SeleniumHelper {
     public void i_should_see_number_of_elements_special(String elementLocator, String elementType, String expectedQuantity) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(elementLocator,elementType)
-                .setActionWithLocatorAndString("number of elements present",expectedQuantity)
+                .setAction(ActionsWithLocatorAndParameter.NUMBER_OF_ELEMENTS_PRESENT,expectedQuantity)
                 .setMessage("Executing step: I should see the '" + elementLocator + "' " + elementType + " in quantity of " + expectedQuantity)
                 .execute();
     }
@@ -222,7 +224,7 @@ public class SpecialStepDefs extends SeleniumHelper {
     public void i_should_not_see_the_element_special(String elementLocator, String elementType) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(elementLocator,elementType)
-                .setActionWithLocator("absent")
+                .setAction(ActionsWithLocator.ABSENT)
                 .setMessage("Executing step: I should not see the '" + elementLocator + "' " + elementType)
                 .execute();
     }
@@ -356,7 +358,7 @@ public class SpecialStepDefs extends SeleniumHelper {
     public void i_execute_js_code_for_element_special(String jsCode, String elementLocator, String elementType) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(elementLocator,elementType)
-                .setActionWithLocatorAndString("execute js",jsCode)
+                .setAction(ActionsWithLocatorAndParameter.EXECUTE_JS,jsCode)
                 .setMessage("Executing JS code: '" + jsCode + "' for " + elementLocator + " " + elementType)
                 .execute();
     }
@@ -412,7 +414,7 @@ public class SpecialStepDefs extends SeleniumHelper {
     public void hover_over_element_special(String elementLocator, String elementType) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(elementLocator,elementType)
-                .setActionWithLocator("hover")
+                .setAction(ActionsWithLocator.HOVER)
                 .setMessage("Executing step: I hover over the '" + elementLocator + "' element")
                 .execute();
     }
@@ -476,7 +478,7 @@ public class SpecialStepDefs extends SeleniumHelper {
     public void i_doubleclick_on_element_with_parameter_special(String elementLocator, String elementType) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(elementLocator,elementType)
-                .setActionWithLocator("double click")
+                .setAction(ActionsWithLocator.DOUBLE_CLICK)
                 .setMessage("Executing step: I double-click on the '" + elementLocator + "' " + elementType)
                 .execute();
     }
@@ -492,7 +494,7 @@ public class SpecialStepDefs extends SeleniumHelper {
     public void i_right_click_on_element_with_parameter_special(String elementLocator, String elementType) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(elementLocator,elementType)
-                .setActionWithLocator("right click")
+                .setAction(ActionsWithLocator.RIGHT_CLICK)
                 .setMessage("Executing step: I perform right mouse click on the '" + elementLocator + "' " + elementType)
                 .execute();
     }

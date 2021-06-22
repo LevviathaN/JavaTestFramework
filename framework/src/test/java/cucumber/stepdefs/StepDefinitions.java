@@ -1,6 +1,10 @@
 package cucumber.stepdefs;
 
 import cucumber.reusablesteps.ReusableRunner;
+import cucumber.stepdefs.Actions.ActionsWithLocator;
+import cucumber.stepdefs.Actions.ActionsWithLocatorAndParameter;
+import cucumber.stepdefs.Actions.ActionsWithParameter;
+import cucumber.stepdefs.Actions.ActionsWithParameterAndTable;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -49,7 +53,7 @@ public class StepDefinitions extends SeleniumHelper {
     @Given("^I am on \"([^\"]*)\" URL$")
     public void i_am_on_url(String url) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setActionWithParameter("go to url",url)
+        stepDef.setAction(ActionsWithParameter.GO_TO_URL,url)
                 .setMessage("Executing step: I am on '" + url + "' url")
                 .execute();
     }
@@ -68,7 +72,7 @@ public class StepDefinitions extends SeleniumHelper {
     public void i_click_on_the_button(String element) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(element)
-                .setActionWithLocator("click")
+                .setAction(ActionsWithLocator.CLICK)
                 .setMessage("Executing step: I click on the '" + element + "' element")
                 .execute();
     }
@@ -87,7 +91,7 @@ public class StepDefinitions extends SeleniumHelper {
     public void i_click_on_the_button_if(String element, String conditionParameter, String condition) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(element)
-                .setActionWithLocator("click")
+                .setAction(ActionsWithLocator.CLICK)
                 .setCondition(conditionParameter,condition)
                 .setMessage("Executing step: I click on the '" + element + "' element if " + conditionParameter + " " + condition)
                 .execute();
@@ -106,7 +110,7 @@ public class StepDefinitions extends SeleniumHelper {
     public void fill_field(String element, String text) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(element)
-                .setActionWithLocatorAndString("set text", text)
+                .setAction(ActionsWithLocatorAndParameter.SET_TEXT, text)
                 .setMessage("Executing step: I fill the  '" + element + "' field with '" + text + "'")
                 .execute();
     }
@@ -121,7 +125,7 @@ public class StepDefinitions extends SeleniumHelper {
     @When("^I wait for \"([^\"]*)\" seconds$")
     public void wait_for(String seconds) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setActionWithParameter("wait",seconds)
+        stepDef.setAction(ActionsWithParameter.WAIT,seconds)
                 .setMessage("Executing step: I wait for " + seconds + " seconds")
                 .execute();
     }
@@ -137,7 +141,7 @@ public class StepDefinitions extends SeleniumHelper {
     public void hover_over(String element) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(element)
-                .setActionWithLocator("hover")
+                .setAction(ActionsWithLocator.HOVER)
                 .setMessage("Executing step: I hover over the '" + element + "' element")
                 .execute();
     }
@@ -153,7 +157,7 @@ public class StepDefinitions extends SeleniumHelper {
     public void i_should_see_the_text(String element) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(element)
-                .setActionWithLocator("present")
+                .setAction(ActionsWithLocator.PRESENT)
                 .setMessage("Executing step: I should see the '" + element + "' element")
                 .execute();
     }
@@ -168,7 +172,7 @@ public class StepDefinitions extends SeleniumHelper {
     @Then("^I should be redirected to the \"([^\"]*)\" page$")
     public void i_should_be_redirected_to_page(String pageTitle) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setActionWithParameter("validate page title", pageTitle)
+        stepDef.setAction(ActionsWithParameter.VALIDATE_PAGE_TITLE, pageTitle)
                 .setMessage("Executing step: I should be redirected to the '" + pageTitle + "' page")
                 .execute();
     }
@@ -201,7 +205,7 @@ public class StepDefinitions extends SeleniumHelper {
     @Then("^I execute modified \"([^\"]*)\" reusable step$")
     public void i_execute_reusable_step_modified(String reusableName, List<List<String>> steps) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setActionWithParameterAndTable("execute modified reusable", reusableName, steps)
+        stepDef.setAction(ActionsWithParameterAndTable.EXECUTE_MODIFIED_REUSABLE, reusableName, steps)
                 .setMessage("Executing step: I execute '" + reusableName + "' reusable step modified")
                 .execute();
     }
@@ -217,7 +221,7 @@ public class StepDefinitions extends SeleniumHelper {
     public void i_execute_reusable_step_if(String reusableName, String conditionParameter, String condition) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setCondition(conditionParameter,condition)
-                .setActionWithParameter("execute reusable", reusableName)
+                .setAction(ActionsWithParameter.EXECUTE_REUSABLE, reusableName)
                 .setMessage("Executing step: I execute '" + reusableName + "' reusable step")
                 .execute();
     }
@@ -347,7 +351,7 @@ public class StepDefinitions extends SeleniumHelper {
     public void i_should_not_see_the_element(String element) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(element)
-                .setActionWithLocator("absent")
+                .setAction(ActionsWithLocator.ABSENT)
                 .setMessage("Executing step: I shouldn't see the '" + element + "' element")
                 .execute();
     }
@@ -503,7 +507,7 @@ public class StepDefinitions extends SeleniumHelper {
     public void i_click_with_JS(String element) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(element)
-                .setActionWithLocator("click with js")
+                .setAction(ActionsWithLocator.CLICK_WITH_JS)
                 .setMessage("Executing step: I click on the '" + element + "' element by JS")
                 .execute();
     }
@@ -693,7 +697,7 @@ public class StepDefinitions extends SeleniumHelper {
     public void i_click_on_the_button_with_js_if(String element, String conditionParameter, String condition) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(element)
-                .setActionWithLocator("click with js")
+                .setAction(ActionsWithLocator.CLICK_WITH_JS)
                 .setCondition(conditionParameter,condition)
                 .setMessage("Executing step: I click on the '" + element + "' element with JS if " + conditionParameter + " " + condition)
                 .execute();
@@ -805,7 +809,7 @@ public class StepDefinitions extends SeleniumHelper {
 //                UiHandlers.DEFAULT_HANDLER);
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(element)
-                .setActionWithLocator("double click")
+                .setAction(ActionsWithLocator.DOUBLE_CLICK)
                 .setMessage("Executing step: I double click on the '" + element + "' element")
                 .execute();
     }
@@ -879,7 +883,7 @@ public class StepDefinitions extends SeleniumHelper {
     public void i_right_click_on_element_(String element) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(element)
-                .setActionWithLocator("right click")
+                .setAction(ActionsWithLocator.RIGHT_CLICK)
                 .setMessage("Executing step: I perform right mouse click on the '" + element + "'")
                 .execute();
     }

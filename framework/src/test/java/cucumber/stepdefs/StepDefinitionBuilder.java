@@ -1,6 +1,10 @@
 package cucumber.stepdefs;
 
 import cucumber.reusablesteps.ReusableRunner;
+import cucumber.stepdefs.Actions.ActionsWithLocator;
+import cucumber.stepdefs.Actions.ActionsWithLocatorAndParameter;
+import cucumber.stepdefs.Actions.ActionsWithParameter;
+import cucumber.stepdefs.Actions.ActionsWithParameterAndTable;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import ui.utils.*;
@@ -68,60 +72,46 @@ public class StepDefinitionBuilder extends SeleniumHelper {
         return this;
     }
 
-    public StepDefinitionBuilder setAction(String actionName, String param) {
+    public StepDefinitionBuilder setAction(ActionsWithParameter actionName, String param) {
         String parameter = TestParametersController.checkIfSpecialParameter(param);
         Reporter.log("<pre>[input test parameter] " + param + "' -> '" + parameter + "' [output value]</pre>");
         switch (actionName) {
-            case "go to url":
-                action = () -> driver().get(parameter);
-                break;
-            case "execute reusable":
-                action = () -> ReusableRunner.getInstance().executeReusable(parameter);
-                break;
-        }
-        return this;
-    }
-
-    public StepDefinitionBuilder setActionWithParameter(String actionName, String param) {
-        String parameter = TestParametersController.checkIfSpecialParameter(param);
-        Reporter.log("<pre>[input test parameter] " + param + "' -> '" + parameter + "' [output value]</pre>");
-        switch (actionName) {
-            case "wait":
+            case WAIT:
                 action = () -> sleepFor(Integer.parseInt(parameter));
                 break;
-            case "execute reusable":
+            case EXECUTE_REUSABLE:
                 action = () -> ReusableRunner.getInstance().executeReusable(parameter);
                 break;
-            case "go to url":
+            case GO_TO_URL:
                 action = () -> {
                     driver().get(parameter);
                     waitForPageToLoad();
                 };
                 break;
-            case "validate page title":
+            case VALIDATE_PAGE_TITLE:
                 action = () -> driver().get(parameter);
                 break;
         }
         return this;
     }
 
-    public StepDefinitionBuilder setActionWithParameterAndTable(String actionName, String param, List table) {
+    public StepDefinitionBuilder setAction(ActionsWithParameterAndTable actionName, String param, List table) {
         String parameter = TestParametersController.checkIfSpecialParameter(param);
         Reporter.log("<pre>[input test parameter] " + param + "' -> '" + parameter + "' [output value]</pre>");
         switch (actionName) {
-            case "execute modified reusable":
+            case EXECUTE_MODIFIED_REUSABLE:
                 action = () -> ReusableRunner.getInstance().executeReusableModified(parameter,table);
                 break;
-            case "for each":
+            case FOR_EACH:
                 action = () -> ReusableRunner.getInstance().executeReusable(parameter);
                 break;
         }
         return this;
     }
 
-    public StepDefinitionBuilder setActionWithLocator(String actionName) {
+    public StepDefinitionBuilder setAction(ActionsWithLocator actionName) {
         switch (actionName) {
-            case "click":
+            case CLICK:
                 action = () -> clickOnElement(locator,
                         UiHandlers.PF_SCROLL_HANDLER,
                         UiHandlers.ACCEPT_ALERT,
@@ -131,7 +121,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                         UiHandlers.PF_PREMATURE_MENU_CLICK_HANDLER,
                         UiHandlers.DEFAULT_HANDLER);
                 break;
-            case "double click":
+            case DOUBLE_CLICK:
                 action = () -> doubleClick(locator,
                         UiHandlers.PF_SPINNER_HANDLER,
                         UiHandlers.ACCEPT_ALERT,
@@ -142,36 +132,36 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                         UiHandlers.WAIT_HANDLER,
                         UiHandlers.DEFAULT_HANDLER);
                 break;
-            case "right click":
+            case RIGHT_CLICK:
                 action = () -> rightMouseClick(locator);
                 break;
-            case "click with js":
+            case CLICK_WITH_JS:
                 action = () -> clickWithJS(locator);
                 break;
-            case "hover":
+            case HOVER:
                 action = () -> hoverItem(locator);
                 break;
-            case "present":
+            case PRESENT:
                 action = () -> Assert.assertTrue(seleniumHelper.isElementPresentAndDisplay(locator));
                 break;
-            case "absent":
+            case ABSENT:
                 action = () -> Assert.assertTrue(seleniumHelper.checkIfElementNotExist(locator));
                 break;
         }
         return this;
     }
 
-    public StepDefinitionBuilder setActionWithLocatorAndString(String actionName, String param) {
+    public StepDefinitionBuilder setAction(ActionsWithLocatorAndParameter actionName, String param) {
         String parameter = TestParametersController.checkIfSpecialParameter(param);
         Reporter.log("<pre>[input test parameter] " + param + "' -> '" + parameter + "' [output value]</pre>");
         switch (actionName) {
-            case "set text":
+            case SET_TEXT:
                 action = () -> setText(locator, parameter);
                 break;
-            case "set text with js":
+            case SET_TEXT_WITH_JS:
                 action = () -> setText(locator, parameter);
                 break;
-            case "number of elements present":
+            case NUMBER_OF_ELEMENTS_PRESENT:
                 action = () -> {
                     int actualNumberOfElements = numberOfElements(locator);
                     if (parameter.contains("more than")) {
@@ -186,7 +176,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                     }
                 };
                 break;
-            case "execute js":
+            case EXECUTE_JS:
                 action = () -> executeJSCodeForElement(locator,parameter);
                 break;
         }
