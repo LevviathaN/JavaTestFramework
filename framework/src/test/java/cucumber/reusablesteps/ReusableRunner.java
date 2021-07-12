@@ -144,7 +144,8 @@ public static ReusableRunner getInstance() {
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_ACTIVATE_INSTANCE"), () -> pfStepDefs.i_activate_instance(arg1));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_COURSE_BULK_OPERATION"), () -> pfStepDefs.i_create_course_bulk_operation(arg1));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_BULK_WEB_PUBLISHING"), () -> pfStepDefs.i_execute_bulk_web_publishing(Boolean.valueOf(arg1), arg2, arg3));
-
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CHANGE_MATERIAL_FD"), () -> pfStepDefs.i_change_material_fd(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CHANGE_COURSE_FD"), () -> pfStepDefs.i_change_course_fd(arg1));
     }
 
     private StepDefinitions stepDefs = new StepDefinitions();

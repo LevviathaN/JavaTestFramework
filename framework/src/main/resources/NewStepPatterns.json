@@ -426,5 +426,13 @@
   {
     "name": "I_EXECUTE_BULK_WEB_PUBLISHING",
     "value": "I execute Bulk Web Publishing with publish to WEB \"([^\"]*)\" saving course as \"([^\"]*)\" and instance as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CHANGE_MATERIAL_FD",
+    "value": "I change Material Financial Dimension saving as \\\"([^\\\"]*)\\\"$\""
+  },
+  {
+    "name": "I_CHANGE_COURSE_FD",
+    "value": "I change Course Financial Dimension saving as \"([^\"]*)\"$"
   }
 ]

@@ -140,7 +140,8 @@ public class RestApiController {
                     "paperReference", "sittingReference", "vatRuleReference", "verticalReference", "regionReference", "courseTypeReference",
                     "pricingMatrixReference", "levelReference", "programmeReference", "cohortReference", "sessionReference", "stepReference",
                     "dueDate", "costCentreFinancialDimensionReference", "projectFinancialDimensionReference", "financialDimensionReference",
-                    "examPreparationReference", "studyModeReference","addressLine1","addressLine2","addressLine3", "sisCode", "referenceNumber"};
+                    "examPreparationReference", "studyModeReference","addressLine1","addressLine2","addressLine3", "sisCode", "referenceNumber",
+                    "entityFinancialDimensionReference", "revenueFinancialDimensionReference"};
 
             for (String s: objectArray) {
                 if (!(command.get(s) == null)) {

@@ -6,6 +6,18 @@ Feature: Product Factory API Data Creation
   Scenario: Generate new ISBN
     Then I generate new ISBN code saving as "EC_ISBN"
 
+  @ChangeMaterialFinancialDimension #Only once. If Material is created will cause an error: Material have already created, so you cannot change the Course Financial Dimensions
+  Scenario: Attach Financial Dimension to Material
+    Then I create Financial Dimensions with Dimension Type of "LEGALENTITY" and Target "MATERIAL" saving as "EC_FD"
+    Then I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "MATERIAL" saving as "EC_FD"
+    Then I change Material Financial Dimension saving as "EC_MATERIAL"
+
+  @ChangeCourseFinancialDimension #Only once. If Course is created will cause an error: Courses have already created, so you cannot change the Course Financial Dimensions
+  Scenario: Attach Financial Dimension to Course
+    Then I create Financial Dimensions with Dimension Type of "LEGALENTITY" and Target "COURSE" saving as "EC_FD"
+    Then I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSE" saving as "EC_FD"
+    Then I change Course Financial Dimension saving as "EC_COURSE"
+
   @FinancialDimension #TC-1532
   Scenario: Create Financial Dimensions record Course Type item
     When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_FD"

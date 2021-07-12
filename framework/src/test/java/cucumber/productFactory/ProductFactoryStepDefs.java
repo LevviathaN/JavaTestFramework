@@ -1134,5 +1134,51 @@ public class ProductFactoryStepDefs {
 
     }
 
+    @When("I change Material Financial Dimension saving as \"([^\"]*)\"$")
+    public void i_change_material_fd(String ecMaterialFDValue) {
+
+        JSONObject recordsList = restController.requestProcess("changeMaterialFinancialDimensions","changeMaterialFinancialDimensions", null, null);
+
+        /*Get JSON object values*/
+        String EntityFinancialDimensionReference = (String) recordsList.get("entityFinancialDimensionReference");
+        String RevenueFinancialDimensionReference = (String) recordsList.get("revenueFinancialDimensionReference");
+
+        /*Set EC values for JSON object values*/
+        ExecutionContextHandler.setExecutionContextValueByKey(ecMaterialFDValue + "_ENTITY_FINANCIAL_DIMENSION_REFERENCE", EntityFinancialDimensionReference);
+        ExecutionContextHandler.setExecutionContextValueByKey(ecMaterialFDValue + "_REVENUE_FINANCIAL_DIMENSION_REFERENCE", RevenueFinancialDimensionReference);
+
+        /*Report log with Json object values*/
+        Reporter.log("<pre>" +
+                "<br>Change Material Financial Dimension: " +
+                "<br>" + "Material Entity Financial Dimension Reference: " + "<font color='red'><b>" + EntityFinancialDimensionReference + "</font></b>" +
+                "<br>" + "Material Revenue Financial Dimension Reference: " + "<font color='red'><b>" + RevenueFinancialDimensionReference + "</font></b>" +
+                "</pre>");
+
+        BPPLogManager.getLogger().info("Material Financial Dimension was successfully changed.");
+    }
+
+    @When("I change Course Financial Dimension saving as \"([^\"]*)\"$")
+    public void i_change_course_fd(String ecCourseFDValue) {
+
+        JSONObject recordsList = restController.requestProcess("changeCourseFinancialDimensions","changeCourseFinancialDimensions", null, null);
+
+        /*Get JSON object values*/
+        String EntityFinancialDimensionReference = (String) recordsList.get("entityFinancialDimensionReference");
+        String RevenueFinancialDimensionReference = (String) recordsList.get("revenueFinancialDimensionReference");
+
+        /*Set EC values for JSON object values*/
+        ExecutionContextHandler.setExecutionContextValueByKey(ecCourseFDValue + "_ENTITY_FINANCIAL_DIMENSION_REFERENCE", EntityFinancialDimensionReference);
+        ExecutionContextHandler.setExecutionContextValueByKey(ecCourseFDValue + "_REVENUE_FINANCIAL_DIMENSION_REFERENCE", RevenueFinancialDimensionReference);
+
+        /*Report log with Json object values*/
+        Reporter.log("<pre>" +
+                "<br>Change Material Financial Dimension: " +
+                "<br>" + "Material Entity Financial Dimension Reference: " + "<font color='red'><b>" + EntityFinancialDimensionReference + "</font></b>" +
+                "<br>" + "Material Revenue Financial Dimension Reference: " + "<font color='red'><b>" + RevenueFinancialDimensionReference + "</font></b>" +
+                "</pre>");
+
+        BPPLogManager.getLogger().info("Material Financial Dimension was successfully changed.");
+    }
+
 }
 
