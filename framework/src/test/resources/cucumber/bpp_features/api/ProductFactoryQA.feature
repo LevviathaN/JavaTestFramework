@@ -172,11 +172,11 @@ Feature: Product Factory API Data Creation
     When I create new University Programmes saving as "EC_UNIVERSITY_PROGRAMME"
     Then I create new Programme Cohorts saving as "EC_PROGRAMME_COHORT"
 
-  @ModuleSection #TC-5407 #TODO: Change JSON file.
+  @ModuleSection #TC-5407
   Scenario: Create Module Sections
     When I create new University Programmes saving as "EC_UNIVERSITY_PROGRAMME"
     And I create new Programme Cohorts saving as "EC_PROGRAMME_COHORT"
-    Then I create new Module Sections with all Checkboxes "false" saving as "EC_MODULE_SECTIONS"
+    Then I create new Module Sections with Timetabled checkbox set as "true" and Group Requirements set as "true" saving as "EC_MODULE_SECTIONS"
 
   @StockSite
   Scenario: Create Stock Site

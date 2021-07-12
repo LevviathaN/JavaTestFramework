@@ -592,16 +592,16 @@ public class ProductFactoryStepDefs {
         BPPLogManager.getLogger().info("Programme Cohort was successfully created.");
     }
 
-    //TODO: FIX
-    @When("I create new Module Sections with all Checkboxes \"([^\"]*)\" saving as \"([^\"]*)\"$")
-    public void i_create_module_sections(String checkBox, String ecModuleSectionValue) {
+    @When("I create new Module Sections with Timetabled checkbox set as \"([^\"]*)\" and Group Requirements set as \"([^\"]*)\" saving as \"([^\"]*)\"$")
+    public void i_create_module_sections(String timeTabled, String checkBox, String ecModuleSectionValue) {
 
-        JSONObject recordsList = restController.requestProcess("addModuleSections","createModule", String.valueOf(checkBox), null);
+        JSONObject recordsList = restController.requestProcess("addModuleSections","createModule", String.valueOf(timeTabled), String.valueOf(checkBox));
 
         /*Get JSON object values*/
         String Reference = (String) recordsList.get("reference");
         String Name = (String) recordsList.get("name");
         String TermCode = (String) recordsList.get("termCode");
+        Boolean TimeTabled = (Boolean) recordsList.get("timetabled");
         Boolean GroupRequirementCohort = (Boolean) recordsList.get("groupRequirementCohort");
         Boolean GroupRequirementMode = (Boolean) recordsList.get("groupRequirementMode");
         Boolean GroupRequirementLocation = (Boolean) recordsList.get("groupRequirementLocation");
@@ -610,6 +610,7 @@ public class ProductFactoryStepDefs {
         ExecutionContextHandler.setExecutionContextValueByKey(ecModuleSectionValue + "_REFERENCE", Reference);
         ExecutionContextHandler.setExecutionContextValueByKey(ecModuleSectionValue + "_NAME", Name);
         ExecutionContextHandler.setExecutionContextValueByKey(ecModuleSectionValue + "_TERM_CODE", TermCode);
+        ExecutionContextHandler.setExecutionContextValueByKey(ecModuleSectionValue + "_TIMETABLED", String.valueOf(TimeTabled));
         ExecutionContextHandler.setExecutionContextValueByKey(ecModuleSectionValue + "_GROUP_REQUIREMENT_COHORT", String.valueOf(GroupRequirementCohort));
         ExecutionContextHandler.setExecutionContextValueByKey(ecModuleSectionValue + "_GROUP_REQUIREMENT_MODE", String.valueOf(GroupRequirementMode));
         ExecutionContextHandler.setExecutionContextValueByKey(ecModuleSectionValue + "_REQUIREMENT_LOCATION", String.valueOf(GroupRequirementLocation));
@@ -620,7 +621,8 @@ public class ProductFactoryStepDefs {
                 "<br>" + "Module Sections Reference: " + "<font color='red'><b>" + Reference + "</font></b>" +
                 "<br>" + "Module Sections Name: " + "<font color='red'><b>" + Name + "</font></b>" +
                 "<br>" + "Module Sections Term Code: " + "<font color='red'><b>" + TermCode + "</font></b>" +
-                "<br>" + "Module Sections Group Requirement Location: " + "<font color='red'><b>" + GroupRequirementCohort + "</font></b>" +
+                "<br>" + "Module Sections Timetabled: " + "<font color='red'><b>" + TimeTabled + "</font></b>" +
+                "<br>" + "Module Sections Group Requirement Cohort: " + "<font color='red'><b>" + GroupRequirementCohort + "</font></b>" +
                 "<br>" + "Module Sections Group Requirement Mode: " + "<font color='red'><b>" + GroupRequirementMode + "</font></b>" +
                 "<br>" + "Module Sections Group Requirement Location: " + "<font color='red'><b>" + GroupRequirementLocation + "</font></b>" +
                 "</pre>");

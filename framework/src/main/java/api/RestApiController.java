@@ -117,30 +117,36 @@ public class RestApiController {
                 command.put("capacity", Integer.valueOf(parameter1));
             }
             /*Boolean List*/
-            String[] booleanArray = {"isCba","allowedForCba","isExpiryDateRequired","isExpiryDateRequired","isIsbnRequired","isWeightRequired",
-            "groupRequirementCohort","groupRequirementMode","groupRequirementLocation"};
+            String[] booleanArray = {"isCba","allowedForCba","isExpiryDateRequired","isExpiryDateRequired","isIsbnRequired","isWeightRequired","timetabled"};
 
-            for (String s: booleanArray) {
-                if (!(command.get(s) == null)) {
-                    boolean boolStr = Boolean.parseBoolean(parameter1);
-                    command.put(s, boolStr);
+            for (String s1: booleanArray) {
+                if (!(command.get(s1) == null)) {
+                    boolean boolStr1 = Boolean.parseBoolean(parameter1);
+                    command.put(s1, boolStr1);
                 }
             }
+            /*Boolean List*/
+            String[] booleanSecondArray = {"groupRequirementCohort","groupRequirementMode","groupRequirementLocation"};
 
+            for (String s2: booleanSecondArray) {
+                if (!(command.get(s2) == null)) {
+                    boolean boolStr2 = Boolean.parseBoolean(parameter2);
+                    command.put(s2, boolStr2);
+                }
+            }
             /*Object List*/
             String[] objectArray = {"code", "shortName", "name", "description", "startDate", "endDate", "startTeachingDate", "termCode", "bodyReference",
                     "operationReference", "reference", "streamReference", "courseReference", "defaultLocationReference", "defaultSessionDurationReference",
                     "paperReference", "sittingReference", "vatRuleReference", "verticalReference", "regionReference", "courseTypeReference",
                     "pricingMatrixReference", "levelReference", "programmeReference", "cohortReference", "sessionReference", "stepReference",
                     "dueDate", "costCentreFinancialDimensionReference", "projectFinancialDimensionReference", "financialDimensionReference",
-                    "examPreparationReference", "studyModeReference","addressLine1","addressLine2","addressLine3"};
+                    "examPreparationReference", "studyModeReference","addressLine1","addressLine2","addressLine3", "sisCode", "referenceNumber"};
 
             for (String s: objectArray) {
                 if (!(command.get(s) == null)) {
                     command.put(s, TestParametersController.checkIfSpecialParameter(String.valueOf(command.get(s))));
                 }
             }
-
             /*Property List*/
             if (!(command.get("timings") == null)) {
                 ArrayList<String> bodyList = new ArrayList<String>();
@@ -156,7 +162,6 @@ public class RestApiController {
                 ((JSONObject) bodyArray.get(0)).put("endTime", TestParametersController.checkIfSpecialParameter(endTime));
                 bodyList.add(String.valueOf(bodyArray));
             }
-
             /*Array List*/
             List<String> anotherList = (List<String>) Arrays.asList("bodyReferences", "courseReferences", "levelReferences", "paperReferences", "regionReferences",
                     "sittingReferences", "courseTypeReferences");

@@ -126,7 +126,7 @@ public static ReusableRunner getInstance() {
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_DIGITAL_CONTENT"), () -> pfStepDefs.i_create_digital_content(arg1, arg2, arg3));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_UNIVERSITY_PROGRAMMES"), () -> pfStepDefs.i_create_university_programmes(arg1));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_PROGRAMME_COHORTS"), () -> pfStepDefs.i_create_programme_cohorts(arg1));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_MODULE_SECTIONS"), () -> pfStepDefs.i_create_module_sections(arg1, arg2));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_MODULE_SECTIONS"), () -> pfStepDefs.i_create_module_sections(arg1, arg2, arg3));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_STOCK_SITE"), () -> pfStepDefs.i_create_stock_site(arg1));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_MATERIAL_TYPE"), () -> pfStepDefs.i_create_material_type(Boolean.valueOf(arg1), arg2));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_CLIENTS"), () -> pfStepDefs.i_create_clients(arg1));
