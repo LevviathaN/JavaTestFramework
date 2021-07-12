@@ -1,4 +1,4 @@
-@ProductFactory @CBA @Amend
+@ProductFactory @CBA @Amend @HappyPath
 Feature: CBA - Edit - BPP-3200
   As a Product Setter
   I want to be able to amend any existing CBA records so that I can make any required changes.

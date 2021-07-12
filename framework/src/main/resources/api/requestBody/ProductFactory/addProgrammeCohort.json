@@ -1,0 +1,11 @@
+{
+  "operationName": "createCohort",
+  "variables": {
+    "command": {
+      "programmeReference": "EC_UNIVERSITY_PROGRAMME_REFERENCE",
+      "name": "ApiProgrammeCohortName[####]",
+      "startTeachingDate": "[TIMENOW-yyyy-MM-dd]"
+    }
+  },
+  "query": "mutation createCohort($command: CreateCohortCommandInput!) { createCohort(command: $command) { ...cohort __typename }}fragment cohort on Cohort { reference programme { reference code name __typename } name startTeachingDate createdBy createdOn updatedBy updatedOn __typename}"
+}

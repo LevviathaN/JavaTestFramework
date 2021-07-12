@@ -339,6 +339,20 @@ public class Reporter {
         }
     }
 
+    public static synchronized void failApi(String log) {
+        String currentTestName = getCurrentTestName();
+        if (currentTestName.contains("attempt")) {
+            RetryAnalyzer.passMap.put(currentTestName.substring(0, currentTestName.length() - 10), "fail");
+        }
+        try {
+            testNodesStorage.get(Thread.currentThread().getId()).fail(log);
+            buildStatus = false;
+            failuresBucket.add(log);
+        } catch (Exception e) {
+            testStorage.get(Thread.currentThread().getId()).fail(log);
+        }
+    }
+
     /**
      * <p>
      * Get the final build status, to fail the maven build.
@@ -712,7 +726,12 @@ public class Reporter {
 
     public static synchronized void addApiTest(Method m, String testName) {
 
-        ExtentTest test = extent.createTest(testName);
+        String finalTestName = testName;
+        if (RetryAnalyzer.counterMap.containsKey(testName.substring(1, testName.length() - 1))) {
+            int retryAttempt = RetryAnalyzer.counterMap.get(testName.substring(1, testName.length() - 1));
+            finalTestName = testName.substring(1, testName.length() - 1) + "_attempt_" + retryAttempt;
+        }
+        ExtentTest test = extent.createTest(finalTestName);
         testStorage.put(Thread.currentThread().getId(), test);
         browserLink = "<img src='https://i.imgur.com/zXAnKwH.png' class='BrowserLogo'>";
 
@@ -729,11 +748,13 @@ public class Reporter {
     public static synchronized void stopReportingAPI(ITestResult result) {
 
         if (result.getStatus() == ITestResult.FAILURE)
-            failTryTakingScreenshot("Test failed because of: " + result.getThrowable().getMessage());
+            failApi("Test failed because of: " + result.getThrowable().getMessage());
         else if (result.getStatus() == ITestResult.SKIP)
             log("Test: " + testStorage.get(Thread.currentThread().getId()).toString() + " skipped");
         else
             passApi("Test passed!");
+
+        flush();
     }
 
     public static synchronized void passApi(String log) {

@@ -1,4 +1,4 @@
-@ProductFactory @CourseTypes
+@ProductFactory @CourseTypes @HappyPath
 Feature: Reference Data - Course Type - BPP-400
   As a Senior Product Setter
   I need to be able to specify a Course Type

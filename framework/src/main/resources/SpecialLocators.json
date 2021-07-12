@@ -389,6 +389,10 @@
     "value": "xpath=//td[text()='PARAMETER']/following-sibling::td//input"
   },
   {
+    "name": "Product Factory CBA Course BPP Fee recalculate button",
+    "value": "xpath=//td[text()='PARAMETER']/following-sibling::td//button[@title='Recalculate Price']"
+  },
+  {
     "name": "Product Factory Change Body button",
     "value": "xpath=//td[text()='PARAMETER']/following-sibling::td/button/span[contains(text(),'Change Body')]"
   },
@@ -501,6 +505,10 @@
     "value": "xpath=//p[text()='PARAMETER']/../../../../../following-sibling::div/span[1]"
   },
   {
+    "name": "Product Factory Course Page checkbox",
+    "value": "xpath=//td[text()='PARAMETER']/preceding-sibling::td[last()]"
+  },
+  {
     "name": "Product Factory dialog checkbox",
     "value": "xpath=//td[text()='PARAMETER']//preceding-sibling::td/span/span[1]"
   },
@@ -591,6 +599,10 @@
   {
     "name": "Salesforce cases search student",
     "value": "xpath=//div[@title='PARAMETER']"
+  },
+  {
+    "name": "Salesforce cases contact",
+    "value": "xpath=(//div[@title='PARAMETER'])[last()]"
   },
   {
     "name": "Salesforce cases status option",

@@ -1,4 +1,4 @@
-@ProductFactory @CBA
+@ProductFactory @CBA @HappyPath
 Feature: CBA - Create Courses and Instances - BPP-3206
   As a Product Setter
   I want to be able to amend create Courses with a single Instance for a CBA record

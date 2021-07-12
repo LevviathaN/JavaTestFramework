@@ -1,4 +1,4 @@
-@BuildEmpire @DigitalSite @Filters @Mobile
+@BuildEmpire @DigitalSite @FiltersDatesNPrices @Mobile
 Feature: Dates & Prices - Filter tweaks - BPP-12913
   As a admin user
   I want to be able to view the "dates & prices" component in the same page with the marketing data
@@ -75,32 +75,32 @@ Feature: Dates & Prices - Filter tweaks - BPP-12913
 
     # Check Study mode filter
     When I click on the "Face-to-face" "BPP Digital Dates and Prices Course Filter radiobutton"
-    And I validate text "CONTAINS=6" to be displayed for "Show " element
+    And I validate text "CONTAINS=12" to be displayed for "Show " element
     Then I click on the "Show " button
-    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "6"
+    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "12"
     Given I click on the "Filters" button
     And I click on the "Face-to-face" "BPP Digital Dates and Prices Course Filter radiobutton"
 
     # Check Location filter
     When I click on the "London" "BPP Digital Dates and Prices Course Filter radiobutton"
-    And I validate text "CONTAINS=6" to be displayed for "Show " element
+    And I validate text "CONTAINS=12" to be displayed for "Show " element
     Then I click on the "Show " button
-    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "6"
+    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "12"
     Given I click on the "Filters" button
     And I click on the "London" "BPP Digital Dates and Prices Course Filter radiobutton"
 
     # Check Session times filter
-    And I should see the "Weekday (4)" "BPP Digital Dates and Prices Course Filter radiobutton"
+    And I should see the "Weekday (10)" "BPP Digital Dates and Prices Course Filter radiobutton"
     And I should see the "Morning (1)" "BPP Digital Dates and Prices Course Filter radiobutton"
     And I should see the "Afternoon (1)" "BPP Digital Dates and Prices Course Filter radiobutton"
 
-    When I click on the "Weekday (4)" "BPP Digital Dates and Prices Course Filter radiobutton"
-    And I validate text "CONTAINS=4" to be displayed for "Show " element
+    When I click on the "Weekday (10)" "BPP Digital Dates and Prices Course Filter radiobutton"
+    And I validate text "CONTAINS=10" to be displayed for "Show " element
     Then I click on the "Show " button
-    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "4"
+    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "10"
 
     Given I click on the "Filters" button
-    And I click on the "Weekday (4)" "BPP Digital Dates and Prices Course Filter radiobutton"
+    And I click on the "Weekday (10)" "BPP Digital Dates and Prices Course Filter radiobutton"
     When I click on the "Morning (1)" "BPP Digital Dates and Prices Course Filter radiobutton"
     And I validate text "CONTAINS=1" to be displayed for "Show " element
     Then I click on the "Show " button

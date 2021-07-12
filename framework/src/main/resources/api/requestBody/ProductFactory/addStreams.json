@@ -1,0 +1,9 @@
+{
+  "operationName": "createStream",
+  "variables": {
+    "command": {
+      "name": "ApiStreamName[####]"
+    }
+  },
+  "query": "mutation createStream($command: CreateStreamCommandInput!) {  createStream(command: $command) {  ...stream  __typename  } }  fragment stream on Stream {  reference  name  createdBy  createdOn  updatedBy  updatedOn  __typename } "
+}

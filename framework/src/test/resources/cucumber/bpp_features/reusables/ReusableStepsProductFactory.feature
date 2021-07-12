@@ -276,6 +276,15 @@ Feature: Product Factory
     And I click on the "Save" "Product Factory button"
     Then I should see the "EC_CLIENT_NAME" element
 
+  Scenario: Create Study Mode
+    When I click on the "Types" "Product Factory navigation item"
+    When I click on the "Study Modes" "Product Factory navigation sub item"
+    Then I click on the "Create" "Product Factory button"
+    And I set "StudyModeName[######]" text to the "Name" "Product Factory text field"
+    And I set "StudyModeDescription[######]" text to the "Description" "Product Factory text field"
+    And I click on the "Save" "Product Factory button"
+    Then I should see the "EC_STUDY_MODE_NAME" element
+
   Scenario: Create Vertical
     When I click on the "Miscellaneous" "Product Factory navigation item"
     When I click on the "Verticals" "Product Factory navigation sub item"
@@ -499,7 +508,7 @@ Feature: Product Factory
     And I click on the "Body" "Product Factory dropdown"
     And I click on the "EC_BODY_NAME" "Product Factory dropdown option"
     And I click on the "Paper" "Product Factory dropdown"
-    And I click on the "EC_PAPER_NAME" "Product Factory dropdown option"
+    And I click on the "EC_CBA_PAPER_NAME" "Product Factory dropdown option"
     And I click on the "Finish" "Product Factory button"
 
   Scenario: Create Digital Content
@@ -597,3 +606,27 @@ Feature: Product Factory
     And I set "~StockSitePostcode[######]" text to the "Postcode" "Product Factory text field"
     And I click on the "Save" "Product Factory button"
     Then I should see the "EC_STOCK_SITE_NAME" element
+
+  Scenario: Keep Course Available On Website
+    When I click on the "Products" "Product Factory navigation item"
+    When I click on the "Courses" "Product Factory navigation sub item"
+    And I click on the "Additional Filters" "button"
+    And I click on the "Body" "Product Factory dropdown"
+    And I click on the "[EC_BODY_SHORT_NAME] - [EC_BODY_NAME]" "Product Factory dropdown option"
+    And I click on the "Done" "Product Factory button"
+    And I click on the "EC_BODY_SHORT_NAME" "Product Factory Course Page checkbox"
+    And I click on the "Perform Bulk Operation" button
+    And I click on the "Make available on website" "element by title" if "Make available on website,element by title" "Product Factory special element is enabled"
+    Then Attribute "tabindex" of "Make available on website" "element by title" should have value "-1"
+
+  Scenario: Keep Course Removed From Website
+    When I click on the "Products" "Product Factory navigation item"
+    When I click on the "Courses" "Product Factory navigation sub item"
+    And I click on the "Additional Filters" "button"
+    And I click on the "Body" "Product Factory dropdown"
+    And I click on the "[EC_BODY_SHORT_NAME] - [EC_BODY_NAME]" "Product Factory dropdown option"
+    And I click on the "Done" "Product Factory button"
+    And I click on the "EC_BODY_SHORT_NAME" "Product Factory Course Page checkbox"
+    And I click on the "Perform Bulk Operation" button
+    And I click on the "Remove from the website" "element by title" if "Remove from the website,element by title" "Product Factory special element is enabled"
+    Then Attribute "tabindex" of "Remove from the website" "element by title" should have value "-1"

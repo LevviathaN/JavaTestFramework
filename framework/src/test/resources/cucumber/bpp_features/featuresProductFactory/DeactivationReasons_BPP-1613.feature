@@ -1,4 +1,4 @@
-@ProductFactory @DeactivationReasons
+@ProductFactory @DeactivationReasons @HappyPath
 Feature: Reference Data - Course Deactivation Reasons - BPP-1613
   As a Senior Product Setter
   I want to be able to create, view and amend Course Deactivation Reasons records

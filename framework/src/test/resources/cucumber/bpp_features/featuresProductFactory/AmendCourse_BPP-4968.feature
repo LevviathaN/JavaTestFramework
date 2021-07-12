@@ -19,7 +19,7 @@ Feature: Course - Update Instances for non draft Courses - BPP-4968
       |11|I should see the "EC_LOCATION_NAME_THREE" element|
 
 
-  @Positive @P1 #TC-2406
+  @Positive @P1 @HappyPath #TC-2406
   Scenario: Amend Non Draft Course Instance
     When I click on the "Products" "Product Factory navigation item"
     When I click on the "Courses" "Product Factory navigation sub item"

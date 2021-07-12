@@ -1,4 +1,4 @@
-@ProductFactory @Streams
+@ProductFactory @Streams @HappyPath
 Feature: Reference Data - Streams - BPP-6516
   As a Senior Product Setter
   I want to be able to add and amend Stream reference data

@@ -1,4 +1,4 @@
-@ProductFactory @DigitalContent
+@ProductFactory @DigitalContent @HappyPath
 Feature: Digital Content Id - Edit - BPP-7052
   As a Senior Product Setter
   I want to be able to edit the Digital Content Id Sittings

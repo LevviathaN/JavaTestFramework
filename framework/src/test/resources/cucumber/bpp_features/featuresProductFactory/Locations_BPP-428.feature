@@ -1,4 +1,4 @@
-@ProductFactory @Locations
+@ProductFactory @Locations @HappyPath
 Feature: Reference Data - Location - BPP-428
   As a Senior Product Setter
   I need to be able to create Locations specifying the Name (unique) and the Address text box.

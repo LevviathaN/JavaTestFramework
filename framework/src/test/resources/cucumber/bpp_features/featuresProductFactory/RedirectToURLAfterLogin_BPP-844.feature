@@ -1,4 +1,4 @@
-@ProductFactory @Redirect
+@ProductFactory @Redirect @HappyPath
 Feature: Redirect to Requested URL after Authentication - BPP-844
 
   @Positive @Regression @P1 #TC-3445

@@ -1,0 +1,9 @@
+{
+  "operationName": "activateCourse",
+  "variables": {
+    "command": {
+      "reference": "EC_COURSE_REFERENCE"
+    }
+  },
+  "query": "mutation activateCourse($command: ActivateCourseCommandInput!) { activateCourse(command: $command) { ...courseStatus __typename }}fragment courseStatus on Course { reference status publishedDate deactivationReason { reference description preventReactivation __typename } instanceGroup { reference __typename } numberOfSessions numberOfSteps createdOn createdBy updatedOn updatedBy __typename}"
+}

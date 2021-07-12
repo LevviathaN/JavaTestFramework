@@ -10,11 +10,11 @@ Feature: Onboarding - Module Section - Reference Data - BPP-14433
     And I remember "AutoProgrammeCode" text as "EC_PROGRAMME_CODE" variable
     And I remember "AutoCohortName" text as "EC_COHORT_NAME" variable
 
-  @Positive @Regression @P1 #TC-5407
+  @Positive @Regression @P1 @HappyPath #TC-5407
   Scenario: Add a New Module Section Using a Modal
     Given I execute "Create Module Section" reusable step
 
-  @Negative @P2 #TC-5410
+  @Negative @P2 @HappyPath #TC-5410
   Scenario: Create Duplicate of Existing Module Section
     Given I execute "Create Module Section" reusable step
     When I execute "Create Module Section" reusable step replacing some steps

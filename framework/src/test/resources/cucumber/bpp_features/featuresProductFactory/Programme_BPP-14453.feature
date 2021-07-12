@@ -7,7 +7,7 @@ Feature: Onboarding - Programme - Reference Data - BPP-14453
   Background:
     Given I execute "Log In" reusable step
 
-  @Positive @Regression @P1 #TC-5387
+  @Positive @Regression @P1 @HappyPath #TC-5387
   Scenario: Add a New Programme Using a Modal
     Given I execute "Create Programme" reusable step
 

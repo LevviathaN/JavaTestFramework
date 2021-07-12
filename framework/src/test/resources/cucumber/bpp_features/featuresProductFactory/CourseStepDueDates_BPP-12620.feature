@@ -1,4 +1,4 @@
-@ProductFactory @Courses @NumberOfSteps
+@ProductFactory @Courses @NumberOfSteps @HappyPath
 Feature: Ability to add Step Due Dates in Product Factory Course Instance - BPP-12620
   As a member of course setup, when creating a PQ (achievement ladder) course in Product Factory,
   I expect to be able to set due dates to any steps that have been added to the course.

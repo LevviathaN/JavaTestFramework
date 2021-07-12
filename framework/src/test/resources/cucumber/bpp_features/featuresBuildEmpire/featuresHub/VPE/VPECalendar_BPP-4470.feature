@@ -1,4 +1,4 @@
-@BuildEmpire @Hub @VPE
+#@BuildEmpire @Hub @VPE DO NO RUN UNTIL BPP-12996 WILL BE RESOLVED
 Feature: The Hub - Law School - Calendar - Summary
 
   @Positive @CalendarSummary #TC-2819, TC-2820, TC-2821, TC-3067, TC-3068, TC-3069

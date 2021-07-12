@@ -45,8 +45,8 @@ Feature: Submit Professional Apprenticeship Applications With New Line Manager
     #Given I click on the "Direct App My Approvals Tab" link by JS
     #And I click on the "Direct App Line Manager Review Application" button
     And I wait for "5" seconds
-    And I click on the "Application documents" "Build Empire application section"
-    Then I wait for "3" seconds
+    And I click on the "Application documents" "Build Empire application section" by JS
+    Then I wait for "10" seconds
     And I click on the "Download Application of" "Build Empire application section"
     Then I switch to window with index "2"
     Then I upload "application_pack_document.pdf" file to "Direct App Apprenticeships Upload Documents" element

@@ -4,7 +4,7 @@ Feature: Apply user permissions to frontend features - BPP-650
   I want different features of the frontend application to be hidden or disabled when I does not have specific permission to access those features,
   so that they can be associated to the audit when deactivating Courses.
 
-  @Positive @Regression @P1 #TC-680, TC-681
+  @Positive @Regression @P1 @HappyPath #TC-680, TC-681
   Scenario: Validate User Permissions
     Given I execute "Log In" reusable step replacing some steps
       |3|I fill the "Product Factory Email" field with "MD_COMMON_CREDENTIALS_PRODUCTFACTORYJUNIORPRODUCTSETTER"|

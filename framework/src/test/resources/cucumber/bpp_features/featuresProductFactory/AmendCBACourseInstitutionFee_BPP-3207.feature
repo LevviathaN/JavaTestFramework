@@ -1,4 +1,4 @@
-@ProductFactory @CBA @Courses @Amend
+@ProductFactory @CBA @Courses @Amend @HappyPath
 Feature: CBA - Update CBA Course Institution fee - BPP-3207
   As a Product Setter
   I want to be able to update the CBA Course Institution fee

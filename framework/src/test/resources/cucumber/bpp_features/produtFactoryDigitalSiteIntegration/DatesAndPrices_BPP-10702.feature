@@ -95,9 +95,9 @@ Feature: Dates & Prices - Dates and Prices 'pods' (front-end) component
 
     # Verify absence of papers
     And I click on the "Body name" "BPP Digital dropdown"
-    And I click on the "AutoBodyName (AutoBodyShortName)" "BPP Digital dropdown option"
+    And I click on the "TBFN HRV (TBSN HRV)" "BPP Digital dropdown option"
     And I click on the "Level" "BPP Digital dropdown"
-    And I click on the "AutoLevelName" "BPP Digital dropdown option"
+    And I click on the "LFN HRV 2" "BPP Digital dropdown option"
     And I click on the "Save" "element by value"
     And I wait for "3" seconds
     And I am on "http://web-stage-bppdigital.bppuniversity.com/courses/autodatesandprices" URL
@@ -110,6 +110,7 @@ Feature: Dates & Prices - Dates and Prices 'pods' (front-end) component
 
     # Revert body name changes in Product Factory
     Given I am on "MD_COMMON_LINKS_PRODUCTFACTORYURLNEW" URL
+    Given I click on the "Sign in with Auth0" element if "Sign in with Auth0" "element is present"
     When I click on the "Programme" "Product Factory navigation item"
     When I click on the "Bodies" "Product Factory navigation sub item"
     And I click on the "ICAEWU" "Product Factory edit button"
@@ -197,29 +198,29 @@ Feature: Dates & Prices - Dates and Prices 'pods' (front-end) component
 
     # Check Study mode filter
     When I hover over the "Study mode" element
-    And I validate text "CONTAINS=6" to be displayed for "Face-to-face" element
+    And I validate text "CONTAINS=12" to be displayed for "Face-to-face" element
 
     When I click on the "Face-to-face" element
-    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "6"
+    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "12"
     And I click on the "Face-to-face" element
 
     # Check Location filter
     When I hover over the "Location" element
-    And I validate text "CONTAINS=6" to be displayed for "London" element
+    And I validate text "CONTAINS=12" to be displayed for "London" element
 
     When I click on the "London" element
-    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "6"
+    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "12"
     And I click on the "London" element
 
     # Check Session times filter
     When I hover over the "Session times" element
-    And I should see the "Weekday (4)" element
+    And I should see the "Weekday (10)" element
     And I should see the "Morning (1)" element
     And I should see the "Afternoon (1)" element
 
-    When I click on the "Weekday (4)" element
-    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "4"
-    And I click on the "Weekday (4)" element
+    When I click on the "Weekday (10)" element
+    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "10"
+    And I click on the "Weekday (10)" element
     When I click on the "Morning (1)" element
     Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "1"
     And I click on the "Morning (1)" element

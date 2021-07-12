@@ -1,4 +1,4 @@
-@ProductFactory @SessionDurations
+@ProductFactory @SessionDurations @HappyPath
 Feature: Reference Data - Create Session Duration - BPP-1316
   As a Senior Product Setter
   I want to be able create Session Duration data

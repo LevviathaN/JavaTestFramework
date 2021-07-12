@@ -1,0 +1,11 @@
+{
+  "operationName": "createCourseBulkOperation",
+  "variables": {
+    "command": {
+      "courseReferences": [
+        "EC_COURSE_REFERENCE"
+      ]
+    }
+  },
+  "query": "mutation createCourseBulkOperation($command: CreateCourseBulkOperationCommandInput!) { createCourseBulkOperation(command: $command) { reference __typename }}"
+}

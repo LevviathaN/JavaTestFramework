@@ -9,19 +9,19 @@ Feature: Verticals on Products (Terra Changes) - New Reference Data - BPP-12384
   Background:
     Given I execute "Log In" reusable step
 
-  @Positive @Regression @P1 #TC-4811
+  @Positive @Regression @P1 @HappyPath #TC-4811
   Scenario: Add a New Vertical Using a Modal
     Given I execute "Create Vertical" reusable step
     Then I should see the "EC_VERTICAL_NAME" element
 
-  @Negative @P2 @NoQTest
+  @Negative @P2 @HappyPath @NoQTest
   Scenario: Submitting Incomplete Vertical Fields
     When I click on the "Miscellaneous" "Product Factory navigation item"
     When I click on the "Verticals" "Product Factory navigation sub item"
     Then I click on the "Create" "Product Factory button"
     Then Attribute "tabindex" of "Save" "Product Factory button" should have value "-1"
 
-  @Negative @P2 #TC-4813
+  @Negative @P2 @HappyPath #TC-4813
   Scenario: Add a Vertical Where Name Already Exists
     When I execute "Create Vertical" reusable step
     When I execute "Create Vertical" reusable step replacing some steps

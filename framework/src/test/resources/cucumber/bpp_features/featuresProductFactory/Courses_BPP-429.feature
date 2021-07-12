@@ -1,4 +1,4 @@
-@ProductFactory @Courses
+@ProductFactory @Courses @HappyPath
 Feature: Create Course Instance - BPP-429
   As a Product Setter
   I need to be able to create a Course based on the Reference Data

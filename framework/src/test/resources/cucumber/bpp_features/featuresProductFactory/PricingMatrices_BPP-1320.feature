@@ -1,4 +1,4 @@
-@ProductFactory @PricingMatrices
+@ProductFactory @PricingMatrices @HappyPath
 Feature: Pricing Matrix creation page - BPP-1320
   As a Senior Product Setter
   I want to be able to enter and amend Pricing Matrices

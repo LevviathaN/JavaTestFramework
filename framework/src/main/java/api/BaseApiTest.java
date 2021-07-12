@@ -29,15 +29,14 @@ public class BaseApiTest {
         System.out.println("START - BPP AUTOMATION API MODULE");
 
         new PreProcessFiles().initPaths(false);
-        KeywordsHandler.instantiate();
-        MetaDataHandler.instantiate();
 
         //init reporter
         Reporter.instantiate();
         Reporter.startReportingAPI(method,data);
         reporter.setLogName(method.getAnnotation(Test.class).testName());
         Reporter.logForEveryTest(method.getAnnotation(Test.class).testName());
-
+        KeywordsHandler.instantiate();
+        MetaDataHandler.instantiate();
     }
 
     @AfterMethod
@@ -57,7 +56,6 @@ public class BaseApiTest {
         ExcelResultsWriter.createApiExcel();
         Reporter.flush();
         ExecutionContextHandler.resetExecutionContextValues();
-        RetryAnalyzer.deletePreviousAttemptsFromHtmlReport();
-        System.out.println("EXECUTIONS HAVE FINISHED");
+        System.out.println("API EXECUTIONS HAVE FINISHED");
     }
 }

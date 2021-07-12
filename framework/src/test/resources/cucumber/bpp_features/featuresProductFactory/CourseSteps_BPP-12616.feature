@@ -1,4 +1,4 @@
-@ProductFactory @Courses @NumberOfSteps
+@ProductFactory @Courses @NumberOfSteps @HappyPath
 Feature: Ability to add Steps in Product Factory Course - BPP-12616
   As a member of course setup, when creating a PQ (achievement ladder) course in Product Factory,
   I expect to be able to outline how many 'steps' are included in the course

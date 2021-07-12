@@ -1,5 +1,6 @@
 package ui.utils;
 
+import org.testng.Assert;
 import ui.utils.bpp.TestParametersController;
 
 /**
@@ -20,7 +21,7 @@ public class Conditions extends SeleniumHelper {
     public boolean checkCondition(String condition, String conditionParameter){
         String elementLocator;
         String elementType;
-                switch (condition) {
+        switch (condition) {
             case "element is present":
                 return isElementPresentAndDisplay(initElementLocator(conditionParameter));
             case "element is absent":
@@ -45,6 +46,38 @@ public class Conditions extends SeleniumHelper {
                 String value1 = TestParametersController.checkIfSpecialParameter(conditionParameter.split(",")[0]);
                 String value2 = TestParametersController.checkIfSpecialParameter(conditionParameter.split(",")[1]);
                 return value1.equals(value2);
+            case "Product Factory special element is enabled":
+                elementLocator = conditionParameter.split(",")[0];
+                elementType = conditionParameter.split(",")[1];
+                if(specialLocatorsMap.containsKey(elementType)) {
+                    String xpathTemplate = specialLocatorsMap.get(elementType);
+                    String resultingXpath = xpathTemplate.replaceAll("PARAMETER",
+                            TestParametersController.checkIfSpecialParameter(elementLocator));
+                    String actualAttributeValue = findElement(initElementLocator(resultingXpath)).getAttribute("tabindex");
+                    return actualAttributeValue.equalsIgnoreCase(TestParametersController.checkIfSpecialParameter("0"));
+                } else {
+                    Reporter.fail("No such locator template key");
+                    return false;
+                }
+            case "Product Factory special element is disabled":
+                elementLocator = conditionParameter.split(",")[0];
+                elementType = conditionParameter.split(",")[1];
+                if(specialLocatorsMap.containsKey(elementType)) {
+                    String xpathTemplate = specialLocatorsMap.get(elementType);
+                    String resultingXpath = xpathTemplate.replaceAll("PARAMETER",
+                            TestParametersController.checkIfSpecialParameter(elementLocator));
+                    String actualAttributeValue = findElement(initElementLocator(resultingXpath)).getAttribute("tabindex");
+                    return actualAttributeValue.equalsIgnoreCase(TestParametersController.checkIfSpecialParameter("-1"));
+                } else {
+                    Reporter.fail("No such locator template key");
+                    return false;
+                }
+            case "Product Factory element is enabled":
+                    Assert.assertTrue(findElement(initElementLocator(conditionParameter)).getAttribute("tabindex")
+                            .equalsIgnoreCase("0"));
+            case "Product Factory element is disabled":
+                Assert.assertTrue(findElement(initElementLocator(conditionParameter)).getAttribute("tabindex")
+                        .equalsIgnoreCase("-1"));
             default:
                 return false;
         }

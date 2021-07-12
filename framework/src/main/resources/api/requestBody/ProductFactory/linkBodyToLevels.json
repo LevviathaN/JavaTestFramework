@@ -1,0 +1,12 @@
+{
+  "operationName": "linkBodyToLevels",
+  "variables": {
+    "command": {
+      "bodyReference": "EC_BODY_REFERENCE",
+      "levelReferences": [
+        "EC_LEVEL_REFERENCE"
+      ]
+    }
+  },
+  "query": "mutation linkBodyToLevels($command: LinkBodyToLevelsCommandInput!) { linkBodyToLevels(command: $command) { ...body __typename }}fragment body on Body { reference shortName name description levels { reference shortName name __typename } financialDimension { reference code description __typename } vertical { reference name __typename } createdBy createdOn updatedBy updatedOn __typename}"
+}

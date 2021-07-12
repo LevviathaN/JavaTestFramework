@@ -93,7 +93,7 @@ public class SalesforceAuthentication {
         return null;
     }
 
-    RequestSpecification requestHeaderSpecification() {
+    public RequestSpecification requestHeaderSpecification() {
         PreemptiveOAuth2HeaderScheme scheme = new PreemptiveOAuth2HeaderScheme();
         scheme.setAccessToken(token);
         return new RequestSpecBuilder().setAuth(scheme).build();

@@ -8,6 +8,14 @@
     "value": "^Browser deletes cookies$"
   },
   {
+    "name": "BROWSER_GETS_COOKIES",
+    "value": "^Browser gets first party cookies$"
+  },
+  {
+    "name": "BROWSER_CHECKS_FIRST_PARTY_COOKIES",
+    "value": "^Browser checks first party cookies$"
+  },
+  {
     "name": "ELEMENT_CSS_SHOULD_HAVE_VALUE",
     "value": "^Сss \"([^\"]*)\" of \"([^\"]*)\" should have value \"([^\"]*)\"$"
   },
@@ -258,5 +266,165 @@
   {
     "name": "HOVER_OVER_ELEMENT_SPECIAL",
     "value": "^I hover over the \"([^\"]*)\" \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_GENERATE_NEW_ISBN_CODE",
+    "value": "I generate new ISBN code saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_FINANCIAL_DIMENSION",
+    "value": "I create Financial Dimensions with Dimension Type of \"([^\"]*)\" and Target \"([^\"]*)\" saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_SITTING",
+    "value": "I create new Sitting saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_VAT_RULE",
+    "value": "I create new Vat Rule saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_EXAM_PREPARATION",
+    "value": "I create new Exam Preparation saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_STUDY_MODE",
+    "value": "I create new Study Mode saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_COURSE_TYPE",
+    "value": "I create new Course Type saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_VERTICAL",
+    "value": "I create new Vertical saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_BODY",
+    "value": "I create new Body saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_PAPER",
+    "value": "I create new Paper with CBA \"([^\"]*)\" saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_LEVEL",
+    "value": "I create new Level saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_LINK_BODY_TO_LEVELS",
+    "value": "I link Body to Levels"
+  },
+  {
+    "name": "I_CHANGE_PAPER_BODY",
+    "value": "I change Paper Body"
+  },
+  {
+    "name": "I_LINK_PAPER_TO_LEVELS",
+    "value": "I link Paper to Levels"
+  },
+  {
+    "name": "I_CREATE_REGION",
+    "value": "I create new Region saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_LOCATION",
+    "value": "I create new Location saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_SESSION_DURATION",
+    "value": "I create new Session Duration with Allowed for CBA \"([^\"]*)\" saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_PRICING_MATRIX",
+    "value": "I create new Pricing Matrix saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_PRICES",
+    "value": "I create new Prices saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_DIGITAL_CONTENT",
+    "value": "I create new Digital Content with Content Type \"([^\"]*)\" and Target Platform \"([^\"]*)\" saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_UNIVERSITY_PROGRAMMES",
+    "value": "I create new University Programmes saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_PROGRAMME_COHORTS",
+    "value": "I create new Programme Cohorts saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_MODULE_SECTIONS",
+    "value": "I create new Module Sections with all Checkboxes \"([^\"]*)\" saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_STOCK_SITE",
+    "value": "I create new Stock Site saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_MATERIAL_TYPE",
+    "value": "I create new Material Type with all Checkboxes \"([^\"]*)\"  saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_CLIENTS",
+    "value": "I create new Clients saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_STREAMS",
+    "value": "I create new Streams saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_DEACTIVATION_REASON",
+    "value": "I create new Deactivation Reason with all Checkboxes \"([^\"]*)\" saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_COURSE",
+    "value": "I create new Course saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_INSTANCE_FOR_COURSE",
+    "value": "I create new Instance saving as \"([^\"]*)\" and saving new session as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CHANGE_INSTANCE_CAPACITY",
+    "value": "I change Instance Capacity with Capacity \"([^\"]*)\" saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_GET_INSTANCE_SESSIONS",
+    "value": "I get Instance Sessions saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CHANGE_SESSION_TIMINGS",
+    "value": "I change Session Timings saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_GET_INSTANCE_STEPS",
+    "value": "I get Instance Steps saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CHANGE_INSTANCE_STEPS",
+    "value": "I change Instance Steps saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CALCULATE_COURSE_PRICE",
+    "value": "I calculate Course Price saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_ACTIVATE_COURSE",
+    "value": "I activate Course saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_ACTIVATE_INSTANCE",
+    "value": "I activate Instance saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_COURSE_BULK_OPERATION",
+    "value": "I create Course Bulk Operation saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_EXECUTE_BULK_WEB_PUBLISHING",
+    "value": "I execute Bulk Web Publishing with publish to WEB \"([^\"]*)\" saving course as \"([^\"]*)\" and instance as \"([^\"]*)\"$"
   }
 ]

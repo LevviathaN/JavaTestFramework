@@ -8,11 +8,14 @@ Feature: CSA Workflow Alerts
     And I execute "Create CSA Case My Course" reusable step
     And I execute "Log Out Salesforce" reusable step
     And I wait for "3" seconds
-    And I execute "Login To Yahoo" reusable step
-    And I fill the "Yahoo Search Email" field with "EC_CASENUMBER"
-    And I press "MD_COMMON_KEYBOARD_ENTER" for "Yahoo Search Email"
-    Then I click on the "Yahoo First Email Link" element
-    And I validate text "CONTAINS=New case created." to be displayed for "Yahoo Case Email Header" element
+    Given I am on "https://harakirimail.com/" URL
+    And I fill the "Harakirimail Inbox Name" field with "casemail777@harakirimail.com"
+    Then I click on the "Harakirimail Get Inbox" button
+    Then I click on the "Harakirimail First Email" element by JS
+    Then I execute "document.getElementsByClassName('adsbygoogle adsbygoogle-noablate')[2].remove();" JS code if "Harakirimail Adds Banner" "element is present"
+    And I wait for "6" seconds
+    Then I click on the "Harakirimail First Email" element if "Harakirimail First Email" "element is present"
+    And I validate text "CONTAINS=New case created." to be displayed for "Harakirimail Validate Letter Body" element
     And I wait for "3" seconds
     Given I am on "MD_COMMON_LINKS_SALESFORCEURL" URL
     Then I fill the "Salesforce Username" field with "MD_COMMON_CREDENTIALS_BPPADMINUSER"
@@ -27,17 +30,8 @@ Feature: CSA Workflow Alerts
     And I wait for "2" seconds
     And I execute "Log Out Salesforce" reusable step
     And I wait for "1" seconds
-    Given I am on "MD_COMMON_LINKS_YAHOOMAILURL" URL
-    And I wait for "1" seconds
-    And I fill the "Yahoo Search Email" field with "EC_CASENUMBER"
-    And I press "MD_COMMON_KEYBOARD_ENTER" for "Yahoo Search Email"
-    Then I click on the "Yahoo First Email Link" element
-    And I validate text "CONTAINS=Case ready to be closed." to be displayed for "Yahoo Case Email Header" element
-    Then I should scroll to the "bottom" of the page
-    Then I click on the "Yahoo Reply" button by JS
-    Then I fill the "Yahoo Body" field with "Automation regression testing"
-    Then I click on the "Yahoo Send" button
-    And I wait for "2" seconds
-    Given I execute "Log In To Salesforce" reusable step
-    And I execute "Search Case by Number" reusable step
-    And I validate text "Re-opened" to be displayed for "Salesforce Case Status Data Field" element
+    Given I am on "https://harakirimail.com/" URL
+    And I fill the "Harakirimail Inbox Name" field with "casemail777@harakirimail.com"
+    Then I click on the "Harakirimail Get Inbox" button
+    Then I click on the "Harakirimail First Email" element
+    And I validate text "CONTAINS=Case ready to be closed." to be displayed for "Harakirimail Validate Letter Body" element

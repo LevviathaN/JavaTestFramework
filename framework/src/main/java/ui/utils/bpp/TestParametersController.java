@@ -295,6 +295,8 @@ public class TestParametersController {
                     String timePattern = null;
                     if (element.endsWith("MMMMd,yyyy")) {
                         timePattern = "MMMM d, yyyy";
+                    } else if (element.endsWith("yyyy-MM-dd")){
+                        timePattern = "yyyy-MM-dd";
                     } else if (element.endsWith("VPE")) {
                         if (element.contains("CALENDAR")) {
                             String time = String.valueOf(Tools.getCurDateTimeInMilliseconds());

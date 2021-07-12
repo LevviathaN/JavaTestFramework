@@ -1,0 +1,12 @@
+{
+  "operationName": "linkPaperToLevels",
+  "variables": {
+    "command": {
+      "paperReference": "EC_PAPER_REFERENCE",
+      "levelReferences": [
+        "EC_LEVEL_REFERENCE"
+      ]
+    }
+  },
+  "query": "mutation linkPaperToLevels($command: LinkPaperToLevelsCommandInput!) { linkPaperToLevels(command: $command) { ...paper __typename }}fragment paper on Paper { reference shortName name description body { reference shortName name levels { reference shortName name __typename } __typename } levels { reference shortName name __typename } isCba examSchedule timeInHours createdBy createdOn updatedBy updatedOn __typename}"
+}

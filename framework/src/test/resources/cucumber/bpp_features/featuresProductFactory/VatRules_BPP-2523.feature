@@ -1,4 +1,4 @@
-@ProductFactory @VatRules
+@ProductFactory @VatRules @HappyPath
 Feature: Reference Data - Vat Rules - Create Record - BPP-2523
   As a Senior Product Setter
   I want to be able to create new VAT Rules records

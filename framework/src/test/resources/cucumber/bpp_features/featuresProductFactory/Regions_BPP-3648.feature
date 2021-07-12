@@ -9,7 +9,7 @@ Feature: Product Factory - Region - BPP-3648
     And I remember "AutoRegionFDCode" text as "EC_REGION_FD_CODE" variable
     And I remember "AutoRegionFDDescription" text as "EC_REGION_FD_DESCRIPTION" variable
 
-  @Positive @Regression @P1 #TC-1874, TC-1890
+  @Positive @Regression @P1 @HappyPath #TC-1874, TC-1890
   Scenario: Create new Region
     When I execute "Create Region" reusable step
     And I click on the "EC_REGION_NAME" "Product Factory edit button"
@@ -30,7 +30,7 @@ Feature: Product Factory - Region - BPP-3648
     Then I validate text "Name must be unique" to be displayed for "Product Factory Toast Error Message Top-Right corner" element
     Then I validate text "Name must be unique" to be displayed for "Product Factory Name Filed Validation Error Message" element
 
-  @Negative @P2 #TC-1888
+  @Negative @P2 @HappyPath #TC-1888
   Scenario: Verify that Region page is not available for Product Setup Assistant role
     And I click on the "exit_to_app" button
     Given I execute "Log In" reusable step replacing some steps

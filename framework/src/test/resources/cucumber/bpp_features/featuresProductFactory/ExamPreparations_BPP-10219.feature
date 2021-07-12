@@ -1,4 +1,4 @@
-@ProductFactory @ExamPreparations
+@ProductFactory @ExamPreparations @HappyPath
 Feature: Additional Product Information - Exam Preparation Name - Ref Data - BPP-10219
   As a member of course setup
   I expect to be able to manage the 'Exam Prep names' that are available for Course Type within Product Factory.

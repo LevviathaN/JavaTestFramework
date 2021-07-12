@@ -9,7 +9,7 @@ Feature: Digital Content List - add Search Filter - BPP-8380
     And I execute "Remember Variables " reusable step
     And I execute "Remember Variables Two" reusable step
 
-  @Positive @P1 #TC-3568
+  @Positive @P1 @HappyPath #TC-3568
   Scenario: Digital Content Page Filters Validation
     When I click on the "Delivery" "Product Factory navigation item"
     When I click on the "Digital Content" "Product Factory navigation sub item"

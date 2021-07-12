@@ -1,6 +1,7 @@
 package api.requests;
 
 import api.RestApiController;
+import api.SalesforceAuthentication;
 import api.SoapApiController;
 import api.Utilities;
 import io.restassured.response.Response;
@@ -38,7 +39,7 @@ public class SalesforceBusinessProcessesUAT {
     public SalesforceBusinessProcessesUAT createNewStudentUAT() {
 
         Response accountResponse = restController.postRequest(propertiesHelper.getProperties().getProperty("sf_account_url_UAT"),
-                restController.processProperties("addNewAccountUAT"));
+                restController.processProperties("addNewAccountUAT"), SalesforceAuthentication.getInstance().requestHeaderSpecification());
 
         assertThat(accountResponse.getBody().asString(), containsString("success"));
         Reporter.log("<pre>" + "Account Id: " + accountResponse.getBody().asString() + "</pre>");
@@ -51,7 +52,7 @@ public class SalesforceBusinessProcessesUAT {
     public SalesforceBusinessProcessesUAT addAddressUAT() {
 
         Response addressResponse = restController.postRequest(propertiesHelper.getProperties().getProperty("sf_address_url_UAT"),
-                restController.processProperties("addNewAddressUAT"));
+                restController.processProperties("addNewAddressUAT"), SalesforceAuthentication.getInstance().requestHeaderSpecification());
 
         assertThat(addressResponse.getBody().asString(), containsString("success"));
         Reporter.log("<pre>" + "Address Id: " + addressResponse.getBody().asString() + "</pre>");
@@ -81,7 +82,7 @@ public class SalesforceBusinessProcessesUAT {
     public SalesforceBusinessProcessesUAT addOpportunityUAT() {
 
         Response opportunityResponse = restController.postRequest(propertiesHelper.getProperties().getProperty("sf_opportunity_url_UAT"),
-                restController.processProperties("addNewOpportunityUAT"));
+                restController.processProperties("addNewOpportunityUAT"), SalesforceAuthentication.getInstance().requestHeaderSpecification());
 
         assertThat(opportunityResponse.getBody().asString(), containsString("success"));
         Reporter.log("<pre>" + "Opportunity Id: " + opportunityResponse.getBody().asString() + "</pre>");
@@ -94,7 +95,7 @@ public class SalesforceBusinessProcessesUAT {
     public SalesforceBusinessProcessesUAT addOfferingUAT() {
 
         Response offeringResponse = restController.postRequest(propertiesHelper.getProperties().getProperty("sf_product_url_UAT"),
-                restController.processProperties("addNewProductItemUAT"));
+                restController.processProperties("addNewProductItemUAT"), SalesforceAuthentication.getInstance().requestHeaderSpecification());
 
         assertThat(offeringResponse.getBody().asString(), containsString("success"));
         Reporter.log("<pre>" + "Offering Id: " + offeringResponse.getBody().asString() + "</pre>");
@@ -118,7 +119,7 @@ public class SalesforceBusinessProcessesUAT {
             }
         }
 
-        Response dataResponse = restController.getRequest(propertiesHelper.getProperties().getProperty("sf_account_url_UAT") + "/" + ExecutionContextHandler.getExecutionContextValueByKey("EC_ACCOUNT_ID"));
+        Response dataResponse = restController.getRequest(propertiesHelper.getProperties().getProperty("sf_account_url_UAT") + "/" + ExecutionContextHandler.getExecutionContextValueByKey("EC_ACCOUNT_ID"), SalesforceAuthentication.getInstance().requestHeaderSpecification());
         ArrayList<String> recordData = utils.getRecordData(utils.getResponseProperty(dataResponse));
         GlobalDataBridge.getInstance().setBufferValueByKey("Student UAT".concat(Integer.toString(new Random().nextInt(999999999))), recordData);
 
@@ -127,7 +128,7 @@ public class SalesforceBusinessProcessesUAT {
 
     public SalesforceBusinessProcessesUAT validateBannerIDUAT() {
 
-        Response validateBanner = restController.getRequest(propertiesHelper.getProperties().getProperty("sf_get_account_bannerID_url_UAT") + "'" + ExecutionContextHandler.getExecutionContextValueByKey("EC_ACCOUNT_ID") +"'");
+        Response validateBanner = restController.getRequest(propertiesHelper.getProperties().getProperty("sf_get_account_bannerID_url_UAT") + "'" + ExecutionContextHandler.getExecutionContextValueByKey("EC_ACCOUNT_ID") +"'", SalesforceAuthentication.getInstance().requestHeaderSpecification());
         JSONObject recordsObject = new Utilities().getResponseProperty(validateBanner);
         JSONArray recordsArray = (JSONArray) recordsObject.get("records");
         JSONObject bannerSObjectID = (JSONObject) recordsArray.get(0);
@@ -141,7 +142,7 @@ public class SalesforceBusinessProcessesUAT {
     public SalesforceBusinessProcessesUAT createNewFacultyUAT() {
 
         Response facultyResponse = restController.postRequest(propertiesHelper.getProperties().getProperty("sf_faculty_url_UAT"),
-                restController.processProperties("addNewFacultyUAT"));
+                restController.processProperties("addNewFacultyUAT"), SalesforceAuthentication.getInstance().requestHeaderSpecification());
 
         assertThat(facultyResponse.getBody().asString(), containsString("success"));
 
@@ -158,7 +159,7 @@ public class SalesforceBusinessProcessesUAT {
 
         assertThat(thisResponse.getBody().asString(), containsString("Application Submitted Successfully"));
 
-        Response dataResponse = restController.getRequest(propertiesHelper.getProperties().getProperty("sf_faculty_url_UAT") + "/" + ExecutionContextHandler.getExecutionContextValueByKey("EC_FACULTY_ID"));
+        Response dataResponse = restController.getRequest(propertiesHelper.getProperties().getProperty("sf_faculty_url_UAT") + "/" + ExecutionContextHandler.getExecutionContextValueByKey("EC_FACULTY_ID"), SalesforceAuthentication.getInstance().requestHeaderSpecification());
 
         ArrayList<String> recordData = utils.getRecordData(utils.getResponseProperty(dataResponse));
 

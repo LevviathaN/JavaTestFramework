@@ -22,6 +22,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import static java.nio.file.StandardOpenOption.CREATE;
@@ -261,5 +263,13 @@ public class Tools {
         } else {
             return FileIO.getConfigProperty(key);
         }
+    }
+
+    public static long checkExpiryTimeForCookies() {
+        Calendar cal = Calendar.getInstance();
+        long now = getCurDateTimeInMilliseconds();
+        cal.setTimeInMillis(now);
+        cal.add(Calendar.MONTH, 6);
+        return cal.getTimeInMillis();
     }
 }

@@ -1,4 +1,4 @@
-@ProductFactory @Clients
+@ProductFactory @Clients @HappyPath
 Feature: Reference Data - Client - BPP-1179
   As a Senior Product Setter
   I want to be able to create, view and amend Client records

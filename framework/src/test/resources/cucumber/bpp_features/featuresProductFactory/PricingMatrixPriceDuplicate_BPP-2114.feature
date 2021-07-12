@@ -1,4 +1,4 @@
-@ProductFactory @PricingMatrices
+@ProductFactory @PricingMatrices @HappyPath
 Feature: Pricing Matrix - price creation validation to prevent duplicates - BPP-2114
   As a Senior Product Setter
   I want to there to be validation that prevents Prices based on the combinations that have already been setup being created again,

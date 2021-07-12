@@ -1,4 +1,4 @@
-@ProductFactory @PricingMatrices
+@ProductFactory @PricingMatrices @HappyPath
 Feature: Pricing Matrix - price creation wizard - BPP-1318
   As a Senior Product Setter
   I want to be able to enter the Pricing Matrices details

@@ -1,0 +1,10 @@
+{
+  "operationName": "createProgramme",
+  "variables": {
+    "command": {
+      "code": "ApiUniversityProgrammeCode[####]",
+      "name": "ApiUniversityProgrammeName[####]"
+    }
+  },
+  "query": "mutation createProgramme($command: CreateProgrammeCommandInput!) { createProgramme(command: $command) { ...programme __typename }}fragment programme on Programme { reference code name createdBy createdOn updatedBy updatedOn __typename}"
+}

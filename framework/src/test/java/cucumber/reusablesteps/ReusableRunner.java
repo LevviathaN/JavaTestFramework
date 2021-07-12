@@ -1,5 +1,6 @@
 package cucumber.reusablesteps;
 
+import cucumber.productFactory.ProductFactoryStepDefs;
 import cucumber.stepdefs.SpecialStepDefs;
 import cucumber.stepdefs.StepDefinitions;
 import org.w3c.dom.Document;
@@ -79,6 +80,8 @@ public static ReusableRunner getInstance() {
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_DOUBLECLICK_ON_THE_BUTTON"), ()-> stepDefs.i_doubleclick_on_the_button(arg1));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("ELEMENT_IS_ENABLED"), ()-> stepDefs.check_element_is_enabled(arg1, arg2));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_PERFORM_RIGHT_MOUSE_CLICK"), ()-> stepDefs.i_right_click_on_element_(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("BROWSER_GETS_COOKIES"), ()-> stepDefs.get_first_party_cookies());
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("BROWSER_CHECKS_FIRST_PARTY_COOKIES"), ()-> stepDefs.check_first_party_cookies());
         //Special stepdefs
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CLICK_ON_ELEMENT_WITH_PARAMETER_SPECIAL"),() -> specialStepDefs.i_click_on_element_with_parameter_special(arg1, arg2));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CLICK_ON_ELEMENT_WITH_PARAMETER_BY_JS_SPECIAL"),() -> specialStepDefs.i_click_on_element_with_parameter_by_js_special(arg1, arg2));
@@ -100,10 +103,53 @@ public static ReusableRunner getInstance() {
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_PERFORM_RIGHT_MOUSE_CLICK_ON_THE_ElEMENT_SPECIAL"), () -> specialStepDefs.i_right_click_on_element_with_parameter_special(arg1,arg2));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get( "I_DOUBLECLICK_ON_THE_ElEMENT_SPECIAL"), () -> specialStepDefs.i_doubleclick_on_element_with_parameter_special(arg1, arg2));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_JS_CODE_IF"), () -> specialStepDefs.i_execute_js_code_if(arg1, arg2, arg3));
+        //PF Steps
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_GENERATE_NEW_ISBN_CODE"), () ->  pfStepDefs.i_generate_new_isbn_code(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_FINANCIAL_DIMENSION"), () -> pfStepDefs.i_create_financial_dimension(arg1, arg2, arg3));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_SITTING"), () -> pfStepDefs.i_create_sitting(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_VAT_RULE"), () -> pfStepDefs.i_create_vat_rule(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_EXAM_PREPARATION"), () -> pfStepDefs.i_create_exam_preparation(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_STUDY_MODE"), () -> pfStepDefs.i_create_study_mode(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_COURSE_TYPE"), () -> pfStepDefs.i_create_course_type(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_VERTICAL"), () -> pfStepDefs.i_create_vertical(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_BODY"), () -> pfStepDefs.i_create_body(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_PAPER"), () -> pfStepDefs.i_create_paper(Boolean.valueOf(arg1), arg2));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_LEVEL"), () -> pfStepDefs.i_create_level(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_LINK_BODY_TO_LEVELS"), () -> pfStepDefs.i_link_body_to_levels());
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CHANGE_PAPER_BODY"), () -> pfStepDefs.i_change_paper_body());
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_LINK_PAPER_TO_LEVELS"), () -> pfStepDefs.i_link_paper_to_levels());
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_REGION"), () -> pfStepDefs.i_create_region(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_LOCATION"), () -> pfStepDefs.i_create_location(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_SESSION_DURATION"), () -> pfStepDefs.i_create_session_duration(Boolean.valueOf(arg1), arg2));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_PRICING_MATRIX"), () -> pfStepDefs.i_create_pricing_matrix(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_PRICES"), () -> pfStepDefs.i_create_prices(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_DIGITAL_CONTENT"), () -> pfStepDefs.i_create_digital_content(arg1, arg2, arg3));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_UNIVERSITY_PROGRAMMES"), () -> pfStepDefs.i_create_university_programmes(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_PROGRAMME_COHORTS"), () -> pfStepDefs.i_create_programme_cohorts(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_MODULE_SECTIONS"), () -> pfStepDefs.i_create_module_sections(arg1, arg2));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_STOCK_SITE"), () -> pfStepDefs.i_create_stock_site(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_MATERIAL_TYPE"), () -> pfStepDefs.i_create_material_type(Boolean.valueOf(arg1), arg2));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_CLIENTS"), () -> pfStepDefs.i_create_clients(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_STREAMS"), () -> pfStepDefs.i_create_streams(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_DEACTIVATION_REASON"), () -> pfStepDefs.i_create_deactivation_reason(Boolean.valueOf(arg1), arg2));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_COURSE"), () -> pfStepDefs.i_create_course(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_INSTANCE_FOR_COURSE"), () -> pfStepDefs.i_create_instance_for_course(arg1, arg2));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CHANGE_INSTANCE_CAPACITY"), () -> pfStepDefs.i_change_instance_capacity(Integer.valueOf(arg1), arg2));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_GET_INSTANCE_SESSIONS"), () -> pfStepDefs.i_get_instance_sessions(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CHANGE_SESSION_TIMINGS"), () -> pfStepDefs.i_change_session_timings(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_GET_INSTANCE_STEPS"), () -> pfStepDefs.i_get_instance_steps(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CHANGE_INSTANCE_STEPS"), () -> pfStepDefs.i_change_instance_steps(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CALCULATE_COURSE_PRICE"), () -> pfStepDefs.i_calculate_course_price(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_ACTIVATE_COURSE"), () -> pfStepDefs.i_activate_course(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_ACTIVATE_INSTANCE"), () -> pfStepDefs.i_activate_instance(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_COURSE_BULK_OPERATION"), () -> pfStepDefs.i_create_course_bulk_operation(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_BULK_WEB_PUBLISHING"), () -> pfStepDefs.i_execute_bulk_web_publishing(Boolean.valueOf(arg1), arg2, arg3));
+
     }
 
     private StepDefinitions stepDefs = new StepDefinitions();
     private SpecialStepDefs specialStepDefs = new SpecialStepDefs();
+    private ProductFactoryStepDefs pfStepDefs = new ProductFactoryStepDefs();
 
     private ArrayList<String> reusable;
 

@@ -9,6 +9,8 @@ Feature: Product Factory
     And I remember "AutoDeactivationReasonDescriptionPrevent<varName>" text as "EC_DEACTIVATION_REASON_DESCRIPTION_PREVENT<ecName>" variable
     And I remember "22/02/2022" text as "EC_SITTING_START_DATE" variable
     And I remember "10/10/2025" text as "EC_SITTING_END_DATE" variable
+    And I remember "AutoStudyModeName<varName>" text as "EC_STUDY_MODE_NAME<ecName>" variable
+    And I remember "AutoStudyModeDescription<varName>" text as "EC_STUDY_MODE_DESCRIPTION<ecName>" variable
     And I remember "AutoProgrammeName<varName>" text as "EC_PROGRAMME_NAME<ecName>" variable
     And I remember "AutoProgrammeCode<varName>" text as "EC_PROGRAMME_CODE<ecName>" variable
     And I remember "AutoCohortName<varName>" text as "EC_COHORT_NAME<ecName>" variable
@@ -78,6 +80,8 @@ Feature: Product Factory
     And I remember "AutoDeactivationReasonDescriptionPrevent<varName>" text as "EC_DEACTIVATION_REASON_DESCRIPTION_PREVENT" variable
     And I remember "23/10/2020" text as "EC_SITTING_START_DATE" variable
     And I remember "10/10/2025" text as "EC_SITTING_END_DATE" variable
+    And I remember "AutoStudyModeName<varName>" text as "EC_STUDY_MODE_NAME" variable
+    And I remember "AutoStudyModeDescription<varName>" text as "EC_STUDY_MODE_DESCRIPTION" variable
     And I remember "AutoProgrammeName<varName>" text as "EC_PROGRAMME_NAME" variable
     And I remember "AutoProgrammeCode<varName>" text as "EC_PROGRAMME_CODE" variable
     And I remember "AutoCohortName<varName>" text as "EC_COHORT_NAME" variable
@@ -159,6 +163,9 @@ Feature: Product Factory
 
     Given I execute "Create Deactivation Reason" reusable step replacing some steps
       |4|I set "$Auto[DeactivationReasonDescription]<varName>" text to the "Description" "Product Factory text field"|
+    And I execute modified "Create Study Mode" reusable step
+      |4|Replace|I set "$Auto[StudyModeName]<varName>" text to the "Name" "Product Factory text field"|
+      |7|Replace|I set "$Auto[StudyModeDescription]<varName>" text to the "Description" "Product Factory text field"|
     And I execute modified "Create Deactivation Reason" reusable step
       |4|Replace|I set "$Auto[DeactivationReasonDescriptionPrevent]<varName>" text to the "Description" "Product Factory text field"|
       |5|Add|I click on the "Prevent Reactivation" "Product Factory checkbox"|
