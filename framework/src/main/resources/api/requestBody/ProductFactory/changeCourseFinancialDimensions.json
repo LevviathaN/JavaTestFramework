@@ -1,0 +1,10 @@
+{
+  "operationName":"changeCourseFinancialDimensions",
+  "variables":{
+    "command":{
+      "entityFinancialDimensionReference":"",
+      "revenueFinancialDimensionReference":""
+    }
+  },
+  "query":"mutation changeCourseFinancialDimensions($command: ChangeCourseFinancialDimensionsCommandInput!) { changeCourseFinancialDimensions(command: $command) { courseEntityFinancialDimension { reference __typename } courseRevenueFinancialDimension { reference __typename } __typename }}"
+}

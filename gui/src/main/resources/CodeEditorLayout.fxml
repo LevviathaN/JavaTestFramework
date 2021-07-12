@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.web.WebView?>
+<BorderPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CodeEditor.CodeEditor">
+   <center>
+      <VBox>
+         <children>
+            <WebView fx:id="webview" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#updateEditingData" prefHeight="330.0" prefWidth="583.0">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </WebView>
+            <HBox spacing="6.0">
+               <children>
+                  <Button fx:id="copyCode" mnemonicParsing="false" onAction="#setCode" text="Set Feature Template" />
+                  <Button fx:id="saveChangesButton" disable="true" mnemonicParsing="false" onAction="#saveChanges" text="Save changes to current file" />
+                  <Button fx:id="createFeature" disable="true" mnemonicParsing="false" onAction="#createNewFeature" text="Save as new feature file" />
+                  <Button fx:id="debugButton" mnemonicParsing="false" onAction="#debugButtonListener" text="Debug Button" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox>
+               <children>
+                  <VBox>
+                     <children>
+                        <Label fx:id="labeledCode" graphicTextGap="5.0" lineSpacing="1.0" text="Invalid locators" />
+                        <ComboBox fx:id="locatorComboBox" prefWidth="150.0" />
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label text="Invalid stepdefs" />
+                        <ComboBox fx:id="stepdefComboBox" prefWidth="310.0" />
+                     </children></VBox>
+               </children>
+            </HBox>
+         </children>
+      
+      </VBox>
+   </center>
+   <left>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <TreeView fx:id="fileTreeView" onMouseClicked="#checkLoadButtonAvailability" prefWidth="245.0" VBox.vgrow="ALWAYS" />
+            <HBox>
+               <children>
+                  <Button fx:id="loadFeatureButton" disable="true" mnemonicParsing="false" onMouseClicked="#loadFeature" text="Load" />
+                  <Button fx:id="deleteFeatureButton" disable="true" mnemonicParsing="false" text="Delete" />
+               </children></HBox>
+         </children>
+      </VBox>
+   </left>
+   <right>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Parameters Suggestions" />
+            <ListView fx:id="predictedLocatorsList" editable="true" onMouseClicked="#clickOnLocatorsList" prefWidth="230.0" />
+            <Label text="Stepdefs Guggestions" />
+            <ListView fx:id="predictedStepdefsList" onMouseClicked="#clickOnStepdefsList" prefWidth="200.0" />
+         </children>
+      </VBox>
+   </right>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Open Feature Creation Wizard..." />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Tools">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#openLocatorsManager" text="Locators Manager..." />
+                  <MenuItem mnemonicParsing="false" onAction="#openReusablesManager" text="Reusable Scenarios Manager..." />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+</BorderPane>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<TabPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CodeEditor.LocatorsManager">
+   <tabs>
+      <Tab closable="false" text="Locators">
+         <content>
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+               <children>
+                  <TableView fx:id="locatorsTable">
+                    <columns>
+                      <TableColumn fx:id="nameColumn" minWidth="300.0" prefWidth="-1.0" text="Name" />
+                      <TableColumn fx:id="valueColumn" minWidth="300.0" prefWidth="-1.0" text="Value" />
+                    </columns>
+                  </TableView>
+                  <HBox fillHeight="false" spacing="8.0">
+                     <children>
+                        <TextField fx:id="nameField" promptText="Name" />
+                        <TextField fx:id="valueField" promptText="Value" />
+                        <Button fx:id="btn" mnemonicParsing="false" onAction="#initLocatorsTable" text="Initiate" />
+                        <Button fx:id="addButton" mnemonicParsing="false" onAction="#addLocator" text="Add Locator" />
+                        <Button fx:id="searchButton" mnemonicParsing="false" text="Search" />
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </padding>
+                  </HBox>
+                  <Label fx:id="message" text="New Locator added successfully!" visible="false" />
+               </children>
+            </VBox>
+         </content>
+      </Tab>
+       <Tab closable="false" text="SpecialLocators">
+           <content>
+               <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+                   <children>
+                       <TableView fx:id="specialLocatorsTable">
+                           <columns>
+                               <TableColumn fx:id="specialNameColumn" minWidth="300.0" prefWidth="-1.0" text="Name" />
+                               <TableColumn fx:id="specialValueColumn" minWidth="300.0" prefWidth="-1.0" text="Value" />
+                           </columns>
+                       </TableView>
+                       <HBox fillHeight="false" spacing="8.0">
+                           <children>
+                               <TextField fx:id="specialNameField" promptText="Name" />
+                               <TextField fx:id="specialValueField" promptText="Value" />
+                               <Button fx:id="specialBtn" mnemonicParsing="false" onAction="#initSpecialLocatorsTable" text="Initiate" />
+                               <Button fx:id="specialAddButton" mnemonicParsing="false" onAction="#addSpecialLocator" text="Add Locator" />
+                               <Button fx:id="specialSearchButton" mnemonicParsing="false" text="Search" />
+                           </children>
+                           <VBox.margin>
+                               <Insets />
+                           </VBox.margin>
+                           <padding>
+                               <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                       </HBox>
+                       <Label fx:id="specialMessage" text="New Locator added successfully!" visible="false" />
+                   </children>
+               </VBox>
+           </content>
+       </Tab>
+   </tabs>
+</TabPane>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CodeEditor.FeatureCRUD">
+   <children>
+      <Label text="Path to store feature:" />
+      <TextField fx:id="featurePath" text="src/test/resources/cucumber/bpp_features/featuresFromGUI/" />
+      <Label text="Enter feature name:" />
+      <TextField fx:id="featureNameField" />
+      <HBox>
+         <children>
+            <Button fx:id="createFeatureButton" defaultButton="true" mnemonicParsing="false" onAction="#createFeatureFile" text="Save" />
+            <Button fx:id="cancelCreating" cancelButton="true" mnemonicParsing="false" onAction="#cancelCreation" text="Cancel" />
+         </children>
+      </HBox>
+      <Label fx:id="messageLabel" />
+   </children>
+</VBox>

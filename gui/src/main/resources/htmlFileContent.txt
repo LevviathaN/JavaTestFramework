@@ -1,0 +1,2 @@
+<!doctype html><html><head>  <link rel="stylesheet" href="https://codemirror.net/lib/codemirror.css">  <script src="https://codemirror.net/lib/codemirror.js"></script>  <script src="https://codemirror.net/mode/gherkin/gherkin.js"></script></head><body><form><textarea id="code" name="code">
+${code}</textarea></form><script>  var editor = CodeMirror.fromTextArea(document.getElementById("code"), {    lineNumbers: true,    matchBrackets: true,    mode: "text/x-feature"  });</script></body></html>

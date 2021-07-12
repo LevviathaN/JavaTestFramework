@@ -1,0 +1,12 @@
+<se:Envelope xmlns:se="http://schemas.xmlsoap.org/soap/envelope/">
+    <se:Header xmlns:sfns="http://soap.sforce.com/schemas/package/CreateCompanyProfile">
+        <sfns:SessionHeader>
+            <sessionId>EC_AUTH_TOKEN</sessionId>
+        </sfns:SessionHeader>
+    </se:Header>
+    <se:Body>
+        <CompanyInformation xmlns="http://soap.sforce.com/schemas/package/CreateCompanyProfile">
+            <id>EC_BUSINESS_ACCOUNT_ID</id>
+        </CompanyInformation>
+    </se:Body>
+</se:Envelope>

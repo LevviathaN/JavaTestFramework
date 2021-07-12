@@ -1,9 +1,0 @@
-{
-  "token_URL":"https://bpp-13fd3e55182--noahqa.cs17.my.salesforce.com/services/oauth2/token",
-  "client_id":"3MVG9ahGHqp.k2_y8jFxez_P_ocWdoF1CzIuPK_nxOmD0iG0_K3909fedmRObNQKcu4A62sh7OfvJucfxmDYk",
-  "client_secret":"6713F4F8C608EEBCD9B8CF2AD66F2E5826B24D97C415D6222CC064305CB13390",
-  "username":"apolloit.offshoreadmin@gmail.com.bpp.qa.noah",
-  "grant_type":"password",
-  "password":"Fusion12345",
-  "redirect_uri":"https://bpp-13fd3e55182--noahqa.cs17.my.salesforce.com/services/oauth2/callback"
-}

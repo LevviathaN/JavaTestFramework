@@ -1,0 +1,10 @@
+{
+  "operationName": "createDeactivationReason",
+  "variables": {
+    "command": {
+      "description": "ApiDeactivationReasonDescription[####]",
+      "preventReactivation": true
+    }
+  },
+  "query": "mutation createDeactivationReason($command: CreateDeactivationReasonCommandInput!) {  createDeactivationReason(command: $command) {  ...deactivationReason  __typename  } }  fragment deactivationReason on DeactivationReason {  reference  description  preventReactivation  createdBy  createdOn  updatedBy  updatedOn  __typename } "
+}

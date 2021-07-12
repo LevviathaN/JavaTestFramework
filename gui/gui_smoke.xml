@@ -1,0 +1,7 @@
+<suite name="GUI2" parallel="methods" data-provider-thread-count="4">
+    <test name="Unit test2">
+        <classes>
+            <class name="GuiUnitTest" />
+        </classes>
+    </test> <!-- test -->
+</suite> <!-- suite -->

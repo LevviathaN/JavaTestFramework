@@ -1,9 +1,0 @@
-{
-  "AccountId":"EC_ACCOUNT_ID",
-  "Name":"AccOpportunity",
-  "StageName":"Accepted - Conditional Firm",
-  "Cycle_Override__c":"Pursue",
-  "Customer_Group__c":["SLC","SELFFUND","ONLINE","INTSTUDENT","FF"],
-  "CloseDate":"2020-12-31",
-  "Enrolment_Status__c":"Welcome"
-}

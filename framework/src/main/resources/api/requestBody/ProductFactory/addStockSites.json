@@ -1,0 +1,15 @@
+{
+  "operationName": "createStockSite",
+  "variables": {
+    "command": {
+      "name": "ApiStockSiteName[####]",
+      "addressLine1": "ApiAddressLineOne[####]",
+      "addressLine2": "ApiAddressLineTwo[####]",
+      "addressLine3": "ApiAddressLineThree[####]",
+      "postcode": "411E",
+      "city": "London",
+      "countryCode": "GBR"
+    }
+  },
+  "query": "mutation createStockSite($command: CreateStockSiteCommandInput!) {  createStockSite(command: $command) {  ...stockSite  __typename  } }  fragment stockSite on StockSite {  reference  name  addressLine1  addressLine2  addressLine3  postcode  city  countryCode  createdBy  createdOn  updatedBy  updatedOn  __typename } "
+}

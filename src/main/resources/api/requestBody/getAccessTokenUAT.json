@@ -1,9 +1,0 @@
-{
-  "token_URL":"https://bpp-13fd3e55182--noahuat.cs17.my.salesforce.com/services/oauth2/token",
-  "client_id":"3MVG9ahGHqp.k2_wASZlL4kleU62h5fveLWM70I6LTOfkCnMR4yyXulUq5rJTNde2Vkl5CMHRP.KIW89O4Koc",
-  "client_secret":"60CE5428B4EF124F1F516BC7569DD4B1832528D6ED077BF9044C3D40B131FB99",
-  "username":"automation@bpp.com.noahuat",
-  "grant_type":"password",
-  "password":"Welcome1@",
-  "redirect_uri":"https://bpp-13fd3e55182--noahuat.cs17.my.salesforce.com/services/oauth2/callback"
-}

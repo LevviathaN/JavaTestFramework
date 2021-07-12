@@ -1,0 +1,11 @@
+{
+  "operationName": "createVatRule",
+  "variables": {
+    "command": {
+      "code": "ApiVatRuleCode[####]",
+      "description": "ApiVatRuleDescription[####]",
+      "rate": 30
+    }
+  },
+  "query": "mutation createVatRule($command: CreateVatRuleCommandInput!) { createVatRule(command: $command) { ...vatRule   __typename  } } fragment vatRule on VatRule { reference  code  description  rate  createdBy  createdOn  updatedBy  updatedOn  __typename}"
+}

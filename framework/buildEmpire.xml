@@ -1,0 +1,8 @@
+<suite name="Suite" parallel="methods" data-provider-thread-count="4" thread-count="1" preserve-order="true">
+    <test name="BE Cucumber Test">
+        <classes>
+            <class name="cucumber.CucumberUITest" />
+            <class name="cucumber.regressionSpreadsheetUpdate.UpdateBERegression" />
+        </classes>
+    </test> <!-- test -->
+</suite> <!-- suite -->

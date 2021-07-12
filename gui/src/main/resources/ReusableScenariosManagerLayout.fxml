@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<VBox minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CodeEditor.ReusableScenariosManager">
+   <children>
+      <HBox>
+         <children>
+            <ListView fx:id="reusablesListView" onMouseClicked="#updateStepsList" />
+            <ListView fx:id="scenarioStepsListView" />
+         </children>
+      </HBox>
+      <Button fx:id="initiateButton" mnemonicParsing="false" onAction="#initiateList" text="Button" />
+   </children>
+</VBox>

@@ -1,0 +1,9 @@
+{
+  "operationName": "createClient",
+  "variables": {
+    "command": {
+      "name": "ApiClientName[####]"
+    }
+  },
+  "query": "mutation createClient($command: CreateClientCommandInput!) {  createClient(command: $command) {  ...client  __typename  } }  fragment client on Client {  reference  name  createdBy  createdOn  updatedBy  updatedOn  __typename } "
+}

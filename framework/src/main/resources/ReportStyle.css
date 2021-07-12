@@ -1,0 +1,79 @@
+ /*---[ hide default category icons ]---*/
+.category-list>span.category::before {
+    display: none;
+}
+
+ /*---[ add style to tags and sheets labels ]---*/
+span.category.label.white-text>span, #category-toggle>li>a>span {
+	color: #039be5;
+}
+
+/*adjusting a style of a new category labels*/
+.category-labels {
+	top:5px;
+	margin-right:3px;
+	font-size:18px;
+	position:relative;
+}
+
+/*adjusting a style of category wells*/
+.category-list>.category {
+	padding-left:2px;
+}
+
+/*make the background color of the log link category transparent*/
+span.category.label.white-text.transparent {
+	background-color:transparent !important;
+}
+
+div#theme-selector {
+    display:none;
+}
+
+.test-heading {
+    display: grid;
+    grid-template-columns: 40px auto 25px;
+    grid-template-rows: auto auto;
+    padding: 2.5px;
+    grid-gap: 2.5px;
+}
+
+.test-name-list {
+    padding: 2.5px;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    margin-left: 3px;
+}
+
+.test-time-list {
+    display: grid;
+    padding: 2.5px;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    margin-left: 3px;
+}
+
+.test-status-list {
+    display: grid;
+    padding: 2.5px;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 3;
+    grid-column-end: 4;
+}
+
+.BrowserLogo{
+    height:40px;
+    width:40px;
+    display: grid;
+    padding: 2.5px;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    align-self: center;
+}

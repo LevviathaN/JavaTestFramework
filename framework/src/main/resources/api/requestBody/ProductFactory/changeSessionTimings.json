@@ -1,0 +1,17 @@
+{
+  "operationName": "changeSessionTimings",
+  "variables": {
+    "command": {
+      "sessionReference": "EC_SESSION_REFERENCE",
+      "timings": [
+        {
+          "sessionTimingReference": "EC_SESSION_TIMING_REFERENCE",
+          "sessionDate": "[TIMENOW-yyyy-MM-dd]",
+          "startTime": "16:09",
+          "endTime": "17:10"
+        }
+      ]
+    }
+  },
+  "query": "mutation changeSessionTimings($command: ChangeSessionTimingsCommandInput!) { changeSessionTimings(command: $command) { ...session __typename }}fragment session on Session { reference sessionNumber location { reference name address __typename } sessionDuration { reference description dateCount __typename } timings { reference sessionDate startTime endTime __typename } __typename}"
+}

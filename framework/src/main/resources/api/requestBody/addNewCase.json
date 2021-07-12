@@ -1,0 +1,33 @@
+{
+  "ContactId":"003g000001mcRe8",
+  "Origin":"Email",
+  "Query_Type__c":[
+    {"name":"Assessments", "Query_Subtype__c":["Appeals","Deferals, Extensions and Mitigating Circumstances","Examination Date /Venue/Time",
+      "Exemptions","Fail, resit and progression","Feedback","Final Grade calculations",
+      "Learning Support","Overseas Exams","Results","Transcripts","Turnitin"]},
+    {"name":"Attendance & Absences", "Query_Subtype__c":["Absence","Attendance record","Name missing from class register"]},
+    {"name":"Book an Appointment", "Query_Subtype__c":["Appointment with an Academic","International Student Advice","Personal Tutor","Programme Support Officer"]},
+    {"name":"Change of programme, mode or location"},
+    {"name":"Complaint (Non-Uni)"},
+    {"name":"Graduation and Certificates", "Query_Subtype__c":["Certificate not received","Graduation Information","Highest module mark certificate",
+      "Professional Body Certificates","Replacement BPP Certificates"]},
+    {"name":"ID Card", "Query_Subtype__c":["Lost","Not Received","Stolen"]},
+    {"name":"International Support", "Query_Subtype__c":["Book an appointment","Incorrect visa conditions","Lost Documents","Short term study visa letters"]},
+    {"name":"IOS (Interruption of Studies)", "Query_Subtype__c":["Extension","New"]},
+    {"name":"Letter Production", "Query_Subtype__c":["Acceptance","Authorised Leave","Authorised Leave","Bank","Confirmation of completion letter","Council Tax",
+      "Holiday","Schengan","Short term study visa letters","Status Letter"]},
+    {"name":"Locker Key", "Query_Subtype__c":["Lost","Other","Returned","Withheld Results"]},
+    {"name":"Oyster Card", "Query_Subtype__c":["Other","Why Not Approved"]},
+    {"name":"Personal Details", "Query_Subtype__c":["Change of contact details","Change of name"]},
+    {"name":"Registration and Induction", "Query_Subtype__c":["Exemptions","International Query","Missed induction","Not Received Joining Instructions",
+      "Other","Pay my first instalment"]},
+    {"name":"Student Loans Company query"},
+    {"name":"Timetable", "Query_Subtype__c":["Group number","Missing or Incorrect","Term dates"]},
+    {"name":"VLE", "Query_Subtype__c":["Cant login to the VLE","Cant see submission link on the VLE","Missing or wrong modules","Not getting announcements"]}
+  ],
+  "Status":"New",
+  "Type":"Question",
+  "Study_Location__c":["Abingdon","Birmingham","Bristol","Cambridge","Doncaster","Leeds","London (City)","London (Holborn)","London (Sheperds Bush)","London (Waterloo)",
+    "Manchester","Online"],
+  "School__c":["Business & Technology","Law","Health"]
+}

@@ -1,0 +1,7 @@
+{
+  "operationName":"getInstanceSessions",
+  "variables":{
+    "instanceReference":"EC_INSTANCE_REFERENCE"
+  },
+  "query":"query getInstanceSessions($instanceReference: Uuid!) { sessions(instanceReference: $instanceReference) { reference sessionNumber sessionDuration { reference description __typename } location { reference name __typename } timings { reference sessionDate startTime endTime __typename } __typename }}"
+}

@@ -1,0 +1,182 @@
+[
+  {
+    "name": "^Attribute \"([^\"]*)\" of \"([^\"]*)\" \"([^\"]*)\" should have value \"([^\"]*)\"$",
+    "value": "PARAM,LOC_PARAM,LOC_TEMPLATE,PARAM"
+  },
+  {
+    "name": "^Attribute \"([^\"]*)\" of \"([^\"]*)\" should have value \"([^\"]*)\"$",
+    "value": "PARAM,LOCATOR,PARAM"
+  },
+  {
+    "name": "^Browser performs \"([^\"]*)\" command$",
+    "value": "PARAM"
+  },
+  {
+    "name": "ELEMENT_IS_ENABLED",
+    "value": "^Element \"([^\"]*)\" should be \"([^\"]*)\"$"
+  },
+  {
+    "name": "^I \"(check|uncheck)\" \"([^\"]*)\" \"([^\"]*)\"$",
+    "value": "PARAM,LOC_PARAM,LOC_TEMPLATE"
+  },
+  {
+    "name": "^I \"(check|uncheck)\" \"([^\"]*)\" checkbox$",
+    "value": "PARAM,LOCATOR"
+  },
+  {
+    "name": "^I am logged into Product Factory as \"([^\"]*)\"$",
+    "value": "PARAM"
+  },
+  {
+    "name": "^I am on \"([^\"]*)\" URL$",
+    "value": "PARAM"
+  },
+  {
+    "name": "^I capture a part of \"([^\"]*)\" element text by \"([^\"]*)\" regex and save as \"([^\"]*)\" variable$",
+    "value": "LOCATOR,PARAM,PARAM"
+  },
+  {
+    "name": "^I capture text data \"([^\"]*)\" as \"([^\"]*)\" variable$",
+    "value": "PARAM,PARAM"
+  },
+  {
+    "name": "^I capture current URL as \"([^\"]*)\" variable$",
+    "value": "PARAM"
+  },
+  {
+    "name": "^I click on the \"([^\"]*)\" \"([^\"]*)\" if \"([^\"]*)\" \"([^\"]*)\"$",
+    "value": "LOC_PARAM,LOC_TEMPLATE,CON_PARAM,CONDITION"
+  },
+  {
+    "name": "^I click on the \"([^\"]*)\" \"([^\"]*)\" by JS$",
+    "value": "LOC_PARAM,LOC_TEMPLATE"
+  },
+  {
+    "name": "^I click on the \"([^\"]*)\" \"([^\"]*)\"$",
+    "value": "LOC_PARAM,LOC_TEMPLATE"
+  },
+  {
+    "name": "^I click on the \"([^\"]*)\" (?:button|link|option|element) by JS$",
+    "value": "LOCATOR"
+  },
+  {
+    "name": "^I click on the \"([^\"]*)\" (?:button|link|option|element) if \"([^\"]*)\" \"([^\"]*)\"$",
+    "value": "LOCATOR,CON_PARAM,CONDITION"
+  },
+  {
+    "name": "^I click on the \"([^\"]*)\" (?:button|link|option|element)(?: in [^\"]*)?$",
+    "value": "LOCATOR"
+  },
+  {
+    "name": "^I click on the \"([^\"]*)\"$",
+    "value": "LOCATOR"
+  },
+  {
+    "name": "^I execute \"([^\"]*)\" JS code for \"([^\"]*)\" \"([^\"]*)\"$",
+    "value": "PARAM,LOC_PARAM,LOC_TEMPLATE"
+  },
+  {
+    "name": "^I execute \"([^\"]*)\" JS code for \"([^\"]*)\" element$",
+    "value": "PARAM,LOCATOR"
+  },
+  {
+    "name": "^I execute \"([^\"]*)\" JS code$",
+    "value": "PARAM"
+  },
+  {
+    "name": "^I execute \"([^\"]*)\" reusable step if \"([^\"]*)\" \"([^\"]*)\"$",
+    "value": "REUSABLE,CON_PARAM,CONDITION"
+  },
+  {
+    "name": "^I execute \"([^\"]*)\" reusable step$",
+    "value": "REUSABLE"
+  },
+  {
+    "name": "^I fill the \"([^\"]*)\" PF field with \"([^\"]*)\"$",
+    "value": "LOCATOR,PARAM"
+  },
+  {
+    "name": "^I fill the \"([^\"]*)\" field with \"([^\"]*)\"$",
+    "value": "PARAM,LOCATOR"
+  },
+  {
+    "name": "^I hover over the \"([^\"]*)\" (?:button|link|option|element)$",
+    "value": "LOCATOR"
+  },
+  {
+    "name": "^I press \"([^\"]*)\" for \"([^\"]*)\"$",
+    "value": "PARAM,LOCATOR"
+  },
+  {
+    "name": "^I remember \"([^\"]*)\" text as \"([^\"]*)\" variable$",
+    "value": "PARAM,PARAM"
+  },
+  {
+    "name": "^I select \"([^\"]*)\" from \"([^\"]*)\" \"([^\"]*)\"$",
+    "value": "PARAM,LOC_PARAM,LOC_TEMPLATE"
+  },
+  {
+    "name": "^I select \"([^\"]*)\" from \"([^\"]*)\" element$",
+    "value": "PARAM,LOCATOR"
+  },
+  {
+    "name": "^I select \"([^\"]*)\" from PF dialog$",
+    "value": "PARAM"
+  },
+  {
+    "name": "^I set \"([^\"]*)\" text to the \"([^\"]*)\" \"([^\"]*)\"$",
+    "value": "PARAM,LOC_PARAM,LOC_TEMPLATE"
+  },
+  {
+    "name": "^I set \"([^\"]*)\" text to the element with ID \"([^\"]*)\" using JS$",
+    "value": "PARAM,PARAM"
+  },
+  {
+    "name": "^I should be redirected to the \"([^\"]*)\" page$",
+    "value": "PARAM"
+  },
+  {
+    "name": "^I should scroll to the \"(top|bottom)\" of the page$",
+    "value": "PARAM"
+  },
+  {
+    "name": "^I should see \"([^\"]*)\" \"([^\"]*)\" in quantity of \"([^\"]*)\"$",
+    "value": "LOC_PARAM,LOC_TEMPLATE,PARAM"
+  },
+  {
+    "name": "^I should see \"([^\"]*)\" \"([^\"]*)\"$",
+    "value": "LOC_PARAM,LOC_TEMPLATE"
+  },
+  {
+    "name": "^I should see the \"([^\"]*)\" (?:button|message|element)$",
+    "value": "LOCATOR"
+  },
+  {
+    "name": "^I should see the \"([^\"]*)\" message in \"([^\"]*)\" frame$",
+    "value": "PARAM,LOCATOR"
+  },
+  {
+    "name": "^I should see the \"([^\"]*)\"(?: button| message| element| text)? in quantity of \"([^\"]*)\"$",
+    "value": "LOCATOR,PARAM"
+  },
+  {
+    "name": "^I shouldn't see the \"([^\"]*)\" (?:button|message|element|text)$",
+    "value": "LOCATOR"
+  },
+  {
+    "name": "^I switch to window with index \"([^\"]*)\"$",
+    "value": "PARAM"
+  },
+  {
+    "name": "^I upload \"([^\"]*)\" file to \"([^\"]*)\" element$",
+    "value": "PARAM,LOCATOR"
+  },
+  {
+    "name": "^I validate text \"([^\"]*)\" to be displayed for \"([^\"]*)\" element$",
+    "value": "PARAM,LOCATOR"
+  },
+  {
+    "name": "^I wait for \"([^\"]*)\" seconds$",
+    "value": "PARAM"
+  }
+]

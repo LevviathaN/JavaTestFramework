@@ -1,0 +1,11 @@
+{
+  "operationName": "createLevel",
+  "variables": {
+    "command": {
+      "shortName": "ApiLevelShortName[####]",
+      "name": "ApiLevelName[#######]",
+      "description": "ApiLevelDescription[####]"
+    }
+  },
+  "query": "mutation createLevel($command: CreateLevelCommandInput!) {  createLevel(command: $command) {  ...level  __typename  } }  fragment level on Level {  reference  shortName  name  description  createdBy  createdOn  updatedBy  updatedOn  __typename } "
+}

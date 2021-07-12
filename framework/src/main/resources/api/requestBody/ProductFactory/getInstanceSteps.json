@@ -1,0 +1,7 @@
+{
+  "operationName":"getInstanceSteps",
+  "variables":{
+    "instanceReference":"EC_INSTANCE_REFERENCE"
+  },
+  "query":"query getInstanceSteps($instanceReference: Uuid!) { steps(instanceReference: $instanceReference) { reference stepNumber dueDate __typename }}"
+}

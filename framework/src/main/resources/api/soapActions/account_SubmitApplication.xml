@@ -1,0 +1,12 @@
+<se:Envelope xmlns:se="http://schemas.xmlsoap.org/soap/envelope/">
+    <se:Header xmlns:sfns="http://soap.sforce.com/schemas/package/BNR_SubmitApplication">
+        <sfns:SessionHeader>
+            <sessionId>EC_AUTH_TOKEN</sessionId>
+        </sfns:SessionHeader>
+    </se:Header>
+    <se:Body>
+        <Submit xmlns="http://soap.sforce.com/schemas/package/BNR_SubmitApplication">
+            <id>EC_OPPORTUNITY_ID</id>
+        </Submit>
+    </se:Body>
+</se:Envelope>

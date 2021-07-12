@@ -1,0 +1,5 @@
+{
+  "Student__c":"EC_ACCOUNT_ID",
+  "Active__c":true,
+  "Company__c":"EC_BUSINESS_ACCOUNT_ID"
+}

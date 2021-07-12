@@ -1,0 +1,1 @@
+All reports and screenshots will be stored in this folder

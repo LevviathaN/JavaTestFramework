@@ -1,0 +1,10 @@
+{
+  "First_Name__c": "KW_AUTO_FIRSTNAME",
+  "Last_Name__c": "KW_AUTO_LASTNAME",
+  "Date_of_Birth__c": "KW_AUTO_SFDATE",
+  "Street_1__c": "Maryland Street 3",
+  "City__c": "KW_AUTO_CITYEU",
+  "Country__c": ["a0Qg0000000Cb7A","a0Qg0000000Cb7B","a0Qg0000000Cb78","a0Qg0000000Cb9i","a0Qg0000000Cb87"],
+  "Email__c": "KW_AUTO_EMAIL",
+  "Phone__c": "KW_AUTO_PHONE|##########"
+}

@@ -1,0 +1,931 @@
+[
+  {
+    "name": "BPP Digital Admin Alert Message",
+    "value": "xpath=//div[contains(@class,'alert')]/div[contains(text(),'PARAMETER')]"
+  },
+  {
+    "name": "BPP Digital Admin Applications Edit button",
+    "value": "xpath=//div[normalize-space()='PARAMETER']/following-sibling::div/a[text()='Edit']"
+  },
+  {
+    "name": "BPP Digital Admin Applications Information block",
+    "value": "xpath=//strong[text()=\"PARAMETER\"]/parent::div/following-sibling::div"
+  },
+  {
+    "name": "BPP Digital Admin Breadcrumb item",
+    "value": "xpath=//ol[@class='breadcrumb']/li/a[text()=\"PARAMETER\"]"
+  },
+  {
+    "name": "BPP Digital Admin Choose Image button",
+    "value": "xpath=//label[normalize-space()='PARAMETER']/following-sibling::div/button"
+  },
+  {
+    "name": "BPP Digital Admin Delete Button for Specific name",
+    "value": "xpath=//td[normalize-space()='PARAMETER']/following-sibling::td/a[text()='Delete']"
+  },
+  {
+    "name": "BPP Digital Admin Edit Button for Specific name",
+    "value": "xpath=//td[normalize-space()='PARAMETER']/following-sibling::td/a[text()='Edit']"
+  },
+  {
+    "name": "BPP Digital Admin Logs Sub Menu Item links",
+    "value": "xpath=//a[normalize-space()='Logs']/following-sibling::div/a[normalize-space()='PARAMETER']"
+  },
+  {
+    "name": "BPP Digital Admin Mandatory Second checkbox",
+    "value": "xpath=(//label[text()=\"PARAMETER\"]/preceding-sibling::input[@type='checkbox'])[2]"
+  },
+  {
+    "name": "BPP Digital Admin Mandatory checkbox",
+    "value": "xpath=//label[text()=\"PARAMETER\"]/preceding-sibling::input[@type='checkbox']"
+  },
+  {
+    "name": "BPP Digital Admin Media Popup Block Name link",
+    "value": "xpath=//ul[@class='list-group']/a[contains(text(),\"PARAMETER\")]"
+  },
+  {
+    "name": "BPP Digital Admin Menu Item links",
+    "value": "xpath=//li[@class='nav-item']/a[normalize-space()='PARAMETER']"
+  },
+  {
+    "name": "BPP Digital Admin Page Button",
+    "value": "xpath=//a[@class='btn btn-secondary'][normalize-space()='PARAMETER']"
+  },
+
+  {
+    "name": "BPP Digital Admin Page Header name",
+    "value": "xpath=//div[@class='page-header']//h1[normalize-space()='PARAMETER']"
+  },
+  {
+    "name": "BPP Digital Admin Pages Delete Button for Specific Component name",
+    "value": "xpath=//div[@class='list-group-item']//div[contains(text(),'PARAMETER')]/../following-sibling::div/a[text()='Delete']"
+  },
+  {
+    "name": "BPP Digital Admin Pages Edit Button for Specific Component name",
+    "value": "xpath=//div[@class='list-group-item']//div[contains(text(),'PARAMETER')]/../following-sibling::div/a[text()='Edit']"
+  },
+  {
+    "name": "BPP Digital Admin Pages Edit Button for Grid Component with number",
+    "value": "xpath=(//div[@class='list-group-item']//div[contains(text(),'Grid')]/../following-sibling::div/a[text()='Edit'])[PARAMETER]"
+  },
+  {
+    "name": "BPP Digital Admin Sub Menu Item links",
+    "value": "xpath=//a[@class='dropdown-item'][normalize-space()='PARAMETER']"
+  },
+  {
+    "name": "BPP Digital Admin Users Sub Menu Item links",
+    "value": "xpath=//a[normalize-space()='Users']/following-sibling::div/a[normalize-space()='PARAMETER']"
+  },
+  {
+    "name": "BPP Digital Admin Value attribute button",
+    "value": "xpath=//input[@value='PARAMETER']"
+  },
+  {
+    "name": "BPP Digital Archive Category button",
+    "value": "xpath=//td[normalize-space()='PARAMETER']/following-sibling::td/a[text()='Archive']"
+  },
+  {
+    "name": "BPP Digital Button With Specific Name",
+    "value": "xpath=//button[contains(@class,'btn') and text()=\"PARAMETER\"]"
+  },
+  {
+    "name": "BPP Digital Courses Menu Item links",
+    "value": "xpath=//ul[@class='second-level-list']/li/span[text()=\"PARAMETER\"]"
+  },
+  {
+    "name": "BPP Digital Drop Down Option value",
+    "value": "xpath=//option[@value='PARAMETER']"
+  },
+  {
+    "name": "Dropdown Option Contains text",
+    "value": "xpath=//option[contains(text(),'PARAMETER')]"
+  },
+  {
+    "name": "BPP Digital Explore Our Subjects item link",
+    "value": "xpath=//div[text()='Explore our subjects.']/following-sibling::div//a[text()='PARAMETER']"
+  },
+  {
+    "name": "BPP Digital Footer Course",
+    "value": "xpath=//ul[@class='children-links']/li[normalize-space()='PARAMETER']/div/a"
+  },
+  {
+    "name": "BPP Digital Mandatory input field",
+    "value": "xpath=//label[normalize-space()=\"PARAMETER\"]/following-sibling::input"
+  },
+  {
+    "name": "BPP Digital Mandatory second input field",
+    "value": "xpath=(//label[normalize-space()=\"PARAMETER\"]/following-sibling::input)[2]"
+  },
+  {
+    "name": "BPP Digital Mandatory select field",
+    "value": "xpath=//label[normalize-space()=\"PARAMETER\"]/following-sibling::select"
+  },
+  {
+    "name": "BPP Digital Mandatory text area field",
+    "value": "xpath=//label[normalize-space()=\"PARAMETER\"]/following-sibling::textarea"
+  },
+  {
+    "name": "BPP Digital Profile button",
+    "value": "xpath=//button[normalize-space()='PARAMETER']"
+  },
+  {
+    "name": "BPP Digital Qualifications at Every Level item link",
+    "value": "xpath=//div[text()='Qualifications at every level.']/following-sibling::div//a[text()=\"PARAMETER\"]"
+  },
+  {
+    "name": "BPP Digital RFI Input Field",
+    "value": "xpath=//label[contains(text(), 'PARAMETER')]/..//input"
+  },
+  {
+    "name": "BPP Digital Mobile RFI Input Field",
+    "value": "xpath=(//label[contains(text(), 'PARAMETER')]/..//input)[last()]"
+  },
+  {
+    "name": "BPP Digital Mobile RFI Input Field Green Checkmark",
+    "value": "xpath=//label[contains(text(), 'PARAMETER')]/..//*[local-name()='svg']"
+  },
+  {
+    "name": "BPP Digital Search Courses label",
+    "value": "xpath=//label[normalize-space()='PARAMETER']"
+  },
+  {
+    "name": "BPP Digital Search Label Button",
+    "value": "xpath=(//button[normalize-space()='PARAMETER'])[1]"
+  },
+  {
+    "name": "BPP Digital Student Applications Menu link",
+    "value": "xpath=(//a[normalize-space()='PARAMETER'])[1]"
+  },
+  {
+    "name": "BPP Digital Study expandable link",
+    "value": "xpath=//ul[contains(@class,'main-level')]/li/span[text()=\"PARAMETER\"]"
+  },
+  {
+    "name": "BPP Digital Web Site CMS Anchors ID",
+    "value": "xpath=//div[contains(@class,'cms-page')]//div[@id=\"PARAMETER\"]"
+  },
+  {
+    "name": "BPP Digital Booking Payment Data",
+    "value": "xpath=//input[@id='PARAMETER']"
+  },
+  {
+    "name": "BPP Digital Admin Grid Component Padding Top",
+    "value": "xpath=(//h4[contains(.,'PARAMETER')]//following::div[contains(@class,'padding__top')]//input)[1]"
+  },
+  {
+    "name": "BPP Digital Admin Grid Component Padding Bottom",
+    "value": "xpath=(//h4[contains(.,'PARAMETER')]//following::div[contains(@class,'padding__bottom')]//input)[1]"
+  },
+  {
+    "name": "BPP Digital Admin Grid Bottom Margin",
+    "value": "xpath=//*[contains(.,'Bottom margin')]/../following::div[contains(.,'PARAMETER')]/input"
+  },
+  {
+    "name": "BPP Digital dropdown",
+    "value": "xpath=//label[text()='PARAMETER']/following-sibling::select"
+  },
+  {
+    "name": "BPP Digital dropdown option",
+    "value": "xpath=//option[text()='PARAMETER']"
+  },
+  {
+    "name": "BPP Digital View Dates and Prices button",
+    "value": "xpath=//div[text()='PARAMETER' and @class='card-title']/following-sibling::div//button[text()='View dates & prices']"
+  },
+  {
+    "name": "BPP Digital dropdown item",
+    "value": "xpath=//*[@class='dropdown-item' and text()='PARAMETER']"
+  },
+  {
+    "name": "BPP Digital Dates and Prices Course Filter radiobutton",
+    "value": "xpath=(//span[text()='PARAMETER'])[2]"
+  },
+  {
+    "name": "BPP Digital Dates and Prices Filter By",
+    "value": "xpath=//div[@class='button-text' and contains(.,'PARAMETER')]/parent::button[contains(@class,'btn dropdown-toggle')]"
+  },
+  {
+    "name": "BPP Digital Dates and Prices Start date filter option",
+    "value": "xpath=//div[@class='button-text' and contains(.,'Start date')]//following::div[@class='dropdown-menu']//span[contains(.,'PARAMETER')]"
+  },
+  {
+    "name": "BPP Digital Dates and Prices Location filter option",
+    "value": "xpath=//div[@class='button-text' and contains(.,'Location')]//following::div[@class='dropdown-menu']//span[contains(.,'PARAMETER')]"
+  },
+  {
+    "name": "Build Empire Breadcrumb Not Clickable Tab",
+    "value": "xpath=//ul[@class='breadcrumb ember-view']/li//li[contains(.,'PARAMETER')]"
+  },
+  {
+    "name": "Build Empire Breadcrumb Tab",
+    "value": "xpath=//ul[@class='breadcrumb ember-view']/li//li[contains(.,'PARAMETER')]/a"
+  },
+  {
+    "name": "Build Empire Channel Islands text field",
+    "value": "xpath=//label[contains(text(), 'PARAMETER')]/following-sibling::div/div/input"
+  },
+  {
+    "name": "Build Empire Course Topic",
+    "value": "xpath=//div[@class='section-name' and text()='PARAMETER']/../following-sibling::a"
+  },
+  {
+    "name": "Build Empire Delete Downloaded Application Document Title by name",
+    "value": "xpath=(//p[@class='file-name' and @title='PARAMETER']/following::span[@class='bppicon icon-cancel'])[1]"
+  },
+  {
+    "name": "Build Empire Downloaded Application Documents Title name",
+    "value": "xpath=//p[@class='file-name' and @title='PARAMETER']"
+  },
+  {
+    "name": "Build Empire Homepage My Learning Course",
+    "value": "xpath=//div[@class='home-col right-col']/descendant::h3[contains(text(),'PARAMETER')]"
+  },
+  {
+    "name": "Build Empire My Learning Right Block Course name",
+    "value": "xpath=//div[@class='home-col right-col']//h3[text()=\"PARAMETER\"]"
+  },
+  {
+    "name": "Build Empire My Learning Timeline Course name Mobile",
+    "value": "xpath=//div[@class='home-col timeline-col']//h3[text()=\"PARAMETER\"]"
+  },
+  {
+    "name": "Build Empire Navigation Menu elements",
+    "value": "xpath=//li[normalize-space()=\"PARAMETER\"]"
+  },
+  {
+    "name": "Build Empire RFI Label text item",
+    "value": "xpath=//label[normalize-space()=\"PARAMETER\"]"
+  },
+  {
+    "name": "Build Empire RFI Span dropdown item",
+    "value": "xpath=//span[normalize-space()=\"PARAMETER\"]"
+  },
+  {
+    "name": "Build Empire RFI Textarea text item",
+    "value": "xpath=//textarea[@placeholder=\"PARAMETER\"]"
+  },
+  {
+    "name": "Build Empire RFI dropdown option",
+    "value": "xpath=//li[text()=\"PARAMETER\"]"
+  },
+  {
+    "name": "Build Empire admin applications tab",
+    "value": "xpath=//a[text()='PARAMETER']"
+  },
+  {
+    "name": "Build Empire application section",
+    "value": "xpath=//a[contains(.,'PARAMETER')]"
+  },
+  {
+    "name": "Build Empire application type",
+    "value": "xpath=//li[text()='PARAMETER']"
+  },
+  {
+    "name": "Build Empire bespoke Scotland eligibility",
+    "value": "xpath=//p[contains(text(),'PARAMETER')]/../div//label[1]"
+  },
+  {
+    "name": "Build Empire button",
+    "value": "xpath=//button[normalize-space()='PARAMETER']|//p[normalize-space()='PARAMETER']/parent::a"
+  },
+  {
+    "name": "Build Empire checkbox",
+    "value": "xpath=//label[contains(normalize-space(),'PARAMETER')]/input[@type='checkbox']"
+  },
+  {
+    "name": "Build Empire radiobutton",
+    "value": "xpath=//label[contains(normalize-space(),'PARAMETER')]/input[@type='radio']"
+  },
+  {
+    "name": "Build Empire course details element",
+    "value": "xpath=.//label[contains(text(), 'PARAMETER')]/..//input"
+  },
+  {
+    "name": "Build Empire dropdown",
+    "value": "xpath=//label[contains(text(),'PARAMETER')]/following-sibling::div|//span[normalize-space()='PARAMETER']"
+  },
+  {
+    "name": "Build Empire dropdown option",
+    "value": "xpath=//li[text()='PARAMETER']"
+  },
+  {
+    "name": "Build Empire Course Expandable Labels name",
+    "value": "xpath=//div[@class='label-info-title'][text()='PARAMETER']"
+  },
+  {
+    "name": "Build Empire education element",
+    "value": "xpath=//label[contains(text(),'PARAMETER')]/..//input"
+  },
+  {
+    "name": "Build Empire emergency field",
+    "value": "xpath=//label[contains(.,'PARAMETER')]/following-sibling::div//input"
+  },
+  {
+    "name": "Build Empire employment element",
+    "value": "xpath=//label[contains(.,'PARAMETER')]//following-sibling::div//input"
+  },
+  {
+    "name": "Build Empire line manager option",
+    "value": "xpath=//li[contains(.,'PARAMETER')]"
+  },
+  {
+    "name": "Build Empire link",
+    "value": "xpath=//a[normalize-space()='PARAMETER']"
+  },
+  {
+    "name": "Build Empire nationality dropdown",
+    "value": "xpath=//label[contains(text(),'PARAMETER')]/..//span[@class='ember-power-select-status-icon']"
+  },
+  {
+    "name": "Build Empire nationality option",
+    "value": "xpath=//ul[@role='listbox']/li[text()='PARAMETER']"
+  },
+  {
+    "name": "Build Empire qualification option",
+    "value": "xpath=//ul[@role='listbox']/li[normalize-space()='PARAMETER']"
+  },
+  {
+    "name": "Build Empire radiobutton no",
+    "value": "xpath=//label[contains(text(),'PARAMETER')]/following-sibling::div/descendant::label[normalize-space()='No']"
+  },
+  {
+    "name": "Build Empire radiobutton yes",
+    "value": "xpath=//label[contains(text(),'PARAMETER')]/following-sibling::div/descendant::label[normalize-space()='Yes']"
+  },
+  {
+    "name": "Build Empire reason for appeal element",
+    "value": "xpath=//label[contains(.,'PARAMETER')]/../div/label[1]"
+  },
+  {
+    "name": "Build Empire scholarship evidence element",
+    "value": "xpath=//label[contains(.,'PARAMETER')]//following-sibling::div//input"
+  },
+  {
+    "name": "Build Empire text field",
+    "value": "xpath=//input[@placeholder='PARAMETER']"
+  },
+  {
+    "name": "Build Empire text field by title",
+    "value": "xpath=//label[contains(normalize-space(),'PARAMETER')]/following-sibling::*/descendant-or-self::input"
+  },
+  {
+    "name": "Direct App Country Dropdown Option",
+    "value": "xpath=(//ul[@role='listbox']/li[contains(.,'PARAMETER')])[last()]"
+  },
+  {
+    "name": "Hub Deadline Activity Name",
+    "value": "xpath=//h2[text()='PARAMETER']"
+  },
+  {
+    "name": "Hub Deadline Activity Name Second",
+    "value": "xpath=//h2[text()='PARAMETER']"
+  },
+  {
+    "name": "Product Factory CBA Course Institute Fee edit button",
+    "value": "xpath=//td[text()='PARAMETER']/following-sibling::td//button[@title='Edit']"
+  },
+  {
+    "name": "Product Factory CBA Course Institute Fee input field",
+    "value": "xpath=//td[text()='PARAMETER']/following-sibling::td//input"
+  },
+  {
+    "name": "Product Factory CBA Course BPP Fee recalculate button",
+    "value": "xpath=//td[text()='PARAMETER']/following-sibling::td//button[@title='Recalculate Price']"
+  },
+  {
+    "name": "Product Factory Change Body button",
+    "value": "xpath=//td[text()='PARAMETER']/following-sibling::td/button/span[contains(text(),'Change Body')]"
+  },
+  {
+    "name": "Product Factory Check Link Levels button",
+    "value": "xpath=//td[text()='PARAMETER']/following-sibling::td/button/span"
+  },
+  {
+    "name": "Product Factory Financial Dimension list in Locations",
+    "value": "xpath=//div[@role='document']/ul/li[text()='PARAMETER']"
+  },
+  {
+    "name": "Product Factory Link Levels button",
+    "value": "xpath=//td[text()='PARAMETER']/following-sibling::td/button/span[contains(text(),'Link Levels')]"
+  },
+  {
+    "name": "Product Factory Locked Applies To drop-down item",
+    "value": "xpath=//div[text()='PARAMETER']"
+  },
+  {
+    "name": "Product Factory Session Dates Popup Date Input Field",
+    "value": "xpath=//tr[PARAMETER]/td[1]/div/div/input"
+  },
+  {
+    "name": "Product Factory Session Dates Popup End Time Input Field",
+    "value": "xpath=//tr[PARAMETER]/td[3]/div/div/input"
+  },
+  {
+    "name": "Product Factory Session Dates Popup Start Time Input Field",
+    "value": "xpath=//tr[PARAMETER]/td[2]/div/div/input"
+  },
+  {
+    "name": "Product Factory Session Dates button",
+    "value": "xpath=//td[text()='PARAMETER']/following-sibling::td/div/div/button"
+  },
+  {
+    "name": "Product Factory Session Two Dates Popup Date Input Field",
+    "value": "xpath=(//tr[PARAMETER]/td[1]/div/div/input)[2]"
+  },
+  {
+    "name": "Product Factory Session Two Dates Popup End Time Input Field",
+    "value": "xpath=(//tr[PARAMETER]/td[3]/div/div/input)[2]"
+  },
+  {
+    "name": "Product Factory Session Two Dates Popup Start Time Input Field",
+    "value": "xpath=(//tr[PARAMETER]/td[2]/div/div/input)[2]"
+  },
+  {
+    "name": "Product Factory Pricing Matrix dropdown",
+    "value": "xpath=(//*[@aria-expanded='true'])[last()]/following-sibling::*//*[text()='PARAMETER']"
+  },
+  {
+    "name": "Product Factory Pricing Matrix change button",
+    "value": "xpath=(//*[@aria-expanded='true'])[last()]/following-sibling::*//*[text()='PARAMETER']/following-sibling::button"
+  },
+  {
+    "name": "Product Factory active button",
+    "value": "xpath=//span[text()='PARAMETER']/parent::button[@tabindex='0']"
+  },
+  {
+    "name": "Product Factory button",
+    "value": "xpath=//span[text()='PARAMETER']/.."
+  },
+  {
+    "name": "Product Factory button last",
+    "value": "xpath=(//span[text()='PARAMETER']/..)[last()]"
+  },
+  {
+    "name": "Product Factory button title",
+    "value": "xpath=//button[@title='PARAMETER']"
+  },
+  {
+    "name": "Product Factory button title two",
+    "value": "xpath=(//button[@title='PARAMETER'])[2]"
+  },
+  {
+    "name": "Product Factory button two",
+    "value": "xpath=(//span[text()='PARAMETER']/..)[2]"
+  },
+  {
+    "name": "Product Factory change button",
+    "value": "xpath=//*[text()='PARAMETER']/following-sibling::button"
+  },
+  {
+    "name": "Product Factory change modal option",
+    "value": "xpath=//td[text()='PARAMETER']/following-sibling::td/button/span[text()='Select']"
+  },
+  {
+    "name": "Product Factory checkbox",
+    "value": "xpath=//td[text()='PARAMETER']//preceding-sibling::td/span/span[1]|//span[text()='PARAMETER']/preceding-sibling::span/span[1]"
+  },
+  {
+    "name": "Product Factory course instance Activate button",
+    "value": "xpath=//p[text()='PARAMETER']/../../../following-sibling::div/button/span[text()='Activate']/.."
+  },
+  {
+    "name": "Product Factory course instance Deactivate button",
+    "value": "xpath=//p[text()='PARAMETER']/../../../../following-sibling::div/button/span[text()='Deactivate']/.."
+  },
+  {
+    "name": "Product Factory course instance Delete button",
+    "value": "xpath=//p[text()='PARAMETER']/../../../../../descendant::button[@title='Delete']/.."
+  },
+  {
+    "name": "Product Factory course instance Publish button",
+    "value": "xpath=//p[text()='PARAMETER']/../../../following-sibling::div/button/span[text()='Publish']/.."
+  },
+  {
+    "name": "Product Factory course instance sessions dropdown button",
+    "value": "xpath=//p[text()='PARAMETER']/../../../../../following-sibling::div/span[1]"
+  },
+  {
+    "name": "Product Factory Course Page checkbox",
+    "value": "xpath=//td[text()='PARAMETER']/preceding-sibling::td[last()]"
+  },
+  {
+    "name": "Product Factory dialog checkbox",
+    "value": "xpath=//td[text()='PARAMETER']//preceding-sibling::td/span/span[1]"
+  },
+  {
+    "name": "Product Factory dropdown",
+    "value": "xpath=//span[text()='PARAMETER']/following-sibling::div/div"
+  },
+  {
+    "name": "Product Factory dropdown two",
+    "value": "xpath=(//span[text()='PARAMETER']/following-sibling::div/div)[2]"
+  },
+  {
+    "name": "Product Factory dropdown option",
+    "value": "xpath=//li[text()='PARAMETER']"
+  },
+  {
+    "name": "Product Factory edit button",
+    "value": "xpath=//td[text()='PARAMETER']/following-sibling::td/button[last()]|//td[text()='PARAMETER']/following-sibling::td/a/button[last()]|//span[text()='PARAMETER']/../following-sibling::div/div/button|//span[text()='PARAMETER']/following-sibling::div/button|//span[text()='PARAMETER']/../following-sibling::button|//td[text()='PARAMETER']/button|//span[text()='PARAMETER']/following-sibling::span/button|//p[text()='PARAMETER']/../../../following-sibling::button|//label[text()='PARAMETER']/following-sibling::button|//h6[text()='PARAMETER']/button"
+  },
+  {
+    "name": "Product Factory field value",
+    "value": "xpath=//span[text()='PARAMETER']/following-sibling::p"
+  },
+  {
+    "name": "Product Factory navigation item",
+    "value": "xpath=//div[@title='PARAMETER']"
+  },
+  {
+    "name": "Product Factory navigation sub item",
+    "value": "xpath=//p[text()='PARAMETER']"
+  },
+  {
+    "name": "Product Factory select button",
+    "value": "xpath=//td[text()='PARAMETER']/following-sibling::td/button[*[text()='Select']]"
+  },
+  {
+    "name": "Product Factory deselect button",
+    "value": "xpath=//td[text()='PARAMETER']/following-sibling::td/button[*[text()='Deselect']]"
+  },
+  {
+    "name": "Product Factory text field",
+    "value": "xpath=//label[text()='PARAMETER']/following-sibling::div//input|//label[text()='PARAMETER']/following-sibling::textarea|//label[text()='PARAMETER']/following-sibling::div/textarea|//span[text()='PARAMETER']/following-sibling::div//input[@type!='hidden']|//*[text()='PARAMETER']/following-sibling::*//input[@type!='hidden']|//label[text()='PARAMETER']/../following-sibling::div//input"
+  },
+  {
+    "name": "Product Factory text field two",
+    "value": "xpath=(//label[text()='PARAMETER']/following-sibling::div//input)[2]|(//label[text()='PARAMETER']/following-sibling::textarea)[2]|(//label[text()='PARAMETER']/following-sibling::div/textarea)[2]"
+  },
+  {
+    "name": "Product Factory Material Delete button",
+    "value": "xpath=//p[text()='PARAMETER']/../../div[2]/div/div[3]/button"
+  },
+  {
+    "name": "Product Factory Material Delete by price button",
+    "value": "xpath=//span[text()='£PARAMETER']/../../../div[2]/div/div[3]/button"
+  },
+  {
+    "name": "Product Factory Course Instance Delete button",
+    "value": "xpath=//p[text()='PARAMETER']/../../../following-sibling::div//button[@title='Delete']"
+  },
+  {
+    "name": "Product Factory Change Course Step Due Date button",
+    "value": "xpath=(//h6[text()='Steps']/following-sibling::table//button)[PARAMETER]"
+  },
+  {
+    "name": "Product Factory readonly field",
+    "value": "xpath=//label[text()='PARAMETER']/following-sibling::*"
+  },
+  {
+    "name": "Salesforce New Qualification input fields",
+    "value": "xpath=//*[text()='PARAMETER']/following::input[1]"
+  },
+  {
+    "name": "Salesforce Qualification Subject",
+    "value": "xpath=//div[@role='listbox']//ul//*[@title='PARAMETER']"
+  },
+  {
+    "name": "Salesforce Related Buttons link",
+    "value": "xpath=(//div[@class='windowViewMode-normal oneContent active lafPageHost']//span[@title='PARAMETER']/following::div//a[normalize-space()='New'])[1]"
+  },
+  {
+    "name": "Salesforce app launcher app",
+    "value": "xpath=//p[text()='PARAMETER']"
+  },
+  {
+    "name": "Salesforce cases dropdown option",
+    "value": "xpath=//a[@title=\"PARAMETER\" and @role='menuitemradio']"
+  },
+  {
+    "name": "Salesforce cases search student",
+    "value": "xpath=//div[@title='PARAMETER']"
+  },
+  {
+    "name": "Salesforce cases contact",
+    "value": "xpath=(//div[@title='PARAMETER'])[last()]"
+  },
+  {
+    "name": "Salesforce cases status option",
+    "value": "xpath=//span[@title='PARAMETER']"
+  },
+  {
+    "name": "Salesforce date field",
+    "value": "xpath=//label[text()='PARAMETER']//following-sibling::div/input[contains(@class,'input')]"
+  },
+  {
+    "name": "Salesforce drop down option with same Name and Title",
+    "value": "xpath=//a[normalize-space()='PARAMETER' and @title='PARAMETER']"
+  },
+  {
+    "name": "Salesforce dropdown button",
+    "value": "xpath=//a[contains(@title,'PARAMETER')]"
+  },
+  {
+    "name": "Salesforce dropdown field",
+    "value": "xpath=//label[text()='PARAMETER']//following-sibling::div//div[contains(@class,'slds-dropdown-trigger slds-dropdown-trigger_click')]"
+  },
+  {
+    "name": "Salesforce cases dropdown field",
+    "value": "xpath=//span[text()='PARAMETER']/../following-sibling::div[contains(@class,'uiMenu')]"
+  },
+  {
+    "name": "Salesforce booking dropdown field",
+    "value": "xpath=(//label[contains(.,'PARAMETER')]//following-sibling::div[contains(@class,'slds-form-element__control')]//div)[1]"
+  },
+  {
+    "name": "Salesforce booking dropdown option",
+    "value": "xpath=//span[text()='PARAMETER' and @title='PARAMETER']"
+  },
+  {
+    "name": "Salesforce dropdown field option",
+    "value": "xpath=//span[text()='PARAMETER' and @title='PARAMETER']"
+  },
+  {
+    "name": "Salesforce dropdown option",
+    "value": "xpath=//a[@title='PARAMETER' and @role='menuitem']"
+  },
+  {
+    "name": "Salesforce link",
+    "value": "xpath=//a[text()='PARAMETER']"
+  },
+  {
+    "name": "Salesforce navigation menu dropdown",
+    "value": "xpath=//span[text()='PARAMETER' and @class='slds-truncate']/../following-sibling::*/div/*"
+  },
+  {
+    "name": "Salesforce navigation href links",
+    "value": "xpath=//a[contains(@href,'PARAMETER')]/span"
+  },
+  {
+    "name": "Salesforce navigation menu dropdown option",
+    "value": "xpath=//span[text()='PARAMETER']/../.."
+  },
+  {
+    "name": "Salesforce navigation menu option",
+    "value": "xpath=//span[text()='PARAMETER' and @class='slds-truncate']"
+  },
+  {
+    "name": "Salesforce radiobutton",
+    "value": "xpath=//span[text()='PARAMETER']/../preceding-sibling::div/span"
+  },
+  {
+    "name": "Salesforce readonly field",
+    "value": "xpath=//span[text()='PARAMETER']/../following-sibling::div/span/slot/slot/*"
+  },
+  {
+    "name": "Salesforce related dropdown",
+    "value": "xpath=//span[text()='PARAMETER']/ancestor::header/following-sibling::div[@class='slds-no-flex']/descendant::a"
+  },
+  {
+    "name": "Salesforce related new button",
+    "value": "xpath=(//span[text()='PARAMETER']//following::div//button)[1]"
+  },
+  {
+    "name": "Salesforce search field",
+    "value": "xpath=//label[text()='PARAMETER']//following-sibling::div/descendant::input|//input[contains(@placeholder,'PARAMETER')]"
+  },
+  {
+    "name": "Salesforce text field",
+    "value": "xpath=//span[text()='PARAMETER']/../following-sibling::input|(//label[normalize-space()='PARAMETER']/following::input)[1]"
+  },
+  {
+    "name": "Salesforce text field label",
+    "value": "xpath=//span[text()='PARAMETER']/../following-sibling::input|(//label[contains(.,'PARAMETER')]/following::input)[1]"
+  },
+  {
+    "name": "Salesforce Inframe select",
+    "value": "inframe=SalesforceEditTiersFrame>xpath=//label[normalize-space()='PARAMETER']/following-sibling::select"
+  },
+  {
+    "name": "Salesforce Inframe select option",
+    "value": "inframe=SalesforceEditTiersFrame>xpath=//option[normalize-space()='PARAMETER']"
+  },
+  {
+    "name": "Salesforce Inframe select options",
+    "value": "inframe=SalesforceEditTiersFrame>xpath=//label[normalize-space()='PARAMETER']/following-sibling::select[1]/option"
+  },
+  {
+    "name": "Salesforce checkbox",
+    "value": "xpath=//div[contains(@class,'isModal inlinePanel oneRecordActionWrapper')]//span[text()='PARAMETER']//following::input[1]"
+  },
+  {
+    "name": "Totara Assessment radiobutton",
+    "value": "inframe=TotaraScromFrame>xpath=//span[contains(text(),'PARAMETER')]/../../preceding-sibling::td/input"
+  },
+  {
+    "name": "Totara Assessment select",
+    "value": "inframe=TotaraScromFrame>xpath=//span[contains(text(),'PARAMETER')]/../../following-sibling::td/select"
+  },
+  {
+    "name": "Totara Input field with Id Parameter",
+    "value": "xpath=//input[@id=\"PARAMETER\"]"
+  },
+  {
+    "name": "Totara Select field with title Parameter",
+    "value": "xpath=(//select[@title=\"PARAMETER\"])[1]"
+  },
+  {
+    "name": "Totara Second Select field with title Parameter",
+    "value": "xpath=(//select[@title=\"PARAMETER\"])[2]"
+  },
+  {
+    "name": "Totara Select field with name Parameter",
+    "value": "xpath=//select[@name=\"PARAMETER\"]"
+  },
+  {
+    "name": "Totara Moodle Quiz checkbox",
+    "value": "xpath=//label[contains(text(),'PARAMETER')]/preceding-sibling::input[@type='checkbox']"
+  },
+  {
+    "name": "Totara Moodle Quiz radiobutton",
+    "value": "xpath=//label[contains(text(),'PARAMETER')]/preceding-sibling::input[@type='radio']"
+  },
+  {
+    "name": "Totara button",
+    "value": "xpath=//input[@value='PARAMETER']"
+  },
+  {
+    "name": "Totara side menu option",
+    "value": "xpath=//span[text()='PARAMETER']"
+  },
+  {
+    "name": "Totara text field",
+    "value": "xpath=//label[normalize-space()='PARAMETER']/../following-sibling::div/input"
+  },
+  {
+    "name": "Totara field by ID tag",
+    "value": "xpath=//*[@id='PARAMETER']"
+  },
+  {
+    "name": "Totara edit link by EC value",
+    "value": "xpath=(//span[contains(text(),'PARAMETER')][@class='instancename']/following::a[@role='menuitem'])[1]"
+  },
+  {
+    "name": "Totara Move Right link by EC value",
+    "value": "xpath=(//span[contains(text(),'PARAMETER')][@class='instancename']/following::span[@data-flex-icon='core|t/right']/following-sibling::span[2])[1]"
+  },
+  {
+    "name": "Totara Edit Activity link  by EC value",
+    "value": "xpath=(//span[contains(text(),'PARAMETER')][@class='instancename']/following::span[@data-flex-icon='core|t/edit']/following-sibling::span[2])[1]"
+  },
+  {
+    "name": "Totara edit topic by name using EC value",
+    "value": "xpath=(//*[contains(text(),'PARAMETER')]/following::a[@role='menuitem'])[1]"
+  },
+  {
+    "name": "Totara context menu delete action by name using EC value",
+    "value": "xpath=(//*[contains(text(),'PARAMETER')]/following::a[@role='menuitem']/following::a[@data-action=\"delete\"])[1]"
+  },
+  {
+    "name": "Totara context menu edit topic action by name using EC value",
+    "value": "xpath=(//*[contains(text(),'PARAMETER')]/following::a[@role='menuitem']/following::a[@title=\"Edit topic\"])[1]"
+  },
+  {
+    "name": "VLE Login Fields",
+    "value": "xpath=//input[@name='PARAMETER']"
+  },
+  {
+    "name": "button",
+    "value": "xpath=//*[text()='PARAMETER']"
+  },
+  {
+    "name": "element",
+    "value": "xpath=//*[text()='PARAMETER']"
+  },
+  {
+    "name": "element by value",
+    "value": "xpath=//*[@value='PARAMETER']"
+  },
+  {
+    "name": "element by title",
+    "value": "xpath=//*[@title='PARAMETER']"
+  },
+  {
+    "name": "element by title two",
+    "value": "xpath=(//*[@title='PARAMETER'])[2]"
+  },
+  {
+    "name": "element by type",
+    "value": "xpath=//*[@type='PARAMETER']"
+  },
+  {
+    "name": "element by type two",
+    "value": "xpath=(//*[@type='PARAMETER'])[2]"
+  },
+  {
+    "name": "element by type three",
+    "value": "xpath=(//*[@type='PARAMETER'])[3]"
+  },
+  {
+    "name": "element by name",
+    "value": "xpath=//*[@name='PARAMETER']"
+  },
+  {
+    "name": "element by id",
+    "value": "xpath=//*[@id='PARAMETER']"
+  },
+  {
+    "name": "element by class",
+    "value": "xpath=//*[@class='PARAMETER']"
+  },
+  {
+    "name": "element by data value",
+    "value": "xpath=//*[@data-value='PARAMETER']"
+  },
+  {
+    "name": "exact element",
+    "value": "xpath=//*[normalize-space()=\"PARAMETER\"]"
+  },
+  {
+    "name": "inframe element",
+    "value": "inframe=Salesforce Frame>xpath=//*[text()='PARAMETER']"
+  },
+  {
+    "name": "link",
+    "value": "xpath=//*[text()='PARAMETER']"
+  },
+  {
+    "name": "link address",
+    "value": "xpath=//a[contains(@href,'PARAMETER')]"
+  },
+  {
+    "name": "message",
+    "value": "xpath=//*[text()='PARAMETER']"
+  },
+  {
+    "name": "message mobile",
+    "value": "xpath=(//*[text()='PARAMETER'])[1]"
+  },
+  {
+    "name": "option",
+    "value": "xpath=//*[text()='PARAMETER']"
+  },
+  {
+    "name": "text",
+    "value": "xpath=//*[text()='PARAMETER']"
+  },
+  {
+    "name": "text contained in A element",
+    "value": "xpath=//a[contains(text(),'PARAMETER')]"
+  },
+  {
+    "name": "text contained in P element",
+    "value": "xpath=//p[contains(text(),'PARAMETER')]"
+  },
+  {
+    "name": "contained in P element",
+    "value": "xpath=//p[contains(.,'PARAMETER')]"
+  },
+  {
+    "name": "text contained in SPAN element",
+    "value": "xpath=//span[contains(text(),'PARAMETER')]"
+  },
+  {
+    "name": "text contained in element",
+    "value": "xpath=//*[contains(text(),'PARAMETER')]"
+  },
+  {
+    "name": "text in div element",
+    "value": "xpath=//div[text()='PARAMETER']"
+  },
+  {
+    "name": "Totara Edit Activity Dropdown Button",
+    "value": "xpath=(//span[contains(.,'PARAMETER')]/../../following::a[contains(.,'Edit')])[1]"
+  },
+  {
+    "name": "Totara Edit Week Name Dropdown Button",
+    "value": "xpath=(//*[@class='hidden sectionname' and contains(.,'PARAMETER')]//following::div[2]//li/a[contains(.,'Edit')])[1]"
+  },
+  {
+    "name": "Totara Edit Week Edit Settings option",
+    "value": "xpath=(//*[@class='hidden sectionname' and contains(.,'PARAMETER')]//following::div[2]//ul[@data-rel='menu-content']//a)[1]"
+  },
+  {
+    "name": "Totara Edit Activity Edit Settings option",
+    "value": "xpath=(//span[contains(.,'PARAMETER')]/../../following::ul[@data-rel='menu-content']//a)[1]"
+  },
+  {
+    "name": "Totara role button with title name",
+    "value": "xpath=//a[@role='button'][@title='PARAMETER']"
+  },
+  {
+    "name": "BPP Digital Mobile Courses Menu",
+    "value": "xpath=//div[@class='third-level active']//div[@class='third-level-list-container']//a[contains(.,'PARAMETER')]"
+  },
+  {
+    "name": "BPP Digital Mobile Second Expandable Menu",
+    "value": "xpath=//div[@class='second-level']//a[contains(.,'PARAMETER')]"
+  },
+  {
+    "name": "Maildrop Specific BPP Email",
+    "value": "xpath=//div[@class='messagelist-from' and text()='BPP <no-reply@staging.bppdigital.buildempire.co.uk>']/following-sibling::div/span[text()='PARAMETER']"
+  },
+  {
+    "name": "Nada BPP Specific Email",
+    "value": "xpath=//a[contains(.,'PARAMETER')]"
+  },
+  {
+    "name": "Quark XML File",
+    "value": "xpath=//td[contains(.,'PARAMETER')]"
+  }
+]

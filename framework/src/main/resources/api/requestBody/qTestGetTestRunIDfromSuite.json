@@ -1,0 +1,19 @@
+{
+  "properties": [
+    {
+      "field_id": 9730076,
+      "field_value": "errorInformation"
+    },
+    {
+      "field_id": 9730077,
+      "field_value": "browserInformation"
+    }
+  ],
+  "exe_start_date": "currentDateTime",
+  "exe_end_date": "currentDateTime",
+  "status": {
+    "id": "Code",
+    "name": "Result"
+  },
+  "result_number": 1
+}

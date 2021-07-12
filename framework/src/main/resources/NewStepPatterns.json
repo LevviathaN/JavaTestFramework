@@ -1,0 +1,430 @@
+[
+  {
+    "name": "BROWSER_PERFORMS_COMMAND",
+    "value": "^Browser performs \"([^\"]*)\" command$"
+  },
+  {
+    "name": "BROWSER_DELETES_COOKIES",
+    "value": "^Browser deletes cookies$"
+  },
+  {
+    "name": "BROWSER_GETS_COOKIES",
+    "value": "^Browser gets first party cookies$"
+  },
+  {
+    "name": "BROWSER_CHECKS_FIRST_PARTY_COOKIES",
+    "value": "^Browser checks first party cookies$"
+  },
+  {
+    "name": "ELEMENT_CSS_SHOULD_HAVE_VALUE",
+    "value": "^Сss \"([^\"]*)\" of \"([^\"]*)\" should have value \"([^\"]*)\"$"
+  },
+  {
+    "name": "ELEMENT_IS_ENABLED",
+    "value": "^Element \"([^\"]*)\" should be \"([^\"]*)\"$"
+  },
+  {
+    "name": "ELEMENTS_ATTRIBUTE_SHOULD_HAVE_VALUE",
+    "value": "^Attribute \"([^\"]*)\" of \"([^\"]*)\" should have value \"([^\"]*)\"$"
+  },
+  {
+    "name": "ELEMENTS_ATTRIBUTE_SHOULD_HAVE_VALUE_SPECIAL",
+    "value": "^Attribute \"([^\"]*)\" of \"([^\"]*)\" \"([^\"]*)\" should have value \"([^\"]*)\"$"
+  },
+  {
+    "name": "FILL_THE_FIELD",
+    "value": "^I fill the \"([^\"]*)\" field with \"([^\"]*)\"$"
+  },
+  {
+    "name": "FOR_EACH",
+    "value": "^For each \"([^\"]*)\" element:$"
+  },
+  {
+    "name": "HOVER_OVER",
+    "value": "^I hover over the \"([^\"]*)\" (?:button|link|option|element)$"
+  },
+  {
+    "name": "I_AM_LOGGED_IN_PF_AS",
+    "value": "^I am logged into Product Factory as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_COMPARE_PDF",
+    "value": "I compare \"([^\"]*)\" file with \"([^\"]*)\" PDF file"
+  },
+  {
+    "name": "I_COMPARE_PDF_PAGES",
+    "value": "I compare \"([^\"]*)\" file with \"([^\"]*)\" PDF file for pages from \"([^\"]*)\" to \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_AM_ON_URL",
+    "value": "^I am on \"([^\"]*)\" URL$"
+  },
+  {
+    "name": "I_CAPTURE_DATA",
+    "value": "^I capture text data \"([^\"]*)\" as \"([^\"]*)\" variable$"
+  },
+  {
+    "name": "I_CAPTURE_SPECIAL_DATA",
+    "value": "^I capture a part of \"([^\"]*)\" element text by \"([^\"]*)\" regex and save as \"([^\"]*)\" variable$"
+  },
+  {
+    "name": "I_CAPTURE_URL_AS_VARIABLE",
+    "value": "^I capture current URL as \"([^\"]*)\" variable$"
+  },
+  {
+    "name": "I_CHECK_UNCHECK",
+    "value": "^I \"(check|uncheck)\" \"([^\"]*)\" checkbox$"
+  },
+  {
+    "name": "I_CHECK_UNCHECK_SPECIAL",
+    "value": "^I \"(check|uncheck)\" \"([^\"]*)\" \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CHECK_UNCHECK_BY_JS_SPECIAL",
+    "value": "^I \"(check|uncheck)\" \"([^\"]*)\" \"([^\"]*)\" by JS$"
+  },
+  {
+    "name": "I_CLICK_ON_ELEMENT_SPECIAL",
+    "value": "^I click on the \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CLICK_ON_ELEMENT_WITH_PARAMETER_BY_JS_SPECIAL_IF",
+    "value": "^I click on the \"([^\"]*)\" \"([^\"]*)\" by JS if \"([^\"]*)\" \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CLICK_ON_ELEMENT_WITH_PARAMETER_BY_JS_SPECIAL",
+    "value": "^I click on the \"([^\"]*)\" \"([^\"]*)\" by JS$"
+  },
+  {
+    "name": "I_CLICK_ON_ELEMENT_WITH_PARAMETER_SPECIAL",
+    "value": "^I click on the \"([^\"]*)\" \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CLICK_ON_ELEMENT_WITH_PARAMETER_SPECIAL_IF",
+    "value": "^I click on the \"([^\"]*)\" \"([^\"]*)\" if \"([^\"]*)\" \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CLICK_ON_THE_BUTTON",
+    "value": "^I click on the \"([^\"]*)\" (?:button|link|option|element)(?: in [^\"]*)?$"
+  },
+  {
+    "name": "I_DOUBLECLICK_ON_THE_BUTTON",
+    "value": "^I doubleclick on the \"([^\"]*)\" (?:button|link|option|element)$"
+  },
+  {
+    "name": "I_DOUBLECLICK_ON_THE_ElEMENT_SPECIAL",
+    "value": "^I doubleclick on the \"([^\"]*)\" \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_PERFORM_RIGHT_MOUSE_CLICK_ON_THE_ElEMENT_SPECIAL",
+    "value": "^I perform right mouse click on the \"([^\"]*)\" \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_PERFORM_RIGHT_MOUSE_CLICK",
+    "value": "^I perform right mouse click \"([^\"]*)\" (?:button|link|option|element)$"
+  },
+  {
+    "name": "I_CLICK_ON_THE_BUTTON_IF",
+    "value": "^I click on the \"([^\"]*)\" (?:button|link|option|element) if \"([^\"]*)\" \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CLICK_WITH_JS",
+    "value": "^I click on the \"([^\"]*)\" (?:button|link|option|element) by JS$"
+  },
+  {
+    "name": "I_EXECUTE_JS_CODE",
+    "value": "^I execute \"([^\"]*)\" JS code$"
+  },
+  {
+    "name": "I_EXECUTE_JS_CODE_FOR_ELEMENT",
+    "value": "^I execute \"([^\"]*)\" JS code for \"([^\"]*)\" element$"
+  },
+  {
+    "name": "I_EXECUTE_JS_CODE_FOR_ELEMENT_SPECIAL",
+    "value": "^I execute \"([^\"]*)\" JS code for \"([^\"]*)\" \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_EXECUTE_JS_CODE_IF",
+    "value": "^I execute \"([^\"]*)\" JS code if \"([^\"]*)\" \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_EXECUTE_REUSABLE_STEP",
+    "value": "^I execute \"([^\"]*)\" reusable step$"
+  },
+  {
+    "name": "I_EXECUTE_REUSABLE_STEP_IF",
+    "value": "^I execute \"([^\"]*)\" reusable step if \"([^\"]*)\" \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_FILL_PF_FIELD",
+    "value": "^I fill the \"([^\"]*)\" PF field with \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_PRESS_KEY",
+    "value": "^I press \"([^\"]*)\" for \"([^\"]*)\"$"
+  },
+  {
+    "name" : "I_PRESS_FROM_KEYBOARD_SPECIAL",
+    "value": "^I press \"([^\"]*)\" for \"([^\"]*)\" \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_REMEMBER_TEXT",
+    "value": "^I remember \"([^\"]*)\" text as \"([^\"]*)\" variable$"
+  },
+  {
+    "name": "I_SELECT_FROM_DIALOG",
+    "value": "^I select \"([^\"]*)\" from PF dialog$"
+  },
+  {
+    "name": "I_SELECT_FROM_DROPDOWN",
+    "value": "I select \"([^\"]*)\" from \"([^\"]*)\" element"
+  },
+  {
+    "name": "I_SELECT_FROM_ELEMENT_SPECIAL",
+    "value": "^I select \"([^\"]*)\" from \"([^\"]*)\" \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_SET_TEXT_SPECIAL",
+    "value": "^I set \"([^\"]*)\" text to the \"([^\"]*)\" \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_SET_TEXT_FROM_KEYBOARD_SPECIAL",
+    "value": "^I set \"([^\"]*)\" text to the \"([^\"]*)\" \"([^\"]*)\" from keyboard$"
+  },
+  {
+    "name": "I_SET_TEXT_WITH_JS",
+    "value": "^I set \"([^\"]*)\" text to the element with ID \"([^\"]*)\" using JS$"
+  },
+  {
+    "name": "I_SHOULD_BE_REDIRECTED_TO_THE_PAGE",
+    "value": "^I should be redirected to the \"([^\"]*)\" page$"
+  },
+  {
+    "name": "I_SHOULD_NOT_SEE_ELEMENT",
+    "value": "^I shouldn't see the \"([^\"]*)\" (?:button|message|element|text)$"
+  },
+  {
+    "name": "I_SHOULD_SCROLL_TO_THE_TOP_BOTTOM_OF_THE_PAGE",
+    "value": "^I should scroll to the \"(top|bottom)\" of the page$"
+  },
+  {
+    "name": "I_SHOULD_SEE_MESSAGE_IN_FRAME",
+    "value": "^I should see the \"([^\"]*)\" message in \"([^\"]*)\" frame$"
+  },
+  {
+    "name": "I_SHOULD_SEE_NUMBER_OF_ELEMENTS",
+    "value": "^I should see the \"([^\"]*)\"(?: button| message| element| text)? in quantity of \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_SHOULD_SEE_NUMBER_OF_ELEMENTS_SPECIAL",
+    "value": "^I should see \"([^\"]*)\" \"([^\"]*)\" in quantity of \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_SHOULD_SEE_SPECIAL",
+    "value": "^I should see \"([^\"]*)\" \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_SHOULD_SEE_THE_MESSAGE_LOCATED_IN_FRAME",
+    "value": "^I should see the \"([^\"]*)\" message in \"([^\"]*)\" frame$"
+  },
+  {
+    "name": "I_SHOULD_SEE_THE_TEXT",
+    "value": "^I should see the \"([^\"]*)\" (?:button|message|element)$"
+  },
+  {
+    "name": "I_SWITCH_TO_WINDOW",
+    "value": "^I switch to window with index \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_UPLOAD_FILE",
+    "value": "I upload \"([^\"]*)\" file to \"([^\"]*)\" element"
+  },
+  {
+    "name": "I_VALIDATE_TEXT",
+    "value": "^I validate text \"([^\"]*)\" to be displayed for \"([^\"]*)\" element$"
+  },
+  {
+    "name": "I_VALIDATE_TEXT_IF",
+    "value": "^I validate text \"([^\"]*)\" to be displayed for \"([^\"]*)\" element if \"([^\"]*)\" \"([^\"]*)\"$"
+  },
+  {
+    "name": "WAIT_FOR",
+    "value": "^I wait for \"([^\"]*)\" seconds$"
+  },
+  {
+    "name": "I_CLICK_ON_ELEMENT_UNTIL",
+    "value": "^I click on the \"([^\"]*)\" element until \"([^\"]*)\" \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CLICK_ON_THE_BUTTON_WITH_JS_IF",
+    "value": "^I click on the \"([^\"]*)\" (?:button|link|option|element) with JS if \"([^\"]*)\" \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CLICK_ON_ELEMENT_UNTIL_SPECIAL",
+    "value": "^I click on the \"([^\"]*)\" \"([^\"]*)\" until \"([^\"]*)\" \"([^\"]*)\"$"
+  },
+  {
+    "name": "HOVER_OVER_ELEMENT_SPECIAL",
+    "value": "^I hover over the \"([^\"]*)\" \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_GENERATE_NEW_ISBN_CODE",
+    "value": "I generate new ISBN code saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_FINANCIAL_DIMENSION",
+    "value": "I create Financial Dimensions with Dimension Type of \"([^\"]*)\" and Target \"([^\"]*)\" saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_SITTING",
+    "value": "I create new Sitting saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_VAT_RULE",
+    "value": "I create new Vat Rule saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_EXAM_PREPARATION",
+    "value": "I create new Exam Preparation saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_STUDY_MODE",
+    "value": "I create new Study Mode saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_COURSE_TYPE",
+    "value": "I create new Course Type saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_VERTICAL",
+    "value": "I create new Vertical saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_BODY",
+    "value": "I create new Body saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_PAPER",
+    "value": "I create new Paper with CBA \"([^\"]*)\" saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_LEVEL",
+    "value": "I create new Level saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_LINK_BODY_TO_LEVELS",
+    "value": "I link Body to Levels"
+  },
+  {
+    "name": "I_CHANGE_PAPER_BODY",
+    "value": "I change Paper Body"
+  },
+  {
+    "name": "I_LINK_PAPER_TO_LEVELS",
+    "value": "I link Paper to Levels"
+  },
+  {
+    "name": "I_CREATE_REGION",
+    "value": "I create new Region saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_LOCATION",
+    "value": "I create new Location saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_SESSION_DURATION",
+    "value": "I create new Session Duration with Allowed for CBA \"([^\"]*)\" saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_PRICING_MATRIX",
+    "value": "I create new Pricing Matrix saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_PRICES",
+    "value": "I create new Prices saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_DIGITAL_CONTENT",
+    "value": "I create new Digital Content with Content Type \"([^\"]*)\" and Target Platform \"([^\"]*)\" saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_UNIVERSITY_PROGRAMMES",
+    "value": "I create new University Programmes saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_PROGRAMME_COHORTS",
+    "value": "I create new Programme Cohorts saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_MODULE_SECTIONS",
+    "value": "I create new Module Sections with all Checkboxes \"([^\"]*)\" saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_STOCK_SITE",
+    "value": "I create new Stock Site saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_MATERIAL_TYPE",
+    "value": "I create new Material Type with all Checkboxes \"([^\"]*)\"  saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_CLIENTS",
+    "value": "I create new Clients saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_STREAMS",
+    "value": "I create new Streams saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_DEACTIVATION_REASON",
+    "value": "I create new Deactivation Reason with all Checkboxes \"([^\"]*)\" saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_COURSE",
+    "value": "I create new Course saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_INSTANCE_FOR_COURSE",
+    "value": "I create new Instance saving as \"([^\"]*)\" and saving new session as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CHANGE_INSTANCE_CAPACITY",
+    "value": "I change Instance Capacity with Capacity \"([^\"]*)\" saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_GET_INSTANCE_SESSIONS",
+    "value": "I get Instance Sessions saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CHANGE_SESSION_TIMINGS",
+    "value": "I change Session Timings saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_GET_INSTANCE_STEPS",
+    "value": "I get Instance Steps saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CHANGE_INSTANCE_STEPS",
+    "value": "I change Instance Steps saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CALCULATE_COURSE_PRICE",
+    "value": "I calculate Course Price saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_ACTIVATE_COURSE",
+    "value": "I activate Course saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_ACTIVATE_INSTANCE",
+    "value": "I activate Instance saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_COURSE_BULK_OPERATION",
+    "value": "I create Course Bulk Operation saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_EXECUTE_BULK_WEB_PUBLISHING",
+    "value": "I execute Bulk Web Publishing with publish to WEB \"([^\"]*)\" saving course as \"([^\"]*)\" and instance as \"([^\"]*)\"$"
+  }
+]

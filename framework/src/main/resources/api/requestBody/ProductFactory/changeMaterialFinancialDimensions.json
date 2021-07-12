@@ -1,0 +1,10 @@
+{
+  "operationName":"changeMaterialFinancialDimensions",
+  "variables":{
+    "command":{
+      "entityFinancialDimensionReference":"",
+      "revenueFinancialDimensionReference":""
+    }
+  },
+  "query":"mutation changeMaterialFinancialDimensions($command: ChangeMaterialFinancialDimensionsCommandInput!) { changeMaterialFinancialDimensions(command: $command) { materialEntityFinancialDimension { reference __typename } materialRevenueFinancialDimension { reference __typename } __typename }}"
+}

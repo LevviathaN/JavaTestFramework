@@ -1,0 +1,8 @@
+{
+  "FirstName":"Training<KW_AUTO_FIRSTNAME>",
+  "LastName":"Manager<KW_AUTO_LASTNAME>",
+  "AccountId":"EC_BUSINESS_ACCOUNT_ID",
+  "Title":"Title<KW_AUTO_RANDOMNUMBER|#######>",
+  "Birthdate":"KW_AUTO_SFDATE",
+  "Personal_Email__c":"KW_AUTO_EMAIL"
+}
