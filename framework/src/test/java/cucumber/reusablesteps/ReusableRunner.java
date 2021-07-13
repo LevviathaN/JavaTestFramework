@@ -1,5 +1,6 @@
 package cucumber.reusablesteps;
 
+import cucumber.api.VenusStepDefsAPI;
 import cucumber.productFactory.ProductFactoryStepDefs;
 import cucumber.stepdefs.SpecialStepDefs;
 import cucumber.stepdefs.StepDefinitions;
@@ -144,12 +145,14 @@ public static ReusableRunner getInstance() {
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_ACTIVATE_INSTANCE"), () -> pfStepDefs.i_activate_instance(arg1));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_COURSE_BULK_OPERATION"), () -> pfStepDefs.i_create_course_bulk_operation(arg1));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_BULK_WEB_PUBLISHING"), () -> pfStepDefs.i_execute_bulk_web_publishing(Boolean.valueOf(arg1), arg2, arg3));
-
+        //Venus API stepdefs
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_REGISTER_NEW_HUB_ACCOUNT_API"),() -> venusStepDefsAPI.i_register_new_hub_account());
     }
 
     private StepDefinitions stepDefs = new StepDefinitions();
     private SpecialStepDefs specialStepDefs = new SpecialStepDefs();
     private ProductFactoryStepDefs pfStepDefs = new ProductFactoryStepDefs();
+    private VenusStepDefsAPI venusStepDefsAPI = new VenusStepDefsAPI();
 
     private ArrayList<String> reusable;
 

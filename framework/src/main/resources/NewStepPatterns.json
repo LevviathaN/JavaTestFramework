@@ -426,5 +426,9 @@
   {
     "name": "I_EXECUTE_BULK_WEB_PUBLISHING",
     "value": "I execute Bulk Web Publishing with publish to WEB \"([^\"]*)\" saving course as \"([^\"]*)\" and instance as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_REGISTER_NEW_HUB_ACCOUNT_API",
+    "value": "^I register new Hub account using API$"
   }
 ]
