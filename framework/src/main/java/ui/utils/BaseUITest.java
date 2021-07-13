@@ -85,6 +85,8 @@ public class BaseUITest {
     @AfterMethod
     public synchronized void endTest(ITestResult testResult) throws IOException, ParseException {
 
+        SpreadsheetsHelper.executionTime = testResult.getEndMillis() - testResult.getStartMillis();
+
         // close reporter
         Reporter.stopReporting(testResult);
         try {
