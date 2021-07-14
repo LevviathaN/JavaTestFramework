@@ -264,7 +264,9 @@ Feature: Product Factory
     And I click on the "Programme Cohort" "Product Factory change button"
     And I click on the "EC_COHORT_NAME" "Product Factory select button"
     And I set "ModuleSectionName[######]" text to the "Name" "Product Factory text field"
-    And I set "~SISTermCode[######]" text to the "SIS Term Code" "Product Factory text field"
+    And I set "~SISCode[######]" text to the "SIS Code" "Product Factory text field"
+    And I set "~TermCode[######]" text to the "Term Code" "Product Factory text field"
+    And I set "~CRN[######]" text to the "CRN" "Product Factory text field"
     And I click on the "Save" "Product Factory button"
     Then I should see the "EC_MODULE_SECTION_NAME" element
 
