@@ -147,6 +147,7 @@ public class StepDefinitions extends SeleniumHelper {
     public void wait_for(String seconds) {
         Reporter.log("Executing step: I wait for " + seconds + " seconds");
         sleepFor(Integer.parseInt(TestParametersController.checkIfSpecialParameter(seconds)) * 1000);
+        BPPLogManager.getLogger().info("Waiting for " + seconds);
     }
 
     /**

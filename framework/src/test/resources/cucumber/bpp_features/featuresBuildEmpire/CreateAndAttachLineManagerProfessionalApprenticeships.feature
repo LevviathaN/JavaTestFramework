@@ -2,7 +2,7 @@
 Feature: Submit Professional Apprenticeship Applications With New Line Manager
 
   Background:
-    Given I execute "Register New Student Account" reusable step
+    Given I register new Hub account using API
     Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     And I wait for "2" seconds
@@ -42,11 +42,11 @@ Feature: Submit Professional Apprenticeship Applications With New Line Manager
     And I click on the "Direct App Save Review And Back" button
     And I wait for "3" seconds
     Then Browser performs "REFRESH" command
-    #Given I click on the "Direct App My Approvals Tab" link by JS
-    #And I click on the "Direct App Line Manager Review Application" button
     And I wait for "5" seconds
-    And I click on the "Application documents" "Build Empire application section" by JS
-    Then I wait for "10" seconds
+    Given I click on the "Direct App My Approvals Tab" link by JS
+    Then I click on the "Direct App PopUp Continue Button For Incomplete Documents" element
+    And I wait for "5" seconds
+    Then I execute "window.stop();" JS code
     And I click on the "Download Application of" "Build Empire application section"
     Then I switch to window with index "2"
     Then I upload "application_pack_document.pdf" file to "Direct App Apprenticeships Upload Documents" element
