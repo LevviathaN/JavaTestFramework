@@ -3,7 +3,7 @@ Feature: Line Manager has an Ability to Delete Documents that was Uploaded by Mi
 
   @Positive @BPP-2542 #TC-3632
   Scenario: Line Manager has an Ability to Delete Documents that were Uploaded by Mistake
-    Given I execute "Register New Student Account" reusable step
+    Given I register new Hub account using API
     Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     And I wait for "2" seconds

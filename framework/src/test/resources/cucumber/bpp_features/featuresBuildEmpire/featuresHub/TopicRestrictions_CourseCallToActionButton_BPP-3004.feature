@@ -7,7 +7,7 @@ Feature: The Hub - Activity Restrictions - Call to Action Button - Completely Hi
   @Positive #TC-1589
   Scenario: Topic Restrictions by Group CTA button Completely Hidden
     #Register New Student
-    And I execute "Register New Student Account" reusable step
+    And I register new Hub account using API
     Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     #Validate Timeline block

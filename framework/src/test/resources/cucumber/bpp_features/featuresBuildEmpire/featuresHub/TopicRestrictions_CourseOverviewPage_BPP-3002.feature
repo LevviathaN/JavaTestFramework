@@ -7,7 +7,7 @@ Feature: Topic Restrictions Course Overview Page - Completely Hidden - BPP-3002
   @Positive #TC-1598
   Scenario: Topic Restrictions Course Overview by Group Completely Hidden
     #Register New Student
-    And I execute "Register New Student Account" reusable step
+    And I register new Hub account using API
     Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     #Validate Timeline block

@@ -3,7 +3,7 @@ Feature: Professional Apprenticeship Applications
 
   @Positive @P1 @InReviewingApplication
   Scenario: Professional Apprenticeship Applications in Reviewing Application
-    Given I execute "Register New Student Account" reusable step
+    Given I register new Hub account using API
     Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     When I execute "Create Professional Apprenticeships Application UAT Accounting Option Three" reusable step
