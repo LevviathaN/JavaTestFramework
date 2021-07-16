@@ -106,6 +106,9 @@ public class RestApiController {
             if (!(command.get("contentType") == null)) {
                 command.put("contentType", parameter1);
             }
+            if (!(command.get("deliveryDefault") == null)) {
+                command.put("deliveryDefault", parameter1);
+            }
             if (!(command.get("target") == null)) {
                 command.put("target", parameter2);
             }
@@ -116,8 +119,17 @@ public class RestApiController {
             if (!(command.get("capacity") == null)) {
                 command.put("capacity", Integer.valueOf(parameter1));
             }
+            if (!(command.get("price") == null)) {
+                int price = Integer.parseInt(TestParametersController.checkIfSpecialParameter(String.valueOf(command.get("price"))));
+                command.put("price", price);
+            }
+            if (!(command.get("cost") == null)) {
+                int cost = Integer.parseInt(TestParametersController.checkIfSpecialParameter(String.valueOf(command.get("cost"))));
+                command.put("cost", cost);
+            }
             /*Boolean List*/
-            String[] booleanArray = {"isCba","allowedForCba","isExpiryDateRequired","isExpiryDateRequired","isIsbnRequired","isWeightRequired","timetabled"};
+            String[] booleanArray = {"isCba","allowedForCba","isExpiryDateRequired","isExpiryDateRequired","isIsbnRequired","isWeightRequired","timetabled","isInternalMaterial",
+                    "isDigitalMaterial","isCourseMaterial"};
 
             for (String s1: booleanArray) {
                 if (!(command.get(s1) == null)) {
@@ -141,7 +153,8 @@ public class RestApiController {
                     "pricingMatrixReference", "levelReference", "programmeReference", "cohortReference", "sessionReference", "stepReference",
                     "dueDate", "costCentreFinancialDimensionReference", "projectFinancialDimensionReference", "financialDimensionReference",
                     "examPreparationReference", "studyModeReference","addressLine1","addressLine2","addressLine3", "sisCode", "referenceNumber",
-                    "entityFinancialDimensionReference", "revenueFinancialDimensionReference"};
+                    "entityFinancialDimensionReference", "revenueFinancialDimensionReference","materialTypeReference","learningMediaVatRuleReference",
+                    "courseMaterialVatRuleReference","edition","isbn","availableDate","expiryDate","materialReference"};
 
             for (String s: objectArray) {
                 if (!(command.get(s) == null)) {
@@ -163,9 +176,18 @@ public class RestApiController {
                 ((JSONObject) bodyArray.get(0)).put("endTime", TestParametersController.checkIfSpecialParameter(endTime));
                 bodyList.add(String.valueOf(bodyArray));
             }
+            /*Property List*/
+            if (!(command.get("stockSiteProductionMethods") == null)) {
+                ArrayList<String> bodyList = new ArrayList<String>();
+                JSONArray bodyArray = (JSONArray) command.get("stockSiteProductionMethods");
+                JSONObject stockObj = (JSONObject) bodyArray.get(0);
+                String stockSiteReference = (String) stockObj.get("stockSiteReference");
+                ((JSONObject) bodyArray.get(0)).put("stockSiteReference", TestParametersController.checkIfSpecialParameter(stockSiteReference));
+                bodyList.add(String.valueOf(bodyArray));
+            }
             /*Array List*/
             List<String> anotherList = (List<String>) Arrays.asList("bodyReferences", "courseReferences", "levelReferences", "paperReferences", "regionReferences",
-                    "sittingReferences", "courseTypeReferences");
+                    "sittingReferences", "courseTypeReferences","materialReferences","clientReferences");
 
             for (String l: anotherList) {
                 if (!(command.get(l) == null)) {

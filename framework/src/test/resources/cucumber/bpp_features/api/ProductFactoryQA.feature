@@ -40,7 +40,7 @@ Feature: Product Factory API Data Creation
     Then I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_FD"
 
   @VatRule #TC-1340
-  Scenario: Generate new ISBN
+  Scenario: Create Vat Rule
     Then I create new Vat Rule saving as "EC_VAT_RULE"
 
   @ExamPreparation #TC-4692
@@ -579,3 +579,152 @@ Feature: Product Factory API Data Creation
     And I activate Instance saving as "EC_INSTANCE_ACTIVATION"
     And I create Course Bulk Operation saving as "EC_COURSE_BULK_OPERATION"
     Then I execute Bulk Web Publishing with publish to WEB "true" saving course as "EC_COURSE" and instance as "EC_INSTANCE"
+
+  @Material
+  Scenario: Create Material
+    When I generate new ISBN code saving as "EC_ISBN"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "MATERIALTYPE" saving as "EC_FD"
+    And I create new Vertical saving as "EC_VERTICAL"
+    And I create new Body saving as "EC_BODY"
+    And I create new Paper with CBA "false" saving as "EC_PAPER"
+    And I create new Sitting saving as "EC_SITTING"
+    And I create new Vat Rule saving as "EC_VAT_RULE"
+    And I create new Vat Rule saving as "EC_VAT_RULE_TWO"
+    And I create new Level saving as "EC_LEVEL"
+    And I link Body to Levels
+    And I change Paper Body
+    And I link Paper to Levels
+    And I create new Stock Site saving as "EC_STOCK_SITE"
+    And I create new Material Type with all Checkboxes "true"  saving as "EC_MATERIAL_TYPE"
+    Then I create new Material with Checkboxes set to "false" saving as "EC_MATERIAL"
+
+  @CourseMaterial
+  Scenario: Create Course Material
+    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_FD"
+    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_FD"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_FD"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_FD"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "MATERIALTYPE" saving as "EC_FD"
+    And I generate new ISBN code saving as "EC_ISBN"
+    And I create new Vertical saving as "EC_VERTICAL"
+    And I create new Body saving as "EC_BODY"
+    And I create new Sitting saving as "EC_SITTING"
+    And I create new Vat Rule saving as "EC_VAT_RULE"
+    And I create new Vat Rule saving as "EC_VAT_RULE_TWO"
+    And I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
+    And I create new Study Mode saving as "EC_STUDY_MODE"
+    And I create new Course Type saving as "EC_COURSE_TYPE"
+    And I create new Paper with CBA "false" saving as "EC_PAPER"
+    And I create new Level saving as "EC_LEVEL"
+    And I link Body to Levels
+    And I change Paper Body
+    And I link Paper to Levels
+    And I create new Digital Content with Content Type "PROFESSIONALQUALIFICATIONS" and Target Platform "TOTARA" saving as "EC_DIGITAL_CONTENT"
+    And I create new Region saving as "EC_REGION"
+    And I create new Location saving as "EC_LOCATION"
+    And I create new Course saving as "EC_COURSE"
+    And I create new Session Duration with Allowed for CBA "false" saving as "EC_SESSION_DURATION"
+    And I create new Streams saving as "EC_STREAM"
+    And I create new Instance saving as "EC_INSTANCE" and saving new session as "EC_SESSION"
+    And I change Instance Capacity with Capacity "15" saving as "EC_INSTANCE"
+    And I get Instance Sessions saving as "EC_SESSION_TIMING"
+    And I change Session Timings saving as "EC_SESSION"
+    And I get Instance Steps saving as "EC_STEP"
+    And I change Instance Steps saving as "EC_STEP"
+    And I create new Pricing Matrix saving as "EC_PRICING_MATRIX"
+    And I create new Prices saving as "EC_PRICES"
+    And I calculate Course Price saving as "EC_PRICE"
+    And I create new Stock Site saving as "EC_STOCK_SITE"
+    And I create new Material Type with all Checkboxes "true"  saving as "EC_MATERIAL_TYPE"
+    And I create new Material with Checkboxes set to "true" saving as "EC_MATERIAL"
+    Then I create new Course Material
+
+  @UpdateCourseMaterial
+  Scenario: Create Course Material
+    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_FD"
+    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_FD"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_FD"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_FD"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "MATERIALTYPE" saving as "EC_FD"
+    And I generate new ISBN code saving as "EC_ISBN"
+    And I create new Vertical saving as "EC_VERTICAL"
+    And I create new Body saving as "EC_BODY"
+    And I create new Sitting saving as "EC_SITTING"
+    And I create new Vat Rule saving as "EC_VAT_RULE"
+    And I create new Vat Rule saving as "EC_VAT_RULE_TWO"
+    And I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
+    And I create new Study Mode saving as "EC_STUDY_MODE"
+    And I create new Course Type saving as "EC_COURSE_TYPE"
+    And I create new Paper with CBA "false" saving as "EC_PAPER"
+    And I create new Level saving as "EC_LEVEL"
+    And I link Body to Levels
+    And I change Paper Body
+    And I link Paper to Levels
+    And I create new Digital Content with Content Type "PROFESSIONALQUALIFICATIONS" and Target Platform "TOTARA" saving as "EC_DIGITAL_CONTENT"
+    And I create new Region saving as "EC_REGION"
+    And I create new Location saving as "EC_LOCATION"
+    And I create new Course saving as "EC_COURSE"
+    And I create new Session Duration with Allowed for CBA "false" saving as "EC_SESSION_DURATION"
+    And I create new Streams saving as "EC_STREAM"
+    And I create new Instance saving as "EC_INSTANCE" and saving new session as "EC_SESSION"
+    And I change Instance Capacity with Capacity "15" saving as "EC_INSTANCE"
+    And I get Instance Sessions saving as "EC_SESSION_TIMING"
+    And I change Session Timings saving as "EC_SESSION"
+    And I get Instance Steps saving as "EC_STEP"
+    And I change Instance Steps saving as "EC_STEP"
+    And I create new Pricing Matrix saving as "EC_PRICING_MATRIX"
+    And I create new Prices saving as "EC_PRICES"
+    And I calculate Course Price saving as "EC_PRICE"
+    And I create new Stock Site saving as "EC_STOCK_SITE"
+    And I create new Material Type with all Checkboxes "true"  saving as "EC_MATERIAL_TYPE"
+    And I create new Material with Checkboxes set to "true" saving as "EC_MATERIAL"
+    And I create new Course Material
+    Then I update new Course Material with Delivery set to "CLASSROOM"
+
+  @LinkClientsToCourse
+  Scenario: Link Clients to Course
+    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_FD"
+    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_FD"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_FD"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_FD"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "MATERIALTYPE" saving as "EC_FD"
+    And I generate new ISBN code saving as "EC_ISBN"
+    And I create new Vertical saving as "EC_VERTICAL"
+    And I create new Body saving as "EC_BODY"
+    And I create new Sitting saving as "EC_SITTING"
+    And I create new Vat Rule saving as "EC_VAT_RULE"
+    And I create new Vat Rule saving as "EC_VAT_RULE_TWO"
+    And I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
+    And I create new Study Mode saving as "EC_STUDY_MODE"
+    And I create new Course Type saving as "EC_COURSE_TYPE"
+    Then I create new Clients saving as "EC_CLIENTS"
+    And I create new Paper with CBA "false" saving as "EC_PAPER"
+    And I create new Level saving as "EC_LEVEL"
+    And I link Body to Levels
+    And I change Paper Body
+    And I link Paper to Levels
+    And I create new Digital Content with Content Type "PROFESSIONALQUALIFICATIONS" and Target Platform "TOTARA" saving as "EC_DIGITAL_CONTENT"
+    And I create new Region saving as "EC_REGION"
+    And I create new Location saving as "EC_LOCATION"
+    And I create new Course saving as "EC_COURSE"
+    And I create new Session Duration with Allowed for CBA "false" saving as "EC_SESSION_DURATION"
+    And I create new Streams saving as "EC_STREAM"
+    And I create new Instance saving as "EC_INSTANCE" and saving new session as "EC_SESSION"
+    And I change Instance Capacity with Capacity "15" saving as "EC_INSTANCE"
+    And I get Instance Sessions saving as "EC_SESSION_TIMING"
+    And I change Session Timings saving as "EC_SESSION"
+    And I get Instance Steps saving as "EC_STEP"
+    And I change Instance Steps saving as "EC_STEP"
+    And I create new Pricing Matrix saving as "EC_PRICING_MATRIX"
+    And I create new Prices saving as "EC_PRICES"
+    And I calculate Course Price saving as "EC_PRICE"
+    And I create new Stock Site saving as "EC_STOCK_SITE"
+    And I create new Material Type with all Checkboxes "true"  saving as "EC_MATERIAL_TYPE"
+    And I create new Material with Checkboxes set to "true" saving as "EC_MATERIAL"
+    And I create new Course Material
+    And I update new Course Material with Delivery set to "CLASSROOM"
+    Then I link Clients to Course
