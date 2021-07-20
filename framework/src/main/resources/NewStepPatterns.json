@@ -430,5 +430,29 @@
   {
     "name": "I_REGISTER_NEW_HUB_ACCOUNT_API",
     "value": "^I register new Hub account using API$"
+  },
+  {
+    "name": "I_CHANGE_MATERIAL_FD",
+    "value": "I change Material Financial Dimension saving as \\\"([^\\\"]*)\\\"$\""
+  },
+  {
+    "name": "I_CHANGE_COURSE_FD",
+    "value": "I change Course Financial Dimension saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_MATERIAL",
+    "value": "I create new Material with Checkboxes set to \"([^\"]*)\" saving as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_CREATE_MATERIAL_FOR_COURSE",
+    "value": "I create new Course Material"
+  },
+  {
+    "name": "I_UPDATE_MATERIAL_FOR_COURSE",
+    "value": "I update new Course Material with Delivery set to \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_LINK_CLIENTS_TO_COURSE",
+    "value": "I link Clients to Course"
   }
 ]

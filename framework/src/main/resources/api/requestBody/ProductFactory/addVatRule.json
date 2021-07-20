@@ -2,8 +2,8 @@
   "operationName": "createVatRule",
   "variables": {
     "command": {
-      "code": "ApiVatRuleCode[####]",
-      "description": "ApiVatRuleDescription[####]",
+      "code": "ApiVatRuleCode[#######]",
+      "description": "ApiVatRuleDescription[#######]",
       "rate": 30
     }
   },
