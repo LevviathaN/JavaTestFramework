@@ -56,6 +56,7 @@ public class BaseApiTest {
         ExcelResultsWriter.createApiExcel();
         Reporter.flush();
         ExecutionContextHandler.resetExecutionContextValues();
+        RetryAnalyzer.deletePreviousAttemptsFromHtmlReport();
         System.out.println("API EXECUTIONS HAVE FINISHED");
     }
 }
