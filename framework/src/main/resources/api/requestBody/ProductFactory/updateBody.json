@@ -1,0 +1,14 @@
+{
+  "operationName":"updateBody",
+  "variables":{
+    "command":{
+      "reference":"EC_BODY_REFERENCE",
+      "shortName": "ApiBodyShortNameUpdated[#####]",
+      "name": "ApiBodyNameUpdated[####]",
+      "description": "ApiBodyDescriptionUpdated[#####]",
+      "financialDimensionReference": "EC_FD_BODY_PRODUCT_REFERENCE",
+      "verticalReference": "EC_VERTICAL_REFERENCE"
+    }
+  },
+  "query":"mutation updateBody($command: UpdateBodyCommandInput!) { updateBody(command: $command) { ...body __typename } } fragment body on Body { reference shortName name description levels { reference shortName name __typename } financialDimension { reference code description __typename } vertical { reference name __typename } createdBy createdOn updatedBy updatedOn __typename } "
+}

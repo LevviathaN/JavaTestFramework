@@ -96,6 +96,17 @@ public class Tools {
         return result;
     }
 
+    public static String fromCamelCaseToUpperWithDash (String camelCase) {
+        StringBuilder value = new StringBuilder();
+        for (String w : camelCase.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])")) {
+            if (!w.isEmpty()){
+                if (value.length() > 0) value.append("_");
+                value.append(w.toUpperCase());
+            }
+        }
+        return value.toString();
+    }
+
     /**
      * Convert Document into a String
      *

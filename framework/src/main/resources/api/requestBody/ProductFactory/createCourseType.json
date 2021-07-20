@@ -4,8 +4,8 @@
     "command": {
       "description": "ApiCourseTypeDescription[####]",
       "vatRuleReference": "EC_VAT_RULE_REFERENCE",
-      "costCentreFinancialDimensionReference": "EC_FD_COURSE_TYPE_COST_CENTRE_REFERENCE",
-      "projectFinancialDimensionReference": "EC_FD_COURSE_TYPE_PROJECT_REFERENCE",
+      "costCentreFinancialDimensionReference": "EC_COURSE_TYPE_COST_CENTRE_FINANCIAL_DIMENSION_REFERENCE",
+      "projectFinancialDimensionReference": "EC_COURSE_TYPE_PROJECT_FINANCIAL_DIMENSION_REFERENCE",
       "examPreparationReference": "EC_EXAM_PREPARATION_REFERENCE",
       "studyModeReference": "EC_STUDY_MODE_REFERENCE"
     }
