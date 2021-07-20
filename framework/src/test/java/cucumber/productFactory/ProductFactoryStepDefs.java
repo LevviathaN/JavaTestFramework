@@ -593,7 +593,7 @@ public class ProductFactoryStepDefs {
         /*Report log with Json object values*/
         Reporter.log("<pre>" +
                 "<br>Prices: " +
-                "<br>" + "Prices Reference: " + "<font color='red'><b>" + Reference + "</font></b>" +
+                "<br>" + "Pricing Matrix Reference: " + "<font color='red'><b>" + Reference + "</font></b>" +
                 "</pre>");
 
         BPPLogManager.getLogger().info("Prices was successfully created for Pricing Matrix.");
@@ -672,16 +672,16 @@ public class ProductFactoryStepDefs {
         BPPLogManager.getLogger().info("Programme Cohort was successfully created.");
     }
 
-    //TODO: FIX
-    @When("I create new Module Sections with all Checkboxes \"([^\"]*)\" saving as \"([^\"]*)\"$")
-    public void i_create_module_sections(String checkBox, String ecModuleSectionValue) {
+    @When("I create new Module Sections with Timetabled checkbox set as \"([^\"]*)\" and Group Requirements set as \"([^\"]*)\" saving as \"([^\"]*)\"$")
+    public void i_create_module_sections(String timeTabled, String checkBox, String ecModuleSectionValue) {
 
-        JSONObject recordsList = restController.requestProcess("addModuleSections","createModule", String.valueOf(checkBox), null);
+        JSONObject recordsList = restController.requestProcess("addModuleSections","createModule", String.valueOf(timeTabled), String.valueOf(checkBox));
 
         /*Get JSON object values*/
         String Reference = (String) recordsList.get("reference");
         String Name = (String) recordsList.get("name");
         String TermCode = (String) recordsList.get("termCode");
+        Boolean TimeTabled = (Boolean) recordsList.get("timetabled");
         Boolean GroupRequirementCohort = (Boolean) recordsList.get("groupRequirementCohort");
         Boolean GroupRequirementMode = (Boolean) recordsList.get("groupRequirementMode");
         Boolean GroupRequirementLocation = (Boolean) recordsList.get("groupRequirementLocation");
@@ -690,6 +690,7 @@ public class ProductFactoryStepDefs {
         ExecutionContextHandler.setExecutionContextValueByKey(ecModuleSectionValue + "_REFERENCE", Reference);
         ExecutionContextHandler.setExecutionContextValueByKey(ecModuleSectionValue + "_NAME", Name);
         ExecutionContextHandler.setExecutionContextValueByKey(ecModuleSectionValue + "_TERM_CODE", TermCode);
+        ExecutionContextHandler.setExecutionContextValueByKey(ecModuleSectionValue + "_TIMETABLED", String.valueOf(TimeTabled));
         ExecutionContextHandler.setExecutionContextValueByKey(ecModuleSectionValue + "_GROUP_REQUIREMENT_COHORT", String.valueOf(GroupRequirementCohort));
         ExecutionContextHandler.setExecutionContextValueByKey(ecModuleSectionValue + "_GROUP_REQUIREMENT_MODE", String.valueOf(GroupRequirementMode));
         ExecutionContextHandler.setExecutionContextValueByKey(ecModuleSectionValue + "_REQUIREMENT_LOCATION", String.valueOf(GroupRequirementLocation));
@@ -700,7 +701,8 @@ public class ProductFactoryStepDefs {
                 "<br>" + "Module Sections Reference: " + "<font color='red'><b>" + Reference + "</font></b>" +
                 "<br>" + "Module Sections Name: " + "<font color='red'><b>" + Name + "</font></b>" +
                 "<br>" + "Module Sections Term Code: " + "<font color='red'><b>" + TermCode + "</font></b>" +
-                "<br>" + "Module Sections Group Requirement Location: " + "<font color='red'><b>" + GroupRequirementCohort + "</font></b>" +
+                "<br>" + "Module Sections Timetabled: " + "<font color='red'><b>" + TimeTabled + "</font></b>" +
+                "<br>" + "Module Sections Group Requirement Cohort: " + "<font color='red'><b>" + GroupRequirementCohort + "</font></b>" +
                 "<br>" + "Module Sections Group Requirement Mode: " + "<font color='red'><b>" + GroupRequirementMode + "</font></b>" +
                 "<br>" + "Module Sections Group Requirement Location: " + "<font color='red'><b>" + GroupRequirementLocation + "</font></b>" +
                 "</pre>");
@@ -1233,6 +1235,207 @@ public class ProductFactoryStepDefs {
 
         BPPLogManager.getLogger().info("Bulk Web Publish was successfully executed.");
 
+    }
+
+    @When("I change Material Financial Dimension saving as \"([^\"]*)\"$")
+    public void i_change_material_fd(String ecMaterialFDValue) {
+
+        JSONObject recordsList = restController.requestProcess("changeMaterialFinancialDimensions","changeMaterialFinancialDimensions", null, null);
+
+        /*Get JSON object values*/
+        String EntityFinancialDimensionReference = (String) recordsList.get("entityFinancialDimensionReference");
+        String RevenueFinancialDimensionReference = (String) recordsList.get("revenueFinancialDimensionReference");
+
+        /*Set EC values for JSON object values*/
+        ExecutionContextHandler.setExecutionContextValueByKey(ecMaterialFDValue + "_ENTITY_FINANCIAL_DIMENSION_REFERENCE", EntityFinancialDimensionReference);
+        ExecutionContextHandler.setExecutionContextValueByKey(ecMaterialFDValue + "_REVENUE_FINANCIAL_DIMENSION_REFERENCE", RevenueFinancialDimensionReference);
+
+        /*Report log with Json object values*/
+        Reporter.log("<pre>" +
+                "<br>Change Material Financial Dimension: " +
+                "<br>" + "Material Entity Financial Dimension Reference: " + "<font color='red'><b>" + EntityFinancialDimensionReference + "</font></b>" +
+                "<br>" + "Material Revenue Financial Dimension Reference: " + "<font color='red'><b>" + RevenueFinancialDimensionReference + "</font></b>" +
+                "</pre>");
+
+        BPPLogManager.getLogger().info("Material Financial Dimension was successfully changed.");
+    }
+
+    @When("I change Course Financial Dimension saving as \"([^\"]*)\"$")
+    public void i_change_course_fd(String ecCourseFDValue) {
+
+        JSONObject recordsList = restController.requestProcess("changeCourseFinancialDimensions","changeCourseFinancialDimensions", null, null);
+
+        /*Get JSON object values*/
+        String EntityFinancialDimensionReference = (String) recordsList.get("entityFinancialDimensionReference");
+        String RevenueFinancialDimensionReference = (String) recordsList.get("revenueFinancialDimensionReference");
+
+        /*Set EC values for JSON object values*/
+        ExecutionContextHandler.setExecutionContextValueByKey(ecCourseFDValue + "_ENTITY_FINANCIAL_DIMENSION_REFERENCE", EntityFinancialDimensionReference);
+        ExecutionContextHandler.setExecutionContextValueByKey(ecCourseFDValue + "_REVENUE_FINANCIAL_DIMENSION_REFERENCE", RevenueFinancialDimensionReference);
+
+        /*Report log with Json object values*/
+        Reporter.log("<pre>" +
+                "<br>Change Material Financial Dimension: " +
+                "<br>" + "Material Entity Financial Dimension Reference: " + "<font color='red'><b>" + EntityFinancialDimensionReference + "</font></b>" +
+                "<br>" + "Material Revenue Financial Dimension Reference: " + "<font color='red'><b>" + RevenueFinancialDimensionReference + "</font></b>" +
+                "</pre>");
+
+        BPPLogManager.getLogger().info("Material Financial Dimension was successfully changed.");
+    }
+
+    @When("I create new Material with Checkboxes set to \"([^\"]*)\" saving as \"([^\"]*)\"$")
+    public void i_create_material(Boolean checkbox, String ecMaterialValue) {
+
+        Response Response = restController.postRequest(propertiesHelper.getProperties().getProperty("pf_request_link"),
+                restController.processPropertiesPF("ProductFactory/addMaterial", String.valueOf(checkbox), null),
+                ProductFactoryAuthentication.getInstance().requestHeaderSpecification()
+        );
+
+        String ResponseString = Response.getBody().asString();
+
+        /*Get JSON object values*/
+        JSONObject recordsObject = new Utilities().getResponseProperty(Response);
+        JSONObject recordsData = (JSONObject) recordsObject.get("data");
+        JSONObject materialObj = (JSONObject) recordsData.get("createMaterial");
+        String Reference = (String) materialObj.get("reference");
+        Boolean isInternalMaterial = (Boolean) materialObj.get("isInternalMaterial");
+        Boolean isDigitalMaterial = (Boolean) materialObj.get("isDigitalMaterial");
+        Boolean isCourseMaterial = (Boolean) materialObj.get("isCourseMaterial");
+
+        /*Get Json object values*/
+        try {
+            Reference = (String) materialObj.get("reference");
+        } catch (Exception e) {
+            BPPLogManager.getLogger().error(Tools.getStackTrace(e));
+            Reporter.fail("<br>" + Tools.getStackTrace(e) + "</br>");
+            throw new RuntimeException("Can't proceed with response: " + Reference + " Please check -corespondent.json- file. Possible duplication or empty strings");
+        }
+
+        assertThat(Reference, matchesPattern("([a-z0-9-]){36}"));
+        assertThat(ResponseString, containsString("createMaterial"));
+
+        /*Set EC values for JSON object values*/
+        ExecutionContextHandler.setExecutionContextValueByKey(ecMaterialValue + "_REFERENCE", Reference);
+
+        /*Report log with Json object values*/
+        Reporter.log("<pre>" +
+                "<br>Material: " +
+                "<br>" + "Material Reference: " + "<font color='red'><b>" + Reference + "</font></b>" +
+                "<br>" + "Material is Internal Material: " + "<font color='red'><b>" + isInternalMaterial + "</font></b>" +
+                "<br>" + "Material is Digital Material: " + "<font color='red'><b>" + isDigitalMaterial + "</font></b>" +
+                "<br>" + "Material is Course Material: " + "<font color='red'><b>" + isCourseMaterial + "</font></b>" +
+                "</pre>");
+
+        BPPLogManager.getLogger().info("Material was successfully created.");
+    }
+
+    @When("I create new Course Material")
+    public void i_create_material_for_course() {
+
+        Response Response = restController.postRequest(propertiesHelper.getProperties().getProperty("pf_request_link"),
+                restController.processPropertiesPF("ProductFactory/" + "addCourseMaterials", null, null),
+                ProductFactoryAuthentication.getInstance().requestHeaderSpecification()
+        );
+
+        String ResponseString = Response.getBody().asString();
+
+        JSONObject recordsObject = new Utilities().getResponseProperty(Response);
+        JSONObject recordsData = (JSONObject) recordsObject.get("data");
+        JSONArray recordsListArray = (JSONArray) recordsData.get("createCourseMaterials");
+
+        String Reference = null;
+        String materialReference = null;
+
+        /*Get Json object values*/
+        try {
+            JSONObject recordsList = (JSONObject) recordsListArray.get(0);
+            JSONObject courseObj = (JSONObject) recordsList.get("course");
+            Reference = (String) courseObj.get("reference");
+            JSONObject materialObj = (JSONObject) recordsList.get("material");
+            materialReference = (String) materialObj.get("reference");
+        } catch (Exception e) {
+            BPPLogManager.getLogger().error(Tools.getStackTrace(e));
+            Reporter.failTryTakingScreenshot("<br>" + Tools.getStackTrace(e) + "</br>");
+            JSONArray errorData = (JSONArray) recordsObject.get("errors");
+            JSONObject errorArray = (JSONObject) errorData.get(0);
+            String error = (String) errorArray.get("message");
+            Reporter.failTryTakingScreenshot("<br>" + error + "</br>");
+            throw new RuntimeException("Can't proceed with response: " + error);
+        }
+
+        assertThat(Reference, matchesPattern("([a-z0-9-]){36}"));
+        assertThat(ResponseString, containsString("createCourseMaterials"));
+
+        /*Report log with Json object values*/
+        Reporter.log("<pre>" +
+                "<br>Course Material: " +
+                "<br>" + "Course Reference: " + "<font color='red'><b>" + Reference + "</font></b>" +
+                "<br>" + "Material Reference: " + "<font color='red'><b>" + materialReference + "</font></b>" +
+                "</pre>");
+
+        BPPLogManager.getLogger().info("Material was successfully linked to the Course.");
+    }
+
+    @When("I update new Course Material with Delivery set to \"([^\"]*)\"$")
+    public void i_update_material_for_course(String deliveryDefault) {
+
+        Response Response = restController.postRequest(propertiesHelper.getProperties().getProperty("pf_request_link"),
+                restController.processPropertiesPF("ProductFactory/" + "UpdateJson/updateCourseMaterial", deliveryDefault, null),
+                ProductFactoryAuthentication.getInstance().requestHeaderSpecification()
+        );
+
+        String Reference = null;
+
+        String ResponseString = Response.getBody().asString();
+
+        JSONObject recordsObject = new Utilities().getResponseProperty(Response);
+        JSONObject recordsData = (JSONObject) recordsObject.get("data");
+        JSONObject recordsList = (JSONObject) recordsData.get("updateCourseMaterial");
+
+        /*Get JSON object values*/
+        String DeliveryDefault = (String) recordsList.get("deliveryDefault");
+
+        /*Get Json object values*/
+        try {
+            JSONObject courseObj = (JSONObject) recordsList.get("course");
+            Reference = (String) courseObj.get("reference");
+        } catch (Exception e) {
+            BPPLogManager.getLogger().error(Tools.getStackTrace(e));
+            Reporter.failTryTakingScreenshot("<br>" + Tools.getStackTrace(e) + "</br>");
+            JSONArray errorData = (JSONArray) recordsObject.get("errors");
+            JSONObject errorArray = (JSONObject) errorData.get(0);
+            String error = (String) errorArray.get("message");
+            Reporter.failTryTakingScreenshot("<br>" + error + "</br>");
+            throw new RuntimeException("Can't proceed with response: " + error);
+        }
+
+        assertThat(Reference, matchesPattern("([a-z0-9-]){36}"));
+        assertThat(ResponseString, containsString("updateCourseMaterial"));
+
+        /*Report log with Json object values*/
+        Reporter.log("<pre>" +
+                "<br>Change Course Materials: " +
+                "<br>" + "Delivery method was changed to: " + "<font color='red'><b>" + DeliveryDefault + "</font></b>" +
+                "</pre>");
+
+        BPPLogManager.getLogger().info("Delivery method was successfully changed.");
+    }
+
+    @When("I link Clients to Course")
+    public void i_link_clients_to_course() {
+
+        JSONObject recordsList = restController.requestProcess("linkCourseToClients","linkCourseToClients", null, null);
+
+        /*Get JSON object values*/
+        String Reference = (String) recordsList.get("reference");
+
+        /*Report log with Json object values*/
+        Reporter.log("<pre>" +
+                "<br>Instance Activation: " +
+                "<br>" + "Instance Reference: " + "<font color='red'><b>" + "Clients was successfully linked to Course" + "</font></b>" +
+                "</pre>");
+
+        BPPLogManager.getLogger().info("Clients was successfully linked to Course.");
     }
 
 }

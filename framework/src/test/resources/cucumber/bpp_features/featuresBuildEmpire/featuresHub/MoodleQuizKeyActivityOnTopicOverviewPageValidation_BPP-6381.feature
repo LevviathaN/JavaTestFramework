@@ -6,7 +6,7 @@ Feature: Verify Moodle Quiz Key Activity Completion Appearance In HUB - BPP-6381
 
   @Positive #TC-2826
   Scenario: Moodle Quiz Key Activity On Topic Overview Page Validation
-    When I execute "Register New Student Account" reusable step
+    When I register new Hub account using API
     Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     Then I shouldn't see the "My Learning" "Build Empire Navigation Menu elements"

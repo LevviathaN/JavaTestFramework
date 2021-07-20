@@ -127,7 +127,7 @@ public static ReusableRunner getInstance() {
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_DIGITAL_CONTENT"), () -> pfStepDefs.i_create_digital_content(arg1, arg2, arg3));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_UNIVERSITY_PROGRAMMES"), () -> pfStepDefs.i_create_university_programmes(arg1));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_PROGRAMME_COHORTS"), () -> pfStepDefs.i_create_programme_cohorts(arg1));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_MODULE_SECTIONS"), () -> pfStepDefs.i_create_module_sections(arg1, arg2));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_MODULE_SECTIONS"), () -> pfStepDefs.i_create_module_sections(arg1, arg2, arg3));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_STOCK_SITE"), () -> pfStepDefs.i_create_stock_site(arg1));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_MATERIAL_TYPE"), () -> pfStepDefs.i_create_material_type(Boolean.valueOf(arg1), arg2));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_CLIENTS"), () -> pfStepDefs.i_create_clients(arg1));
@@ -145,6 +145,12 @@ public static ReusableRunner getInstance() {
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_ACTIVATE_INSTANCE"), () -> pfStepDefs.i_activate_instance(arg1));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_COURSE_BULK_OPERATION"), () -> pfStepDefs.i_create_course_bulk_operation(arg1));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_BULK_WEB_PUBLISHING"), () -> pfStepDefs.i_execute_bulk_web_publishing(Boolean.valueOf(arg1), arg2, arg3));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CHANGE_MATERIAL_FD"), () -> pfStepDefs.i_change_material_fd(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CHANGE_COURSE_FD"), () -> pfStepDefs.i_change_course_fd(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_MATERIAL"), () -> pfStepDefs.i_create_material(Boolean.valueOf(arg1), arg2));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_MATERIAL_FOR_COURSE"), () -> pfStepDefs.i_create_material_for_course());
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_UPDATE_MATERIAL_FOR_COURSE"), () -> pfStepDefs.i_update_material_for_course(arg1));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_LINK_CLIENTS_TO_COURSE"), () -> pfStepDefs.i_link_clients_to_course());
         //Venus API stepdefs
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_REGISTER_NEW_HUB_ACCOUNT_API"),() -> venusStepDefsAPI.i_register_new_hub_account());
     }

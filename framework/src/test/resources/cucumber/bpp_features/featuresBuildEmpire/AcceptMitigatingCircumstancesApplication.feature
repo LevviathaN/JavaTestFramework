@@ -3,7 +3,7 @@ Feature: Accept Mitigating Circumstances Application
 
   @PositiveEmails  @Smoke #TC-1266 #TC-1257 #TC-1264
   Scenario: Mitigating Circumstances Send Emails to Students
-    Given I execute "Register New Student Account" reusable step
+    Given I register new Hub account using API
     Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     And I wait for "2" seconds

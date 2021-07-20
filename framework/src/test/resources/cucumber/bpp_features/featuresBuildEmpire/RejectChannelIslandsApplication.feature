@@ -1,4 +1,4 @@
-@BuildEmpire @DirectApps @ChannelIslands
+@BuildEmpire @DirectApps @ChannelIslands1
 Feature: Reject Channel Islands Application
 
   @Negative #TC-1270
@@ -23,8 +23,10 @@ Feature: Reject Channel Islands Application
     And I click on the "Direct App Channel Islands Training Manager OK" button
     And I wait for "10" seconds
     And I execute "Log Out from Hub Student" reusable step
-    And I execute "Nada Validate Accepted Application Email" reusable step replacing some steps
-      | 10 | I should see the "Your application has been rejected" element |
+    And I execute "Harakirimail Mitigating Circustances Reject Validation" reusable step replacing some steps
+    |4|I click on the "Harakirimail First Email" button|
+    |5|I validate text "CONTAINS=Your application has been rejected" to be displayed for "Harakirimail Validate Mitigating Header" element|
+
     Then I execute "Log In to Hub as Student" reusable step
     And I wait for "2" seconds
     Given I click on the "Direct App My Applications Left Menu Link" button by JS
@@ -58,5 +60,6 @@ Feature: Reject Channel Islands Application
     And I click on the "Reject" "button"
     And I fill the "Direct App Channel Islands Training Manager Reason" field with "Automation Testing"
     And I click on the "Direct App Channel Islands Training Manager OK" button
-    And I execute "Nada Validate Accepted Application Email" reusable step replacing some steps
-      | 10 | I should see the "Your application has been rejected" element |
+    And I execute "Harakirimail Mitigating Circustances Reject Validation" reusable step replacing some steps
+      |4|I click on the "Harakirimail First Email" button|
+      |5|I validate text "CONTAINS=Your application has been rejected" to be displayed for "Harakirimail Validate Mitigating Header" element|

@@ -6,7 +6,7 @@ Feature: BPP University Hub My Learning
   @Positive @MyLearning #TC-1119 TC-1121
   Scenario: HUB - My Learning
     #Register New Student
-    When I execute "Register New Student Account" reusable step
+    When II register new Hub account using API
     Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     #Verify Left panel

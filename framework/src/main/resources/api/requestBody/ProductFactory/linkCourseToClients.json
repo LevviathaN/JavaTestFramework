@@ -1,0 +1,12 @@
+{
+  "operationName":"linkCourseToClients",
+  "variables":{
+    "command":{
+      "courseReference":"EC_COURSE_REFERENCE",
+      "clientReferences":[
+        "EC_CLIENTS_REFERENCE"
+      ]
+    }
+  },
+  "query":"mutation linkCourseToClients($command: LinkCourseToClientsCommandInput!) { linkCourseToClients(command: $command) { reference __typename }}"
+}
