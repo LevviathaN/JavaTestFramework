@@ -228,7 +228,7 @@ Feature: Product Factory API Data Creation
   Scenario: Create Clients
     Then I create new Clients saving as "EC_CLIENTS"
 
-  @Clients #TC-1548
+  @Clients @Update #TC-1548
   Scenario: Update Clients
     Given I execute "Create Client" API step
     Then I execute "Update Client" API step

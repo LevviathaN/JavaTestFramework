@@ -11,7 +11,7 @@
       "city":"London",
       "countryCode":"GBR",
       "regionReference": "EC_REGION_REFERENCE",
-      "financialDimensionReference": "EC_FD_LOCATION_PRODUCT_REFERENCE"
+      "financialDimensionReference": "EC_LOCATION_FINANCIAL_DIMENSION_REFERENCE"
     }
   },
   "query":"mutation updateLocation($command: UpdateLocationCommandInput!) { updateLocation(command: $command) { ...location __typename } } fragment location on Location { reference name address addressLine1 addressLine2 addressLine3 postcode city countryCode region { ...region __typename } financialDimension { ...financialDimension __typename } createdBy createdOn updatedBy updatedOn __typename } fragment region on Region { reference name financialDimension { ...financialDimension __typename } createdBy createdOn updatedBy updatedOn __typename } fragment financialDimension on FinancialDimension { reference code description target dimensionType createdBy createdOn updatedBy updatedOn __typename } "
