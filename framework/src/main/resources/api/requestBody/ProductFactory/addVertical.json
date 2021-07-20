@@ -2,7 +2,7 @@
   "operationName": "createVertical",
   "variables": {
     "command": {
-      "name": "ApiVerticalName[####]"
+      "name": "ApiVerticalName[######]"
     }
   },
   "query": "mutation createVertical($command: CreateVerticalCommandInput!) {  createVertical(command: $command) {  ...vertical  __typename  } }  fragment vertical on Vertical {  reference  name  createdBy  createdOn  updatedBy  updatedOn  __typename } "
