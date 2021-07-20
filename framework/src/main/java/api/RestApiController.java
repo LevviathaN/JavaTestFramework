@@ -1,7 +1,6 @@
 package api;
 
 import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.json.simple.JSONArray;
@@ -47,32 +46,7 @@ public class RestApiController {
         return response;
     }
 
-    /**
-     * This post request is used to register account via Auth0 for Hub. Added required headers
-     * @param baseURI     - will be changed based of record type to be created
-     * @param requestBody - JSON format; depends on record type
-     */
 
-    public Response postRequestHub(String baseURI, String requestBody) {
-        Map<String,Object> headerMap = new HashMap<String,Object>();
-        headerMap.put("auth0-client", "eyJuYW1lIjoibG9jay5qcyIsInZlcnNpb24iOiIxMS4xMS4wIiwibGliX3ZlcnNpb24iOnsicmF3IjoiOS44LjEifX0=");
-        headerMap.put("content-type", "application/json");
-        headerMap.put("origin", "https://id.staging.bppdevs.net");
-        Response response = given()
-                .when()
-                .contentType(ContentType.JSON)
-                .baseUri(baseURI)
-                .headers(headerMap)
-                .body(requestBody)
-                .post();
-
-        if (Integer.toString(response.getStatusCode()).matches("2.+")) {
-            BPPLogManager.getLogger().info("Request sent successfully! Response code: " + response.getStatusCode());
-        } else {
-            BPPLogManager.getLogger().error("Response code: " + response.getStatusCode());
-        }
-        return response;
-    }
     /**
      * @param baseURI - will be changed based of record type to be created
      */
