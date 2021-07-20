@@ -1,6 +1,7 @@
 package api;
 
 import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.json.simple.JSONArray;
@@ -8,6 +9,7 @@ import org.json.simple.JSONObject;
 import ui.utils.BPPLogManager;
 import ui.utils.Reporter;
 import ui.utils.Tools;
+import ui.utils.bpp.ExecutionContextHandler;
 import ui.utils.bpp.PropertiesHelper;
 import ui.utils.bpp.TestParametersController;
 
@@ -45,6 +47,32 @@ public class RestApiController {
         return response;
     }
 
+    /**
+     * This post request is used to register account via Auth0 for Hub. Added required headers
+     * @param baseURI     - will be changed based of record type to be created
+     * @param requestBody - JSON format; depends on record type
+     */
+
+    public Response postRequestHub(String baseURI, String requestBody) {
+        Map<String,Object> headerMap = new HashMap<String,Object>();
+        headerMap.put("auth0-client", "eyJuYW1lIjoibG9jay5qcyIsInZlcnNpb24iOiIxMS4xMS4wIiwibGliX3ZlcnNpb24iOnsicmF3IjoiOS44LjEifX0=");
+        headerMap.put("content-type", "application/json");
+        headerMap.put("origin", "https://id.staging.bppdevs.net");
+        Response response = given()
+                .when()
+                .contentType(ContentType.JSON)
+                .baseUri(baseURI)
+                .headers(headerMap)
+                .body(requestBody)
+                .post();
+
+        if (Integer.toString(response.getStatusCode()).matches("2.+")) {
+            BPPLogManager.getLogger().info("Request sent successfully! Response code: " + response.getStatusCode());
+        } else {
+            BPPLogManager.getLogger().error("Response code: " + response.getStatusCode());
+        }
+        return response;
+    }
     /**
      * @param baseURI - will be changed based of record type to be created
      */
@@ -260,5 +288,47 @@ public class RestApiController {
         });
 
         return map;
+    }
+
+    /**
+     * Additional method is required as JSon for Hub has two Objects that should be handled separately
+     * @param requestTemplate - the name of Json file which will be used to retrieve Json file as an Object
+     */
+    public String processPropertiesHubRegistration(String requestTemplate) {
+        JSONObject map = new Utilities().getJsonObject(requestTemplate);
+        Map user = ((Map) map.get("user_metadata"));
+
+        String firstName =(String) user.get("first_name");
+        String lastName =(String) user.get("last_name");
+        String phone =(String) user.get("phone");
+        String fullPhone =(String) user.get("full_phone");
+        String terms =(String) user.get("terms");
+        String marketingOpt =(String) user.get("marketing_opt_in");
+        String registration =(String) user.get("registration_type");
+        String registrationToken =(String) user.get("registration_type_token");
+        String email = (String) map.get("email");
+        String password = (String) map.get("password");
+        ExecutionContextHandler.setExecutionContextValueByKey("EC_PASSWORD", password);
+        ExecutionContextHandler.setExecutionContextValueByKey("EC_AUTO_FIRSTNAME", firstName);
+        ExecutionContextHandler.setExecutionContextValueByKey("EC_PHONE", phone);
+
+        //removing objects. they will be replaced with values from code below
+        map.remove("user_metadata");
+        map.remove("email");
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("first_name",TestParametersController.checkIfSpecialParameter(firstName));
+        jsonObject.put("last_name",TestParametersController.checkIfSpecialParameter(lastName));
+        jsonObject.put("phone",TestParametersController.checkIfSpecialParameter(phone));
+        jsonObject.put("full_phone",TestParametersController.checkIfSpecialParameter(fullPhone));
+        jsonObject.put("terms",TestParametersController.checkIfSpecialParameter(terms));
+        jsonObject.put("marketing_opt_in",TestParametersController.checkIfSpecialParameter(marketingOpt));
+        jsonObject.put("registration_type",TestParametersController.checkIfSpecialParameter(registration));
+        jsonObject.put("registration_type_token",TestParametersController.checkIfSpecialParameter(registrationToken));
+
+        map.put("user_metadata",jsonObject);
+        map.put("email",TestParametersController.checkIfSpecialParameter(email));
+
+        return map.toString();
     }
 }

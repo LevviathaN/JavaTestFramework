@@ -5,7 +5,7 @@ Feature: As an admin, editing an apprenticeship application, when change the pro
 
   @EditApplication #TC-2885 To be completed after fixing bug with editing apprenticeship
   Scenario: Edit Apprenticeships Application and Validate Changes as Admin
-    Given I execute "Register New Student Account" reusable step
+    Given I register new Hub account using API
     Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     And I wait for "2" seconds

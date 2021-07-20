@@ -3,7 +3,7 @@ Feature: University Degree Apprenticeships
 
   @PopUpStudent @Popup @Positive #TC-1572
   Scenario: As a student, I expect to be told if I try to navigate out of an application without completing my actions
-    Given I execute "Register New Student Account" reusable step
+    Given I register new Hub account using API
     Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     When I execute "Create University Degree Apprenticeships Application" reusable step

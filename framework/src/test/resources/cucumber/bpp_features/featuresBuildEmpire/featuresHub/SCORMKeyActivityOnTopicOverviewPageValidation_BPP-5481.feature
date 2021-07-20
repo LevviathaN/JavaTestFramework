@@ -6,7 +6,7 @@ Feature: Verify SCORM Key Activity Complition Appearance In HUB - BPP-4488
 
   @Positive @Smoke #TC-2715
   Scenario: Scorm Key Activity On Topic Overview Page Validation
-    When I execute "Register New Student Account" reusable step
+    When I register new Hub account using API
     Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     Then I shouldn't see the "My Learning" "Build Empire Navigation Menu elements"

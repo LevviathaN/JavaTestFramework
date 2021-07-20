@@ -20,6 +20,7 @@ public class SpreadsheetsHelper {
     //A map of literal and numeric ordinal numbers of spreadsheet columns
     private static Map<Integer,String> columns;
     private static Map<String,String> squads;
+    public static long executionTime = 0;
     public static void initializeColumns() {
         squads = new HashMap<>();
         squads.put("ProductFactory","Terra");
@@ -91,10 +92,17 @@ public class SpreadsheetsHelper {
         String[] dateFrag = date.split("-");
         String correctDate = dateFrag[2] + "." + dateFrag[1] + "." + dateFrag[0];
 
+        //getting execution duration
+        long second = (executionTime / 1000) % 60;
+        long minute = (executionTime / (1000 * 60)) % 60;
+        long hour = (executionTime / (1000 * 60 * 60)) % 24;
+        String time = String.format("%02d:%02d:%02d", hour, minute, second);
+
         //checking actuality of tests in spreadsheet
         Map<String,String> testResults = RetryAnalyzer.passMap;
         List<List<Object>> valuesToUpdate = new ArrayList<>();
         valuesToUpdate.add(Arrays.asList(correctDate));
+        valuesToUpdate.add(Arrays.asList(time));
         List<String> availableScenarios = getAvailableTests(application);
         List<String> excessTestsSpreadsh = new ArrayList<>();
         for (String name : testNames) {

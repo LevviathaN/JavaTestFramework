@@ -6,7 +6,7 @@ Feature: BPP University Hub Profile Area
   @ProfileArea @Positive #TC-1170, TC-4962
   Scenario: Hub Profile Area
     #Register New Student
-    And I execute "Register New Student Account" reusable step
+    And I register new Hub account using API
     Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     #Profile Area validation
