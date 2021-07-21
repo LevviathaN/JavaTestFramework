@@ -1335,5 +1335,33 @@ public class ProductFactoryStepDefs {
         BPPLogManager.getLogger().info("Clients was successfully linked to Course.");
     }
 
+    @When("I create new Location without Region")
+    public void i_create_location_no_region() {
+
+        Response Response = restController.postRequest(propertiesHelper.getProperties().getProperty("pf_request_link"),
+                restController.processPropertiesPF("ProductFactory/UpdateJson/addLocationNoRegion", null, null),
+                ProductFactoryAuthentication.getInstance().requestHeaderSpecification()
+        );
+
+        String ResponseString = Response.getBody().asString();
+
+        JSONObject recordsObject = new Utilities().getResponseProperty(Response);
+        JSONArray errorData = (JSONArray) recordsObject.get("errors");
+        JSONObject errorArray = (JSONObject) errorData.get(0);
+        JSONObject errorExt = (JSONObject) errorArray.get("extensions");
+        JSONArray variablePath = (JSONArray) errorExt.get("variablePath");
+        String reason = (String) variablePath.get(0);
+
+        assertThat(reason, containsString("regionReference"));
+
+        /*Report log with Json object values*/
+        Reporter.log("<pre>" +
+                "<br>Location: " +
+                "<br>" + "Location can't be created without: " + "<font color='red'><b>" + reason + "</font></b>" +
+                "</pre>");
+
+        BPPLogManager.getLogger().info("Location was not created. As " + reason + " is empty");
+    }
+
 }
 

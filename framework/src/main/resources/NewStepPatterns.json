@@ -454,5 +454,9 @@
   {
     "name": "I_LINK_CLIENTS_TO_COURSE",
     "value": "I link Clients to Course"
+  },
+  {
+    "name": "I_CREATE_LOCATION_NO_REGION",
+    "value": "I create new Location without Region"
   }
 ]

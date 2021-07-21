@@ -151,6 +151,7 @@ public static ReusableRunner getInstance() {
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_MATERIAL_FOR_COURSE"), () -> pfStepDefs.i_create_material_for_course());
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_UPDATE_MATERIAL_FOR_COURSE"), () -> pfStepDefs.i_update_material_for_course(arg1));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_LINK_CLIENTS_TO_COURSE"), () -> pfStepDefs.i_link_clients_to_course());
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CREATE_LOCATION_NO_REGION"), () -> pfStepDefs.i_create_location_no_region());
         //Venus API stepdefs
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_REGISTER_NEW_HUB_ACCOUNT_API"),() -> venusStepDefsAPI.i_register_new_hub_account());
     }

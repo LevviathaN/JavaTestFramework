@@ -728,3 +728,10 @@ Feature: Product Factory API Data Creation
     And I create new Course Material
     And I update new Course Material with Delivery set to "CLASSROOM"
     Then I link Clients to Course
+
+  @LocationNoRegion #TC-775
+  Scenario: Creating New Location without and with a Region record
+    When I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_FD"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_FD"
+    Then I create new Location without Region
+    Then I create new Location saving as "EC_LOCATION"
