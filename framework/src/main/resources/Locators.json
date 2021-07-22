@@ -3325,7 +3325,7 @@
   },
   {
     "name": "Totara Assessment Column Description",
-    "value": "inframe=TotaraScromFrame>xpath=//*[@class='qm_BOX_COL']"
+    "value": "inframe=TotaraScromFrame>xpath=//*[@class='qm_BOX']"
   },
   {
     "name": "Totara Assignment Description",

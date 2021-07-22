@@ -8,7 +8,6 @@ Feature: BPP University Hub My Courses
   Scenario: HUB - My Courses
     #Register New Student
     And I register new Hub account using API
-    Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     #Validate Timeline block
     Then I should see the "Timeline" message

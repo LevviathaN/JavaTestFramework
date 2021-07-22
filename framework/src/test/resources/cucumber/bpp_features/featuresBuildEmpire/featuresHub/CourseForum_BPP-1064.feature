@@ -6,7 +6,6 @@ Feature: BPP University Hub Course Forum
 
   Background:
     Given I register new Hub account using API
-    Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
 
   @Positive @CourseForum #TC-722 TC-723
@@ -39,15 +38,15 @@ Feature: BPP University Hub Course Forum
     When I click on the "Direct App First Course link" link
     Then I should see the "Book Exam" button
     And I click on the "Book Exam" "exact element"
-    And I switch to window with index "3"
+    And I switch to window with index "2"
     And I wait for "1" seconds
     And I validate text "https://web-stage-bppdigital.bppuniversity.com" to be displayed for "CHECK_URL" element
     #And I am on "https://totara.staging.bppdigital.buildempire.app/mod/url/view.php?id=2899" URL
-    And I switch to window with index "2"
+    And I switch to window with index "1"
     #Navigate to Course Forum
     When I click on the "Totara Course Select Forum link" link
     And I click on the "Totara Course Forum option" link by JS
     And I wait for "3" seconds
-    And I switch to window with index "4"
+    And I switch to window with index "2"
     Then I validate text "Automation Forum" to be displayed for "Totara Forum Header name" element
     Then I validate text "Are we happy with the Hub?" to be displayed for "Totara First Forum Question item" element
