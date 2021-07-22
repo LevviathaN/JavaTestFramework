@@ -4,7 +4,6 @@ Feature: Professional Apprenticeship Applications
   @Positive @P1 @FullApplicationIncomplete
   Scenario: Create Professional Apprenticeship Applications Full Application Incomplete
     Given I register new Hub account using API
-    Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     When I execute "Create Professional Apprenticeships Application UAT Accounting Option Two" reusable step
     Given I execute "Complete Professional Apprenticeships UAT Accounting Assistant" reusable step

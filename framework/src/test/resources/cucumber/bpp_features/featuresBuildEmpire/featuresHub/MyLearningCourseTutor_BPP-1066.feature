@@ -3,7 +3,6 @@ Feature: BPP University Hub My Learning Course Tutor
 
   Background:
     Given I register new Hub account using API
-    Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
 
   @Positive @CourseTutor #TC-721

@@ -6,7 +6,6 @@ Feature: The Hub - Dashboard / Timeline - Info & News
 
   Background:
     Given I register new Hub account using API
-    Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
 
   @Positive #TC-1315 TC-1317

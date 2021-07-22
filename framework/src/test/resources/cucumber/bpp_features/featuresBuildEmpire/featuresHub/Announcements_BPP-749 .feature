@@ -1,4 +1,4 @@
-@BuildEmpire @Hub
+@BuildEmpire @Hub @Announcements
 Feature: BPP University Hub Announcements
     As a Hub Admin
     I would like to be able to provide my learners with important announcements in The Hub
@@ -6,7 +6,6 @@ Feature: BPP University Hub Announcements
 
   Background:
     Given I register new Hub account using API
-    Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
 
   @Positive #TC-1105 TC-1109 TC-1107

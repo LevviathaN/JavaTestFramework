@@ -7,7 +7,6 @@ Feature: Verify SCORM Key Activity Complition Appearance In HUB - BPP-4488
   @Positive @Smoke #TC-2715
   Scenario: Scorm Key Activity On Topic Overview Page Validation
     When I register new Hub account using API
-    Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     Then I shouldn't see the "My Learning" "Build Empire Navigation Menu elements"
     When I execute "Log Out from Hub Student" reusable step
@@ -32,7 +31,7 @@ Feature: Verify SCORM Key Activity Complition Appearance In HUB - BPP-4488
     And I click on the "Take the test" "Build Empire button"
     And I wait for "10" seconds
     Then I execute "window.stop()" JS code
-    Then I switch to window with index "2"
+    Then I switch to window with index "1"
     # Question 1
     When I click on the "Totara Assessment Next Button" button
     And I select "Yes" from "IAASB" "Totara Assessment select"
@@ -96,7 +95,7 @@ Feature: Verify SCORM Key Activity Complition Appearance In HUB - BPP-4488
     # Question 15
     And I click on the "advance the" "Totara Assessment radiobutton"
     And I click on the "Totara Assessment Submit Button" button
-    When I switch to window with index "1"
+    When I switch to window with index "0"
     And Browser performs "REFRESH" command
     Then I execute "Log In to Hub as Student" reusable step if "Already registered? Log in" "element is present"
     And I click on the "Mini Course for Volodymyr" "Build Empire Homepage My Learning Course" if "Take the test" "element is absent"
@@ -106,7 +105,7 @@ Feature: Verify SCORM Key Activity Complition Appearance In HUB - BPP-4488
     And I click on the "Take the test" "Build Empire button"
     And I wait for "10" seconds
     Then I execute "window.stop()" JS code
-    Then I switch to window with index "2"
+    Then I switch to window with index "1"
     # Question 1
     When I click on the "Totara Assessment Next Button" button
     And I select "No" from "IAASB" "Totara Assessment select"
@@ -170,7 +169,7 @@ Feature: Verify SCORM Key Activity Complition Appearance In HUB - BPP-4488
     # Question 15
     And I click on the "duty or right" "Totara Assessment radiobutton"
     And I click on the "Totara Assessment Submit Button" button
-    When I switch to window with index "1"
+    When I switch to window with index "0"
     And Browser performs "REFRESH" command
     Then I execute "Log In to Hub as Student" reusable step if "Already registered? Log in" "element is present"
     And I click on the "Mini Course for Volodymyr" "Build Empire Homepage My Learning Course" if "Take the test" "element is absent"
