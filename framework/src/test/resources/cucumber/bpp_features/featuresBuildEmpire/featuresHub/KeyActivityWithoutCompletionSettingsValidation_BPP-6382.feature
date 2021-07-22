@@ -7,7 +7,6 @@ Feature: Validate Key Activity Without Completion Settings On Topic Overview Pag
   @Positive @NoCompletion #TC-2827, BPP-7057
   Scenario: Validate Key Activity Without Completion Settings On Topic Overview Page
     When I register new Hub account using API
-    Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     Then I shouldn't see the "My Learning" "Build Empire Navigation Menu elements"
     When I execute "Log Out from Hub Student" reusable step

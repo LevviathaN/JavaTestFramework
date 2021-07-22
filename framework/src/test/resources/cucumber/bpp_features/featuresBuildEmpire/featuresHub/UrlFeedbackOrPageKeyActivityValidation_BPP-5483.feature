@@ -7,7 +7,6 @@ Feature: Verify URL Feedback or Page Key Activity Complition Appearance In HUB -
   @Positive @Smoke @URL #TC-2886
   Scenario: URL Feedback or Page Key Activity On Topic Overview Page Validation
     When I register new Hub account using API
-    Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     Then I shouldn't see the "My Learning" "Build Empire Navigation Menu elements"
     Then I execute "Log Out from Hub Student" reusable step
@@ -34,9 +33,9 @@ Feature: Verify URL Feedback or Page Key Activity Complition Appearance In HUB -
     And I validate text "CONTAINS=You haven't attempted this assessment yet" to be displayed for "Direct App Topic Assessment Status Results" element
     And I click on the "Hub Submit Button For Activity" button
     And I wait for "3" seconds
-    Then I switch to window with index "3"
+    Then I switch to window with index "2"
     And I wait for "2" seconds
-    When I switch to window with index "2"
+    When I switch to window with index "1"
     And Browser performs "REFRESH" command
     And I should see the "Completed" "element"
     And I click on the "/my/learning/course/12" "link address"
@@ -44,7 +43,7 @@ Feature: Verify URL Feedback or Page Key Activity Complition Appearance In HUB -
     And I validate text "CONTAINS=You haven't attempted this assessment yet" to be displayed for "Direct App Topic Assessment Status Results" element
     And I click on the "Hub Submit Button For Activity" button
     And I wait for "4" seconds
-    When I switch to window with index "2"
+    When I switch to window with index "1"
     And Browser performs "REFRESH" command
     Then I execute "Log In to Hub as Student" reusable step if "Already registered? Log in" "element is present"
     And I click on the "Mini Course for Volodymyr" "Build Empire Homepage My Learning Course" if "Click to complete" "element is absent"

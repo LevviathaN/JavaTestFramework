@@ -6,7 +6,6 @@ Feature: BPP University Hub Sub Topics and Labels
 
   Background:
     Given I register new Hub account using API
-    Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     When I execute "Log Out from Hub Student" reusable step
     And I wait for "7" seconds
