@@ -20,24 +20,24 @@ Feature: Product Factory API Data Creation
 
   @FinancialDimension #TC-1532
   Scenario: Create Financial Dimensions record Course Type item
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_FD"
-    Then I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_FD"
+    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
+    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
 
   @FinancialDimension #TC-1532
   Scenario: Create Financial Dimensions record Material Type item
-    Then I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "MATERIALTYPE" saving as "EC_FD"
+    Then I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "MATERIALTYPE" saving as "EC_MATERIAL_TYPE"
 
   @FinancialDimension #TC-1532
   Scenario: Create Financial Dimensions record Location item
-    Then I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_FD"
+    Then I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
 
   @FinancialDimension #TC-1532
   Scenario: Create Financial Dimensions record Body item
-    Then I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
+    Then I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
 
   @FinancialDimension #TC-1532
   Scenario: Create Financial Dimensions record Region item
-    Then I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_FD"
+    Then I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
 
   @VatRule #TC-1340
   Scenario: Create Vat Rule
@@ -53,26 +53,43 @@ Feature: Product Factory API Data Creation
 
   @CourseType #TC-701
   Scenario: Create Course Type
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_FD"
+    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
+    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
     And I create new Vat Rule saving as "EC_VAT_RULE"
     And I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
     And I create new Study Mode saving as "EC_STUDY_MODE"
     Then I create new Course Type saving as "EC_COURSE_TYPE"
 
+  @CourseType @Update #TC-1546
+  Scenario: Update Course Type
+    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
+    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    Then I execute "Create Course Type" API step
+    And I execute "Update Course Type" API step
+
   @Vertical #TC-4811
   Scenario: Create Vertical
     When I create new Vertical saving as "EC_VERTICAL"
 
+  @Body @Update #TC-1545
+  Scenario: Update Body
+    When I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
+    And I execute "Create Vertical" API step
+    Then I execute "Create Body" API step
+    And I execute "Update Body" API step
+
   @Body #TC-743
   Scenario: Create Body
-    When I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
+    When I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
     And I create new Vertical saving as "EC_VERTICAL"
     Then I create new Body saving as "EC_BODY"
 
   @Sitting #TC-835
   Scenario: Create Sitting
-    When I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
+    When I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
     And I create new Vertical saving as "EC_VERTICAL"
     And I create new Body saving as "EC_BODY"
     Then I create new Sitting saving as "EC_SITTING"
@@ -88,7 +105,7 @@ Feature: Product Factory API Data Creation
 
   @LinkBodyToLevel #TC-703
   Scenario: Link Body to Levels
-    When I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
+    When I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
     And I create new Vertical saving as "EC_VERTICAL"
     And I create new Body saving as "EC_BODY"
     And I create new Level saving as "EC_LEVEL"
@@ -96,7 +113,7 @@ Feature: Product Factory API Data Creation
 
   @ChangePaperBody #TC-697
   Scenario: Change Paper Body
-    When I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
+    When I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
     And I create new Vertical saving as "EC_VERTICAL"
     And I create new Body saving as "EC_BODY"
     And I create new Paper with CBA "false" saving as "EC_PAPER"
@@ -110,15 +127,23 @@ Feature: Product Factory API Data Creation
 
   @Region #TC-1875
   Scenario: Create Region
-    When I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_FD"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
     Then I create new Region saving as "EC_REGION"
     
   @Location #TC-775
   Scenario: Create Location
-    When I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_FD"
-    And I create new Region saving as "EC_REGION"
-    Then I create new Location saving as "EC_LOCATION"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+
+  @Location @Update #TC-832
+  Scenario: Update Location
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I execute "Update Location" API step
 
   @SessionDuration #TC-811
   Scenario: Create Session Duration
@@ -134,11 +159,11 @@ Feature: Product Factory API Data Creation
 
   @Prices #TC-1032
   Scenario: Create Prices
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_FD"
+    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
+    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
     And I create new Vat Rule saving as "EC_VAT_RULE"
     And I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
     And I create new Study Mode saving as "EC_STUDY_MODE"
@@ -158,9 +183,9 @@ Feature: Product Factory API Data Creation
 
   @DigitalContent #TC-3148
   Scenario: Create Digital Content
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
+    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
+    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
     And I create new Vertical saving as "EC_VERTICAL"
     And I create new Body saving as "EC_BODY"
     And I create new Sitting saving as "EC_SITTING"
@@ -196,13 +221,18 @@ Feature: Product Factory API Data Creation
 
   @MaterialType #TC-1435
   Scenario: Create Material Type
-    When I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "MATERIALTYPE" saving as "EC_FD"
+    When I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "MATERIALTYPE" saving as "EC_MATERIAL_TYPE"
     Then I create new Material Type with all Checkboxes "true"  saving as "EC_MATERIAL_TYPE"
 
   @Clients #TC-919
   Scenario: Create Clients
     Then I create new Clients saving as "EC_CLIENTS"
-    
+
+  @Clients @Update #TC-1548
+  Scenario: Update Clients
+    Given I execute "Create Client" API step
+    Then I execute "Update Client" API step
+
   @Streams #TC-2929
   Scenario: Create Streams
     Then I create new Streams saving as "EC_STREAM"
@@ -213,10 +243,10 @@ Feature: Product Factory API Data Creation
 
   @Course
   Scenario: Create Course
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_FD"
+    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
+    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
     And I create new Vertical saving as "EC_VERTICAL"
     And I create new Body saving as "EC_BODY"
     And I create new Sitting saving as "EC_SITTING"
@@ -234,11 +264,11 @@ Feature: Product Factory API Data Creation
 
   @Instance
   Scenario: Create Instance
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_FD"
+    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
+    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
     And I create new Vertical saving as "EC_VERTICAL"
     And I create new Body saving as "EC_BODY"
     And I create new Sitting saving as "EC_SITTING"
@@ -259,11 +289,11 @@ Feature: Product Factory API Data Creation
 
   @InstanceCapacity
   Scenario: Change Instance Capacity
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_FD"
+    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
+    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
     And I create new Vertical saving as "EC_VERTICAL"
     And I create new Body saving as "EC_BODY"
     And I create new Sitting saving as "EC_SITTING"
@@ -286,11 +316,11 @@ Feature: Product Factory API Data Creation
 
   @InstanceSessions
   Scenario: Get Instance Sessions
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_FD"
+    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
+    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
     And I create new Vertical saving as "EC_VERTICAL"
     And I create new Body saving as "EC_BODY"
     And I create new Sitting saving as "EC_SITTING"
@@ -314,11 +344,11 @@ Feature: Product Factory API Data Creation
 
   @SessionTimings
   Scenario: Change Session Timings
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_FD"
+    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
+    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
     And I create new Vertical saving as "EC_VERTICAL"
     And I create new Body saving as "EC_BODY"
     And I create new Sitting saving as "EC_SITTING"
@@ -343,11 +373,11 @@ Feature: Product Factory API Data Creation
 
   @InstanceSteps
   Scenario: Get Instance Steps
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_FD"
+    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
+    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
     And I create new Vertical saving as "EC_VERTICAL"
     And I create new Body saving as "EC_BODY"
     And I create new Sitting saving as "EC_SITTING"
@@ -373,11 +403,11 @@ Feature: Product Factory API Data Creation
 
   @ChangeInstanceSteps  
   Scenario: Change Instance Steps
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_FD"
+    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
+    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
     And I create new Vertical saving as "EC_VERTICAL"
     And I create new Body saving as "EC_BODY"
     And I create new Sitting saving as "EC_SITTING"
@@ -404,11 +434,11 @@ Feature: Product Factory API Data Creation
 
   @CalculatePrice  
   Scenario: Calculate Course Price
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_FD"
+    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
+    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
     And I create new Vat Rule saving as "EC_VAT_RULE"
     And I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
     And I create new Study Mode saving as "EC_STUDY_MODE"
@@ -432,11 +462,11 @@ Feature: Product Factory API Data Creation
 
   @ActivateCourse
   Scenario: Activate Course
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_FD"
+    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
+    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
     And I create new Vertical saving as "EC_VERTICAL"
     And I create new Body saving as "EC_BODY"
     And I create new Sitting saving as "EC_SITTING"
@@ -468,11 +498,11 @@ Feature: Product Factory API Data Creation
 
   @ActivateInstance
   Scenario: Activate Instance
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_FD"
+    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
+    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
     And I create new Vertical saving as "EC_VERTICAL"
     And I create new Body saving as "EC_BODY"
     And I create new Sitting saving as "EC_SITTING"
@@ -505,11 +535,11 @@ Feature: Product Factory API Data Creation
 
   @CourseBulkOperation
   Scenario: Create Course Bulk Operation
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_FD"
+    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
+    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
     And I create new Vertical saving as "EC_VERTICAL"
     And I create new Body saving as "EC_BODY"
     And I create new Sitting saving as "EC_SITTING"
@@ -543,11 +573,11 @@ Feature: Product Factory API Data Creation
 
   @BulkWebPublishing #TC-685
   Scenario: Execute Bulk Web Publishing
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_FD"
+    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
+    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
     And I create new Vertical saving as "EC_VERTICAL"
     And I create new Body saving as "EC_BODY"
     And I create new Sitting saving as "EC_SITTING"
@@ -580,11 +610,71 @@ Feature: Product Factory API Data Creation
     And I create Course Bulk Operation saving as "EC_COURSE_BULK_OPERATION"
     Then I execute Bulk Web Publishing with publish to WEB "true" saving course as "EC_COURSE" and instance as "EC_INSTANCE"
 
+  @Instance
+  Scenario: Create Course Instance
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I create new Paper with CBA "false" saving as "EC_PAPER"
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I execute "Create Course" API step
+    And I execute "Create Session Duration" API step
+    And I execute "Create Instance" API step
+
+  @CBA
+  Scenario: Create CBA Course Instance
+    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
+    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I create new Paper with CBA "true" saving as "EC_PAPER"
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I create new Session Duration with Allowed for CBA "true" saving as "EC_SESSION_DURATION"
+    And I execute "Create Instance Group" API step
+    And I execute "Create Courses" API step
+
   @Material
   Scenario: Create Material
     When I generate new ISBN code saving as "EC_ISBN"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "MATERIALTYPE" saving as "EC_FD"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "MATERIALTYPE" saving as "EC_MATERIAL_TYPE"
     And I create new Vertical saving as "EC_VERTICAL"
     And I create new Body saving as "EC_BODY"
     And I create new Paper with CBA "false" saving as "EC_PAPER"
@@ -601,12 +691,12 @@ Feature: Product Factory API Data Creation
 
   @CourseMaterial
   Scenario: Create Course Material
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "MATERIALTYPE" saving as "EC_FD"
+    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
+    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "MATERIALTYPE" saving as "EC_MATERIAL_TYPE"
     And I generate new ISBN code saving as "EC_ISBN"
     And I create new Vertical saving as "EC_VERTICAL"
     And I create new Body saving as "EC_BODY"
@@ -643,12 +733,12 @@ Feature: Product Factory API Data Creation
 
   @UpdateCourseMaterial
   Scenario: Create Course Material
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "MATERIALTYPE" saving as "EC_FD"
+    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
+    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "MATERIALTYPE" saving as "EC_MATERIAL_TYPE"
     And I generate new ISBN code saving as "EC_ISBN"
     And I create new Vertical saving as "EC_VERTICAL"
     And I create new Body saving as "EC_BODY"
@@ -686,12 +776,12 @@ Feature: Product Factory API Data Creation
 
   @LinkClientsToCourse
   Scenario: Link Clients to Course
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_FD"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "MATERIALTYPE" saving as "EC_FD"
+    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
+    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
+    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "MATERIALTYPE" saving as "EC_MATERIAL_TYPE"
     And I generate new ISBN code saving as "EC_ISBN"
     And I create new Vertical saving as "EC_VERTICAL"
     And I create new Body saving as "EC_BODY"

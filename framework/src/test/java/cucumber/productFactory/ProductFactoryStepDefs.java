@@ -17,6 +17,8 @@ import ui.utils.bpp.ExecutionContextHandler;
 import ui.utils.bpp.PropertiesHelper;
 import ui.utils.bpp.TestParametersController;
 import java.io.IOException;
+import java.util.Map;
+
 import static com.jcabi.matchers.RegexMatchers.matchesPattern;
 import static org.junit.Assert.assertThat;
 import static org.junit.internal.matchers.StringContains.containsString;
@@ -29,6 +31,84 @@ public class ProductFactoryStepDefs {
     private final PropertiesHelper propertiesHelper = new PropertiesHelper();
     public ProductFactoryStepDefs() {
         this.restController = new RestApiController();
+    }
+
+    @When("I execute \"([^\"]*)\" API step$")
+    public void i_execute_api_step(String stepName) {
+        String jsonName = stepName.replaceAll(" ", "");
+        jsonName = jsonName.substring(0, 1).toLowerCase() + jsonName.substring(1);
+        String refDataName = jsonName.replace("create","").replace("update","");
+        JSONObject recordsList = restController.requestProcess(jsonName,jsonName, null);
+
+        /*Get JSON object values*/
+        String log = "<pre><br>" + refDataName + ": ";
+        for (Object key : recordsList.keySet()) {
+            String keyString = key.toString();
+            String valueString = recordsList.get(keyString) == null ? null : recordsList.get(keyString).toString();
+            ExecutionContextHandler.setExecutionContextValueByKey("EC_" + Tools.fromCamelCaseToUpperWithDash(refDataName) + "_" + Tools.fromCamelCaseToUpperWithDash(keyString), valueString);
+            if (!(valueString==null)) {
+                if (!(valueString.contains("{\"reference\":")||keyString.contains("_typename"))) {
+                    log = log + "<br>" + refDataName + " " + keyString + ": " + "<font color='red'><b>" + valueString + "</font></b>";
+                }
+            }
+        }
+        log = log + "</pre>";
+
+        /*Report log with Json object values*/
+        Reporter.log(log);
+        BPPLogManager.getLogger().info(stepName + " step was executed successfully.");
+    }
+
+    @When("I execute \"([^\"]*)\" API step with parameters$")
+    public void i_execute_api_step_with_parameters(String stepName, Map<String, String> parameters) {
+        String name = stepName.replaceAll(" ", "");
+        name = name.substring(0, 1).toLowerCase() + name.substring(1);
+        String refDataName = name.replace("create","");
+        JSONObject recordsList = restController.requestProcess(name,name, parameters);
+        String log = "<pre><br>" + refDataName + ": ";
+
+        /*Get JSON object values*/
+        for (Object key : recordsList.keySet()) {
+            String keyString = key.toString();
+            String valueString = recordsList.get(keyString) == null ? null : recordsList.get(keyString).toString();
+            ExecutionContextHandler.setExecutionContextValueByKey("EC_" + Tools.fromCamelCaseToUpperWithDash(refDataName) + "_" + Tools.fromCamelCaseToUpperWithDash(keyString), valueString);
+            if (!(valueString==null)) {
+                if (!(valueString.contains("{\"reference\":")||keyString.contains("_typename"))) {
+                    log = log + "<br>" + refDataName + " " + keyString + ": " + "<font color='red'><b>" + valueString + "</font></b>";
+                }
+            }
+        }
+        log = log + "</pre>";
+
+        /*Report log with Json object values*/
+        Reporter.log(log);
+        BPPLogManager.getLogger().info(stepName + " step was executed successfully.");
+    }
+
+    @When("I execute \"([^\"]*)\" API step with parameters saving as \"([^\"]*)\"$")
+    public void i_execute_api_step_with_parameters_saving_as(String stepName, String ecName, Map<String, String> parameters) {
+        String name = stepName.replaceAll(" ", "");
+        name = name.substring(0, 1).toLowerCase() + name.substring(1);
+        String refDataName = name.replace("create","");
+        JSONObject recordsList = restController.requestProcess(name,name, parameters);
+        String log = "<pre><br>" + refDataName + ": ";
+
+        /*Get JSON object values*/
+        for (Object key : recordsList.keySet()) {
+            String keyString = key.toString();
+            String valueString = recordsList.get(keyString) == null ? null : recordsList.get(keyString).toString();
+            ExecutionContextHandler.setExecutionContextValueByKey("EC_" + ecName + Tools.fromCamelCaseToUpperWithDash(refDataName) + "_" + Tools.fromCamelCaseToUpperWithDash(keyString), valueString);
+            if (!(valueString==null)) {
+                if (!(valueString.contains("{\"reference\":")||keyString.contains("_typename"))) {
+                    log = log + "<br>" + refDataName + " " + keyString + ": " + "<font color='red'><b>" + valueString + "</font></b>";
+                }
+            }
+        }
+        log = log + "</pre>";
+
+        /*Report log with Json object values*/
+        Reporter.log(log);
+        BPPLogManager.getLogger().info(stepName + " step was executed successfully.");
     }
 
     @When("I generate new ISBN code saving as \"([^\"]*)\"$")
@@ -51,7 +131,7 @@ public class ProductFactoryStepDefs {
     @When("I create Financial Dimensions with Dimension Type of \"([^\"]*)\" and Target \"([^\"]*)\" saving as \"([^\"]*)\"$")
     public void i_create_financial_dimension(String dimensionType, String target, String ecFDValue) {
 
-        JSONObject recordsList = restController.requestProcess("addFinancialDimension","createFinancialDimension", dimensionType,target);
+        JSONObject recordsList = restController.requestProcess("createFinancialDimension","createFinancialDimension", dimensionType,target);
 
         /*Get JSON object values*/
         String Reference = (String) recordsList.get("reference");
@@ -62,11 +142,11 @@ public class ProductFactoryStepDefs {
 
         /*Set EC values for JSON object values*/
 
-        ExecutionContextHandler.setExecutionContextValueByKey(ecFDValue + "_" + Target.toUpperCase().replace(" ", "_") + "_" + DimensionType.toUpperCase().replace(" ", "_") + "_REFERENCE", Reference);
-        ExecutionContextHandler.setExecutionContextValueByKey(ecFDValue + "_" + Target.toUpperCase().replace(" ", "_") + "_" + DimensionType.toUpperCase().replace(" ", "_") + "_DIMENSION_TYPE", DimensionType);
-        ExecutionContextHandler.setExecutionContextValueByKey(ecFDValue + "_" + Target.toUpperCase().replace(" ", "_") + "_" + DimensionType.toUpperCase().replace(" ", "_") + "_TARGET", Target);
-        ExecutionContextHandler.setExecutionContextValueByKey(ecFDValue + "_" + Target.toUpperCase().replace(" ", "_") + "_" + DimensionType.toUpperCase().replace(" ", "_") + "_CODE", Code);
-        ExecutionContextHandler.setExecutionContextValueByKey(ecFDValue + "_" + Target.toUpperCase().replace(" ", "_") + "_" + DimensionType.toUpperCase().replace(" ", "_") + "_DESCRIPTION", Description);
+        ExecutionContextHandler.setExecutionContextValueByKey(ecFDValue + "_FINANCIAL_DIMENSION" + "_REFERENCE", Reference);
+        ExecutionContextHandler.setExecutionContextValueByKey(ecFDValue + "_FINANCIAL_DIMENSION" + "_DIMENSION_TYPE", DimensionType);
+        ExecutionContextHandler.setExecutionContextValueByKey(ecFDValue + "_FINANCIAL_DIMENSION" + "_TARGET", Target);
+        ExecutionContextHandler.setExecutionContextValueByKey(ecFDValue + "_FINANCIAL_DIMENSION" + "_CODE", Code);
+        ExecutionContextHandler.setExecutionContextValueByKey(ecFDValue + "_FINANCIAL_DIMENSION" + "_DESCRIPTION", Description);
 
         /*Report log with JSON object values*/
         Reporter.log("<pre>" +
@@ -84,7 +164,7 @@ public class ProductFactoryStepDefs {
     @When("I create new Sitting saving as \"([^\"]*)\"$")
     public void i_create_sitting(String ecSittingValue) {
 
-        JSONObject recordsList = restController.requestProcess("addSitting","createSitting", null, null);
+        JSONObject recordsList = restController.requestProcess("createSitting","createSitting", null, null);
 
         /*Get JSON object values*/
         String Reference = (String) recordsList.get("reference");
@@ -114,7 +194,7 @@ public class ProductFactoryStepDefs {
     @When("I create new Vat Rule saving as \"([^\"]*)\"$")
     public void i_create_vat_rule(String ecVatRuleValue) {
 
-        JSONObject recordsList = restController.requestProcess("addVatRule","createVatRule", null, null);
+        JSONObject recordsList = restController.requestProcess("createVatRule","createVatRule", null, null);
 
         /*Get JSON object values*/
         String Reference = (String) recordsList.get("reference");
@@ -143,7 +223,7 @@ public class ProductFactoryStepDefs {
     @When("I create new Exam Preparation saving as \"([^\"]*)\"$")
     public void i_create_exam_preparation(String ecExamPreparationValue) {
 
-        JSONObject recordsList = restController.requestProcess("addExamPreparation","createExamPreparation", null, null);
+        JSONObject recordsList = restController.requestProcess("createExamPreparation","createExamPreparation", null, null);
 
         /*Get JSON object values*/
         String Reference = (String) recordsList.get("reference");
@@ -169,7 +249,7 @@ public class ProductFactoryStepDefs {
     @When("I create new Study Mode saving as \"([^\"]*)\"$")
     public void i_create_study_mode(String ecStudyModeValue) {
 
-        JSONObject recordsList = restController.requestProcess("addStudyMode","createStudyMode", null, null);
+        JSONObject recordsList = restController.requestProcess("createStudyMode","createStudyMode", null, null);
 
         /*Get JSON object values*/
         String Reference = (String) recordsList.get("reference");
@@ -195,7 +275,7 @@ public class ProductFactoryStepDefs {
     @When("I create new Course Type saving as \"([^\"]*)\"$")
     public void i_create_course_type(String ecCourseTypeValue) {
 
-        JSONObject recordsList = restController.requestProcess("addCourseType","createCourseType", null, null);
+        JSONObject recordsList = restController.requestProcess("createCourseType","createCourseType", null, null);
 
         /*Get JSON object values*/
         String Reference = (String) recordsList.get("reference");
@@ -218,7 +298,7 @@ public class ProductFactoryStepDefs {
     @When("I create new Vertical saving as \"([^\"]*)\"$")
     public synchronized void i_create_vertical(String ecVerticalValue) {
 
-        JSONObject recordsList = restController.requestProcess("addVertical","createVertical", null, null);
+        JSONObject recordsList = restController.requestProcess("createVertical","createVertical", null, null);
 
         /*Get JSON object values*/
         String Reference = (String) recordsList.get("reference");
@@ -241,7 +321,7 @@ public class ProductFactoryStepDefs {
     @When("I create new Body saving as \"([^\"]*)\"$")
     public synchronized void i_create_body(String ecBodyValue) {
 
-        JSONObject recordsList = restController.requestProcess("addBody","createBody", null, null);
+        JSONObject recordsList = restController.requestProcess("createBody","createBody", null, null);
 
         /*Get JSON object values*/
         String Reference = (String) recordsList.get("reference");
@@ -308,7 +388,7 @@ public class ProductFactoryStepDefs {
     @When("I create new Level saving as \"([^\"]*)\"$")
     public void i_create_level(String ecLevelValue) {
 
-        JSONObject recordsList = restController.requestProcess("addLevel","createLevel", null, null);
+        JSONObject recordsList = restController.requestProcess("createLevel","createLevel", null, null);
 
         /*Get JSON object values*/
         String Reference = (String) recordsList.get("reference");
@@ -388,7 +468,7 @@ public class ProductFactoryStepDefs {
     @When("I create new Region saving as \"([^\"]*)\"$")
     public void i_create_region(String ecRegionValue) {
 
-        JSONObject recordsList = restController.requestProcess("addRegion","createRegion", null, null);
+        JSONObject recordsList = restController.requestProcess("createRegion","createRegion", null, null);
 
         /*Get JSON object values*/
         String Reference = (String) recordsList.get("reference");
@@ -411,7 +491,7 @@ public class ProductFactoryStepDefs {
     @When("I create new Location saving as \"([^\"]*)\"$")
     public void i_create_location(String ecLocationValue) {
 
-        JSONObject recordsList = restController.requestProcess("addLocation","createLocation", null, null);
+        JSONObject recordsList = restController.requestProcess("createLocation","createLocation", null, null);
 
         /*Get JSON object values*/
         String Reference = (String) recordsList.get("reference");
@@ -452,7 +532,7 @@ public class ProductFactoryStepDefs {
     @When("I create new Session Duration with Allowed for CBA \"([^\"]*)\" saving as \"([^\"]*)\"$")
     public void i_create_session_duration(Boolean allowedForCba, String ecSessionDurationValue) {
 
-        JSONObject recordsList = restController.requestProcess("addSessionDuration","createSessionDuration", String.valueOf(allowedForCba), null);
+        JSONObject recordsList = restController.requestProcess("createSessionDuration","createSessionDuration", String.valueOf(allowedForCba), null);
 
         /*Get JSON object values*/
         String Reference = (String) recordsList.get("reference");
@@ -482,7 +562,7 @@ public class ProductFactoryStepDefs {
     @When("I create new Pricing Matrix saving as \"([^\"]*)\"$")
     public void i_create_pricing_matrix(String ecPricingMatrixValue) {
 
-        JSONObject recordsList = restController.requestProcess("addPricingMatrix","createPricingMatrix", null, null);
+        JSONObject recordsList = restController.requestProcess("createPricingMatrix","createPricingMatrix", null, null);
 
         /*Get JSON object values*/
         String Reference = (String) recordsList.get("reference");
@@ -502,7 +582,7 @@ public class ProductFactoryStepDefs {
     @When("I create new Prices saving as \"([^\"]*)\"$")
     public void i_create_prices(String ecPricesValue) {
 
-        JSONObject recordsList = restController.requestProcess("addPrices","createPrices", null, null);
+        JSONObject recordsList = restController.requestProcess("createPrices","createPrices", null, null);
 
         /*Get JSON object values*/
         String Reference = (String) recordsList.get("reference");
@@ -543,7 +623,7 @@ public class ProductFactoryStepDefs {
     @When("I create new University Programmes saving as \"([^\"]*)\"$")
     public void i_create_university_programmes(String ecUniversityProgrammesValue) {
 
-        JSONObject recordsList = restController.requestProcess("addUniversityProgrammes","createProgramme", null, null);
+        JSONObject recordsList = restController.requestProcess("createProgramme","createProgramme", null, null);
 
         /*Get JSON object values*/
         String Reference = (String) recordsList.get("reference");
@@ -569,7 +649,7 @@ public class ProductFactoryStepDefs {
     @When("I create new Programme Cohorts saving as \"([^\"]*)\"$")
     public void i_create_programme_cohorts(String ecProgrammeCohortsValue) {
 
-        JSONObject recordsList = restController.requestProcess("addProgrammeCohort","createCohort", null, null);
+        JSONObject recordsList = restController.requestProcess("createCohort","createCohort", null, null);
 
         /*Get JSON object values*/
         String Reference = (String) recordsList.get("reference");
@@ -633,7 +713,7 @@ public class ProductFactoryStepDefs {
     @When("I create new Stock Site saving as \"([^\"]*)\"$")
     public void i_create_stock_site(String ecStockSiteValue) {
 
-        JSONObject recordsList = restController.requestProcess("addStockSites","createStockSite", null, null);
+        JSONObject recordsList = restController.requestProcess("createStockSite","createStockSite", null, null);
 
         /*Get JSON object values*/
         String Reference = (String) recordsList.get("reference");
@@ -674,7 +754,7 @@ public class ProductFactoryStepDefs {
     @When("I create new Material Type with all Checkboxes \"([^\"]*)\"  saving as \"([^\"]*)\"$")
     public void i_create_material_type(Boolean checkBoxes, String ecMaterialTypeValue) {
 
-        JSONObject recordsList = restController.requestProcess("addMaterialType","createMaterialType", String.valueOf(checkBoxes), null);
+        JSONObject recordsList = restController.requestProcess("createMaterialType","createMaterialType", String.valueOf(checkBoxes), null);
 
         /*Get JSON object values*/
         String Reference = (String) recordsList.get("reference");
@@ -712,7 +792,7 @@ public class ProductFactoryStepDefs {
     @When("I create new Clients saving as \"([^\"]*)\"$")
     public void i_create_clients(String ecClientsValue) {
 
-        JSONObject recordsList = restController.requestProcess("addClients","createClient", null, null);
+        JSONObject recordsList = restController.requestProcess("createClient","createClient", null, null);
 
         /*Get JSON object values*/
         String Reference = (String) recordsList.get("reference");
@@ -732,10 +812,33 @@ public class ProductFactoryStepDefs {
         BPPLogManager.getLogger().info("Client was successfully created.");
     }
 
+    @When("I update Clients saving as \"([^\"]*)\"$")
+    public void i_update_clients(String ecClientsValue) {
+
+        JSONObject recordsList = restController.requestProcess("updateClient","updateClient", null, null);
+
+        /*Get JSON object values*/
+        String Reference = (String) recordsList.get("reference");
+        String Name = TestParametersController.checkIfSpecialParameter(String.valueOf(recordsList.get("name")));
+
+        /*Set EC values for JSON object values*/
+        ExecutionContextHandler.setExecutionContextValueByKey(ecClientsValue + "_REFERENCE", Reference);
+        ExecutionContextHandler.setExecutionContextValueByKey(ecClientsValue + "_NAME", Name);
+
+        /*Report log with Json object values*/
+        Reporter.log("<pre>" +
+                "<br>Clients: " +
+                "<br>" + "Clients Reference: " + "<font color='red'><b>" + Reference + "</font></b>" +
+                "<br>" + "Clients Name: " + "<font color='red'><b>" + Name + "</font></b>" +
+                "</pre>");
+
+        BPPLogManager.getLogger().info("Client was successfully updated.");
+    }
+
     @When("I create new Streams saving as \"([^\"]*)\"$")
     public void i_create_streams(String ecStreamsValue) {
 
-        JSONObject recordsList = restController.requestProcess("addStreams","createStream", null, null);
+        JSONObject recordsList = restController.requestProcess("createStream","createStream", null, null);
 
         /*Get JSON object values*/
         String Reference = (String) recordsList.get("reference");
@@ -784,7 +887,7 @@ public class ProductFactoryStepDefs {
     @When("I create new Course saving as \"([^\"]*)\"$")
     public void i_create_course(String ecCourseValue) {
 
-        JSONObject recordsList = restController.requestProcess("addCourse","createCourse", null, null);
+        JSONObject recordsList = restController.requestProcess("createCourse","createCourse", null, null);
 
         /*Get JSON object values*/
         String Reference = (String) recordsList.get("reference");
@@ -804,7 +907,7 @@ public class ProductFactoryStepDefs {
     @When("I create new Instance saving as \"([^\"]*)\" and saving new session as \"([^\"]*)\"$")
     public void i_create_instance_for_course(String ecInstanceValue, String ecSessionValue) {
 
-        JSONObject recordsList = restController.requestProcess("addInstance","createInstance", null, null);
+        JSONObject recordsList = restController.requestProcess("createInstance","createInstance", null, null);
 
         /*Get JSON object values*/
         String Reference = (String) recordsList.get("reference");

@@ -5,7 +5,7 @@
       "shortName": "ApiBodyShortName[#####]",
       "name": "ApiBodyName[####]",
       "description": "ApiBodyDescription[#####]",
-      "financialDimensionReference": "EC_FD_BODY_PRODUCT_REFERENCE",
+      "financialDimensionReference": "EC_BODY_FINANCIAL_DIMENSION_REFERENCE",
       "verticalReference": "EC_VERTICAL_REFERENCE"
     }
   },
