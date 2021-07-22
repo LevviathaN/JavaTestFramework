@@ -416,6 +416,14 @@
     "value": "xpath=(//input[@type='file'])[1]"
   },
   {
+    "name": "BPP Digital Additional Files Upload File Button",
+    "value": "xpath=(//input[@type='file'])[last()]"
+  },
+  {
+    "name": "BPP Digital Additional Files Upload Button",
+    "value": "xpath=(//*[@value='Upload'])[last()]"
+  },
+  {
     "name": "BPP Digital Validate Note Date",
     "value": "xpath=//h3[text()='Eligibility criteria']/preceding::thead[1]/tr[last()]/td[1]"
   },
