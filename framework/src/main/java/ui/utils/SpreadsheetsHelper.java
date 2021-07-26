@@ -21,6 +21,8 @@ public class SpreadsheetsHelper {
     private static Map<Integer,String> columns;
     private static Map<String,String> squads;
     public static long executionTime = 0;
+    public static long executionStartTime = 0;
+    public static long executionEndTime = 0;
     public static void initializeColumns() {
         squads = new HashMap<>();
         squads.put("ProductFactory","Terra");
@@ -93,6 +95,7 @@ public class SpreadsheetsHelper {
         String correctDate = dateFrag[2] + "." + dateFrag[1] + "." + dateFrag[0];
 
         //getting execution duration
+        executionTime = executionEndTime - executionStartTime;
         long second = (executionTime / 1000) % 60;
         long minute = (executionTime / (1000 * 60)) % 60;
         long hour = (executionTime / (1000 * 60 * 60)) % 24;

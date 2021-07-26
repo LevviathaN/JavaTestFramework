@@ -2,7 +2,7 @@
   "operationName": "createCohort",
   "variables": {
     "command": {
-      "programmeReference": "EC_UNIVERSITY_PROGRAMME_REFERENCE",
+      "programmeReference": "EC_PROGRAMME_REFERENCE",
       "name": "ApiProgrammeCohortName[####]",
       "startTeachingDate": "[TIMENOW-yyyy-MM-dd]"
     }

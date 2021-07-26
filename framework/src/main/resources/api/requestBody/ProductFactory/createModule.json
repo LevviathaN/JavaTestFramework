@@ -2,7 +2,7 @@
   "operationName":"createModule",
   "variables":{
     "command":{
-      "cohortReference":"EC_PROGRAMME_COHORT_REFERENCE",
+      "cohortReference":"EC_COHORT_REFERENCE",
       "name":"ApiModuleSectionName[####]",
       "sisCode":"KW_AUTO_RANDOMNUMBER|#####",
       "termCode":"KW_AUTO_RANDOMNUMBER|#####",

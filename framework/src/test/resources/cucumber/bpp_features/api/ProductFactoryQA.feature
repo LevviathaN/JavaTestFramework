@@ -8,62 +8,90 @@ Feature: Product Factory API Data Creation
 
   @ChangeMaterialFinancialDimension #Only once. If Material is created will cause an error: Material have already created, so you cannot change the Course Financial Dimensions
   Scenario: Attach Financial Dimension to Material
-    Then I create Financial Dimensions with Dimension Type of "LEGALENTITY" and Target "MATERIAL" saving as "EC_FD"
-    Then I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "MATERIAL" saving as "EC_FD"
-    Then I change Material Financial Dimension saving as "EC_MATERIAL"
+    Given I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_LEGAL_ENTITY"
+      |dimensionType|LEGALENTITY|
+      |target       |MATERIAL   |
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_COST_CENTRE"
+      |dimensionType|COSTCENTRE|
+      |target       |MATERIAL  |
+    Then I execute "Change Material Financial Dimension" API step
 
   @ChangeCourseFinancialDimension #Only once. If Course is created will cause an error: Courses have already created, so you cannot change the Course Financial Dimensions
   Scenario: Attach Financial Dimension to Course
-    Then I create Financial Dimensions with Dimension Type of "LEGALENTITY" and Target "COURSE" saving as "EC_FD"
-    Then I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSE" saving as "EC_FD"
-    Then I change Course Financial Dimension saving as "EC_COURSE"
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_LEGAL_ENTITY_"
+      |dimensionType|LEGALENTITY|
+      |target       |COURSE     |
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE|
+      |target       |COURSE    |
+    Then I execute "Change Course Financial Dimension" API step
 
   @FinancialDimension #TC-1532
   Scenario: Create Financial Dimensions record Course Type item
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE|
+      |target       |COURSETYPE|
 
   @FinancialDimension #TC-1532
   Scenario: Create Financial Dimensions record Material Type item
-    Then I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "MATERIALTYPE" saving as "EC_MATERIAL_TYPE"
+    Given I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
 
   @FinancialDimension #TC-1532
   Scenario: Create Financial Dimensions record Location item
-    Then I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
+    Given I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT |
+      |target       |LOCATION|
 
   @FinancialDimension #TC-1532
   Scenario: Create Financial Dimensions record Body item
-    Then I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
 
   @FinancialDimension #TC-1532
   Scenario: Create Financial Dimensions record Region item
-    Then I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
+    Given I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT|
+      |target       |REGION |
 
   @VatRule #TC-1340
-  Scenario: Create Vat Rule
-    Then I create new Vat Rule saving as "EC_VAT_RULE"
+  Scenario: Add a New VAT Rule Using a Modal
+    Given I execute "Create Vat Rule" API step
 
   @ExamPreparation #TC-4692
-  Scenario: Create Exam Preparation
-    Then I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
+  Scenario: Add a New Exam Preparation Using a Modal
+    Given I execute "Create Exam Preparation" API step
 
   @StudyMode #TC-4793
-  Scenario: Create Study Mode
-    Then I create new Study Mode saving as "EC_STUDY_MODE"
+  Scenario: Add a New Study Mode Using a Modal
+    Given I execute "Create Study Mode" API step
 
   @CourseType #TC-701
-  Scenario: Create Course Type
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
-    And I create new Vat Rule saving as "EC_VAT_RULE"
-    And I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
-    And I create new Study Mode saving as "EC_STUDY_MODE"
-    Then I create new Course Type saving as "EC_COURSE_TYPE"
+  Scenario: Add a New Course Type Using a Modal
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE|
+      |target       |COURSETYPE|
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
 
   @CourseType @Update #TC-1546
-  Scenario: Update Course Type
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
+  Scenario: Amend a Course Type Using a Modal
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE|
+      |target       |COURSETYPE|
     And I execute "Create Vat Rule" API step
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
@@ -71,544 +99,249 @@ Feature: Product Factory API Data Creation
     And I execute "Update Course Type" API step
 
   @Vertical #TC-4811
-  Scenario: Create Vertical
-    When I create new Vertical saving as "EC_VERTICAL"
+  Scenario: Add a New Vertical Using a Modal
+    Given I execute "Create Vertical" API step
 
   @Body @Update #TC-1545
-  Scenario: Update Body
-    When I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
+  Scenario: Amend a Body Using a Modal
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
     And I execute "Create Vertical" API step
     Then I execute "Create Body" API step
     And I execute "Update Body" API step
 
   @Body #TC-743
-  Scenario: Create Body
-    When I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
-    And I create new Vertical saving as "EC_VERTICAL"
-    Then I create new Body saving as "EC_BODY"
+  Scenario: Add a New Body Using a Modal
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Vertical" API step
+    Then I execute "Create Body" API step
 
   @Sitting #TC-835
-  Scenario: Create Sitting
-    When I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
-    And I create new Vertical saving as "EC_VERTICAL"
-    And I create new Body saving as "EC_BODY"
-    Then I create new Sitting saving as "EC_SITTING"
+  Scenario: Add a New Sitting Using a Modal (Link to One Body)
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    Then I execute "Create Sitting" API step
 
   @Paper #TC-772
-  Scenario: Create Paper
-    When I create new Paper with CBA "false" saving as "EC_PAPER"
-    When I create new Paper with CBA "true" saving as "EC_PAPER"
+  Scenario: Add a New Paper Using a Modal
+    Given I execute "Create Paper" API step
+    Then I execute "Create Paper" API step with parameters saving as "CBA_"
+      |isCba|true|
 
   @Level #TC-746
-  Scenario: Create Level
-    When I create new Level saving as "EC_LEVEL"
+  Scenario: Add a New Level Using a Modal
+    Given I execute "Create Level" API step
 
   @LinkBodyToLevel #TC-703
-  Scenario: Link Body to Levels
-    When I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
-    And I create new Vertical saving as "EC_VERTICAL"
-    And I create new Body saving as "EC_BODY"
-    And I create new Level saving as "EC_LEVEL"
-    Then I link Body to Levels
+  Scenario: Link Body to Level
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Level" API step
+    Then I execute "Link Body To Levels" API step
 
   @ChangePaperBody #TC-697
-  Scenario: Change Paper Body
-    When I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
-    And I create new Vertical saving as "EC_VERTICAL"
-    And I create new Body saving as "EC_BODY"
-    And I create new Paper with CBA "false" saving as "EC_PAPER"
-    Then I change Paper Body
+  Scenario: Link Body to Paper
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Paper" API step
+    Then I execute "Change Paper Body" API step
 
   @LinkPaperToLevel #TC-716
   Scenario: Link Paper to Levels
-    When I create new Level saving as "EC_LEVEL"
-    And I create new Paper with CBA "false" saving as "EC_PAPER"
-    Then I link Paper to Levels
+    Given I execute "Create Level" API step
+    And I execute "Create Paper" API step
+    Then I execute "Link Paper To Levels" API step
 
   @Region #TC-1875
-  Scenario: Create Region
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
-    Then I create new Region saving as "EC_REGION"
+  Scenario: Create new Region
+    Given I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT|
+      |target       |REGION |
+    Then I execute "Create Region" API step
     
   @Location #TC-775
-  Scenario: Create Location
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
+  Scenario: Add a New Location Using a Modal
+    Given I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT|
+      |target       |REGION |
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT |
+      |target       |LOCATION|
     And I execute "Create Region" API step
     And I execute "Create Location" API step
 
   @Location @Update #TC-832
-  Scenario: Update Location
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
+  Scenario: Amend Location
+    Given I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT|
+      |target       |REGION |
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT |
+      |target       |LOCATION|
     And I execute "Create Region" API step
     And I execute "Create Location" API step
     And I execute "Update Location" API step
 
   @SessionDuration #TC-811
-  Scenario: Create Session Duration
-    Then I create new Session Duration with Allowed for CBA "false" saving as "EC_SESSION_DURATION"
+  Scenario: Add a New Session Duration Using a Modal
+    Given I execute "Create Session Duration" API step
 
   @PricingMatrix #TC-981
-  Scenario: Create Pricing Matrix
-    When I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_FD"
-    And I create new Vertical saving as "EC_VERTICAL"
-    And I create new Body saving as "EC_BODY"
-    And I create new Sitting saving as "EC_SITTING"
-    Then I create new Pricing Matrix saving as "EC_PRICING_MATRIX"
+  Scenario: Add a New Pricing Matrix Using a Modal
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    When I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    Then I execute "Create Pricing Matrix" API step
 
   @Prices #TC-1032
-  Scenario: Create Prices
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
-    And I create new Vat Rule saving as "EC_VAT_RULE"
-    And I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
-    And I create new Study Mode saving as "EC_STUDY_MODE"
-    And I create new Course Type saving as "EC_COURSE_TYPE"
-    And I create new Vertical saving as "EC_VERTICAL"
-    And I create new Body saving as "EC_BODY"
-    And I create new Sitting saving as "EC_SITTING"
-    And I create new Paper with CBA "false" saving as "EC_PAPER"
-    And I create new Level saving as "EC_LEVEL"
-    And I link Body to Levels
-    And I change Paper Body
-    And I link Paper to Levels
-    And I create new Region saving as "EC_REGION"
-    And I create new Location saving as "EC_LOCATION"
-    And I create new Pricing Matrix saving as "EC_PRICING_MATRIX"
-    Then I create new Prices saving as "EC_PRICES"
+  Scenario: Add a New Pricing Matrix Full Cycle
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE|
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT|
+      |target       |REGION |
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT |
+      |target       |LOCATION|
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    Then I execute "Create Pricing Matrix" API step
+    And I execute "Create Prices" API step
 
   @DigitalContent #TC-3148
   Scenario: Create Digital Content
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
-    And I create new Vertical saving as "EC_VERTICAL"
-    And I create new Body saving as "EC_BODY"
-    And I create new Sitting saving as "EC_SITTING"
-    And I create new Vat Rule saving as "EC_VAT_RULE"
-    And I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
-    And I create new Study Mode saving as "EC_STUDY_MODE"
-    And I create new Course Type saving as "EC_COURSE_TYPE"
-    And I create new Paper with CBA "false" saving as "EC_PAPER"
-    And I create new Level saving as "EC_LEVEL"
-    And I link Body to Levels
-    And I change Paper Body
-    And I link Paper to Levels
-    Then I create new Digital Content with Content Type "PROFESSIONALQUALIFICATIONS" and Target Platform "TOTARA" saving as "EC_DIGITAL_CONTENT"
-    
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    Then I execute "Create Digital Content" API step
+
   @UniversityProgrammes #TC-5387
-  Scenario: Create University Programmes
-    Then I create new University Programmes saving as "EC_UNIVERSITY_PROGRAMME"
+  Scenario: Add a New Programme Using a Modal
+    Given I execute "Create Programme" API step
 
   @ProgrammeCohorts #TC-5391
-  Scenario: Create Programme Cohorts
-    When I create new University Programmes saving as "EC_UNIVERSITY_PROGRAMME"
-    Then I create new Programme Cohorts saving as "EC_PROGRAMME_COHORT"
+  Scenario: Add a New Programme Cohort Using a Modal
+    Given I execute "Create Programme" API step
+    Then I execute "Create Cohort" API step
 
   @ModuleSection #TC-5407
-  Scenario: Create Module Sections
-    When I create new University Programmes saving as "EC_UNIVERSITY_PROGRAMME"
-    And I create new Programme Cohorts saving as "EC_PROGRAMME_COHORT"
-    Then I create new Module Sections with Timetabled checkbox set as "true" and Group Requirements set as "true" saving as "EC_MODULE_SECTIONS"
+  Scenario: Add a New Module Section Using a Modal
+    Given I execute "Create Programme" API step
+    Then I execute "Create Cohort" API step
+    And I execute "Create Module" API step
 
   @StockSite
-  Scenario: Create Stock Site
-    Then I create new Stock Site saving as "EC_STOCK_SITE"
+  Scenario: Add a New Stock Site Using a Modal
+    Given I execute "Create Stock Site" API step
 
   @MaterialType #TC-1435
-  Scenario: Create Material Type
-    When I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "MATERIALTYPE" saving as "EC_MATERIAL_TYPE"
-    Then I create new Material Type with all Checkboxes "true"  saving as "EC_MATERIAL_TYPE"
+  Scenario: Add a New Material Type Using a Modal
+    Given I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+    Then I execute "Create Material Type" API step
 
   @Clients #TC-919
-  Scenario: Create Clients
-    Then I create new Clients saving as "EC_CLIENTS"
+  Scenario: Add a New Client Using a Modal
+    Given I execute "Create Client" API step
 
   @Clients @Update #TC-1548
-  Scenario: Update Clients
+  Scenario: Amend a Client Using a Modal
     Given I execute "Create Client" API step
     Then I execute "Update Client" API step
 
   @Streams #TC-2929
-  Scenario: Create Streams
-    Then I create new Streams saving as "EC_STREAM"
+  Scenario: Add a New Stream Using a Modal
+    Given I execute "Create Stream" API step
 
   @DeactivationReason #TC-975
-  Scenario: Create Deactivation Reason
-    Then I create new Deactivation Reason with all Checkboxes "true" saving as "EC_DEACTIVATION_REASON"
+  Scenario: Add a New Deactivation Reason Using a Modal
+    Given I execute "Create Deactivation Reason" API step
 
   @Course
   Scenario: Create Course
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
-    And I create new Vertical saving as "EC_VERTICAL"
-    And I create new Body saving as "EC_BODY"
-    And I create new Sitting saving as "EC_SITTING"
-    And I create new Vat Rule saving as "EC_VAT_RULE"
-    And I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
-    And I create new Study Mode saving as "EC_STUDY_MODE"
-    And I create new Course Type saving as "EC_COURSE_TYPE"
-    And I create new Paper with CBA "false" saving as "EC_PAPER"
-    And I create new Level saving as "EC_LEVEL"
-    And I link Body to Levels
-    And I change Paper Body
-    And I link Paper to Levels
-    And I create new Region saving as "EC_REGION"
-    Then I create new Course saving as "EC_COURSE"
-
-  @Instance
-  Scenario: Create Instance
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
-    And I create new Vertical saving as "EC_VERTICAL"
-    And I create new Body saving as "EC_BODY"
-    And I create new Sitting saving as "EC_SITTING"
-    And I create new Vat Rule saving as "EC_VAT_RULE"
-    And I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
-    And I create new Study Mode saving as "EC_STUDY_MODE"
-    And I create new Course Type saving as "EC_COURSE_TYPE"
-    And I create new Paper with CBA "false" saving as "EC_PAPER"
-    And I create new Level saving as "EC_LEVEL"
-    And I link Body to Levels
-    And I change Paper Body
-    And I link Paper to Levels
-    And I create new Region saving as "EC_REGION"
-    And I create new Location saving as "EC_LOCATION"
-    And I create new Course saving as "EC_COURSE"
-    And I create new Session Duration with Allowed for CBA "false" saving as "EC_SESSION_DURATION"
-    Then I create new Instance saving as "EC_INSTANCE" and saving new session as "EC_SESSION"
-
-  @InstanceCapacity
-  Scenario: Change Instance Capacity
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
-    And I create new Vertical saving as "EC_VERTICAL"
-    And I create new Body saving as "EC_BODY"
-    And I create new Sitting saving as "EC_SITTING"
-    And I create new Vat Rule saving as "EC_VAT_RULE"
-    And I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
-    And I create new Study Mode saving as "EC_STUDY_MODE"
-    And I create new Course Type saving as "EC_COURSE_TYPE"
-    And I create new Paper with CBA "false" saving as "EC_PAPER"
-    And I create new Level saving as "EC_LEVEL"
-    And I link Body to Levels
-    And I change Paper Body
-    And I link Paper to Levels
-    And I create new Region saving as "EC_REGION"
-    And I create new Location saving as "EC_LOCATION"
-    And I create new Course saving as "EC_COURSE"
-    And I create new Session Duration with Allowed for CBA "false" saving as "EC_SESSION_DURATION"
-    And I create new Streams saving as "EC_STREAM"
-    And I create new Instance saving as "EC_INSTANCE" and saving new session as "EC_SESSION"
-    Then I change Instance Capacity with Capacity "15" saving as "EC_INSTANCE"
-
-  @InstanceSessions
-  Scenario: Get Instance Sessions
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
-    And I create new Vertical saving as "EC_VERTICAL"
-    And I create new Body saving as "EC_BODY"
-    And I create new Sitting saving as "EC_SITTING"
-    And I create new Vat Rule saving as "EC_VAT_RULE"
-    And I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
-    And I create new Study Mode saving as "EC_STUDY_MODE"
-    And I create new Course Type saving as "EC_COURSE_TYPE"
-    And I create new Paper with CBA "false" saving as "EC_PAPER"
-    And I create new Level saving as "EC_LEVEL"
-    And I link Body to Levels
-    And I change Paper Body
-    And I link Paper to Levels
-    And I create new Region saving as "EC_REGION"
-    And I create new Location saving as "EC_LOCATION"
-    And I create new Course saving as "EC_COURSE"
-    And I create new Session Duration with Allowed for CBA "false" saving as "EC_SESSION_DURATION"
-    And I create new Streams saving as "EC_STREAM"
-    And I create new Instance saving as "EC_INSTANCE" and saving new session as "EC_SESSION"
-    And I change Instance Capacity with Capacity "15" saving as "EC_INSTANCE"
-    Then I get Instance Sessions saving as "EC_SESSION_TIMING"
-
-  @SessionTimings
-  Scenario: Change Session Timings
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
-    And I create new Vertical saving as "EC_VERTICAL"
-    And I create new Body saving as "EC_BODY"
-    And I create new Sitting saving as "EC_SITTING"
-    And I create new Vat Rule saving as "EC_VAT_RULE"
-    And I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
-    And I create new Study Mode saving as "EC_STUDY_MODE"
-    And I create new Course Type saving as "EC_COURSE_TYPE"
-    And I create new Paper with CBA "false" saving as "EC_PAPER"
-    And I create new Level saving as "EC_LEVEL"
-    And I link Body to Levels
-    And I change Paper Body
-    And I link Paper to Levels
-    And I create new Region saving as "EC_REGION"
-    And I create new Location saving as "EC_LOCATION"
-    And I create new Course saving as "EC_COURSE"
-    And I create new Session Duration with Allowed for CBA "false" saving as "EC_SESSION_DURATION"
-    And I create new Streams saving as "EC_STREAM"
-    And I create new Instance saving as "EC_INSTANCE" and saving new session as "EC_SESSION"
-    And I change Instance Capacity with Capacity "15" saving as "EC_INSTANCE"
-    And I get Instance Sessions saving as "EC_SESSION_TIMING"
-    Then I change Session Timings saving as "EC_SESSION"
-
-  @InstanceSteps
-  Scenario: Get Instance Steps
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
-    And I create new Vertical saving as "EC_VERTICAL"
-    And I create new Body saving as "EC_BODY"
-    And I create new Sitting saving as "EC_SITTING"
-    And I create new Vat Rule saving as "EC_VAT_RULE"
-    And I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
-    And I create new Study Mode saving as "EC_STUDY_MODE"
-    And I create new Course Type saving as "EC_COURSE_TYPE"
-    And I create new Paper with CBA "false" saving as "EC_PAPER"
-    And I create new Level saving as "EC_LEVEL"
-    And I link Body to Levels
-    And I change Paper Body
-    And I link Paper to Levels
-    And I create new Region saving as "EC_REGION"
-    And I create new Location saving as "EC_LOCATION"
-    And I create new Course saving as "EC_COURSE"
-    And I create new Session Duration with Allowed for CBA "false" saving as "EC_SESSION_DURATION"
-    And I create new Streams saving as "EC_STREAM"
-    And I create new Instance saving as "EC_INSTANCE" and saving new session as "EC_SESSION"
-    And I change Instance Capacity with Capacity "15" saving as "EC_INSTANCE"
-    And I get Instance Sessions saving as "EC_SESSION_TIMING"
-    And I change Session Timings saving as "EC_SESSION"
-    Then I get Instance Steps saving as "EC_STEP"
-
-  @ChangeInstanceSteps  
-  Scenario: Change Instance Steps
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
-    And I create new Vertical saving as "EC_VERTICAL"
-    And I create new Body saving as "EC_BODY"
-    And I create new Sitting saving as "EC_SITTING"
-    And I create new Vat Rule saving as "EC_VAT_RULE"
-    And I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
-    And I create new Study Mode saving as "EC_STUDY_MODE"
-    And I create new Course Type saving as "EC_COURSE_TYPE"
-    And I create new Paper with CBA "false" saving as "EC_PAPER"
-    And I create new Level saving as "EC_LEVEL"
-    And I link Body to Levels
-    And I change Paper Body
-    And I link Paper to Levels
-    And I create new Region saving as "EC_REGION"
-    And I create new Location saving as "EC_LOCATION"
-    And I create new Course saving as "EC_COURSE"
-    And I create new Session Duration with Allowed for CBA "false" saving as "EC_SESSION_DURATION"
-    And I create new Streams saving as "EC_STREAM"
-    And I create new Instance saving as "EC_INSTANCE" and saving new session as "EC_SESSION"
-    And I change Instance Capacity with Capacity "15" saving as "EC_INSTANCE"
-    And I get Instance Sessions saving as "EC_SESSION_TIMING"
-    And I change Session Timings saving as "EC_SESSION"
-    And I get Instance Steps saving as "EC_STEP"
-    Then I change Instance Steps saving as "EC_STEP"
-
-  @CalculatePrice  
-  Scenario: Calculate Course Price
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
-    And I create new Vat Rule saving as "EC_VAT_RULE"
-    And I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
-    And I create new Study Mode saving as "EC_STUDY_MODE"
-    And I create new Course Type saving as "EC_COURSE_TYPE"
-    And I create new Vertical saving as "EC_VERTICAL"
-    And I create new Body saving as "EC_BODY"
-    And I create new Sitting saving as "EC_SITTING"
-    And I create new Paper with CBA "false" saving as "EC_PAPER"
-    And I create new Level saving as "EC_LEVEL"
-    And I link Body to Levels
-    And I change Paper Body
-    And I link Paper to Levels
-    And I create new Region saving as "EC_REGION"
-    And I create new Location saving as "EC_LOCATION"
-    And I create new Session Duration with Allowed for CBA "false" saving as "EC_SESSION_DURATION"
-    And I create new Pricing Matrix saving as "EC_PRICING_MATRIX"
-    And I create new Prices saving as "EC_PRICES"
-    And I create new Digital Content with Content Type "PROFESSIONALQUALIFICATIONS" and Target Platform "TOTARA" saving as "EC_DIGITAL_CONTENT"
-    And I create new Course saving as "EC_COURSE"
-    Then I calculate Course Price saving as "EC_PRICE"
-
-  @ActivateCourse
-  Scenario: Activate Course
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
-    And I create new Vertical saving as "EC_VERTICAL"
-    And I create new Body saving as "EC_BODY"
-    And I create new Sitting saving as "EC_SITTING"
-    And I create new Vat Rule saving as "EC_VAT_RULE"
-    And I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
-    And I create new Study Mode saving as "EC_STUDY_MODE"
-    And I create new Course Type saving as "EC_COURSE_TYPE"
-    And I create new Paper with CBA "false" saving as "EC_PAPER"
-    And I create new Level saving as "EC_LEVEL"
-    And I link Body to Levels
-    And I change Paper Body
-    And I link Paper to Levels
-    And I create new Digital Content with Content Type "PROFESSIONALQUALIFICATIONS" and Target Platform "TOTARA" saving as "EC_DIGITAL_CONTENT"
-    And I create new Region saving as "EC_REGION"
-    And I create new Location saving as "EC_LOCATION"
-    And I create new Course saving as "EC_COURSE"
-    And I create new Session Duration with Allowed for CBA "false" saving as "EC_SESSION_DURATION"
-    And I create new Streams saving as "EC_STREAM"
-    And I create new Instance saving as "EC_INSTANCE" and saving new session as "EC_SESSION"
-    And I change Instance Capacity with Capacity "15" saving as "EC_INSTANCE"
-    And I get Instance Sessions saving as "EC_SESSION_TIMING"
-    And I change Session Timings saving as "EC_SESSION"
-    And I get Instance Steps saving as "EC_STEP"
-    And I change Instance Steps saving as "EC_STEP"
-    And I create new Pricing Matrix saving as "EC_PRICING_MATRIX"
-    And I create new Prices saving as "EC_PRICES"
-    And I calculate Course Price saving as "EC_PRICE"
-    Then I activate Course saving as "EC_COURSE_ACTIVATION"
-
-  @ActivateInstance
-  Scenario: Activate Instance
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
-    And I create new Vertical saving as "EC_VERTICAL"
-    And I create new Body saving as "EC_BODY"
-    And I create new Sitting saving as "EC_SITTING"
-    And I create new Vat Rule saving as "EC_VAT_RULE"
-    And I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
-    And I create new Study Mode saving as "EC_STUDY_MODE"
-    And I create new Course Type saving as "EC_COURSE_TYPE"
-    And I create new Paper with CBA "false" saving as "EC_PAPER"
-    And I create new Level saving as "EC_LEVEL"
-    And I link Body to Levels
-    And I change Paper Body
-    And I link Paper to Levels
-    And I create new Digital Content with Content Type "PROFESSIONALQUALIFICATIONS" and Target Platform "TOTARA" saving as "EC_DIGITAL_CONTENT"
-    And I create new Region saving as "EC_REGION"
-    And I create new Location saving as "EC_LOCATION"
-    And I create new Course saving as "EC_COURSE"
-    And I create new Session Duration with Allowed for CBA "false" saving as "EC_SESSION_DURATION"
-    And I create new Streams saving as "EC_STREAM"
-    And I create new Instance saving as "EC_INSTANCE" and saving new session as "EC_SESSION"
-    And I change Instance Capacity with Capacity "15" saving as "EC_INSTANCE"
-    And I get Instance Sessions saving as "EC_SESSION_TIMING"
-    And I change Session Timings saving as "EC_SESSION"
-    And I get Instance Steps saving as "EC_STEP"
-    And I change Instance Steps saving as "EC_STEP"
-    And I create new Pricing Matrix saving as "EC_PRICING_MATRIX"
-    And I create new Prices saving as "EC_PRICES"
-    And I calculate Course Price saving as "EC_PRICE"
-    And I activate Course saving as "EC_COURSE_ACTIVATION"
-    Then I activate Instance saving as "EC_INSTANCE_ACTIVATION"
-
-  @CourseBulkOperation
-  Scenario: Create Course Bulk Operation
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
-    And I create new Vertical saving as "EC_VERTICAL"
-    And I create new Body saving as "EC_BODY"
-    And I create new Sitting saving as "EC_SITTING"
-    And I create new Vat Rule saving as "EC_VAT_RULE"
-    And I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
-    And I create new Study Mode saving as "EC_STUDY_MODE"
-    And I create new Course Type saving as "EC_COURSE_TYPE"
-    And I create new Paper with CBA "false" saving as "EC_PAPER"
-    And I create new Level saving as "EC_LEVEL"
-    And I link Body to Levels
-    And I change Paper Body
-    And I link Paper to Levels
-    And I create new Digital Content with Content Type "PROFESSIONALQUALIFICATIONS" and Target Platform "TOTARA" saving as "EC_DIGITAL_CONTENT"
-    And I create new Region saving as "EC_REGION"
-    And I create new Location saving as "EC_LOCATION"
-    And I create new Course saving as "EC_COURSE"
-    And I create new Session Duration with Allowed for CBA "false" saving as "EC_SESSION_DURATION"
-    And I create new Streams saving as "EC_STREAM"
-    And I create new Instance saving as "EC_INSTANCE" and saving new session as "EC_SESSION"
-    And I change Instance Capacity with Capacity "15" saving as "EC_INSTANCE"
-    And I get Instance Sessions saving as "EC_SESSION_TIMING"
-    And I change Session Timings saving as "EC_SESSION"
-    And I get Instance Steps saving as "EC_STEP"
-    And I change Instance Steps saving as "EC_STEP"
-    And I create new Pricing Matrix saving as "EC_PRICING_MATRIX"
-    And I create new Prices saving as "EC_PRICES"
-    And I calculate Course Price saving as "EC_PRICE"
-    And I activate Course saving as "EC_COURSE_ACTIVATION"
-    And I activate Instance saving as "EC_INSTANCE_ACTIVATION"
-    Then I create Course Bulk Operation saving as "EC_COURSE_BULK_OPERATION"
-
-  @BulkWebPublishing #TC-685
-  Scenario: Execute Bulk Web Publishing
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
-    And I create new Vertical saving as "EC_VERTICAL"
-    And I create new Body saving as "EC_BODY"
-    And I create new Sitting saving as "EC_SITTING"
-    And I create new Vat Rule saving as "EC_VAT_RULE"
-    And I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
-    And I create new Study Mode saving as "EC_STUDY_MODE"
-    And I create new Course Type saving as "EC_COURSE_TYPE"
-    And I create new Paper with CBA "false" saving as "EC_PAPER"
-    And I create new Level saving as "EC_LEVEL"
-    And I link Body to Levels
-    And I change Paper Body
-    And I link Paper to Levels
-    And I create new Digital Content with Content Type "PROFESSIONALQUALIFICATIONS" and Target Platform "TOTARA" saving as "EC_DIGITAL_CONTENT"
-    And I create new Region saving as "EC_REGION"
-    And I create new Location saving as "EC_LOCATION"
-    And I create new Course saving as "EC_COURSE"
-    And I create new Session Duration with Allowed for CBA "false" saving as "EC_SESSION_DURATION"
-    And I create new Streams saving as "EC_STREAM"
-    And I create new Instance saving as "EC_INSTANCE" and saving new session as "EC_SESSION"
-    And I change Instance Capacity with Capacity "15" saving as "EC_INSTANCE"
-    And I get Instance Sessions saving as "EC_SESSION_TIMING"
-    And I change Session Timings saving as "EC_SESSION"
-    And I get Instance Steps saving as "EC_STEP"
-    And I change Instance Steps saving as "EC_STEP"
-    And I create new Pricing Matrix saving as "EC_PRICING_MATRIX"
-    And I create new Prices saving as "EC_PRICES"
-    And I calculate Course Price saving as "EC_PRICE"
-    And I activate Course saving as "EC_COURSE_ACTIVATION"
-    And I activate Instance saving as "EC_INSTANCE_ACTIVATION"
-    And I create Course Bulk Operation saving as "EC_COURSE_BULK_OPERATION"
-    Then I execute Bulk Web Publishing with publish to WEB "true" saving course as "EC_COURSE" and instance as "EC_INSTANCE"
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I execute "Create Course" API step
 
   @Instance
   Scenario: Create Course Instance
@@ -634,7 +367,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
-    And I create new Paper with CBA "false" saving as "EC_PAPER"
+    And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
     And I execute "Change Paper Body" API step
@@ -645,13 +378,498 @@ Feature: Product Factory API Data Creation
     And I execute "Create Session Duration" API step
     And I execute "Create Instance" API step
 
+  @InstanceCapacity
+  Scenario: Change Instance Capacity
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Vat Rule" API step saving as "SECOND_"
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I execute "Create Course" API step
+    And I execute "Create Session Duration" API step
+    And I debug
+    And I execute "Create Stream" API step
+    And I execute "Create Instance" API step
+    And I execute "Change Instance Capacity" API step with parameters
+      |capacity|15|
+
+  @InstanceSessions
+  Scenario: Get Instance Sessions
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Vat Rule" API step saving as "SECOND_"
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I execute "Create Course" API step
+    And I execute "Create Session Duration" API step
+    And I execute "Create Stream" API step
+    And I execute "Create Instance" API step
+    And I execute "Change Instance Capacity" API step with parameters
+      |capacity|15|
+    And I execute "Get Instance Sessions" API step
+
+  @SessionTimings
+  Scenario: Change Session Timings
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Vat Rule" API step saving as "SECOND_"
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I execute "Create Course" API step
+    And I execute "Create Session Duration" API step
+    And I execute "Create Stream" API step
+    And I execute "Create Instance" API step
+    And I execute "Change Instance Capacity" API step with parameters
+      |capacity|15|
+    And I execute "Get Instance Sessions" API step
+    And I execute "Change Session Timings" API step
+
+  @InstanceSteps
+  Scenario: Get Instance Steps
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+    And I generate new ISBN code saving as "EC_ISBN"
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Vat Rule" API step saving as "SECOND_"
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I execute "Create Course" API step
+    And I execute "Create Session Duration" API step
+    And I execute "Create Stream" API step
+    And I execute "Create Instance" API step
+    And I execute "Change Instance Capacity" API step with parameters
+      |capacity|15|
+    And I execute "Get Instance Sessions" API step
+    And I execute "Change Session Timings" API step
+    And I execute "Get Instance Steps" API step
+
+  @ChangeInstanceSteps  
+  Scenario: Change Instance Steps
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Vat Rule" API step saving as "SECOND_"
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I execute "Create Course" API step
+    And I execute "Create Session Duration" API step
+    And I execute "Create Stream" API step
+    And I execute "Create Instance" API step
+    And I execute "Change Instance Capacity" API step with parameters
+      |capacity|15|
+    And I execute "Get Instance Sessions" API step
+    And I execute "Change Session Timings" API step
+    And I execute "Get Instance Steps" API step
+    And I execute "Change Step Due Date" API step
+
+  @CalculatePrice
+  Scenario: Calculate Course Price
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Vat Rule" API step saving as "SECOND_"
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Client" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Digital Content" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I execute "Create Session Duration" API step
+    And I execute "Create Pricing Matrix" API step
+    And I execute "Create Prices" API step
+    And I execute "Create Course" API step
+    And I execute "Calculate Course Price" API step
+
+  @ActivateCourse
+  Scenario: Activate Course
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Vat Rule" API step saving as "SECOND_"
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Client" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Digital Content" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I execute "Create Session Duration" API step
+    And I execute "Create Pricing Matrix" API step
+    And I execute "Create Prices" API step
+    And I execute "Create Course" API step
+    And I execute "Calculate Course Price" API step
+    Then I execute "Activate Course" API step
+
+  @ActivateInstance
+  Scenario: Activate Instance
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Vat Rule" API step saving as "SECOND_"
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Client" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Digital Content" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I execute "Create Session Duration" API step
+    And I execute "Create Pricing Matrix" API step
+    And I execute "Create Prices" API step
+    And I execute "Create Course" API step
+    And I execute "Create Session Duration" API step
+    And I execute "Create Stream" API step
+    And I execute "Create Instance" API step
+    And I execute "Change Instance Capacity" API step with parameters
+      |capacity|15|
+    And I execute "Get Instance Sessions" API step
+    And I execute "Change Session Timings" API step
+    And I execute "Get Instance Steps" API step
+    And I execute "Change Step Due Date" API step
+    And I execute "Calculate Course Price" API step
+    Then I execute "Activate Course" API step
+    And I execute "Activate Instance" API step
+
+  @CourseBulkOperation
+  Scenario: Create Course Bulk Operation
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Vat Rule" API step saving as "SECOND_"
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Client" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Digital Content" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I execute "Create Session Duration" API step
+    And I execute "Create Pricing Matrix" API step
+    And I execute "Create Prices" API step
+    And I execute "Create Course" API step
+    And I execute "Create Session Duration" API step
+    And I execute "Create Stream" API step
+    And I execute "Create Instance" API step
+    And I execute "Change Instance Capacity" API step with parameters
+      |capacity|15|
+    And I execute "Get Instance Sessions" API step
+    And I execute "Change Session Timings" API step
+    And I execute "Get Instance Steps" API step
+    And I execute "Change Step Due Date" API step
+    And I execute "Calculate Course Price" API step
+    Then I execute "Activate Course" API step
+    And I execute "Activate Instance" API step
+    Then I execute "Create Course Bulk Operation" API step
+
+  @BulkWebPublishing #TC-685
+  Scenario: Execute Bulk Web Publishing
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Vat Rule" API step saving as "SECOND_"
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Client" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Digital Content" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I execute "Create Session Duration" API step
+    And I execute "Create Pricing Matrix" API step
+    And I execute "Create Prices" API step
+    And I execute "Create Course" API step
+    And I execute "Create Session Duration" API step
+    And I execute "Create Stream" API step
+    And I execute "Create Instance" API step
+    And I execute "Change Instance Capacity" API step with parameters
+      |capacity|15|
+    And I execute "Get Instance Sessions" API step
+    And I execute "Change Session Timings" API step
+    And I execute "Get Instance Steps" API step
+    And I execute "Change Step Due Date" API step
+    And I execute "Calculate Course Price" API step
+    Then I execute "Activate Course" API step
+    And I execute "Activate Instance" API step
+    And I debug
+    Then I execute "Create Course Bulk Operation" API step
+    Then I execute "Bulk Web Publish" API step
+
   @CBA
-  Scenario: Create CBA Course Instance
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
+  Scenario: Create New CBA Record
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
     And I execute "Create Vertical" API step
     And I execute "Create Body" API step
     And I execute "Create Sitting" API step
@@ -659,162 +877,205 @@ Feature: Product Factory API Data Creation
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
-    And I create new Paper with CBA "true" saving as "EC_PAPER"
+    And I execute "Create Paper" API step with parameters
+      |isCba|true|
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
     And I execute "Change Paper Body" API step
     And I execute "Link Paper To Levels" API step
     And I execute "Create Region" API step
     And I execute "Create Location" API step
-    And I create new Session Duration with Allowed for CBA "true" saving as "EC_SESSION_DURATION"
+    And I execute "Create Session Duration" API step with parameters
+      |allowedForCba|true|
     And I execute "Create Instance Group" API step
     And I execute "Create Courses" API step
 
   @Material
-  Scenario: Create Material
-    When I generate new ISBN code saving as "EC_ISBN"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "MATERIALTYPE" saving as "EC_MATERIAL_TYPE"
-    And I create new Vertical saving as "EC_VERTICAL"
-    And I create new Body saving as "EC_BODY"
-    And I create new Paper with CBA "false" saving as "EC_PAPER"
-    And I create new Sitting saving as "EC_SITTING"
-    And I create new Vat Rule saving as "EC_VAT_RULE"
-    And I create new Vat Rule saving as "EC_VAT_RULE_TWO"
-    And I create new Level saving as "EC_LEVEL"
-    And I link Body to Levels
-    And I change Paper Body
-    And I link Paper to Levels
-    And I create new Stock Site saving as "EC_STOCK_SITE"
-    And I create new Material Type with all Checkboxes "true"  saving as "EC_MATERIAL_TYPE"
-    Then I create new Material with Checkboxes set to "false" saving as "EC_MATERIAL"
+  Scenario: Create Material Wizard
+    Given I generate new ISBN code saving as "EC_ISBN"
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Vat Rule" API step saving as "SECOND_"
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Stock Site" API step
+    And I execute "Create Material Type" API step
+    And I execute "Create Material" API step
 
   @CourseMaterial
   Scenario: Create Course Material
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "MATERIALTYPE" saving as "EC_MATERIAL_TYPE"
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
     And I generate new ISBN code saving as "EC_ISBN"
-    And I create new Vertical saving as "EC_VERTICAL"
-    And I create new Body saving as "EC_BODY"
-    And I create new Sitting saving as "EC_SITTING"
-    And I create new Vat Rule saving as "EC_VAT_RULE"
-    And I create new Vat Rule saving as "EC_VAT_RULE_TWO"
-    And I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
-    And I create new Study Mode saving as "EC_STUDY_MODE"
-    And I create new Course Type saving as "EC_COURSE_TYPE"
-    And I create new Paper with CBA "false" saving as "EC_PAPER"
-    And I create new Level saving as "EC_LEVEL"
-    And I link Body to Levels
-    And I change Paper Body
-    And I link Paper to Levels
-    And I create new Digital Content with Content Type "PROFESSIONALQUALIFICATIONS" and Target Platform "TOTARA" saving as "EC_DIGITAL_CONTENT"
-    And I create new Region saving as "EC_REGION"
-    And I create new Location saving as "EC_LOCATION"
-    And I create new Course saving as "EC_COURSE"
-    And I create new Session Duration with Allowed for CBA "false" saving as "EC_SESSION_DURATION"
-    And I create new Streams saving as "EC_STREAM"
-    And I create new Instance saving as "EC_INSTANCE" and saving new session as "EC_SESSION"
-    And I change Instance Capacity with Capacity "15" saving as "EC_INSTANCE"
-    And I get Instance Sessions saving as "EC_SESSION_TIMING"
-    And I change Session Timings saving as "EC_SESSION"
-    And I get Instance Steps saving as "EC_STEP"
-    And I change Instance Steps saving as "EC_STEP"
-    And I create new Pricing Matrix saving as "EC_PRICING_MATRIX"
-    And I create new Prices saving as "EC_PRICES"
-    And I calculate Course Price saving as "EC_PRICE"
-    And I create new Stock Site saving as "EC_STOCK_SITE"
-    And I create new Material Type with all Checkboxes "true"  saving as "EC_MATERIAL_TYPE"
-    And I create new Material with Checkboxes set to "true" saving as "EC_MATERIAL"
-    Then I create new Course Material
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Vat Rule" API step saving as "SECOND_"
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I execute "Create Course" API step
+    And I execute "Create Session Duration" API step
+    And I execute "Create Stream" API step
+    And I execute "Create Instance" API step
+    And I execute "Change Instance Capacity" API step with parameters
+      |capacity|15|
+    And I execute "Get Instance Sessions" API step
+    And I execute "Change Session Timings" API step
+    And I execute "Get Instance Steps" API step
+    And I execute "Change Step Due Date" API step
+    And I execute "Create Pricing Matrix" API step
+    And I execute "Create Prices" API step
+    And I execute "Calculate Course Price" API step
+    And I execute "Create Stock Site" API step
+    And I execute "Create Material Type" API step
+    And I execute "Create Material" API step
+    Then I execute "Create Course Materials" API step
 
   @UpdateCourseMaterial
-  Scenario: Create Course Material
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "MATERIALTYPE" saving as "EC_MATERIAL_TYPE"
+  Scenario: Update Course Material
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
     And I generate new ISBN code saving as "EC_ISBN"
-    And I create new Vertical saving as "EC_VERTICAL"
-    And I create new Body saving as "EC_BODY"
-    And I create new Sitting saving as "EC_SITTING"
-    And I create new Vat Rule saving as "EC_VAT_RULE"
-    And I create new Vat Rule saving as "EC_VAT_RULE_TWO"
-    And I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
-    And I create new Study Mode saving as "EC_STUDY_MODE"
-    And I create new Course Type saving as "EC_COURSE_TYPE"
-    And I create new Paper with CBA "false" saving as "EC_PAPER"
-    And I create new Level saving as "EC_LEVEL"
-    And I link Body to Levels
-    And I change Paper Body
-    And I link Paper to Levels
-    And I create new Digital Content with Content Type "PROFESSIONALQUALIFICATIONS" and Target Platform "TOTARA" saving as "EC_DIGITAL_CONTENT"
-    And I create new Region saving as "EC_REGION"
-    And I create new Location saving as "EC_LOCATION"
-    And I create new Course saving as "EC_COURSE"
-    And I create new Session Duration with Allowed for CBA "false" saving as "EC_SESSION_DURATION"
-    And I create new Streams saving as "EC_STREAM"
-    And I create new Instance saving as "EC_INSTANCE" and saving new session as "EC_SESSION"
-    And I change Instance Capacity with Capacity "15" saving as "EC_INSTANCE"
-    And I get Instance Sessions saving as "EC_SESSION_TIMING"
-    And I change Session Timings saving as "EC_SESSION"
-    And I get Instance Steps saving as "EC_STEP"
-    And I change Instance Steps saving as "EC_STEP"
-    And I create new Pricing Matrix saving as "EC_PRICING_MATRIX"
-    And I create new Prices saving as "EC_PRICES"
-    And I calculate Course Price saving as "EC_PRICE"
-    And I create new Stock Site saving as "EC_STOCK_SITE"
-    And I create new Material Type with all Checkboxes "true"  saving as "EC_MATERIAL_TYPE"
-    And I create new Material with Checkboxes set to "true" saving as "EC_MATERIAL"
-    And I create new Course Material
-    Then I update new Course Material with Delivery set to "CLASSROOM"
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Vat Rule" API step saving as "SECOND_"
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I execute "Create Course" API step
+    And I execute "Create Session Duration" API step
+    And I execute "Create Stream" API step
+    And I execute "Create Instance" API step
+    And I execute "Change Instance Capacity" API step with parameters
+      |capacity|15|
+    And I execute "Get Instance Sessions" API step
+    And I execute "Change Session Timings" API step
+    And I execute "Get Instance Steps" API step
+    And I execute "Change Step Due Date" API step
+    And I execute "Create Pricing Matrix" API step
+    And I execute "Create Prices" API step
+    And I execute "Calculate Course Price" API step
+    And I execute "Create Stock Site" API step
+    And I execute "Create Material Type" API step
+    And I execute "Create Material" API step
+    Then I execute "Create Course Materials" API step
+    And I execute "Update Course Material" API step
 
   @LinkClientsToCourse
   Scenario: Link Clients to Course
-    When I create Financial Dimensions with Dimension Type of "PROJECT" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_PROJECT"
-    And I create Financial Dimensions with Dimension Type of "COSTCENTRE" and Target "COURSETYPE" saving as "EC_COURSE_TYPE_COST_CENTRE"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "BODY" saving as "EC_BODY"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "REGION" saving as "EC_REGION"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "LOCATION" saving as "EC_LOCATION"
-    And I create Financial Dimensions with Dimension Type of "PRODUCT" and Target "MATERIALTYPE" saving as "EC_MATERIAL_TYPE"
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
     And I generate new ISBN code saving as "EC_ISBN"
-    And I create new Vertical saving as "EC_VERTICAL"
-    And I create new Body saving as "EC_BODY"
-    And I create new Sitting saving as "EC_SITTING"
-    And I create new Vat Rule saving as "EC_VAT_RULE"
-    And I create new Vat Rule saving as "EC_VAT_RULE_TWO"
-    And I create new Exam Preparation saving as "EC_EXAM_PREPARATION"
-    And I create new Study Mode saving as "EC_STUDY_MODE"
-    And I create new Course Type saving as "EC_COURSE_TYPE"
-    Then I create new Clients saving as "EC_CLIENTS"
-    And I create new Paper with CBA "false" saving as "EC_PAPER"
-    And I create new Level saving as "EC_LEVEL"
-    And I link Body to Levels
-    And I change Paper Body
-    And I link Paper to Levels
-    And I create new Digital Content with Content Type "PROFESSIONALQUALIFICATIONS" and Target Platform "TOTARA" saving as "EC_DIGITAL_CONTENT"
-    And I create new Region saving as "EC_REGION"
-    And I create new Location saving as "EC_LOCATION"
-    And I create new Course saving as "EC_COURSE"
-    And I create new Session Duration with Allowed for CBA "false" saving as "EC_SESSION_DURATION"
-    And I create new Streams saving as "EC_STREAM"
-    And I create new Instance saving as "EC_INSTANCE" and saving new session as "EC_SESSION"
-    And I change Instance Capacity with Capacity "15" saving as "EC_INSTANCE"
-    And I get Instance Sessions saving as "EC_SESSION_TIMING"
-    And I change Session Timings saving as "EC_SESSION"
-    And I get Instance Steps saving as "EC_STEP"
-    And I change Instance Steps saving as "EC_STEP"
-    And I create new Pricing Matrix saving as "EC_PRICING_MATRIX"
-    And I create new Prices saving as "EC_PRICES"
-    And I calculate Course Price saving as "EC_PRICE"
-    And I create new Stock Site saving as "EC_STOCK_SITE"
-    And I create new Material Type with all Checkboxes "true"  saving as "EC_MATERIAL_TYPE"
-    And I create new Material with Checkboxes set to "true" saving as "EC_MATERIAL"
-    And I create new Course Material
-    And I update new Course Material with Delivery set to "CLASSROOM"
-    Then I link Clients to Course
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Vat Rule" API step saving as "SECOND_"
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Client" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Digital Content" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I execute "Create Course" API step
+    And I execute "Create Session Duration" API step
+    And I execute "Create Stream" API step
+    And I execute "Create Instance" API step
+    And I execute "Change Instance Capacity" API step with parameters
+      |capacity|15|
+    And I execute "Get Instance Sessions" API step
+    And I execute "Change Session Timings" API step
+    And I execute "Get Instance Steps" API step
+    And I execute "Change Step Due Date" API step
+    And I execute "Create Pricing Matrix" API step
+    And I execute "Create Prices" API step
+    And I execute "Calculate Course Price" API step
+    And I execute "Create Stock Site" API step
+    And I execute "Create Material Type" API step
+    And I execute "Create Material" API step
+    And I execute "Create Course Materials" API step
+    And I execute "Update Course Material" API step
+    Then I execute "Link Course To Clients" API step
