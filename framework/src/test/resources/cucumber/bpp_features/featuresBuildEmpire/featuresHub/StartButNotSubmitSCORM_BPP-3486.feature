@@ -5,7 +5,7 @@ Feature: SCORM Asessment Not Submit
 
   @Negative #TC-1829
   Scenario: Scorm Assessment Start But Not Submit
-    When I register new Hub account using API
+    When I execute "Register New Student Account" reusable step
     Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     Then I shouldn't see the "My Learning" "Build Empire Navigation Menu elements"

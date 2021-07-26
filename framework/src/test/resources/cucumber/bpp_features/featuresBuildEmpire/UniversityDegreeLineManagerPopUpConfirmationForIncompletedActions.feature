@@ -2,7 +2,6 @@
 Feature: BPP University Degree Line Manager Pop up confirmation for application without completed actions
   Background:
     Given I register new Hub account using API
-    Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
 
   @Positive @Popup #TC-1574

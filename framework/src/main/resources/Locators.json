@@ -416,6 +416,14 @@
     "value": "xpath=(//input[@type='file'])[1]"
   },
   {
+    "name": "BPP Digital Additional Files Upload File Button",
+    "value": "xpath=(//input[@type='file'])[last()]"
+  },
+  {
+    "name": "BPP Digital Additional Files Upload Button",
+    "value": "xpath=(//*[@value='Upload'])[last()]"
+  },
+  {
     "name": "BPP Digital Validate Note Date",
     "value": "xpath=//h3[text()='Eligibility criteria']/preceding::thead[1]/tr[last()]/td[1]"
   },
@@ -1074,6 +1082,14 @@
   {
     "name": "Direct App Admin Reason",
     "value": "xpath=//textarea[@name='reason']"
+  },
+  {
+    "name": "Direct App Admin Note Message",
+    "value": "xpath=//textarea[@name='direct_application_note[message]']"
+  },
+  {
+    "name": "Direct App Admin Area Notification Message",
+    "value": "xpath=//div[@class='alert alert-success']//div"
   },
   {
     "name": "Direct App Admin Referral ODP Reason",
@@ -3325,7 +3341,7 @@
   },
   {
     "name": "Totara Assessment Column Description",
-    "value": "inframe=TotaraScromFrame>xpath=//*[@class='qm_BOX_COL']"
+    "value": "inframe=TotaraScromFrame>xpath=//*[@class='qm_BOX']"
   },
   {
     "name": "Totara Assignment Description",

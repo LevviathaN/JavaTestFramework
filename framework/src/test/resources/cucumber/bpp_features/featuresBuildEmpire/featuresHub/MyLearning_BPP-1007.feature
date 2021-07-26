@@ -6,8 +6,7 @@ Feature: BPP University Hub My Learning
   @Positive @MyLearning #TC-1119 TC-1121
   Scenario: HUB - My Learning
     #Register New Student
-    When II register new Hub account using API
-    Then I execute "Harakirimail Verify Email" reusable step
+    When I register new Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     #Verify Left panel
     Then I should see the "Home" "Build Empire Navigation Menu elements"
@@ -46,17 +45,18 @@ Feature: BPP University Hub My Learning
     And I click on the "TEST BUTTON" "button"
     And I wait for "5" seconds
     Then I execute "window.stop()" JS code
-    Then I switch to window with index "3"
+    Then I switch to window with index "2"
     Then I should see the "Totara Assessment Title" element
     Then I should see the "Totara Assessment Next Button" element
-    Then I switch to window with index "2"
+    Then I switch to window with index "1"
     Then I click on the "Home" "Build Empire Navigation Menu elements"
     And I click on the "Automation CTA Button Course" "Build Empire My Learning Right Block Course name"
     Then I click on the "SECOND SCORM GROUP OVERRIDE" "Build Empire Course Topic"
     And I click on the "TEST BUTTON" "button"
-    Then I switch to window with index "4"
-    Then I should see the "Totara Assessment Column Description" element
     Then I switch to window with index "2"
+    And I wait for "1" seconds
+    Then I should see the "Totara Assessment Column Description" element
+    Then I switch to window with index "1"
     #Student Log out
     When I execute "Log Out from Hub Student" reusable step
     And Browser deletes cookies
