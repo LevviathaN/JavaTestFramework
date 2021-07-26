@@ -2,7 +2,7 @@
   "operationName": "changeStepDueDate",
   "variables": {
     "command": {
-      "stepReference": "EC_STEP_REFERENCE",
+      "stepReference": "EC_INSTANCE_STEPS_REFERENCE",
       "dueDate": "[TIMENOW-yyyy-MM-dd]"
     }
   },
