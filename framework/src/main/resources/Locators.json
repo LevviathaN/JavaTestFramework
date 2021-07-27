@@ -416,14 +416,6 @@
     "value": "xpath=(//input[@type='file'])[1]"
   },
   {
-    "name": "BPP Digital Additional Files Upload File Button",
-    "value": "xpath=(//input[@type='file'])[last()]"
-  },
-  {
-    "name": "BPP Digital Additional Files Upload Button",
-    "value": "xpath=(//*[@value='Upload'])[last()]"
-  },
-  {
     "name": "BPP Digital Validate Note Date",
     "value": "xpath=//h3[text()='Eligibility criteria']/preceding::thead[1]/tr[last()]/td[1]"
   },
@@ -3333,7 +3325,7 @@
   },
   {
     "name": "Totara Assessment Column Description",
-    "value": "inframe=TotaraScromFrame>xpath=//*[@class='qm_BOX']"
+    "value": "inframe=TotaraScromFrame>xpath=//*[@class='qm_BOX_COL']"
   },
   {
     "name": "Totara Assignment Description",
@@ -3558,6 +3550,10 @@
   {
     "name": "Totara Automation Quiz Question Text Order List Icon",
     "value": "xpath=(//img[@alt='Ordered list'])[1]"
+  },
+  {
+    "name": "Totara Continue button",
+    "value": "xpath=//input[@value='Continue']"
   },
   {
     "name": "Totara Automation Quiz Question to Add True or False Radio Button",

@@ -1,7 +1,7 @@
 @Mobile
 Feature: BPP University Hub Sub Topics and Labels
 
-  @Positive @iPhone @Samsung #TC-867
+  @Positive @iPhone @Samsung @BET #TC-867
   Scenario: Hub Sub Topics and Labels_Mobile
     #login to Totara as an Admin
     Given I am on "MD_COMMON_LINKS_TOTARALOGINURL" URL
@@ -72,6 +72,7 @@ Feature: BPP University Hub Sub Topics and Labels
     And I set "Questions saved from context Quiz: Auto Quiz One. (1)" text to the element with ID "id_name" using JS
     And I wait for "4" seconds
     And I click on the "Totara Automation Quiz Question Text Order List Icon" link by JS
+    And I click on the "Totara Automation Quiz Question Text Order List Icon" link by JS
     And I set "12" text to the element with ID "id_defaultmark" using JS
     And I select "True" from "Totara Automation Quiz Correct Answer Drop Down" element
     And I click on the "Save changes" "Totara button" by JS
@@ -101,6 +102,7 @@ Feature: BPP University Hub Sub Topics and Labels
     And I wait for "10" seconds
     Then I validate text "Automation Mobile" to be displayed for "BPP Digital Automation Validate Topic Header" element
     Then I validate text "CONTAINS=Automation Mobile Sub-Topic" to be displayed for "BPP Digital Automation Validate Sub Topic Header" element
+    And I wait for "2" seconds
     Then Attribute "data-icon" of "BPP Digital Automation Validate Angle Down Icon" should have value "angle-down"
     Then I validate text "Automation Mobile Expandable Label" to be displayed for "BPP Digital Automation Validate Expandable Sub Topic Header" element
     And I click on the "BPP Digital Automation Validate Expandable Sub Topic Header" element by JS
@@ -139,6 +141,11 @@ Feature: BPP University Hub Sub Topics and Labels
     And I fill the "Direct App Admin Password" field with "MD_COMMON_CREDENTIALS_TOTARAADMINPASSWORD"
     Then I click on the "Direct App Login Button" button
     And I wait for "4" seconds
+#    And Browser performs "Refresh" command
+    ##############################################################################################################FIXXXXXXX
+#    And I click on the "Totara Continue button" "BPP Digital Admin Value attribute button"
+    And I click on the "Totara Continue button" button if "Totara Continue button" "element is present"
+    Then I click on the "Totara Login" button by JS
     #Delete SubTopics
     And I execute "arguments[0].click()" JS code for "ICAEW Accounting Full" "BPP Digital Student Applications Menu link"
 #    When I click on the "Totara ICAEW Course" link by JS
