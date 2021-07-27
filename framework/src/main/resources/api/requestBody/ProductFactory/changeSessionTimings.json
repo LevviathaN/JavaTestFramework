@@ -2,10 +2,10 @@
   "operationName": "changeSessionTimings",
   "variables": {
     "command": {
-      "sessionReference": "EC_SESSION_REFERENCE",
+      "sessionReference": "EC_INSTANCE_SESSIONS_REFERENCE",
       "timings": [
         {
-          "sessionTimingReference": "EC_SESSION_TIMING_REFERENCE",
+          "sessionTimingReference": "EC_INSTANCE_SESSIONS_TIMINGS_REFERENCE",
           "sessionDate": "[TIMENOW-yyyy-MM-dd]",
           "startTime": "16:09",
           "endTime": "17:10"

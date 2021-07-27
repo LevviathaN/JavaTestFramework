@@ -1076,6 +1076,14 @@
     "value": "xpath=//textarea[@name='reason']"
   },
   {
+    "name": "Direct App Admin Note Message",
+    "value": "xpath=//textarea[@name='direct_application_note[message]']"
+  },
+  {
+    "name": "Direct App Admin Area Notification Message",
+    "value": "xpath=//div[@class='alert alert-success']//div"
+  },
+  {
     "name": "Direct App Admin Referral ODP Reason",
     "value": "xpath=//div[@class='container content-container']/div/div/div[2]//tbody/tr[5]/td[4]"
   },
