@@ -64,6 +64,7 @@ Feature: Create a Single Booking
     And I should scroll to the "top" of the page
     Then I click on the "Salesforce Order Activate" button
     And I click on the "Salesforce Order Activate Popup" button
+    And I wait for "3" seconds
     And Browser performs "REFRESH" command
     And I wait for "5" seconds
     Then I click on the "Salesforce Account Related Tab" element
@@ -77,6 +78,7 @@ Feature: Create a Single Booking
     And I wait for "10" seconds
     And I capture current URL as "EC_INADVANCE_ORDER_URL" variable
     #Check usages
+    And I wait for "2" seconds
     Then I click on the "Edit" "text in div element"
     And I click on the "Bill Now" "Salesforce checkbox"
     Then I click on the "Save" "element by title"

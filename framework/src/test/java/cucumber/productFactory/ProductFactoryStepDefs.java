@@ -32,7 +32,7 @@ public class ProductFactoryStepDefs {
         String debug = "debug";
     }
 
-    @When("I execute \"([^\"]*)\" API step$")
+    @When("^I execute \"([^\"]*)\" API step$")
     public void i_execute_api_step(String stepName) {
         String objName = stepName.equals("changeInstanceCapacity") ? "updateInstance" : stepName;
 
@@ -60,7 +60,7 @@ public class ProductFactoryStepDefs {
         BPPLogManager.getLogger().info(stepName + " step was executed successfully.");
     }
 
-    @When("I execute \"([^\"]*)\" API step saving as \"([^\"]*)\"$")
+    @When("^I execute \"([^\"]*)\" API step saving as \"([^\"]*)\"$")
     public void i_execute_api_step_saving_as(String stepName, String ecName) {
         String jsonName = stepName.replaceAll(" ", "");
         jsonName = jsonName.substring(0, 1).toLowerCase() + jsonName.substring(1);
@@ -86,7 +86,7 @@ public class ProductFactoryStepDefs {
         BPPLogManager.getLogger().info(stepName + " step was executed successfully.");
     }
 
-    @When("I execute \"([^\"]*)\" API step with parameters$")
+    @When("^I execute \"([^\"]*)\" API step with parameters$")
     public void i_execute_api_step_with_parameters(String stepName, Map<String, String> parameters) {
         String name = stepName.replaceAll(" ", "");
         name = name.substring(0, 1).toLowerCase() + name.substring(1);
@@ -112,7 +112,7 @@ public class ProductFactoryStepDefs {
         BPPLogManager.getLogger().info(stepName + " step was executed successfully.");
     }
 
-    @When("I execute \"([^\"]*)\" API step with parameters saving as \"([^\"]*)\"$")
+    @When("^I execute \"([^\"]*)\" API step with parameters saving as \"([^\"]*)\"$")
     public void i_execute_api_step_with_parameters_saving_as(String stepName, String ecName, Map<String, String> parameters) {
         String name = stepName.replaceAll(" ", "");
         name = name.substring(0, 1).toLowerCase() + name.substring(1);
@@ -138,7 +138,7 @@ public class ProductFactoryStepDefs {
         BPPLogManager.getLogger().info(stepName + " step was executed successfully.");
     }
 
-    @When("I generate new ISBN code saving as \"([^\"]*)\"$")
+    @When("^I generate new ISBN code saving as \"([^\"]*)\"$")
     public void i_generate_new_isbn_code(String ecISBNValue) {
         Document doc = null;
         try {
