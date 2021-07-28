@@ -1,7 +1,7 @@
 @Mobile
 Feature: BPP University Hub Sub Topics and Labels
 
-  @Positive @iPhone @Samsung @BET #TC-867
+  @Positive @iPhone @Samsung #TC-867
   Scenario: Hub Sub Topics and Labels_Mobile
     #login to Totara as an Admin
     Given I am on "MD_COMMON_LINKS_TOTARALOGINURL" URL
@@ -141,8 +141,6 @@ Feature: BPP University Hub Sub Topics and Labels
     And I fill the "Direct App Admin Password" field with "MD_COMMON_CREDENTIALS_TOTARAADMINPASSWORD"
     Then I click on the "Direct App Login Button" button
     And I wait for "4" seconds
-#    And Browser performs "Refresh" command
-    ##############################################################################################################FIXXXXXXX
 #    And I click on the "Totara Continue button" "BPP Digital Admin Value attribute button"
     And I click on the "Totara Continue button" button if "Totara Continue button" "element is present"
     Then I click on the "Totara Login" button by JS
