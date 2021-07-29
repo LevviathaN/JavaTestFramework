@@ -129,6 +129,10 @@
     "value": "xpath=//button[normalize-space()='PARAMETER']"
   },
   {
+    "name": "BPP Digital Button",
+    "value": "xpath=(//button[text()='PARAMETER'])[1]"
+  },
+  {
     "name": "BPP Digital Qualifications at Every Level item link",
     "value": "xpath=//div[text()='Qualifications at every level.']/following-sibling::div//a[text()=\"PARAMETER\"]"
   },

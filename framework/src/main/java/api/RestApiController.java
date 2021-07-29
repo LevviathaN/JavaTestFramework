@@ -1,7 +1,6 @@
 package api;
 
 import io.restassured.http.ContentType;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.json.simple.JSONArray;
@@ -47,32 +46,7 @@ public class RestApiController {
         return response;
     }
 
-    /**
-     * This post request is used to register account via Auth0 for Hub. Added required headers
-     * @param baseURI     - will be changed based of record type to be created
-     * @param requestBody - JSON format; depends on record type
-     */
 
-    public Response postRequestHub(String baseURI, String requestBody) {
-        Map<String,Object> headerMap = new HashMap<String,Object>();
-        headerMap.put("auth0-client", "eyJuYW1lIjoibG9jay5qcyIsInZlcnNpb24iOiIxMS4xMS4wIiwibGliX3ZlcnNpb24iOnsicmF3IjoiOS44LjEifX0=");
-        headerMap.put("content-type", "application/json");
-        headerMap.put("origin", "https://id.staging.bppdevs.net");
-        Response response = given()
-                .when()
-                .contentType(ContentType.JSON)
-                .baseUri(baseURI)
-                .headers(headerMap)
-                .body(requestBody)
-                .post();
-
-        if (Integer.toString(response.getStatusCode()).matches("2.+")) {
-            BPPLogManager.getLogger().info("Request sent successfully! Response code: " + response.getStatusCode());
-        } else {
-            BPPLogManager.getLogger().error("Response code: " + response.getStatusCode());
-        }
-        return response;
-    }
     /**
      * @param baseURI - will be changed based of record type to be created
      */
@@ -114,9 +88,10 @@ public class RestApiController {
         return map.toString();
     }
 
-    public String processPropertiesPF(String requestTemplate, String parameter1, String parameter2) {
+    public String processPropertiesPF(String requestTemplate, Map<String, String> parameters) {
 
         JSONObject jo = new Utilities().getJsonObject(requestTemplate);
+        if (parameters==null) parameters = new HashMap<String,String>();
 
         /*Get command list*/
         Map variables = ((Map) jo.get("variables"));
@@ -126,135 +101,84 @@ public class RestApiController {
         if(key.equals("command")) {
 
             Map command = (Map) variables.get(key);
-
-            /*Get and Put Special Parameter*/
-            if (!(command.get("dimensionType") == null)) {
-                command.put("dimensionType", parameter1);
-            }
-            if (!(command.get("contentType") == null)) {
-                command.put("contentType", parameter1);
-            }
-            if (!(command.get("deliveryDefault") == null)) {
-                command.put("deliveryDefault", parameter1);
-            }
-            if (!(command.get("target") == null)) {
-                command.put("target", parameter2);
-            }
-            if (!(command.get("targetPlatform") == null)) {
-                command.put("targetPlatform", parameter2);
-            }
-            /*Integer List*/
-            if (!(command.get("capacity") == null)) {
-                command.put("capacity", Integer.valueOf(parameter1));
-            }
-            if (!(command.get("price") == null)) {
-                int price = Integer.parseInt(TestParametersController.checkIfSpecialParameter(String.valueOf(command.get("price"))));
-                command.put("price", price);
-            }
-            if (!(command.get("cost") == null)) {
-                int cost = Integer.parseInt(TestParametersController.checkIfSpecialParameter(String.valueOf(command.get("cost"))));
-                command.put("cost", cost);
-            }
-            /*Boolean List*/
-            String[] booleanArray = {"isCba","allowedForCba","isExpiryDateRequired","isExpiryDateRequired","isIsbnRequired","isWeightRequired","timetabled","isInternalMaterial",
-                    "isDigitalMaterial","isCourseMaterial"};
-
-            for (String s1: booleanArray) {
-                if (!(command.get(s1) == null)) {
-                    boolean boolStr1 = Boolean.parseBoolean(parameter1);
-                    command.put(s1, boolStr1);
-                }
-            }
-            /*Boolean List*/
-            String[] booleanSecondArray = {"groupRequirementCohort","groupRequirementMode","groupRequirementLocation"};
-
-            for (String s2: booleanSecondArray) {
-                if (!(command.get(s2) == null)) {
-                    boolean boolStr2 = Boolean.parseBoolean(parameter2);
-                    command.put(s2, boolStr2);
-                }
-            }
-            /*Object List*/
-            String[] objectArray = {"code", "shortName", "name", "description", "startDate", "endDate", "startTeachingDate", "termCode", "bodyReference",
-                    "operationReference", "reference", "streamReference", "courseReference", "defaultLocationReference", "defaultSessionDurationReference",
-                    "paperReference", "sittingReference", "vatRuleReference", "verticalReference", "regionReference", "courseTypeReference",
-                    "pricingMatrixReference", "levelReference", "programmeReference", "cohortReference", "sessionReference", "stepReference",
-                    "dueDate", "costCentreFinancialDimensionReference", "projectFinancialDimensionReference", "financialDimensionReference",
-                    "examPreparationReference", "studyModeReference","addressLine1","addressLine2","addressLine3", "sisCode", "referenceNumber",
-                    "entityFinancialDimensionReference", "revenueFinancialDimensionReference","materialTypeReference","learningMediaVatRuleReference",
-                    "courseMaterialVatRuleReference","edition","isbn","availableDate","expiryDate","materialReference"};
-
-            for (String s: objectArray) {
-                if (!(command.get(s) == null)) {
-                    command.put(s, TestParametersController.checkIfSpecialParameter(String.valueOf(command.get(s))));
-                }
-            }
-            /*Property List*/
-            if (!(command.get("timings") == null)) {
-                ArrayList<String> bodyList = new ArrayList<String>();
-                JSONArray bodyArray = (JSONArray) command.get("timings");
-                JSONObject timingObj = (JSONObject) bodyArray.get(0);
-                String sessionTimingReference = (String) timingObj.get("sessionTimingReference");
-                String sessionDate = (String) timingObj.get("sessionDate");
-                String startTime = (String) timingObj.get("startTime");
-                String endTime = (String) timingObj.get("endTime");
-                ((JSONObject) bodyArray.get(0)).put("sessionTimingReference", TestParametersController.checkIfSpecialParameter(sessionTimingReference));
-                ((JSONObject) bodyArray.get(0)).put("sessionDate", TestParametersController.checkIfSpecialParameter(sessionDate));
-                ((JSONObject) bodyArray.get(0)).put("startTime", TestParametersController.checkIfSpecialParameter(startTime));
-                ((JSONObject) bodyArray.get(0)).put("endTime", TestParametersController.checkIfSpecialParameter(endTime));
-                bodyList.add(String.valueOf(bodyArray));
-            }
-            /*Property List*/
-            if (!(command.get("stockSiteProductionMethods") == null)) {
-                ArrayList<String> bodyList = new ArrayList<String>();
-                JSONArray bodyArray = (JSONArray) command.get("stockSiteProductionMethods");
-                JSONObject stockObj = (JSONObject) bodyArray.get(0);
-                String stockSiteReference = (String) stockObj.get("stockSiteReference");
-                ((JSONObject) bodyArray.get(0)).put("stockSiteReference", TestParametersController.checkIfSpecialParameter(stockSiteReference));
-                bodyList.add(String.valueOf(bodyArray));
-            }
-            /*Array List*/
-            List<String> anotherList = (List<String>) Arrays.asList("bodyReferences", "courseReferences", "levelReferences", "paperReferences", "regionReferences",
-                    "sittingReferences", "courseTypeReferences","materialReferences","clientReferences");
-
-            for (String l: anotherList) {
-                if (!(command.get(l) == null)) {
-                    JSONArray bodyArray = (JSONArray) command.get(l);
-                    ArrayList<String> bodyList = new ArrayList<String>();
-                    bodyList.add(TestParametersController.checkIfSpecialParameter(String.valueOf(bodyArray.get(0))));
-                    command.put(l, bodyList);
+            for (Object commandKey : command.keySet()) {
+                Object value = parameters.containsKey(commandKey) ? parameters.get(commandKey) : command.get(commandKey);
+                String updatedValue = TestParametersController.checkIfSpecialParameter(value.toString());
+                value = (value.toString().equals(updatedValue)||value instanceof JSONArray) ? value : updatedValue;
+                if (!(value==null)) {
+                    if (commandKey.equals("timings")) {
+                        ArrayList<String> bodyList = new ArrayList<String>();
+                        JSONArray bodyArray = (JSONArray) command.get("timings");
+                        JSONObject timingObj = (JSONObject) bodyArray.get(0);
+                        String sessionTimingReference = (String) timingObj.get("sessionTimingReference");
+                        String sessionDate = (String) timingObj.get("sessionDate");
+                        String startTime = (String) timingObj.get("startTime");
+                        String endTime = (String) timingObj.get("endTime");
+                        ((JSONObject) bodyArray.get(0)).put("sessionTimingReference", TestParametersController.checkIfSpecialParameter(sessionTimingReference));
+                        ((JSONObject) bodyArray.get(0)).put("sessionDate", TestParametersController.checkIfSpecialParameter(sessionDate));
+                        ((JSONObject) bodyArray.get(0)).put("startTime", TestParametersController.checkIfSpecialParameter(startTime));
+                        ((JSONObject) bodyArray.get(0)).put("endTime", TestParametersController.checkIfSpecialParameter(endTime));
+                        bodyList.add(String.valueOf(bodyArray));
+                    } else if (commandKey.toString().contains("References")) {
+                        JSONArray jArray = (JSONArray) value;
+                        ArrayList<String> bodyList = new ArrayList<String>();
+                        for (Object v : jArray) {
+                            bodyList.add(TestParametersController.checkIfSpecialParameter(String.valueOf(v)));
+                        }
+                        command.put(commandKey, bodyList);
+                    } else if (commandKey.equals("stockSiteProductionMethods")) {
+                        JSONArray jArray = (JSONArray) value;
+                        JSONObject jObject = (JSONObject) jArray.get(0);
+                        ArrayList<JSONArray> bodyList = new ArrayList<JSONArray>();
+                        String stockSiteReference = (String) jObject.get("stockSiteReference");
+                        ((JSONObject) jArray.get(0)).put("stockSiteReference", TestParametersController.checkIfSpecialParameter(stockSiteReference));
+//                        bodyList.add((JSONArray)jArray);
+                        command.put(commandKey, jArray);
+                    } else if (value.equals(true) || value.equals(false) || value.equals("true") || value.equals("false")) {
+                        command.put(commandKey, Boolean.parseBoolean(value.toString()));
+                    } else if (value.toString().matches("\\d+")) {
+                        if (commandKey.toString().equals("edition")||commandKey.toString().equals("referenceNumber")
+                                ||commandKey.toString().equals("sisCode")
+                                ||commandKey.toString().equals("termCode")) {
+                            command.put(commandKey, value.toString());
+                        } else {
+                            command.put(commandKey, Integer.parseInt(value.toString()));
+                        }
+                    } else {
+                        command.put(commandKey, TestParametersController.checkIfSpecialParameter(value.toString()));
                     }
                 }
+            }
+
         } else {
             if (!(variables.get("instanceReference") == null)) {
                 variables.put("instanceReference", TestParametersController.checkIfSpecialParameter(String.valueOf(variables.get("instanceReference"))));
             }
         }
-
         return jo.toString();
     }
 
     /**
      * Method for processing JSON file of request.
      * @param fileName - json file that is coresspondent for current request
-     * @param objName - json object (operationName) of current json file
      **/
 
-    public synchronized JSONObject requestProcess(String fileName,String objName, String parameter1, String parameter2)  {
+    public synchronized JSONObject requestProcess(String fileName, Map<String, String> parameters)  {
 
         Response Response = postRequest(propertiesHelper.getProperties().getProperty("pf_request_link"),
-                processPropertiesPF("ProductFactory/" + fileName, parameter1, parameter2),
+                processPropertiesPF("ProductFactory/" + fileName, parameters),
                 ProductFactoryAuthentication.getInstance().requestHeaderSpecification()
         );
         String ResponseString = Response.getBody().asString();
 
         JSONObject recordsObject = new Utilities().getResponseProperty(Response);
         JSONObject recordsData = (JSONObject) recordsObject.get("data");
-        JSONObject recordsList = (JSONObject) recordsData.get(objName);
+        JSONObject recordsList = new JSONObject();
+        extractPropperties(recordsData.values().iterator().next(),recordsList,"");
 
         /*Get Json object values*/
         try {
-            Reference = (String) recordsList.get("reference");
+            Reference = recordsList.get("Reference")==null ? (String) recordsList.get("CourseReference") : (String) recordsList.get("Reference");
         } catch (Exception e) {
             BPPLogManager.getLogger().error(Tools.getStackTrace(e));
             Reporter.failTryTakingScreenshot("<br>" + Tools.getStackTrace(e) + "</br>");
@@ -266,9 +190,30 @@ public class RestApiController {
         }
 
         assertThat(Reference, matchesPattern("([a-z0-9-]){36}"));
-        assertThat(ResponseString, containsString(objName));
+//        assertThat(ResponseString, containsString(objName));
 
         return recordsList;
+    }
+
+    public void extractPropperties(Object inputObj, JSONObject targetList, String nameKey) {
+        JSONObject inputObject;
+        inputObject = inputObj instanceof JSONObject ? (JSONObject)inputObj : (JSONObject)((JSONArray)inputObj).get(0);
+        Iterator keys = inputObject.keySet().iterator();
+        while(keys.hasNext()) {
+            Object key = keys.next();
+            String capKey = key.toString().substring(0, 1).toUpperCase() + key.toString().substring(1);
+            if (inputObject.get(key) instanceof JSONArray) {
+                JSONArray jArr = (JSONArray) inputObject.get(key);
+                for (Object o : jArr) {
+                    extractPropperties( (JSONObject) o, targetList, nameKey + capKey);
+                }
+            } else if (inputObject.get(key) instanceof JSONObject) {
+                extractPropperties((JSONObject) inputObject.get(key), targetList, nameKey + capKey);
+            } else {
+                String entryKey = targetList.containsKey(nameKey + capKey) ? nameKey + capKey + "Copy" : nameKey + capKey;
+                targetList.put(entryKey, inputObject.get(key));
+            }
+        }
     }
 
     public Map processLocatorProperties(String locatorsFile) {

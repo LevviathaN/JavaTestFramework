@@ -1076,6 +1076,14 @@
     "value": "xpath=//textarea[@name='reason']"
   },
   {
+    "name": "Direct App Admin Note Message",
+    "value": "xpath=//textarea[@name='direct_application_note[message]']"
+  },
+  {
+    "name": "Direct App Admin Area Notification Message",
+    "value": "xpath=//div[@class='alert alert-success']//div"
+  },
+  {
     "name": "Direct App Admin Referral ODP Reason",
     "value": "xpath=//div[@class='container content-container']/div/div/div[2]//tbody/tr[5]/td[4]"
   },
@@ -3324,8 +3332,16 @@
     "value": "inframe=TotaraScromFrame>xpath=//*[@class='qm_TITLE']"
   },
   {
+    "name": "BPP Digital Additional Files Upload File Button",
+    "value": "xpath=(//input[@type='file'])[last()]"
+  },
+  {
+    "name": "BPP Digital Additional Files Upload Button",
+    "value": "xpath=(//*[@value='Upload'])[last()]"
+  },
+  {
     "name": "Totara Assessment Column Description",
-    "value": "inframe=TotaraScromFrame>xpath=//*[@class='qm_BOX_COL']"
+    "value": "inframe=TotaraScromFrame>xpath=//*[@class='qm_BOX']"
   },
   {
     "name": "Totara Assignment Description",
@@ -3550,6 +3566,10 @@
   {
     "name": "Totara Automation Quiz Question Text Order List Icon",
     "value": "xpath=(//img[@alt='Ordered list'])[1]"
+  },
+  {
+    "name": "Totara Continue button",
+    "value": "xpath=//input[@value='Continue']"
   },
   {
     "name": "Totara Automation Quiz Question to Add True or False Radio Button",

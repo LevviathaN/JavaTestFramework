@@ -8,14 +8,18 @@ Feature: Moodle Quiz Key Activity On Topic Overview Page With No Submit
   @Negative #Do not run until BPP-6792 will be resolved
   Scenario: Moodle Quiz Key Activity On Topic Overview Page With No Submit
     When I register new Hub account using API
-    Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     Then I shouldn't see the "My Learning" "Build Empire Navigation Menu elements"
     When I execute "Log Out from Hub Student" reusable step
     And I should see the "Already registered? Log in" message
+    And Browser deletes cookies
     When I am on "MD_COMMON_LINKS_TOTARALOGINURL" URL
-    And I click on the "BPP Digital Log out button" button if "Totara Login Confirmation Popup window" "element is present"
+    Then I execute "Logout as Admin Totara" reusable step if "Totara Account Expandable Menu" "element is present"
     Then I execute "Login as Admin Totara" reusable step
+    Then I wait for "2" seconds
+    #When I am on "MD_COMMON_LINKS_TOTARALOGINURL" URL
+    #And I click on the "BPP Digital Log out button" button if "Totara Login Confirmation Popup window" "element is present"
+    #Then I execute "Login as Admin Totara" reusable step
     When I click on the "Totara Volodymyr Course" link by JS
     And I click on the "Totara Left Menu Users link" link by JS
     And I click on the "Totara Enrolled Users button" button by JS

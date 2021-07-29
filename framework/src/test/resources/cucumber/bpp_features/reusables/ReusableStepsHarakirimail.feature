@@ -77,7 +77,10 @@ Feature: Harakirimail, Guerrillamail
     Given I am on "https://harakirimail.com/" URL
     And I fill the "Harakirimail Inbox Name" field with "EC_AUTO_EMAIL"
     Then I click on the "Harakirimail Get Inbox" button
-    Then I click on the "Harakirimail Application Outcome Letter" button
+    Then I click on the "Harakirimail Application Outcome Letter" element by JS
+    Then I execute "document.getElementsByClassName('adsbygoogle adsbygoogle-noablate')[2].remove();" JS code if "Harakirimail Adds Banner" "element is present"
+    And I wait for "6" seconds
+    Then I click on the "Harakirimail Application Outcome Letter" element if "Harakirimail Application Outcome Letter" "element is present"
     And I validate text "CONTAINS=Your application has been rejected" to be displayed for "Harakirimail Validate Letter Body" element
     Then I click on the "Harakirimail Back To Inbox" button
 
@@ -136,4 +139,8 @@ Feature: Harakirimail, Guerrillamail
     Then I click on the "Harakirimail Get Inbox" button
     And I wait for "2" seconds
     And I click on the "Information needed to" "text contained in element" by JS
+    Then I execute "document.getElementsByClassName('adsbygoogle adsbygoogle-noablate')[2].remove();" JS code if "Harakirimail Adds Banner" "element is present"
+    And I wait for "6" seconds
+    And I click on the "Information needed to" "text contained in element" by JS
+    Then I wait for "2" seconds
     And I validate text "CONTAINS=Unfortunately your application for UAT" to be displayed for "Harakirimail Validate Letter Body" element

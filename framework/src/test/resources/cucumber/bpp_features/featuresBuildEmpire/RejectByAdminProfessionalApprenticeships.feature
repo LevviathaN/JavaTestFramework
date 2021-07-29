@@ -3,7 +3,6 @@ Feature: Reject Professional Apprenticeship Applications
 
   Background:
     Given I register new Hub account using API
-    Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
 
   @Negative @RejectByAdmin #TC-1023, TC-1573
@@ -14,6 +13,17 @@ Feature: Reject Professional Apprenticeship Applications
     Then I execute "Submit Application Hub" reusable step
     And I execute "Log Out from Hub Student" reusable step
     And I execute "Log In to Hub as Admin" reusable step
+    # Verify logic for BPP-13608 (upload of encrypted documents)
+    Given I click on the "Direct App Admin Apps Top Link" button
+    And I click on the "Direct App Admin Direct Apps List Option" element
+    Then I click on the "Apprenticeships" "Build Empire admin applications tab"
+    And I fill the "Direct App Admin Filter By User" field with "EC_AUTO_EMAIL"
+    And I press "MD_COMMON_KEYBOARD_ENTER" for "Direct App Admin Filter By User"
+    And I click on the "Show" "button"
+    Then I upload "BPP-13608.docx" file to "BPP Digital Additional Files Upload File Button" element
+    And I click on the "BPP Digital Additional Files Upload Button" button
+    Then I wait for "1" seconds
+    And I should see the "BPP-13608.docx" "text contained in A element"
     And I execute "Reject University Degree Apprenticeships As Admin" reusable step
     #Validate employment status
     And I validate text "CONTAINS=I am a school / college leaver (This is my first professional role)" to be displayed for "Direct App Admin Employment Status Additional Answer" element

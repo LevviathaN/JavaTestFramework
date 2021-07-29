@@ -19,7 +19,7 @@
       "isbn": "EC_ISBN",
       "edition": "0121",
       "learningMediaVatRuleReference": "EC_VAT_RULE_REFERENCE",
-      "courseMaterialVatRuleReference": "EC_VAT_RULE_TWO_REFERENCE",
+      "courseMaterialVatRuleReference": "EC_SECOND_VAT_RULE_REFERENCE",
       "availableDate": "[TIMENOW-yyyy-MM-dd]",
       "expiryDate": "[TIMENOW-yyyy-MM-dd]",
       "stockSiteProductionMethods": [
