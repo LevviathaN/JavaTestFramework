@@ -1802,3 +1802,15 @@ Feature: BuildEmpire
     And I click on the "Direct App Mark As Complete Checkbox" button
     Then I wait for "1" seconds
     And I click on the "Direct App Save And Return" button
+
+  Scenario: Release Grade for Assignment in Totara
+    Given I am on "https://totara-stage-bppdigital.bppuniversity.com/mod/assign/view.php?id=14685&action=grader" URL
+    Then I wait for "2" seconds
+    Then I set "EC_AUTO_FIRSTNAME" text to the "Change user" "Build Empire text field"
+    And I click on the "form_autocomplete_suggestions-0-0" "element by id"
+    And I set "100" text to the "grade" "VLE Login Fields"
+    Then I select "Released" from "workflowstate" "Totara Select field with name Parameter"
+    And I click on the "Save changes" "button"
+    Then I click on the "Ok" "element by value"
+    Then I wait for "2" seconds
+    When I am on "MD_COMMON_LINKS_TOTARALOGINURL" URL
