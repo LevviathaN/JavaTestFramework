@@ -3,6 +3,7 @@ package cucumber.productFactory;
 import api.RestApiController;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import static com.jcabi.matchers.RegexMatchers.matchesPattern;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 
@@ -23,6 +25,7 @@ public class ProductFactoryStepDefs {
 
     private final RestApiController restController;
     private final PropertiesHelper propertiesHelper = new PropertiesHelper();
+
     public ProductFactoryStepDefs() {
         this.restController = new RestApiController();
     }
@@ -38,7 +41,7 @@ public class ProductFactoryStepDefs {
 
         String jsonName = stepName.replaceAll(" ", "");
         jsonName = jsonName.substring(0, 1).toLowerCase() + jsonName.substring(1);
-        String refDataName = jsonName.replace("create","").replace("update","").replace("get","");
+        String refDataName = jsonName.replace("create", "").replace("update", "").replace("get", "");
         JSONObject recordsList = restController.requestProcess(jsonName, null);
 
         /*Get JSON object values*/
@@ -47,8 +50,8 @@ public class ProductFactoryStepDefs {
             String keyString = key.toString();
             String valueString = recordsList.get(keyString) == null ? null : recordsList.get(keyString).toString();
             ExecutionContextHandler.setExecutionContextValueByKey("EC_" + Tools.fromCamelCaseToUpperWithDash(refDataName) + "_" + Tools.fromCamelCaseToUpperWithDash(keyString), valueString);
-            if (!(valueString==null)) {
-                if (!(valueString.contains("{\"reference\":")||keyString.contains("_typename"))) {
+            if (!(valueString == null)) {
+                if (!(valueString.contains("{\"reference\":") || keyString.contains("_typename"))) {
                     log = log + "<br>" + refDataName + " " + keyString + ": " + "<font color='red'><b>" + valueString + "</font></b>";
                 }
             }
@@ -64,7 +67,7 @@ public class ProductFactoryStepDefs {
     public void i_execute_api_step_saving_as(String stepName, String ecName) {
         String jsonName = stepName.replaceAll(" ", "");
         jsonName = jsonName.substring(0, 1).toLowerCase() + jsonName.substring(1);
-        String refDataName = jsonName.replace("create","").replace("update","");
+        String refDataName = jsonName.replace("create", "").replace("update", "");
         JSONObject recordsList = restController.requestProcess(jsonName, null);
 
         /*Get JSON object values*/
@@ -73,8 +76,8 @@ public class ProductFactoryStepDefs {
             String keyString = key.toString();
             String valueString = recordsList.get(keyString) == null ? null : recordsList.get(keyString).toString();
             ExecutionContextHandler.setExecutionContextValueByKey("EC_" + ecName + Tools.fromCamelCaseToUpperWithDash(refDataName) + "_" + Tools.fromCamelCaseToUpperWithDash(keyString), valueString);
-            if (!(valueString==null)) {
-                if (!(valueString.contains("{\"reference\":")||keyString.contains("_typename"))) {
+            if (!(valueString == null)) {
+                if (!(valueString.contains("{\"reference\":") || keyString.contains("_typename"))) {
                     log = log + "<br>" + refDataName + " " + keyString + ": " + "<font color='red'><b>" + valueString + "</font></b>";
                 }
             }
@@ -90,7 +93,7 @@ public class ProductFactoryStepDefs {
     public void i_execute_api_step_with_parameters(String stepName, Map<String, String> parameters) {
         String name = stepName.replaceAll(" ", "");
         name = name.substring(0, 1).toLowerCase() + name.substring(1);
-        String refDataName = name.replace("create","");
+        String refDataName = name.replace("create", "");
         JSONObject recordsList = restController.requestProcess(name, parameters);
         String log = "<pre><br>" + refDataName + ": ";
 
@@ -99,8 +102,8 @@ public class ProductFactoryStepDefs {
             String keyString = key.toString();
             String valueString = recordsList.get(keyString) == null ? null : recordsList.get(keyString).toString();
             ExecutionContextHandler.setExecutionContextValueByKey("EC_" + Tools.fromCamelCaseToUpperWithDash(refDataName) + "_" + Tools.fromCamelCaseToUpperWithDash(keyString), valueString);
-            if (!(valueString==null)) {
-                if (!(valueString.contains("{\"reference\":")||keyString.contains("_typename"))) {
+            if (!(valueString == null)) {
+                if (!(valueString.contains("{\"reference\":") || keyString.contains("_typename"))) {
                     log = log + "<br>" + refDataName + " " + keyString + ": " + "<font color='red'><b>" + valueString + "</font></b>";
                 }
             }
@@ -116,7 +119,7 @@ public class ProductFactoryStepDefs {
     public void i_execute_api_step_with_parameters_saving_as(String stepName, String ecName, Map<String, String> parameters) {
         String name = stepName.replaceAll(" ", "");
         name = name.substring(0, 1).toLowerCase() + name.substring(1);
-        String refDataName = name.replace("create","");
+        String refDataName = name.replace("create", "");
         JSONObject recordsList = restController.requestProcess(name, parameters);
         String log = "<pre><br>" + refDataName + ": ";
 
@@ -125,8 +128,8 @@ public class ProductFactoryStepDefs {
             String keyString = key.toString();
             String valueString = recordsList.get(keyString) == null ? null : recordsList.get(keyString).toString();
             ExecutionContextHandler.setExecutionContextValueByKey("EC_" + ecName + Tools.fromCamelCaseToUpperWithDash(refDataName) + "_" + Tools.fromCamelCaseToUpperWithDash(keyString), valueString);
-            if (!(valueString==null)) {
-                if (!(valueString.contains("{\"reference\":")||keyString.contains("_typename"))) {
+            if (!(valueString == null)) {
+                if (!(valueString.contains("{\"reference\":") || keyString.contains("_typename"))) {
                     log = log + "<br>" + refDataName + " " + keyString + ": " + "<font color='red'><b>" + valueString + "</font></b>";
                 }
             }
@@ -155,5 +158,28 @@ public class ProductFactoryStepDefs {
         BPPLogManager.getLogger().info("ISBN Code was successfully created. ISBN: " + result.text());
     }
 
-}
+    @When("^I execute negative \"([^\"]*)\" API step with expected error \"([^\"]*)\"$")
+    public void i_execute_negative_api_step(String stepName, String errorName) {
+
+        String jsonName = stepName.replaceAll(" ", "");
+        jsonName = jsonName.substring(0, 1).toLowerCase() + jsonName.substring(1);
+        String refDataName = jsonName.replace("negative", "");
+        JSONObject recordsList = restController.requestNegativeProcess(jsonName, null);
+
+        JSONArray recordArrayVarPath = (JSONArray) recordsList.get("variablePath");
+        String recordError = (String) recordArrayVarPath.get(0);
+
+        assertEquals(errorName, recordError);
+
+        /*Get JSON object values*/
+        String log = "<pre><br>" + jsonName + ": " + "<br>" + "Actual: " + "<font color='red'><b>" + errorName + "</font></b>" + " matches expected " + "<font color='red'><b>" + recordError + "</font></b>" + " Location can't be created without " + recordError + "</pre>";
+
+
+    /*Report log with Json object values*/
+        Reporter.log(log);
+        BPPLogManager.getLogger().
+
+    info(stepName +" negative step was executed successfully.");
+        }
+    }
 

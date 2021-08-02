@@ -276,4 +276,20 @@ public class RestApiController {
 
         return map.toString();
     }
+
+    public synchronized JSONObject requestNegativeProcess(String fileName, Map<String, String> parameters)  {
+
+        Response Response = postRequest(propertiesHelper.getProperties().getProperty("pf_request_link"),
+                processPropertiesPF("ProductFactory/" + fileName, parameters),
+                ProductFactoryAuthentication.getInstance().requestHeaderSpecification()
+        );
+
+        JSONObject recordsObject = new Utilities().getResponseProperty(Response);
+        JSONArray recordsArrayData = (JSONArray) recordsObject.get("errors");
+        JSONObject recordsObjData = (JSONObject) recordsArrayData.get(0);
+        JSONObject recordExtensions = (JSONObject) recordsObjData.get("extensions");
+
+        return recordExtensions;
+    }
+
 }

@@ -1079,3 +1079,15 @@ Feature: Product Factory API Data Creation
     And I execute "Create Course Materials" API step
     And I execute "Update Course Material" API step
     Then I execute "Link Course To Clients" API step
+
+  @LocationWithoutRegion
+  Scenario: Creating New Location without and with a Region record
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION    |
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION  |
+    And I execute negative "Negative Location" API step with expected error "regionReference"
+    And I execute "Create Region" API step
+    Then I execute "Create Location" API step
