@@ -282,5 +282,13 @@
   {
     "name": "I_EXECUTE_API_STEP",
     "value": "^I execute \"([^\"]*)\" API step$"
+  },
+  {
+    "name": "I_EXECUTE_NEGATIVE_API_STEP",
+    "value": "^I execute negative \"([^\"]*)\" API step with expected error \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_EXECUTE_NEGATIVE_API_STEP_WITH_PARAMETERS",
+    "value": "^I execute negative \"([^\"]*)\" API step with error name \"([^\"]*)\" and parameters$"
   }
 ]

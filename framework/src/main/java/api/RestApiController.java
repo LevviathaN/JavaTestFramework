@@ -287,9 +287,8 @@ public class RestApiController {
         JSONObject recordsObject = new Utilities().getResponseProperty(Response);
         JSONArray recordsArrayData = (JSONArray) recordsObject.get("errors");
         JSONObject recordsObjData = (JSONObject) recordsArrayData.get(0);
-        JSONObject recordExtensions = (JSONObject) recordsObjData.get("extensions");
 
-        return recordExtensions;
+        return recordsObjData;
     }
 
 }
