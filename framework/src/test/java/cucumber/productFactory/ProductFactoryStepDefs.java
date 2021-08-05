@@ -188,7 +188,7 @@ public class ProductFactoryStepDefs {
     public void i_execute_negative_api_step_with_parameters(String stepName, String errorName, Map<String, String> parameters) {
         String name = stepName.replaceAll(" ", "");
         name = name.substring(0, 1).toLowerCase() + name.substring(1);
-        String refDataName = name.replace("Update", "");
+        String refDataName = name.replace("Update", "").replace("Create","");
         JSONObject recordsList = restController.requestNegativeProcess(name, parameters);
         String message = (String) recordsList.get("message");
 

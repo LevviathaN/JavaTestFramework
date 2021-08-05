@@ -3,7 +3,7 @@
   "variables": {
     "command": {
       "code": "ApiFinancialDimensionCode[#######]",
-      "description": "ApiFinancialDimensionDescriptione[#######]",
+      "description": "ApiFinancialDimensionDescription[#######]",
       "dimensionType": "COSTCENTRE",
       "target": "COURSETYPE"
     }
