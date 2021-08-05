@@ -1,0 +1,11 @@
+{
+  "operationName":"updateMaterialStockSite",
+  "variables":{
+    "command":{
+      "materialReference":"EC_MATERIAL_REFERENCE",
+      "stockSiteReference":"EC_STOCK_SITE_REFERENCE",
+      "productionMethod":"ONDEMAND"
+    }
+  },
+  "query":"mutation updateMaterialStockSite($command: UpdateMaterialStockSiteCommandInput!) { updateMaterialStockSite(command: $command) { ...materialStockSite __typename } } fragment materialStockSite on MaterialStockSite { material { reference __typename } stockSite { ...stockSite __typename } productionMethod __typename } fragment stockSite on StockSite { reference name addressLine1 addressLine2 addressLine3 postcode city countryCode createdBy createdOn updatedBy updatedOn __typename } "
+}

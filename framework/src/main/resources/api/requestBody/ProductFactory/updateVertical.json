@@ -1,0 +1,10 @@
+{
+  "operationName": "updateVertical",
+  "variables": {
+    "command": {
+      "reference":"EC_VERTICAL_REFERENCE",
+      "name": "ApiVerticalNameUpdated[######]"
+    }
+  },
+  "query": "mutation updateVertical($command: UpdateVerticalCommandInput!) { updateVertical(command: $command) { ...vertical __typename } } fragment vertical on Vertical { reference name createdBy createdOn updatedBy updatedOn __typename } "
+}
