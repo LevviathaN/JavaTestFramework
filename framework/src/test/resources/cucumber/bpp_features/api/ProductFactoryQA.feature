@@ -63,9 +63,19 @@ Feature: Product Factory API Data Creation
   Scenario: Add a New VAT Rule Using a Modal
     Given I execute "Create Vat Rule" API step
 
+  @VatRule @Update #TC-1348
+  Scenario: Amend a VAT Rule Using a Modal
+    Given I execute "Create Vat Rule" API step
+    Then I execute "Update Vat Rule" API step
+
   @ExamPreparation #TC-4692
   Scenario: Add a New Exam Preparation Using a Modal
     Given I execute "Create Exam Preparation" API step
+
+  @ExamPreparation @Update #TC-4693
+  Scenario: Amend a Exam Preparation Using a Modal
+    Given I execute "Create Exam Preparation" API step
+    Then I execute "Update Exam Preparation" API step
 
   @StudyMode #TC-4793
   Scenario: Add a New Study Mode Using a Modal
@@ -102,6 +112,11 @@ Feature: Product Factory API Data Creation
   Scenario: Add a New Vertical Using a Modal
     Given I execute "Create Vertical" API step
 
+  @Vertical @Update #TC-4812
+  Scenario: Amend a Vertical Using a Modal
+    Given I execute "Create Vertical" API step
+    Then I execute "Update Vertical" API step
+
   @Body @Update #TC-1545
   Scenario: Amend a Body Using a Modal
     Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
@@ -128,15 +143,35 @@ Feature: Product Factory API Data Creation
     And I execute "Create Body" API step
     Then I execute "Create Sitting" API step
 
+  @Sitting @Update #TC-1547
+  Scenario: Amend a Sitting Using a Modal
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    Then I execute "Update Sitting" API step
+
   @Paper #TC-772
   Scenario: Add a New Paper Using a Modal
     Given I execute "Create Paper" API step
     Then I execute "Create Paper" API step with parameters saving as "CBA_"
       |isCba|true|
 
+  @Paper @Update #TC-828
+  Scenario: Amend a Paper Using a Modal
+    Given I execute "Create Paper" API step
+    Then I execute "Update Paper" API step
+
   @Level #TC-746
   Scenario: Add a New Level Using a Modal
     Given I execute "Create Level" API step
+
+  @Level @Update #TC-823
+  Scenario: Amend a Level Using a Modal
+    Given I execute "Create Level" API step
+    Then I execute "Update Level" API step
 
   @LinkBodyToLevel #TC-703
   Scenario: Link Body to Level
@@ -159,7 +194,7 @@ Feature: Product Factory API Data Creation
     Then I execute "Change Paper Body" API step
 
   @LinkPaperToLevel #TC-716
-  Scenario: Link Paper to Levels
+  Scenario: Link Paper to Level
     Given I execute "Create Level" API step
     And I execute "Create Paper" API step
     Then I execute "Link Paper To Levels" API step
@@ -197,6 +232,11 @@ Feature: Product Factory API Data Creation
   @SessionDuration #TC-811
   Scenario: Add a New Session Duration Using a Modal
     Given I execute "Create Session Duration" API step
+
+  @SessionDuration @Update #TC-813
+  Scenario: Amend a Session Duration Using a Modal
+    Given I execute "Create Session Duration" API step
+    And I execute "Update Session Duration" API step
 
   @PricingMatrix #TC-981
   Scenario: Add a New Pricing Matrix Using a Modal
@@ -271,10 +311,23 @@ Feature: Product Factory API Data Creation
   Scenario: Add a New Programme Using a Modal
     Given I execute "Create Programme" API step
 
+  @UniversityProgrammes @Update #TC-5388
+  Scenario: Amend a Programme Using a Modal
+    Given I execute "Create Programme" API step
+    Then I execute "Update Programme" API step
+
   @ProgrammeCohorts #TC-5391
   Scenario: Add a New Programme Cohort Using a Modal
     Given I execute "Create Programme" API step
     Then I execute "Create Cohort" API step
+
+  @ProgrammeCohorts @Update @DoNotRun #TC-5391
+  Scenario: Add a New Programme Cohort Using a Modal
+    Given I execute "Create Programme" API step
+    Then I execute "Create Cohort" API step
+#
+    And I execute "Create Class Category" API step
+    And I execute "Update Cohort" API step
 
   @ModuleSection #TC-5407
   Scenario: Add a New Module Section Using a Modal
@@ -285,6 +338,10 @@ Feature: Product Factory API Data Creation
   @StockSite
   Scenario: Add a New Stock Site Using a Modal
     Given I execute "Create Stock Site" API step
+
+  @ClassCategory @Run
+  Scenario: Add a New Class Category Using a Modal
+    Given I execute "Create Class Category" API step
 
   @MaterialType #TC-1435
   Scenario: Add a New Material Type Using a Modal
@@ -306,9 +363,19 @@ Feature: Product Factory API Data Creation
   Scenario: Add a New Stream Using a Modal
     Given I execute "Create Stream" API step
 
+  @Streams @Update #TC-2931
+  Scenario: Amend a Stream Using a Modal
+    Given I execute "Create Stream" API step
+    Then I execute "Update Stream" API step
+
   @DeactivationReason #TC-975
   Scenario: Add a New Deactivation Reason Using a Modal
     Given I execute "Create Deactivation Reason" API step
+
+  @DeactivationReason @Update #TC-978
+  Scenario: Amend a Deactivation Reason Using a Modal
+    Given I execute "Create Deactivation Reason" API step
+    Then I execute "Update Deactivation Reason" API step
 
   @Course
   Scenario: Create Course
@@ -912,6 +979,35 @@ Feature: Product Factory API Data Creation
     And I execute "Create Stock Site" API step
     And I execute "Create Material Type" API step
     And I execute "Create Material" API step
+
+  @Material @Update
+  Scenario: Amend Material Using Modal
+    Given I generate new ISBN code saving as "EC_ISBN"
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Vat Rule" API step saving as "SECOND_"
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Stock Site" API step
+    And I execute "Create Material Type" API step
+    And I execute "Create Material" API step
+    And I execute "Change Material Publisher" API step
+    And I execute "Change Material Basic Properties" API step
+    And I execute "Change Material Body Paper Level Sitting" API step
+    And I execute "Delete Material Stock Site" API step
+    And I execute "Create Material Stock Site" API step
+    And I execute "Update Material Stock Site" API step
 
   @CourseMaterial
   Scenario: Create Course Material

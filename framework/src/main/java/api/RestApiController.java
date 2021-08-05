@@ -103,7 +103,7 @@ public class RestApiController {
             Map command = (Map) variables.get(key);
             for (Object commandKey : command.keySet()) {
                 Object value = parameters.containsKey(commandKey) ? parameters.get(commandKey) : command.get(commandKey);
-                String updatedValue = TestParametersController.checkIfSpecialParameter(value.toString());
+                String updatedValue = value.equals(null) ? "null" : TestParametersController.checkIfSpecialParameter(value.toString());
                 value = (value.toString().equals(updatedValue)||value instanceof JSONArray) ? value : updatedValue;
                 if (!(value==null)) {
                     if (commandKey.equals("timings")) {
@@ -178,7 +178,14 @@ public class RestApiController {
 
         /*Get Json object values*/
         try {
-            Reference = recordsList.get("Reference")==null ? (String) recordsList.get("CourseReference") : (String) recordsList.get("Reference");
+//            Reference = recordsList.get("Reference")==null ? (String) recordsList.get("CourseReference") : (String) recordsList.get("Reference");
+            if (recordsList.get("Reference")!=null) {
+                Reference = (String) recordsList.get("Reference");
+            } else if (recordsList.get("CourseReference")!=null) {
+                Reference = (String) recordsList.get("CourseReference");
+            } else if (recordsList.get("DeletedResourceReference")!=null) {
+                Reference = (String) recordsList.get("DeletedResourceReference");
+            }
         } catch (Exception e) {
             BPPLogManager.getLogger().error(Tools.getStackTrace(e));
             Reporter.failTryTakingScreenshot("<br>" + Tools.getStackTrace(e) + "</br>");
