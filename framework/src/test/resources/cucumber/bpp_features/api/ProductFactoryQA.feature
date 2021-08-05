@@ -26,6 +26,76 @@ Feature: Product Factory API Data Creation
       |target       |COURSE    |
     Then I execute "Change Course Financial Dimension" API step
 
+  @FinancialDimensionCourseDuplicate
+  Scenario: Create Financial Dimension record Course item with Duplicate Data
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_LEGAL_ENTITY_"
+      |dimensionType|LEGALENTITY|
+      |target       |COURSE     |
+    Then I execute negative "Create Financial Dimension" API step with error name "A Financial Dimension with the same code already targets 'Course'" and parameters
+      |code         |EC_COURSE_LEGAL_ENTITY_FINANCIAL_DIMENSION_CODE|
+      |dimensionType|LEGALENTITY|
+      |target       |COURSE     |
+
+  @FinancialDimensionMaterialDuplicate
+  Scenario: Create Financial Dimension record Material item with Duplicate Data
+    Given I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_LEGAL_ENTITY_"
+      |dimensionType|LEGALENTITY|
+      |target       |MATERIAL   |
+    Then I execute negative "Create Financial Dimension" API step with error name "A Financial Dimension with the same code already targets 'Material'" and parameters
+      |code         |EC_MATERIAL_LEGAL_ENTITY_FINANCIAL_DIMENSION_CODE|
+      |dimensionType|LEGALENTITY|
+      |target       |MATERIAL   |
+
+  @FinancialDimensionCourseTypeDuplicate
+  Scenario: Create Financial Dimension record Course Type item with Duplicate Data
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    Then I execute negative "Create Financial Dimension" API step with error name "A Financial Dimension with the same code already targets 'CourseType'" and parameters
+      |code         |EC_COURSE_TYPE_PROJECT_FINANCIAL_DIMENSION_CODE|
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+
+  @FinancialDimensionMaterialTypeDuplicate
+  Scenario: Create Financial Dimension record Material Type item with Duplicate Data
+    Given I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+    Then I execute negative "Create Financial Dimension" API step with error name "A Financial Dimension with the same code already targets 'MaterialType'" and parameters
+      |code         |EC_MATERIAL_TYPE_FINANCIAL_DIMENSION_CODE|
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+
+  @FinancialDimensionBodyDuplicate
+  Scenario: Create Financial Dimension record Body item with Duplicate Data
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    Then I execute negative "Create Financial Dimension" API step with error name "A Financial Dimension with the same code already targets 'Body'" and parameters
+      |code         |EC_BODY_FINANCIAL_DIMENSION_CODE|
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+
+  @FinancialDimensionLocationDuplicate
+  Scenario: Create Financial Dimension record Location item with Duplicate Data
+    Given I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT |
+      |target       |LOCATION|
+    Then I execute negative "Create Financial Dimension" API step with error name "A Financial Dimension with the same code already targets 'Location'" and parameters
+      |code         |EC_LOCATION_FINANCIAL_DIMENSION_CODE|
+      |dimensionType|PRODUCT |
+      |target       |LOCATION|
+
+  @FinancialDimensionREGIONDuplicate
+  Scenario: Create Financial Dimension record Region item with Duplicate Data
+    Given I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT |
+      |target       |REGION|
+    Then I execute negative "Create Financial Dimension" API step with error name "A Financial Dimension with the same code already targets 'Region'" and parameters
+      |code         |EC_REGION_FINANCIAL_DIMENSION_CODE|
+      |dimensionType|PRODUCT |
+      |target       |REGION|
+
   @FinancialDimension #TC-1532
   Scenario: Create Financial Dimensions record Course Type item
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
@@ -205,7 +275,16 @@ Feature: Product Factory API Data Creation
       |dimensionType|PRODUCT|
       |target       |REGION |
     Then I execute "Create Region" API step
-    
+
+  @RegionDuplicate
+  Scenario: Create new Region with Duplicate Data
+    Given I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT|
+      |target       |REGION |
+    Then I execute "Create Region" API step
+    Then I execute negative "Create Region" API step with error name "Name must be unique" and parameters
+      |name|EC_REGION_NAME|
+
   @Location #TC-775
   Scenario: Add a New Location Using a Modal
     Given I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
@@ -316,6 +395,14 @@ Feature: Product Factory API Data Creation
     Given I execute "Create Programme" API step
     Then I execute "Update Programme" API step
 
+  @UniversityProgrammesDuplicate
+  Scenario: Create Duplicate of Existing Programme
+    Given I execute "Create Programme" API step
+    Then I execute negative "Create Programme" API step with error name "Name must be unique" and parameters
+      |name|EC_PROGRAMME_NAME|
+    Then I execute negative "Create Programme" API step with error name "Code must be unique" and parameters
+      |code|EC_PROGRAMME_CODE|
+
   @ProgrammeCohorts #TC-5391
   Scenario: Add a New Programme Cohort Using a Modal
     Given I execute "Create Programme" API step
@@ -328,6 +415,13 @@ Feature: Product Factory API Data Creation
 #
     And I execute "Create Class Category" API step
     And I execute "Update Cohort" API step
+
+  @ProgrammeCohortsDuplicate
+  Scenario: Create Duplicate of Existing Programme Cohort
+    Given I execute "Create Programme" API step
+    And I execute "Create Cohort" API step
+    Then I execute negative "Create Cohort" API step with error name "Name must be unique" and parameters
+    |name|EC_COHORT_NAME|
 
   @ModuleSection #TC-5407
   Scenario: Add a New Module Section Using a Modal
