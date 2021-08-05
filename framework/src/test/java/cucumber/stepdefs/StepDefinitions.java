@@ -853,7 +853,7 @@ public class StepDefinitions extends SeleniumHelper {
             Assert.assertTrue(PDFHandler.checkPDF(baseFile, fileName1));
         } catch (IOException e) {
             e.printStackTrace();
-            Reporter.log("Please check the PDF files! Some files are missing! ");
+            Reporter.fail("Please check the PDF files! Some files are missing! ");
         }
     }
 

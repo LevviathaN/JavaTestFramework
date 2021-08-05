@@ -19,6 +19,7 @@ import java.util.Map;
 import static com.jcabi.matchers.RegexMatchers.matchesPattern;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static org.junit.internal.matchers.StringContains.containsString;
 
 
 public class ProductFactoryStepDefs {
@@ -166,7 +167,8 @@ public class ProductFactoryStepDefs {
         String refDataName = jsonName.replace("negative", "");
         JSONObject recordsList = restController.requestNegativeProcess(jsonName, null);
 
-        JSONArray recordArrayVarPath = (JSONArray) recordsList.get("variablePath");
+        JSONObject recordExtensions = (JSONObject) recordsList.get("extensions");
+        JSONArray recordArrayVarPath = (JSONArray) recordExtensions.get("variablePath");
         String recordError = (String) recordArrayVarPath.get(0);
 
         assertEquals(errorName, recordError);
@@ -181,5 +183,28 @@ public class ProductFactoryStepDefs {
 
     info(stepName +" negative step was executed successfully.");
         }
+
+    @When("^I execute negative \"([^\"]*)\" API step with error name \"([^\"]*)\" and parameters$")
+    public void i_execute_negative_api_step_with_parameters(String stepName, String errorName, Map<String, String> parameters) {
+        String name = stepName.replaceAll(" ", "");
+        name = name.substring(0, 1).toLowerCase() + name.substring(1);
+        String refDataName = name.replace("Update", "");
+        JSONObject recordsList = restController.requestNegativeProcess(name, parameters);
+        String message = (String) recordsList.get("message");
+
+        assertThat(message, containsString(errorName));
+
+        /*Get JSON object values*/
+        String log = "<pre><br>" + refDataName + ": " + "<br>" + "<font color='red'><b>" + message + "</font></b>" + "</pre>";
+
+
+        /*Report log with Json object values*/
+        Reporter.log(log);
+        BPPLogManager.getLogger().
+
+                info(stepName +" negative step was executed successfully.");
+
+    }
+
     }
 

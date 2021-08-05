@@ -108,6 +108,8 @@ public static ReusableRunner getInstance() {
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_GENERATE_NEW_ISBN_CODE"), () ->  pfStepDefs.i_generate_new_isbn_code(arg1));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_API_STEP"), () ->  pfStepDefs.i_execute_api_step(arg1));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_API_STEP_SAVING_AS"), () ->  pfStepDefs.i_execute_api_step_saving_as(arg1, arg2));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_NEGATIVE_API_STEP"), () ->  pfStepDefs.i_execute_negative_api_step(arg1, arg2));
+
         //Venus API stepdefs
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_REGISTER_NEW_HUB_ACCOUNT_API"),() -> venusStepDefsAPI.i_register_new_hub_account());
     }
