@@ -126,6 +126,20 @@ Feature: Product Factory API Data Creation
     Then I execute "Create Body" API step
     And I execute "Update Body" API step
 
+  @Body @Update @Negative @Duplicate #TC-820
+  Scenario: Amend a Body Where Short Name Already Exists
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Vertical" API step
+    Then I execute "Create Body" API step
+    And I execute "Create Body" API step with parameters saving as "SECOND_"
+      |shortName  |ApiBodyShortNameTwo[#####]  |
+      |name       |ApiBodyNameTwo[####]        |
+      |description|ApiBodyDescriptionTwo[#####]|
+    And I execute negative "Update Body" API step with error name "Short Name must be unique" and parameters
+      |shortName|EC_API_BODY_SHORT_NAME_TWO|
+
   @Body #TC-743
   Scenario: Add a New Body Using a Modal
     Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
@@ -164,6 +178,16 @@ Feature: Product Factory API Data Creation
     Given I execute "Create Paper" API step
     Then I execute "Update Paper" API step
 
+  @Paper @Update @Duplicate @Negative #TC-831
+  Scenario: Amend a Paper Where Description Already Exists
+    Given I execute "Create Paper" API step
+    And I execute "Create Paper" API step with parameters saving as "SECOND_"
+      |shortName  |ApiPSNT[###]  |
+      |name       |ApiPaperNameTwo[####]        |
+      |description|ApiPaperDescriptionTwo[#####]|
+    And I execute negative "Update Paper" API step with error name "Short Name must be unique" and parameters
+      |shortName|EC_API_PSNT|
+
   @Level #TC-746
   Scenario: Add a New Level Using a Modal
     Given I execute "Create Level" API step
@@ -172,6 +196,16 @@ Feature: Product Factory API Data Creation
   Scenario: Amend a Level Using a Modal
     Given I execute "Create Level" API step
     Then I execute "Update Level" API step
+
+  @Level @Update @Duplicate @Negative #TC-824
+  Scenario: Amend a Level Where Short Name Already Exists
+    Given I execute "Create Level" API step
+    Then I execute "Create Level" API step with parameters saving as "SECOND_"
+      |shortName  |ApiLevelShortNameTwo[#####]  |
+      |name       |ApiLevelNameTwo[####]        |
+      |description|ApiLevelDescriptionTwo[#####]|
+    Then I execute negative "Update Level" API step with error name "Short Name must be unique" and parameters
+      |shortName|EC_API_LEVEL_SHORT_NAME_TWO|
 
   @LinkBodyToLevel #TC-703
   Scenario: Link Body to Level
@@ -339,7 +373,7 @@ Feature: Product Factory API Data Creation
   Scenario: Add a New Stock Site Using a Modal
     Given I execute "Create Stock Site" API step
 
-  @ClassCategory @Run
+  @ClassCategory
   Scenario: Add a New Class Category Using a Modal
     Given I execute "Create Class Category" API step
 
