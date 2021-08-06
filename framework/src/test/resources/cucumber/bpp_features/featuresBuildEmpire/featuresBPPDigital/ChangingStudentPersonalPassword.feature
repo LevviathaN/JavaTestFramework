@@ -1,12 +1,11 @@
-@DigitalSite @Smoke @BuildEmpire
+@DigitalSite @BuildEmpire
 Feature: BPP Digital Changing Student Personal Password
 
   Background:
     Given I register new Hub account using API
-    Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
 
-  @Positive @Smoke #TC-3626
+  @Positive @ChangePassword @Smoke #TC-3626
   Scenario: Changing Student Personal Password
     When I execute "Edit Hub Student" reusable step
     Then I click on the "Change My Password" "BPP Digital Profile button"
