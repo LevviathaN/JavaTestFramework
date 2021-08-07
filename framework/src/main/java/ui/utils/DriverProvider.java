@@ -76,23 +76,23 @@ public class DriverProvider {
 
             options.addArguments("--test-type");
             options.addArguments("--start-maximized");
-            options.addArguments("--disable-save-password-bubble");
-            options.addArguments("--no-sandbox");
-            options.addArguments("--disable-infobars");
-            options.addArguments("--disable-dev-shm-usage");
-            options.addArguments("--disable-browser-side-navigation");
-            options.addArguments("--disable-gpu");
+//            options.addArguments("--disable-save-password-bubble");
+//            options.addArguments("--no-sandbox");
+//            options.addArguments("--disable-infobars");
+//            options.addArguments("--disable-dev-shm-usage");
+//            options.addArguments("--disable-browser-side-navigation");
+//            options.addArguments("--disable-gpu");
             options.addArguments("enable-automation");
-            options.setPageLoadStrategy(PageLoadStrategy.NONE);
-            options.setCapability(ChromeOptions.CAPABILITY, options);
-            options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-            options.setCapability("chrome.switches", Arrays.asList("--no-default-browser-check"));
+//            options.setPageLoadStrategy(PageLoadStrategy.NONE);
+//            options.setCapability(ChromeOptions.CAPABILITY, options);
+//            options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+//            options.setCapability("chrome.switches", Arrays.asList("--no-default-browser-check"));
 
             HashMap<String, Object> chromePreferences = new HashMap<>();
-            chromePreferences.put("profile.password_manager_enabled", "false");
-            chromePreferences.put("credentials_enable_service", "false");
-            chromePreferences.put("profile.default_content_settings.popups", 0);
-            chromePreferences.put("download.default_directory", folder.getAbsolutePath());
+//            chromePreferences.put("profile.password_manager_enabled", "false");
+//            chromePreferences.put("credentials_enable_service", "false");
+//            chromePreferences.put("profile.default_content_settings.popups", 0);
+//            chromePreferences.put("download.default_directory", folder.getAbsolutePath());
 
             options.setCapability("chrome.prefs", chromePreferences);
             options.setExperimentalOption("prefs", chromePreferences);
@@ -158,6 +158,35 @@ public class DriverProvider {
             throw new WebDriverException("Unable to launch the browser", e);
         }
     }
+
+    static public RemoteWebDriver getChromeLambdaTest() {
+        String username = "castiel.arhangel619";
+        String accessKey = "34wvDaJvFd0c20TK5dDKAJJABLnx3u12knT52OWjDJM6FlNHkt";
+
+        try {
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("platform", "Windows 10");
+            capabilities.setCapability("browserName", "Chrome");
+            capabilities.setCapability("version", "91.0"); // If this cap isn't specified, it will just get the any available one
+            capabilities.setCapability("resolution","1024x768");
+            capabilities.setCapability("build", "First Test");
+            capabilities.setCapability("name", "Sample Test");
+            capabilities.setCapability("network", true); // To enable network logs
+            capabilities.setCapability("visual", true); // To enable step by step screenshot
+            capabilities.setCapability("video", true); // To enable video recording
+            capabilities.setCapability("console", true); // To capture console logs
+
+            //configure capability to set the job name with Test Case name
+            String testName = Reporter.getCurrentTestName();
+            capabilities.setCapability("name", testName);
+
+            return new RemoteWebDriver(new URL("https://"+username+":"+accessKey+"@hub.lambdatest.com/wd/hub"), capabilities);
+
+        } catch (Exception e) {
+            throw new WebDriverException("Unable to launch the browser", e);
+        }
+    }
+
     static public RemoteWebDriver getSafariBrowserStack() {
 
         try {
@@ -345,6 +374,8 @@ public class DriverProvider {
                 instance.set(getIOSMobileDevice());
             } else if (getCurrentBrowserName().equalsIgnoreCase("MOBILE_ANDROID")) {
                 instance.set(getAndroidMobileDevice());
+            } else if (getCurrentBrowserName().equalsIgnoreCase("LAMBDA_CHROME")) {
+                instance.set(getChromeLambdaTest());
             }
         return instance.get();
 
@@ -371,6 +402,8 @@ public class DriverProvider {
                 BROWSER_TYPE = "MOBILE_ANDROID";
             } else if (PropertiesHelper.determineEffectivePropertyValue("driver").equalsIgnoreCase("MOBILE_IOS")) {
                 BROWSER_TYPE = "MOBILE_IOS";
+            } else if (PropertiesHelper.determineEffectivePropertyValue("driver").equalsIgnoreCase("LAMBDA_CHROME")) {
+                BROWSER_TYPE = "LAMBDA_CHROME";
             }
 
         return BROWSER_TYPE;
