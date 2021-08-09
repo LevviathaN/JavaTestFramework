@@ -328,7 +328,7 @@ Feature: Product Factory
     When I click on the "Financials" "Product Factory navigation item"
     When I click on the "Prices" "Product Factory navigation sub item"
     When I click on the "EC_BODY_NAME" "Product Factory edit button"
-    Then I click on the "Create" "Product Factory button"
+    Then I click on the "Add Price" "Product Factory button"
     Then I set "EC_COURSE_TYPE_DESCRIPTION" text to the "Search" "Product Factory text field" from keyboard
     And I click on the "submit" "element by type"
     And I click on the "EC_COURSE_TYPE_DESCRIPTION" "Product Factory select button"
@@ -485,10 +485,10 @@ Feature: Product Factory
 #    Then I set "EC_COURSE_TYPE_DESCRIPTION" text to the "Search" "Product Factory text field" from keyboard
 #    And I click on the "submit" "element by type"
     And I click on the "EC_COURSE_TYPE_DESCRIPTION" "Product Factory select button"
-    And I click on the "Sitting" "Product Factory dropdown"
-    And I click on the "EC_SITTING_NAME" "Product Factory dropdown option"
     And I click on the "Body" "Product Factory dropdown"
     And I click on the "EC_BODY_NAME" "Product Factory dropdown option"
+    And I click on the "Sitting" "Product Factory dropdown"
+    And I click on the "EC_SITTING_NAME" "Product Factory dropdown option"
     And I click on the "Paper" "Product Factory dropdown"
     And I click on the "EC_CBA_PAPER_NAME" "Product Factory dropdown option"
     And I click on the "Next" "Product Factory button"
