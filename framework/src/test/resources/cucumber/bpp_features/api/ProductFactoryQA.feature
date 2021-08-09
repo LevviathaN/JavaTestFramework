@@ -514,12 +514,11 @@ Feature: Product Factory API Data Creation
     Given I execute "Create Programme" API step
     Then I execute "Create Cohort" API step
 
-  @ProgrammeCohorts @Update @DoNotRun #TC-5391
-  Scenario: Add a New Programme Cohort Using a Modal
+  @ProgrammeCohorts @Update #TC-5392
+  Scenario: Amend a Programme Cohort Using a Modal
     Given I execute "Create Programme" API step
-    Then I execute "Create Cohort" API step
-#
     And I execute "Create Class Category" API step
+    Then I execute "Create Cohort" API step
     And I execute "Update Cohort" API step
 
   @ProgrammeCohortsDuplicate #TC-5401
