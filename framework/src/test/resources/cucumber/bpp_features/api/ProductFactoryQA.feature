@@ -26,7 +26,7 @@ Feature: Product Factory API Data Creation
       |target       |COURSE    |
     Then I execute "Change Course Financial Dimension" API step
 
-  @FinancialDimensionCourseDuplicate
+  @FinancialDimensionCourseDuplicate #TC-1542
   Scenario: Create Financial Dimension record Course item with Duplicate Data
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_LEGAL_ENTITY_"
       |dimensionType|LEGALENTITY|
@@ -36,7 +36,7 @@ Feature: Product Factory API Data Creation
       |dimensionType|LEGALENTITY|
       |target       |COURSE     |
 
-  @FinancialDimensionMaterialDuplicate
+  @FinancialDimensionMaterialDuplicate #TC-1542
   Scenario: Create Financial Dimension record Material item with Duplicate Data
     Given I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_LEGAL_ENTITY_"
       |dimensionType|LEGALENTITY|
@@ -46,7 +46,7 @@ Feature: Product Factory API Data Creation
       |dimensionType|LEGALENTITY|
       |target       |MATERIAL   |
 
-  @FinancialDimensionCourseTypeDuplicate
+  @FinancialDimensionCourseTypeDuplicate #TC-1542
   Scenario: Create Financial Dimension record Course Type item with Duplicate Data
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
@@ -56,7 +56,7 @@ Feature: Product Factory API Data Creation
       |dimensionType|PROJECT   |
       |target       |COURSETYPE|
 
-  @FinancialDimensionMaterialTypeDuplicate
+  @FinancialDimensionMaterialTypeDuplicate #TC-1542
   Scenario: Create Financial Dimension record Material Type item with Duplicate Data
     Given I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
       |dimensionType|PRODUCT     |
@@ -66,7 +66,7 @@ Feature: Product Factory API Data Creation
       |dimensionType|PRODUCT     |
       |target       |MATERIALTYPE|
 
-  @FinancialDimensionBodyDuplicate
+  @FinancialDimensionBodyDuplicate #TC-1542
   Scenario: Create Financial Dimension record Body item with Duplicate Data
     Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
       |dimensionType|PRODUCT|
@@ -76,7 +76,7 @@ Feature: Product Factory API Data Creation
       |dimensionType|PRODUCT|
       |target       |BODY   |
 
-  @FinancialDimensionLocationDuplicate
+  @FinancialDimensionLocationDuplicate #TC-1542
   Scenario: Create Financial Dimension record Location item with Duplicate Data
     Given I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
       |dimensionType|PRODUCT |
@@ -86,7 +86,7 @@ Feature: Product Factory API Data Creation
       |dimensionType|PRODUCT |
       |target       |LOCATION|
 
-  @FinancialDimensionREGIONDuplicate
+  @FinancialDimensionREGIONDuplicate #TC-1542
   Scenario: Create Financial Dimension record Region item with Duplicate Data
     Given I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
       |dimensionType|PRODUCT |
@@ -276,7 +276,7 @@ Feature: Product Factory API Data Creation
       |target       |REGION |
     Then I execute "Create Region" API step
 
-  @RegionDuplicate
+  @RegionDuplicate #TC-1885
   Scenario: Create new Region with Duplicate Data
     Given I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
       |dimensionType|PRODUCT|
@@ -386,6 +386,61 @@ Feature: Product Factory API Data Creation
     And I execute "Link Paper To Levels" API step
     Then I execute "Create Digital Content" API step
 
+  @DigitalContentDuplicate #TC-3149
+  Scenario: Create Digital Content Prevent Duplicate
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    Then I execute "Create Digital Content" API step
+    Then I execute negative "Create Digital Content" API step with error name "Digital Content already exists with the display name 'ApiDigitalContentName" and parameters
+      |name|EC_API_DIGITAL_CONTENT_NAME|
+
+  @DigitalContentDuplicate @BET #TC-3453
+  Scenario: Digital Content Name Suffix Field Prevent Duplicate
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    Then I execute "Create Digital Content" API step
+    Then I execute negative "Create Digital Content" API step with error name "Digital Content already exists for the combination of Body, Level, Paper, Sitting" and parameters
+      |nameSuffix|ApiNameSuffix[#####]|
+
+
   @UniversityProgrammes #TC-5387
   Scenario: Add a New Programme Using a Modal
     Given I execute "Create Programme" API step
@@ -395,7 +450,7 @@ Feature: Product Factory API Data Creation
     Given I execute "Create Programme" API step
     Then I execute "Update Programme" API step
 
-  @UniversityProgrammesDuplicate
+  @UniversityProgrammesDuplicate #TC-5389
   Scenario: Create Duplicate of Existing Programme
     Given I execute "Create Programme" API step
     Then I execute negative "Create Programme" API step with error name "Name must be unique" and parameters
@@ -416,7 +471,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Class Category" API step
     And I execute "Update Cohort" API step
 
-  @ProgrammeCohortsDuplicate
+  @ProgrammeCohortsDuplicate #TC-5401
   Scenario: Create Duplicate of Existing Programme Cohort
     Given I execute "Create Programme" API step
     And I execute "Create Cohort" API step
@@ -1269,7 +1324,7 @@ Feature: Product Factory API Data Creation
     And I execute "Update Course Material" API step
     Then I execute "Link Course To Clients" API step
 
-  @LocationWithoutRegion
+  @LocationWithoutRegion #TC-1869
   Scenario: Creating New Location without and with a Region record
     And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
       |dimensionType|PRODUCT   |
@@ -1281,8 +1336,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Region" API step
     Then I execute "Create Location" API step
 
-
-  @LocationInUse
+  @LocationInUse #TC-1871
   Scenario: Edit Location that is in use
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
