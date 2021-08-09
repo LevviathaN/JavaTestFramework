@@ -237,6 +237,23 @@ Feature: Product Factory API Data Creation
     And I execute "Create Sitting" API step
     Then I execute "Update Sitting" API step
 
+  @Sitting #TC-835
+  Scenario: Add a New Sitting Using a Modal (Link to Multiple Bodies)
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_TWO_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Vertical" API step
+    And I execute "Create Vertical" API step saving as "SECOND_"
+    And I execute "Create Body" API step
+    And I execute "Create Body" API step with parameters saving as "SECOND_"
+    |financialDimensionReference|EC_BODY_TWO_FINANCIAL_DIMENSION_REFERENCE|
+    |verticalReference          |EC_SECOND_VERTICAL_REFERENCE             |
+    Then I execute "Create Sitting" API step
+    Then I execute "Create Multiple Body Sitting" API step saving as "SITTING_TWO_"
+
   @Paper #TC-772
   Scenario: Add a New Paper Using a Modal
     Given I execute "Create Paper" API step
@@ -447,7 +464,7 @@ Feature: Product Factory API Data Creation
     Then I execute negative "Create Digital Content" API step with error name "Digital Content already exists with the display name 'ApiDigitalContentName" and parameters
       |name|EC_API_DIGITAL_CONTENT_NAME|
 
-  @DigitalContentDuplicate @BET #TC-3453
+  @DigitalContentDuplicate #TC-3453
   Scenario: Digital Content Name Suffix Field Prevent Duplicate
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
