@@ -4,6 +4,14 @@
     "value": "xpath=//a[text()='PARAMETER' and @class='action primary']"
   },
   {
+    "name": "Navigation Menu Item",
+    "value": "xpath=//li[@class='nav-item dropdown'][contains(.,'PARAMETER')]"
+  },
+  {
+    "name": "Navigation Submenu Item",
+    "value": "xpath=(//a[.='PARAMETER'])[2]"
+  },
+  {
     "name": "Rings Listing Page Filter",
     "value": "xpath=//div[@class='filter-options-title' and text()='PARAMETER']"
   },
