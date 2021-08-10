@@ -28,6 +28,7 @@ and then appears corrects as soon we change it back to the default "Never"
     And I click on the "Totara Finish Enroling Users button" button by JS
     Then I execute "Logout as Admin Totara" reusable step
     And Browser deletes cookies
+    And I wait for "1" seconds
     And I execute "Log In to Hub as Student" reusable step
     When I click on the "Only for Automation " "Build Empire My Learning Right Block Course name"
     And I click on the "TOPIC BPP-13563" "Build Empire Course Topic"

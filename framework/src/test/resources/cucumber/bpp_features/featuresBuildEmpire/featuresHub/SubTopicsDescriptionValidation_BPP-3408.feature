@@ -10,7 +10,7 @@ Feature: BPP University Hub Sub Topics and Labels
     When I execute "Log Out from Hub Student" reusable step
     And I wait for "7" seconds
 
-  @Positive #TC-2233 TC-2239 TC-2242
+  @Positive @Description #TC-2233 TC-2239 TC-2242
   Scenario: Hub Sub Topics Description Validation
     #When I execute "Log Out from Hub Student" reusable step
     When I am on "MD_COMMON_LINKS_TOTARALOGINURL" URL
