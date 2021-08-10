@@ -9,7 +9,7 @@ Feature: Product Factory - Region - BPP-3648
     And I remember "AutoRegionFDCode" text as "EC_REGION_FD_CODE" variable
     And I remember "AutoRegionFDDescription" text as "EC_REGION_FD_DESCRIPTION" variable
 
-  @Positive @Regression @P1 @HappyPath #TC-1874, TC-1890
+  @Positive @Regression @P1 @HappyPath @CoveredWithApi #TC-1874, TC-1890
   Scenario: Create new Region
     When I execute "Create Region" reusable step
     And I click on the "EC_REGION_NAME" "Product Factory edit button"
@@ -20,7 +20,7 @@ Feature: Product Factory - Region - BPP-3648
     #todo date format issue
 #    Then I validate text "CONTAINS=EC_DATE" to be displayed for "Product Factory Audit Log Created When Node" element
 
-  @Negative @P2 #TC-1885
+  @Negative @P2 @CoveredWithApi #TC-1885
   Scenario: Create new Region with Duplicate Data
     When I execute "Create Region Financial Dimension" reusable step
     When I execute "Create Region" reusable step

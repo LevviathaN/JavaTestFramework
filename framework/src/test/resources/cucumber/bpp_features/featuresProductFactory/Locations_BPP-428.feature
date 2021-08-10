@@ -8,7 +8,7 @@ Feature: Reference Data - Location - BPP-428
     And I remember "AutoLocationFDDescription" text as "EC_LOCATION_FD_DESCRIPTION" variable
     And I remember "AutoRegionName" text as "EC_REGION_NAME" variable
 
-  @Positive @Regression @P1 #TC-775
+  @Positive @Regression @P1 @CoveredWithApi #TC-775
   Scenario: Add a New Location Using a Modal
     Given I execute modified "Create Location" reusable step
       |6|Add|I set "LocationAddressLineTwo[######]" text to the "Address Line 2" "Product Factory text field"|

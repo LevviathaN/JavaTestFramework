@@ -530,7 +530,7 @@
   },
   {
     "name": "Product Factory edit button",
-    "value": "xpath=//td[text()='PARAMETER']/following-sibling::td/button[last()]|//td[text()='PARAMETER']/following-sibling::td/a/button[last()]|//span[text()='PARAMETER']/../following-sibling::div/div/button|//span[text()='PARAMETER']/following-sibling::div/button|//span[text()='PARAMETER']/../following-sibling::button|//td[text()='PARAMETER']/button|//span[text()='PARAMETER']/following-sibling::span/button|//p[text()='PARAMETER']/../../../following-sibling::button|//label[text()='PARAMETER']/following-sibling::button|//h6[text()='PARAMETER']/button"
+    "value": "xpath=//td[text()='PARAMETER']/following-sibling::td/button[last()]|//td[text()='PARAMETER']/following-sibling::td/a/button[last()]|//span[text()='PARAMETER']/../following-sibling::div/div/button|//span[text()='PARAMETER']/following-sibling::div/button|//span[text()='PARAMETER']/../following-sibling::button|//td[text()='PARAMETER']/button|//span[text()='PARAMETER']/following-sibling::span/button|//p[text()='PARAMETER']/../../../following-sibling::button|//label[text()='PARAMETER']/following-sibling::button|//h6[text()='PARAMETER']/button|//div[text()='PARAMETER']/../following-sibling::td//button"
   },
   {
     "name": "Product Factory field value",

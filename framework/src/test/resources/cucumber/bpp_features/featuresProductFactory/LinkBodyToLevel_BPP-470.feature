@@ -11,7 +11,7 @@ Feature: Reference Data - Link Body to Level - BPP-470
     And I execute "Create Body" reusable step
     Then I execute "Create Level" reusable step
 
-  @Positive @Regression @P1 #TC-703
+  @Positive @Regression @P1 @CoveredWithApi #TC-703
   Scenario: Link Body to Level
     When I click on the "Programme" "Product Factory navigation item"
     When I click on the "Bodies" "Product Factory navigation sub item"

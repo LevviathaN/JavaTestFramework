@@ -7,7 +7,7 @@ Feature: Reference Data - Create Session Duration - BPP-1316
   Background:
     Given I execute "Log In" reusable step
 
-  @Positive @Regression @P1 #TC-811
+  @Positive @Regression @P1 @CoveredWithApi #TC-811
   Scenario: Add a New Session Duration Using a Modal
     Given I execute "Create Session Duration" reusable step
 

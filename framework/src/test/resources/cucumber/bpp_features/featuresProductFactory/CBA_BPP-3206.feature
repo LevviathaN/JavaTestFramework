@@ -9,7 +9,7 @@ Feature: CBA - Create Courses and Instances - BPP-3206
       |4|I fill the "Product Factory Password" field with "MD_COMMON_CREDENTIALS_PRODUCTFACTORYJUNIORPSPASSWORD"|
     Given I execute "Remember Variables For Creation " reusable step
 
-  @Positive @Regression @P1 #TC-3000
+  @Positive @Regression @P1 @CoveredWithAPI #TC-3000
   Scenario: Create New CBA Record
     Given I execute "Create CBA Record" reusable step
     And I wait for "2" seconds
