@@ -142,7 +142,7 @@ public class RestApiController {
                                 ||commandKey.toString().equals("termCode")) {
                             command.put(commandKey, value.toString());
                         } else {
-                            command.put(commandKey, Integer.parseInt(value.toString()));
+                            command.put(commandKey, TestParametersController.checkIfSpecialParameter(String.valueOf(Integer.parseInt(value.toString()))));
                         }
                     } else {
                         command.put(commandKey, TestParametersController.checkIfSpecialParameter(value.toString()));
