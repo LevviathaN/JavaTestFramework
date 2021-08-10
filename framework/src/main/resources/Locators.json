@@ -3481,7 +3481,7 @@
   },
   {
     "name": "Totara Automation Fifth Topic Edit Topic button",
-    "value": "xpath=(//h3[@class='sectionname']/ancestor::div[@class='content']/preceding-sibling::div[contains(@class,'right side')]//li/a[@title='Edit topic'])[5]"
+    "value": "xpath=(//h3[@class='sectionname']/ancestor::div[@class='content']/preceding-sibling::div[contains(@class,'right side')]//li/a[@title='Edit topic'])[last()]"
   },
   {
     "name": "Totara Add Topic Plus icon",
@@ -3493,7 +3493,7 @@
   },
   {
     "name": "Totara Edit Topic Name icon",
-    "value": "xpath=//a[contains(text(),'Topic 5')]//span[@data-flex-icon='core|t/editstring']"
+    "value": "xpath=(//span[@data-flex-icon='core|t/editstring'])[last()]"
   },
   {
     "name": "Totara Automation Restrictionas Date B Edit button",

@@ -2,7 +2,7 @@
 Feature: BPP University Hub My Learning Course Expiry Date
   As a learner, at a glance, I'd like to be able to see when the access to my course expires
 
-  @Positive #TC-718
+  @Positive @CourseExpiry #TC-718
   Scenario: HUB - My Learning Course Expiry Date
     #Login to Totara
     Then I execute "Login as Admin Totara" reusable step
