@@ -12,7 +12,7 @@ Feature: Amend Reference Data - Body - BPP-624
     And I remember "AutoBodyName" text as "EC_BODY_NAME" variable
     And I remember "AutoVerticalName" text as "EC_VERTICAL_NAME" variable
 
-  @Positive @Regression @P1 #TC-1545
+  @Positive @Regression @P1 @CoveredWithApi #TC-1545
   Scenario: Amend a Body Using a Modal
     Given I execute "Create Body" reusable step
 
@@ -24,7 +24,7 @@ Feature: Amend Reference Data - Body - BPP-624
       |10|Replace|Attribute "tabindex" of "Save" "Product Factory button" should have value "-1"|
       |11|Delete |                                                                              |
 
-  @Negative @P2 #TC-820
+  @Negative @P2 @CoveredWithApi #TC-820
   Scenario: Amend a Body Where Short Name Already Exists
     And I remember "AutoBodyShortNameTwo" text as "EC_BODY_SHORT_NAME_TWO" variable
     And I remember "AutoBodyNameTwo" text as "EC_BODY_NAME_TWO" variable

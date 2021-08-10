@@ -11,6 +11,6 @@ Feature: Reference Data - Link Body/Paper(Module) - BPP-471
     And I execute "Create Body" reusable step
     Then I execute "Create Paper" reusable step
 
-  @Positive @Regression @P1 #TC-697
+  @Positive @Regression @P1 @CoveredWithApi #TC-697
   Scenario: Link Body to Paper
   Given I execute "Link Body to Paper" reusable step

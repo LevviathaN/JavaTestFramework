@@ -7,7 +7,7 @@ Feature: Reference Data - Course Deactivation Reasons - BPP-1613
   Background:
     Given I execute "Log In" reusable step
 
-  @Positive @Regression @P1 #TC-975
+  @Positive @Regression @P1 @CoveredWithApi #TC-975
   Scenario: Add a New Deactivation Reason Using a Modal
     Given I execute "Create Deactivation Reason" reusable step
 
@@ -18,7 +18,7 @@ Feature: Reference Data - Course Deactivation Reasons - BPP-1613
       |4|I set "EC_DEACTIVATION_REASON_DESCRIPTION" text to the "Description" "Product Factory text field"|
       |6|I should see the "Description must be unique" "message"                                          |
 
-  @Positive @Regression @P1 @Amend #TC-978
+  @Positive @Regression @P1 @Amend @CoveredWithApi #TC-978
   Scenario: Amend a Deactivation Reason Using a Modal
     Given I execute "Create Deactivation Reason" reusable step
     When I execute "Create Deactivation Reason" reusable step replacing some steps

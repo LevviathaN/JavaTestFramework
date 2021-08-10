@@ -6,7 +6,7 @@ Feature: Study Mode - New Reference Data - BPP-12385
   Background:
     Given I execute "Log In" reusable step
 
-  @Positive @Regression @P1 #TC-4793
+  @Positive @Regression @P1 @CoveredWithApi #TC-4793
   Scenario: Add a New Study Mode Using a Modal
     Given I execute "Create Study Mode" reusable step
 

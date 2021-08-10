@@ -249,7 +249,7 @@ Feature: Product Factory API Data Creation
     Then I execute "Update Paper" API step
 
   @Paper @Update @Duplicate @Negative #TC-831
-  Scenario: Amend a Paper Where Description Already Exists
+  Scenario: Amend a Paper Where Name Already Exists
     Given I execute "Create Paper" API step
     And I execute "Create Paper" API step with parameters saving as "SECOND_"
       |shortName  |ApiPSNT[###]  |
@@ -310,7 +310,7 @@ Feature: Product Factory API Data Creation
       |target       |REGION |
     Then I execute "Create Region" API step
 
-  @RegionDuplicate
+  @RegionDuplicate #TC-1885
   Scenario: Create new Region with Duplicate Data
     Given I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
       |dimensionType|PRODUCT|
@@ -351,7 +351,7 @@ Feature: Product Factory API Data Creation
     Given I execute "Create Session Duration" API step
     And I execute "Update Session Duration" API step
 
-  @PricingMatrix #TC-981
+  @PricingMatrix #TC-981, TC-1868
   Scenario: Add a New Pricing Matrix Using a Modal
     Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
       |dimensionType|PRODUCT|
@@ -429,7 +429,7 @@ Feature: Product Factory API Data Creation
     Given I execute "Create Programme" API step
     Then I execute "Update Programme" API step
 
-  @UniversityProgrammesDuplicate
+  @UniversityProgrammesDuplicate #TC-5389
   Scenario: Create Duplicate of Existing Programme
     Given I execute "Create Programme" API step
     Then I execute negative "Create Programme" API step with error name "Name must be unique" and parameters
@@ -442,15 +442,15 @@ Feature: Product Factory API Data Creation
     Given I execute "Create Programme" API step
     Then I execute "Create Cohort" API step
 
-  @ProgrammeCohorts @Update @DoNotRun #TC-5391
-  Scenario: Add a New Programme Cohort Using a Modal
+  @ProgrammeCohorts @Update @DoNotRun #TC-5392
+  Scenario: Amend a Programme Cohort Using a Modal
     Given I execute "Create Programme" API step
     Then I execute "Create Cohort" API step
 #
     And I execute "Create Class Category" API step
     And I execute "Update Cohort" API step
 
-  @ProgrammeCohortsDuplicate
+  @ProgrammeCohortsDuplicate #TC-5401
   Scenario: Create Duplicate of Existing Programme Cohort
     Given I execute "Create Programme" API step
     And I execute "Create Cohort" API step
@@ -471,7 +471,7 @@ Feature: Product Factory API Data Creation
   Scenario: Add a New Class Category Using a Modal
     Given I execute "Create Class Category" API step
 
-  @MaterialType #TC-1435
+  @MaterialType @CoveredWithApi #TC-1435
   Scenario: Add a New Material Type Using a Modal
     Given I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
       |dimensionType|PRODUCT     |
@@ -538,7 +538,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Location" API step
     And I execute "Create Course" API step
 
-  @Instance
+  @Instance #TC-696
   Scenario: Create Course Instance
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
@@ -1047,7 +1047,7 @@ Feature: Product Factory API Data Creation
     Then I execute "Create Course Bulk Operation" API step
     Then I execute "Bulk Web Publish" API step
 
-  @CBA
+  @CBA #TC-3000
   Scenario: Create New CBA Record
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
@@ -1084,7 +1084,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Instance Group" API step
     And I execute "Create Courses" API step
 
-  @Material
+  @Material #TC-918
   Scenario: Create Material Wizard
     Given I generate new ISBN code saving as "EC_ISBN"
     And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
@@ -1107,7 +1107,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Material Type" API step
     And I execute "Create Material" API step
 
-  @Material @Update
+  @Material @Update #TC-1432
   Scenario: Amend Material Using Modal
     Given I generate new ISBN code saving as "EC_ISBN"
     And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
@@ -1303,7 +1303,7 @@ Feature: Product Factory API Data Creation
     And I execute "Update Course Material" API step
     Then I execute "Link Course To Clients" API step
 
-  @LocationWithoutRegion
+  @LocationWithoutRegion #TC-1869
   Scenario: Creating New Location without and with a Region record
     And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
       |dimensionType|PRODUCT   |
@@ -1316,7 +1316,7 @@ Feature: Product Factory API Data Creation
     Then I execute "Create Location" API step
 
 
-  @LocationInUse
+  @LocationInUse #TC-1871
   Scenario: Edit Location that is in use
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |

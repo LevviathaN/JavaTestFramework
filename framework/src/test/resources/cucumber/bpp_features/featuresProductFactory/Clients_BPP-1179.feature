@@ -7,7 +7,7 @@ Feature: Reference Data - Client - BPP-1179
   Background:
     Given I execute "Log In" reusable step
 
-  @Positive @Regression @P1 #TC-919
+  @Positive @Regression @P1 @CoveredWithApi #TC-919
   Scenario: Add a New Client Using a Modal
     Given I execute "Create Client" reusable step
 
@@ -23,7 +23,7 @@ Feature: Reference Data - Client - BPP-1179
     When I execute "Create Client" reusable step replacing some steps
       |4|I set "EC_CLIENT_NAME" text to the "Name" "Product Factory text field"|
 
-  @Positive @Regression @P1 @Amend #TC-1548
+  @Positive @Regression @P1 @Amend @CoveredWithApi #TC-1548
   Scenario: Amend a Client Using a Modal
     When I execute "Create Client" reusable step
     When I execute modified "Create Client" reusable step

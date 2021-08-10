@@ -7,7 +7,7 @@ Feature: Reference Data - Paper - BPP-372
   Background:
     Given I execute "Log In" reusable step
 
-  @Positive @Regression #TC-772
+  @Positive @Regression @CoveredWithApi #TC-772
   Scenario: Add a New Paper Using a Modal
     Given I execute "Create Paper" reusable step
 

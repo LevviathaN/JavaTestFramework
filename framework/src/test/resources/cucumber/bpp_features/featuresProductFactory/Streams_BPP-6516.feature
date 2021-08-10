@@ -8,7 +8,7 @@ Feature: Reference Data - Streams - BPP-6516
     Given I execute "Log In" reusable step
     And I remember "AutoStreamName" text as "EC_AUTO_STREAM_NAME" variable
 
-  @Positive @P1 #TC-2929
+  @Positive @P1 @CoveredWithApi #TC-2929
   Scenario: Add a New Stream Using a Modal
     And I execute "Create Stream" reusable step
 
@@ -26,7 +26,7 @@ Feature: Reference Data - Streams - BPP-6516
       |4|I set "EC_AUTO_STREAM_NAME" text to the "Name" "Product Factory text field"|
       |6|I should see the "Name must be unique" element                             |
 
-  @Positive @Regression @P1 @Amend #TC-2931
+  @Positive @Regression @P1 @Amend @CoveredWithApi #TC-2931
   Scenario: Amend a Stream Using a Modal
     And I execute "Create Stream" reusable step
     And I execute "Create Stream" reusable step replacing some steps

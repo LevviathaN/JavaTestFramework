@@ -10,6 +10,6 @@ Feature: Reference Data - Link Paper To Level - BPP-472
     And I execute "Create Level" reusable step
     And I execute "Create Paper" reusable step
 
-  @Positive @Regression @P1 #TC-714
+  @Positive @Regression @P1 @CoveredWithApi #TC-714
   Scenario: Link Paper to Level
     Given I execute "Link Paper to Level" reusable step

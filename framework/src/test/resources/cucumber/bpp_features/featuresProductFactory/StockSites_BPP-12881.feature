@@ -6,7 +6,7 @@ Feature: Create/edit Stock Site - BPP-12881
   Background:
     Given I execute "Log In" reusable step
 
-  @Positive @Regression @P1 #TC-4928
+  @Positive @Regression @P1 @CoveredWithApi #TC-4928
   Scenario: Add a New Stock Site Using a Modal
     Given I execute "Create Stock Site" reusable step
 

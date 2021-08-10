@@ -13,7 +13,7 @@ Feature: Amend Reference Data - Location - BPP-659
     And I remember "AutoLocationAddressEdit" text as "EC_LOCATION_ADDRESS" variable
 
 
-  @Positive @P1 #TC-832
+  @Positive @P1 @CoveredWithApi #TC-832
   Scenario: Amend Location
     Then I execute "Create Region" reusable step replacing some steps
       |4|I set "RegionNameTwo[######]" text to the "Name" "Product Factory text field"|

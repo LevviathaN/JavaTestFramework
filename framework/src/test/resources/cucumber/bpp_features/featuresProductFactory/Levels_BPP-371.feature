@@ -8,7 +8,7 @@ Feature: Reference Data - Level - BPP-371
   Background:
     Given I execute "Log In" reusable step
 
-  @Positive @Regression @P1 #TC-746
+  @Positive @Regression @P1 @CoveredWithApi #TC-746
   Scenario: Add a New Level Using a Modal
     Given I execute "Create Level" reusable step
 

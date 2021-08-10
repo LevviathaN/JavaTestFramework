@@ -1,41 +1,42 @@
 TAG,VALUE,DESCRIPTION
-MD_BPPADMINUSER,automation@bpp.com.noahuat,descr.
-MD_BPPADMINPASSWORD,Welcome1@,descr.
-MD_YAHOOEMAILCSAUSER,nadineanja@yahoo.com,descr.
-MD_YAHOOEMAILCSAPASSWORD,Wake Up 19!,descr.
-MD_BPPBANNERUSER,BP9014536,descr.
-MD_BPPBANNERPASSWORD,Zo060419,descr.
-MD_SALESFORCECPQUSER,automationcpq@bpp.com.noahuat,descr.
-MD_SALESFORCECPQPASSWORD,12space34,descr.
-MD_SALESFORCECSA,automationcsa@bpp.com.noahuat,descr.
-MD_SALESFORCECSAPASSWORD,12space34,descr.
-MD_SALESFORCESALES,automationsales@bpp.com.noahuat,descr.
-MD_SALESFORCESALESPASSWORD,12space34,descr.
+MD_BPPUSER,crmteamfusion@noah_crm_bpp.com.noahqa,descr.
+MD_BPPPASSWORD,Fusion12345,descr.
+MD_BPPADMINUSER,crmteamfusionadmin@gmail.com.noahqa,descr.
+MD_BPPADMINPASSWORD,Fusion12345,descr.
+MD_BPPPORTALUSER,b.uftflowers,descr.
+MD_BPPPORTALPASSWORD,Uf101416,descr.
+MD_BPPSSBUSER,a.bray,descr.
+MD_BPPSSBPASSWORD,Br062117,descr.
+MD_BPPVLEUSER,ateam,descr.
+MD_BPPVLEPASSWORD,Welcome1!,descr.
+MD_BPPBANNERUSER,BP5080920,descr.
+MD_BPPBANNERPASSWORD,St050219,descr.
+MD_YAHOOEMAILUSER,ayaks.spam,descr.
+MD_YAHOOEMAILPASSWORD,Qwerty2@,descr.
+MD_YAHOOEMAILCASEUSER,casemail777,descr.
+MD_YAHOOEMAILCASEPASSWORD,Casemail123,descr.
+MD_PRODUCTFACTORYUSER,samuelslade@bpp.com ,descr.
+MD_PRODUCTFACTORYPASSWORD,Password1,descr.
+MD_PRODUCTFACTORYDATABASEUSER,neo4j,descr.
+MD_PRODUCTFACTORYDATABASEPASSWORD,Password1,descr.
+MD_PRODUCTFACTORYJUNIORPRODUCTSETTER,craigolivant@bpp.com,descr.
+MD_PRODUCTFACTORYJUNIORPSPASSWORD,Password1,descr.
+MD_TOTARAADMINUSER,bppadmin@bpp.com,descr.
+MD_TOTARAADMINPASSWORD,Password1!!!,descr.
 MD_BUILDEMPIREADMINUSER,apprenticeships@bpptest.com,descr.
 MD_BUILDEMPIREADMINPASSWORD,Test Password003!,descr.
 MD_BUILDEMPIREMANAGERINUSER,waltdisney@mailinator.com,descr.
 MD_BUILDEMPIREMANAGERPASSWORD,Testing WALT 2018,descr.
 MD_BUILDEMPIRENEILADMINUSER,neilsteward@outlook.com,descr.
 MD_BUILDEMPIRENEILADMINPASSWORD,I am really really bored now!!,descr.
-MD_VLENOAHSTUDENTONE,student081601,descr.
-MD_VLENOAHTEACHERONE,teacher081602,descr.
-MD_VLENOAHPASS,Welcome1!,descr.
-MD_VLENOAHSTUDENTTWO,student081603,descr.
-MD_OPENBRAVOADMIN,ApolloAdminUAT,descr.
-MD_OPENBRAVOADMINPASSWORD,Welcome1!,descr.
-MD_BUILDEMPIREVLESTUDENT,navigation@bpptest.com ,descr.
-MD_BUILDEMPIREVLESTUDENTPASSWORD,Password TEST 2018,descr.
-MD_BARCLEYCARDACCOUNT,BPPProfEdLtd,descr.
-MD_BARCLEYCARDUSERNAME,Utopia,descr.
-MD_BARCLEYCARDPASSWORD,TestU2019Upd,descr.
-MD_ADMINISTRATEADMINUSERNAME,VolodymyrVeiko@bpp.com,descr.
-MD_ADMINISTRATEADMINPASSWORD,Liberty2015,descr.
-MD_TOTARAADMINUSER,bppadminnew@bpp.com,descr.
-MD_TOTARAADMINPASSWORD,Test Password001!,descr.
-MD_PRODUCTFACTORYUSER,yuriizosin@bpp.com,descr.
-MD_PRODUCTFACTORYPASSWORD,Welcome9@,descr.
-MD_YAHOOEMAILCASEUSER,casemail777@yahoo.com,descr.
-MD_YAHOOEMAILCASEPASSWORD,Casemail123,descr.
+MD_YAHOOEMAILCSAUSER,nadineanja@yahoo.com,descr.
+MD_YAHOOEMAILCSAPASSWORD,Wake Up 19!,descr.
+MD_PRODUCTFACTORYDATABASEUSERNEW,Neo4j,descr.
+MD_PRODUCTFACTORYDATABASEPASSWORDNEW,3M#$,qns5uw*W#jr,descr.
+MD_SALESFORCECPQUSER,oksanasysadmincpq@bpp.com.noahqa,descr.
+MD_SALESFORCECPQPASSWORD,12space34,descr.
+MD_QUARKUSER,yuriizosin@bpp.com,descr.
+MD_QUARKPASSWORD,Welcome11@,descr.
 MD_ENTER,ENTER,descr.
 MD_REFRESH,F5,descr.
 MD_INSPECT,F12,descr.
@@ -44,38 +45,29 @@ MD_ESCAPE,ESCAPE,descr.
 MD_END,END,descr.
 MD_SPACE,SPACE,descr.
 MD_SALESFORCEURL,https://cs21.salesforce.com/home/home.jsp,descr.
-MD_VLENOCASLOGINURL,https://vle-stage.bppuniversity.com/vle/login/index.php?authCAS=NOCAS,descr.
-MD_VLECASLOGINURL,https://login-stage.bppuniversity.com/ncas/login?service=https%3A%2F%2Fvle-stage.bppuniversity.com%2Fvle%2Flogin%2Findex.php%3FauthCAS%3DCAS,descr.
+MD_BPPRFIURL, http://noahqa-bpp-13fd3e55188.cs17.force.com/rfi,descr.
+MD_SELFREGURL,https://bpp-test.apolloglobal.int/registration/login,descr.
+MD_BPPCASLOGIN,http://bpp-test.apolloglobal.int/ncas,descr.
+MD_BPPPORTAL,https://bpp-test.apolloglobal.int/ncas/login?service=https://bpp-fusion-test.apolloglobal.int/ncas/sso-login,descr.
+MD_BPPSSB,https://bpp-cas-test.apolloglobal.int/cas/login?service=http%3A%2F%2Fbpp-ssb-test.apolloglobal.int%3A%2Fssomanager%2Fc%2FSSB%3Fname%3Dhomepage,descr.
+MD_BPPVLEURL,http://bpp-fusion-test.apolloglobal.int/vle/login/index.php?authCAS=NOCAS,descr.
+MD_BPPVLEADMINURL,http://bpp-fusion-test.apolloglobal.int/vle/admin/search.php,descr.
+MD_OPENBRAVOURL,http://bpp-test.apolloglobal.int/openbravo/,descr.
+MD_BPPBANNERURL,http://bpp-sis-test.apolloglobal.int/,descr.
 MD_YAHOOMAILURL,https://login.yahoo.com/?.src=ym&.lang=en-US&.intl=us&.done=https%3A%2F%2Fmail.yahoo.com%2Fd,descr.
-MD_BPPBANNERURL,http://pprdbpp-sis-stage.apolloglobal.int/,descr.
-MD_SALESFORCEINSTANCE,https://bpp-13fd3e55182--noahuat.lightning.force.com/lightning/r/Instance__c/a5Cg0000000ZaxTEAS/view,descr.
-MD_SALESFORCESECONDINSTANCE,https://bpp-13fd3e55182--noahuat.lightning.force.com/lightning/r/Instance__c/a5Cg0000000ZbMuEAK/view,descr.
-MD_SALESFORCETHIRDINSTANCE,https://bpp-13fd3e55182--noahuat.lightning.force.com/lightning/r/Instance__c/a5Cg0000000ZbMzEAK/view,descr.
-MD_BUILDEMPIREBESPOKEURL,https://web-stage-bppdigital.bppuniversity.com/account?registration_type=rbs,descr.
-MD_BUILDEMPIREURL,https://web-stage-bppdigital.bppuniversity.com/account,descr.
-MD_BUILDEMPIREADMINURL,https://admin-stage-bppdigital.bppuniversity.com,descr.
-MD_BUILDEMPIRELOGINURL,https://web-stage-bppdigital.bppuniversity.com/account,descr.
-MD_BUILDEMPIRECHANNELISLANDURL,https://web-stage-bppdigital.bppuniversity.com/account?registration_type=jersey,descr.
-MD_BPPDIGITALINSIGHTSURL,https://web-stage-bppdigital.bppuniversity.com/insights,descr.
-MD_BPPDIGITALINDEXURL,https://web-stage-bppdigital.bppuniversity.com,descr.
-MD_BPPPDTESTCOURSEURL,https://web-stage-bppdigital.bppuniversity.com/courses/accountancy/test-automation,descr.
-MD_BPPBARCLEYCARDURL,https://ca-test.barclaycardsmartpay.com/ca/ca/login.shtml,descr.
-MD_BPPADMINISTRATEURL,https://bppsandbox.administrateapp.com,descr.
-MD_TOTARALOGINURL,https://totara-stage-bppdigital.bppuniversity.com,descr.
-MD_PDCOURSEURL,http://web-stage-bppdigital.bppuniversity.com/courses/accountancy-and-tax/oksana-adm-course-1,descr.
-MD_PRODUCTFACTORYURLNEW,https://uat-products.bpp.com/,descr.
+MD_PRODUCTFACTORYURL,http://qa-products.bpp.com,descr.
+MD_PRODUCTFACTORYDATABASEURL,http://ec2-35-178-174-237.eu-west-2.compute.amazonaws.com:7474,descr.
+MD_BUILDEMPIRELOGINURL,https://staging.bppdigital.buildempire.app/account,descr.
+MD_BUILDEMPIREURL,https://staging.bppdigital.buildempire.app/account,descr.
+MD_BUILDEMPIREADMINURL,https://admin.staging.bppdigital.buildempire.app,descr.
+MD_TOTARALOGINURL,https://totara.staging.bppdigital.buildempire.app/login/index.php,descr.
+MD_PRODUCTFACTORYURLNEW,https://qa2-products.bpp.com/,descr.
+MD_PRODUCTFACTORYDATABASEURLNEW,http://ec2-3-10-141-78.eu-west-2.compute.amazonaws.com:7474/,descr.
+MD_SALESFORCEINSTANCE,https://bpp-13fd3e55182--noahqa.lightning.force.com/lightning/r/Instance__c/a43g00000008940AAA/view,descr.
+MD_QUARKURL,https://bpp-qa.app.quark.com/workspace/login.qsp#,descr.
 MD_CUSTOMERGROUP,SELFFUND,descr.
-MD_LEGALPRACTICECOURSE,Legal Practice Course (LPC) [Bristol] - Full Time SEP-2018,descr.
-MD_SFOFFERING,598587,descr.
-MD_SFCPQPRODUCT,CIMA - Operational Level - F1 Financial Reporting - Region 1 - Course Type 1 - QA 2021,descr.
-MD_SFCPQPRODUCTSECOND,CIMA - Operational Level - F1 Financial Reporting - Region 1 - Course Type 1 - QA 2021,descr.
-MD_SFCPQINSTANCENUMBER,I-2524,descr.
-MD_SFCPQSECONDINSTANCENUMBER,I-2916,descr.
-MD_SFCPQTHIRDINSTANCENUMBER,I-2917,descr.
-MD_CPQBOOKINGLINES,(9),descr.
-MD_CUSTOMERGROUP,SELFFUND,descr.
-MD_CREDITCARDNUMBER,4111 1111 1111 1111,descr.
-MD_CREDITCARDHOLDERNAME,Adyen Test,descr.
-MD_CREDITCARDEXPIRYMONTH,10,descr.
-MD_CREDITCARDEXPIRYYEAR,2022,descr.
-MD_CREDITCARDCVV,737,descr.
+MD_MSCMANAGEMENTOFFERING,MSc Management CRO PTD 201819 for student application,descr.
+MD_SFOFFERING,2381626,descr.
+MD_SFCPQPRODUCT,SF CPQ test - SF CPQ test - SF CPQ flow test - London - Classroom - AutoTest Sitting,descr.
+MD_SFCPQINSTANCENUMBER,I-1443,descr.
+MD_CPQBOOKINGLINES,(5),descr.

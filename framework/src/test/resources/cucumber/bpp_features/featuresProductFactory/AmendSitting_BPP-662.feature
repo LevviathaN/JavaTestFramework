@@ -10,7 +10,7 @@ Feature: Amend Reference Data - Sitting - BPP-662
     And I remember "AutoBodyName" text as "EC_BODY_NAME" variable
     And I remember "AutoSittingName" text as "EC_SITTING_NAME" variable
 
-  @Positive @Regression @P1 #TC-1547
+  @Positive @Regression @P1 @CoveredWithApi #TC-1547
   Scenario: Amend a Sitting Using a Modal
     Given I execute "Create Sitting" reusable step
 
