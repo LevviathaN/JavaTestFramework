@@ -15,7 +15,7 @@ import ui.utils.RetryAnalyzer;
 @CucumberOptions(
         features = "src/test/resources/cucumber/bpp_features",
         glue = {"cucumber.api", "cucumber.productFactory", "cucumber.stepdefs"},
-        tags = {"@ProductFactory and not @BlockedByIssue and not @DoNotRun and not @DataGeneration"},
+        tags = {"@PF_API or @ProductFactory and not @BlockedByIssue and not @DoNotRun and not @DataGeneration and not @CoveredWithApi and not @PartiallyCoveredWithApi"},
         plugin = {"pretty"})
 
 public class CucumberUITest extends BaseUITest {

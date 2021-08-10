@@ -9,18 +9,18 @@ Feature: Onboarding - Programme - Reference Data - BPP-14453
     And I remember "AutoProgrammeName" text as "EC_PROGRAMME_NAME" variable
     And I remember "AutoProgrammeCode" text as "EC_PROGRAMME_CODE" variable
 
-  @Positive @Regression @P1 #TC-5391
+  @Positive @Regression @P1 @CoveredWithApi #TC-5391
   Scenario: Add a New Programme Cohort Using a Modal
     Given I execute "Create Programme Cohort" reusable step
 
-  @Negative @P2 #TC-5401
+  @Negative @P2 @CoveredWithApi #TC-5401
   Scenario: Create Duplicate of Existing Programme Cohort
     Given I execute "Create Programme Cohort" reusable step
     When I execute "Create Programme Cohort" reusable step replacing some steps
       |7|I set "EC_COHORT_NAME" text to the "Name" "Product Factory text field"|
       |9|I should see the "Name must be unique" message                           |
 
-  @Positive @Regression @P1 @Amend #TC-5392
+  @Positive @Regression @P1 @Amend @CoveredWithApi #TC-5392
   Scenario: Amend a Programme Cohort Using a Modal
     When I execute "Create Programme Cohort" reusable step
     When I execute modified "Create Programme Cohort" reusable step

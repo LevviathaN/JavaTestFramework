@@ -12,7 +12,7 @@ Feature: Reference Data - Body - BPP-369
     And I remember "AutoBodyFDDescription" text as "EC_BODY_FD_DESCRIPTION" variable
     And I remember "AutoVerticalName" text as "EC_VERTICAL_NAME" variable
 
-  @Positive @Regression @P1 #TC-743
+  @Positive @Regression @P1 @CoveredWithApi #TC-743
   Scenario: Add a New Body Using a Modal
     Given I execute "Create Body" reusable step
 

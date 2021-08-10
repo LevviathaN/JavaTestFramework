@@ -7,6 +7,6 @@ Feature: Reference Data - Vat Rules - Create Record - BPP-2523
   Background:
     Given I execute "Log In" reusable step
 
-  @Positive @Regression @P1 #TC-1340
+  @Positive @Regression @P1 @CoveredWithApi #TC-1340
   Scenario: Add a New VAT Rule Using a Modal
     And I execute "create VAT Rule" reusable step

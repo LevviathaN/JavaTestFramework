@@ -266,7 +266,7 @@ Feature: Product Factory API Data Creation
     Then I execute "Update Paper" API step
 
   @Paper @Update @Duplicate @Negative #TC-831
-  Scenario: Amend a Paper Where Description Already Exists
+  Scenario: Amend a Paper Where Name Already Exists
     Given I execute "Create Paper" API step
     And I execute "Create Paper" API step with parameters saving as "SECOND_"
       |shortName  |ApiPSNT[###]  |
@@ -368,7 +368,7 @@ Feature: Product Factory API Data Creation
     Given I execute "Create Session Duration" API step
     And I execute "Update Session Duration" API step
 
-  @PricingMatrix #TC-981
+  @PricingMatrix #TC-981, TC-1868
   Scenario: Add a New Pricing Matrix Using a Modal
     Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
       |dimensionType|PRODUCT|
@@ -548,7 +548,7 @@ Feature: Product Factory API Data Creation
   Scenario: Add a New Class Category Using a Modal
     Given I execute "Create Class Category" API step
 
-  @MaterialType #TC-1435
+  @MaterialType @CoveredWithApi #TC-1435
   Scenario: Add a New Material Type Using a Modal
     Given I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
       |dimensionType|PRODUCT     |
@@ -615,7 +615,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Location" API step
     And I execute "Create Course" API step
 
-  @Instance
+  @Instance #TC-696
   Scenario: Create Course Instance
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
@@ -1124,7 +1124,7 @@ Feature: Product Factory API Data Creation
     Then I execute "Create Course Bulk Operation" API step
     Then I execute "Bulk Web Publish" API step
 
-  @CBA
+  @CBA #TC-3000
   Scenario: Create New CBA Record
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
@@ -1161,7 +1161,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Instance Group" API step
     And I execute "Create Courses" API step
 
-  @Material
+  @Material #TC-918
   Scenario: Create Material Wizard
     Given I generate new ISBN code saving as "EC_ISBN"
     And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
@@ -1184,7 +1184,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Material Type" API step
     And I execute "Create Material" API step
 
-  @Material @Update
+  @Material @Update #TC-1432
   Scenario: Amend Material Using Modal
     Given I generate new ISBN code saving as "EC_ISBN"
     And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
