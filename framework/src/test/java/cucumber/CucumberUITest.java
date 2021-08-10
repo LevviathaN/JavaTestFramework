@@ -14,7 +14,7 @@ import ui.utils.RetryAnalyzer;
 
 @CucumberOptions(
         features = "src/test/resources/cucumber/bpp_features",
-        glue = {"cucumber.stepdefs"},
+        glue = {"cucumber.api", "cucumber.productFactory", "cucumber.stepdefs"},
         tags = {"@ProductFactory and not @BlockedByIssue and not @DoNotRun and not @DataGeneration"},
         plugin = {"pretty"})
 

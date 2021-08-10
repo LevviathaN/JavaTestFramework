@@ -1,6 +1,10 @@
 package cucumber.stepdefs;
 
 import cucumber.reusablesteps.ReusableRunner;
+import cucumber.stepdefs.Actions.ActionsWithLocator;
+import cucumber.stepdefs.Actions.ActionsWithLocatorAndParameter;
+import cucumber.stepdefs.Actions.ActionsWithParameter;
+import cucumber.stepdefs.Actions.ActionsWithParameterAndTable;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -11,7 +15,6 @@ import org.openqa.selenium.Cookie;
 import org.openqa.selenium.NoSuchWindowException;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.ITest;
 import ui.utils.SeleniumHelper;
 import ui.utils.*;
 import ui.utils.bpp.ExecutionContextHandler;
@@ -52,13 +55,10 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @Given("^I am on \"([^\"]*)\" URL$")
     public void i_am_on_url(String url) {
-        Reporter.log("Executing step: I am on '" + url + "' url");
-        String processedUrl = TestParametersController.checkIfSpecialParameter(url);
-        driver().get(processedUrl);
-        if (!url.equals(processedUrl)) {
-            Reporter.log("<pre>[input test parameter] " + url + "' -> '" + processedUrl + "' [output value]</pre>");
-        }
-        waitForPageToLoad();
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setAction(ActionsWithParameter.GO_TO_URL,url)
+                .setMessage("Executing step: I am on '" + url + "' url")
+                .execute();
     }
 
     /**
@@ -73,17 +73,11 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @When("^I click on the \"([^\"]*)\" (?:button|link|option|element)$")
     public void i_click_on_the_button(String element) {
-        Reporter.log("Executing step: I click on the '" + element + "' element");
-        clickOnElement(initElementLocator(element),
-                UiHandlers.PF_SPINNER_HANDLER,
-                UiHandlers.ACCEPT_ALERT,
-                UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
-                UiHandlers.PF_SCROLL_HANDLER,
-                UiHandlers.PAGE_NOT_LOAD_HANDLER,
-                UiHandlers.SF_CLICK_HANDLER,
-                UiHandlers.WAIT_HANDLER,
-                UiHandlers.PF_PREMATURE_MENU_CLICK_HANDLER,
-                UiHandlers.DEFAULT_HANDLER);
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(element)
+                .setAction(ActionsWithLocator.CLICK)
+                .setMessage("Executing step: I click on the '" + element + "' element")
+                .execute();
     }
 
     /**
@@ -98,22 +92,12 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @When("^I click on the \"([^\"]*)\" (?:button|link|option|element) if \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_click_on_the_button_if(String element, String conditionParameter, String condition) {
-        Conditions conditions = new Conditions();
-        if (conditions.checkCondition(condition, conditionParameter)) {
-            Reporter.log("Executing step: I click on the '" + element + "' element");
-            clickOnElement(initElementLocator(element),
-                    UiHandlers.PF_SPINNER_HANDLER,
-                    UiHandlers.ACCEPT_ALERT,
-                    UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
-                    UiHandlers.PF_SCROLL_HANDLER,
-                    UiHandlers.PAGE_NOT_LOAD_HANDLER,
-                    UiHandlers.SF_CLICK_HANDLER,
-                    UiHandlers.WAIT_HANDLER,
-                    UiHandlers.PF_PREMATURE_MENU_CLICK_HANDLER,
-                    UiHandlers.DEFAULT_HANDLER);
-        } else {
-            Reporter.log("Condition " + conditionParameter + condition + " is not true, so '" + element + "' element step will not be clicked");
-        }
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(element)
+                .setAction(ActionsWithLocator.CLICK)
+                .setCondition(conditionParameter,condition)
+                .setMessage("Executing step: I click on the '" + element + "' element if " + conditionParameter + " " + condition)
+                .execute();
     }
 
     /**
@@ -127,13 +111,11 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @When("^I fill the \"([^\"]*)\" field with \"([^\"]*)\"$")
     public void fill_field(String element, String text) {
-        Reporter.log("Executing step: I fill the  '" + element + "' field with '" + text + "'");
-        String processedText = TestParametersController.checkIfSpecialParameter(text);
-        BPPLogManager.getLogger().info("Setting: " + element + " with value: " + text);
-        setText(initElementLocator(element), processedText);
-        if (!text.equals(processedText)) {
-            Reporter.log("<pre>[input test parameter] " + text + "' -> '" + processedText + " [output value]</pre>");
-        }
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(element)
+                .setAction(ActionsWithLocatorAndParameter.SET_TEXT, text)
+                .setMessage("Executing step: I fill the  '" + element + "' field with '" + text + "'")
+                .execute();
     }
 
     /**
@@ -145,8 +127,10 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @When("^I wait for \"([^\"]*)\" seconds$")
     public void wait_for(String seconds) {
-        Reporter.log("Executing step: I wait for " + seconds + " seconds");
-        sleepFor(Integer.parseInt(TestParametersController.checkIfSpecialParameter(seconds)) * 1000);
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setAction(ActionsWithParameter.WAIT,seconds)
+                .setMessage("Executing step: I wait for " + seconds + " seconds")
+                .execute();
     }
 
     /**
@@ -158,8 +142,11 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @When("^I hover over the \"([^\"]*)\" (?:button|link|option|element)$")
     public void hover_over(String element) {
-        Reporter.log("Executing step: I hover over the '" + element + "' element");
-        hoverItem(initElementLocator(element));
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(element)
+                .setAction(ActionsWithLocator.HOVER)
+                .setMessage("Executing step: I hover over the '" + element + "' element")
+                .execute();
     }
 
     /**
@@ -171,14 +158,11 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @Then("^I should see the \"([^\"]*)\" (?:button|message|element)$")
     public void i_should_see_the_text(String element) {
-        Reporter.log("Executing step: I should see the '" + element + "' element");
-        boolean isDisplayed = false;
-        for (int i = 0; i < findElements(initElementLocator(element)).size(); i++) {
-            if (findElements(initElementLocator(element)).get(i).isDisplayed()) {
-                isDisplayed = true;
-            }
-        }
-        Assert.assertTrue(isDisplayed, "Element with " + element + " text is not displayed");
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(element)
+                .setAction(ActionsWithLocator.PRESENT)
+                .setMessage("Executing step: I should see the '" + element + "' element")
+                .execute();
     }
 
     /**
@@ -190,14 +174,10 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @Then("^I should be redirected to the \"([^\"]*)\" page$")
     public void i_should_be_redirected_to_page(String pageTitle) {
-        Reporter.log("Executing step: I should be redirected to the '" + pageTitle + "' page");
-        String processedPageTitle = TestParametersController.checkIfSpecialParameter(pageTitle);
-        Reporter.log("Current page is " + driver().getTitle());
-        System.out.println("Expected page is " + pageTitle);
-        Assert.assertEquals(driver().getTitle(), processedPageTitle, "Current page is " + processedPageTitle);
-        if (!pageTitle.equals(processedPageTitle)) {
-            Reporter.log("<pre>[input test parameter] " + pageTitle + "' -> '" + processedPageTitle + " [output value]</pre>");
-        }
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setAction(ActionsWithParameter.VALIDATE_PAGE_TITLE, pageTitle)
+                .setMessage("Executing step: I should be redirected to the '" + pageTitle + "' page")
+                .execute();
     }
 
     /**
@@ -227,8 +207,10 @@ public class StepDefinitions extends SeleniumHelper {
 
     @Then("^I execute modified \"([^\"]*)\" reusable step$")
     public void i_execute_reusable_step_modified(String reusableName, List<List<String>> steps) {
-        Reporter.log("Executing step: I execute '" + reusableName + "' reusable step modified");
-        ReusableRunner.getInstance().executeReusableModified(reusableName,steps);
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setAction(ActionsWithParameterAndTable.EXECUTE_MODIFIED_REUSABLE, reusableName, steps)
+                .setMessage("Executing step: I execute '" + reusableName + "' reusable step modified")
+                .execute();
     }
 
     /**
@@ -240,13 +222,11 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @Then("^I execute \"([^\"]*)\" reusable step if \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_execute_reusable_step_if(String reusableName, String conditionParameter, String condition) {
-        Conditions conditions = new Conditions();
-        if (conditions.checkCondition(condition, conditionParameter)) {
-            Reporter.log("Executing step: I execute '" + reusableName + "' reusable step with replacing some steps");
-            ReusableRunner.getInstance().executeReusable(TestParametersController.checkIfSpecialParameter(reusableName));
-        } else {
-            Reporter.log("Condition " + conditionParameter + " " + condition + " is not true, so '" + reusableName + "' reusable step will not be executed");
-        }
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setCondition(conditionParameter,condition)
+                .setAction(ActionsWithParameter.EXECUTE_REUSABLE, reusableName)
+                .setMessage("Executing step: I execute '" + reusableName + "' reusable step")
+                .execute();
     }
 
     /**
@@ -372,12 +352,11 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @Then("^I shouldn't see the \"([^\"]*)\" (?:button|message|element|text)$")
     public void i_should_not_see_the_element(String element) {
-        Reporter.log("Executing step: I shouldn't see the '" + element + "' element");
-        if (checkIfElementNotExist(initElementLocator(element))) {
-            Assert.assertTrue(false, "Element with " + element + " text is not displayed");
-        } else {
-            Assert.assertTrue(true, "Element with " + element + " is displayed, but it shouldn't");
-        }
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(element)
+                .setAction(ActionsWithLocator.ABSENT)
+                .setMessage("Executing step: I shouldn't see the '" + element + "' element")
+                .execute();
     }
 
     /**
@@ -529,12 +508,11 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @When("^I click on the \"([^\"]*)\" (?:button|link|option|element) by JS$")
     public void i_click_with_JS(String element) {
-        Reporter.log("Executing step: I click on the '" + element + "' element by JS");
-        String condition = driver().getTitle();
-        clickWithJS(initElementLocator(element));
-        if (!condition.equals("Media") & (!condition.equals("BPP Totara Staging: Log in to the site"))
-                & (!condition.equals("BPPTS: My Learning"))) {
-        }
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(element)
+                .setAction(ActionsWithLocator.CLICK_WITH_JS)
+                .setMessage("Executing step: I click on the '" + element + "' element by JS")
+                .execute();
     }
 
     /**
@@ -720,13 +698,12 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @When("^I click on the \"([^\"]*)\" (?:button|link|option|element) with JS if \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_click_on_the_button_with_js_if(String element, String conditionParameter, String condition) {
-        Conditions conditions = new Conditions();
-        if (conditions.checkCondition(condition, conditionParameter)) {
-            Reporter.log("Executing step: I click on the '" + element + "' element with JS");
-            clickWithJS(initElementLocator(element));
-        } else {
-            Reporter.log("Condition " + conditionParameter + condition + " is not true, so '" + element + "' element step will not be clicked");
-        }
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(element)
+                .setAction(ActionsWithLocator.CLICK_WITH_JS)
+                .setCondition(conditionParameter,condition)
+                .setMessage("Executing step: I click on the '" + element + "' element with JS if " + conditionParameter + " " + condition)
+                .execute();
     }
 
     /**
@@ -869,16 +846,21 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @When("^I doubleclick on the \"([^\"]*)\" (?:button|link|option|element)$")
     public void i_doubleclick_on_the_button(String element) {
-        Reporter.log("Executing step: I click on the '" + element + "' element");
-        doubleClick(initElementLocator(element),
-                UiHandlers.PF_SPINNER_HANDLER,
-                UiHandlers.ACCEPT_ALERT,
-                UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
-                UiHandlers.PF_SCROLL_HANDLER,
-                UiHandlers.PAGE_NOT_LOAD_HANDLER,
-                UiHandlers.SF_CLICK_HANDLER,
-                UiHandlers.WAIT_HANDLER,
-                UiHandlers.DEFAULT_HANDLER);
+//        Reporter.log("Executing step: I click on the '" + element + "' element");
+//        doubleClick(initElementLocator(element),
+//                UiHandlers.PF_SPINNER_HANDLER,
+//                UiHandlers.ACCEPT_ALERT,
+//                UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
+//                UiHandlers.PF_SCROLL_HANDLER,
+//                UiHandlers.PAGE_NOT_LOAD_HANDLER,
+//                UiHandlers.SF_CLICK_HANDLER,
+//                UiHandlers.WAIT_HANDLER,
+//                UiHandlers.DEFAULT_HANDLER);
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(element)
+                .setAction(ActionsWithLocator.DOUBLE_CLICK)
+                .setMessage("Executing step: I double click on the '" + element + "' element")
+                .execute();
     }
 
     /**
@@ -948,7 +930,10 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @When("^I perform right mouse click \"([^\"]*)\" (?:button|link|option|element)$")
     public void i_right_click_on_element_(String element) {
-        Reporter.log("Executing step: I perform right mouse click on the '" + element );
-        rightMouseClick(initElementLocator(element));
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(element)
+                .setAction(ActionsWithLocator.RIGHT_CLICK)
+                .setMessage("Executing step: I perform right mouse click on the '" + element + "'")
+                .execute();
     }
 }
