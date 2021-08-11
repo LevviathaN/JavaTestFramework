@@ -797,6 +797,10 @@
     "value": "xpath=//*[text()='PARAMETER']"
   },
   {
+    "name": "element the last",
+    "value": "xpath=(//*[text()='PARAMETER'])[last()]"
+  },
+  {
     "name": "element by value",
     "value": "xpath=//*[@value='PARAMETER']"
   },
