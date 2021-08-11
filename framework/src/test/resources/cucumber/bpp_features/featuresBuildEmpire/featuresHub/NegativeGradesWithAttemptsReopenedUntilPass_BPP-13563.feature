@@ -8,13 +8,15 @@ and then appears corrects as soon we change it back to the default "Never"
 
   @AttemptReopened
   Scenario: Negative Grade When Attempt Reopened Is Set to Automatically Until Pass
-    When I register new Hub account using API
+    #Register New Student
+    And I register new Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
-    Then I execute "Log Out from Hub Student" reusable step
-    And I wait for "2" seconds
-    And Browser deletes cookies
+    #Validate Timeline block
+    Then I should see the "Timeline" message
+    When I execute "Log Out from Hub Student" reusable step
+    And I should see the "Already registered? Log in" message
     When I am on "MD_COMMON_LINKS_TOTARALOGINURL" URL
-    Then I execute "Logout as Admin Totara" reusable step if "Totara Account Expandable Menu" "element is present"
+    And I click on the "BPP Digital Log out button" button if "Totara Login Confirmation Popup window" "element is present"
     Then I execute "Login as Admin Totara" reusable step
     Then I wait for "2" seconds
     And I click on the "Totara Automation Only Course" link by JS
