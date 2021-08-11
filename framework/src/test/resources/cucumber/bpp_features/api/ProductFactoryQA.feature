@@ -147,6 +147,13 @@ Feature: Product Factory API Data Creation
     Given I execute "Create Exam Preparation" API step
     Then I execute "Update Exam Preparation" API step
 
+  @ExamPreparation @Incomplete #TC-
+  Scenario: Submitting Incomplete Exam Preparation Fields
+    Given I execute negative "Create Exam Preparation" API step with error name "The Name field is required." and parameters
+      |name       ||
+    Given I execute negative "Create Exam Preparation" API step with error name "The Description field is required." and parameters
+      |description||
+
   @StudyMode #TC-4793
   Scenario: Add a New Study Mode Using a Modal
     Given I execute "Create Study Mode" API step
@@ -293,6 +300,13 @@ Feature: Product Factory API Data Creation
       |description|ApiLevelDescriptionTwo[#####]|
     Then I execute negative "Update Level" API step with error name "Short Name must be unique" and parameters
       |shortName|EC_API_LEVEL_SHORT_NAME_TWO|
+
+  @Level @Incomplete #TC-822
+  Scenario: Submitting Incomplete Level Fields
+    Given I execute negative "Create Level" API step with error name "The Name field is required." and parameters
+      |name       ||
+    Given I execute negative "Create Level" API step with error name "The ShortName field is required." and parameters
+      |shortName  ||
 
   @LinkBodyToLevel #TC-703
   Scenario: Link Body to Level
