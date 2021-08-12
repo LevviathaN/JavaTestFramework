@@ -3884,6 +3884,10 @@
     "value": "xpath=//select[@name='enddate[year]']/option[@selected='selected']"
   },
   {
+    "name": "Totara Enrolment Expiry Year",
+    "value": "xpath=//select[@name='timeend[year]']"
+  },
+  {
     "name": "Totara Edit Course Setting link",
     "value": "xpath=(//div[@class='content block-content'])[1]/following::a[contains(@href,'course/edit.php')]"
   },
