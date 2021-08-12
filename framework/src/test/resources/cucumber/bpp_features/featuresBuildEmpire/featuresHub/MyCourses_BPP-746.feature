@@ -12,10 +12,8 @@ Feature: BPP University Hub My Courses
     #Validate Timeline block
     Then I should see the "Timeline" message
     Then I should see the "Welcome to your new logged in area." message
-    #When I execute "Log Out from Hub Student" reusable step
-    When I am on "MD_COMMON_LINKS_TOTARALOGINURL" URL
-    And I execute "Logout as Admin Totara" reusable step
-    And Browser deletes cookies
+    When I execute "Log Out from Hub Student" reusable step
+    And I execute "Logout Totara Workaround" reusable step
     Then I execute "Login as Admin Totara" reusable step
     #Enrol to a course
     When I click on the "Totara ICAEW Course" link by JS
@@ -30,7 +28,7 @@ Feature: BPP University Hub My Courses
     #Admin Logout
     Then I execute "Logout as Admin Totara" reusable step
     And Browser deletes cookies
-    And I wait for "4" seconds
+    And I wait for "3" seconds
     #Login As student
     When I execute "Log In to Hub as Student" reusable step
     #My Learning Validation

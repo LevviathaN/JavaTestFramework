@@ -11,8 +11,10 @@ Feature: BPP University Hub My Learning Course Tutor
     Then Attribute "href" of "Direct App Student Left Hand Nav Second Item" should have value "https://web-stage-bppdigital.bppuniversity.com/my/applications"
     Then I validate text "CONTAINS=When you enrol on a course your progress will appear here" to be displayed for "Direct App My Learning No Course Placeholder" element
     #Then I execute "Log Out from Hub Student" reusable step
-    And I wait for "10" seconds
-    And I execute "Logout Totara Workaround" reusable step
+    When I execute "Log Out from Hub Student" reusable step
+    And I should see the "Already registered? Log in" message
+    When I am on "MD_COMMON_LINKS_TOTARALOGINURL" URL
+    And I click on the "BPP Digital Log out button" button if "Totara Login Confirmation Popup window" "element is present"
     Then I execute "Login as Admin Totara" reusable step
     #Enrol To course for ICAEW Course
     When I click on the "Totara ICAEW Course" link by JS
@@ -45,11 +47,6 @@ Feature: BPP University Hub My Learning Course Tutor
     And I validate text "CONTAINS=test ---" to be displayed for "Direct App My Learning First Course Tutor Name" element
     #Student Logout
     And I execute "Logout Totara Workaround" reusable step
-    #Then I execute "Log Out from Hub Student" reusable step
-    #And I wait for "10" seconds
-    #Admin Login With Walkaround
-    #When I am on "MD_COMMON_LINKS_TOTARALOGINURL" URL
-    #And I click on the "BPP Digital Log out button" button if "Totara Login Confirmation Popup window" "element is present"
     Then I execute "Login as Admin Totara" reusable step
     #Totara UnAssign Tutor Role
     When I click on the "Totara ICAEW Course" link by JS
