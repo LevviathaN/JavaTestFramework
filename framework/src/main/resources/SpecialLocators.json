@@ -785,6 +785,10 @@
     "value": "xpath=(//*[contains(text(),'PARAMETER')]/following::a[@role='menuitem']/following::a[@title=\"Edit topic\"])[1]"
   },
   {
+    "name": "Totara Settings Checkbox",
+    "value": "xpath=//span[contains(.,'PARAMETER')]/../following-sibling::div//span[last()]/input"
+  },
+  {
     "name": "VLE Login Fields",
     "value": "xpath=//input[@name='PARAMETER']"
   },
@@ -883,6 +887,10 @@
   {
     "name": "contained in P element",
     "value": "xpath=//p[contains(.,'PARAMETER')]"
+  },
+  {
+    "name": "contained in element",
+    "value": "xpath=//*[contains(.,'PARAMETER')]"
   },
   {
     "name": "text contained in SPAN element",
