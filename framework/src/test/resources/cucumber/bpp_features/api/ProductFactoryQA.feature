@@ -147,6 +147,13 @@ Feature: Product Factory API Data Creation
     Given I execute "Create Exam Preparation" API step
     Then I execute "Update Exam Preparation" API step
 
+  @ExamPreparation @Incomplete #TC-
+  Scenario: Submitting Incomplete Exam Preparation Fields
+    Given I execute negative "Create Exam Preparation" API step with error name "The Name field is required." and parameters
+      |name       ||
+    Given I execute negative "Create Exam Preparation" API step with error name "The Description field is required." and parameters
+      |description||
+
   @StudyMode #TC-4793
   Scenario: Add a New Study Mode Using a Modal
     Given I execute "Create Study Mode" API step
@@ -163,6 +170,26 @@ Feature: Product Factory API Data Creation
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
+
+  @CourseType @Incomplete #TC-700
+  Scenario: Submitting Incomplete Course Type Fields
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE|
+      |target       |COURSETYPE|
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute negative "Create Course Type" API step with error name "The Description field is required." and parameters
+      |description                          ||
+    Then I execute negative "Create Course Type" API step with error name "Variable `$command` got invalid value." and parameters
+      |vatRuleReference                     ||
+    Then I execute negative "Create Course Type" API step with error name "Variable `$command` got invalid value." and parameters
+      |costCentreFinancialDimensionReference||
+    Then I execute negative "Create Course Type" API step with error name "Variable `$command` got invalid value." and parameters
+      |projectFinancialDimensionReference   ||
 
   @CourseType @Update #TC-1546
   Scenario: Amend a Course Type Using a Modal
@@ -186,6 +213,12 @@ Feature: Product Factory API Data Creation
   Scenario: Amend a Vertical Using a Modal
     Given I execute "Create Vertical" API step
     Then I execute "Update Vertical" API step
+
+  @Vertical @Incomplete #TC-
+  Scenario: Submitting Incomplete Vertical Fields
+    Given I execute "Create Vertical" API step
+    Given I execute negative "Create Vertical" API step with error name "The Name field is required." and parameters
+      |name||
 
   @Body @Update #TC-1545
   Scenario: Amend a Body Using a Modal
@@ -218,6 +251,18 @@ Feature: Product Factory API Data Creation
     And I execute "Create Vertical" API step
     Then I execute "Create Body" API step
 
+  @Body @Incomplete #TC-814
+  Scenario: Submitting Incomplete Body Fields
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Vertical" API step
+    Given I execute negative "Create Body" API step with error name "The Name field is required." and parameters
+      |name     ||
+    Given I execute negative "Create Body" API step with error name "The ShortName field is required." and parameters
+      |shortName||
+
+
   @Sitting #TC-835
   Scenario: Add a New Sitting Using a Modal (Link to One Body)
     Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
@@ -236,6 +281,20 @@ Feature: Product Factory API Data Creation
     And I execute "Create Body" API step
     And I execute "Create Sitting" API step
     Then I execute "Update Sitting" API step
+
+  @Sitting @Incomplete #TC-837
+  Scenario: Submitting Incomplete Sitting Fields
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Vertical" API step
+    Given I execute "Create Body" API step
+    Given I execute negative "Create Sitting" API step with error name "The Name field is required." and parameters
+      |name     ||
+    Given I execute negative "Create Sitting" API step with error name "Variable `$command` got invalid value." and parameters
+      |startDate||
+    Given I execute negative "Create Sitting" API step with error name "Variable `$command` got invalid value." and parameters
+      |endDate  ||
 
   @Sitting #TC-835
   Scenario: Add a New Sitting Using a Modal (Link to Multiple Bodies)
@@ -275,6 +334,18 @@ Feature: Product Factory API Data Creation
     And I execute negative "Update Paper" API step with error name "Short Name must be unique" and parameters
       |shortName|EC_API_PSNT|
 
+  @Paper @Incomplete #TC-771
+  Scenario: Submitting Incomplete Paper Fields
+    Then I execute negative "Create Paper" API step with error name "Variable `$command` got invalid value." and parameters
+      |shortName    |    |
+    And I execute negative "Create Paper" API step with error name "Variable `$command` got invalid value." and parameters
+      |name         |    |
+    And I execute negative "Create Paper" API step with error name "Variable `$command` got invalid value." and parameters
+      |examSchedule |    |
+    And I execute negative "Create Paper" API step with error name "Variable `$command` got invalid value." and parameters
+      |timeInHours  |    |
+      |isCba        |true|
+
   @Level #TC-746
   Scenario: Add a New Level Using a Modal
     Given I execute "Create Level" API step
@@ -293,6 +364,21 @@ Feature: Product Factory API Data Creation
       |description|ApiLevelDescriptionTwo[#####]|
     Then I execute negative "Update Level" API step with error name "Short Name must be unique" and parameters
       |shortName|EC_API_LEVEL_SHORT_NAME_TWO|
+
+  @Level @Incomplete #TC-822
+  Scenario: Submitting Incomplete Level Fields
+    Given I execute negative "Create Level" API step with error name "The Name field is required." and parameters
+      |name     ||
+    Given I execute negative "Create Level" API step with error name "The ShortName field is required." and parameters
+      |shortName||
+
+  @Level @Incomplete #TC-822
+  Scenario: Amend Submitting Incomplete Level Fields
+    Given I execute "Create Level" API step
+    And I execute negative "Update Level" API step with error name "The Name field is required." and parameters
+      |name     ||
+    Then I execute negative "Update Level" API step with error name "The ShortName field is required." and parameters
+      |shortName||
 
   @LinkBodyToLevel #TC-703
   Scenario: Link Body to Level
@@ -358,6 +444,22 @@ Feature: Product Factory API Data Creation
     And I execute "Create Region" API step
     And I execute "Create Location" API step
     And I execute "Update Location" API step
+
+  @Location @Incomplete #TC-774
+  Scenario: Submitting Incomplete Location Fields
+    Given I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT|
+      |target       |REGION |
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT |
+      |target       |LOCATION|
+    And I execute "Create Region" API step
+    And I execute negative "Create Location" API step with error name "The Name field is required." and parameters
+      |name                       ||
+    Then I execute negative "Create Location" API step with error name "Variable `$command` got invalid value." and parameters
+      |regionReference            ||
+    Then I execute negative "Create Location" API step with error name "Variable `$command` got invalid value." and parameters
+      |financialDimensionReference||
 
   @SessionDuration #TC-811
   Scenario: Add a New Session Duration Using a Modal
@@ -563,6 +665,11 @@ Feature: Product Factory API Data Creation
   Scenario: Amend a Client Using a Modal
     Given I execute "Create Client" API step
     Then I execute "Update Client" API step
+
+  @Clients @Incomplete #TC-920
+  Scenario: Submitting Incomplete Client Fields
+    And I execute negative "Create Client" API step with error name "The Name field is required." and parameters
+      |name||
 
   @Streams #TC-2929
   Scenario: Add a New Stream Using a Modal
