@@ -160,6 +160,18 @@
     "value": "xpath=//div[contains(@class,'posts-wrapper')]/div[1]//div[@class='data-wrapper']/div[@class='post-info']/div[2]"
   },
   {
+    "name": "BPP Digital Course Automation Forum One Option",
+    "value": "xpath=//ul[contains(@class,'dropdown-content dropdown')]/li/a[normalize-space()='Automation Regression Forum1']"
+  },
+  {
+    "name": "BPP Digital Course Automation Regression Forum Three Option",
+    "value": "xpath=//ul[contains(@class,'dropdown-content dropdown')]/li/a[normalize-space()='Automation Regression Forum3']"
+  },
+  {
+    "name": "BPP Digital Course Automation Regression Forum Four Option",
+    "value": "xpath=//ul[contains(@class,'dropdown-content dropdown')]/li/a[normalize-space()='Automation Regression Forum4']"
+  },
+  {
     "name": "BPP Digital Delete News",
     "value": "xpath=//tbody//tr[contains(.,'EC_AUTOMATION_NEWS')]//td[5]/a[2]"
   },
@@ -1074,6 +1086,14 @@
   {
     "name": "Direct App Admin Reason",
     "value": "xpath=//textarea[@name='reason']"
+  },
+  {
+    "name": "Direct App Admin Note Message",
+    "value": "xpath=//textarea[@name='direct_application_note[message]']"
+  },
+  {
+    "name": "Direct App Admin Area Notification Message",
+    "value": "xpath=//div[@class='alert alert-success']//div"
   },
   {
     "name": "Direct App Admin Referral ODP Reason",
@@ -3324,8 +3344,16 @@
     "value": "inframe=TotaraScromFrame>xpath=//*[@class='qm_TITLE']"
   },
   {
+    "name": "BPP Digital Additional Files Upload File Button",
+    "value": "xpath=(//input[@type='file'])[last()]"
+  },
+  {
+    "name": "BPP Digital Additional Files Upload Button",
+    "value": "xpath=(//*[@value='Upload'])[last()]"
+  },
+  {
     "name": "Totara Assessment Column Description",
-    "value": "inframe=TotaraScromFrame>xpath=//*[@class='qm_BOX_COL']"
+    "value": "inframe=TotaraScromFrame>xpath=//*[@class='qm_BOX']"
   },
   {
     "name": "Totara Assignment Description",
@@ -3382,6 +3410,14 @@
   {
     "name": "Totara Year Dropdown menu",
     "value": "xpath=//select[@name='x[year]']"
+  },
+  {
+    "name": "Totara Restriction Current Year option",
+    "value": "xpath=//select[@name='x[year]']/option[@selected='selected']"
+  },
+  {
+    "name": "Totara Restriction Direction Dropdown menu",
+    "value": "xpath=//select[@name='direction']"
   },
   {
     "name": "Totara Restriction EYE icon",
@@ -3465,7 +3501,7 @@
   },
   {
     "name": "Totara Automation Fifth Topic Edit Topic button",
-    "value": "xpath=(//h3[@class='sectionname']/ancestor::div[@class='content']/preceding-sibling::div[contains(@class,'right side')]//li/a[@title='Edit topic'])[5]"
+    "value": "xpath=(//h3[@class='sectionname']/ancestor::div[@class='content']/preceding-sibling::div[contains(@class,'right side')]//li/a[@title='Edit topic'])[last()]"
   },
   {
     "name": "Totara Add Topic Plus icon",
@@ -3477,7 +3513,7 @@
   },
   {
     "name": "Totara Edit Topic Name icon",
-    "value": "xpath=//a[contains(text(),'Topic 5')]//span[@data-flex-icon='core|t/editstring']"
+    "value": "xpath=(//span[@data-flex-icon='core|t/editstring'])[last()]"
   },
   {
     "name": "Totara Automation Restrictionas Date B Edit button",
@@ -3550,6 +3586,10 @@
   {
     "name": "Totara Automation Quiz Question Text Order List Icon",
     "value": "xpath=(//img[@alt='Ordered list'])[1]"
+  },
+  {
+    "name": "Totara Continue button",
+    "value": "xpath=//input[@value='Continue']"
   },
   {
     "name": "Totara Automation Quiz Question to Add True or False Radio Button",
@@ -3862,6 +3902,10 @@
   {
     "name": "Totara expiry Course Date Year selected",
     "value": "xpath=//select[@name='enddate[year]']/option[@selected='selected']"
+  },
+  {
+    "name": "Totara Enrolment Expiry Year",
+    "value": "xpath=//select[@name='timeend[year]']"
   },
   {
     "name": "Totara Edit Course Setting link",

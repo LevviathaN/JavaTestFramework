@@ -6,8 +6,7 @@ Feature: BPP University Hub Direct App Notifications
   @Positive #TC-1130 TC-1104 TC-1171
   Scenario: Direct App Notifications
     #Register New Student
-    When I execute "Register New Student Account" reusable step
-    Then I execute "Harakirimail Verify Email" reusable step
+    When I register new Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     And I click on the "Home" "Build Empire Navigation Menu elements"
     Then I should see the "Direct App Announcement Bar" element

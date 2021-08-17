@@ -126,7 +126,10 @@ Feature: Digital Content Id - Edit - BPP-7052
       |21|I set "EC_COURSE_TYPE_DESCRIPTION_TWO" text to the "Search" "Product Factory text field" from keyboard|
       |22|I click on the "submit" "element by type"                                         |
       |23|I "check" "EC_COURSE_TYPE_DESCRIPTION_TWO" "Product Factory dialog checkbox"|
+    Then I wait for "40" seconds
+    And Browser performs "REFRESH" command
     Then I should see the "EC_BODY_SHORT_NAME" element
+    And I click on the "EC_SITTING_NAME_TWO" "Product Factory edit button"
     And I click on the "EC_BODY_SHORT_NAME" "Product Factory edit button"
     And I click on the "Course Types" "Product Factory edit button"
     And I set "EC_COURSE_TYPE_DESCRIPTION_TWO" text to the "Search" "Product Factory text field" from keyboard

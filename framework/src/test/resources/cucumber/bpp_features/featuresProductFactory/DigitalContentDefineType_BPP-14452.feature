@@ -27,7 +27,7 @@ Feature: Onboarding - Digital Content - ability to define Type - BPP-14452
     And I click on the "Next" "Product Factory button"
     And I set "Suffix[###]" text to the "Name Suffix" "Product Factory text field"
     And I click on the "Finish" "Product Factory button"
-    Then I should see the "Edit Digital Content" element
+    Then I should see the "EC_COHORT_NAME" element
 
   @Positive @P1 #TC-5488
   Scenario: Amend Digital Content University Type
@@ -61,4 +61,22 @@ Feature: Onboarding - Digital Content - ability to define Type - BPP-14452
     And I click on the "Next" "Product Factory button"
     And I set "Suffix[###]" text to the "Name Suffix" "Product Factory text field"
     And I click on the "Finish" "Product Factory button"
-    Then I should see the "Digital Content already exists for the Cohort" "text contained in element"
+
+    When I click on the "Delivery" "Product Factory navigation item"
+    When I click on the "Digital Content" "Product Factory navigation sub item"
+    Then I click on the "Create" "Product Factory button"
+    And I click on the "University" "text contained in SPAN element"
+    And I click on the "Totara" "Product Factory button"
+    And I click on the "Save" "Product Factory button"
+    And I wait for "6" seconds
+    And I click on the "University Programme" "Product Factory dropdown"
+    And I click on the "EC_PROGRAMME_NAME" "Product Factory dropdown option"
+    And I click on the "Programme Cohort" "Product Factory dropdown"
+    And I click on the "EC_COHORT_NAME" "Product Factory dropdown option"
+    And I click on the "Next" "Product Factory button"
+    And I click on the "Content Restriction" "Product Factory dropdown"
+    And I click on the "Cohort Start Teaching Date" "Product Factory dropdown option"
+    And I click on the "Next" "Product Factory button"
+    And I set "EC_SUFFIX" text to the "Name Suffix" "Product Factory text field"
+    And I click on the "Finish" "Product Factory button"
+    Then I should see the "Digital Content already exists " "text contained in element"

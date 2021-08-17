@@ -9,7 +9,7 @@ Feature: Reference Data - Vat Rules - Update Record - BPP-2524
     And I remember "AutoVatRuleCodeEdit" text as "EC_VAT_RULE_CODE" variable
     And I remember "AutoVatRuleDescriptionEdit" text as "EC_VAT_RULE_DESCRIPTION" variable
 
-  @Positive @Regression @P1 #TC-1348
+  @Positive @Regression @P1 @CoveredWithApi #TC-1348
   Scenario: Amend a VAT Rule Using a Modal
     Given I execute modified "Create VAT Rule" reusable step
       |3|Replace|I click on the "EC_VAT_RULE_CODE" "Product Factory edit button"|

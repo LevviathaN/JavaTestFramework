@@ -9,7 +9,7 @@ Feature: Reference Data - Sitting - BPP-401
     And I remember "AutoBodyShortName" text as "EC_BODY_SHORT_NAME" variable
     And I remember "AutoBodyName" text as "EC_BODY_NAME" variable
 
-  @Positive @Regression @P1 #TC-835
+  @Positive @Regression @P1 @CoveredWithApi #TC-835
   Scenario: Add a New Sitting Using a Modal (Link to One Body)
     Given I execute "Create Sitting" reusable step
 

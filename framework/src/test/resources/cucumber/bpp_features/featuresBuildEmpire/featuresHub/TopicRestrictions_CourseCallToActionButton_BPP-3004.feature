@@ -7,16 +7,15 @@ Feature: The Hub - Activity Restrictions - Call to Action Button - Completely Hi
   @Positive #TC-1589
   Scenario: Topic Restrictions by Group CTA button Completely Hidden
     #Register New Student
-    And I execute "Register New Student Account" reusable step
-    Then I execute "Harakirimail Verify Email" reusable step
+    And I register new Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     #Validate Timeline block
     Then I should see the "Timeline" message
     Then I should see the "Welcome to your new logged in area." message
-    #When I execute "Log Out from Hub Student" reusable step
+    When I execute "Log Out from Hub Student" reusable step
+    And I should see the "Already registered? Log in" message
     When I am on "MD_COMMON_LINKS_TOTARALOGINURL" URL
-    And I execute "Logout as Admin Totara" reusable step if "Totara Account Expandable Menu" "element is present"
-    And Browser deletes cookies
+    And I click on the "BPP Digital Log out button" button if "Totara Login Confirmation Popup window" "element is present"
     Then I execute "Login as Admin Totara" reusable step
     #Enrol to a course
     When I click on the "Totara Automation Only Course" link by JS
@@ -133,16 +132,15 @@ Feature: The Hub - Activity Restrictions - Call to Action Button - Completely Hi
   @Positive #TC-1591
   Scenario: Topic Restrictions by Date CTA button Completely Hidden
     #Register New Student
-    And I execute "Register New Student Account" reusable step
-    Then I execute "Harakirimail Verify Email" reusable step
+    And I register new Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     #Validate Timeline block
     Then I should see the "Timeline" message
     Then I should see the "Welcome to your new logged in area." message
-    #When I execute "Log Out from Hub Student" reusable step
+    When I execute "Log Out from Hub Student" reusable step
+    And I should see the "Already registered? Log in" message
     When I am on "MD_COMMON_LINKS_TOTARALOGINURL" URL
-    And I execute "Logout as Admin Totara" reusable step if "Totara Account Expandable Menu" "element is present"
-    And Browser deletes cookies
+    And I click on the "BPP Digital Log out button" button if "Totara Login Confirmation Popup window" "element is present"
     Then I execute "Login as Admin Totara" reusable step
     #Enrol to a course
     When I click on the "Totara Automation Only Course" link by JS
@@ -244,16 +242,15 @@ Feature: The Hub - Activity Restrictions - Call to Action Button - Completely Hi
   @Positive #TC-1592 TC-1593
   Scenario: Topic Restrictions by Multiple Activity Completion CTA button Completely Hidden
     #Register New Student
-    And I execute "Register New Student Account" reusable step
-    Then I execute "Harakirimail Verify Email" reusable step
+    And I register new Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     #Validate Timeline block
     Then I should see the "Timeline" message
     Then I should see the "Welcome to your new logged in area." message
-    #When I execute "Log Out from Hub Student" reusable step
+    When I execute "Log Out from Hub Student" reusable step
+    And I should see the "Already registered? Log in" message
     When I am on "MD_COMMON_LINKS_TOTARALOGINURL" URL
-    And I execute "Logout as Admin Totara" reusable step if "Totara Account Expandable Menu" "element is present"
-    And Browser deletes cookies
+    And I click on the "BPP Digital Log out button" button if "Totara Login Confirmation Popup window" "element is present"
     Then I execute "Login as Admin Totara" reusable step
     #Enrol to a course
     When I click on the "Totara Automation CTA Button Course" link by JS

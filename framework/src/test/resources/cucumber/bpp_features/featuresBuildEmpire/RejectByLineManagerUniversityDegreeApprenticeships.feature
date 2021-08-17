@@ -3,8 +3,7 @@ Feature: University Degree Apprenticeships
 
   @Negative @P1 @RejectByLineManager
   Scenario: Reject University Degree Apprenticeships Application By Line Manager
-    Given I execute "Register New Student Account" reusable step
-    Then I execute "Harakirimail Verify Email" reusable step
+    Given I register new Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     And I wait for "2" seconds
     When I execute "Create University Degree Apprenticeships Application" reusable step
@@ -21,7 +20,8 @@ Feature: University Degree Apprenticeships
     And I set "automationLinemanager8@harakirimail.com" text to the "Email" "Build Empire text field"
     And I set "Line Manager008!" text to the "Password" "Build Empire text field"
     Then I click on the "Direct App Login Button" button
-    And I execute "Line Manager Review And Reject University Degree Apprenticeships Scotland" reusable step
+    And I execute "Line Manager Review And Reject University Degree Apprenticeships Scotland" reusable step replacing some steps
+    |17| I switch to window with index "1"|
     And I execute "Log Out from Hub Student" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     And I click on the "Direct App My Applications Left Menu Link" link by JS

@@ -1,0 +1,34 @@
+{
+  "operationName": "createMaterial",
+  "variables": {
+    "command": {
+      "materialTypeReference": "EC_MATERIAL_TYPE_REFERENCE",
+      "bodyReference": "EC_BODY_REFERENCE",
+      "sittingReferences": [
+        "EC_SITTING_REFERENCE"
+      ],
+      "levelReferences": [
+        "EC_LEVEL_REFERENCE"
+      ],
+      "price": "~Price[#####]",
+      "cost": "~Cost[#####]",
+      "weight": 2,
+      "isInternalMaterial": true,
+      "isDigitalMaterial": true,
+      "isCourseMaterial": true,
+      "isbn": "EC_ISBN",
+      "edition": "0121",
+      "learningMediaVatRuleReference": "EC_VAT_RULE_REFERENCE",
+      "courseMaterialVatRuleReference": "EC_SECOND_VAT_RULE_REFERENCE",
+      "availableDate": "[TIMENOW-yyyy-MM-dd]",
+      "expiryDate": "[TIMENOW-yyyy-MM-dd]",
+      "stockSiteProductionMethods": [
+        {
+          "stockSiteReference": "EC_STOCK_SITE_REFERENCE",
+          "productionMethod": "MANAGED"
+        }
+      ]
+    }
+  },
+  "query": "mutation createMaterial($command: CreateMaterialCommandInput!) { createMaterial(command: $command) { ...material __typename }}fragment material on Material { reference materialType { ...materialType __typename } price cost weight isInternalMaterial isDigitalMaterial isCourseMaterial isbn edition productCode availableDate expiryDate body { ...body __typename } levels { ...level __typename } paper { ...paper body { ...body __typename } __typename } sittings { ...sitting __typename } createdBy createdOn updatedBy updatedOn __typename}fragment materialType on MaterialType { reference name description isIsbnRequired isWeightRequired isExpiryDateRequired isPriceRequired financialDimension { ...financialDimension __typename } createdBy createdOn updatedBy updatedOn __typename}fragment financialDimension on FinancialDimension { reference code description target dimensionType createdBy createdOn updatedBy updatedOn __typename}fragment body on Body { reference shortName name description levels { reference shortName name __typename } financialDimension { reference code description __typename } vertical { reference name __typename } createdBy createdOn updatedBy updatedOn __typename}fragment level on Level { reference shortName name description createdBy createdOn updatedBy updatedOn __typename}fragment paper on Paper { reference shortName name description body { reference shortName name levels { reference shortName name __typename } __typename } levels { reference shortName name __typename } isCba examSchedule timeInHours createdBy createdOn updatedBy updatedOn __typename}fragment sitting on Sitting { reference name startDate endDate bodies { reference shortName name __typename } createdBy createdOn updatedBy updatedOn __typename}"
+}

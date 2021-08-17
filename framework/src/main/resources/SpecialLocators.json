@@ -129,6 +129,10 @@
     "value": "xpath=//button[normalize-space()='PARAMETER']"
   },
   {
+    "name": "BPP Digital Button",
+    "value": "xpath=(//button[text()='PARAMETER'])[1]"
+  },
+  {
     "name": "BPP Digital Qualifications at Every Level item link",
     "value": "xpath=//div[text()='Qualifications at every level.']/following-sibling::div//a[text()=\"PARAMETER\"]"
   },
@@ -526,7 +530,7 @@
   },
   {
     "name": "Product Factory edit button",
-    "value": "xpath=//td[text()='PARAMETER']/following-sibling::td/button[last()]|//td[text()='PARAMETER']/following-sibling::td/a/button[last()]|//span[text()='PARAMETER']/../following-sibling::div/div/button|//span[text()='PARAMETER']/following-sibling::div/button|//span[text()='PARAMETER']/../following-sibling::button|//td[text()='PARAMETER']/button|//span[text()='PARAMETER']/following-sibling::span/button|//p[text()='PARAMETER']/../../../following-sibling::button|//label[text()='PARAMETER']/following-sibling::button|//h6[text()='PARAMETER']/button"
+    "value": "xpath=//td[text()='PARAMETER']/following-sibling::td/button[last()]|//td[text()='PARAMETER']/following-sibling::td/a/button[last()]|//span[text()='PARAMETER']/../following-sibling::div/div/button|//span[text()='PARAMETER']/following-sibling::div/button|//span[text()='PARAMETER']/../following-sibling::button|//td[text()='PARAMETER']/button|//span[text()='PARAMETER']/following-sibling::span/button|//p[text()='PARAMETER']/../../../following-sibling::button|//label[text()='PARAMETER']/following-sibling::button|//h6[text()='PARAMETER']/button|//div[text()='PARAMETER']/../following-sibling::td//button"
   },
   {
     "name": "Product Factory field value",
@@ -781,6 +785,10 @@
     "value": "xpath=(//*[contains(text(),'PARAMETER')]/following::a[@role='menuitem']/following::a[@title=\"Edit topic\"])[1]"
   },
   {
+    "name": "Totara Settings Checkbox",
+    "value": "xpath=//span[contains(.,'PARAMETER')]/../following-sibling::div//span[last()]/input"
+  },
+  {
     "name": "VLE Login Fields",
     "value": "xpath=//input[@name='PARAMETER']"
   },
@@ -791,6 +799,10 @@
   {
     "name": "element",
     "value": "xpath=//*[text()='PARAMETER']"
+  },
+  {
+    "name": "element the last",
+    "value": "xpath=(//*[text()='PARAMETER'])[last()]"
   },
   {
     "name": "element by value",
@@ -875,6 +887,10 @@
   {
     "name": "contained in P element",
     "value": "xpath=//p[contains(.,'PARAMETER')]"
+  },
+  {
+    "name": "contained in element",
+    "value": "xpath=//*[contains(.,'PARAMETER')]"
   },
   {
     "name": "text contained in SPAN element",

@@ -69,8 +69,6 @@ Feature: The Hub - Law School - Assignments/Emails - Inbox Overview
     Then I should see the "AutoTest Assignment3" "element"
     Then I should see the "AutoTest Assignment2" "element"
     Then I should see the "HUb VPE Banner" element
-    And I validate text "CONTAINS=2023" to be displayed for "Hub VPE Assignment First Card Due Date" element
-    And I validate text "CONTAINS=2022" to be displayed for "Hub VPE Assignment Second Card Due Date" element
     Then I click on the "AutoTest Created" "element"
     And I should see the "Hub VPE Assignemnt Activity Layout" element
     #Then I should see the "Automation Test Description" "text contained in element"
@@ -90,7 +88,7 @@ Feature: The Hub - Law School - Assignments/Emails - Inbox Overview
     And I remember "[TIMENOW-VPE]" text as "EC_CURRENT_DATE" variable
     And I should see the "Hub VPE Sent Email Notification" message
     Then I validate text "EC_TIMENOW" to be displayed for "Hub VPE Email Assignment Date" element
-    And I click on the "BPP-10456" "element"
+    And I click on the "BPP-10456" "element the last"
     Then I click on the "Hub VPE Resubmit" button
     And I shouldn't see the "Direct App Upload File" element
     And I set "Automation" text to the "Type your response here" "Build Empire RFI Textarea text item"

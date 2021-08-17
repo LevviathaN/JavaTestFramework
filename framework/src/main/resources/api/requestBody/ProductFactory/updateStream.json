@@ -1,0 +1,10 @@
+{
+  "operationName": "updateStream",
+  "variables": {
+    "command": {
+      "reference":"EC_STREAM_REFERENCE",
+      "name": "ApiStreamNameUpdated[####]"
+    }
+  },
+  "query": "mutation updateStream($command: UpdateStreamCommandInput!) { updateStream(command: $command) { ...stream __typename } } fragment stream on Stream { reference name createdBy createdOn updatedBy updatedOn __typename } "
+}

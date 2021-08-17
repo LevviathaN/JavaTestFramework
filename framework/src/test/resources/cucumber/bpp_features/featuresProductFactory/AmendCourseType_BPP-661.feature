@@ -10,7 +10,7 @@ Feature: Amend Reference Data - Course Type - BPP-661
     And I execute "Create VAT Rule" reusable step
     Then I execute "Create Course Type" reusable step
 
-  @Positive @Regression @P1 #TC-1546, TC-3616
+  @Positive @Regression @P1 @PartiallyCoveredWithApi #TC-1546, TC-3616
   Scenario: Amend a Course Type Using a Modal
     When I click on the "Types" "Product Factory navigation item"
     When I click on the "Course Types" "Product Factory navigation sub item"

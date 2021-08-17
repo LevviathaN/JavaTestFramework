@@ -9,7 +9,7 @@ Feature: Digital Content Id - Create - BPP-5605
     And I execute "Remember Variables " reusable step
 
   #todo can create only one instance
-  @Positive @P1 @HappyPath #TC-3148, TC-3567, TC-5444
+  @Positive @P1 @HappyPath @PartiallyCoveredWithApi #TC-3148, TC-3567, TC-5444
   Scenario: Create Digital Content
     Given I execute modified "Create Digital Content" reusable step
       |5|Add|Attribute "tabindex" of "Save" "Product Factory button" should have value "-1"|

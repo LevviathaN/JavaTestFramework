@@ -6,7 +6,7 @@ Feature: Additional Product Information - Exam Preparation Name - Ref Data - BPP
   Background:
     Given I execute "Log In" reusable step
 
-  @Positive @Regression @P1 #TC-4692
+  @Positive @Regression @P1 @CoveredWithApi #TC-4692
   Scenario: Add a New Exam Preparation Using a Modal
     Given I execute "Create Exam Preparation" reusable step
     Then I should see the "EC_EXAM_PREPARATION_NAME" element
@@ -35,7 +35,7 @@ Feature: Additional Product Information - Exam Preparation Name - Ref Data - BPP
       |4|I set "EC_EXAM_PREPARATION_NAME_TWO" text to the "Name" "Product Factory text field"|
     Then I should see the "Name must be unique" message
 
-  @Positive @Regression @P1 @Amend #TC-4693
+  @Positive @Regression @P1 @Amend @CoveredWithApi #TC-4693
   Scenario: Amend a Exam Preparation Using a Modal
     Given I execute "Create Exam Preparation" reusable step
     When I execute modified "Create Exam Preparation" reusable step

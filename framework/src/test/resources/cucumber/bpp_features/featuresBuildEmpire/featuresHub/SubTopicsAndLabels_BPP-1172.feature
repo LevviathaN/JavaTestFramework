@@ -5,8 +5,7 @@ Feature: BPP University Hub Sub Topics and Labels
   So that I can easily see where I am up to within a topic
 
   Background:
-    Given I execute "Register New Student Account" reusable step
-    Then I execute "Harakirimail Verify Email" reusable step
+    Given I register new Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
 
   @Positive #TC-867

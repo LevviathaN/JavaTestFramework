@@ -15,6 +15,7 @@ Feature: Implement First Party Cookies
   @Cookies #TC-5744
   Scenario: Implement First Party Cookies
     Given I am on "MD_COMMON_LINKS_BPPDIGITALINDEXURL" URL
+    And I wait for "1" seconds
     And Browser gets first party cookies
     Then Browser performs "REFRESH" command
     And I wait for "1" seconds

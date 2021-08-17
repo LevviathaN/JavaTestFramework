@@ -2,12 +2,11 @@
 Feature: Mitigating Circumstances Application in Review
 
   Background:
-    Given I execute "Register New Student Account" reusable step
-    Then I execute "Harakirimail Verify Email" reusable step
+    Given I register new Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     When I execute "Create Mitigating Circumstances Application" reusable step
-  @Negative @InReview #TC-1265 BPP-11602
 
+  @Negative @InReview #TC-1265 BPP-11602
   Scenario: Mitigating Circumstances Application in Review
     And I execute "Complete Mitigating Circumstances" reusable step
     Then I execute "Submit Application Hub" reusable step

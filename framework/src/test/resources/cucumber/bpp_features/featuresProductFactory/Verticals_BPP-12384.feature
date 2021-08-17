@@ -9,7 +9,7 @@ Feature: Verticals on Products (Terra Changes) - New Reference Data - BPP-12384
   Background:
     Given I execute "Log In" reusable step
 
-  @Positive @Regression @P1 @HappyPath #TC-4811
+  @Positive @Regression @P1 @HappyPath @CoveredWithApi #TC-4811
   Scenario: Add a New Vertical Using a Modal
     Given I execute "Create Vertical" reusable step
     Then I should see the "EC_VERTICAL_NAME" element
@@ -38,7 +38,7 @@ Feature: Verticals on Products (Terra Changes) - New Reference Data - BPP-12384
       |4|I set "EC_VERTICAL_NAME_TWO" text to the "Name" "Product Factory text field"|
     Then I should see the "Name must be unique" message
 
-  @Positive @Regression @P1 @Amend #TC-4812
+  @Positive @Regression @P1 @Amend @CoveredWithApi #TC-4812
   Scenario: Amend a Vertical Using a Modal
     Given I execute "Create Vertical" reusable step
     When I execute modified "Create Vertical" reusable step

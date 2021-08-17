@@ -6,7 +6,7 @@ Feature: CBA - Update CBA Course Institution fee - BPP-3207
   Background:
     Given I execute "Remember Variables For Creation " reusable step
 
-  @Positive @Regression @P1 #TC-2650
+  @Positive @Regression @P1 @DoNotRun #TC-2650
   Scenario: Update CBA Course Institution Fee
     And I execute "Log In" reusable step replacing some steps
       |3|I fill the "Product Factory Email" field with "MD_COMMON_CREDENTIALS_PRODUCTFACTORYJUNIORPRODUCTSETTER"|

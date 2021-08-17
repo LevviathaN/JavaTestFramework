@@ -7,16 +7,13 @@ Feature: BPP University Hub My Courses
   @MyCourses @Positive #TC-1106 TC-1107 TC-1111 TC-1122 TC-1125 TC-1126
   Scenario: HUB - My Courses
     #Register New Student
-    And I execute "Register New Student Account" reusable step
-    Then I execute "Harakirimail Verify Email" reusable step
+    And I register new Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     #Validate Timeline block
     Then I should see the "Timeline" message
     Then I should see the "Welcome to your new logged in area." message
-    #When I execute "Log Out from Hub Student" reusable step
-    When I am on "MD_COMMON_LINKS_TOTARALOGINURL" URL
-    And I execute "Logout as Admin Totara" reusable step
-    And Browser deletes cookies
+    When I execute "Log Out from Hub Student" reusable step
+    And I execute "Logout Totara Workaround" reusable step
     Then I execute "Login as Admin Totara" reusable step
     #Enrol to a course
     When I click on the "Totara ICAEW Course" link by JS
@@ -31,7 +28,7 @@ Feature: BPP University Hub My Courses
     #Admin Logout
     Then I execute "Logout as Admin Totara" reusable step
     And Browser deletes cookies
-    And I wait for "4" seconds
+    And I wait for "3" seconds
     #Login As student
     When I execute "Log In to Hub as Student" reusable step
     #My Learning Validation

@@ -3,7 +3,7 @@
   "variables": {
     "command": {
       "name": "ApiRegionName[####]",
-      "financialDimensionReference": "EC_FD_REGION_PRODUCT_REFERENCE"
+      "financialDimensionReference": "EC_REGION_FINANCIAL_DIMENSION_REFERENCE"
     }
   },
   "query": "mutation createRegion($command: CreateRegionCommandInput!) {  createRegion(command: $command) {  ...region  __typename  } }  fragment region on Region {  reference  name  financialDimension {  ...financialDimension  __typename  }  createdBy  createdOn  updatedBy  updatedOn  __typename }  fragment financialDimension on FinancialDimension {  reference  code  description  target  dimensionType  createdBy  createdOn  updatedBy  updatedOn  __typename } "

@@ -1,0 +1,17 @@
+{
+  "operationName":"createModule",
+  "variables":{
+    "command":{
+      "cohortReference":"EC_COHORT_REFERENCE",
+      "name":"ApiModuleSectionName[####]",
+      "sisCode":"KW_AUTO_RANDOMNUMBER|#####",
+      "termCode":"KW_AUTO_RANDOMNUMBER|#####",
+      "referenceNumber":"KW_AUTO_RANDOMNUMBER|#####",
+      "timetabled":false,
+      "groupRequirementCohort":true,
+      "groupRequirementMode":true,
+      "groupRequirementLocation":true
+    }
+  },
+  "query":"mutation createModule($command: CreateModuleCommandInput!) { createModule(command: $command) { ...module __typename }}fragment module on Module { reference cohort { reference programme { reference code name __typename } classCategory { reference name __typename } name startTeachingDate productInstanceCode __typename } name sisCode termCode referenceNumber timetabled groupRequirementCohort groupRequirementMode groupRequirementLocation createdBy createdOn updatedBy updatedOn feedback { systemName timestamp success message __typename } __typename}"
+}

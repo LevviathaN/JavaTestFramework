@@ -1,0 +1,12 @@
+{
+  "operationName": "createInstanceGroup",
+  "variables": {
+    "command": {
+      "sessionDurationReference": "EC_SESSION_DURATION_REFERENCE",
+      "regionReference": "EC_REGION_REFERENCE",
+      "defaultCapacity": 1,
+      "defaultInstituteFee": 1
+    }
+  },
+  "query": "mutation createInstanceGroup($command: CreateInstanceGroupCommandInput!) { createInstanceGroup(command: $command) { reference __typename } } "
+}
