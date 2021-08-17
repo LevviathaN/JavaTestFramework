@@ -160,6 +160,18 @@
     "value": "xpath=//div[contains(@class,'posts-wrapper')]/div[1]//div[@class='data-wrapper']/div[@class='post-info']/div[2]"
   },
   {
+    "name": "BPP Digital Course Automation Forum One Option",
+    "value": "xpath=//ul[contains(@class,'dropdown-content dropdown')]/li/a[normalize-space()='Automation Regression Forum1']"
+  },
+  {
+    "name": "BPP Digital Course Automation Regression Forum Three Option",
+    "value": "xpath=//ul[contains(@class,'dropdown-content dropdown')]/li/a[normalize-space()='Automation Regression Forum3']"
+  },
+  {
+    "name": "BPP Digital Course Automation Regression Forum Four Option",
+    "value": "xpath=//ul[contains(@class,'dropdown-content dropdown')]/li/a[normalize-space()='Automation Regression Forum4']"
+  },
+  {
     "name": "BPP Digital Delete News",
     "value": "xpath=//tbody//tr[contains(.,'EC_AUTOMATION_NEWS')]//td[5]/a[2]"
   },
@@ -3398,6 +3410,14 @@
   {
     "name": "Totara Year Dropdown menu",
     "value": "xpath=//select[@name='x[year]']"
+  },
+  {
+    "name": "Totara Restriction Current Year option",
+    "value": "xpath=//select[@name='x[year]']/option[@selected='selected']"
+  },
+  {
+    "name": "Totara Restriction Direction Dropdown menu",
+    "value": "xpath=//select[@name='direction']"
   },
   {
     "name": "Totara Restriction EYE icon",
