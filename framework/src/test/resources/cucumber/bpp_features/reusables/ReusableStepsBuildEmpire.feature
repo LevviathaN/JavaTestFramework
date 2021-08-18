@@ -1814,3 +1814,27 @@ Feature: BuildEmpire
     Then I click on the "Ok" "element by value"
     Then I wait for "2" seconds
     When I am on "MD_COMMON_LINKS_TOTARALOGINURL" URL
+
+  Scenario: Post Accepted Apprenticeships Tests
+    Given I click on the "Direct App Admin Apps Top Link" button
+    And I click on the "Direct App Admin Direct Apps List Option" element
+    Given I click on the "Direct App Admin Apprenticeships Tab" link by JS
+    And I fill the "Direct App Admin Filter By User" field with "EC_AUTO_EMAIL"
+    And I press "MD_COMMON_KEYBOARD_ENTER" for "Direct App Admin Filter By User"
+    And I click on the "Show" "button"
+    Then I wait for "1" seconds
+    And I click on the "Direct App Admin New Status Dropdown" element
+    Then I click on the "Submit" "button"
+    Then I validate text "CONTAINS=Accepted booked onto program" to be displayed for "Direct App Admin Status Changed for Apprenticeships" element
+    And I click on the "Direct App Admin New Status Dropdown" element
+    Then I click on the "Accept - Induction Email Sent to Learner" "text contained in Option element"
+    Then I click on the "Submit" "button"
+    Then I validate text "CONTAINS=Accepted induction email sent to learner" to be displayed for "Direct App Admin Status Changed for Apprenticeships" element
+    And I click on the "Direct App Admin New Status Dropdown" element
+    Then I click on the "Accept - Induction Email Sent to Line Manager" "text contained in Option element"
+    Then I click on the "Submit" "button"
+    Then I validate text "CONTAINS=Accepted induction email sent to line manager" to be displayed for "Direct App Admin Status Changed for Apprenticeships" element
+    And I click on the "Direct App Admin New Status Dropdown" element
+    Then I click on the "Accept - Induction Email Sent to Both" "text contained in Option element"
+    Then I click on the "Submit" "button"
+    Then I validate text "CONTAINS=Accepted induction email sent to both" to be displayed for "Direct App Admin Status Changed for Apprenticeships" element
