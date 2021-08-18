@@ -901,6 +901,10 @@
     "value": "xpath=//*[contains(text(),'PARAMETER')]"
   },
   {
+    "name": "text contained in Option element",
+    "value": "xpath=//option[contains(text(),'PARAMETER')]"
+  },
+  {
     "name": "text in div element",
     "value": "xpath=//div[text()='PARAMETER']"
   },
