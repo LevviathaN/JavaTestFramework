@@ -5,28 +5,6 @@ Feature: Student data API tracking
   As this trackable activity can be used to drive activity from Marketing Cloud Interaction Studio
 
   @Positive #TC-4708
-  Scenario: Register Student and capture API data
-    #Register Student
-    When I execute "Register New Student Account" reusable step replacing some steps
-    |10|I remember "[TIMENOW]" text as "EC_DATE_TIME" variable|
-    |11|I click on the "Direct App Register" button           |
-    |12|I wait for "3" seconds                                |
-    And I should see the "Thanks for registering, please verify your email address." "message"
-    Then I execute "Harakirimail Verify Email" reusable step
-    #Login Admin
-    When I execute "Log In to Hub as Admin" reusable step
-    #Navigate to Marketing Cloud Logs
-    And I execute "Admin Hub Navigate to Marketing Cloud Logs" reusable step
-    #Find Log
-    And I click on the "BPP Digital Marketing Cloud Log Show button" element if "BPP Digital Marketing Cloud Log Show button" "element is present"
-    And I click on the "BPP Digital Marketing Cloud Log Show button two" element if "BPP Digital Marketing Cloud Log Show button" "element is present"
-    Then I validate text "CONTAINS=EC_AUTO_EMAIL" to be displayed for "BPP Digital Admin Logs Response Body text" element
-    Then I validate text "CONTAINS=''e_sub-source'': ''Registration page''" to be displayed for "BPP Digital Admin Logs Response Body text" element
-    Then I should see the "Success" message
-    #Logout Admin
-    And I execute "Log Out from Hub Admin" reusable step
-
-  @Positive #TC-4708
   Scenario: Log In with Student and capture API data
     #Login As Student
     And I remember "AutoLucianoWest3362@harakirimail.com" text as "EC_EMAIL" variable
