@@ -3124,6 +3124,14 @@
     "value": "xpath=//div[contains(@class,'isModal inlinePanel oneRecordActionWrapper')]//label[contains(.,'Booking Type')]//following-sibling::div//div[2]//span[@title='Apprenticeship chargeable bookings']"
   },
   {
+    "name": "Salesforce Quote Billing Mode Dropdown",
+    "value": "xpath=(//div[contains(@class,'isModal inlinePanel oneRecordActionWrapper')]//label[contains(.,'Billing Mode')]//following-sibling::div//div[1])[1]"
+  },
+  {
+    "name": "Salesforce Quote Billing Mode Salesforce Option",
+    "value": "xpath=//div[contains(@class,'isModal inlinePanel oneRecordActionWrapper')]//label[contains(.,'Billing Mode')]//following-sibling::div//div[2]//span[@title='Billed in Salesforce']"
+  },
+  {
     "name": "Salesforce Orders Quick Link Tab on Quote Page",
     "value": "xpath=(//div[@class='windowViewMode-normal oneContent active lafPageHost']//*[contains(text(),'Orders')])[1]"
   },
