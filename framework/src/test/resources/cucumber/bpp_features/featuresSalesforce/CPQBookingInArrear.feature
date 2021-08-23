@@ -57,6 +57,8 @@ Feature: Create a Single Booking
     And I click on the "Salesforce Quotes Ordered Checkbox" element by JS
     And I click on the "Salesforce Quote Booking Type Dropdown" element
     And I click on the "Salesforce Quote Booking Type Apprenticeships Chargeable" element
+    And I click on the "Salesforce Quote Billing Mode Dropdown" element
+    And I click on the "Salesforce Quote Billing Mode Salesforce Option" element
     And I capture text data "Salesforce Quote Edited Quote Number" as "EC_QUOTE" variable
     And I click on the "Salesforce Quote Edited Save" element
     And I wait for "30" seconds
