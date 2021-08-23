@@ -7,6 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.hamcrest.Matchers;
+import org.jooq.tools.json.ParseException;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.NoSuchWindowException;
 import org.openqa.selenium.WebElement;
@@ -926,6 +927,102 @@ public class StepDefinitions extends SeleniumHelper {
         Reporter.log("Executing step: I verify that" + conditionParameter + " " + condition);
         Conditions conditions = new Conditions();
         Assert.assertTrue(conditions.checkCondition(condition,conditionParameter));
+    }
+
+    /**
+     * Definition to validate condition
+     *
+     */
+    @Then("^I verify that \"([^\"]*)\" \"([^\"]*)\" for \"([^\"]*)\" test$")
+    public void i_verify_for_test(String conditionParameter, String condition, String scenarioName) {
+        Reporter.log("Executing step: I verify that" + conditionParameter + " " + condition);
+        Conditions conditions = new Conditions();
+        String qtestID = qTestAPI.getTestRunIDfromSuite().get(scenarioName);
+        try {
+            if (conditions.checkCondition(condition,conditionParameter)) { ;
+                RetryAnalyzer.passMap.put(scenarioName, "pass");
+                qTestAPI.TestRunStatusUpdate(Reporter.getCurrentTestName(), "Passed", 601, qtestID, "");
+            } else {
+                RetryAnalyzer.passMap.put(scenarioName, "fail");
+                qTestAPI.TestRunStatusUpdate(Reporter.getCurrentTestName(), "Failed", 602, qtestID, "Some Error");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Definition to execute reusable steps
+     *
+     * @param reusableName name of reusable step (Scenario in ReusableSteps.feature) you want to execute
+     *                     Here we also check if text is EC_ or MD_ of KW_
+     * @author Ruslan Levytskyi
+     */
+    @Then("^I execute \"([^\"]*)\" reusable step verifying \"([^\"]*)\"$")
+    public void i_execute_reusable_step_verifying(String reusableName, String scenarioName) {
+        Reporter.log("Executing step: I execute '" + reusableName + "' reusable step to verify '" + scenarioName + "' scenario");
+        ReusableRunner.getInstance().executeReusable(TestParametersController.checkIfSpecialParameter(reusableName));
+        String qtestID = System.getProperties().containsKey("qtest") && System.getProperty("qtest")
+                .equalsIgnoreCase("TRUE") ? qTestAPI.getTestRunIDfromSuite().get(scenarioName) : null;
+        boolean isPassed = true;
+        String errorMessage = "";
+        try {
+            ReusableRunner.getInstance().executeReusable(TestParametersController.checkIfSpecialParameter(reusableName));
+            RetryAnalyzer.passMap.put(scenarioName, "pass");
+            if (qtestID == null) {
+                qTestAPI.TestRunStatusUpdate(Reporter.getCurrentTestName(), "Passed", 601, qtestID, "");
+            }
+        } catch (Exception e) {
+            RetryAnalyzer.passMap.put(scenarioName, "fail");
+            e.printStackTrace();
+            isPassed = false;
+        }
+        if (!isPassed && qtestID == null){
+            try {
+                qTestAPI.TestRunStatusUpdate(Reporter.getCurrentTestName(), "Failed", 601, qtestID, errorMessage);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Definition to execute reusable steps
+     *
+     * @param reusableName name of reusable step (Scenario in ReusableSteps.feature) you want to execute
+     *                     Here we also check if text is EC_ or MD_ of KW_
+     * @author Ruslan Levytskyi
+     */
+    @Then("^I execute modified \"([^\"]*)\" reusable step verifying \"([^\"]*)\"$")
+    public void i_execute_modified_reusable_step_verifying(String reusableName, String scenarioName, List<List<String>> steps) {
+        Reporter.log("Executing step: I execute modified '" + reusableName + "' reusable step to verify '" + scenarioName + "' scenario");
+        ReusableRunner.getInstance().executeReusable(TestParametersController.checkIfSpecialParameter(reusableName));
+        String qtestID = System.getProperties().containsKey("qtest") && System.getProperty("qtest")
+                .equalsIgnoreCase("TRUE") ? qTestAPI.getTestRunIDfromSuite().get(scenarioName) : null;
+        boolean isPassed = true;
+        String errorMessage = "";
+        try {
+            ReusableRunner.getInstance().executeReusableModified(reusableName,steps);
+            RetryAnalyzer.passMap.put(scenarioName, "pass");
+            if (qtestID == null) {
+                qTestAPI.TestRunStatusUpdate(Reporter.getCurrentTestName(), "Passed", 601, qtestID, "");
+            }
+        } catch (Exception e) {
+            RetryAnalyzer.passMap.put(scenarioName, "fail");
+            e.printStackTrace();
+            isPassed = false;
+        }
+        if (!isPassed && qtestID == null){
+            try {
+                qTestAPI.TestRunStatusUpdate(Reporter.getCurrentTestName(), "Failed", 601, qtestID, errorMessage);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**

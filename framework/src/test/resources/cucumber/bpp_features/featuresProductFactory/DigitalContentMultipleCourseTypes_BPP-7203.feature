@@ -58,6 +58,16 @@ Feature: Digital Content Id - Multiple Course Types - BPP-7203
 
   @Positive @P1 @DoNotRun @NotFinished #TC-3205, TC-3206
   Scenario: Create Digital Content Multiple Course Types Remove
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
     Given I execute "Create Digital Content" reusable step with some additional steps
       |15|I "check" "EC_SITTING_NAME_TWO" "Product Factory dialog checkbox"|
       |21|I set "EC_COURSE_TYPE_DESCRIPTION_TWO" text to the "Search" "Product Factory text field" from keyboard|

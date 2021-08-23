@@ -205,6 +205,23 @@ Feature: Product Factory API Data Creation
     Then I execute "Create Course Type" API step
     And I execute "Update Course Type" API step
 
+  @CourseType @Duplicate @Update #TC-1546
+  Scenario: Amend a Course Type Where Short Name Already Exists
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE|
+      |target       |COURSETYPE|
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Course Type" API step with parameters
+      |description|ApiCourseTypeDescriptionTwo[####]|
+    Then I execute negative "Update Course Type" API step with error name "qw" and parameters
+      |description|EC_API_COURSE_TYPE_DESCRIPTION_TWO|
+
   @Vertical #TC-4811
   Scenario: Add a New Vertical Using a Modal
     Given I execute "Create Vertical" API step
