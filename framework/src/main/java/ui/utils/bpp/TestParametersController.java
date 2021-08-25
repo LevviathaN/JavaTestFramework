@@ -5,9 +5,12 @@ import ui.utils.SeleniumHelper;
 import ui.utils.Reporter;
 import ui.utils.Tools;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -313,6 +316,25 @@ public class TestParametersController {
                     ecVarNameSimplified.append("_");
                     ecVarNameSimplified.append("TIMENOW");
                     resultingValueSimplified.append(currentDateTime);
+                }
+                else if (element.startsWith("DATEFORMAT")){
+                    String prenthesis = element.substring(11,element.length()-1);
+                    String dateString = prenthesis.split("[,]")[0];
+                    String givenPattern = prenthesis.split("[,]")[1];
+                    String desireblePattern = prenthesis.split("[,]")[2];
+                    SimpleDateFormat givenFormat = new SimpleDateFormat(givenPattern);
+                    SimpleDateFormat desirebleFormat = new SimpleDateFormat(desireblePattern);
+                    Date date = null;
+                    try {
+                        date = givenFormat.parse(checkIfSpecialParameter(dateString));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    String formattedDate = desirebleFormat.format(date);
+
+                    resultingValueSimplified.append(formattedDate);
+                    ecVarNameSimplified.append("_");
+                    ecVarNameSimplified.append("DATEFORMAT");
                 }
                 else if (element.startsWith("SUM")){
                     int sum = 0;
