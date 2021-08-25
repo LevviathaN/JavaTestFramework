@@ -484,7 +484,7 @@ Feature: Product Factory
     And I click on the "Next" "Product Factory button"
 #    Then I set "EC_COURSE_TYPE_DESCRIPTION" text to the "Search" "Product Factory text field" from keyboard
 #    And I click on the "submit" "element by type"
-    And I click on the "EC_COURSE_TYPE_DESCRIPTION" "Product Factory select button"
+    And I click on the "EC_CBA_COURSE_TYPE_DESCRIPTION" "Product Factory select button"
     And I click on the "Body" "Product Factory dropdown"
     And I click on the "EC_BODY_NAME" "Product Factory dropdown option"
     And I click on the "Sitting" "Product Factory dropdown"

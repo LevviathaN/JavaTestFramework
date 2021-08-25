@@ -201,6 +201,9 @@ Feature: Product Factory
       |5|I set "$Auto[CourseTypeFDDescription]<varName>" text to the "Description" "Product Factory text field"|
     And I execute "Create Course Type" reusable step replacing some steps
       |4|I set "$Auto[CourseTypeDescription]<varName>" text to the "Description" "Product Factory text field"|
+    And I execute modified "Create Course Type" reusable step
+      |4|Replace|I set "$Auto[CBACourseTypeDescription]<varName>" text to the "Description" "Product Factory text field"|
+      |11|Add   |I "check" "Is CBA?" "Product Factory checkbox"                                                       |
     And I execute "Create Location Financial Dimension" reusable step replacing some steps
       |4|I set "$Auto[LocationFDCode]<varName>" text to the "Code" "Product Factory text field"|
       |5|I set "$Auto[LocationFDDescription]<varName>" text to the "Description" "Product Factory text field"|
