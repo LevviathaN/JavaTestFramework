@@ -214,6 +214,12 @@ Feature: Product Factory API Data Creation
     Given I execute "Create Vertical" API step
     Then I execute "Update Vertical" API step
 
+  @Vertical @Update #TC-4812
+  Scenario: Amend a Vertical Where Name Already Exists
+    Given I execute "Create Vertical" API step
+    Then I execute "Create Vertical" API step with parameters
+    |name|EC_VERTICAL_REFERENCE|
+
   @Vertical @Incomplete #TC-
   Scenario: Submitting Incomplete Vertical Fields
     Given I execute "Create Vertical" API step
@@ -432,6 +438,23 @@ Feature: Product Factory API Data Creation
       |target       |LOCATION|
     And I execute "Create Region" API step
     And I execute "Create Location" API step
+
+  @Location @MandatoryOnly #TC-4180
+  Scenario: Add a New Location Populate Only Mandatory Fields
+    Given I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT|
+      |target       |REGION |
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT |
+      |target       |LOCATION|
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step with parameters
+    |addressLine1||
+    |addressLine2||
+    |addressLine3||
+    |postcode    ||
+    |city        ||
+    |countryCode ||
 
   @Location @Update #TC-832
   Scenario: Amend Location
