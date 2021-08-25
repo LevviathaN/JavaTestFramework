@@ -1,0 +1,10 @@
+{
+  "operationName":"changePrice",
+  "variables":{
+    "command":{
+      "priceReference":"EC_PRICES_PRICES_REFERENCE",
+      "newPrice":"~UpdatedPrice[###]"
+    }
+  },
+  "query":"mutation changePrice($command: ChangePriceCommandInput!) { changePrice(command: $command) { ...price __typename } } fragment price on Price { reference value courseType { ...courseType __typename } region { ...region __typename } paper { ...paper __typename } __typename } fragment courseType on CourseType { reference description vatRule { ...vatRule __typename } costCentreFinancialDimension { ...financialDimension __typename } projectFinancialDimension { ...financialDimension __typename } examPreparation { ...examPreparation __typename } studyMode { ...studyMode __typename } isCba createdBy createdOn updatedBy updatedOn __typename } fragment vatRule on VatRule { reference code description rate createdBy createdOn updatedBy updatedOn __typename } fragment financialDimension on FinancialDimension { reference code description target dimensionType createdBy createdOn updatedBy updatedOn __typename } fragment examPreparation on ExamPreparation { reference name description createdBy createdOn updatedBy updatedOn __typename } fragment studyMode on StudyMode { reference name description createdBy createdOn updatedBy updatedOn __typename } fragment region on Region { reference name financialDimension { ...financialDimension __typename } createdBy createdOn updatedBy updatedOn __typename } fragment paper on Paper { reference shortName name description body { reference shortName name levels { reference shortName name __typename } __typename } levels { reference shortName name __typename } isCba examSchedule timeInHours createdBy createdOn updatedBy updatedOn __typename } "
+}
