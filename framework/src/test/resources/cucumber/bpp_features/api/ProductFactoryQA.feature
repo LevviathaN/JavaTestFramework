@@ -279,6 +279,16 @@ Feature: Product Factory API Data Creation
     Given I execute negative "Create Body" API step with error name "The ShortName field is required." and parameters
       |shortName||
 
+  @Body @Negative @P2 #TC-744
+  Scenario: Add a Body Where Short Name Already Exists
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    Given I execute negative "Create Body" API step with error name "Short Name must be unique" and parameters
+      |shortName|EC_BODY_SHORT_NAME|
+
 
   @Sitting #TC-835
   Scenario: Add a New Sitting Using a Modal (Link to One Body)
@@ -531,6 +541,41 @@ Feature: Product Factory API Data Creation
     Then I execute "Create Pricing Matrix" API step
     And I execute "Create Prices" API step
 
+  @Prices @Positive #TC-1145
+  Scenario: Update Pricing Matrix Price
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE|
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT|
+      |target       |REGION |
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT |
+      |target       |LOCATION|
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    Then I execute "Create Pricing Matrix" API step
+    And I execute "Create Prices" API step
+    And I execute "Change Price" API step
+
   @DigitalContent #TC-3148
   Scenario: Create Digital Content
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
@@ -678,7 +723,13 @@ Feature: Product Factory API Data Creation
   Scenario: Add a New Client Using a Modal
     Given I execute "Create Client" API step
 
-  @Clients @Update #TC-1548
+  @Clients #TC-919
+  Scenario: Add a Client Where Name Already Exists
+    Given I execute "Create Client" API step
+    Then I execute negative "Create Client" API step with error name "Name must be unique" and parameters
+      |name|EC_CLIENT_NAME|
+
+  @Clients @Update @Negative #TC-921
   Scenario: Amend a Client Using a Modal
     Given I execute "Create Client" API step
     Then I execute "Update Client" API step
