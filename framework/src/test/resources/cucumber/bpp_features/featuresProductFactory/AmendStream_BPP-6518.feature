@@ -17,6 +17,7 @@ Feature: Edit Instance - Streams - BPP-6518
     Given I execute "Keep the Course Activated" reusable step
     Given I execute "Keep the Course Instance Activated" reusable step
     And I execute "Populate Course Instance Session Dates" reusable step
+    And I execute "Populate Course Instance Step Due Dates" reusable step
     And I click on the "Stream" "Product Factory edit button"
     And I click on the "EC_STREAM_NAME" "Product Factory select button" if "EC_STREAM_NAME,Product Factory deselect button" "special element is absent"
     And I should see the "EC_STREAM_NAME" element
@@ -30,6 +31,7 @@ Feature: Edit Instance - Streams - BPP-6518
     And I click on the "EC_LOCATION_NAME" "Product Factory dropdown option"
     And I click on the "Save" "Product Factory button"
     And I execute "Populate Course Instance Session Dates" reusable step
+    And I execute "Populate Course Instance Step Due Dates" reusable step
     And I click on the "Activate" "Product Factory button"
 
     And I click on the "Stream" "Product Factory edit button"
