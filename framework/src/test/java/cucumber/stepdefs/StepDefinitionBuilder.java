@@ -113,11 +113,13 @@ public class StepDefinitionBuilder extends SeleniumHelper {
         switch (actionName) {
             case CLICK:
                 action = () -> clickOnElement(locator,
-                        UiHandlers.PF_SCROLL_HANDLER,
+                        UiHandlers.PF_SPINNER_HANDLER,
                         UiHandlers.ACCEPT_ALERT,
                         UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
+                        UiHandlers.PF_SCROLL_HANDLER,
                         UiHandlers.PAGE_NOT_LOAD_HANDLER,
-                        UiHandlers.PF_SPINNER_HANDLER,
+                        UiHandlers.SF_CLICK_HANDLER,
+                        UiHandlers.WAIT_HANDLER,
                         UiHandlers.PF_PREMATURE_MENU_CLICK_HANDLER,
                         UiHandlers.DEFAULT_HANDLER);
                 break;
