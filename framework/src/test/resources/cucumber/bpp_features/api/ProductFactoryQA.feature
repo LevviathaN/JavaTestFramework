@@ -147,6 +147,19 @@ Feature: Product Factory API Data Creation
     Given I execute "Create Exam Preparation" API step
     Then I execute "Update Exam Preparation" API step
 
+  @ExamPreparation @Duplicate #TC-
+  Scenario: Add a Exam Preparation Where Name Already Exists
+    Given I execute "Create Exam Preparation" API step
+    Then I execute negative "Create Exam Preparation" API step with error name "Name must be unique" and parameters
+      |name|EC_EXAM_PREPARATION_NAME|
+
+  @ExamPreparation @Duplicate @BET #TC-
+  Scenario: Amend a Exam Preparation Where Name Already Exists
+    Given I execute "Create Exam Preparation" API step
+    And I execute "Create Exam Preparation" API step saving as "TWO_"
+    Then I execute negative "Update Exam Preparation" API step with error name "Name must be unique" and parameters
+      |name|EC_TWO_EXAM_PREPARATION_NAME|
+
   @ExamPreparation @Incomplete #TC-
   Scenario: Submitting Incomplete Exam Preparation Fields
     Given I execute negative "Create Exam Preparation" API step with error name "The Name field is required." and parameters
@@ -231,11 +244,18 @@ Feature: Product Factory API Data Creation
     Given I execute "Create Vertical" API step
     Then I execute "Update Vertical" API step
 
-  @Vertical @Update #TC-4812
+  @Vertical @Update @Duplicate #TC-
   Scenario: Amend a Vertical Where Name Already Exists
     Given I execute "Create Vertical" API step
-    Then I execute "Create Vertical" API step with parameters
-    |name|EC_VERTICAL_REFERENCE|
+    Then I execute "Create Vertical" API step saving as "TWO_"
+    And I execute negative "Update Vertical" API step with error name "Name must be unique" and parameters
+    |name|EC_TWO_VERTICAL_NAME|
+
+  @Vertical @Duplicate #TC-
+  Scenario: Add a Vertical Where Name Already Exists
+    Given I execute "Create Vertical" API step
+    And I execute negative "Create Vertical" API step with error name "Name must be unique" and parameters
+      |name|EC_VERTICAL_NAME|
 
   @Vertical @Incomplete #TC-
   Scenario: Submitting Incomplete Vertical Fields
@@ -770,6 +790,12 @@ Feature: Product Factory API Data Creation
   Scenario: Amend a Stream Using a Modal
     Given I execute "Create Stream" API step
     Then I execute "Update Stream" API step
+
+  @Streams @Duplicate #TC-
+  Scenario: Add a Stream Where Name Already Exists
+    Given I execute "Create Stream" API step
+    Then I execute negative "Create Stream" API step with error name "Name must be unique" and parameters
+    |name|EC_STREAM_NAME|
 
   @DeactivationReason #TC-975
   Scenario: Add a New Deactivation Reason Using a Modal
