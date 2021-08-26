@@ -153,7 +153,7 @@ Feature: Product Factory API Data Creation
     Then I execute negative "Create Exam Preparation" API step with error name "Name must be unique" and parameters
       |name|EC_EXAM_PREPARATION_NAME|
 
-  @ExamPreparation @Duplicate @BET #TC-
+  @ExamPreparation @Duplicate #TC-
   Scenario: Amend a Exam Preparation Where Name Already Exists
     Given I execute "Create Exam Preparation" API step
     And I execute "Create Exam Preparation" API step saving as "TWO_"
