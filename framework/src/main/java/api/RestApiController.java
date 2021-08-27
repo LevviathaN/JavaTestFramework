@@ -102,7 +102,18 @@ public class RestApiController {
 
             Map command = (Map) variables.get(key);
             for (Object commandKey : command.keySet()) {
-                Object value = parameters.containsKey(commandKey) ? parameters.get(commandKey) : command.get(commandKey);
+                Object value = null;
+                if (parameters.containsKey(commandKey)) {
+                    if (commandKey.toString().contains("References")) {
+                        JSONArray arry = new JSONArray();
+                        arry.add(parameters.get(commandKey));
+                        value = arry;
+                    } else {
+                        value = parameters.get(commandKey);
+                    }
+                } else {
+                    value = command.get(commandKey);
+                }
                 String updatedValue = value.equals(null) ? "null" : TestParametersController.checkIfSpecialParameter(value.toString());
                 value = (value.toString().equals(updatedValue)||value instanceof JSONArray) ? value : updatedValue;
                 if (!(value==null)) {
