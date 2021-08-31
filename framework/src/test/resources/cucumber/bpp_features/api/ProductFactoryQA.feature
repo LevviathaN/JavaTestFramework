@@ -335,6 +335,17 @@ Feature: Product Factory API Data Creation
     And I execute "Create Sitting" API step
     Then I execute "Update Sitting" API step
 
+  @Sitting @Duplicate #TC-
+  Scenario: Add a Sitting Where Name Already Exists
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute negative "Create Sitting" API step with error name "The combination of Name and Dates must be unique" and parameters
+      |name|EC_SITTING_NAME|
+
   @Sitting @Incomplete #TC-837
   Scenario: Submitting Incomplete Sitting Fields
     Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
@@ -466,7 +477,7 @@ Feature: Product Factory API Data Creation
       |target       |REGION |
     Then I execute "Create Region" API step
 
-  @RegionDuplicate #TC-1885
+  @Region @Duplicate #TC-1885
   Scenario: Create new Region with Duplicate Data
     Given I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
       |dimensionType|PRODUCT|
@@ -474,6 +485,44 @@ Feature: Product Factory API Data Creation
     Then I execute "Create Region" API step
     Then I execute negative "Create Region" API step with error name "Name must be unique" and parameters
       |name|EC_REGION_NAME|
+
+  @Region @Negative @Update #TC-1893
+  Scenario: Edit Region that is in Use
+    Given I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT|
+      |target       |REGION |
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_TWO_"
+      |dimensionType|PRODUCT|
+      |target       |REGION |
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT |
+      |target       |LOCATION|
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I execute negative "Update Region" API step with error name "The Region is already linked" and parameters
+      |financialDimensionReference|EC_REGION_TWO_FINANCIAL_DIMENSION_REFERENCE|
+
+  @Region @Negative @Update @Duplicate #TC-1902
+  Scenario: Edit and save Region with Duplicate Data
+    Given I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT|
+      |target       |REGION |
+    And I execute "Create Region" API step
+    And I execute "Create Region" API step saving as "TWO_"
+    And I execute negative "Update Region" API step with error name "Name must be unique" and parameters
+      |name|EC_TWO_REGION_NAME|
+
+  @Region @Negative @Update #TC-1901
+  Scenario: Change Financial Dimension for created Region
+    Given I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT|
+      |target       |REGION |
+    Given I execute "Create Financial Dimension" API step with parameters saving as "REGION_NEW_"
+      |dimensionType|PRODUCT|
+      |target       |REGION |
+    And I execute "Create Region" API step
+    And I execute "Update Region" API step with parameters
+      |financialDimensionReference|EC_REGION_NEW_FINANCIAL_DIMENSION_REFERENCE|
 
   @Location #TC-775
   Scenario: Add a New Location Using a Modal
@@ -539,6 +588,12 @@ Feature: Product Factory API Data Creation
   Scenario: Amend a Session Duration Using a Modal
     Given I execute "Create Session Duration" API step
     And I execute "Update Session Duration" API step
+
+  @SessionDuration @Duplicate #TC-812
+  Scenario: Add Session Duration where Description Already Exists
+    Given I execute "Create Session Duration" API step
+    Then I execute negative "Create Session Duration" API step with error name "Description must be unique" and parameters
+      |description|EC_SESSION_DURATION_DESCRIPTION|
 
   @PricingMatrix #TC-981, TC-1868
   Scenario: Add a New Pricing Matrix Using a Modal
@@ -766,7 +821,7 @@ Feature: Product Factory API Data Creation
   Scenario: Add a New Client Using a Modal
     Given I execute "Create Client" API step
 
-  @Clients #TC-919
+  @Clients @Duplicate #TC-919
   Scenario: Add a Client Where Name Already Exists
     Given I execute "Create Client" API step
     Then I execute negative "Create Client" API step with error name "Name must be unique" and parameters
@@ -796,6 +851,13 @@ Feature: Product Factory API Data Creation
     Given I execute "Create Stream" API step
     Then I execute negative "Create Stream" API step with error name "Name must be unique" and parameters
     |name|EC_STREAM_NAME|
+
+  @Streams @Duplicate #TC-2932
+  Scenario: Amend a Stream With Name That Already Exists
+    Given I execute "Create Stream" API step
+    And I execute "Create Stream" API step saving as "TWO_"
+    Then I execute negative "Update Stream" API step with error name "Name must be unique" and parameters
+      |name|EC_TWO_STREAM_NAME|
 
   @DeactivationReason #TC-975
   Scenario: Add a New Deactivation Reason Using a Modal
