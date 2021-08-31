@@ -278,6 +278,14 @@ Feature: Product Factory
     And I click on the "Save" "Product Factory button"
     Then I should see the "EC_CLIENT_NAME" element
 
+  Scenario: Create CT Class Category
+    When I click on the "Delivery" "Product Factory navigation item"
+    When I click on the "CT Class Categories" "Product Factory navigation sub item"
+    Then I click on the "Create" "Product Factory button"
+    And I set "CTClassCategoryName[######]" text to the "Name" "Product Factory text field"
+    And I click on the "Save" "Product Factory button"
+    Then I should see the "EC_CT_CLASS_CATEGORY_NAME" element
+
   Scenario: Create Study Mode
     When I click on the "Types" "Product Factory navigation item"
     When I click on the "Study Modes" "Product Factory navigation sub item"
