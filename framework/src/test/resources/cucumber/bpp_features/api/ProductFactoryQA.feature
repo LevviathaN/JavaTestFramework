@@ -392,11 +392,19 @@ Feature: Product Factory API Data Creation
   Scenario: Amend a Paper Where Name Already Exists
     Given I execute "Create Paper" API step
     And I execute "Create Paper" API step with parameters saving as "SECOND_"
-      |shortName  |ApiPSNT[###]  |
+      |shortName  |ApiPSNT[###]                 |
       |name       |ApiPaperNameTwo[####]        |
       |description|ApiPaperDescriptionTwo[#####]|
     And I execute negative "Update Paper" API step with error name "Short Name must be unique" and parameters
-      |shortName|EC_API_PSNT|
+      |shortName  |EC_API_PSNT                  |
+    And I execute negative "Update Paper" API step with error name "Name must be unique" and parameters
+      |name       |EC_API_PAPER_NAME_TWO        |
+
+  @Paper @Negative #TC-773
+  Scenario: Add a Paper Where Description Already Exists
+    Given I execute "Create Paper" API step
+    And I execute "Create Paper" API step with parameters
+      |description|EC_PAPER_DESCRIPTION|
 
   @Paper @Incomplete #TC-771
   Scenario: Submitting Incomplete Paper Fields
@@ -638,6 +646,43 @@ Feature: Product Factory API Data Creation
     And I execute "Create Location" API step
     Then I execute "Create Pricing Matrix" API step
     And I execute "Create Prices" API step
+
+  @Prices @Negative @Duplicate #TC-1158
+  Scenario: Add Duplicate Price in Pricing Matrix
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE|
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT|
+      |target       |REGION |
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT |
+      |target       |LOCATION|
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    Then I execute "Create Pricing Matrix" API step
+    And I execute "Create Prices" API step
+    And I execute negative "Create Prices" API step with error name "have already been used to create a Price." and parameters
+    |courseTypeReference|EC_COURSE_TYPE_REFERENCE|
+
 
   @Prices @Positive #TC-1145
   Scenario: Update Pricing Matrix Price
