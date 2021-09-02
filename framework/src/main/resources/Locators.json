@@ -2548,6 +2548,10 @@
     "value": "xpath=//*[@title='You have not completed all the session timing information']/ancestor::td//button"
   },
   {
+    "name": "Product Factory Activate Course Button",
+    "value": "xpath=//h4[text()='Edit Course']/following-sibling::button[span[text()='Deactivate']]"
+  },
+  {
     "name": "Product Factory Create Button",
     "value": "xpath=//button[normalize-space()='Create']"
   },

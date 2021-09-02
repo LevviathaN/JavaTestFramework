@@ -1,4 +1,4 @@
-@ProductFactory @ClassCategory @HappyPath @Run
+@ProductFactory @ClassCategory @HappyPath
 Feature: Onboarding - CT Class Category reference data - BPP-15740
   As a product setup team member
   I want to be able to add and edit CT Class Category reference data

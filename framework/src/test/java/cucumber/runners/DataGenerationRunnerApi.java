@@ -9,11 +9,12 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import ui.utils.BaseUITest;
 import ui.utils.Reporter;
 
 @CucumberOptions(
-        features = "src/test/resources/cucumber/bpp_features",
-        glue = {"cucumber.stepdefs"},
+        features = "src/test/resources/cucumber/bpp_features/api",
+        glue = {"cucumber.productFactory"},
         tags = {"@CreateDataDrivenApi"},
         plugin = {"pretty"})
 

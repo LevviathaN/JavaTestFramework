@@ -581,6 +581,10 @@
     "value": "xpath=//label[text()='PARAMETER']/following-sibling::*"
   },
   {
+    "name": "Product Factory Edit Course button",
+    "value": "xpath=//h4[text()='Edit Course']/following-sibling::button[span[text()='PARAMETER']]"
+  },
+  {
     "name": "Salesforce New Qualification input fields",
     "value": "xpath=//*[text()='PARAMETER']/following::input[1]"
   },
