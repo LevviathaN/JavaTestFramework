@@ -254,6 +254,7 @@ Feature: Salesforce
     And I capture text data "Salesforce Case Number Data Field" as "EC_CASENUMBER" variable
 
   Scenario: Search Case by Number
+    Then I click on the "Salesforce Main Header Button Search" element
     And I fill the "Salesforce Main Header Search" field with "EC_CASENUMBER"
     And I press "MD_COMMON_KEYBOARD_ENTER" for "Salesforce Main Header Search"
     And I wait for "2" seconds

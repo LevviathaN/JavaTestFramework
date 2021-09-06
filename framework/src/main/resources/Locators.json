@@ -2877,7 +2877,11 @@
   },
   {
     "name": "Salesforce Main Header Search",
-    "value": "xpath=(//input[contains(@placeholder,'Search')])[1]"
+    "value": "xpath=//input[@placeholder='Search...']"
+  },
+  {
+    "name": "Salesforce Main Header Button Search",
+    "value": "xpath=//button[@aria-label='Search']"
   },
   {
     "name": "Salesforce More Actions Dropdown",
