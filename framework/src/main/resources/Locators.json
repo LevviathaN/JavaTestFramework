@@ -2825,7 +2825,7 @@
   },
   {
     "name": "Salesforce Case Owner Data Field",
-    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//span[text()='Case Owner']/../following-sibling::div/span/slot/slot/*"
+    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//span[text()='Case Owner']/../following-sibling::div/span/slot/slot//slot[@force-lookup_lookup]"
   },
   {
     "name": "Salesforce Case Status Data Field",
