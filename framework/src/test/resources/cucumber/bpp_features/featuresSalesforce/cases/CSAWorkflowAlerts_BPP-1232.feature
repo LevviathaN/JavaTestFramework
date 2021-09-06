@@ -13,7 +13,9 @@ Feature: CSA Workflow Alerts
     Then I click on the "Harakirimail Get Inbox" button
     Then I click on the "Harakirimail First Email" element by JS
     Then I execute "document.getElementsByClassName('adsbygoogle adsbygoogle-noablate')[2].remove();" JS code if "Harakirimail Adds Banner" "element is present"
-    And I wait for "6" seconds
+    And I wait for "3" seconds
+    Then Browser performs "REFRESH" command
+    And I wait for "3" seconds
     Then I click on the "Harakirimail First Email" element if "Harakirimail First Email" "element is present"
     And I validate text "CONTAINS=New case created." to be displayed for "Harakirimail Validate Letter Body" element
     And I wait for "3" seconds
