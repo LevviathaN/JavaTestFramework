@@ -113,7 +113,7 @@ Feature: Course - Update Instances for non draft Courses - BPP-4968
     #Create second instance
     Then I click on the "Create" "Product Factory button"
     And I click on the "Default Session Duration" "Product Factory dropdown"
-    And I click on the "EC_SESSION_DURATION_DESCRIPTION_TWO_DATES" "Product Factory dropdown option"
+    And I click on the "EC_TWO_DATES_SESSION_DURATION_DESCRIPTION" "Product Factory dropdown option"
     And I click on the "Default Location" "Product Factory dropdown"
     And I click on the "EC_LOCATION_NAME_THREE" "Product Factory dropdown option"
     And I click on the "Save" "Product Factory button"

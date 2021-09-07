@@ -261,7 +261,7 @@ Feature: Product Factory
       |6|Add    |I "check" "Allowed for CBA" "Product Factory checkbox"|
       |8|Replace|I should see the "EC_CBA_SESSION_DURATION_DESCRIPTION<ecName>" element|
     And I execute "Create Session Duration" reusable step replacing some steps
-      |4|I set "$Auto[SessionDurationDescriptionTwoDates]<varName>" text to the "Description" "Product Factory text field"|
+      |4|I set "$Auto[TwoDatesSessionDurationDescription]<varName>" text to the "Description" "Product Factory text field"|
       |5|I set "2" text to the "Number of Dates" "Product Factory text field"|
     And I execute "Create Client" reusable step replacing some steps
       |4|I set "$Auto[ClientName]<varName>" text to the "Name" "Product Factory text field"|

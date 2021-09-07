@@ -31,6 +31,7 @@ Feature: Onboarding - Digital Content - ability to define Type - BPP-14452
 
   @Positive @P1 #TC-5488
   Scenario: Amend Digital Content University Type
+    Given I execute "Create Digital Content University Type" reusable step
     When I click on the "Delivery" "Product Factory navigation item"
     When I click on the "Digital Content" "Product Factory navigation sub item"
     Then I click on the "EC_COHORT_NAME" "Product Factory edit button"
