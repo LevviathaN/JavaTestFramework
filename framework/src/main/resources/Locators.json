@@ -2348,6 +2348,10 @@
     "value": "xpath=(//u[text()='Pages - Overview'])[1]"
   },
   {
+    "name": "Hub VPE Sent Items First Element",
+    "value": "xpath=(//h3[contains(.,'Sent Items')]/../../following::div[@class='inbox-items ']//div[@class='col']/h3)[1]"
+  },
+  {
     "name": "Hub VPE Mobile Pages-Overview Header",
     "value": "xpath=(//u[text()='Pages - Overview'])[2]"
   },
