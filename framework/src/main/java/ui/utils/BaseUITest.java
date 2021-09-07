@@ -3,6 +3,7 @@ package ui.utils;
 import CodeEditor.GuiHelper;
 import api.RestApiController;
 import org.jooq.tools.json.ParseException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -129,7 +130,7 @@ public class BaseUITest {
                 SeleniumHelper.driver().quit();
                 DriverProvider.closeDriver();
             }
-        } catch (MalformedURLException e) {
+        } catch (MalformedURLException | TimeoutException e) {
             e.printStackTrace();
             SeleniumHelper.driver().quit();
             DriverProvider.closeDriver();
