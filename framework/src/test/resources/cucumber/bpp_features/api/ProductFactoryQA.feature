@@ -36,6 +36,18 @@ Feature: Product Factory API Data Creation
       |dimensionType|LEGALENTITY|
       |target       |COURSE     |
 
+  @FinancialDimension @Duplicate #TC-1544
+  Scenario: Update created Financial Dimension record Course item with Duplicate Data
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_LEGAL_ENTITY_"
+      |dimensionType|LEGALENTITY|
+      |target       |COURSE     |
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_LEGAL_ENTITY_TWO_"
+      |dimensionType|LEGALENTITY|
+      |target       |COURSE     |
+    Then I execute negative "Update Financial Dimension" API step with error name "A Financial Dimension with the same code already targets 'Course'" and parameters
+      |reference|EC_COURSE_LEGAL_ENTITY_FINANCIAL_DIMENSION_REFERENCE|
+      |code|EC_COURSE_LEGAL_ENTITY_TWO_FINANCIAL_DIMENSION_CODE|
+
   @FinancialDimensionMaterialDuplicate #TC-1542
   Scenario: Create Financial Dimension record Material item with Duplicate Data
     Given I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_LEGAL_ENTITY_"
@@ -45,6 +57,18 @@ Feature: Product Factory API Data Creation
       |code         |EC_MATERIAL_LEGAL_ENTITY_FINANCIAL_DIMENSION_CODE|
       |dimensionType|LEGALENTITY|
       |target       |MATERIAL   |
+
+  @FinancialDimension @Duplicate #TC-1544
+  Scenario: Update created Financial Dimension record Material item with Duplicate Data
+    Given I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_LEGAL_ENTITY_"
+      |dimensionType|LEGALENTITY|
+      |target       |MATERIAL   |
+    Given I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_LEGAL_ENTITY_TWO_"
+      |dimensionType|LEGALENTITY|
+      |target       |MATERIAL   |
+    Then I execute negative "Update Financial Dimension" API step with error name "A Financial Dimension with the same code already targets 'Material'" and parameters
+      |reference|EC_MATERIAL_LEGAL_ENTITY_FINANCIAL_DIMENSION_REFERENCE|
+      |code|EC_MATERIAL_LEGAL_ENTITY_TWO_FINANCIAL_DIMENSION_CODE|
 
   @FinancialDimensionCourseTypeDuplicate #TC-1542
   Scenario: Create Financial Dimension record Course Type item with Duplicate Data
@@ -105,11 +129,35 @@ Feature: Product Factory API Data Creation
       |dimensionType|COSTCENTRE|
       |target       |COURSETYPE|
 
+  @FinancialDimension @Duplicate #TC-1544
+  Scenario: Update created Financial Dimension record Course Type item with Duplicate Data
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT    |
+      |target       |COURSETYPE |
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_TWO_"
+      |dimensionType|PROJECT    |
+      |target       |COURSETYPE |
+    Then I execute negative "Update Financial Dimension" API step with error name "A Financial Dimension with the same code already targets 'CourseType'" and parameters
+      |reference|EC_COURSE_TYPE_PROJECT_FINANCIAL_DIMENSION_REFERENCE|
+      |code|EC_COURSE_TYPE_PROJECT_TWO_FINANCIAL_DIMENSION_CODE|
+
   @FinancialDimension #TC-1532
   Scenario: Create Financial Dimensions record Material Type item
     Given I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
       |dimensionType|PRODUCT     |
       |target       |MATERIALTYPE|
+
+  @FinancialDimension @Duplicate #TC-1544
+  Scenario: Update created Financial Dimension record Material Type item with Duplicate Data
+    Given I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT      |
+      |target       |MATERIALTYPE |
+    Given I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_TWO_"
+      |dimensionType|PRODUCT      |
+      |target       |MATERIALTYPE |
+    Then I execute negative "Update Financial Dimension" API step with error name "A Financial Dimension with the same code already targets 'MaterialType'" and parameters
+      |reference|EC_MATERIAL_TYPE_FINANCIAL_DIMENSION_REFERENCE|
+      |code|EC_MATERIAL_TYPE_TWO_FINANCIAL_DIMENSION_CODE|
 
   @FinancialDimension #TC-1532
   Scenario: Create Financial Dimensions record Location item
@@ -117,17 +165,53 @@ Feature: Product Factory API Data Creation
       |dimensionType|PRODUCT |
       |target       |LOCATION|
 
+  @FinancialDimension @Duplicate #TC-1544
+  Scenario: Update created Financial Dimension record Location item with Duplicate Data
+    Given I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT |
+      |target       |LOCATION|
+    Given I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_TWO_"
+      |dimensionType|PRODUCT |
+      |target       |LOCATION|
+    Then I execute negative "Update Financial Dimension" API step with error name "A Financial Dimension with the same code already targets 'Location'" and parameters
+      |reference|EC_LOCATION_FINANCIAL_DIMENSION_REFERENCE|
+      |code|EC_LOCATION_TWO_FINANCIAL_DIMENSION_CODE|
+
   @FinancialDimension #TC-1532
   Scenario: Create Financial Dimensions record Body item
     Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
       |dimensionType|PRODUCT|
       |target       |BODY   |
 
+  @FinancialDimension @Duplicate #TC-1544
+  Scenario: Update created Financial Dimension record Body item with Duplicate Data
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_TWO_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    Then I execute negative "Update Financial Dimension" API step with error name "A Financial Dimension with the same code already targets 'Body'" and parameters
+    |reference|EC_BODY_FINANCIAL_DIMENSION_REFERENCE|
+    |code|EC_BODY_TWO_FINANCIAL_DIMENSION_CODE|
+
   @FinancialDimension #TC-1532
   Scenario: Create Financial Dimensions record Region item
     Given I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
       |dimensionType|PRODUCT|
       |target       |REGION |
+
+  @FinancialDimension #TC-1532
+  Scenario: Create Financial Dimensions record Course item
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_"
+      |dimensionType|PRODUCT|
+      |target       |COURSE |
+
+  @FinancialDimension #TC-1532
+  Scenario: Create Financial Dimensions record Material item
+    Given I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_"
+      |dimensionType|PRODUCT  |
+      |target       |MATERIAL |
 
   @VatRule #TC-1340
   Scenario: Add a New VAT Rule Using a Modal
@@ -437,6 +521,12 @@ Feature: Product Factory API Data Creation
     Then I execute negative "Update Level" API step with error name "Short Name must be unique" and parameters
       |shortName|EC_API_LEVEL_SHORT_NAME_TWO|
 
+  @Level @Update @Duplicate @Negative #TC-824
+  Scenario: Add a Level Where Short Name Already Exists
+    Given I execute "Create Level" API step
+    Then I execute negative "Create Level" API step with error name "Short Name must be unique" and parameters
+      |shortName|EC_LEVEL_SHORT_NAME|
+
   @Level @Incomplete #TC-822
   Scenario: Submitting Incomplete Level Fields
     Given I execute negative "Create Level" API step with error name "The Name field is required." and parameters
@@ -542,6 +632,19 @@ Feature: Product Factory API Data Creation
       |target       |LOCATION|
     And I execute "Create Region" API step
     And I execute "Create Location" API step
+
+  @Location @Duplicate #TC-776
+  Scenario: Add a Location Where Name Already Exists
+    Given I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT|
+      |target       |REGION |
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT |
+      |target       |LOCATION|
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    Then I execute negative "Create Location" API step with error name "Name must be unique" and parameters
+    |name|EC_LOCATION_NAME|
 
   @Location @MandatoryOnly #TC-4180
   Scenario: Add a New Location Populate Only Mandatory Fields
@@ -861,6 +964,15 @@ Feature: Product Factory API Data Creation
       |dimensionType|PRODUCT     |
       |target       |MATERIALTYPE|
     Then I execute "Create Material Type" API step
+
+  @MaterialType @Duplicate #TC-1436
+  Scenario: Add a Material Type Where Name Already Exists
+    Given I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+    Then I execute "Create Material Type" API step
+    Then I execute negative "Create Material Type" API step with error name "Name must be unique" and parameters
+    |name|EC_MATERIAL_TYPE_NAME|
 
   @Clients #TC-919
   Scenario: Add a New Client Using a Modal
