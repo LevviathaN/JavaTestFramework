@@ -106,6 +106,7 @@ Feature: Product Factory
     And I remember "AutoCourseTypeFDCode<varName>" text as "EC_COURSE_TYPE_FD_CODE" variable
     And I remember "AutoCourseTypeFDDescription<varName>" text as "EC_COURSE_TYPE_FD_DESCRIPTION" variable
     And I remember "AutoCourseTypeDescription<varName>" text as "EC_COURSE_TYPE_DESCRIPTION" variable
+    And I remember "AutoCBACourseTypeDescription<varName>" text as "EC_CBA_COURSE_TYPE_DESCRIPTION" variable
     And I remember "AutoLocationFDCode<varName>" text as "EC_LOCATION_FD_CODE" variable
     And I remember "AutoLocationFDDescription<varName>" text as "EC_LOCATION_FD_DESCRIPTION" variable
     And I remember "AutoRegionFDCode<varName>" text as "EC_REGION_FD_CODE" variable
