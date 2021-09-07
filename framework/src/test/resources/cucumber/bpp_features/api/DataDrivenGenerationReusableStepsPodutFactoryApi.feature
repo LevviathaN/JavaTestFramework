@@ -6,6 +6,7 @@ Feature: Product Factory Api
 
   @CreateDataDrivenApi
   Scenario Outline: Create Reference Data Set <type> Using API
+    Given I generate new ISBN code saving as "EC_ISBN"
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_"
       |code|$Auto[CourseTypeFDCode]<varName>|
       |description|$Auto[CourseTypeFDDescription]<varName>|
@@ -31,6 +32,16 @@ Feature: Product Factory Api
       |description|$Auto[MaterialTypeFDDescription]<varName>|
       |dimensionType|PRODUCT     |
       |target       |MATERIALTYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_"
+      |code       |$Auto[MaterialFDCode]<varName>       |
+      |description|$Auto[MaterialFDDescription]<varName>|
+      |dimensionType|PRODUCT |
+      |target       |MATERIAL|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_"
+      |code       |$Auto[CourseFDCode]<varName>       |
+      |description|$Auto[CourseFDDescription]<varName>|
+      |dimensionType|PRODUCT|
+      |target       |COURSE |
     And I execute "Create Vertical" API step with parameters
       |name|$Auto[VerticalName]<varName>|
     And I execute "Create Body" API step with parameters
@@ -72,8 +83,17 @@ Feature: Product Factory Api
       |name       |$Auto[RegionName]<varName>       |
     And I execute "Create Location" API step with parameters
       |name       |$Auto[LocationName]<varName>       |
+    And I execute "Create Stock Site" API step with parameters
+      |name       |$Auto[StockSiteName]<varName>|
+    And I execute "Create Material Type" API step with parameters
+      |name  |$Auto[MaterialTypeName]<varName>  |
+      |description|$Auto[MaterialTypeDescription]<varName>|
+      |financialDimensionReference   |EC_MATERIAL_TYPE_FINANCIAL_DIMENSION_REFERENCE|
     And I execute "Create Session Duration" API step with parameters
       |description|$Auto[SessionDurationDescription]<varName>|
+    And I execute "Create Session Duration" API step with parameters saving as "TWO_DATES_"
+      |description|$Auto[TwoDatesSessionDurationDescription]<varName>|
+    And I execute "Create Material" API step
     And I execute "Create Pricing Matrix" API step
     And I execute "Create Prices" API step
     And I execute "Create Course" API step
@@ -96,16 +116,16 @@ Feature: Product Factory Api
     And I execute "Activate Instance" API step
 
     And I execute "Create Paper" API step with parameters saving as "CBA_"
-      |name       |$Auto[CbaPaperName]<varName>       |
+      |name       |$Auto[CBAPaperName]<varName>       |
       |shortName  |$A[CBAPsn]<shortVar>               |
-      |description|$Auto[CbaPaperDescription]<varName>|
+      |description|$Auto[CBAPaperDescription]<varName>|
       |isCba|true|
     And I execute "Change Paper Body" API step with parameters
       |paperReference|EC_CBA_PAPER_REFERENCE|
     And I execute "Link Paper To Levels" API step with parameters
       |paperReference|EC_CBA_PAPER_REFERENCE|
     And I execute "Create Session Duration" API step with parameters saving as "CBA_"
-      |description|$Auto[CbaSessionDurationDescription]<varName>|
+      |description|$Auto[CBASessionDurationDescription]<varName>|
       |allowedForCba|true|
     And I execute "Create Course Type" API step with parameters saving as "CBA_"
       |description|$Auto[CbaCourseTypeDescription]<varName>|
