@@ -32,16 +32,6 @@ Feature: Product Factory Api
       |description|$Auto[MaterialTypeFDDescription]<varName>|
       |dimensionType|PRODUCT     |
       |target       |MATERIALTYPE|
-    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_"
-      |code       |$Auto[MaterialFDCode]<varName>       |
-      |description|$Auto[MaterialFDDescription]<varName>|
-      |dimensionType|PRODUCT |
-      |target       |MATERIAL|
-    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_"
-      |code       |$Auto[CourseFDCode]<varName>       |
-      |description|$Auto[CourseFDDescription]<varName>|
-      |dimensionType|PRODUCT|
-      |target       |COURSE |
     And I execute "Create Vertical" API step with parameters
       |name|$Auto[VerticalName]<varName>|
     And I execute "Create Body" API step with parameters
