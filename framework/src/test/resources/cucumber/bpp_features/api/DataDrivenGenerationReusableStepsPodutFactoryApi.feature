@@ -118,7 +118,7 @@ Feature: Product Factory Api
       |description|$Auto[CBASessionDurationDescription]<varName>|
       |allowedForCba|true|
     And I execute "Create Course Type" API step with parameters saving as "CBA_"
-      |description|$Auto[CbaCourseTypeDescription]<varName>|
+      |description|$Auto[CBACourseTypeDescription]<varName>|
       |costCentreFinancialDimensionReference|EC_COURSE_TYPE_FINANCIAL_DIMENSION_REFERENCE|
       |projectFinancialDimensionReference   |EC_COURSE_TYPE_FINANCIAL_DIMENSION_REFERENCE|
     And I debug
