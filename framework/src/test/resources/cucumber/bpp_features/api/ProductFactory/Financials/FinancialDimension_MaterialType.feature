@@ -18,6 +18,14 @@ Feature: Product Factory API Data Creation
       |dimensionType|PRODUCT     |
       |target       |MATERIALTYPE|
 
+  @FinancialDimension @Duplicate #TC-1543
+  Scenario: Update created Financial Dimension record Material Type item
+    Given I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+    Then I execute "Update Financial Dimension" API step with parameters
+    |reference|EC_MATERIAL_TYPE_FINANCIAL_DIMENSION_REFERENCE|
+
   @FinancialDimension @Duplicate #TC-1544
   Scenario: Update created Financial Dimension record Material Type item with Duplicate Data
     Given I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
