@@ -19,7 +19,7 @@ Feature: Amend Reference Data - Level - BPP-658
       |5|I set "LevelName[######]" text to the "Name" "Product Factory text field"|
       |7|I should see the "EC_LEVEL_SHORT_NAME" element                           |
 
-  @Negative @P2 #TC-822
+  @Negative @P2 @CoveredWithApi #TC-822
   Scenario: Amend Submitting Incomplete Level Fields
     And I remember "AutoLevelName" text as "EC_LEVEL_NAME" variable
     When I click on the "Programme" "Product Factory navigation item"

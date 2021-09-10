@@ -25,7 +25,7 @@ Feature: Financial Dimension - Reference Data Create Record - BPP-2488
       |Body         |
       |Region       |
 
-  @Negative @P2 #TC-1542
+  @Negative @P2 @CoveredWithApi #TC-1542
   Scenario Outline: Create Financial Dimension record <type> item with Duplicate Data
     Given I execute modified "Create Body Financial Dimension" reusable step
       |4|Replace|I set "FDCode[######]" text to the "Code" "Product Factory text field"|

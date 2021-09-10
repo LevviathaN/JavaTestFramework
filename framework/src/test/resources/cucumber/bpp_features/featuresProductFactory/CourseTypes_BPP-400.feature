@@ -13,7 +13,7 @@ Feature: Reference Data - Course Type - BPP-400
   Scenario: Add a New Course Type Using a Modal
     Given I execute "Create Course Type" reusable step
 
-  @Negative @P2 #TC-700
+  @Negative @P2 @CoveredWithApi #TC-700
   Scenario: Submitting Incomplete Course Type Fields
     When I click on the "Types" "Product Factory navigation item"
     When I click on the "Course Types" "Product Factory navigation sub item"

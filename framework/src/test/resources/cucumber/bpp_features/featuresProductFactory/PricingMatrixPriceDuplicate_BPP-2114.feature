@@ -13,7 +13,7 @@ Feature: Pricing Matrix - price creation validation to prevent duplicates - BPP-
     And I remember "AutoPaperName" text as "EC_PAPER_NAME" variable
     And I remember "AutoPaperDescription" text as "EC_PAPER_DESCRIPTION" variable
 
-  @Negative @P1 @Duplicate #TC-1158
+  @Negative @P1 @Duplicate @CoveredWithApi #TC-1158
   Scenario: Add Duplicate Price in Pricing Matrix
     Given I execute "Create Pricing Matrix Full" reusable step
     Then I should see the "Unable to save prices, there may be existing prices for the selected reference data" message
