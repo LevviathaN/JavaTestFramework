@@ -7,7 +7,7 @@ Feature: Financial Dimension - Reference Data Update Record - BPP-2489
   Background:
     Given I execute "Log In" reusable step
 
-  @Positive @Regression @P1 #TC-1543
+  @Positive @Regression @P1 @CoveredWithApi #TC-1543
   Scenario Outline: Update created Financial Dimension record <type> item
     Given I execute modified "Create Body Financial Dimension" reusable step
       |4|Replace|I set "FDCode[######]" text to the "Code" "Product Factory text field"|
@@ -47,7 +47,7 @@ Feature: Financial Dimension - Reference Data Update Record - BPP-2489
   |Body         |
 
 
-  @Negative @P2 #TC-1544
+  @Negative @P2 @CoveredWithApi #TC-1544
   Scenario Outline: Update created Financial Dimension record <type> item with Duplicate Data
     Given I execute modified "Create Body Financial Dimension" reusable step
       |4|Replace|I set "FDCode[######]" text to the "Code" "Product Factory text field"|

@@ -10,7 +10,7 @@ Feature: Financial Dimension - Select Location Codes - BPP-2495
     And I execute "Remember Variables For Creation " reusable step
     And I execute "Remember Variables Two" reusable step
 
-  @Negative @Regression @P1 #TC-1771, TC-1718
+  @Negative @Regression @P1 @CoveredWithApi #TC-1771, TC-1718
   Scenario: Edit Financial Dimension for the Location that is in use
     When I click on the "Delivery" "Product Factory navigation item"
     When I click on the "Locations" "Product Factory navigation sub item"

@@ -2,7 +2,7 @@
 Feature: Product Factory API Data Creation
   As an Admin I should be able to create items in PF using API
 
-  @MaterialType @CoveredWithApi #TC-1435
+  @MaterialType #TC-1435
   Scenario: Add a New Material Type Using a Modal
     Given I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
       |dimensionType|PRODUCT     |

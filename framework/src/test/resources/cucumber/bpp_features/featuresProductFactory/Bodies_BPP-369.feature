@@ -16,7 +16,7 @@ Feature: Reference Data - Body - BPP-369
   Scenario: Add a New Body Using a Modal
     Given I execute "Create Body" reusable step
 
-  @Negative @P2 #TC-740
+  @Negative @P2 @CoveredWithApi #TC-740
   Scenario: Submitting Incomplete Body Fields
     Given I execute modified "Create Body" reusable step
       |4|Delete||
@@ -24,7 +24,7 @@ Feature: Reference Data - Body - BPP-369
       |10|Delete||
       |11|Replace|Attribute "tabindex" of "Save" "Product Factory button" should have value "-1"|
 
-  @Negative @P2 #TC-744
+  @Negative @P2 @CoveredWithApi #TC-744
   Scenario: Add a Body Where Short Name Already Exists
     Given I execute modified "Create Body" reusable step
       |4|Replace|I set "AutoBodyShortNameTwo" text to the "Short Name" "Product Factory text field"|

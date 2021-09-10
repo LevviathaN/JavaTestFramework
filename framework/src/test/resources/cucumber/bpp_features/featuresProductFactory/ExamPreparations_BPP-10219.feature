@@ -11,21 +11,21 @@ Feature: Additional Product Information - Exam Preparation Name - Ref Data - BPP
     Given I execute "Create Exam Preparation" reusable step
     Then I should see the "EC_EXAM_PREPARATION_NAME" element
 
-  @Negative @P2 @NoQTest
+  @Negative @P2 @NoQTest @CoveredWithApi
   Scenario: Submitting Incomplete Exam Preparation Fields
     When I click on the "Types" "Product Factory navigation item"
     When I click on the "Exam Preparations" "Product Factory navigation sub item"
     Then I click on the "Create" "Product Factory button"
     Then Attribute "tabindex" of "Save" "Product Factory button" should have value "-1"
 
-  @Negative @P2 #TC-4694
+  @Negative @P2 @CoveredWithApi #TC-4694
   Scenario: Add a Exam Preparation Where Name Already Exists
     When I execute "Create Exam Preparation" reusable step
     When I execute "Create Exam Preparation" reusable step replacing some steps
       |4|I set "EC_EXAM_PREPARATION_NAME" text to the "Name" "Product Factory text field"|
     Then I should see the "Name must be unique" message
 
-  @Negative @P2 #TC-4695
+  @Negative @P2 @CoveredWithApi #TC-4695
   Scenario: Amend a Exam Preparation Where Name Already Exists
     When I execute "Create Exam Preparation" reusable step
     When I execute "Create Exam Preparation" reusable step replacing some steps
