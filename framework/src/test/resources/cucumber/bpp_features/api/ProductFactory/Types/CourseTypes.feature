@@ -104,3 +104,18 @@ Feature: Product Factory API Data Creation
     Then I execute negative "Update Course Type" API step with error name "The Course Type is already linked to one or more Courses, so you cannot change the VAT Rule or Financial Dimensions" and parameters
       |reference|EC_COURSE_TYPE_REFERENCE|
       |projectFinancialDimensionReference|EC_COURSE_TYPE_PROJECT_TWO_FINANCIAL_DIMENSION_REFERENCE|
+
+  @DeactivationReason @Duplicate #TC-702
+  Scenario: Add a Course Type Where Description Already Exists
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE|
+      |target       |COURSETYPE|
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    Then I execute negative "Create Course Type" API step with error name "Description must be unique" and parameters
+      |description|EC_COURSE_TYPE_DESCRIPTION|

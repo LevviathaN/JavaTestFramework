@@ -70,8 +70,8 @@ Feature: Product Factory API Data Creation
     And I execute "Create Session Duration" API step
     And I execute "Create Instance" API step
 
-  @InstanceCapacity
-  Scenario: Change Instance Capacity
+  @InstanceCapacity @StreamToCourseInstance
+  Scenario: Add a Stream to Course Instance
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
       |target       |COURSETYPE|
