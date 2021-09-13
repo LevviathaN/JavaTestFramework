@@ -11,7 +11,7 @@ Feature: Onboarding - Programme - Reference Data - BPP-14453
   Scenario: Add a New Programme Using a Modal
     Given I execute "Create Programme" reusable step
 
-  @Negative @P2 #TC-5390
+  @Negative @P2 @CoveredWithApi #TC-5390
   Scenario: Amend Programme With Duplicate Values
     When I execute "Create Programme" reusable step
     When I execute modified "Create Programme" reusable step

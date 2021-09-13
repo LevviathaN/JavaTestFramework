@@ -18,21 +18,21 @@ Feature: Reference Data - Location - BPP-428
       |10|Add|I click on the "Albania" "Product Factory dropdown option"|
       |11|Add|I set "~Postcode[######]" text to the "Postcode" "Product Factory text field"|
 
-  @Negative @P2 #TC-774
+  @Negative @P2 @CoveredWithApi #TC-774
   Scenario: Submitting Incomplete Location Fields
     When I click on the "Delivery" "Product Factory navigation item"
     When I click on the "Locations" "Product Factory navigation sub item"
     Then I click on the "Create" "Product Factory button"
     Then Attribute "tabindex" of "Save" "Product Factory button" should have value "-1"
 
-  @Negative @P2 #TC-776
+  @Negative @P2 @CoveredWithApi #TC-776
   Scenario: Add a Location Where Name Already Exists
     Given I remember "AutoLocationName" text as "EC_LOCATION_NAME" variable
     Given I execute modified "Create Location" reusable step
       |4|Replace|I set "EC_LOCATION_NAME" text to the "Name" "Product Factory text field"|
       |11|Replace|I should see the "Name must be unique" "message"                       |
 
-  @Positive @Regression @P1 #TC-4180
+  @Positive @Regression @P1 @CoveredWithApi #TC-4180
   Scenario: Add a New Location Populate Only Mandatory Fields
     Given I execute modified "Create Location" reusable step
       |5|Delete||

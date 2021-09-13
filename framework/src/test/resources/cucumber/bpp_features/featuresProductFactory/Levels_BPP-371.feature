@@ -12,14 +12,14 @@ Feature: Reference Data - Level - BPP-371
   Scenario: Add a New Level Using a Modal
     Given I execute "Create Level" reusable step
 
-  @Negative @P2 #TC-745
+  @Negative @P2 @CoveredWithApi #TC-745
   Scenario: Submitting Incomplete Level Fields
     When I click on the "Programme" "Product Factory navigation item"
     When I click on the "Levels" "Product Factory navigation sub item"
     Then I click on the "Create" "Product Factory button"
     Then Attribute "tabindex" of "Save" "Product Factory button" should have value "-1"
 
-  @Negative @P2 #TC-748
+  @Negative @P2 @CoveredWithApi #TC-748
   Scenario: Add a Level Where Short Name Already Exists
     And I remember "AutoLevelShortName" text as "EC_LEVEL_SHORT_NAME" variable
     When I execute modified "Create Level" reusable step

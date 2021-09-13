@@ -45,7 +45,7 @@ Feature: Digital Content Id - Create - BPP-5605
     Then I should see the "EC_BODY_SHORT_NAME" element
     And I click on the "Clear the search text" "element by title"
 
-  @Negative @P1  @HappyPath #TC-3149
+  @Negative @P1 @HappyPath @CoveredWithApi #TC-3149
   Scenario: Create Digital Content Prevent Duplicate
     Given I execute "Create Digital Content" reusable step
     Then I should see the "Digital Content already exists" "text contained in element"

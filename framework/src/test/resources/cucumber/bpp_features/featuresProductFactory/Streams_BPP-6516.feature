@@ -12,7 +12,7 @@ Feature: Reference Data - Streams - BPP-6516
   Scenario: Add a New Stream Using a Modal
     And I execute "Create Stream" reusable step
 
-  @Negative @P2 @Amend #TC-2932
+  @Negative @P2 @Amend @CoveredWithApi #TC-2932
   Scenario: Amend a Stream With Name That Already Exists
     And I execute "Create Stream" reusable step
     And I execute "Create Stream" reusable step replacing some steps
@@ -20,7 +20,7 @@ Feature: Reference Data - Streams - BPP-6516
       |4|I set "EC_AUTO_STREAM_NAME" text to the "Name" "Product Factory text field"|
       |6|I should see the "Name must be unique" element                             |
 
-  @Negative @P2 #TC-2930
+  @Negative @P2 @CoveredWithApi #TC-2930
   Scenario: Add a Stream Where Name Already Exists
     And I execute "Create Stream" reusable step replacing some steps
       |4|I set "EC_AUTO_STREAM_NAME" text to the "Name" "Product Factory text field"|

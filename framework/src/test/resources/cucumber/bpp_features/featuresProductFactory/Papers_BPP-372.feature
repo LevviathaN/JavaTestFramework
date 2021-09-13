@@ -11,14 +11,14 @@ Feature: Reference Data - Paper - BPP-372
   Scenario: Add a New Paper Using a Modal
     Given I execute "Create Paper" reusable step
 
-  @Negative @P2 #TC-771
+  @Negative @P2 @CoveredWithApi #TC-771
   Scenario: Submitting Incomplete Paper Fields
     When I click on the "Programme" "Product Factory navigation item"
     When I click on the "Papers" "Product Factory navigation sub item"
     Then I click on the "Create" "Product Factory button"
     Then Attribute "tabindex" of "Save" "Product Factory button" should have value "-1"
 
-  @Negative @P2 #TC-773
+  @Negative @P2 @CoveredWithApi #TC-773
   Scenario: Add a Paper Where Description Already Exists
     And I remember "AutoPprSN" text as "EC_PPR_SN" variable
     And I remember "AutoPaperName" text as "EC_PAPER_NAME" variable
