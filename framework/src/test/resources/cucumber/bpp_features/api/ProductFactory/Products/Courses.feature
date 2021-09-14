@@ -70,8 +70,8 @@ Feature: Product Factory API Data Creation
     And I execute "Create Session Duration" API step
     And I execute "Create Instance" API step
 
-  @InstanceCapacity
-  Scenario: Change Instance Capacity
+  @InstanceCapacity @StreamToCourseInstance
+  Scenario: Add a Stream to Course Instance
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
       |target       |COURSETYPE|
@@ -246,8 +246,8 @@ Feature: Product Factory API Data Creation
     And I execute "Change Session Timings" API step
     And I execute "Get Instance Steps" API step
 
-  @ChangeInstanceSteps
-  Scenario: Change Instance Steps
+  @CourseStepDueDate #TC-5354
+  Scenario: Set Course Step Due Dates
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
       |target       |COURSETYPE|
@@ -291,6 +291,86 @@ Feature: Product Factory API Data Creation
     And I execute "Change Session Timings" API step
     And I execute "Get Instance Steps" API step
     And I execute "Change Step Due Date" API step
+
+  @CourseStepNumber #TC-5333
+  Scenario: Edit Course Number of Steps
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Vat Rule" API step saving as "SECOND_"
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I execute "Create Course" API step
+    And I execute "Create Session Duration" API step
+    And I execute "Create Stream" API step
+    And I execute "Create Instance" API step
+    And I execute "Update Instance" API step with parameters
+    |numberOfSteps|5|
+
+  @CourseWithoutSteps #TC-
+  Scenario: Create Course Without Number of Steps
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Vat Rule" API step saving as "SECOND_"
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I execute "Create Course" API step with parameters
+    |numberOfSteps|0|
 
   @ActivateCourse
   Scenario: Activate Course

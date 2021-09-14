@@ -10,7 +10,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_COST_CENTRE"
       |dimensionType|COSTCENTRE|
       |target       |MATERIAL  |
-    Then I execute "Change Material Financial Dimension" API step
+    Then I execute "Change Material Financial Dimensions" API step
 
   @ChangeCourseFinancialDimension #Only once. If Course is created will cause an error: Courses have already created, so you cannot change the Course Financial Dimensions
   Scenario: Attach Financial Dimension to Course
@@ -20,4 +20,4 @@ Feature: Product Factory API Data Creation
     And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_COST_CENTRE_"
       |dimensionType|COSTCENTRE|
       |target       |COURSE    |
-    Then I execute "Change Course Financial Dimension" API step
+    Then I execute "Change Course Financial Dimensions" API step
