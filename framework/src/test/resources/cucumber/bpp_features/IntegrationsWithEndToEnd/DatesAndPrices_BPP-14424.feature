@@ -22,38 +22,40 @@ Feature: Following UAT of Dates & Prices, a requirement change exists to hide se
     And I wait for "5" seconds
     #Verify text displayed for Online type of learning
     And I am on "http://web-stage-bppdigital.bppuniversity.com/about-bpp/autodatesthree" URL
-    And I should see the "BA2 Fundamentals of Management Accounting" "BPP Digital View Dates and Prices button"
-    And I click on the "BA2 Fundamentals of Management Accounting" "BPP Digital View Dates and Prices button"
-    And I click on the "Thu 20 May 2021" "element"
-    And I validate text "CONTAINS=On demand" to be displayed for "BPP Digital Dates and Prices Course And Timings Section" element
-    And I validate text "CONTAINS=Study at a time and location that fits around your busy lifestyle" to be displayed for "BPP Digital Dates and Prices Course And Timings Section" element
-    And I click on the "Thu 20 May 2021" "element"
+    And I should see the "BA1 Fundamentals of Business Economics" "BPP Digital View Dates and Prices button"
+    And I click on the "BA1 Fundamentals of Business Economics" "BPP Digital View Dates and Prices button"
+    #Check no address displayed for Online type of learning
+    And I click on the "Tue 16 Mar 2021" "element the last"
+    Then I shouldn't see the "BPP Digital Dates and Prices Location For Instance" element
+    Then I shouldn't see the "BPP Digital Dates and Prices Second Location For Instance" element
+    And I click on the "Tue 16 Mar 2021" "element the last"
+    #Commented this part due to data changes in PF by UAT users....
     #Check Start Date dropdown options
-    Then I click on the "Start date" "BPP Digital Dates and Prices Filter By"
-    And I should see the "May 2021" "BPP Digital Dates and Prices Start date filter option"
-    And I should see the "Jul 2021" "BPP Digital Dates and Prices Start date filter option"
-    And I should see the "Aug 2021" "BPP Digital Dates and Prices Start date filter option"
-    Then I click on the "May 2021" "BPP Digital Dates and Prices Start date filter option"
-    And I should see the "Thu 20 May 2021" "element"
-    Then I shouldn't see the "Tue 20 Jul 2021" "element"
-    Then I shouldn't see the "Tue 17 Aug 2021" "element"
-    Then I click on the "Start date" "BPP Digital Dates and Prices Filter By"
-    Then I click on the "May 2021" "BPP Digital Dates and Prices Start date filter option"
-    Then I should see the "Tue 20 Jul 2021" "element"
-    Then I should see the "Tue 17 Aug 2021" "element"
-    And I should see the "Thu 20 May 2021" "element"
-    Then I click on the "Start date" "BPP Digital Dates and Prices Filter By"
-    Then I click on the "Jul 2021" "BPP Digital Dates and Prices Start date filter option"
-    Then I shouldn't see the "Thu 20 May 2021" "element"
-    Then I shouldn't see the "Tue 17 Aug 2021" "element"
-    And I hover over the "Location" "BPP Digital Dates and Prices Filter By"
-    Then I should see the "Tue 20 Jul 2021" "element"
-    Then I click on the "Start date" "BPP Digital Dates and Prices Filter By"
-    Then I click on the "Jul 2021" "BPP Digital Dates and Prices Start date filter option"
-    Then I should see the "Tue 17 Aug 2021" "element"
-    And I should see the "Thu 20 May 2021" "element"
-    Then I should see the "Tue 20 Jul 2021" "element"
-    And I shouldn't see the "Syllabus" "BPP Digital Dates and Prices Filter By"
+    #Then I click on the "Start date" "BPP Digital Dates and Prices Filter By"
+    #And I should see the "May 2021" "BPP Digital Dates and Prices Start date filter option"
+    #And I should see the "Jul 2021" "BPP Digital Dates and Prices Start date filter option"
+    #And I should see the "Aug 2021" "BPP Digital Dates and Prices Start date filter option"
+    #Then I click on the "May 2021" "BPP Digital Dates and Prices Start date filter option"
+    #And I should see the "Thu 20 May 2021" "element"
+    #Then I shouldn't see the "Tue 20 Jul 2021" "element"
+    #Then I shouldn't see the "Tue 17 Aug 2021" "element"
+    #Then I click on the "Start date" "BPP Digital Dates and Prices Filter By"
+    #Then I click on the "May 2021" "BPP Digital Dates and Prices Start date filter option"
+    #Then I should see the "Tue 20 Jul 2021" "element"
+    #Then I should see the "Tue 17 Aug 2021" "element"
+    #And I should see the "Thu 20 May 2021" "element"
+    #Then I click on the "Start date" "BPP Digital Dates and Prices Filter By"
+    #Then I click on the "Jul 2021" "BPP Digital Dates and Prices Start date filter option"
+    #Then I shouldn't see the "Thu 20 May 2021" "element"
+    #Then I shouldn't see the "Tue 17 Aug 2021" "element"
+    #And I hover over the "Location" "BPP Digital Dates and Prices Filter By"
+    #Then I should see the "Tue 20 Jul 2021" "element"
+    #Then I click on the "Start date" "BPP Digital Dates and Prices Filter By"
+    #Then I click on the "Jul 2021" "BPP Digital Dates and Prices Start date filter option"
+    #Then I should see the "Tue 17 Aug 2021" "element"
+    #And I should see the "Thu 20 May 2021" "element"
+    #Then I should see the "Tue 20 Jul 2021" "element"
+    #And I shouldn't see the "Syllabus" "BPP Digital Dates and Prices Filter By"
     #Check text in tooltips
     When I click on the "BPP Digital Dates and Prices Course Type Tooltip" element
     Then I should see the "BPP Digital Dates and Prices Tooltip Content" element
@@ -65,17 +67,13 @@ Feature: Following UAT of Dates & Prices, a requirement change exists to hide se
     Then I click on the "BPP Digital Dates and Prices Papers dropdown" element
     And I hover over the "BA3 Fundamentals of Financial Accounting" "BPP Digital dropdown item"
     And I click on the "BA3 Fundamentals of Financial Accounting" "BPP Digital dropdown item"
-    And I wait for "5" seconds
-    And I click on the "Sat 10 Jul 2021" "element" by JS
-    And I validate text "CONTAINS=5 Weekend" to be displayed for "BPP Digital Dates and Prices Number of Sessions For Multiple Address" element
+    And I wait for "3" seconds
+    And I click on the "Sat 7 Aug 2021" "element" by JS
+    And I validate text "CONTAINS=3 Weekend" to be displayed for "BPP Digital Dates and Prices Number of Sessions For Multiple Address" element
     Then I validate text "Weekend" to be displayed for "BPP Digital Dates and Prices Type of Session First Instance" element
-    And I click on the "Sat 10 Jul 2021" "element" by JS
-    And I click on the "Mon 12 Jul 2021" "element" by JS
-    And I validate text "CONTAINS=10 Evening sessions" to be displayed for "BPP Digital Dates and Prices Number of Sessions For Multiple Address" element
-    Then I validate text "Evening" to be displayed for "BPP Digital Dates and Prices Type of Session Second Instance" element
-    And I click on the "Mon 12 Jul 2021" "element" by JS
+    And I click on the "Sat 7 Aug 2021" "element" by JS
     #Delete DnP component in Admin
     And I am on "https://admin-stage-bppdigital.bppuniversity.com/admin/cms/pages/1560/edit" URL
-    And I wait for "5" seconds
+    And I wait for "3" seconds
     And I click on the "Dates and prices" "BPP Digital Admin Pages Delete Button for Specific Component name"
     And I wait for "5" seconds

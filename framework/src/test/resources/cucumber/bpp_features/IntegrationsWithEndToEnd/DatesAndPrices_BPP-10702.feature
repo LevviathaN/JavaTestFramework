@@ -18,7 +18,6 @@ Feature: Dates & Prices - Dates and Prices 'pods' (front-end) component
     And I click on the "Professional Level" "BPP Digital dropdown option"
     And I click on the "Save" "element by value"
     And I wait for "3" seconds
-
     # Verify Papers
     And I am on "http://web-stage-bppdigital.bppuniversity.com/courses/autodatesandprices" URL
     And I should see the "Audit & Assurance" "BPP Digital View Dates and Prices button"
@@ -38,9 +37,8 @@ Feature: Dates & Prices - Dates and Prices 'pods' (front-end) component
     # Verify Paper Filters: TC-4939
     And I hover over the "BPP Digital Dates and Prices Papers dropdown" button
     And I click on the "Tax Compliance" "BPP Digital dropdown item"
-    And I should see the "Thu 25 Mar 2021" "element"
-    And I should see the "Tue 30 Mar 2021" "element"
-    And I should see the "Sat 15 May 2021" "element"
+    And I should see the "Fri 19 Nov 2021" "element"
+    And I should see the "Fri 26 Nov 2021" "element"
 
     # Log in to Product Factory UAT
     Given I execute "Log In" reusable step
@@ -164,79 +162,50 @@ Feature: Dates & Prices - Dates and Prices 'pods' (front-end) component
     And I should see the "Financial Accounting and Reporting" "BPP Digital View Dates and Prices button"
     And I should see the "Financial Management" "BPP Digital View Dates and Prices button"
     And I should see the "Tax Compliance" "BPP Digital View Dates and Prices button"
-
     And I click on the "Audit & Assurance" "BPP Digital View Dates and Prices button"
-    And I click on the "Thu 25 Mar 2021" "element"
-
+    And I click on the "Mon 1 Nov 2021" "element"
     # Check Course type filter
-    When I hover over the "Course type" element
-    And I validate text "CONTAINS=2" to be displayed for "Final Mock" element
-    And I validate text "CONTAINS=4" to be displayed for "Taught" element
-
-    And I click on the "Final Mock" element
+    When I click on the "Course type" element
+    And I validate text "CONTAINS=2" to be displayed for "Taught" element
+    And I click on the "Taught" element
     Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "2"
-    And I click on the "Final Mock" element
     And I click on the "Taught" element
-    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "4"
-    And I click on the "Taught" element
-
     # Check Start date filter
-    When I hover over the "Start date" element
-    And I should see the "Mar 2021 (4)" element
-    And I should see the "Apr 2021 (1)" element
-    And I should see the "Jun 2021 (1)" element
-
-    When I click on the "Mar 2021 (4)" element
-    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "4"
-    And I click on the "Mar 2021 (4)" element
-    When I click on the "Apr 2021 (1)" element
+    When I click on the "Start date" element
+    And I should see the "Sep 2021 (1)" element
+    And I should see the "Oct 2021 (1)" element
+    And I click on the "Sep 2021 (1)" element
     Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "1"
-    And I click on the "Apr 2021 (1)" element
-    When I click on the "Jun 2021 (1)" element
-    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "1"
-    And I click on the "Jun 2021 (1)" element
-
+    And I click on the "Sep 2021 (1)" element
     # Check Study mode filter
-    When I hover over the "Study mode" element
-    And I validate text "CONTAINS=12" to be displayed for "Face-to-face" element
-
+    When I click on the "Study mode" element
+    And I validate text "CONTAINS=8" to be displayed for "Face-to-face" element
     When I click on the "Face-to-face" element
-    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "12"
+    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "8"
     And I click on the "Face-to-face" element
-
     # Check Location filter
-    When I hover over the "Location" element
-    And I validate text "CONTAINS=12" to be displayed for "London" element
-
+    When I click on the "Location" element
+    And I validate text "CONTAINS=6" to be displayed for "London" element
     When I click on the "London" element
-    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "12"
+    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "6"
     And I click on the "London" element
-
     # Check Session times filter
-    When I hover over the "Session times" element
-    And I should see the "Weekday (10)" element
-    And I should see the "Morning (1)" element
-    And I should see the "Afternoon (1)" element
-
-    When I click on the "Weekday (10)" element
-    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "10"
-    And I click on the "Weekday (10)" element
-    When I click on the "Morning (1)" element
+    When I click on the "Session times" element
+    And I should see the "Weekday (12)" element
+    And I should see the "Flexible (1)" element
+    When I click on the "Weekday (12)" element
+    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "12"
+    And I click on the "Weekday (12)" element
+    When I click on the "Flexible (1)" element
     Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "1"
-    And I click on the "Morning (1)" element
-    When I click on the "Afternoon (1)" element
-    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "1"
-    And I click on the "Afternoon (1)" element
-
+    And I click on the "Flexible (1)" element
     # Check filters interaction
-    When I hover over the "Course type" element
+    When I click on the "Course type" element
     And I click on the "Taught" element
-    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "4"
-    When I hover over the "Start date" element
-    And I should see the "Mar 2021 (3)" element
-    And I should see the "Apr 2021 (1)" element
-    And I should see the "Jun 2021 (0)" element
-
+    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "2"
+    When I click on the "Start date" element
+    And I should see the "Sep 2021 (1)" element
+    And I should see the "Oct 2021 (1)" element
     # Delete DnP component in Admin
     And I am on "https://admin-stage-bppdigital.bppuniversity.com/admin/cms/pages/2752/edit" URL
     And I click on the "Dates and prices" "BPP Digital Admin Pages Delete Button for Specific Component name"

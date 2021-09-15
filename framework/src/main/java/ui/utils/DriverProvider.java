@@ -129,7 +129,7 @@ public class DriverProvider {
             chromePreferences.put("profile.default_content_settings.popups", 0);
             chromePreferences.put("download.default_directory", folder.getAbsolutePath());
             options.setCapability("chrome.prefs", chromePreferences);
-            options.setCapability("browser_version", "latest-2");
+            options.setCapability("browser_version", 90.0);
             options.setCapability("os", FileIO.getConfigProperty("os"));
             options.setCapability("os_version", FileIO.getConfigProperty("os_version"));
             options.setCapability("resolution", "1920x1080");
@@ -144,6 +144,7 @@ public class DriverProvider {
             options.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
             options.setCapability(ChromeOptions.CAPABILITY, options);
             options.setExperimentalOption("prefs", chromePreferences);
+           // options.setExperimentalOption("w3c", true);
             if (System.getProperties().containsKey("BstackPlan")) {
                 options.setCapability("project", System.getProperty("BstackPlan"));
             }

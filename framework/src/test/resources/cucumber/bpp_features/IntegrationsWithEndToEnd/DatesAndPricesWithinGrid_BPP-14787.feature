@@ -45,9 +45,8 @@ Feature: Dates & Prices - Add HTML field to D&P component and enable component w
     # Verify Paper Filters: TC-4939
     And I hover over the "BPP Digital Dates and Prices Papers dropdown" button
     And I click on the "Tax Compliance" "BPP Digital dropdown item"
-    And I should see the "Thu 25 Mar 2021" "element"
-    And I should see the "Tue 30 Mar 2021" "element"
-    And I should see the "Sat 15 May 2021" "element"
+    And I should see the "Fri 26 Nov 2021" "element"
+    And I should see the "Mon 11 Oct 2021" "element"
 
     # Delete Grid component in Admin
     And I am on "https://admin-stage-bppdigital.bppuniversity.com/admin/cms/pages/2752/edit" URL

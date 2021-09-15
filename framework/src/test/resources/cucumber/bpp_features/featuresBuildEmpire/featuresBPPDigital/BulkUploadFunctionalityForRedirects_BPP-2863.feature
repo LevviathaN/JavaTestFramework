@@ -6,7 +6,7 @@ Feature: BPP Digital Bulk Upload Functionality for Redirects
   Background:
     Given I execute "Log In to Hub as Admin" reusable step
 
-  @Positive @Smoke #TC-1579 TC-1580 TC-1581
+  @Positive @BulkUpload #TC-1579 TC-1580 TC-1581
   Scenario: Bulk Upload Functionality for Redirects
     When I execute "Admin Hub Navigate to Website Redirects" reusable step
     #Upload CSV
@@ -48,4 +48,4 @@ Feature: BPP Digital Bulk Upload Functionality for Redirects
     #Clean Up
     When I remember "www.bpp.automation.com/" text as "EC_AUTOMATION_URL" variable
     Then I click on the "EC_AUTOMATION_URL" "BPP Digital Admin Delete Button for Specific name"
-    Then I should see the "Redirect was successfully removed" "BPP Digital Admin Alert Message"
+    #Then I should see the "Redirect was successfully removed" "BPP Digital Admin Alert Message"
