@@ -1,10 +1,10 @@
-@BuildEmpire @DigitalSite @DatesAndPrices
+@BuildEmpire @DatesAndPrices
 Feature: Dates & Prices - Verify visibility of Papers with inactive Courses
   As a PF admin user
   I have set the paper with course instances that are NOT AVAILABLE on WEB
   so as a result I would not expect this paper to appear within the D&P component on the Website for public users.
 
-  @Positive #Blocked by BPP-15860
+  @Positive #Blocked by BPP-15860!!!
   Scenario: Verify Papers Without Active Courses Are Not Displayed On Website
     Given I execute "Remember Variables " reusable step
 
