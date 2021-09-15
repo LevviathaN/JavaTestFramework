@@ -13,6 +13,24 @@ Feature: Product Factory API Data Creation
     Given I execute "Create Paper" API step
     Then I execute "Update Paper" API step
 
+  @Paper @Update #TC-1552
+  Scenario: Amend a Paper Changing Body And Level
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Body" API step saving as "TWO_"
+    Given I execute "Create Level" API step
+    And I execute "Create Level" API step saving as "TWO_"
+    And I execute "Create Paper" API step
+    Then I execute "Change Paper Body" API step
+    Then I execute "Link Paper To Levels" API step
+    Then I execute "Change Paper Body" API step with parameters
+      |bodyReference|EC_TWO_BODY_REFERENCE|
+    Then I execute "Link Paper To Levels" API step with parameters
+      |levelReferences|EC_TWO_LEVEL_REFERENCE|
+
   @Paper @Update @Duplicate @Negative #TC-831
   Scenario: Amend a Paper Where Name Already Exists
     Given I execute "Create Paper" API step
