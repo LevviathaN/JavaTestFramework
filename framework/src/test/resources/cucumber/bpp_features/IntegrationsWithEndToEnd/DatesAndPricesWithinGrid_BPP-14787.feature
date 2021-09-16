@@ -5,7 +5,7 @@ Feature: Dates & Prices - Add HTML field to D&P component and enable component w
   @Positive @Grid #TC-5474
   Scenario: Add Dates n Prices Component Inside Grid Component
     Given I execute "Log In to Hub as Admin" reusable step
-    And I am on "https://admin-stage-bppdigital.bppuniversity.com/admin/cms/pages/2752/edit" URL
+    And I am on "https://admin-stage-bppdigital.bppuniversity.com/admin/cms/pages/3028/edit" URL
 
     # Add Grid Component:
     When I click on the "Add component" "BPP Digital Search Label Button"
@@ -27,7 +27,7 @@ Feature: Dates & Prices - Add HTML field to D&P component and enable component w
     And I wait for "3" seconds
 
     # Verify Papers
-    And I am on "http://web-stage-bppdigital.bppuniversity.com/courses/autodatesandprices" URL
+    And I am on "https://web-stage-bppdigital.bppuniversity.com/datesandpricesfour" URL
     And I should see the "Audit & Assurance" "BPP Digital View Dates and Prices button"
     And I should see the "Financial Accounting and Reporting" "BPP Digital View Dates and Prices button"
     And I should see the "Financial Management" "BPP Digital View Dates and Prices button"
@@ -49,7 +49,7 @@ Feature: Dates & Prices - Add HTML field to D&P component and enable component w
     And I should see the "Mon 11 Oct 2021" "element"
 
     # Delete Grid component in Admin
-    And I am on "https://admin-stage-bppdigital.bppuniversity.com/admin/cms/pages/2752/edit" URL
+    And I am on "https://admin-stage-bppdigital.bppuniversity.com/admin/cms/pages/3028/edit" URL
     And I click on the "Grid" "BPP Digital Admin Pages Delete Button for Specific Component name"
     And I wait for "3" seconds
 
@@ -57,25 +57,27 @@ Feature: Dates & Prices - Add HTML field to D&P component and enable component w
   @Positive #TC-5473
   Scenario: Add Dates n Prices Component With HTML Field
     Given I execute "Log In to Hub as Admin" reusable step
-    And I am on "https://admin-stage-bppdigital.bppuniversity.com/admin/cms/pages/2752/edit" URL
-
+    And I am on "https://admin-stage-bppdigital.bppuniversity.com/admin/cms/pages/3028/edit" URL
     # Add Dates and Prices Component:
     When I click on the "Add component" "BPP Digital Search Label Button"
     And I click on the "Dates And Prices" "BPP Digital Admin Sub Menu Item links"
     And I click on the "Body name" "BPP Digital dropdown"
-    And I click on the "Institute Chartered Accountants of England & Wales (ICAEW)" "BPP Digital dropdown option"
+    And I click on the "Apprenticeship (Apprenticeship)" "BPP Digital dropdown option"
     And I click on the "Level" "BPP Digital dropdown"
-    And I click on the "Professional Level" "BPP Digital dropdown option"
+    And I click on the "Level 3" "BPP Digital dropdown option"
     And I set "testHtmlId" text to the "Html" "BPP Digital Mandatory input field"
     And I click on the "Save" "element by value"
     And I wait for "3" seconds
-
     # Verify HTML Id of CMS Component
-    And I am on "http://web-stage-bppdigital.bppuniversity.com/courses/autodatesandprices" URL
+    And I am on "https://web-stage-bppdigital.bppuniversity.com/datesandpricesfour" URL
     And I should see the "testHtmlId" "element by id"
-
+    #Check no address displayed for Online type of learning
+    And I click on the "Data Technician" "BPP Digital View Dates and Prices button"
+    And I click on the "Tue 3 Aug 2021" "element the last"
+    Then I shouldn't see the "BPP Digital Dates and Prices Location For Instance" element
+    Then I shouldn't see the "BPP Digital Dates and Prices Second Location For Instance" element
     # Delete DnP component in Admin
-    And I am on "https://admin-stage-bppdigital.bppuniversity.com/admin/cms/pages/2752/edit" URL
+    And I am on "https://admin-stage-bppdigital.bppuniversity.com/admin/cms/pages/3028/edit" URL
     And I wait for "3" seconds
     And I click on the "Dates and prices" "BPP Digital Admin Pages Delete Button for Specific Component name"
     And I wait for "3" seconds
