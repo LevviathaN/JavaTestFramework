@@ -1,0 +1,20 @@
+{
+  "operationName":"updateCombination",
+  "variables":{
+    "command":{
+      "reference":"EC_DIGITAL_CONTENT_REFERENCE",
+      "bodyReference":"EC_BODY_REFERENCE",
+      "levelReference":"EC_LEVEL_REFERENCE",
+      "paperReference":"EC_PAPER_REFERENCE",
+      "sittingReferences":[
+        "EC_SITTING_REFERENCE"
+      ],
+      "courseTypeReferences":[
+        "EC_COURSE_TYPE_REFERENCE"
+      ],
+      "cohortReference":null,
+      "moduleReference":null
+    }
+  },
+  "query":"mutation updateCombination($command: UpdateCombinationCommandInput!) { updateCombination(command: $command) { ...combination __typename }}fragment combination on Combination { reference ...professionQualificationsCombination ...universityCombination createdBy createdOn updatedBy updatedOn __typename}fragment universityCombination on Combination { cohort { reference name programme { reference code name __typename } status __typename } module { reference name sisCode termCode referenceNumber cohorts { reference name programme { reference code name __typename } status __typename } __typename } restriction restrictionDate __typename}fragment professionQualificationsCombination on Combination { body { reference shortName name levels { reference shortName name __typename } __typename } level { reference shortName name __typename } paper { reference name __typename } courseTypes { reference description __typename } sittings { reference name startDate endDate __typename } __typename}"
+}
