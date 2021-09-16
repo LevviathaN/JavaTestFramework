@@ -3,7 +3,7 @@
   "variables": {
     "command": {
       "contentType":"PROFESSIONALQUALIFICATIONS",
-      "name": "ApiDigitalContentName[####]",
+      "name": "ApiDigitalContentName[#######]",
       "nameSuffix": "",
       "targetPlatform":"TOTARA",
       "bodyReference": "EC_BODY_REFERENCE",

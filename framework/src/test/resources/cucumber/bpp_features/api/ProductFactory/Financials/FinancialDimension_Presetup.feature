@@ -34,7 +34,7 @@ Feature: Product Factory API Data Creation
       |target       |COURSE    |
     Then I execute "Change Course Financial Dimensions" API step
 
-  @ChangeMaterialFinancialDimension @BET #Only once
+  @ChangeMaterialFinancialDimension #Only once
   Scenario: Edit FD Code on Courses Page
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_LEGAL_ENTITY_EDIT_"
       |dimensionType|LEGALENTITY|
