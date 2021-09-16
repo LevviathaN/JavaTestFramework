@@ -24,11 +24,6 @@ Feature: Following UAT of Dates & Prices, a requirement change exists to hide se
     And I am on "http://web-stage-bppdigital.bppuniversity.com/about-bpp/autodatesthree" URL
     And I should see the "BA1 Fundamentals of Business Economics" "BPP Digital View Dates and Prices button"
     And I click on the "BA1 Fundamentals of Business Economics" "BPP Digital View Dates and Prices button"
-    #Check no address displayed for Online type of learning
-    And I click on the "Tue 16 Mar 2021" "element the last"
-    Then I shouldn't see the "BPP Digital Dates and Prices Location For Instance" element
-    Then I shouldn't see the "BPP Digital Dates and Prices Second Location For Instance" element
-    And I click on the "Tue 16 Mar 2021" "element the last"
     #Commented this part due to data changes in PF by UAT users....
     #Check Start Date dropdown options
     #Then I click on the "Start date" "BPP Digital Dates and Prices Filter By"
