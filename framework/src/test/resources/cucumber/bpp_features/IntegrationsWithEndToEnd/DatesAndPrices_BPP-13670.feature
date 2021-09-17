@@ -25,22 +25,22 @@ Feature: Dates & Prices - Display all records for multi location and session tim
     And I am on "http://web-stage-bppdigital.bppuniversity.com/about-bpp/autocmsurl36807" URL
     And I should see the "SF CPQ flow test" "BPP Digital View Dates and Prices button"
     And I click on the "SF CPQ flow test" "BPP Digital View Dates and Prices button"
-    And I click on the "Thu 3 Jun 2021" "element"
-    And I should see the "Thu 3 June" "element"
-    And I should see the "10:05 am" "element"
-    And I validate text "CONTAINS=Southampton" to be displayed for "BPP Digital Dates and Prices Location For Instance" element
-    And I validate text "CONTAINS=Grenville House" to be displayed for "BPP Digital Dates and Prices Location For Instance" element
-    And I validate text "CONTAINS=Southampton SO15 1GX" to be displayed for "BPP Digital Dates and Prices Location For Instance" element
-    And I validate text "CONTAINS=1" to be displayed for "BPP Digital Dates and Prices Number of Sessions For Multiple Address" element
-    And I should see the "https://www.google.com/maps/search/?api=1&query=Southampton" "link address"
+    And I click on the "Fri 4 Jun 2021" "element"
+    And I should see the "Fri 4 June" "element"
+    And I should see the "9:25 am" "element"
+    And I validate text "CONTAINS=London" to be displayed for "BPP Digital Dates and Prices Location For Instance" element
+    And I validate text "CONTAINS=137 Stamford Street" to be displayed for "BPP Digital Dates and Prices Location For Instance" element
+    And I validate text "CONTAINS=London SE1 9NN" to be displayed for "BPP Digital Dates and Prices Location For Instance" element
+    And I validate text "CONTAINS=4" to be displayed for "BPP Digital Dates and Prices Number of Sessions For Multiple Address" element
+    And I should see the "https://www.google.com/maps/search/?api=1&query=London%20Waterloo%2C137%20Stamford%20Street%2CSouth%20Bank%2C%2CLondon%2CSE1%209NN%2CGBR" "link address"
     Then I should see the "BPP Digital Dates and Prices Active Instance Google Pin" element
-    And I click on the "https://www.google.com/maps/search/?api=1&query=Southampton" "link address"
+    And I click on the "https://www.google.com/maps/search/?api=1&query=London%20Waterloo%2C137%20Stamford%20Street%2CSouth%20Bank%2C%2CLondon%2CSE1%209NN%2CGBR" "link address"
     Then I switch to window with index "2"
     And I click on the "I agree" "element"
     And I wait for "3" seconds
-    Then I should see the "Southampton,Grenville House,,,Southampton,SO15 1GX,GBR" "element by value"
+    Then I should see the "London Waterloo,137 Stamford Street,South Bank,,London,SE1 9NN,GBR" "element by value"
     Then I switch to window with index "1"
-    And I click on the "Thu 3 Jun 2021" "element"
+    And I click on the "Fri 4 Jun 2021" "element"
     #Verify single location with multiple timing
     And I click on the "Fri 4 Jun 2021" "element"
     And I should see the "Sat 5 June" "element"
@@ -53,17 +53,13 @@ Feature: Dates & Prices - Display all records for multi location and session tim
     And I validate text "CONTAINS=4" to be displayed for "BPP Digital Dates and Prices Number of Sessions For Multiple Address" element
     And I click on the "Fri 4 Jun 2021" "element"
     #Verify multiple sessions with multiple locations and multiple timings
-    And I click on the "Tue 15 Jun 2021" "element"
-    And I should see the "Tue 15 June" "element"
-    And I should see the "Wed 16 June" "element"
+    And I click on the "Tue 22 Jun 2021" "element"
     And I should see the "Tue 22 June" "element"
     And I should see the "Wed 23 June" "element"
-    And I should see the "9:45 am" "element"
-    And I should see the "10:05 am" "element"
-    And I validate text "CONTAINS=Nottingham" to be displayed for "BPP Digital Dates and Prices Location For Instance" element
-    And I validate text "CONTAINS=Leeds" to be displayed for "BPP Digital Dates and Prices Second Location For Instance" element
+    And I should see the "9:05 am" "element"
+    And I should see the "10:00 am" "element"
     And I validate text "CONTAINS=4" to be displayed for "BPP Digital Dates and Prices Number of Sessions For Multiple Address" element
-    And I click on the "Tue 15 Jun 2021" "element"
+    And I click on the "Tue 22 Jun 2021" "element"
     #Verify multiple sessions with different locations in the same city
     And I click on the "Sun 27 Jun 2021" "element"
     And I should see the "Sun 27 June" "element"
@@ -76,10 +72,6 @@ Feature: Dates & Prices - Display all records for multi location and session tim
     And I validate text "CONTAINS=London Waterloo" to be displayed for "BPP Digital Dates and Prices Second Location For Instance" element
     And I validate text "CONTAINS=4" to be displayed for "BPP Digital Dates and Prices Number of Sessions For Multiple Address" element
     And I click on the "Sun 27 Jun 2021" "element"
-    #Check no address displayed for Online type of learning
-    And I click on the "Sat 5 Jun 2021" "element"
-    Then I shouldn't see the "BPP Digital Dates and Prices Location For Instance" element
-    Then I shouldn't see the "BPP Digital Dates and Prices Second Location For Instance" element
     #Delete DnP component in Admin
     And I am on "https://admin-stage-bppdigital.bppuniversity.com/admin/cms/pages/2696/edit" URL
     And I wait for "5" seconds

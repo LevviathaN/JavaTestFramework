@@ -18,6 +18,14 @@ Feature: Product Factory API Data Creation
       |dimensionType|PRODUCT|
       |target       |BODY   |
 
+  @FinancialDimension @Duplicate #TC-1543
+  Scenario: Update created Financial Dimension record Body item
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    Then I execute "Update Financial Dimension" API step with parameters
+      |reference|EC_BODY_FINANCIAL_DIMENSION_REFERENCE|
+
   @FinancialDimension @Duplicate #TC-1544
   Scenario: Update created Financial Dimension record Body item with Duplicate Data
     Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"

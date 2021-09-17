@@ -18,7 +18,7 @@ Feature: Product Factory API Data Creation
       |dimensionType|PRODUCT |
       |target       |REGION|
 
-  @FinancialDimension @Duplicate @BET #TC-1544
+  @FinancialDimension @Duplicate #TC-1544
   Scenario: Update created Financial Dimension record Region item with Duplicate Data
     Given I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
       |dimensionType|PRODUCT|
