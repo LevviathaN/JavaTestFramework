@@ -32,6 +32,14 @@ Feature: Product Factory Api
       |description|$Auto[MaterialTypeFDDescription]<varName>|
       |dimensionType|PRODUCT     |
       |target       |MATERIALTYPE|
+    And I execute "Create Class Category" API step with parameters
+      |name|$Auto[ClassCategoryName]<varName>|
+    And I execute "Create Programme" API step with parameters
+      |name|$Auto[ProgrammeName]<varName>|
+      |code|$Auto[ProgrammeCode]<varName>|
+    And I debug
+    And I execute "Create Cohort" API step with parameters
+      |name|$Auto[CohortName]<varName>|
     And I execute "Create Vertical" API step with parameters
       |name|$Auto[VerticalName]<varName>|
     And I execute "Create Body" API step with parameters
@@ -40,6 +48,8 @@ Feature: Product Factory Api
       |description|$Auto[BodyDescription]<varName>|
     And I execute "Create Sitting" API step with parameters
       |name       |$Auto[SittingName]<varName>       |
+      |startDate  |2022-02-02                        |
+      |endDate    |2025-10-10                        |
     And I execute "Create Vat Rule" API step with parameters
       |code       |$Auto[VatRuleCode]<varName>       |
       |description|$Auto[VatRuleDescription]<varName>|
@@ -83,7 +93,10 @@ Feature: Product Factory Api
       |description|$Auto[SessionDurationDescription]<varName>|
     And I execute "Create Session Duration" API step with parameters saving as "TWO_DATES_"
       |description|$Auto[TwoDatesSessionDurationDescription]<varName>|
-    And I execute "Create Material" API step
+    And I execute "Create Material" API step with parameters
+      |cost      |~Cost[1000]              |
+      |price     |~Price[1000]             |
+      |expiryDate|[TIMENOW(TMR)-yyyy-MM-dd]|
     And I execute "Create Pricing Matrix" API step
     And I execute "Create Prices" API step
     And I execute "Create Course" API step
@@ -118,6 +131,7 @@ Feature: Product Factory Api
       |description|$Auto[CBASessionDurationDescription]<varName>|
       |allowedForCba|true|
     And I execute "Create Course Type" API step with parameters saving as "CBA_"
+      |isCba|true|
       |description|$Auto[CBACourseTypeDescription]<varName>|
       |costCentreFinancialDimensionReference|EC_COURSE_TYPE_FINANCIAL_DIMENSION_REFERENCE|
       |projectFinancialDimensionReference   |EC_COURSE_TYPE_FINANCIAL_DIMENSION_REFERENCE|

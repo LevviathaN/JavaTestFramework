@@ -2,7 +2,7 @@
 Feature: Onboarding - Digital Content - ability to define Type - BPP-14452
   As a member of the PS team
   I want to be able to configure digital content differently for a university programme to a PQ programme
-  o that the provisioning middleware can auto provision the correct materials for a given programme instance
+  so that the provisioning middleware can auto provision the correct materials for a given programme instance
 
   Background:
     Given I execute "Log In" reusable step
