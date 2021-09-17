@@ -162,10 +162,33 @@ public class RestApiController {
             }
 
         } else {
-            if (!(variables.get("instanceReference") == null)) {
-                variables.put("instanceReference", TestParametersController.checkIfSpecialParameter(String.valueOf(variables.get("instanceReference"))));
+                for (Object variablesKey : variables.keySet()) {
+                    Object value = null;
+                    if (parameters.containsKey(variablesKey)) {
+                        if (variablesKey.toString().contains("References")) {
+                            JSONArray arry = new JSONArray();
+                            arry.add(parameters.get(variablesKey));
+                            value = arry;
+                        } else {
+                            value = parameters.get(variablesKey);
+                        }
+                    } else {
+                        value = variables.get(variablesKey);
+                    }
+                    String updatedValue = value.equals(null) ? "null" : TestParametersController.checkIfSpecialParameter(value.toString());
+                    value = (value.toString().equals(updatedValue) || value instanceof JSONArray) ? value : updatedValue;
+                    if (!(value == null)) {
+                        if (!(variables.get("instanceReference") == null)) {
+                            variables.put("instanceReference", TestParametersController.checkIfSpecialParameter(String.valueOf(variables.get("instanceReference"))));
+                        } else if (!(variables.get("reference") == null)) {
+                            variables.put(variablesKey, TestParametersController.checkIfSpecialParameter(value.toString()));
+                        }
+                        if (variables.get("filter").toString().equals("{}")) {
+                            variables.put("filter", new JSONObject());
+                        }
+                    }
+                }
             }
-        }
         return jo.toString();
     }
 
