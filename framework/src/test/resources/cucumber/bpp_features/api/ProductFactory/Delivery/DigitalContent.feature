@@ -169,7 +169,7 @@ Feature: Product Factory API Data Creation
       |dimensionType|PROJECT   |
       |target       |COURSETYPE|
     And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
-      |dimensionType|COSTCENTRE   |
+      |dimensionType|COSTCENTRE|
       |target       |COURSETYPE|
     And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
       |dimensionType|PRODUCT|
@@ -192,7 +192,7 @@ Feature: Product Factory API Data Creation
       |dimensionType|PROJECT   |
       |target       |COURSETYPE|
     And I execute "Create Financial Dimension" API step with parameters saving as "SECOND_COURSE_TYPE_COST_CENTRE_"
-      |dimensionType|COSTCENTRE   |
+      |dimensionType|COSTCENTRE|
       |target       |COURSETYPE|
     And I execute "Create Financial Dimension" API step with parameters saving as "SECOND_BODY_"
       |dimensionType|PRODUCT|
