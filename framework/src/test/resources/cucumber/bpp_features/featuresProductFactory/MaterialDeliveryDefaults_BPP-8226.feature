@@ -11,11 +11,7 @@ Feature: Abilit to specify Material Delivery Defaults during Product Setup - BPP
 
   @Positive @P1 #TC-3556
   Scenario: Verify Ability to specify Material Delivery Default during Product Setup
-    When I click on the "Products" "Product Factory navigation item"
-    When I click on the "Courses" "Product Factory navigation sub item"
-    And I set "EC_BODY_SHORT_NAME" text to the "Search" "Product Factory text field" from keyboard
-    And I click on the "submit" "element by type"
-    And I click on the "EC_BODY_SHORT_NAME" "Product Factory edit button"
+    Given I execute "Edit Course" reusable step
     And I click on the "Materials" element
     And I click on the "Add Material" "button"
     Then I "check" "EC_MATERIAL_TYPE_NAME" "Product Factory checkbox"
@@ -23,7 +19,7 @@ Feature: Abilit to specify Material Delivery Defaults during Product Setup - BPP
     Then I click on the "Material Delivery Default" "Product Factory dropdown"
     When I click on the "Student" element
     Then I should see the "Student" element
-    And I click on the "2000" "Product Factory Material Delete by price button"
+    And I click on the "1000" "Product Factory Material Delete by price button"
     And I click on the "Yes" "Product Factory button"
     And I wait for "4" seconds
 
