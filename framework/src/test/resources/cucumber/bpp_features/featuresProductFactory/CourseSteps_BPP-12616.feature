@@ -9,7 +9,7 @@ Feature: Ability to add Steps in Product Factory Course - BPP-12616
     Given I execute "Log In" reusable step
     And I execute "Remember Variables " reusable step
 
-  @Positive @P1 #TC-5332
+  @Positive @P1 @CoveredWithAPI @NeedToBeUI #TC-5332
   Scenario: Create Course Without Number of Steps
     Given I execute modified "Create Course" reusable step
       |16|Delete||
@@ -22,7 +22,7 @@ Feature: Ability to add Steps in Product Factory Course - BPP-12616
     Given I execute "Create Course" reusable step
     Then I should see the "Edit Course" element
 
-  @Positive @P1 #TC-5333
+  @Positive @P1 @CoveredWithAPI @NeedToBeUI #TC-5333
   Scenario: Edit Course Number of Steps
     Given I execute "Edit Course" reusable step
     And I click on the "Number of Steps" "Product Factory edit button"

@@ -39,7 +39,7 @@ Feature: Digital Content Id - Edit - BPP-7052
     And I execute "Create Sitting" reusable step replacing some steps
       |4|I set "SittingNameTwo[######]" text to the "Name" "Product Factory text field"|
 
-  @Positive @P1 #TC-3169, TC-5450
+  @Positive @P1 @CoveredWithAPI @NeedToBeUI #TC-3169, TC-5450
   Scenario: Edit Digital Content
     Given I execute modified "Create Digital Content" reusable step
       |5|Add|Attribute "tabindex" of "Save" "Product Factory button" should have value "-1"|
