@@ -12,7 +12,7 @@ Feature: Materials - Create Materials - BPP-1099
     And I execute "Remember Variables " reusable step
     And I execute "Remember Variables Two" reusable step
 
-  @Positive @P1 @HappyPath @CoveredWithApi #TC-918
+  @Positive @P1 @HappyPath @CoveredWithApi @NeedToBeUI #TC-918
   Scenario: Create Material Wizard
     Given I execute "Create Material" reusable step
     When I click on the "Products" "Product Factory navigation item"
@@ -31,7 +31,7 @@ Feature: Materials - Create Materials - BPP-1099
     And I click on the "submit" "element by type"
     And I should see the "EC_MATERIAL_TYPE_NAME" "Product Factory edit button"
 
-  @Positive @P1 @Amend @HappyPath @CoveredWithApi #TC-1432
+  @Positive @P1 @Amend @HappyPath @CoveredWithApi @NeedToBeUI #TC-1432
   Scenario: Amend Material Using Modal
     When I execute "Create Material" reusable step
     When I click on the "Products" "Product Factory navigation item"

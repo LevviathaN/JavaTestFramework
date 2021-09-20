@@ -8,7 +8,7 @@ Feature: Ability to add Step Due Dates in Product Factory Course Instance - BPP-
     Given I execute "Log In" reusable step
     And I execute "Remember Variables For Creation " reusable step
 
-  @Positive @P1 #TC-5354
+  @Positive @P1 @CoveredWithAPI @NeedToBeUI #TC-5354
   Scenario: Set Course Step Due Dates
     Given I execute "Create Course" reusable step
     And I execute "Create Course Instance" reusable step
