@@ -183,7 +183,7 @@ public class RestApiController {
                         } else if (!(variables.get("reference") == null)) {
                             variables.put(variablesKey, TestParametersController.checkIfSpecialParameter(value.toString()));
                         }
-                        if (variables.get("filter").toString().equals("{}")) {
+                        if (!(variables.get("filter") == null)) {
                             variables.put("filter", new JSONObject());
                         }
                     }

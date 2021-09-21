@@ -235,7 +235,7 @@ Feature: Product Factory API Data Creation
       |name|EC_API_DIGITAL_CONTENT_NAME_ONE|
       |nameSuffix|EC_API_DIGITAL_CONTENT_SUFFIX_ONE|
 
-  @DigitalContent @BET #TC-3205
+  @DigitalContent #TC-3205
   Scenario: Create Digital Content Multiple Course Types Remove
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
