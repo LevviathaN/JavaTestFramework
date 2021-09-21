@@ -48,7 +48,7 @@ Feature: Product Factory Api
       |description|$Auto[BodyDescription]<varName>|
     And I execute "Create Sitting" API step with parameters
       |name       |$Auto[SittingName]<varName>       |
-      |startDate  |2022-02-02                        |
+      |startDate  |2022-02-22                        |
       |endDate    |2025-10-10                        |
     And I execute "Create Vat Rule" API step with parameters
       |code       |$Auto[VatRuleCode]<varName>       |

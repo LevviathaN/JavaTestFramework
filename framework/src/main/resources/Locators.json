@@ -2696,6 +2696,10 @@
     "value": "xpath=//div[span[contains(text(),'paper: ')]]/*[2]"
   },
   {
+    "name": "Product Factory Clear Material Type Additional Filter",
+    "value": "xpath=//div[span[contains(text(),'material type: ')]]/*[2]"
+  },
+  {
     "name": "Product Factory CBA Wizard Date",
     "value": "xpath=(//tfoot//input)[1]"
   },
