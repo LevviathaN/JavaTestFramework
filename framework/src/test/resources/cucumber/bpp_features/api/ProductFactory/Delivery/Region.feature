@@ -42,6 +42,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Region" API step
     And I execute "Create Region" API step saving as "TWO_"
     And I execute negative "Update Region" API step with error name "Name must be unique" and parameters
+      |financialDimensionReference|EC_REGION_FINANCIAL_DIMENSION_REFERENCE|
       |name|EC_TWO_REGION_NAME|
 
   @Region @Negative @Update #TC-1901

@@ -1,0 +1,10 @@
+{
+  "operationName": "changeStepDueDate",
+  "variables": {
+    "command": {
+      "stepReference": "EC_SECOND_GET_INSTANCE_STEPS_REFERENCE",
+      "dueDate": "[TIMENOW-yyyy-MM-dd]"
+    }
+  },
+  "query": "mutation changeStepDueDate($command: ChangeStepDueDateCommandInput!) { changeStepDueDate(command: $command) { reference stepNumber dueDate __typename }}"
+}

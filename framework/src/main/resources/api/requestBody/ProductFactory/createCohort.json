@@ -5,7 +5,7 @@
       "programmeReference":"EC_PROGRAMME_REFERENCE",
       "name":"ApiProgrammeCohortName[####]",
       "startTeachingDate":"[TIMENOW-yyyy-MM-dd]",
-      "productInstanceCode":"~ProductInstanceCode[####]",
+      "productInstanceCode":"'~ProductInstanceCode[####]'",
       "classCategoryReference":"EC_CLASS_CATEGORY_REFERENCE"
     }
   },

@@ -2,17 +2,22 @@ package cucumber.productFactory;
 
 import api.RestApiController;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.testng.Assert;
 import ui.utils.BPPLogManager;
+import ui.utils.Conditions;
 import ui.utils.Reporter;
 import ui.utils.Tools;
 import ui.utils.bpp.ExecutionContextHandler;
 import ui.utils.bpp.PropertiesHelper;
+import ui.utils.bpp.TestParametersController;
+
 import java.io.IOException;
 import java.util.Map;
 
@@ -204,6 +209,18 @@ public class ProductFactoryStepDefs {
 
                 info(stepName +" negative step was executed successfully.");
 
+    }
+
+    /**
+     * Definition to validate items are similar
+     *
+     */
+    @Then("^I verify that \"([^\"]*)\" element is equal to \"([^\"]*)\" element$")
+    public void i_verify_that_element_is_equal(String elementOne, String elementTwo) {
+        String resultElement = TestParametersController.checkIfSpecialParameter(elementOne);
+        String startElement = TestParametersController.checkIfSpecialParameter(elementTwo);
+        Reporter.log("Executing step: I verify that" + resultElement + " is equal to: " + startElement);
+        Assert.assertEquals(resultElement, startElement);
     }
 
     }
