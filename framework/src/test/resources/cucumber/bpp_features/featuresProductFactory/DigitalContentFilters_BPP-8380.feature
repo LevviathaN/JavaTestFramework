@@ -45,6 +45,7 @@ Feature: Digital Content List - add Search Filter - BPP-8380
     When I click on the "Digital Content" "Product Factory navigation sub item"
     # Check Body Additional Filter
     And I click on the "Product Factory Additional Filters Button" button
+    And I wait for "7" seconds
     And I click on the "Body" "Product Factory dropdown"
     And I click on the "[EC_BODY_SHORT_NAME] - [EC_BODY_NAME]" "Product Factory dropdown option"
     And I click on the "Done" "Product Factory button"

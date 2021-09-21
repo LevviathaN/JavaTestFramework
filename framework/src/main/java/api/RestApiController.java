@@ -148,9 +148,11 @@ public class RestApiController {
                     } else if (value.equals(true) || value.equals(false) || value.equals("true") || value.equals("false")) {
                         command.put(commandKey, Boolean.parseBoolean(value.toString()));
                     } else if (value.toString().matches("\\d+")) {
-                        if (commandKey.toString().equals("edition")||commandKey.toString().equals("referenceNumber")
+                        if (commandKey.toString().equals("edition")
+                                ||commandKey.toString().equals("referenceNumber")
                                 ||commandKey.toString().equals("sisCode")
-                                ||commandKey.toString().equals("termCode")) {
+                                ||commandKey.toString().equals("termCode")
+                                ||commandKey.toString().equals("productInstanceCode")) {
                             command.put(commandKey, value.toString());
                         } else {
                             command.put(commandKey, Integer.parseInt(TestParametersController.checkIfSpecialParameter(value.toString())));

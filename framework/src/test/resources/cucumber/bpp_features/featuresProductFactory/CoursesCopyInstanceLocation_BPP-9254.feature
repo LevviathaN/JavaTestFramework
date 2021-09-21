@@ -69,3 +69,9 @@ Feature: Course - Copy Instance Location to Sessions Option
     And I click on the "No" "Product Factory button"
     Then I should see the "EC_LOCATION_NAME" element
     And I should see the "EC_LOCATION_NAME_TWO" element
+
+    # Cleenup: change default location back
+    And I click on the "Default Location" "Product Factory edit button"
+    And I click on the "AutoLocationName" "Product Factory select button"
+    And I should see the "Do you want to copy the new Location to the Sessions?" message
+    And I click on the "Yes" "Product Factory button"
