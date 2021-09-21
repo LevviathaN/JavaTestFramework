@@ -51,9 +51,9 @@ Feature: Product Factory API Data Creation
 
   @Paper @Incomplete #TC-771
   Scenario: Submitting Incomplete Paper Fields
-    Then I execute negative "Create Paper" API step with error name "Variable `$command` got invalid value." and parameters
+    Then I execute negative "Create Paper" API step with error name "The ShortName field is required." and parameters
       |shortName    |    |
-    And I execute negative "Create Paper" API step with error name "Variable `$command` got invalid value." and parameters
+    And I execute negative "Create Paper" API step with error name "The Name field is required." and parameters
       |name         |    |
     And I execute negative "Create Paper" API step with error name "Variable `$command` got invalid value." and parameters
       |examSchedule |    |

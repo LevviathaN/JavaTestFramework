@@ -290,5 +290,9 @@
   {
     "name": "I_EXECUTE_NEGATIVE_API_STEP_WITH_PARAMETERS",
     "value": "^I execute negative \"([^\"]*)\" API step with error name \"([^\"]*)\" and parameters$"
+  },
+  {
+    "name": "I_VERIFY_THAT_ELEMENT_IS_EQUAL",
+    "value": "^I verify that \"([^\"]*)\" element is equal to \"([^\"]*)\" element$"
   }
 ]
