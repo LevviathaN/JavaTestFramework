@@ -27,6 +27,7 @@ Feature: Onboarding - Digital Content - ability to define Type - BPP-14452
     And I click on the "Next" "Product Factory button"
     And I set "Suffix[###]" text to the "Name Suffix" "Product Factory text field"
     And I click on the "Finish" "Product Factory button"
+    Then I should see the "Additional Filters" element
     Then I should see the "EC_COHORT_NAME" element
 
   @Positive @P1 #TC-5488
