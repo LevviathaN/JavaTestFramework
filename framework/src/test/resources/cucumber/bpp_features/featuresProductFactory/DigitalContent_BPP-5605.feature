@@ -9,7 +9,7 @@ Feature: Digital Content Id - Create - BPP-5605
     And I execute "Remember Variables " reusable step
 
   #todo can create only one instance
-  @Positive @P1 @HappyPath @PartiallyCoveredWithApi @NeedToBeUI #TC-3148, TC-3567, TC-5444
+  @Positive @P1 @HappyPath @PartiallyCoveredWithApi @NeedToBeUI #TC-3148, TC-3567, TC-5444, TC-5993
   Scenario: Create Digital Content
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
