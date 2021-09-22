@@ -168,7 +168,7 @@ Feature: Product Factory
       |4|Replace|I set "$Auto[StudyModeName]<varName>" text to the "Name" "Product Factory text field"|
       |5|Replace|I set "$Auto[StudyModeDescription]<varName>" text to the "Description" "Product Factory text field"|
     And I execute modified "Create Deactivation Reason" reusable step
-      |4|Replace|I set "$Auto[DeactivationReasonDescriptionPrevent]<varName>" text to the "Description" "Product Factory text field"|
+      |4|Replace|I set "$Auto[PreventDeactivationReasonDescription]<varName>" text to the "Description" "Product Factory text field"|
       |5|Add|I click on the "Prevent Reactivation" "Product Factory checkbox"|
       |7|Replace|I should see the "EC_DEACTIVATION_REASON_DESCRIPTION_PREVENT<ecName>" element|
     And I execute "Create Programme" reusable step replacing some steps
