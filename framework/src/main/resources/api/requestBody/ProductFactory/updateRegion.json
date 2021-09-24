@@ -1,0 +1,11 @@
+{
+  "operationName":"updateRegion",
+  "variables":{
+    "command":{
+      "reference":"EC_REGION_REFERENCE",
+      "name":"ApiRegionNameUpdated[####]",
+      "financialDimensionReference":"EC_REGION_TWO_FINANCIAL_DIMENSION_REFERENCE"
+    }
+  },
+  "query":"mutation updateRegion($command: UpdateRegionCommandInput!) { updateRegion(command: $command) { ...region __typename }}fragment region on Region { reference name financialDimension { ...financialDimension __typename } createdBy createdOn updatedBy updatedOn __typename}fragment financialDimension on FinancialDimension { reference code description target dimensionType createdBy createdOn updatedBy updatedOn __typename}"
+}

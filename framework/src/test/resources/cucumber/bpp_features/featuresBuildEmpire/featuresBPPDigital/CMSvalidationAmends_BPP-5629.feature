@@ -7,7 +7,7 @@ Feature: BPP Digital CMS Validation Amends
   Background:
     Given I execute "Log In to Hub as Admin" reusable step
 
-  @Positive @Smoke #TC-2581
+  @Positive @CMSAmends #TC-2581
   Scenario: CMS Validation Amends
     #Navigate to CMS Pages [1]
     When I execute "Admin Hub Navigate to CMS Pages" reusable step

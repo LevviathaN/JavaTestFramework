@@ -940,31 +940,41 @@ public class StepDefinitions extends SeleniumHelper {
      * @author Ruslan Levytskyi
      */
     @Then("^I execute \"([^\"]*)\" reusable step verifying \"([^\"]*)\"$")
-    public void i_execute_reusable_step_verifying(String reusableName, String scenarioName) {
-        Reporter.log("Executing step: I execute '" + reusableName + "' reusable step to verify '" + scenarioName + "' scenario");
-        ReusableRunner.getInstance().executeReusable(TestParametersController.checkIfSpecialParameter(reusableName));
-        String qtestID = System.getProperties().containsKey("qtest") && System.getProperty("qtest")
-                .equalsIgnoreCase("TRUE") ? qTestAPI.getTestRunIDfromSuite().get(scenarioName) : null;
+    public void i_execute_reusable_step_verifying(String reusableName, String scenarios) {
+        Reporter.log("Executing step: I execute '" + reusableName + "' reusable step to verify '" + scenarios + "' scenario(s)");
         boolean isPassed = true;
         String errorMessage = "";
         try {
             ReusableRunner.getInstance().executeReusable(TestParametersController.checkIfSpecialParameter(reusableName));
-            RetryAnalyzer.passMap.put(scenarioName, "pass");
-            if (qtestID == null) {
-                qTestAPI.TestRunStatusUpdate(Reporter.getCurrentTestName(), "Passed", 601, qtestID, "");
+            for (String scenarioName : scenarios.split(",")) {
+                RetryAnalyzer.passMap.put(scenarioName, "pass");
+                String qtestID = System.getProperties().containsKey("qtest") && System.getProperty("qtest")
+                        .equalsIgnoreCase("TRUE") ? qTestAPI.getTestRunIDfromSuite().get(scenarioName) : null;
+                if (qtestID == null) {
+                    qTestAPI.TestRunStatusUpdate(Reporter.getCurrentTestName(), "Passed", 601, qtestID, "");
+                }
             }
         } catch (Exception e) {
-            RetryAnalyzer.passMap.put(scenarioName, "fail");
-            e.printStackTrace();
-            isPassed = false;
+            for (String scenarioName : scenarios.split(",")) {
+                RetryAnalyzer.passMap.put(scenarioName, "fail");
+                e.printStackTrace();
+                isPassed = false;
+            }
         }
-        if (!isPassed && qtestID == null){
-            try {
-                qTestAPI.TestRunStatusUpdate(Reporter.getCurrentTestName(), "Failed", 601, qtestID, errorMessage);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ParseException e) {
-                e.printStackTrace();
+
+        if (!isPassed){
+            for (String scenarioName : scenarios.split(",")) {
+                String qtestID = System.getProperties().containsKey("qtest") && System.getProperty("qtest")
+                        .equalsIgnoreCase("TRUE") ? qTestAPI.getTestRunIDfromSuite().get(scenarioName) : null;
+                if (qtestID != null) {
+                    try {
+                        qTestAPI.TestRunStatusUpdate(Reporter.getCurrentTestName(), "Failed", 601, qtestID, errorMessage);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
     }
@@ -977,31 +987,41 @@ public class StepDefinitions extends SeleniumHelper {
      * @author Ruslan Levytskyi
      */
     @Then("^I execute modified \"([^\"]*)\" reusable step verifying \"([^\"]*)\"$")
-    public void i_execute_modified_reusable_step_verifying(String reusableName, String scenarioName, List<List<String>> steps) {
-        Reporter.log("Executing step: I execute modified '" + reusableName + "' reusable step to verify '" + scenarioName + "' scenario");
-        ReusableRunner.getInstance().executeReusable(TestParametersController.checkIfSpecialParameter(reusableName));
-        String qtestID = System.getProperties().containsKey("qtest") && System.getProperty("qtest")
-                .equalsIgnoreCase("TRUE") ? qTestAPI.getTestRunIDfromSuite().get(scenarioName) : null;
+    public void i_execute_modified_reusable_step_verifying(String reusableName, String scenarios, List<List<String>> steps) {
+        Reporter.log("Executing step: I execute modified '" + reusableName + "' reusable step to verify '" + scenarios + "' scenario(s)");
         boolean isPassed = true;
         String errorMessage = "";
         try {
-            ReusableRunner.getInstance().executeReusableModified(reusableName,steps);
-            RetryAnalyzer.passMap.put(scenarioName, "pass");
-            if (qtestID == null) {
-                qTestAPI.TestRunStatusUpdate(Reporter.getCurrentTestName(), "Passed", 601, qtestID, "");
+            ReusableRunner.getInstance().executeReusableModified(TestParametersController.checkIfSpecialParameter(reusableName),steps);
+            for (String scenarioName : scenarios.split(",")) {
+                RetryAnalyzer.passMap.put(scenarioName, "pass");
+                String qtestID = System.getProperties().containsKey("qtest") && System.getProperty("qtest")
+                        .equalsIgnoreCase("TRUE") ? qTestAPI.getTestRunIDfromSuite().get(scenarioName) : null;
+                if (qtestID == null) {
+                    qTestAPI.TestRunStatusUpdate(Reporter.getCurrentTestName(), "Passed", 601, qtestID, "");
+                }
             }
         } catch (Exception e) {
-            RetryAnalyzer.passMap.put(scenarioName, "fail");
-            e.printStackTrace();
-            isPassed = false;
+            for (String scenarioName : scenarios.split(",")) {
+                RetryAnalyzer.passMap.put(scenarioName, "fail");
+                e.printStackTrace();
+                isPassed = false;
+            }
         }
-        if (!isPassed && qtestID == null){
-            try {
-                qTestAPI.TestRunStatusUpdate(Reporter.getCurrentTestName(), "Failed", 601, qtestID, errorMessage);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ParseException e) {
-                e.printStackTrace();
+
+        if (!isPassed){
+            for (String scenarioName : scenarios.split(",")) {
+                String qtestID = System.getProperties().containsKey("qtest") && System.getProperty("qtest")
+                        .equalsIgnoreCase("TRUE") ? qTestAPI.getTestRunIDfromSuite().get(scenarioName) : null;
+                if (qtestID != null) {
+                    try {
+                        qTestAPI.TestRunStatusUpdate(Reporter.getCurrentTestName(), "Failed", 601, qtestID, errorMessage);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
     }

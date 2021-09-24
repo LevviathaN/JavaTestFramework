@@ -2,13 +2,13 @@
 Feature: Onboarding - Digital Content - ability to define Type - BPP-14452
   As a member of the PS team
   I want to be able to configure digital content differently for a university programme to a PQ programme
-  o that the provisioning middleware can auto provision the correct materials for a given programme instance
+  so that the provisioning middleware can auto provision the correct materials for a given programme instance
 
   Background:
     Given I execute "Log In" reusable step
     And I execute "Remember Variables " reusable step
 
-  @Positive @P1 #TC-5487
+  @Positive @P1 #TC-5487, TC-5992
   Scenario: Create Digital Content University Type
     When I click on the "Delivery" "Product Factory navigation item"
     When I click on the "Digital Content" "Product Factory navigation sub item"
@@ -27,10 +27,12 @@ Feature: Onboarding - Digital Content - ability to define Type - BPP-14452
     And I click on the "Next" "Product Factory button"
     And I set "Suffix[###]" text to the "Name Suffix" "Product Factory text field"
     And I click on the "Finish" "Product Factory button"
+    Then I should see the "Additional Filters" element
     Then I should see the "EC_COHORT_NAME" element
 
   @Positive @P1 #TC-5488
   Scenario: Amend Digital Content University Type
+    Given I execute "Create Digital Content University Type" reusable step
     When I click on the "Delivery" "Product Factory navigation item"
     When I click on the "Digital Content" "Product Factory navigation sub item"
     Then I click on the "EC_COHORT_NAME" "Product Factory edit button"

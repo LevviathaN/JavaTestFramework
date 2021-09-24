@@ -2348,6 +2348,10 @@
     "value": "xpath=(//u[text()='Pages - Overview'])[1]"
   },
   {
+    "name": "Hub VPE Sent Items First Element",
+    "value": "xpath=(//h3[contains(.,'Sent Items')]/../../following::div[@class='inbox-items ']//div[@class='col']/h3)[1]"
+  },
+  {
     "name": "Hub VPE Mobile Pages-Overview Header",
     "value": "xpath=(//u[text()='Pages - Overview'])[2]"
   },
@@ -2548,6 +2552,10 @@
     "value": "xpath=//*[@title='You have not completed all the session timing information']/ancestor::td//button"
   },
   {
+    "name": "Product Factory Activate Course Button",
+    "value": "xpath=//h4[text()='Edit Course']/following-sibling::button[span[text()='Deactivate']]"
+  },
+  {
     "name": "Product Factory Create Button",
     "value": "xpath=//button[normalize-space()='Create']"
   },
@@ -2688,6 +2696,10 @@
     "value": "xpath=//div[span[contains(text(),'paper: ')]]/*[2]"
   },
   {
+    "name": "Product Factory Clear Material Type Additional Filter",
+    "value": "xpath=//div[span[contains(text(),'material type: ')]]/*[2]"
+  },
+  {
     "name": "Product Factory CBA Wizard Date",
     "value": "xpath=(//tfoot//input)[1]"
   },
@@ -2821,7 +2833,7 @@
   },
   {
     "name": "Salesforce Case Owner Data Field",
-    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//span[text()='Case Owner']/../following-sibling::div/span/slot/slot/*"
+    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//span[text()='Case Owner']/../following-sibling::div/span/slot/slot//slot[@force-lookup_lookup]"
   },
   {
     "name": "Salesforce Case Status Data Field",
@@ -2873,7 +2885,11 @@
   },
   {
     "name": "Salesforce Main Header Search",
-    "value": "xpath=(//input[contains(@placeholder,'Search')])[1]"
+    "value": "xpath=//input[@placeholder='Search...']"
+  },
+  {
+    "name": "Salesforce Main Header Button Search",
+    "value": "xpath=//button[@aria-label='Search']"
   },
   {
     "name": "Salesforce More Actions Dropdown",

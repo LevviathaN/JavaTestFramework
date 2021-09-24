@@ -22,7 +22,7 @@ Feature: Pricing Matrix - price creation wizard - BPP-1318
       |13|I set "EC_COURSE_TYPE_DESCRIPTION_TWO" text to the "Search" "Product Factory text field" from keyboard|
       |15|I should see the "EC_COURSE_TYPE_DESCRIPTION_TWO" element                                         |
 
-  @Positive @Regression @P1 @FullCycle @CoveredWithApi #TC-1032
+  @Positive @Regression @P1 @FullCycle @CoveredWithApi @NeedToBeUI #TC-1032
   Scenario: Add a New Pricing Matrix Full Cycle
   Given I execute "Create Pricing Matrix Full" reusable step replacing some steps
     |5|I set "EC_COURSE_TYPE_DESCRIPTION_TWO" text to the "Search" "Product Factory text field" from keyboard|

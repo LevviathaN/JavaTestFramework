@@ -70,7 +70,7 @@ Feature: Better alignment of Totara Course and Product Factory Digital Content (
     And I click on the "Search" "Product Factory button"
     Then I should see the "EC_BODY_SHORT_NAME" element
 
-  @Negative @P1 #TC-3453
+  @Negative @P1 @CoveredWithApi #TC-3453
   Scenario: Digital Content Name Suffix Field Prevent Duplicate
     Given I execute "Create Digital Content" reusable step with some additional steps
       |21|I set "Suffix[###]" text to the "Name Suffix" "Product Factory text field"|

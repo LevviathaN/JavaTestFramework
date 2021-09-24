@@ -46,7 +46,7 @@ Feature: CBA - Update CBA Course Institution fee - BPP-3207
     When I click on the "Financials" "Product Factory navigation item"
     When I click on the "Prices" "Product Factory navigation sub item"
     When I click on the "EC_SITTING_NAME" "Product Factory edit button"
-    And I click on the "EC_COURSE_TYPE_DESCRIPTION" "text"
+    And I click on the "EC_CBA_COURSE_TYPE_DESCRIPTION" "text"
     And I click on the "EC_REGION_NAME" "Product Factory Pricing Matrix dropdown"
     And I click on the "EC_CBA_PAPER_NAME" "Product Factory Pricing Matrix change button"
     And I set "~UpdatedPMPrice[###]" text to the "Enter a Price (£)" "Product Factory text field"

@@ -106,6 +106,7 @@ Feature: Product Factory
     And I remember "AutoCourseTypeFDCode<varName>" text as "EC_COURSE_TYPE_FD_CODE" variable
     And I remember "AutoCourseTypeFDDescription<varName>" text as "EC_COURSE_TYPE_FD_DESCRIPTION" variable
     And I remember "AutoCourseTypeDescription<varName>" text as "EC_COURSE_TYPE_DESCRIPTION" variable
+    And I remember "AutoCBACourseTypeDescription<varName>" text as "EC_CBA_COURSE_TYPE_DESCRIPTION" variable
     And I remember "AutoLocationFDCode<varName>" text as "EC_LOCATION_FD_CODE" variable
     And I remember "AutoLocationFDDescription<varName>" text as "EC_LOCATION_FD_DESCRIPTION" variable
     And I remember "AutoRegionFDCode<varName>" text as "EC_REGION_FD_CODE" variable
@@ -167,7 +168,7 @@ Feature: Product Factory
       |4|Replace|I set "$Auto[StudyModeName]<varName>" text to the "Name" "Product Factory text field"|
       |5|Replace|I set "$Auto[StudyModeDescription]<varName>" text to the "Description" "Product Factory text field"|
     And I execute modified "Create Deactivation Reason" reusable step
-      |4|Replace|I set "$Auto[DeactivationReasonDescriptionPrevent]<varName>" text to the "Description" "Product Factory text field"|
+      |4|Replace|I set "$Auto[PreventDeactivationReasonDescription]<varName>" text to the "Description" "Product Factory text field"|
       |5|Add|I click on the "Prevent Reactivation" "Product Factory checkbox"|
       |7|Replace|I should see the "EC_DEACTIVATION_REASON_DESCRIPTION_PREVENT<ecName>" element|
     And I execute "Create Programme" reusable step replacing some steps
@@ -260,7 +261,7 @@ Feature: Product Factory
       |6|Add    |I "check" "Allowed for CBA" "Product Factory checkbox"|
       |8|Replace|I should see the "EC_CBA_SESSION_DURATION_DESCRIPTION<ecName>" element|
     And I execute "Create Session Duration" reusable step replacing some steps
-      |4|I set "$Auto[SessionDurationDescriptionTwoDates]<varName>" text to the "Description" "Product Factory text field"|
+      |4|I set "$Auto[TwoDatesSessionDurationDescription]<varName>" text to the "Description" "Product Factory text field"|
       |5|I set "2" text to the "Number of Dates" "Product Factory text field"|
     And I execute "Create Client" reusable step replacing some steps
       |4|I set "$Auto[ClientName]<varName>" text to the "Name" "Product Factory text field"|

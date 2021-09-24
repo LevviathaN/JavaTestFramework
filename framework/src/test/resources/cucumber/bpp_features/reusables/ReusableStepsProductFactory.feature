@@ -278,6 +278,14 @@ Feature: Product Factory
     And I click on the "Save" "Product Factory button"
     Then I should see the "EC_CLIENT_NAME" element
 
+  Scenario: Create CT Class Category
+    When I click on the "Delivery" "Product Factory navigation item"
+    When I click on the "CT Class Categories" "Product Factory navigation sub item"
+    Then I click on the "Create" "Product Factory button"
+    And I set "CTClassCategoryName[######]" text to the "Name" "Product Factory text field"
+    And I click on the "Save" "Product Factory button"
+    Then I should see the "EC_CT_CLASS_CATEGORY_NAME" element
+
   Scenario: Create Study Mode
     When I click on the "Types" "Product Factory navigation item"
     When I click on the "Study Modes" "Product Factory navigation sub item"
@@ -536,16 +544,36 @@ Feature: Product Factory
     And I click on the "Next" "Product Factory button"
     And I click on the "Finish" "Product Factory button"
 
+  Scenario: Create Digital Content University Type
+    When I click on the "Delivery" "Product Factory navigation item"
+    When I click on the "Digital Content" "Product Factory navigation sub item"
+    Then I click on the "Create" "Product Factory button"
+    And I click on the "University" "text contained in SPAN element"
+    And I click on the "Totara" "Product Factory button"
+    And I click on the "Save" "Product Factory button"
+    And I wait for "6" seconds
+    And I click on the "University Programme" "Product Factory dropdown"
+    And I click on the "EC_PROGRAMME_NAME" "Product Factory dropdown option"
+    And I click on the "Programme Cohort" "Product Factory dropdown"
+    And I click on the "EC_COHORT_NAME" "Product Factory dropdown option"
+    And I click on the "Next" "Product Factory button"
+    And I click on the "Content Restriction" "Product Factory dropdown"
+    And I click on the "Cohort Start Teaching Date" "Product Factory dropdown option"
+    And I click on the "Next" "Product Factory button"
+    And I set "Suffix[###]" text to the "Name Suffix" "Product Factory text field"
+    And I click on the "Finish" "Product Factory button"
+    Then I should see the "EC_COHORT_NAME" element
+
   Scenario: Generate ISBN
     Given I am on "https://generate.plus/en/number/isbn" URL
     And I click on the " generate" "button"
     And I capture text data "ISBN Generator Number Field" as "EC_ISBN" variable
     
   Scenario: Keep the Course Activated
-    Given I click on the "Activate" "Product Factory button" if "Activate,Product Factory button" "special element is present"
-    Given I click on the "Reactivate" "Product Factory button" if "(Deactivated)" "element is present"
+    Given I click on the "Activate" "Product Factory Edit Course button" if "Activate,Product Factory Edit Course button" "special element is present"
+    Given I click on the "Reactivate" "Product Factory Edit Course button" if "Reactivate,Product Factory Edit Course button" "special element is present"
     When I click on the "Yes" "Product Factory button" if "Yes,Product Factory button" "special element is present"
-    And I should see the "Deactivate" "Product Factory button"
+    And I should see the "Deactivate" "Product Factory Edit Course button"
 
   Scenario: Keep the Course Instance Activated
     And I click on the "EC_LOCATION_NAME" "Product Factory course instance Activate button" if "EC_LOCATION_NAME,Product Factory course instance Activate button" "special element is present"

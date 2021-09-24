@@ -294,7 +294,8 @@ public class TestParametersController {
                     }
                     ecVarNameSimplified.append("_");
                     ecVarNameSimplified.append("DOB");
-                } else if (element.startsWith("TIMENOW")) {
+                }
+                else if (element.startsWith("TIMENOW")) {
                     String timePattern = null;
                     if (element.endsWith("MMMMd,yyyy")) {
                         timePattern = "MMMM d, yyyy";
@@ -312,6 +313,11 @@ public class TestParametersController {
                     }
                     DateTimeFormatter dtf = DateTimeFormatter.ofPattern(timePattern);
                     LocalDateTime now = LocalDateTime.now(ZoneId.of("Europe/London"));
+                    if (element.contains("TMR")) {
+                        now = now.plusDays(1);
+                    } else if (element.startsWith("YTD")) {
+                        now = now.minusDays(1);
+                    }
                     String currentDateTime = dtf.format(now);
                     ecVarNameSimplified.append("_");
                     ecVarNameSimplified.append("TIMENOW");

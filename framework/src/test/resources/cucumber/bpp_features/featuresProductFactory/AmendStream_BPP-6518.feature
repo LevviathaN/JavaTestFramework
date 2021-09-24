@@ -10,7 +10,7 @@ Feature: Edit Instance - Streams - BPP-6518
     And I execute "Remember Variables For Creation Draft Course" reusable step
     And I remember "AutoStreamNameTwo" text as "EC_STREAM_NAME_TWO" variable
 
-  @Positive @P1 @NotFinished @DoNotRun #TC-2951, TC-2968
+  @Positive @P1 @NotFinished @DoNotRun @CoveredWithAPI @NeedToBeUI  #TC-2951, TC-2968
   Scenario: Add a Stream to Course Instance
     Given I execute "Create Course" reusable step
     Given I execute "Create Course Instance" reusable step
