@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
@@ -156,7 +157,49 @@ public class DriverProvider {
             return new RemoteWebDriver(new URL(FileIO.getConfigProperty("browserStackURL")), options);
 
         } catch (Exception e) {
-            throw new WebDriverException("Unable to launch the browser", e);
+            throw new WebDriverException("Unable to launch the browser. Please check browser name specified in VM options or capabilities!", e);
+        }
+    }
+    //used to test Banner
+    static public RemoteWebDriver getEdgeBrowserStack() {
+
+        try {
+            File folder = new File("downloads");
+            if (folder != null) {
+                folder.mkdir();
+            }
+            EdgeOptions options = new EdgeOptions();
+            options.setPageLoadStrategy(PageLoadStrategy.EAGER);
+            options.addArguments("--start-maximized");
+            options.addArguments("--disable-save-password-bubble");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-infobars");
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--disable-browser-side-navigation");
+            options.addArguments("--disable-gpu");
+            options.addArguments("enable-automation");
+            options.setCapability("browser", "Edge");
+            options.setCapability("browser_version", "latest-4");
+            options.setCapability("os", FileIO.getConfigProperty("os"));
+            options.setCapability("os_version", FileIO.getConfigProperty("os_version"));
+            options.setCapability("resolution", "1920x1080");
+            options.setCapability("browserstack.debug", "true");
+            options.setCapability("browserstack.video", "true");
+            options.setCapability("browserstack.networkLogs", "true");
+            options.setCapability("build", "automation");
+            options.setCapability("browserstack.local", "true");
+            options.setCapability("browserstack.console", "errors");
+            options.setCapability("browserstack.localIdentifier", "TestAutomation");
+            options.setCapability("browserstack.idleTimeout", "280");
+
+            //configure capability to set the job name with Test Case name
+            String testName = Reporter.getCurrentTestName();
+            options.setCapability("name", testName);
+
+            return new RemoteWebDriver(new URL(FileIO.getConfigProperty("browserStackURL")), options);
+
+        } catch (Exception e) {
+            throw new WebDriverException("Unable to launch the browser. Please check browser name specified in VM options or capabilities!", e);
         }
     }
     static public RemoteWebDriver getSafariBrowserStack() {
@@ -346,6 +389,8 @@ public class DriverProvider {
                 instance.set(getIOSMobileDevice());
             } else if (getCurrentBrowserName().equalsIgnoreCase("MOBILE_ANDROID")) {
                 instance.set(getAndroidMobileDevice());
+            }  else if (getCurrentBrowserName().equalsIgnoreCase("BSTACK_EDGE")) {
+                instance.set(getEdgeBrowserStack());
             }
         return instance.get();
 
@@ -368,7 +413,9 @@ public class DriverProvider {
                 BROWSER_TYPE = "BSTACK_FIREFOX";
             } else if (PropertiesHelper.determineEffectivePropertyValue("driver").equalsIgnoreCase("BSTACK_SAFARI")) {
                 BROWSER_TYPE = "BSTACK_SAFARI";
-            }else if (PropertiesHelper.determineEffectivePropertyValue("driver").equalsIgnoreCase("MOBILE_ANDROID")) {
+            } else if (PropertiesHelper.determineEffectivePropertyValue("driver").equalsIgnoreCase("BSTACK_EDGE")) {
+                BROWSER_TYPE = "BSTACK_EDGE";
+            } else if (PropertiesHelper.determineEffectivePropertyValue("driver").equalsIgnoreCase("MOBILE_ANDROID")) {
                 BROWSER_TYPE = "MOBILE_ANDROID";
             } else if (PropertiesHelper.determineEffectivePropertyValue("driver").equalsIgnoreCase("MOBILE_IOS")) {
                 BROWSER_TYPE = "MOBILE_IOS";
