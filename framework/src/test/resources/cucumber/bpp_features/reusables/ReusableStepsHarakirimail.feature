@@ -79,7 +79,9 @@ Feature: Harakirimail, Guerrillamail
     Then I click on the "Harakirimail Get Inbox" button
     Then I click on the "Harakirimail Application Outcome Letter" element by JS
     Then I execute "document.getElementsByClassName('adsbygoogle adsbygoogle-noablate')[2].remove();" JS code if "Harakirimail Adds Banner" "element is present"
-    And I wait for "6" seconds
+    And I wait for "3" seconds
+    And Browser performs "REFRESH" command
+    And I wait for "3" seconds
     Then I click on the "Harakirimail Application Outcome Letter" element if "Harakirimail Application Outcome Letter" "element is present"
     And I validate text "CONTAINS=Your application has been rejected" to be displayed for "Harakirimail Validate Letter Body" element
     Then I click on the "Harakirimail Back To Inbox" button
