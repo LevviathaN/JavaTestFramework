@@ -1014,7 +1014,7 @@ Feature: Product Factory API Data Creation
     And I execute negative "Deactivate Instance" API step with error name "Variable `$command` got invalid value." and parameters
       |redirectInstanceReference||
 
-  @Course @Deactivation #TC-
+  @Course @Deactivation #TC-3671
   Scenario: Verify Circle Deactivation Restriction
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
