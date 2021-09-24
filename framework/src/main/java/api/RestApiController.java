@@ -148,9 +148,11 @@ public class RestApiController {
                     } else if (value.equals(true) || value.equals(false) || value.equals("true") || value.equals("false")) {
                         command.put(commandKey, Boolean.parseBoolean(value.toString()));
                     } else if (value.toString().matches("\\d+")) {
-                        if (commandKey.toString().equals("edition")||commandKey.toString().equals("referenceNumber")
+                        if (commandKey.toString().equals("edition")
+                                ||commandKey.toString().equals("referenceNumber")
                                 ||commandKey.toString().equals("sisCode")
-                                ||commandKey.toString().equals("termCode")) {
+                                ||commandKey.toString().equals("termCode")
+                                ||commandKey.toString().equals("productInstanceCode")) {
                             command.put(commandKey, value.toString());
                         } else {
                             command.put(commandKey, Integer.parseInt(TestParametersController.checkIfSpecialParameter(value.toString())));
@@ -162,10 +164,31 @@ public class RestApiController {
             }
 
         } else {
-            if (!(variables.get("instanceReference") == null)) {
-                variables.put("instanceReference", TestParametersController.checkIfSpecialParameter(String.valueOf(variables.get("instanceReference"))));
+                for (Object variablesKey : variables.keySet()) {
+                    Object value = null;
+                    if (parameters.containsKey(variablesKey)) {
+                        if (variablesKey.toString().contains("References")) {
+                            JSONArray arry = new JSONArray();
+                            arry.add(parameters.get(variablesKey));
+                            value = arry;
+                        } else {
+                            value = parameters.get(variablesKey);
+                        }
+                    } else {
+                        value = variables.get(variablesKey);
+                    }
+                    String updatedValue = value.equals(null) ? "null" : TestParametersController.checkIfSpecialParameter(value.toString());
+                    value = (value.toString().equals(updatedValue) || value instanceof JSONArray) ? value : updatedValue;
+                    if (!(value == null)) {
+                        if (!(variables.get("instanceReference") == null) || !(variables.get("reference") == null)) {
+                            variables.put(variablesKey, TestParametersController.checkIfSpecialParameter(value.toString()));
+                        }
+                        if (!(variables.get("filter") == null)) {
+                            variables.put("filter", new JSONObject());
+                        }
+                    }
+                }
             }
-        }
         return jo.toString();
     }
 
