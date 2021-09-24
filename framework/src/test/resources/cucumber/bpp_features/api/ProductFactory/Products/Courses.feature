@@ -931,3 +931,79 @@ Feature: Product Factory API Data Creation
       |reference|EC_SECOND_INSTANCE_REFERENCE|
     Then I execute "Create Deactivation Reason" API step
     And I execute "Deactivate Instance" API step
+
+  @CloneInstance #TC-4017
+  Scenario: Clone Instance Success
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I execute "Create Course" API step
+    And I execute "Create Session Duration" API step
+    And I execute "Create Stream" API step
+    And I execute "Create Instance" API step
+    And I execute "Clone Instance" API step
+
+  @CloneInstance @Negative #TC-4039
+  Scenario: Clone Instance Fail
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I execute "Create Course" API step
+    And I execute "Create Session Duration" API step
+    And I execute "Create Stream" API step
+    And I execute "Create Instance" API step
+    And I debug
+    And I execute negative "Clone Instance" API step with error name "Quantity must be less than or equal to 50" and parameters
+      |quantity|60|
