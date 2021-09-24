@@ -23,9 +23,13 @@ Feature: Reject Channel Islands Application
     And I click on the "Direct App Channel Islands Training Manager OK" button
     And I wait for "10" seconds
     And I execute "Log Out from Hub Student" reusable step
-    And I execute "Harakirimail Mitigating Circustances Reject Validation" reusable step replacing some steps
-    |4|I click on the "Harakirimail First Email" button|
-    |5|I validate text "CONTAINS=Your application has been rejected" to be displayed for "Harakirimail Validate Mitigating Header" element|
+    Given I am on "https://harakirimail.com/" URL
+    And I fill the "Harakirimail Inbox Name" field with "EC_AUTO_EMAIL"
+    Then I click on the "Harakirimail Get Inbox" button
+    Then I click on the "Harakirimail First Email" button
+    And I wait for "2" seconds
+    Then I execute "document.getElementsByClassName('adsbygoogle adsbygoogle-noablate')[2].remove();" JS code if "Harakirimail Adds Banner" "element is present"
+    Then I validate text "CONTAINS=Your application has been rejected" to be displayed for "Harakirimail Validate Mitigating Header" element
 
     Then I execute "Log In to Hub as Student" reusable step
     And I wait for "2" seconds

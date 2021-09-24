@@ -1,0 +1,14 @@
+{
+  "operationName":"cloneInstance",
+  "variables":{
+    "command":{
+      "sourceReference":"EC_INSTANCE_REFERENCE",
+      "locationReference":"EC_LOCATION_REFERENCE",
+      "capacity":1,
+      "streamReference":"EC_STREAM_REFERENCE",
+      "quantity":1,
+      "copyDates":true
+    }
+  },
+  "query":"mutation cloneInstance($command: CloneInstanceCommandInput!) { cloneInstance(command: $command) { ...InstanceHeader __typename } } fragment InstanceHeader on Instance { reference status capacity defaultLocation { reference name __typename } defaultSessionDuration { reference description __typename } stream { reference name __typename } sessions { reference __typename } deactivationReason { description preventReactivation __typename } redirectInstance { reference __typename } startDate endDate publishedDate availableOnWebsite createdBy createdOn updatedBy updatedOn __typename } "
+}

@@ -9,14 +9,37 @@ Feature: Digital Content Id - Create - BPP-5605
     And I execute "Remember Variables " reusable step
 
   #todo can create only one instance
-  @Positive @P1 @HappyPath @PartiallyCoveredWithApi @NeedToBeUI #TC-3148, TC-3567, TC-5444
+  @Positive @P1 @HappyPath @PartiallyCoveredWithApi @NeedToBeUI #TC-3148, TC-3567, TC-5444, TC-5993
   Scenario: Create Digital Content
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+
     Given I execute modified "Create Digital Content" reusable step
       |5|Add|Attribute "tabindex" of "Save" "Product Factory button" should have value "-1"|
       |22|Add|I set "NameSuffix[###]" text to the "Name Suffix" "Product Factory text field"|
       |23|Add|I should see the "[EC_BODY_SHORT_NAME] - [EC_LEVEL_SHORT_NAME] - [EC_PAPER_NAME] - [EC_SITTING_NAME] - [EC_NAME_SUFFIX]" element|
       |24|Add|I set "CourseReferenceID[###]" text to the "Course Reference ID" "Product Factory text field"|
       |25|Add|I should see the "EC_COURSE_REFERENCE_ID" "element by title"                                 |
+    Then I should see the "Additional Filters" element
     When I click on the "Delivery" "Product Factory navigation item"
     When I click on the "Digital Content" "Product Factory navigation sub item"
 

@@ -7,5 +7,5 @@
       "redirectCourseReference":"EC_SECOND_COURSE_REFERENCE"
     }
   },
-  "query":"mutation deactivateCourse($command: DeactivateCourseCommandInput!) { deactivateCourse(command: $command) { ...courseStatus __typename }}fragment courseStatus on Course { reference status publishedDate deactivationReason { reference description preventReactivation __typename } instanceGroup { reference __typename } numberOfSessions numberOfSteps createdOn createdBy updatedOn updatedBy __typename}"
+  "query":"mutation deactivateCourse($command: DeactivateCourseCommandInput!) { deactivateCourse(command: $command) { ...courseStatus __typename } } fragment courseStatus on Course { reference status publishedDate deactivationReason { reference description preventReactivation __typename } instanceGroup { reference __typename } numberOfSessions numberOfSteps createdOn createdBy updatedOn updatedBy __typename } "
 }
