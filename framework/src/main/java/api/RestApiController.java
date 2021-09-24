@@ -106,7 +106,9 @@ public class RestApiController {
                 if (parameters.containsKey(commandKey)) {
                     if (commandKey.toString().contains("References")) {
                         JSONArray arry = new JSONArray();
-                        arry.add(parameters.get(commandKey));
+                        for (String element : parameters.get(commandKey).split(",")) {
+                            arry.add(element);
+                        }
                         value = arry;
                     } else {
                         value = parameters.get(commandKey);
