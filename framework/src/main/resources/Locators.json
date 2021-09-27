@@ -577,11 +577,11 @@
   },
   {
     "name": "BPP Digital Course Card Month Dropdown",
-    "value": "xpath=//select[@id='card.expiryMonth']"
+    "value": "xpath=//select[@id='card_expiry_month']"
   },
   {
     "name": "BPP Digital Course Card Year Dropdown",
-    "value": "xpath=//select[@id='card.expiryYear']"
+    "value": "xpath=//select[@id='card_expiry_year']"
   },
   {
     "name": "BPP Digital Course Booking Success Message Form",

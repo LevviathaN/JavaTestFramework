@@ -38,8 +38,7 @@ Feature: Dates & Prices - Add HTML field to D&P component and enable component w
     And I should see the "Wed 17 March" "element"
     And I should see the "Thu 18 March" "element"
     And I should see the "Fri 19 March" "element"
-    And I should see the "Mon 22 March" "element"
-    And I validate text "CONTAINS=4" to be displayed for "BPP Digital Dates and Prices Number of Sessions field" element
+    And I validate text "CONTAINS=3" to be displayed for "BPP Digital Dates and Prices Number of Sessions field" element
     And I wait for "3" seconds
 
     # Verify Paper Filters: TC-4939

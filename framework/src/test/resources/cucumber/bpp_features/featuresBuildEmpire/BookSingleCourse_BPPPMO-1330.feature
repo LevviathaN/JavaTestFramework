@@ -21,15 +21,14 @@ Feature: As a BPP PD Learner I need to Book Single Courses online
     And I click on the "Direct App I Am Happy To Receive Information" button
     And I click on the "BPP Digital Course Booking Conditions Checkbox" button
     Then I click on the "Direct App Register" button
-    Then I should see the "Next Step: Enter your Payment Details" "text"
-    And I click on the "MasterCard" "BPP Digital Admin Value attribute button"
-    And I set "5555444433331111" text to the "card.cardNumber" "BPP Digital Booking Payment Data"
-    And I set "Mastercard" text to the "card.cardHolderName" "BPP Digital Booking Payment Data"
-    And I select "03" from "BPP Digital Course Card Month Dropdown" element
-    And I select "2030" from "BPP Digital Course Card Year Dropdown" element
-    And I set "737" text to the "card.cvcCode" "BPP Digital Booking Payment Data"
-    And I click on the "Continue >" "BPP Digital Admin Value attribute button"
-    Then I should see the "Step 3: Please review and complete your payment" "text"
+    And I click on the "Mastercard" "element in label"
+    And I set "5555444433331111" text to the "card_number" "BPP Digital Booking Payment Data"
+    #And I set "Mastercard" text to the "card.cardHolderName" "BPP Digital Booking Payment Data"
+    Then I click on the "BPP Digital Course Card Month Dropdown" element
+    And I click on the "03" "BPP Digital Drop Down Option value"
+    Then I click on the "BPP Digital Course Card Year Dropdown" element
+    And I click on the "2030" "BPP Digital Drop Down Option value"
+    And I set "737" text to the "card_cvn" "BPP Digital Booking Payment Data"
     And I click on the "Pay" "BPP Digital Admin Value attribute button"
-    And I wait for "3" seconds
+    And I wait for "5" seconds
     And I validate text "CONTAINS=Thank you for your order. Your booking has been successful." to be displayed for "BPP Digital Course Booking Success Message Form" element
