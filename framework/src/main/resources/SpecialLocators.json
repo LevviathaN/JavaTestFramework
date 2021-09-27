@@ -865,6 +865,10 @@
     "value": "xpath=//a[contains(@href,'PARAMETER')]"
   },
   {
+    "name": "element in label",
+    "value": "xpath=//label[contains(.,'PARAMETER')]"
+  },
+  {
     "name": "message",
     "value": "xpath=//*[text()='PARAMETER']"
   },

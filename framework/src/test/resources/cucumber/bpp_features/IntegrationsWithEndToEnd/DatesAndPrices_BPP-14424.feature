@@ -63,10 +63,9 @@ Feature: Following UAT of Dates & Prices, a requirement change exists to hide se
     And I hover over the "BA3 Fundamentals of Financial Accounting" "BPP Digital dropdown item"
     And I click on the "BA3 Fundamentals of Financial Accounting" "BPP Digital dropdown item"
     And I wait for "3" seconds
-    And I click on the "Sat 7 Aug 2021" "element" by JS
-    And I validate text "CONTAINS=3 Weekend" to be displayed for "BPP Digital Dates and Prices Number of Sessions For Multiple Address" element
-    Then I validate text "Weekend" to be displayed for "BPP Digital Dates and Prices Type of Session First Instance" element
-    And I click on the "Sat 7 Aug 2021" "element" by JS
+    And I click on the "Mon 20 Sep 2021" "element" by JS
+    And I validate text "CONTAINS=5 Weekday" to be displayed for "BPP Digital Dates and Prices Number of Sessions For Multiple Address" element
+    And I click on the "Mon 20 Sep 2021" "element" by JS
     #Delete DnP component in Admin
     And I am on "https://admin-stage-bppdigital.bppuniversity.com/admin/cms/pages/1560/edit" URL
     And I wait for "3" seconds
