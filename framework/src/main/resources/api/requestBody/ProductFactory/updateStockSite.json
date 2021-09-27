@@ -1,0 +1,16 @@
+{
+  "operationName":"updateStockSite",
+  "variables":{
+    "command":{
+      "reference":"EC_STOCK_SITE_REFERENCE",
+      "name": "ApiStockSiteNameUpdated[####]",
+      "addressLine1": "ApiAddressLineOneUpdated[####]",
+      "addressLine2": "ApiAddressLineTwoUpdated[####]",
+      "addressLine3": "ApiAddressLineThreeUpdated[####]",
+      "postcode": "~PostalCode[###]E",
+      "city": "London",
+      "countryCode": "GBR"
+    }
+  },
+  "query":"mutation updateStockSite($command: UpdateStockSiteCommandInput!) { updateStockSite(command: $command) { ...stockSite __typename }}fragment stockSite on StockSite { reference name addressLine1 addressLine2 addressLine3 postcode city countryCode createdBy createdOn updatedBy updatedOn __typename}"
+}

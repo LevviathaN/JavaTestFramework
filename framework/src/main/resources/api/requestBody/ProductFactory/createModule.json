@@ -6,9 +6,9 @@
         "EC_COHORT_REFERENCE"
       ],
       "name":"ApiModuleSectionName[####]",
-      "sisCode":"KW_AUTO_RANDOMNUMBER|#####",
-      "termCode":"KW_AUTO_RANDOMNUMBER|#####",
-      "referenceNumber":"KW_AUTO_RANDOMNUMBER|#####",
+      "sisCode":"~SisCode[#####]",
+      "termCode":"~TermCode[#####]",
+      "referenceNumber":"~CRNCode[#####]",
       "timetabled":false,
       "groupRequirementCohort":true,
       "groupRequirementMode":true,
