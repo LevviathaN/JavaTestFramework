@@ -2,7 +2,7 @@
 Feature: Mitigating Circumstances Application in Review
 
   Background:
-    Given I register new Hub account using API
+    Given I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     When I execute "Create Mitigating Circumstances Application" reusable step
 

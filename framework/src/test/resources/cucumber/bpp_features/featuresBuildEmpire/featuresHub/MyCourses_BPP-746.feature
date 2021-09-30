@@ -7,7 +7,7 @@ Feature: BPP University Hub My Courses
   @MyCourses @Positive #TC-1106 TC-1107 TC-1111 TC-1122 TC-1125 TC-1126
   Scenario: HUB - My Courses
     #Register New Student
-    And I register new Hub account using API
+    And I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     #Validate Timeline block
     Then I should see the "Timeline" message

@@ -3,9 +3,7 @@ Feature: Approve Channel Islands Application
 
   @Positive @Smoke @ApproveApplicationPage #TC-1268 TC-1269
   Scenario: Approve Channel Islands Application as Training Manager
-    Given I execute "Register New Student Account" reusable step replacing some steps
-      |1|I am on "MD_COMMON_LINKS_BUILDEMPIRECHANNELISLANDURL" URL|
-    Then I execute "Harakirimail Verify Email" reusable step
+    Given I register new "Channel" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     And I wait for "2" seconds
     When I execute "Create Channel Islands Mk2 Application" reusable step

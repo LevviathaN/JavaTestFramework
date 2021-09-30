@@ -6,7 +6,7 @@ Feature: BPP University Hub Profile Area
   @ProfileArea @Positive #TC-1170, TC-4962
   Scenario: Hub Profile Area
     #Register New Student
-    And I register new Hub account using API
+    And I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     #Profile Area validation
     Then I validate text "CONTAINS=EC_AUTO_FIRSTNAME" to be displayed for "Direct App Account Name Drop Down" element

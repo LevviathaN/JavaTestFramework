@@ -2,7 +2,7 @@
 Feature: Reject Professional Apprenticeship Applications
 
   Background:
-    Given I register new Hub account using API
+    Given I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
 
   @Negative @RejectByAdmin #TC-1023, TC-1573

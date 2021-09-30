@@ -3,7 +3,7 @@ Feature: University Degree Apprenticeships
 
   @Negative @P1 @RejectByLineManager
   Scenario: Reject University Degree Apprenticeships Application By Line Manager
-    Given I register new Hub account using API
+    Given I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     And I wait for "2" seconds
     When I execute "Create University Degree Apprenticeships Application" reusable step
