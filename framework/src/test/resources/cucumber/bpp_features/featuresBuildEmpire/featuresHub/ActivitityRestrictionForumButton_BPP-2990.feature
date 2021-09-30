@@ -6,7 +6,7 @@ Feature: The Hub - Activity Restrictions - Forum Button - Completely Hidden
   @ForumRestriction #TC-1582
   Scenario: The Hub - Activity Restrictions - Forum Button - Completely Hidden
     #Register New Student
-    And I register new Hub account using API
+    And I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     #Validate Timeline block
     Then I should see the "Timeline" message

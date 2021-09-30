@@ -2,12 +2,10 @@
 Feature: Submit Bespoke Applications
 
   Background:
-    Given I execute "Register New Student Account" reusable step replacing some steps
-    |1|I am on "MD_COMMON_LINKS_BUILDEMPIREBESPOKEURL" URL|
+    Given  I register new "Bespoke" Hub account using API
 
   @BespokeScotland #TC-2433 #TC-2434 #TC-2435 #TC-2436 #TC-2437 #TC-2432
   Scenario: Submit Bespoke Scotland Application
-    Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     When I execute "Create Bespoke Scotland Application" reusable step
     Given I execute "Complete Bespoke Scotland Application" reusable step
@@ -36,7 +34,6 @@ Feature: Submit Bespoke Applications
 
   @BespokeEngland @Smoke #TC-1202 TC-1204 TC-1217 TC-1218 TC-1219, TC-5200
   Scenario: Submit Bespoke England Application
-    Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     When I execute "Create Bespoke England Application" reusable step
     Given I execute "Complete Bespoke England Application" reusable step

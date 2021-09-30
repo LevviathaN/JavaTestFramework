@@ -5,7 +5,7 @@ Feature: BPP University Hub Sub Topics and Labels
   So that I can easily see where I am up to within a topic
 
   Background:
-    Given I register new Hub account using API
+    Given I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
 
   @Positive #TC-867
