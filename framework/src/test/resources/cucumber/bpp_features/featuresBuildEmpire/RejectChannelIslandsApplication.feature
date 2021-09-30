@@ -1,4 +1,4 @@
-@BuildEmpire @DirectApps @ChannelIslands1
+@BuildEmpire @DirectApps @ChannelIslands
 Feature: Reject Channel Islands Application
 
   @Negative #TC-1270
