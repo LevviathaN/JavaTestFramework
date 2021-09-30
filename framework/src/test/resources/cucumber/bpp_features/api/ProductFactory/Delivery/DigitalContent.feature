@@ -27,7 +27,7 @@ Feature: Product Factory API Data Creation
     And I execute "Link Paper To Levels" API step
     Then I execute "Create Digital Content" API step
 
-  @DigitalContentDuplicate #TC-3149
+  @DigitalContent @Duplicate #TC-3149
   Scenario: Create Digital Content Prevent Duplicate
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
@@ -54,7 +54,7 @@ Feature: Product Factory API Data Creation
     Then I execute negative "Create Digital Content" API step with error name "Digital Content already exists with the display name 'ApiDigitalContentName" and parameters
       |name|EC_API_DIGITAL_CONTENT_NAME|
 
-  @DigitalContentDuplicate #TC-3453
+  @DigitalContent @Duplicate #TC-3453
   Scenario: Digital Content Name Suffix Field Prevent Duplicate
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
@@ -264,3 +264,36 @@ Feature: Product Factory API Data Creation
       |reference|EC_DIGITAL_CONTENT_MULTIPLE_COURSE_TYPES_REFERENCE|
     Then I execute "Update Combination" API step with parameters
       |reference|EC_DIGITAL_CONTENTS_RESULT_COMBINATIONS_REFERENCE|
+
+  @DigitalContent @Duplicate #TC-5489
+  Scenario: Create Digital Content Prevent Duplicate University Type
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    Given I execute "Create Programme" API step
+    And I execute "Create Class Category" API step
+    Then I execute "Create Cohort" API step
+    And I execute "Create Module" API step
+    Then I execute "Create Digital Content University" API step with parameters
+      |name|<EC_MODULE_NAME> - <EC_SIS_CODE> - <EC_MODULE_TERM_CODE> - <EC_MODULE_REFERENCE_NUMBER>|
+    And I execute negative "Create Digital Content University" API step with error name "Digital Content already exists with the display name" and parameters
+      |nameSuffix|EC_NAME_SUFFIX|
+      |name|<EC_MODULE_NAME> - <EC_SIS_CODE> - <EC_MODULE_TERM_CODE> - <EC_MODULE_REFERENCE_NUMBER>|
