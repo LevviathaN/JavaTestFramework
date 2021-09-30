@@ -5,7 +5,7 @@ Feature: The Hub - Dashboard / Timeline - Info & News
   so that I have a means of direct communication to my learners
 
   Background:
-    Given I register new Hub account using API
+    Given I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
 
   @Positive #TC-1315 TC-1317

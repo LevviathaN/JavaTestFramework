@@ -22,12 +22,20 @@ public class VenusStepDefsAPI {
         this.utils = new Utilities();
     }
 
-    @When("^I register new Hub account using API$")
-    public VenusStepDefsAPI i_register_new_hub_account() {
+    @When("^I register new \"([^\"]*)\" Hub account using API$")
+    public VenusStepDefsAPI i_register_new_hub_account(String accountType) {
 
-        Response accountResponse = restController.postRequest(propertiesHelper.getProperties().getProperty("hub_register_linkUAT"),
-                String.valueOf(restController.processPropertiesHubRegistration("registerHubAccountVerifiedUAT")), Auth0Authentication.getInstance().requestHeaderSpecification());
-
+        Response accountResponse;
+        if (accountType.contains("Bespoke")) {
+            accountResponse = restController.postRequest(propertiesHelper.getProperties().getProperty("hub_register_linkUAT"),
+                    String.valueOf(restController.processPropertiesHubRegistration("registerHubBespokeAccountVerifiedUAT")), Auth0Authentication.getInstance().requestHeaderSpecification());
+        } else if (accountType.contains("Channel")) {
+            accountResponse = restController.postRequest(propertiesHelper.getProperties().getProperty("hub_register_linkUAT"),
+                    String.valueOf(restController.processPropertiesHubRegistration("registerHubChannelAccountVerifiedUAT")), Auth0Authentication.getInstance().requestHeaderSpecification());
+        } else {
+            accountResponse = restController.postRequest(propertiesHelper.getProperties().getProperty("hub_register_linkUAT"),
+                    String.valueOf(restController.processPropertiesHubRegistration("registerHubAccountVerifiedUAT")), Auth0Authentication.getInstance().requestHeaderSpecification());
+        }
         JSONObject recordsObject = new Utilities().getResponseProperty(accountResponse);
         String userID = String.valueOf(recordsObject.get("user_id"));
         BPPLogManager.getLogger().info("Hub user is successfully registered via API request. User id is: " + userID.substring(6));

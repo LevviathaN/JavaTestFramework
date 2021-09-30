@@ -5,7 +5,7 @@ Feature: To show the Enrolment Expiry instead of the Course Expiry on the Hub
   @EnrolmentExpiry #TC-6016, 6078, 6079
   Scenario: To Show the Enrolment Expiry Instead of the Course Expiry on the Hub
     #Register New Student
-    And I register new Hub account using API
+    And I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     #Validate Timeline block
     Then I should see the "Timeline" message

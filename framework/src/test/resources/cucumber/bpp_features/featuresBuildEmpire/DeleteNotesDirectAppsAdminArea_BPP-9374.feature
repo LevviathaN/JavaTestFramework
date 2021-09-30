@@ -4,7 +4,7 @@ Feature: As a user with permission to access/edit an application in the admin ar
 
   @DeleteNotes #TC-5199
   Scenario: Ability to Delete Notes for Direct Apps in Admin Area
-    Given I register new Hub account using API
+    Given I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     And I wait for "2" seconds
     When I execute "Create Professional Apprenticeships Application UAT Accounting Option Two" reusable step

@@ -5,7 +5,7 @@ Feature: BPP University Hub Sub Topics and Labels
   As this will help me to understand the course
 
   Background:
-    Given I register new Hub account using API
+    Given I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     When I execute "Log Out from Hub Student" reusable step
     And I wait for "7" seconds
