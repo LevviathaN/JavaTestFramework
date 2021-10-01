@@ -10,7 +10,7 @@ Feature: Create/edit Stock Site - BPP-12881
   Scenario: Add a New Stock Site Using a Modal
     Given I execute "Create Stock Site" reusable step
 
-  @Positive @Regression @P1 #TC-4929
+  @Positive @Regression @P1 @CoveredWithApi #TC-4929
   Scenario: Amend Stock Site Using a Modal
     Given I execute "Create Stock Site" reusable step
     Given I execute modified "Create Stock Site" reusable step
@@ -21,7 +21,7 @@ Feature: Create/edit Stock Site - BPP-12881
       |10|Add|I click on the "Argentina" "Product Factory dropdown option"|
       |11|Add|I set "~Postcode[######]" text to the "Postcode" "Product Factory text field"|
 
-  @Negative @P2 #TC-4942
+  @Negative @P2 @CoveredWithApi #TC-4942
   Scenario: Add a Stock Site Where Name Already Exists
     Given I remember "AutoStockSiteName" text as "EC_STOCK_SITE_NAME" variable
     Given I execute modified "Create Stock Site" reusable step

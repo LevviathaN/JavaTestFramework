@@ -20,7 +20,7 @@ Feature: Reference Data - Course Type - BPP-400
     Then I click on the "Create" "Product Factory button"
     Then Attribute "tabindex" of "Save" "Product Factory button" should have value "-1"
 
-  @Negative @P2 #TC-702
+  @Negative @P2 @CoveredWithApi #TC-702
   Scenario: Add a Course Type Where Description Already Exists
     And I remember "AutoCourseTypeDescription" text as "EC_COURSE_TYPE_DESCRIPTION" variable
     When I execute modified "Create Course Type" reusable step

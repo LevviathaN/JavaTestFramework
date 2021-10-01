@@ -11,7 +11,7 @@ Feature: Reference Data - Course Deactivation Reasons - BPP-1613
   Scenario: Add a New Deactivation Reason Using a Modal
     Given I execute "Create Deactivation Reason" reusable step
 
-  @Negative @P2 #TC-977
+  @Negative @P2 @CoveredWithApi #TC-977
   Scenario: Add a Deactivation Reason Where Description Already Exists
     And I remember "AutoDeactivationReasonDescription" text as "EC_DEACTIVATION_REASON_DESCRIPTION" variable
     When I execute "Create Deactivation Reason" reusable step replacing some steps

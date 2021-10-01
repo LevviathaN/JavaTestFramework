@@ -2,7 +2,7 @@
 Feature: Product Factory API Data Creation
   As an Admin I should be able to create items in PF using API
 
-  @Material #TC-918
+  @Material @NeedToBeUi #TC-918
   Scenario: Create Material Wizard
     Given I generate new ISBN code saving as "EC_ISBN"
     And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
@@ -25,7 +25,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Material Type" API step
     And I execute "Create Material" API step
 
-  @Material @Update #TC-1432
+  @Material @Update @NeedToBeUi #TC-1432
   Scenario: Amend Material Using Modal
     Given I generate new ISBN code saving as "EC_ISBN"
     And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"

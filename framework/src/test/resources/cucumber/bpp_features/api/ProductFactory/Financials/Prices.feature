@@ -2,7 +2,7 @@
 Feature: Product Factory API Data Creation
   As an Admin I should be able to create items in PF using API
 
-  @PricingMatrix #TC-981, TC-1868
+  @PricingMatrix @NeedToBeUi #TC-981, TC-1868
   Scenario: Add a New Pricing Matrix Using a Modal
     Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
       |dimensionType|PRODUCT|
@@ -12,7 +12,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Sitting" API step
     Then I execute "Create Pricing Matrix" API step
 
-  @Prices #TC-1032
+  @Prices @NeedToBeUi #TC-1032
   Scenario: Add a New Pricing Matrix Full Cycle
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |

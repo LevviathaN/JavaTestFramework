@@ -2,7 +2,7 @@
 Feature: Product Factory API Data Creation
   As an Admin I should be able to create items in PF using API
 
-  @CBA #TC-3000
+  @CBA @NeedToBeUi #TC-3000
   Scenario: Create New CBA Record
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |

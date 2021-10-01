@@ -98,8 +98,9 @@ Feature: Registry Case Management
 
   Scenario: Registry Case Verify Milestones Personal Details and Change of Programme
     Given I execute "Log In To Salesforce" reusable step
-    When I execute "Create Complaints Registry Case" reusable step replacing some steps
+    When I execute "Create Timetable Registry Case" reusable step replacing some steps
       | 9 | I click on the "Change of programme, mode or location" "Salesforce cases dropdown option" |
+      | 11 | I click on the "Change of Programme" "Salesforce cases dropdown option" |
     And I click on the "Salesforce Case Milestones Tab" button
     And I wait for "1" seconds
     Then I validate text "CONTAINS=Student Query - Ready to Close" to be displayed for "Salesforce Case Milestones Tab First Milestone Name" element
