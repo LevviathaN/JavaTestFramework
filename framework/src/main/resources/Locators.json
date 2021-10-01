@@ -3121,7 +3121,11 @@
   },
   {
     "name": "Salesforce Quotes Select Product Page Save",
-    "value": "inframe=Salesforce Frame>xpath=(//*[@id='mainButton'])[last()]"
+    "value": "inframe=Salesforce Frame>xpath=//*[@id='pcSave']"
+  },
+  {
+    "name": "Salesforce Quotes Edit Page Save",
+    "value": "inframe=Salesforce Frame>xpath=//*[@name='Save']/paper-button"
   },
   {
     "name": "Salesforce Quotes Edit",
