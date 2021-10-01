@@ -35,7 +35,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Location" API step
     And I execute "Create Course" API step
 
-  @Instance #TC-696
+  @Instance @NeedToBeUi #TC-696
   Scenario: Create Course Instance
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
@@ -70,7 +70,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Session Duration" API step
     And I execute "Create Instance" API step
 
-  @InstanceCapacity @StreamToCourseInstance
+  @InstanceCapacity @StreamToCourseInstance @NeedToBeUi
   Scenario: Add a Stream to Course Instance
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
@@ -246,7 +246,7 @@ Feature: Product Factory API Data Creation
     And I execute "Change Session Timings" API step
     And I execute "Get Instance Steps" API step
 
-  @CourseStepDueDate #TC-5354
+  @CourseStepDueDate @NeedToBeUi #TC-5354
   Scenario: Set Course Step Due Dates
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
@@ -292,7 +292,7 @@ Feature: Product Factory API Data Creation
     And I execute "Get Instance Steps" API step
     And I execute "Change Step Due Date" API step
 
-  @CourseStepNumber #TC-5333
+  @CourseStepNumber @NeedToBeUi #TC-5333
   Scenario: Edit Course Number of Steps
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
@@ -334,7 +334,7 @@ Feature: Product Factory API Data Creation
     And I execute "Update Instance" API step with parameters
     |numberOfSteps|5|
 
-  @CourseWithoutSteps #TC-
+  @CourseWithoutSteps @NeedToBeUi #TC-
   Scenario: Create Course Without Number of Steps
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
@@ -864,7 +864,7 @@ Feature: Product Factory API Data Creation
 #      |materialReferences|EC_MATERIAL_REFERENCE|
 
   #TODO: Merge with UI. Add validation about "here" link that highlights second instance. Fix second json files.
-  @RedirectInstance @API-UI-COMBO
+  @RedirectInstance @API-UI-COMBO @NeedToBeUi
   Scenario: Redirecting to another Instance
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
@@ -1070,7 +1070,7 @@ Feature: Product Factory API Data Creation
     And I execute negative "Deactivate Instance" API step with error name "Variable `$command` got invalid value." and parameters
       |redirectInstanceReference||
 
-  @Course @Deactivation #TC-3671
+  @Course @Deactivation @NeedToBeUi #TC-3671
   Scenario: Redirect Course to Deactivated One
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |

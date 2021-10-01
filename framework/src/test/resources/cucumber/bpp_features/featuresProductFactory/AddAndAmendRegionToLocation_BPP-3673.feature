@@ -37,7 +37,7 @@ Feature: Add/Amend Region to Location - BPP-3673
     And I shouldn't see the "The Location is already linked to one or more Prices, so you cannot change the Region" element
     And I shouldn't see the "The Location is already linked to one or more Sessions, so you cannot change the Region" element
 
-  @Positive @Regression @P1 @CoveredWithAPI #TC-1871
+  @Positive @Regression @P1 @CoveredWithApi #TC-1871
   Scenario: Edit Location that is in use
     And I remember "AutoLocationFDCode" text as "EC_LOCATION_FD_CODE" variable
     And I remember "AutoLocationFDDescription" text as "EC_LOCATION_FD_DESCRIPTION" variable

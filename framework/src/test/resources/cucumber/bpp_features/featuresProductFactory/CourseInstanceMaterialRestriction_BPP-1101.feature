@@ -58,7 +58,7 @@ Feature: Course Instance - Link Materials restrictions - BPP-1101
     And I click on the "Add Material" "button"
     Then I shouldn't see the "EC_MATERIAL_TYPE_NAME" element
 
-  @Negative @P1 #TC-1075
+  @Negative @P1 @CoveredWithApi #TC-1075
   Scenario: Add Expired Material
     Given I execute "Create Material Type" reusable step
     Given I execute "Create Material" reusable step replacing some steps

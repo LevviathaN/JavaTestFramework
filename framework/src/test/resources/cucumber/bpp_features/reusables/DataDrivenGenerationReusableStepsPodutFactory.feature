@@ -6,7 +6,7 @@ Feature: Product Factory
 
   Scenario Outline: Remember Variables <type>
     And I remember "AutoDeactivationReasonDescription<varName>" text as "EC_DEACTIVATION_REASON_DESCRIPTION<ecName>" variable
-    And I remember "AutoDeactivationReasonDescriptionPrevent<varName>" text as "EC_DEACTIVATION_REASON_DESCRIPTION_PREVENT<ecName>" variable
+    And I remember "AutoPreventDeactivationReasonDescription<varName>" text as "EC_PREVENT_DEACTIVATION_REASON_DESCRIPTION<ecName>" variable
     And I remember "22/02/2022" text as "EC_SITTING_START_DATE" variable
     And I remember "10/10/2025" text as "EC_SITTING_END_DATE" variable
     And I remember "AutoStudyModeName<varName>" text as "EC_STUDY_MODE_NAME<ecName>" variable
@@ -58,7 +58,7 @@ Feature: Product Factory
     And I remember "AutoMaterialTypeDescription<varName>" text as "EC_MATERIAL_TYPE_DESCRIPTION<ecName>" variable
     And I remember "AutoSessionDurationDescription<varName>" text as "EC_SESSION_DURATION_DESCRIPTION<ecName>" variable
     And I remember "AutoCBASessionDurationDescription<varName>" text as "EC_CBA_SESSION_DURATION_DESCRIPTION<ecName>" variable
-    And I remember "AutoSessionDurationDescriptionTwoDates<varName>" text as "EC_SESSION_DURATION_DESCRIPTION_TWO_DATES<ecName>" variable
+    And I remember "AutoTwoDatesSessionDurationDescription<varName>" text as "EC_TWO_DATES_SESSION_DURATION_DESCRIPTION<ecName>" variable
     And I remember "AutoClientName<varName>" text as "EC_CLIENT_NAME<ecName>" variable
     And I remember "2000" text as "EC_PRICE" variable
     And I remember "10" text as "EC_WEIGHT" variable
@@ -77,7 +77,7 @@ Feature: Product Factory
       #______________________________Remember Variables__________________________
   Scenario Outline: Remember Variables For Creation <type>
     And I remember "AutoDeactivationReasonDescription<varName>" text as "EC_DEACTIVATION_REASON_DESCRIPTION" variable
-    And I remember "AutoDeactivationReasonDescriptionPrevent<varName>" text as "EC_DEACTIVATION_REASON_DESCRIPTION_PREVENT" variable
+    And I remember "AutoPreventDeactivationReasonDescription<varName>" text as "EC_PREVENT_DEACTIVATION_REASON_DESCRIPTION" variable
     And I remember "23/10/2020" text as "EC_SITTING_START_DATE" variable
     And I remember "10/10/2025" text as "EC_SITTING_END_DATE" variable
     And I remember "AutoStudyModeName<varName>" text as "EC_STUDY_MODE_NAME" variable
@@ -130,7 +130,7 @@ Feature: Product Factory
     And I remember "AutoMaterialTypeDescription<varName>" text as "EC_MATERIAL_TYPE_DESCRIPTION" variable
     And I remember "AutoSessionDurationDescription<varName>" text as "EC_SESSION_DURATION_DESCRIPTION" variable
     And I remember "AutoCBASessionDurationDescription<varName>" text as "EC_CBA_SESSION_DURATION_DESCRIPTION" variable
-    And I remember "AutoSessionDurationDescriptionTwoDates<varName>" text as "EC_SESSION_DURATION_DESCRIPTION_TWO_DATES" variable
+    And I remember "AutoTwoDatesSessionDurationDescription<varName>" text as "EC_TWO_DATES_SESSION_DURATION_DESCRIPTION" variable
     And I remember "AutoClientName<varName>" text as "EC_CLIENT_NAME" variable
     And I remember "2000" text as "EC_PRICE" variable
     And I remember "10" text as "EC_WEIGHT" variable

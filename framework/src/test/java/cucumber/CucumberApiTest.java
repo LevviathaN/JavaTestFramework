@@ -15,7 +15,7 @@ import ui.utils.RetryAnalyzer;
 @CucumberOptions(
         features = "src/test/resources/cucumber/bpp_features",
         glue = {"cucumber.api", "cucumber.productFactory"},
-        tags = {"@PF-API and not @NeedToBeUI"},
+        tags = {"@PF-API and not @NeedToBeUi"},
         plugin = {"pretty"})
 
 public class CucumberApiTest extends BaseApiTest {

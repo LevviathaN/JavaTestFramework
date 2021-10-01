@@ -8,7 +8,7 @@ Feature: Financial Dimension - Material Code - Editing - BPP-3111
     Given I execute "Log In" reusable step
     And I execute "Create Material Financial Dimension" reusable step
 
-  @Positive @P1 #TC-1670, TC-1672
+  @Positive @P1 @CoveredWithApi #TC-1670, TC-1672
   Scenario: Edit FD Code on Materials Page
     When I click on the "Products" "Product Factory navigation item"
     And I click on the "Materials" "Product Factory navigation sub item"

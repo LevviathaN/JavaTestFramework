@@ -93,6 +93,7 @@ Feature: Product Factory Api
       |description|$Auto[SessionDurationDescription]<varName>|
     And I execute "Create Session Duration" API step with parameters saving as "TWO_DATES_"
       |description|$Auto[TwoDatesSessionDurationDescription]<varName>|
+      |dateCout   |2                                                 |
     And I execute "Create Material" API step with parameters
       |cost      |~Cost[1000]              |
       |price     |~Price[1000]             |
@@ -101,7 +102,7 @@ Feature: Product Factory Api
     And I execute "Create Prices" API step
     And I execute "Create Course" API step
     And I execute "Create Stream" API step with parameters
-      |name       |$Auto[streamName]<varName>       |
+      |name       |$Auto[StreamName]<varName>       |
     And I execute "Create Deactivation Reason" API step with parameters
       |description|$Auto[DeactivationReasonDescription]<varName>|
     And I execute "Create Deactivation Reason" API step with parameters saving as "PREVENT_"

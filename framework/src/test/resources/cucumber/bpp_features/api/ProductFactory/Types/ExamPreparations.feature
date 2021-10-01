@@ -6,7 +6,7 @@ Feature: Product Factory API Data Creation
   Scenario: Add a New Exam Preparation Using a Modal
     Given I execute "Create Exam Preparation" API step
 
-  @ExamPreparation @Update #TC-4693
+  @ExamPreparation @Update @NeedToBeUi #TC-4693
   Scenario: Amend a Exam Preparation Using a Modal
     Given I execute "Create Exam Preparation" API step
     Then I execute "Update Exam Preparation" API step
