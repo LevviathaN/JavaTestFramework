@@ -6,7 +6,7 @@ Feature: BPP University Hub My Learning
   @Positive @MyLearning #TC-1119 TC-1121
   Scenario: HUB - My Learning
     #Register New Student
-    When I register new Hub account using API
+    When I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     #Verify Left panel
     Then I should see the "Home" "Build Empire Navigation Menu elements"

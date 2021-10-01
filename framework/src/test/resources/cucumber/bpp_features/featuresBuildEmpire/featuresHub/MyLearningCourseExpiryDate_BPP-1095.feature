@@ -16,7 +16,7 @@ Feature: BPP University Hub My Learning Course Expiry Date
     And I click on the "Totara Edit Course Setting link Mobile" element with JS if "Totara Edit Course Setting link Mobile" "element is present"
     And I select "KW_AUTO_SELECT" from "Totara expiry Course Date Day dropdown" element
     And I select "KW_AUTO_SELECT" from "Totara expiry Course Date Month dropdown" element
-    And I select "KW_AUTO_SELECT" from "Totara expiry Course Date Year dropdown" element
+    And I select "2024" from "Totara expiry Course Date Year dropdown" element
     And I click on the "Save and display" "Totara button" by JS
     And I click on the "Totara Edit Course Setting link" link by JS
     And I capture text data "Totara expiry Course Date Day selected" as "EC_DAY" variable

@@ -43,7 +43,7 @@ Feature: Product Factory API Data Creation
       |city        ||
       |countryCode ||
 
-  @Location @Update #TC-832
+  @Location @Update #TC-832 #TC-1870
   Scenario: Amend Location
     Given I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
       |dimensionType|PRODUCT|

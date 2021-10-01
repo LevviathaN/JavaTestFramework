@@ -8,6 +8,7 @@ Feature: Course - Update Instances for non draft Courses - BPP-4968
     Given I execute "Generate ISBN" reusable step
     Given I execute "Log In" reusable step
     And I execute "Remember Variables For Creation " reusable step
+    And I execute "Remember Variables Two" reusable step
 
     And I execute "Create Location" reusable step replacing some steps
       |4|I set "LocationNameTwo[######]" text to the "Name" "Product Factory text field"|
@@ -43,20 +44,23 @@ Feature: Course - Update Instances for non draft Courses - BPP-4968
     And I shouldn't see the "Product Factory Delete Course Material button" element
     Then I click on the "Instances" element
 
+    #Create instance
     Then I execute "Create Course Instance" reusable step if "EC_LOCATION_NAME" ""
     And I execute "Populate Course Instance Session Dates" reusable step
     And I execute "Populate Course Instance Step Due Dates" reusable step
-
     Then I execute "Keep the Course Activated" reusable step
     And I should see the "Deactivate" "Product Factory button"
     Then I execute "Keep the Course Instance Activated" reusable step
     And I shouldn't see the "EC_LOCATION_NAME" "Product Factory course instance Delete button"
 
+    #Edit course
     When I click on the "Products" "Product Factory navigation item"
     When I click on the "Courses" "Product Factory navigation sub item"
     And I set "EC_COURSE_TYPE_DESCRIPTION" text to the "Search" "Product Factory text field" from keyboard
     And I click on the "submit" "element by type"
     And I click on the "EC_COURSE_TYPE_DESCRIPTION" "Product Factory edit button"
+
+    #Verify edit buttons presence
     When I click on the "EC_LOCATION_NAME" "Product Factory course instance sessions dropdown button"
     Then I should see the "Default Location" "Product Factory edit button"
     And I should see the "Capacity" "Product Factory edit button"
@@ -71,6 +75,7 @@ Feature: Course - Update Instances for non draft Courses - BPP-4968
     And I click on the "EC_LOCATION_NAME_TWO" "Product Factory select button"
     And I click on the "No" "Product Factory button"
 
+    #Edit Capacity and publish changes
     When I click on the "Capacity" "Product Factory edit button"
     And I set "2" text to the "Capacity" "Product Factory text field"
     And I click on the "Save" "Product Factory button"
@@ -79,13 +84,15 @@ Feature: Course - Update Instances for non draft Courses - BPP-4968
     And I click on the "Yes" "Product Factory button"
     Then Attribute "tabindex" of "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button" should have value "-1"
 
+    #Edit Stream and publish changes
     When I click on the "Stream" "Product Factory edit button"
-    And I click on the "EC_STREAM_NAME" "Product Factory select button"
+    And I click on the "EC_STREAM_NAME_TWO" "Product Factory select button"
     And Attribute "tabindex" of "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button" should have value "0"
     And I click on the "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button"
     And I click on the "Yes" "Product Factory button"
     Then Attribute "tabindex" of "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button" should have value "-1"
 
+    #Edit Location and publish changes
     When I click on the "EC_LOCATION_NAME" "Product Factory edit button"
     And I click on the "EC_LOCATION_NAME_TWO" "Product Factory select button"
     And Attribute "tabindex" of "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button" should have value "0"
@@ -93,6 +100,7 @@ Feature: Course - Update Instances for non draft Courses - BPP-4968
     And I click on the "Yes" "Product Factory button"
     Then Attribute "tabindex" of "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button" should have value "-1"
 
+    #Edit Session Dates and publish changes
     When I click on the "EC_LOCATION_NAME_TWO" "Product Factory Session Dates button"
     And I fill the "Product Factory Session Dates Popup Start Time Input Field" field with "PM"
     And I fill the "Product Factory Session Dates Popup End Time Input Field" field with "PM"
@@ -103,6 +111,14 @@ Feature: Course - Update Instances for non draft Courses - BPP-4968
     And I click on the "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button"
     And I click on the "Yes" "Product Factory button"
     Then Attribute "tabindex" of "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button" should have value "-1"
+
+    #Cleanup
+    When I click on the "EC_LOCATION_NAME_TWO" "Product Factory edit button"
+    And I click on the "EC_LOCATION_NAME" "Product Factory select button"
+    And Attribute "tabindex" of "EC_LOCATION_NAME" "Product Factory course instance Publish button" should have value "0"
+    And I click on the "EC_LOCATION_NAME" "Product Factory course instance Publish button"
+    And I click on the "Yes" "Product Factory button"
+    Then Attribute "tabindex" of "EC_LOCATION_NAME" "Product Factory course instance Publish button" should have value "-1"
 
   @Positive @P2 #TC-2407
   Scenario: Amend Non Draft Course Instance Additional Scenario

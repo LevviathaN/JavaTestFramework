@@ -26,12 +26,11 @@ Feature: Dates & Prices - Dates and Prices 'pods' (front-end) component
     And I should see the "Tax Compliance" "BPP Digital View Dates and Prices button"
 
     And I click on the "Financial Management" "BPP Digital View Dates and Prices button"
-    And I click on the "Wed 17 Mar 2021" "element"
-    And I should see the "Wed 17 March" "element"
-    And I should see the "Thu 18 March" "element"
-    And I should see the "Fri 19 March" "element"
-    And I should see the "Mon 22 March" "element"
-    And I validate text "CONTAINS=4" to be displayed for "BPP Digital Dates and Prices Number of Sessions field" element
+    And I click on the "Tue 23 Nov 2021" "element"
+    And I should see the "Tue 23 November" "element"
+    And I should see the "Fri 26 November" "element"
+    And I should see the "Tue 30 November" "element"
+    And I validate text "CONTAINS=3" to be displayed for "BPP Digital Dates and Prices Number of Sessions field" element
     And I wait for "3" seconds
 
     # Verify Paper Filters: TC-4939
@@ -179,23 +178,21 @@ Feature: Dates & Prices - Dates and Prices 'pods' (front-end) component
     And I click on the "Sep 2021 (1)" element
     # Check Study mode filter
     When I click on the "Study mode" element
-    And I validate text "CONTAINS=8" to be displayed for "Face-to-face" element
+    And I validate text "CONTAINS=2" to be displayed for "Face-to-face" element
     When I click on the "Face-to-face" element
-    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "8"
+    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "2"
     And I click on the "Face-to-face" element
     # Check Location filter
-    When I click on the "Location" element
-    And I validate text "CONTAINS=6" to be displayed for "London" element
-    When I click on the "London" element
-    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "6"
-    And I click on the "London" element
+    When I click on the "Online Classroom Live" element
+    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "4"
+    And I click on the "Online Classroom Live" element
     # Check Session times filter
     When I click on the "Session times" element
-    And I should see the "Weekday (12)" element
+    And I should see the "Weekday (6)" element
     And I should see the "Flexible (1)" element
-    When I click on the "Weekday (12)" element
-    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "12"
-    And I click on the "Weekday (12)" element
+    When I click on the "Weekday (6)" element
+    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "6"
+    And I click on the "Weekday (6)" element
     When I click on the "Flexible (1)" element
     Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "1"
     And I click on the "Flexible (1)" element

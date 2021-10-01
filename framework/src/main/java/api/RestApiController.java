@@ -182,7 +182,10 @@ public class RestApiController {
                     String updatedValue = value.equals(null) ? "null" : TestParametersController.checkIfSpecialParameter(value.toString());
                     value = (value.toString().equals(updatedValue) || value instanceof JSONArray) ? value : updatedValue;
                     if (!(value == null)) {
-                        if (!(variables.get("instanceReference") == null) || !(variables.get("reference") == null)) {
+                        if (!(variables.get("reference") == null)
+                                || (!(variables.get("instanceReference") == null))
+                                || (!(variables.get("instanceGroupReference") == null))
+                        ) {
                             variables.put(variablesKey, TestParametersController.checkIfSpecialParameter(value.toString()));
                         }
                         if (!(variables.get("filter") == null)) {

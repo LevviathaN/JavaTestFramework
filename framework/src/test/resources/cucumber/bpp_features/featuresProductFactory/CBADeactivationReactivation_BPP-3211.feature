@@ -34,7 +34,7 @@ Feature: CBA - deactivation/reactivation - BPP-3211
     Then I should see the "(Active)" element
     And I click on the "Deactivate" "Product Factory button"
     And I click on the "Deactivation Reason" "Product Factory change button"
-    And I click on the "EC_DEACTIVATION_REASON_DESCRIPTION_PREVENT" "Product Factory select button"
+    And I click on the "EC_PREVENT_DEACTIVATION_REASON_DESCRIPTION" "Product Factory select button"
     And I click on the "Confirm Deactivation" "Product Factory button"
     And Attribute "tabindex" of "Reactivate" "Product Factory button" should have value "-1"
 

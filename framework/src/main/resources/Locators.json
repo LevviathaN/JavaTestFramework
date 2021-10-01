@@ -577,11 +577,11 @@
   },
   {
     "name": "BPP Digital Course Card Month Dropdown",
-    "value": "xpath=//select[@id='card.expiryMonth']"
+    "value": "xpath=//select[@id='card_expiry_month']"
   },
   {
     "name": "BPP Digital Course Card Year Dropdown",
-    "value": "xpath=//select[@id='card.expiryYear']"
+    "value": "xpath=//select[@id='card_expiry_year']"
   },
   {
     "name": "BPP Digital Course Booking Success Message Form",
@@ -1018,6 +1018,10 @@
   {
     "name": "Direct App Admin End Date for Apprenticeships",
     "value": "xpath=//*[contains(.,'Apprenticeship application')]/../div[@class='card-body']/div[@class='row'][9]//div[2]"
+  },
+  {
+    "name": "Direct App Admin Off Job Training Hours",
+    "value": "xpath=//*[contains(.,'Company')]/../div[@class='card-body']/div[@class='row'][5]//div[2]"
   },
   {
     "name": "Direct App Admin Filter By Assesment",
@@ -3117,7 +3121,11 @@
   },
   {
     "name": "Salesforce Quotes Select Product Page Save",
-    "value": "inframe=Salesforce Frame>xpath=(//*[@id='mainButton'])[last()]"
+    "value": "inframe=Salesforce Frame>xpath=//*[@id='pcSave']"
+  },
+  {
+    "name": "Salesforce Quotes Edit Page Save",
+    "value": "inframe=Salesforce Frame>xpath=//*[@name='Save']/paper-button"
   },
   {
     "name": "Salesforce Quotes Edit",

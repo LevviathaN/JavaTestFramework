@@ -81,7 +81,7 @@ Feature: Product Factory API Data Creation
     Then I execute negative "Create Digital Content" API step with error name "Digital Content already exists for the combination of Body, Level, Paper, Sitting" and parameters
       |nameSuffix|ApiNameSuffix[#####]|
 
-  @DigitalContent @Update #TC-
+  @DigitalContent @Update @NeedToBeUi #TC-
   Scenario: Edit Digital Content
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |

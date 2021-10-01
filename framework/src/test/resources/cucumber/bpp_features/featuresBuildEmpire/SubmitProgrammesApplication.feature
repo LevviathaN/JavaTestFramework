@@ -2,7 +2,7 @@
 Feature: Submit BPP University Programmes Application
 
   Background:
-    Given I register new Hub account using API
+    Given I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     When I execute "Create Programmes Application" reusable step
 

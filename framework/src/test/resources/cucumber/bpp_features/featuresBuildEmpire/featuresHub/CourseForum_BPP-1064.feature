@@ -5,7 +5,7 @@ Feature: BPP University Hub Course Forum
   I expect an easy way to navigate to this forum
 
   Background:
-    Given I register new Hub account using API
+    Given I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
 
   @Positive @CourseForum #TC-722 TC-723

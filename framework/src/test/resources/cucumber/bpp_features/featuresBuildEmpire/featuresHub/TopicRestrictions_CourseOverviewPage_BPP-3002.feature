@@ -7,7 +7,7 @@ Feature: Topic Restrictions Course Overview Page - Completely Hidden - BPP-3002
   @Positive #TC-1598
   Scenario: Topic Restrictions Course Overview by Group Completely Hidden
     #Register New Student
-    And I register new Hub account using API
+    And I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     #Validate Timeline block
     Then I should see the "Timeline" message
@@ -116,7 +116,7 @@ Feature: Topic Restrictions Course Overview Page - Completely Hidden - BPP-3002
   @Positive #TC-1587
   Scenario: Topic Restrictions Course Overview by Date Completely Hidden
     #Register New Student
-    And I register new Hub account using API
+    And I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     #Validate Timeline block
     Then I should see the "Timeline" message
@@ -215,7 +215,7 @@ Feature: Topic Restrictions Course Overview Page - Completely Hidden - BPP-3002
   @Positive #TC-1602
   Scenario: Topic Restrictions Course Overview by Activity Completion Completely Hidden
     #Register New Student
-    And I register new Hub account using API
+    And I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     #Validate Timeline block
     Then I should see the "Timeline" message
@@ -298,7 +298,7 @@ Feature: Topic Restrictions Course Overview Page - Completely Hidden - BPP-3002
   @Positive #TC-1599
   Scenario: Topic Restrictions Course Overview by Multiple Restrictions Completely Hidden
     #Register New Student
-    And I register new Hub account using API
+    And I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     #Validate Timeline block
     Then I should see the "Timeline" message
