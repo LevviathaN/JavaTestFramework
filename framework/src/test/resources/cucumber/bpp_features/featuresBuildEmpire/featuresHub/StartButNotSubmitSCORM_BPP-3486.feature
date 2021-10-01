@@ -5,7 +5,7 @@ Feature: SCORM Asessment Not Submit
 
   @Negative #TC-1829
   Scenario: Scorm Assessment Start But Not Submit
-    Given I register new Hub account using API
+    Given I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     Then I shouldn't see the "My Learning" "Build Empire Navigation Menu elements"
     When I execute "Log Out from Hub Student" reusable step

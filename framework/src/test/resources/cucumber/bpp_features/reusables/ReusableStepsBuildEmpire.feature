@@ -319,7 +319,7 @@ Feature: BuildEmpire
     Then I click on the "Direct App Go To Application" button
     And I click on the "documents" "Build Empire application section"
     And I click on the "Download Application of" "Build Empire application section"
-    Then I switch to window with index "2"
+    Then I switch to window with index "1"
     Then I upload "directApp.pdf" file to "Direct App Upload Other Documents" element
     Then I upload "application_pack_document.pdf" file to "Direct App Upload Job Role Documents" element
     And I wait for "3" seconds
@@ -499,7 +499,7 @@ Feature: BuildEmpire
     And Browser performs "Refresh" command
     And I click on the "Application documents" "Build Empire application section"
     And I click on the "Download Application of" "Build Empire application section"
-    Then I switch to window with index "2"
+    Then I switch to window with index "1"
     Then I upload "application_pack_document.pdf" file to "Direct App Apprenticeships Upload Documents" element
     Then I upload "application_pack_document.pdf" file to "Direct App Upload Job Role Documents" element
     And I wait for "2" seconds
@@ -515,7 +515,7 @@ Feature: BuildEmpire
     Then I click on the "Direct App Go To Application" button
     And I click on the "documents" "Build Empire application section"
     And I click on the "Download Application of" "Build Empire application section"
-    Then I switch to window with index "2"
+    Then I switch to window with index "1"
     Then I upload "directApp.pdf" file to "Direct App Apprenticeships Upload Documents" element
     Then I upload "application_pack_document.pdf" file to "Direct App Upload Job Role Documents" element
     And I wait for "3" seconds

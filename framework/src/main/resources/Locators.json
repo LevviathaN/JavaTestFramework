@@ -1020,6 +1020,10 @@
     "value": "xpath=//*[contains(.,'Apprenticeship application')]/../div[@class='card-body']/div[@class='row'][9]//div[2]"
   },
   {
+    "name": "Direct App Admin Off Job Training Hours",
+    "value": "xpath=//*[contains(.,'Company')]/../div[@class='card-body']/div[@class='row'][5]//div[2]"
+  },
+  {
     "name": "Direct App Admin Filter By Assesment",
     "value": "xpath=//select[@name='search[aasm_state]']"
   },
@@ -3117,7 +3121,11 @@
   },
   {
     "name": "Salesforce Quotes Select Product Page Save",
-    "value": "inframe=Salesforce Frame>xpath=(//*[@id='mainButton'])[last()]"
+    "value": "inframe=Salesforce Frame>xpath=//*[@id='pcSave']"
+  },
+  {
+    "name": "Salesforce Quotes Edit Page Save",
+    "value": "inframe=Salesforce Frame>xpath=//*[@name='Save']/paper-button"
   },
   {
     "name": "Salesforce Quotes Edit",

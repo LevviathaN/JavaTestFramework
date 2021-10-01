@@ -2,10 +2,10 @@
 Feature: Submit Professional Apprenticeship Applications
 
   Background:
-    Given I register new Hub account using API
+    Given I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
 
-  @Positive @TwoQualifications #TC-847
+  @Positive @TwoQualifications #TC-847, 6132
   Scenario: Submit Professional Apprenticeship With Two Qualifications
     When I execute "Create Professional Apprenticeships Application Chartered Manager" reusable step
     Given I execute "Complete Professional Apprenticeships Application Chartered Manager" reusable step with some additional steps
@@ -46,6 +46,8 @@ Feature: Submit Professional Apprenticeship Applications
     And I execute "Log Out from Hub Student" reusable step
     And I execute "Log In to Hub as Admin" reusable step
     And I execute "Accept Application As Admin" reusable step
+    #20% off-job training hours validation
+    Then I validate text "CONTAINS=1355.9" to be displayed for "Direct App Admin Off Job Training Hours" element
     And I execute "Log Out from Hub Admin" reusable step
     And I execute "Log In to Hub as Student" reusable step
     And I execute "Validate Successful Application As Student" reusable step

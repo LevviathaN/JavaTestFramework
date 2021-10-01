@@ -2,7 +2,7 @@
 Feature: Complete Academic Appeals Application - BPPPMO-1091
 
   Background:
-    Given I register new Hub account using API
+    Given I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     And I wait for "2" seconds
     When I execute "Create Academic Appeals Application" reusable step

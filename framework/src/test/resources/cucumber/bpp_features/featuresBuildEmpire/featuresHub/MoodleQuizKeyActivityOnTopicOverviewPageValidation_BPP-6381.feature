@@ -6,7 +6,7 @@ Feature: Verify Moodle Quiz Key Activity Completion Appearance In HUB - BPP-6381
 
   @Positive #TC-2826
   Scenario: Moodle Quiz Key Activity On Topic Overview Page Validation
-    When I register new Hub account using API
+    When I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     Then I shouldn't see the "My Learning" "Build Empire Navigation Menu elements"
     Then I execute "Log Out from Hub Student" reusable step

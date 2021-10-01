@@ -3,7 +3,7 @@ Feature: Complete BPP University Scholarship Application
 
   @Positive @Smoke #TC-1247
   Scenario: Complete Scholarship Application
-    Given I register new Hub account using API
+    Given I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     And I click on the "Direct App My Applications Left Menu Link" link by JS
     When I execute "Create Scholarships Application" reusable step

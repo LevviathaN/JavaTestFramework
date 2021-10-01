@@ -2,7 +2,7 @@
 Feature: Negative Scenarios Apprenticeship Application
 
   Background:
-    Given I register new Hub account using API
+    Given I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
 
   @NegativeScenarios

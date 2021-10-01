@@ -111,7 +111,7 @@ public static ReusableRunner getInstance() {
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_NEGATIVE_API_STEP"), () ->  pfStepDefs.i_execute_negative_api_step(arg1, arg2));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_VERIFY_THAT_ELEMENT_IS_EQUAL"), () -> pfStepDefs.i_verify_that_element_is_equal(arg1,arg2));
         //Venus API stepdefs
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_REGISTER_NEW_HUB_ACCOUNT_API"),() -> venusStepDefsAPI.i_register_new_hub_account());
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_REGISTER_NEW_HUB_ACCOUNT_API"),() -> venusStepDefsAPI.i_register_new_hub_account(arg1));
     }
 
     private StepDefinitions stepDefs = new StepDefinitions();

@@ -9,7 +9,7 @@ and then appears corrects as soon we change it back to the default "Never"
   @AttemptReopened
   Scenario: Negative Grade When Attempt Reopened Is Set to Automatically Until Pass
     #Register New Student
-    And I register new Hub account using API
+    And I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     #Validate Timeline block
     Then I should see the "Timeline" message

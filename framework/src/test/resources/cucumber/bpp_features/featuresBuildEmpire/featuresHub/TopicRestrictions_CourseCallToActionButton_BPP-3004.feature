@@ -7,7 +7,7 @@ Feature: The Hub - Activity Restrictions - Call to Action Button - Completely Hi
   @Positive #TC-1589
   Scenario: Topic Restrictions by Group CTA button Completely Hidden
     #Register New Student
-    And I register new Hub account using API
+    And I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     #Validate Timeline block
     Then I should see the "Timeline" message
@@ -242,7 +242,7 @@ Feature: The Hub - Activity Restrictions - Call to Action Button - Completely Hi
   @Positive #TC-1592 TC-1593
   Scenario: Topic Restrictions by Multiple Activity Completion CTA button Completely Hidden
     #Register New Student
-    And I register new Hub account using API
+    And I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     #Validate Timeline block
     Then I should see the "Timeline" message

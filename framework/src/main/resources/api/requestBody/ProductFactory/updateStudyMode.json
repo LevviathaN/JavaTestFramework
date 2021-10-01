@@ -1,0 +1,11 @@
+{
+  "operationName":"updateStudyMode",
+  "variables":{
+    "command":{
+      "reference":"EC_STUDY_MODE_REFERENCE",
+      "name": "ApiStudyModeNameUpdated[####]",
+      "description": "ApiStudyModeDescriptionUpdated[####]"
+    }
+  },
+  "query":"mutation updateStudyMode($command: UpdateStudyModeCommandInput!) { updateStudyMode(command: $command) { ...studyMode __typename }}fragment studyMode on StudyMode { reference name description createdBy createdOn updatedBy updatedOn __typename}"
+}

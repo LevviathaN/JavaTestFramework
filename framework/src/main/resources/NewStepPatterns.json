@@ -273,7 +273,7 @@
   },
   {
     "name": "I_REGISTER_NEW_HUB_ACCOUNT_API",
-    "value": "^I register new Hub account using API$"
+    "value": "^I register new \"([^\"]*)\" Hub account using API$"
   },
   {
     "name": "I_EXECUTE_API_STEP_SAVING_AS",
