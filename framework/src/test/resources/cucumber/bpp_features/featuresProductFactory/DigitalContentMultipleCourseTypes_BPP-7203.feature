@@ -30,7 +30,7 @@ Feature: Digital Content Id - Multiple Course Types - BPP-7203
     And I execute "Create Sitting" reusable step replacing some steps
       |4|I set "SittingNameTwo[######]" text to the "Name" "Product Factory text field"|
 
-  @Positive @P1 #TC-3203
+  @Positive @P1 @CoveredWithApi #TC-3203
   Scenario: Create Digital Content Multiple Course Types
     Given I execute "Create Digital Content" reusable step with some additional steps
       |21|I set "Suffix[###]" text to the "Name Suffix" "Product Factory text field"|
@@ -40,7 +40,7 @@ Feature: Digital Content Id - Multiple Course Types - BPP-7203
       |23|Add|I click on the "Search" "Product Factory button two"|
       |24|Add|I "check" "EC_COURSE_TYPE_DESCRIPTION_TWO" "Product Factory dialog checkbox"|
 
-  @Negative @P1 #TC-3204
+  @Negative @P1 @CoveredWithApi #TC-3204
   Scenario: Create Digital Content Multiple Course Types Duplicate
     Given I execute modified "Create Digital Content" reusable step
       |21|Add|I set "Suffix[###]" text to the "Name Suffix" "Product Factory text field"|

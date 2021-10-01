@@ -56,6 +56,8 @@ Feature: To allow for Editing of CBAs in the new structure - BPP-13174
     Then I execute "Activate Course" API step
     And I execute "Activate Instance" API step
 
+    And I execute "Create Course Type" API step with parameters saving as "CBA_"
+      |isCba|true|
     And I execute "Create Paper" API step with parameters saving as "CBA_"
       |isCba|true|
     And I execute "Change Paper Body" API step with parameters
@@ -72,7 +74,7 @@ Feature: To allow for Editing of CBAs in the new structure - BPP-13174
     And I remember "AutoSittingNameTwo" text as "EC_SITTING_NAME_TWO" variable
     And I remember "AutoCourseTypeDescriptionTwo" text as "EC_COURSE_TYPE_DESCRIPTION_TWO" variable
 
-  @Positive @Regression @P1 @DoNotRun #TC-5133б, TC-5154, TC-5151
+  @Positive @Regression @P1 #TC-5133б, TC-5154, TC-5151
   Scenario: Update Draft CBA Record In New Layout
     And I execute "Log In" reusable step replacing some steps
       |3|I fill the "Product Factory Email" field with "MD_COMMON_CREDENTIALS_PRODUCTFACTORYJUNIORPRODUCTSETTER"|

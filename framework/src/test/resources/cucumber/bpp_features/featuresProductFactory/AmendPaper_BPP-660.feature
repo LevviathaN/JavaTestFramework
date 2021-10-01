@@ -68,7 +68,7 @@ Feature: Amend Reference Data - Paper - BPP-660
     And I click on the "Save" "Product Factory button"
     Then I should see the "Name must be unique" "message"
 
-  @Positive @Regression @P1 #TC-1552
+  @Positive @Regression @P1 @CoveredWithApi #TC-1552
   Scenario: Amend a Paper Changing Body And Level
     Given I execute "Create Paper" reusable step
     When I execute "Create Body Financial Dimension" reusable step

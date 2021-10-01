@@ -67,7 +67,7 @@ Feature: Digital Content Id - Edit - BPP-7052
     And I click on the "Save" "Product Factory button last"
     Then I should see the "EC_COURSE_REFERENCE_ID_EDITED" "element"
 
-  @Negative @P1 #TC-3198
+  @Negative @P1 @CoveredWithApi #TC-3198
   Scenario: Edit Digital Content Duplicate
     Given I execute "Create Digital Content" reusable step replacing some steps
       |15|I "check" "EC_SITTING_NAME_TWO" "Product Factory dialog checkbox"|

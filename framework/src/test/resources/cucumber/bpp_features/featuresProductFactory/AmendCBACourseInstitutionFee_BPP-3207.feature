@@ -6,7 +6,7 @@ Feature: CBA - Update CBA Course Institution fee - BPP-3207
   Background:
     Given I execute "Remember Variables For Creation " reusable step
 
-  @Positive @Regression @P1 @DoNotRun #TC-2650
+  @Positive @Regression @P1 @DoNotRun @CoveredWithApi #TC-2650
   Scenario: Update CBA Course Institution Fee
     And I execute "Log In" reusable step replacing some steps
       |3|I fill the "Product Factory Email" field with "MD_COMMON_CREDENTIALS_PRODUCTFACTORYJUNIORPRODUCTSETTER"|
@@ -24,7 +24,7 @@ Feature: CBA - Update CBA Course Institution fee - BPP-3207
     Then I should see the "[EC_UPDATED_INSTITUTE_FEE]" element
     And I should see the "[SUM(EC_BPP_FEE,EC_UPDATED_INSTITUTE_FEE)]$.00" element
 
-  @Positive @Regression @P1 #TC-2768
+  @Positive @Regression @P1 @CoveredWithApi #TC-2768
   Scenario: Update CBA Course Institution Fee Additional Scenarios
     Given I execute "Log In" reusable step
     When I click on the "Products" "Product Factory navigation item"
