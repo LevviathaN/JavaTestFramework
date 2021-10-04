@@ -213,8 +213,13 @@ public class RestApiController {
         JSONObject recordsObject = new Utilities().getResponseProperty(Response);
         JSONObject recordsData = (JSONObject) recordsObject.get("data");
         JSONObject recordsList = new JSONObject();
-        extractPropperties(recordsData.values().iterator().next(),recordsList,"");
 
+        if (recordsData.containsKey("steps")) {
+            JSONArray recordsArr = (JSONArray) recordsData.get("steps");
+            extractPropperties(recordsData.values().iterator().next(), recordsList, "", recordsArr.size());
+        } else {
+            extractPropperties(recordsData.values().iterator().next(), recordsList, "", 1);
+        }
         /*Get Json object values*/
         try {
 //            Reference = recordsList.get("Reference")==null ? (String) recordsList.get("CourseReference") : (String) recordsList.get("Reference");
@@ -241,23 +246,26 @@ public class RestApiController {
         return recordsList;
     }
 
-    public void extractPropperties(Object inputObj, JSONObject targetList, String nameKey) {
+    public void extractPropperties(Object inputObj, JSONObject targetList, String nameKey, Integer arrSize) {
         JSONObject inputObject;
-        inputObject = inputObj instanceof JSONObject ? (JSONObject)inputObj : (JSONObject)((JSONArray)inputObj).get(0);
-        Iterator keys = inputObject.keySet().iterator();
-        while(keys.hasNext()) {
-            Object key = keys.next();
-            String capKey = key.toString().substring(0, 1).toUpperCase() + key.toString().substring(1);
-            if (inputObject.get(key) instanceof JSONArray) {
-                JSONArray jArr = (JSONArray) inputObject.get(key);
-                for (Object o : jArr) {
-                    extractPropperties( (JSONObject) o, targetList, nameKey + capKey);
+
+        for (int i = 0; i < arrSize ; i++) {
+            inputObject = inputObj instanceof JSONObject ? (JSONObject) inputObj : (JSONObject) ((JSONArray) inputObj).get(i);
+            Iterator keys = inputObject.keySet().iterator();
+            while (keys.hasNext()) {
+                Object key = keys.next();
+                String capKey = key.toString().substring(0, 1).toUpperCase() + key.toString().substring(1);
+                if (inputObject.get(key) instanceof JSONArray) {
+                    JSONArray jArr = (JSONArray) inputObject.get(key);
+                    for (Object o : jArr) {
+                        extractPropperties((JSONObject) o, targetList, nameKey + capKey, arrSize);
+                    }
+                } else if (inputObject.get(key) instanceof JSONObject) {
+                    extractPropperties((JSONObject) inputObject.get(key), targetList, nameKey + capKey, arrSize);
+                } else {
+                    String entryKey = targetList.containsKey(nameKey + capKey) ? nameKey + capKey + "Copy" : nameKey + capKey;
+                    targetList.put(entryKey, inputObject.get(key));
                 }
-            } else if (inputObject.get(key) instanceof JSONObject) {
-                extractPropperties((JSONObject) inputObject.get(key), targetList, nameKey + capKey);
-            } else {
-                String entryKey = targetList.containsKey(nameKey + capKey) ? nameKey + capKey + "Copy" : nameKey + capKey;
-                targetList.put(entryKey, inputObject.get(key));
             }
         }
     }
