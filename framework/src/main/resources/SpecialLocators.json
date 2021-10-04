@@ -462,7 +462,7 @@
   },
   {
     "name": "Product Factory button",
-    "value": "xpath=//span[text()='PARAMETER']/.."
+    "value": "xpath=//span[normalize-space()='PARAMETER']/.."
   },
   {
     "name": "Product Factory button last",
