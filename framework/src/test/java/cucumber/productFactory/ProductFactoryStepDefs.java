@@ -20,6 +20,8 @@ import ui.utils.bpp.TestParametersController;
 
 import java.io.IOException;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static com.jcabi.matchers.RegexMatchers.matchesPattern;
 import static org.junit.Assert.assertEquals;
@@ -197,7 +199,13 @@ public class ProductFactoryStepDefs {
         JSONObject recordsList = restController.requestNegativeProcess(name, parameters);
         String message = (String) recordsList.get("message");
 
-        assertThat(message, containsString(errorName));
+        Pattern pattern = Pattern.compile("<(.*?)>");
+        Matcher matcher = pattern.matcher(errorName);
+        matcher.find();
+        String errorSample = TestParametersController.checkIfSpecialParameter(matcher.group(1));
+        String errorMessage = errorName.replaceFirst("<(.*?)>",errorSample);
+
+        assertThat(message, containsString(errorMessage));
 
         /*Get JSON object values*/
         String log = "<pre><br>" + refDataName + ": " + "<br>" + "<font color='red'><b>" + message + "</font></b>" + "</pre>";
