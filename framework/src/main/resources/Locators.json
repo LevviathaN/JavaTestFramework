@@ -924,6 +924,10 @@
     "value": "xpath=//label[contains(.,'aged 19+ and have not been in the care ')]"
   },
   {
+    "name": "Direct App Additional Info Aged 16 and 18",
+    "value": "xpath=//label[contains(.,'aged between 16 and 18 years old, at the start of the course and have been in the care of your local authority')]"
+  },
+  {
     "name": "Direct App Additional Info Upload Button",
     "value": "xpath=//div[@class='clearfix ']/following-sibling::div/input"
   },
@@ -3121,7 +3125,7 @@
   },
   {
     "name": "Salesforce Quotes Select Product Page Save",
-    "value": "inframe=Salesforce Frame>xpath=//*[@id='pcSave']"
+    "value": "inframe=Salesforce Frame>xpath=(//*[@id='mainButton'])[last()]"
   },
   {
     "name": "Salesforce Quotes Edit Page Save",

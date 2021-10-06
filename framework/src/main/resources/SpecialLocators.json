@@ -185,6 +185,10 @@
     "value": "xpath=//*[contains(.,'Bottom margin')]/../following::div[contains(.,'PARAMETER')]/input"
   },
   {
+    "name": "Direct App Admin Application Additional Information",
+    "value": "xpath=(//*[contains(.,'Additional apprenticeship information')]/../div[@class='card-body']//*[contains(.,'PARAMETER')])[last()]"
+  },
+  {
     "name": "BPP Digital dropdown",
     "value": "xpath=//label[text()='PARAMETER']/following-sibling::select"
   },
@@ -458,7 +462,7 @@
   },
   {
     "name": "Product Factory button",
-    "value": "xpath=//span[text()='PARAMETER']/.."
+    "value": "xpath=//span[normalize-space()='PARAMETER']/.."
   },
   {
     "name": "Product Factory button last",
