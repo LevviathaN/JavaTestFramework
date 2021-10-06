@@ -31,7 +31,7 @@ Feature: Product Factory API Data Creation
       |target       |LOCATION|
     And I execute "Create Region" API step
     And I execute "Create Location" API step
-    And I execute negative "Update Region" API step with error name "The Region is already linked" and parameters
+    And I execute negative "Update Region" API step with error name "The Region is already linked to one or more Locations, so you cannot change the Financial Dimension" and parameters
       |financialDimensionReference|EC_REGION_TWO_FINANCIAL_DIMENSION_REFERENCE|
 
   @Region @Negative @Update @Duplicate #TC-1902

@@ -51,7 +51,7 @@ Feature: Product Factory API Data Creation
     And I execute "Change Paper Body" API step
     And I execute "Link Paper To Levels" API step
     Then I execute "Create Digital Content" API step
-    Then I execute negative "Create Digital Content" API step with error name "Digital Content already exists with the display name 'ApiDigitalContentName" and parameters
+    Then I execute negative "Create Digital Content" API step with error name "Digital Content already exists with the display name '<EC_API_DIGITAL_CONTENT_NAME>'" and parameters
       |name|EC_API_DIGITAL_CONTENT_NAME|
 
   @DigitalContent @Duplicate #TC-3453
@@ -78,7 +78,7 @@ Feature: Product Factory API Data Creation
     And I execute "Change Paper Body" API step
     And I execute "Link Paper To Levels" API step
     Then I execute "Create Digital Content" API step
-    Then I execute negative "Create Digital Content" API step with error name "Digital Content already exists for the combination of Body, Level, Paper, Sitting" and parameters
+    Then I execute negative "Create Digital Content" API step with error name "Digital Content already exists for the combination of Body, Level, Paper, Sitting (<EC_SITTING_NAME>) & Course Type (<EC_COURSE_TYPE_DESCRIPTION>)" and parameters
       |nameSuffix|ApiNameSuffix[#####]|
 
   @DigitalContent @Update @NeedToBeUi #TC-
@@ -133,7 +133,7 @@ Feature: Product Factory API Data Creation
     And I execute "Link Paper To Levels" API step
     Then I execute "Create Digital Content" API step with parameters
       |nameSuffix|ApiDigitalContentSuffix[#######]|
-    Then I execute negative "Create Digital Content" API step with error name "Digital Content already exists" and parameters
+    Then I execute negative "Create Digital Content" API step with error name "Digital Content already exists with the display name '<EC_API_DIGITAL_CONTENT_NAME> - <EC_API_DIGITAL_CONTENT_SUFFIX>'" and parameters
       |name      |EC_API_DIGITAL_CONTENT_NAME  |
       |nameSuffix|EC_API_DIGITAL_CONTENT_SUFFIX|
       |courseTypeReferences|<EC_COURSE_TYPE_REFERENCE>,<EC_SECOND_COURSE_TYPE_REFERENCE>|
@@ -233,7 +233,7 @@ Feature: Product Factory API Data Creation
       |paperReference|EC_SECOND_PAPER_REFERENCE|
       |sittingReferences|EC_SECOND_SITTING_REFERENCE|
       |courseTypeReferences|EC_SECOND_COURSE_TYPE_REFERENCE|
-    Then I execute negative "Update Digital Content Name" API step with error name "Digital Content already exists with the display name" and parameters
+    Then I execute negative "Update Digital Content Name" API step with error name "Digital Content already exists with the display name '<EC_API_DIGITAL_CONTENT_NAME_ONE> - <EC_API_DIGITAL_CONTENT_SUFFIX_ONE>'" and parameters
       |name|EC_API_DIGITAL_CONTENT_NAME_ONE|
       |nameSuffix|EC_API_DIGITAL_CONTENT_SUFFIX_ONE|
 
@@ -296,7 +296,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Module" API step
     Then I execute "Create Digital Content University" API step with parameters
       |name|<EC_MODULE_NAME> - <EC_SIS_CODE> - <EC_MODULE_TERM_CODE> - <EC_MODULE_REFERENCE_NUMBER>|
-    And I execute negative "Create Digital Content University" API step with error name "Digital Content already exists with the display name" and parameters
+    And I execute negative "Create Digital Content University" API step with error name "Digital Content already exists with the display name '<EC_MODULE_NAME> - <EC_SIS_CODE> - <EC_TERM_CODE> - <EC_CRN_CODE> - <EC_NAME_SUFFIX>'" and parameters
       |nameSuffix|EC_NAME_SUFFIX|
       |name|<EC_MODULE_NAME> - <EC_SIS_CODE> - <EC_MODULE_TERM_CODE> - <EC_MODULE_REFERENCE_NUMBER>|
 

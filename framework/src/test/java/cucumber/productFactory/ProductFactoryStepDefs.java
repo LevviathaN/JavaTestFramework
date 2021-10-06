@@ -9,6 +9,7 @@ import org.json.simple.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.junit.Test;
 import org.testng.Assert;
 import ui.utils.BPPLogManager;
 import ui.utils.Conditions;
@@ -199,13 +200,20 @@ public class ProductFactoryStepDefs {
         JSONObject recordsList = restController.requestNegativeProcess(name, parameters);
         String message = (String) recordsList.get("message");
 
-        Pattern pattern = Pattern.compile("<(.*?)>");
-        Matcher matcher = pattern.matcher(errorName);
-        matcher.find();
-        String errorSample = TestParametersController.checkIfSpecialParameter(matcher.group(1));
-        String errorMessage = errorName.replaceFirst("<(.*?)>",errorSample);
+        if(errorName.contains("<EC_")) {
+            String errorMessage = null;
+            Pattern pattern = Pattern.compile("<(.*?)>");
+            Matcher matcher = pattern.matcher(errorName);
+            while(matcher.find()) {
+               String errorSample = TestParametersController.checkIfSpecialParameter(matcher.group(1));
+               errorMessage = errorName.replaceFirst(matcher.group(0), errorSample);
+               errorName = errorMessage;
+            }
+            assertThat(message, containsString(errorMessage));
+        } else {
+            assertThat(message, containsString(errorName));
+        }
 
-        assertThat(message, containsString(errorMessage));
 
         /*Get JSON object values*/
         String log = "<pre><br>" + refDataName + ": " + "<br>" + "<font color='red'><b>" + message + "</font></b>" + "</pre>";
