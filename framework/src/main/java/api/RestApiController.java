@@ -132,6 +132,15 @@ public class RestApiController {
                         ((JSONObject) bodyArray.get(0)).put("startTime", TestParametersController.checkIfSpecialParameter(startTime));
                         ((JSONObject) bodyArray.get(0)).put("endTime", TestParametersController.checkIfSpecialParameter(endTime));
                         bodyList.add(String.valueOf(bodyArray));
+                    } else if (commandKey.equals("dateTimes")) {
+                        ArrayList<String> bodyList = new ArrayList<String>();
+                        JSONArray bodyArray = (JSONArray) command.get("dateTimes");
+                        JSONObject timingObj = (JSONObject) bodyArray.get(0);
+                        String sessionDate = (String) timingObj.get("sessionDate");
+                        String startTime = (String) timingObj.get("startTime");
+                        ((JSONObject) bodyArray.get(0)).put("sessionDate", TestParametersController.checkIfSpecialParameter(sessionDate));
+                        ((JSONObject) bodyArray.get(0)).put("startTime", TestParametersController.checkIfSpecialParameter(startTime));
+                        bodyList.add(String.valueOf(bodyArray));
                     } else if (commandKey.toString().contains("References")) {
                         JSONArray jArray = (JSONArray) value;
                         ArrayList<String> bodyList = new ArrayList<String>();
@@ -219,6 +228,9 @@ public class RestApiController {
             extractPropperties(recordsData.values().iterator().next(), recordsList, "", recordsArr.size());
         } else if (recordsData.containsKey("sessions")) {
             JSONArray recordsArr = (JSONArray) recordsData.get("sessions");
+            extractPropperties(recordsData.values().iterator().next(), recordsList, "", recordsArr.size());
+        } else if (recordsData.containsKey("activateInstances")) {
+            JSONArray recordsArr = (JSONArray) recordsData.get("activateInstances");
             extractPropperties(recordsData.values().iterator().next(), recordsList, "", recordsArr.size());
         } else {
             extractPropperties(recordsData.values().iterator().next(), recordsList, "", 1);
