@@ -50,8 +50,8 @@ Feature: Create a Single Booking
     And I click on the "Salesforce Quotes Select Product Button" element
     And I wait for "2" seconds
     And I click on the "Salesforce Quotes Select Product Page Save" element
-    And I wait for "1" seconds
-    And I click on the "Salesforce Quotes Edit Page Save" element
+    #And I wait for "1" seconds
+    #And I click on the "Salesforce Quotes Edit Page Save" element
     Then I click on the "Salesforce Quotes Edit" element
     And I click on the "Salesforce Quotes Ordered Checkbox" element by JS
     And I click on the "Salesforce Quote Booking Type Dropdown" element

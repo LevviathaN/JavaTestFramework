@@ -217,6 +217,9 @@ public class RestApiController {
         if (recordsData.containsKey("steps")) {
             JSONArray recordsArr = (JSONArray) recordsData.get("steps");
             extractPropperties(recordsData.values().iterator().next(), recordsList, "", recordsArr.size());
+        } else if (recordsData.containsKey("sessions")) {
+            JSONArray recordsArr = (JSONArray) recordsData.get("sessions");
+            extractPropperties(recordsData.values().iterator().next(), recordsList, "", recordsArr.size());
         } else {
             extractPropperties(recordsData.values().iterator().next(), recordsList, "", 1);
         }
@@ -263,7 +266,7 @@ public class RestApiController {
                 } else if (inputObject.get(key) instanceof JSONObject) {
                     extractPropperties((JSONObject) inputObject.get(key), targetList, nameKey + capKey, arrSize);
                 } else {
-                    String entryKey = targetList.containsKey(nameKey + capKey) ? nameKey + capKey + "Copy" : nameKey + capKey;
+                    String entryKey = targetList.containsKey(nameKey + capKey) ? nameKey + capKey + " Copy" : nameKey + capKey;
                     targetList.put(entryKey, inputObject.get(key));
                 }
             }
