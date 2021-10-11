@@ -55,6 +55,7 @@ public class StepDefinitions extends SeleniumHelper {
     public void i_am_on_url(String url) {
         Reporter.log("Executing step: I am on '" + url + "' url");
         String processedUrl = TestParametersController.checkIfSpecialParameter(url);
+        BPPLogManager.getLogger().info("Navigating to " + url);
         driver().get(processedUrl);
         if (!url.equals(processedUrl)) {
             Reporter.log("<pre>[input test parameter] " + url + "' -> '" + processedUrl + "' [output value]</pre>");
@@ -590,13 +591,12 @@ public class StepDefinitions extends SeleniumHelper {
     }
 
     /**
-     * Definition scroll the page to the bottom after page is loaded
+     * Definition to capture text data as EC variable
      *
      * @param element          locator of element you want to check if it's visible and soon to put into Execution Context
      * @param executionContext Name that starts with 'EC_' that is used to store saved text value from element
      * @author Andrii Yakymchuk
      */
-
     @And("^I capture text data \"([^\"]*)\" as \"([^\"]*)\" variable$")
     public void i_capture_text_data_as_variable(String element, String executionContext) {
         String value = getTextValueFromField(initElementLocator(element));
