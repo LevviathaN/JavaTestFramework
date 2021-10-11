@@ -723,5 +723,52 @@ public class SpecialStepDefs extends SeleniumHelper {
             Reporter.log("Condition " + conditionParameter + condition + " is not true, so JS code will not be executed!");
         }
     }
+
+    /**
+     * Definition to check value of specified css style
+     *
+     * @param attributeName  name of css attribute of element you want to check
+     * @param elementLocator name or value of needed element
+     * @param cssValue value that tested attribute should have
+     * @author yzosin
+     */
+    @When("^Сss \"([^\"]*)\" of \"([^\"]*)\" \"([^\"]*)\" should have value \"([^\"]*)\"$")
+    public void element_special_css_should_have_value(String attributeName, String elementLocator, String elementType, String cssValue) {
+        Reporter.log("Executing step: CSS value '" + attributeName + "' of '" + elementLocator + "' should have value '" + cssValue + "'");
+        if(specialLocatorsMap.containsKey(elementType)) {
+            String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
+            String xpathTemplate = specialLocatorsMap.get(elementType);
+            String resultingXpath = xpathTemplate.replaceAll("PARAMETER", processedLocator);
+            Assert.assertTrue(findElement(initElementLocator(resultingXpath)).getCssValue(attributeName).equalsIgnoreCase(cssValue));
+            if(!elementLocator.equals(processedLocator)){
+                Reporter.log("<pre>[input test parameter] " + elementLocator + "' -> '" + processedLocator + "' [output value]</pre>");
+            }
+        } else {
+            Reporter.fail("No such locator template key");
+        }
+    }
+
+    /**
+     * Definition to capture text data as EC variable
+     *
+     * @param elementType xpath template of needed element
+     * @param executionContext Name that starts with 'EC_' that is used to store saved text value from element
+     * @author yzosin
+     */
+    @And("^I capture text data \"([^\"]*)\" \"([^\"]*)\" as \"([^\"]*)\" variable$")
+    public void i_capture_text_data_special_as_variable(String elementLocator, String elementType, String executionContext) {
+        if (specialLocatorsMap.containsKey(elementType)) {
+            String xpathTemplate = specialLocatorsMap.get(elementType);
+            String resultingXpath = xpathTemplate.replaceAll("PARAMETER",
+                    TestParametersController.checkIfSpecialParameter(elementLocator));
+            String value = getTextValueFromField(initElementLocator(resultingXpath));
+            Reporter.log("Capturing data from : " + initElementLocator(resultingXpath) + ": " + executionContext);
+            ExecutionContextHandler.setExecutionContextValueByKey(executionContext, value);
+            Reporter.log("Saving EC key " + executionContext + " = " + value);
+        } else {
+            Reporter.log("Cannot save EC value with an empty key. Check your parameters.");
+        }
+    }
 }
+
 

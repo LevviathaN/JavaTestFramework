@@ -64,6 +64,7 @@ MD_BPPADMINISTRATEURL,https://bppsandbox.administrateapp.com,descr.
 MD_TOTARALOGINURL,https://totara-stage-bppdigital.bppuniversity.com,descr.
 MD_PDCOURSEURL,http://web-stage-bppdigital.bppuniversity.com/courses/accountancy-and-tax/automation-regression-course-do-not-amend,descr.
 MD_PRODUCTFACTORYURLNEW,https://uat-products.bpp.com/,descr.
+MD_BPPDIGITALECOMMERCEURL,http://web-stage-bppdigital.bppuniversity.com/ecommerceregression,descr.
 MD_CUSTOMERGROUP,SELFFUND,descr.
 MD_LEGALPRACTICECOURSE,Legal Practice Course (LPC) [Bristol] - Full Time SEP-2018,descr.
 MD_SFOFFERING,598587,descr.
@@ -79,3 +80,5 @@ MD_CREDITCARDHOLDERNAME,Adyen Test,descr.
 MD_CREDITCARDEXPIRYMONTH,10,descr.
 MD_CREDITCARDEXPIRYYEAR,2022,descr.
 MD_CREDITCARDCVV,737,descr.
+MD_VISACARDCVV,123,descr.
+MD_MASTERCARDNUMBER,2147483647,descr.
