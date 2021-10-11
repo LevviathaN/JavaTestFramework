@@ -518,7 +518,7 @@
   },
   {
     "name": "Product Factory course instance Deactivate button",
-    "value": "xpath=//p[text()='PARAMETER']/../../../../following-sibling::div/button/span[text()='Deactivate']/.."
+    "value": "xpath=//*[text()='PARAMETER']/ancestor::div[@class]/following-sibling::div/button/span[text()='Deactivate']/.."
   },
   {
     "name": "Product Factory course instance Delete button",
