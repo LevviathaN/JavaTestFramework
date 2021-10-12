@@ -104,6 +104,8 @@ public static ReusableRunner getInstance() {
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_PERFORM_RIGHT_MOUSE_CLICK_ON_THE_ElEMENT_SPECIAL"), () -> specialStepDefs.i_right_click_on_element_with_parameter_special(arg1,arg2));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get( "I_DOUBLECLICK_ON_THE_ElEMENT_SPECIAL"), () -> specialStepDefs.i_doubleclick_on_element_with_parameter_special(arg1, arg2));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_JS_CODE_IF"), () -> specialStepDefs.i_execute_js_code_if(arg1, arg2, arg3));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("ELEMENT_SPECIAL_CSS_SHOULD_HAVE_VALUE"), ()-> specialStepDefs.element_special_css_should_have_value(arg1, arg2, arg3,arg4));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CAPTURE_DATA_SPECIAL_PARAMETER"), ()-> specialStepDefs.i_capture_text_data_special_as_variable(arg1, arg2, arg3));
         //PF Steps
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_GENERATE_NEW_ISBN_CODE"), () ->  pfStepDefs.i_generate_new_isbn_code(arg1));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_API_STEP"), () ->  pfStepDefs.i_execute_api_step(arg1));

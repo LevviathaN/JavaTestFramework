@@ -141,6 +141,14 @@
     "value": "xpath=//label[contains(text(), 'PARAMETER')]/..//input"
   },
   {
+    "name": "BPP Digital Checkout Registration Input Field",
+    "value": "xpath=(//label[contains(text(), 'PARAMETER')]/following-sibling::input)[1]"
+  },
+  {
+    "name": "BPP Digital Checkout Registration Payment Field",
+    "value": "xpath= (//label[contains(text(), 'PARAMETER')]/following-sibling::div)[1]"
+  },
+  {
     "name": "BPP Digital Mobile RFI Input Field",
     "value": "xpath=(//label[contains(text(), 'PARAMETER')]/..//input)[last()]"
   },
@@ -219,6 +227,18 @@
   {
     "name": "BPP Digital Dates and Prices Location filter option",
     "value": "xpath=//div[@class='button-text' and contains(.,'Location')]//following::div[@class='dropdown-menu']//span[contains(.,'PARAMETER')]"
+  },
+  {
+    "name": "BPP Digital Basket Summary Section",
+    "value": "xpath=(//section[contains(@class,'priceGrid')]//dt[contains(.,'PARAMETER')]//following::dd)[1]"
+  },
+  {
+    "name": "BPP Digital Checkout Progress Bar",
+    "value": "xpath=//div[contains(@class,'progressBar') and contains(.,'PARAMETER')]/preceding-sibling::div"
+  },
+  {
+    "name": "BPP Digital Checkout Personal Details Booking Page",
+    "value": "xpath=//h2[contains(.,'be enrolled as')]/following-sibling::dl//*[contains(.,'PARAMETER')]"
   },
   {
     "name": "Build Empire Breadcrumb Not Clickable Tab",
@@ -719,6 +739,10 @@
   {
     "name": "Salesforce checkbox",
     "value": "xpath=//div[contains(@class,'isModal inlinePanel oneRecordActionWrapper')]//span[text()='PARAMETER']//following::input[1]"
+  },
+  {
+    "name": "Salesforce Invoice Price Info",
+    "value": "xpath=//span[contains(.,'Price Information')]//following::div[1]//span[text()='PARAMETER']//following::div[2]//span//slot/slot//slot/*"
   },
   {
     "name": "Totara Assessment radiobutton",

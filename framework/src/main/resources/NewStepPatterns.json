@@ -20,6 +20,10 @@
     "value": "^Сss \"([^\"]*)\" of \"([^\"]*)\" should have value \"([^\"]*)\"$"
   },
   {
+    "name": "ELEMENT_SPECIAL_CSS_SHOULD_HAVE_VALUE",
+    "value": "^Сss \"([^\"]*)\" of \"([^\"]*)\" \"([^\"]*)\" should have value \"([^\"]*)\"$"
+  },
+  {
     "name": "ELEMENT_IS_ENABLED",
     "value": "^Element \"([^\"]*)\" should be \"([^\"]*)\"$"
   },
@@ -62,6 +66,10 @@
   {
     "name": "I_CAPTURE_DATA",
     "value": "^I capture text data \"([^\"]*)\" as \"([^\"]*)\" variable$"
+  },
+  {
+    "name": "I_CAPTURE_DATA_SPECIAL_PARAMETER",
+    "value": "^I capture text data \"([^\"]*)\" \"([^\"]*)\" as \"([^\"]*)\" variable$"
   },
   {
     "name": "I_CAPTURE_SPECIAL_DATA",
