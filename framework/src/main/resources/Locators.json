@@ -2780,6 +2780,14 @@
     "value": "xpath=//label[text()='Cost (£)']/following-sibling::*"
   },
   {
+    "name": "Product Factory Course Page Session Date Additional Filter From Field",
+    "value": "xpath=(//span[text()='Session Date']/following-sibling::div//input)[1]"
+  },
+  {
+    "name": "Product Factory Course Page Session Date Additional Filter To Field",
+    "value": "xpath=(//span[text()='Session Date']/following-sibling::div//input)[2]"
+  },
+  {
     "name": "Salesforce Account Creation Save button",
     "value": "xpath=(//div[@class='windowViewMode-normal oneRecordActionWrapper isModal active lafPageHost']//button[normalize-space()='Save'])[1]"
   },

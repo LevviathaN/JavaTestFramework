@@ -315,7 +315,7 @@ public class TestParametersController {
                     LocalDateTime now = LocalDateTime.now(ZoneId.of("Europe/London"));
                     if (element.contains("TMR")) {
                         now = now.plusDays(1);
-                    } else if (element.startsWith("YTD")) {
+                    } else if (element.contains("YTD")) {
                         now = now.minusDays(1);
                     }
                     String currentDateTime = dtf.format(now);
