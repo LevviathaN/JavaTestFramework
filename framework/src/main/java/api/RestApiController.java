@@ -123,14 +123,23 @@ public class RestApiController {
                         ArrayList<String> bodyList = new ArrayList<String>();
                         JSONArray bodyArray = (JSONArray) command.get("timings");
                         JSONObject timingObj = (JSONObject) bodyArray.get(0);
-                        String sessionTimingReference = (String) timingObj.get("sessionTimingReference");
-                        String sessionDate = (String) timingObj.get("sessionDate");
-                        String startTime = (String) timingObj.get("startTime");
-                        String endTime = (String) timingObj.get("endTime");
+                        String sessionTimingReference = parameters.containsKey("sessionTimingReference") ? parameters.get("sessionTimingReference") : (String) timingObj.get("sessionTimingReference");
+                        String sessionDate = parameters.containsKey("sessionDate") ? parameters.get("sessionDate") : (String) timingObj.get("sessionDate");
+                        String startTime = parameters.containsKey("startTime") ? parameters.get("startTime") : (String) timingObj.get("startTime");
+                        String endTime = parameters.containsKey("endTime") ? parameters.get("endTime") : (String) timingObj.get("endTime");
                         ((JSONObject) bodyArray.get(0)).put("sessionTimingReference", TestParametersController.checkIfSpecialParameter(sessionTimingReference));
                         ((JSONObject) bodyArray.get(0)).put("sessionDate", TestParametersController.checkIfSpecialParameter(sessionDate));
                         ((JSONObject) bodyArray.get(0)).put("startTime", TestParametersController.checkIfSpecialParameter(startTime));
                         ((JSONObject) bodyArray.get(0)).put("endTime", TestParametersController.checkIfSpecialParameter(endTime));
+                        bodyList.add(String.valueOf(bodyArray));
+                    } else if (commandKey.equals("dateTimes")) {
+                        ArrayList<String> bodyList = new ArrayList<String>();
+                        JSONArray bodyArray = (JSONArray) command.get("dateTimes");
+                        JSONObject timingObj = (JSONObject) bodyArray.get(0);
+                        String sessionDate = (String) timingObj.get("sessionDate");
+                        String startTime = (String) timingObj.get("startTime");
+                        ((JSONObject) bodyArray.get(0)).put("sessionDate", TestParametersController.checkIfSpecialParameter(sessionDate));
+                        ((JSONObject) bodyArray.get(0)).put("startTime", TestParametersController.checkIfSpecialParameter(startTime));
                         bodyList.add(String.valueOf(bodyArray));
                     } else if (commandKey.toString().contains("References")) {
                         JSONArray jArray = (JSONArray) value;
@@ -217,6 +226,12 @@ public class RestApiController {
         if (recordsData.containsKey("steps")) {
             JSONArray recordsArr = (JSONArray) recordsData.get("steps");
             extractPropperties(recordsData.values().iterator().next(), recordsList, "", recordsArr.size());
+        } else if (recordsData.containsKey("sessions")) {
+            JSONArray recordsArr = (JSONArray) recordsData.get("sessions");
+            extractPropperties(recordsData.values().iterator().next(), recordsList, "", recordsArr.size());
+        } else if (recordsData.containsKey("activateInstances")) {
+            JSONArray recordsArr = (JSONArray) recordsData.get("activateInstances");
+            extractPropperties(recordsData.values().iterator().next(), recordsList, "", recordsArr.size());
         } else {
             extractPropperties(recordsData.values().iterator().next(), recordsList, "", 1);
         }
@@ -263,7 +278,7 @@ public class RestApiController {
                 } else if (inputObject.get(key) instanceof JSONObject) {
                     extractPropperties((JSONObject) inputObject.get(key), targetList, nameKey + capKey, arrSize);
                 } else {
-                    String entryKey = targetList.containsKey(nameKey + capKey) ? nameKey + capKey + "Copy" : nameKey + capKey;
+                    String entryKey = targetList.containsKey(nameKey + capKey) ? nameKey + capKey + " Copy" : nameKey + capKey;
                     targetList.put(entryKey, inputObject.get(key));
                 }
             }

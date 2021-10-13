@@ -16,6 +16,7 @@ import org.openqa.selenium.Cookie;
 import org.openqa.selenium.NoSuchWindowException;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.ITest;
 import ui.utils.SeleniumHelper;
 import ui.utils.*;
 import ui.utils.bpp.ExecutionContextHandler;
@@ -567,13 +568,12 @@ public class StepDefinitions extends SeleniumHelper {
     }
 
     /**
-     * Definition scroll the page to the bottom after page is loaded
+     * Definition to capture text data as EC variable
      *
      * @param element          locator of element you want to check if it's visible and soon to put into Execution Context
      * @param executionContext Name that starts with 'EC_' that is used to store saved text value from element
      * @author Andrii Yakymchuk
      */
-
     @And("^I capture text data \"([^\"]*)\" as \"([^\"]*)\" variable$")
     public void i_capture_text_data_as_variable(String element, String executionContext) {
         String value = getTextValueFromField(initElementLocator(element));
@@ -847,16 +847,6 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @When("^I doubleclick on the \"([^\"]*)\" (?:button|link|option|element)$")
     public void i_doubleclick_on_the_button(String element) {
-//        Reporter.log("Executing step: I click on the '" + element + "' element");
-//        doubleClick(initElementLocator(element),
-//                UiHandlers.PF_SPINNER_HANDLER,
-//                UiHandlers.ACCEPT_ALERT,
-//                UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
-//                UiHandlers.PF_SCROLL_HANDLER,
-//                UiHandlers.PAGE_NOT_LOAD_HANDLER,
-//                UiHandlers.SF_CLICK_HANDLER,
-//                UiHandlers.WAIT_HANDLER,
-//                UiHandlers.DEFAULT_HANDLER);
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(element)
                 .setAction(ActionsWithLocator.DOUBLE_CLICK)

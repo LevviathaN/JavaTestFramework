@@ -664,6 +664,30 @@
     "value": "xpath=//div[@class='tip-content']"
   },
   {
+    "name": "BPP Digital Add to Basket First Course",
+    "value": "xpath=(//div[@class='purchase col']/button)[1]"
+  },
+  {
+    "name": "BPP Digital Header Basket",
+    "value": "xpath=//span[@class='basket-text']"
+  },
+  {
+    "name": "BPP Digital Checkout Payment Contact Address",
+    "value": "xpath=//h2[contains(.,'Contact address')]/./following-sibling::dl/dd"
+  },
+  {
+    "name": "BPP Digital Checkout Payment Card Number",
+    "value": "inframe=SalesforceEditTiersFrame>xpath=//input[@name='number']"
+  },
+  {
+    "name": "BPP Digital Checkout Payment CVV Number",
+    "value": "inframe=IframeSecond>xpath=//input[@name='securityCode']"
+  },
+  {
+    "name": "BPP Digital Checkout Basket Id",
+    "value": "xpath=(//*[contains(@class,'bookingCompletion')])[1]"
+  },
+  {
     "name": "Banner Username",
     "value": "xpath=//*[@id='username']"
   },
@@ -922,6 +946,10 @@
   {
     "name": "Direct App Additional Info Aged 19",
     "value": "xpath=//label[contains(.,'aged 19+ and have not been in the care ')]"
+  },
+  {
+    "name": "Direct App Additional Info Aged 16 and 18",
+    "value": "xpath=//label[contains(.,'aged between 16 and 18 years old, at the start of the course and have been in the care of your local authority')]"
   },
   {
     "name": "Direct App Additional Info Upload Button",
@@ -2752,6 +2780,14 @@
     "value": "xpath=//label[text()='Cost (£)']/following-sibling::*"
   },
   {
+    "name": "Product Factory Course Page Session Date Additional Filter From Field",
+    "value": "xpath=(//span[text()='Session Date']/following-sibling::div//input)[1]"
+  },
+  {
+    "name": "Product Factory Course Page Session Date Additional Filter To Field",
+    "value": "xpath=(//span[text()='Session Date']/following-sibling::div//input)[2]"
+  },
+  {
     "name": "Salesforce Account Creation Save button",
     "value": "xpath=(//div[@class='windowViewMode-normal oneRecordActionWrapper isModal active lafPageHost']//button[normalize-space()='Save'])[1]"
   },
@@ -2870,6 +2906,10 @@
   {
     "name": "Salesforce First Qualification Subject",
     "value": "xpath=(//div[@role='listbox']//ul//span[2])[1]"
+  },
+  {
+    "name": "Salesforce First Opportunity",
+    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//th/span[contains(.,'EC_BASKET_ID')]/a"
   },
   {
     "name": "Salesforce Frame",
@@ -3121,7 +3161,7 @@
   },
   {
     "name": "Salesforce Quotes Select Product Page Save",
-    "value": "inframe=Salesforce Frame>xpath=//*[@id='pcSave']"
+    "value": "inframe=Salesforce Frame>xpath=(//*[@id='mainButton'])[last()]"
   },
   {
     "name": "Salesforce Quotes Edit Page Save",
@@ -3170,6 +3210,10 @@
   {
     "name": "Salesforce Order Activate Popup",
     "value": "xpath=//button[@title='Activate']"
+  },
+  {
+    "name": "Salesforce Order Amount Data Field",
+    "value": "xpath=//div[@class='windowViewMode-normal oneContent active lafPageHost']//span[text()='Order Amount']//following-sibling::div/div/span"
   },
   {
     "name": "Salesforce Booking Search Account",
@@ -4016,18 +4060,6 @@
     "value": "xpath=//button[@id='login-signin']"
   },
   {
-    "name": "Yopmail Check Inbox",
-    "value": "xpath=//input[@value='Check Inbox']"
-  },
-  {
-    "name": "Yopmail Frame",
-    "value": "xpath=//iframe[@id='ifmail']"
-  },
-  {
-    "name": "Yopmail Search Field",
-    "value": "xpath=//td[@class='nw']/input[2]"
-  },
-  {
     "name": "ISBN Generator Number Field",
     "value": "xpath=//*[@class='content single text-center text-bold h1 char-break']"
   },
@@ -4054,6 +4086,10 @@
   {
     "name": "iframe",
     "value": "xpath=//iframe"
+  },
+  {
+    "name": "IframeSecond",
+    "value": "xpath=(//iframe)[2]"
   },
   {
     "name": "Nada Add More Inboxes Button",

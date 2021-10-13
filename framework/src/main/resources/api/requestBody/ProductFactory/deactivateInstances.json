@@ -1,0 +1,10 @@
+{
+  "operationName":"deactivateInstances",
+  "variables":{
+    "command":{
+      "instanceGroupReference":"EC_INSTANCE_GROUP_REFERENCE",
+      "deactivationReasonReference":"EC_DEACTIVATION_REASON_REFERENCE"
+    }
+  },
+  "query":"mutation deactivateInstances($command: DeactivateInstancesCommandInput!) { deactivateInstances(command: $command) { ...instanceStatus __typename }}fragment instanceStatus on Instance { reference status publishedDate availableOnWebsite deactivationReason { description preventReactivation __typename } createdOn createdBy updatedOn updatedBy __typename}"
+}
