@@ -123,10 +123,10 @@ public class RestApiController {
                         ArrayList<String> bodyList = new ArrayList<String>();
                         JSONArray bodyArray = (JSONArray) command.get("timings");
                         JSONObject timingObj = (JSONObject) bodyArray.get(0);
-                        String sessionTimingReference = (String) timingObj.get("sessionTimingReference");
-                        String sessionDate = (String) timingObj.get("sessionDate");
-                        String startTime = (String) timingObj.get("startTime");
-                        String endTime = (String) timingObj.get("endTime");
+                        String sessionTimingReference = parameters.containsKey("sessionTimingReference") ? parameters.get("sessionTimingReference") : (String) timingObj.get("sessionTimingReference");
+                        String sessionDate = parameters.containsKey("sessionDate") ? parameters.get("sessionDate") : (String) timingObj.get("sessionDate");
+                        String startTime = parameters.containsKey("startTime") ? parameters.get("startTime") : (String) timingObj.get("startTime");
+                        String endTime = parameters.containsKey("endTime") ? parameters.get("endTime") : (String) timingObj.get("endTime");
                         ((JSONObject) bodyArray.get(0)).put("sessionTimingReference", TestParametersController.checkIfSpecialParameter(sessionTimingReference));
                         ((JSONObject) bodyArray.get(0)).put("sessionDate", TestParametersController.checkIfSpecialParameter(sessionDate));
                         ((JSONObject) bodyArray.get(0)).put("startTime", TestParametersController.checkIfSpecialParameter(startTime));
