@@ -7,7 +7,7 @@ Feature: Checkout Journey for Not Logged User
   So for example, I should NOT be able to view the 'payment details' page without accessing the 'booking details' page first.
   Also, reloading any page should reset the journey page to the first page.
 
-  @Positive #TC-5454, 6103, 6008, 6129, 6130, 6467, 6532
+  @Positive @NotLogged #TC-5454, 6103, 6008, 6129, 6130, 6467, 6532, 6131, 6468
   Scenario: eCommerce - Checkout Journey Not Logged User VISA
     #Navigation through checkout
     And I am on "MD_COMMON_LINKS_BPPDIGITALECOMMERCEURL" URL
@@ -47,6 +47,7 @@ Feature: Checkout Journey for Not Logged User
     And I set "London" text to the "Town or city" "BPP Digital Checkout Registration Input Field"
     And I set "Greater London" text to the "County" "BPP Digital Checkout Registration Input Field"
     And I set "AL1 1AB" text to the "Postcode" "BPP Digital Checkout Registration Input Field"
+    Then I should see the "Booking details" "text"
     Then I should see the "EC_AUTO_FIRSTNAME" "BPP Digital Checkout Personal Details Booking Page"
     Then I should see the "EC_AUTO_EMAIL" "BPP Digital Checkout Personal Details Booking Page"
     Then I should see the "Booking Summary" "text"
@@ -94,7 +95,6 @@ Feature: Checkout Journey for Not Logged User
     Then I should see the "Booking complete" "element"
     And I should see the "EC_BASKET_ID" "text contained in element"
     #Then I should see the "EC_TOTAL" "element the last" WILL BE UNCOMMENTED AFTER PRICE IS FORMATTED CORRECTLY
-
     #Empty basket check
     Given I am on "https://web-stage-bppdigital.bppuniversity.com/basket/#/checkout" URL
     And I wait for "1" seconds
@@ -125,3 +125,9 @@ Feature: Checkout Journey for Not Logged User
     Then I should see the "Subtotal" "Salesforce Invoice Price Info"
     Then I should see the "Tax" "Salesforce Invoice Price Info"
     Then I should see the "Total Amount (With Tax)" "Salesforce Invoice Price Info"
+    And I capture text data "Subtotal" "Salesforce Invoice Price Info" as "EC_SFSUBTOTAL" variable
+    And I capture text data "Total Amount (With Tax)" "Salesforce Invoice Price Info" as "EC_SFTOTAL" variable
+    And I capture text data "Tax" "Salesforce Invoice Price Info" as "EC_SFTAX" variable
+    And I verify that "EC_SFTOTAL" element is equal to "EC_TOTAL" element
+    And I verify that "EC_SFTAX" element is equal to "EC_VAT" element
+    And I verify that "EC_SUBTOTAL" element is equal to "EC_SFSUBTOTAL" element
