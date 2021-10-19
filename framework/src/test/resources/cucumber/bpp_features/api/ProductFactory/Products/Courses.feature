@@ -26,6 +26,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -59,6 +60,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -98,6 +100,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -141,6 +144,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -184,6 +188,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -229,6 +234,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -274,6 +280,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -320,6 +327,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -362,6 +370,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -401,6 +410,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
     And I execute "Create Client" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -445,6 +455,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
     And I execute "Create Client" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -499,6 +510,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
     And I execute "Create Client" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -554,6 +566,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
     And I execute "Create Client" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -611,6 +624,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
     And I execute "Create Client" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -666,6 +680,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -720,6 +735,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -776,6 +792,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
     And I execute "Create Client" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -834,6 +851,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -892,6 +910,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
     And I execute "Create Client" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -960,6 +979,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
     And I execute "Create Client" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -1029,6 +1049,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
     And I execute "Create Client" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -1093,6 +1114,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -1184,6 +1206,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -1333,6 +1356,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
     And I execute "Create Client" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -1420,6 +1444,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
     And I execute "Create Client" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -1501,6 +1526,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -1538,6 +1564,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -1582,6 +1609,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
     And I execute "Create Client" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -1610,6 +1638,7 @@ Feature: Product Factory API Data Creation
     And I execute negative "Activate Instance" API step with error name "has incomplete Step due dates" and parameters
       |reference|EC_INSTANCE_REFERENCE|
     And I execute "Change Step Due Date" API step
+    And I debug
     And I execute "Change Step Due Date" API step with parameters
       |stepReference|EC_INSTANCE_STEPS_REFERENCE_COPY|
     And I execute "Activate Instance" API step
@@ -1643,6 +1672,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
     And I execute "Create Client" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -1695,6 +1725,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
     And I execute "Create Client" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -1793,6 +1824,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
     And I execute "Create Client" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
