@@ -93,6 +93,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
