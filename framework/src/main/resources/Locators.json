@@ -676,6 +676,10 @@
     "value": "xpath=//h2[contains(.,'Contact address')]/./following-sibling::dl/dd"
   },
   {
+    "name": "BPP Digital Checkout Payment Delivery Address",
+    "value": "xpath=//h2[contains(.,'Delivery address')]/./following-sibling::dl/dd"
+  },
+  {
     "name": "BPP Digital Checkout Payment Card Number",
     "value": "inframe=SalesforceEditTiersFrame>xpath=//input[@name='number']"
   },
@@ -3334,6 +3338,14 @@
   {
     "name": "Salesforce Usages Number",
     "value": "xpath=(//span[@title='Usages']//following-sibling::span)[last()]"
+  },
+  {
+    "name": "Salesforce Billing Address Order Page",
+    "value": "xpath=(//span[text()='Billing Address']//following::div/span/a[@title])[1]"
+  },
+  {
+    "name": "Salesforce Shipping Address Order Page",
+    "value": "xpath=(//span[text()='Shipping Address']//following::div/span/a[@title])[1]"
   },
   {
     "name": "Totara Account Expandable Menu",
