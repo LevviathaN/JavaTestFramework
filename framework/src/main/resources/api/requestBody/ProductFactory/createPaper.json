@@ -7,8 +7,15 @@
       "description": "ApiPaperDescription[####]",
       "isCba": false,
       "timeInHours": 6,
-      "examSchedule": "ONSITTING"
+      "examSchedule": "ONSITTING",
+      "paperExpiry":[
+        {
+          "expiryOption":"FIRSTSESSION",
+          "expiryWeeks":1,
+          "studyModeReference":"EC_STUDY_MODE_REFERENCE"
+        }
+      ]
     }
   },
-  "query": "mutation createPaper($command: CreatePaperCommandInput!) {  createPaper(command: $command) {  ...paper  __typename  } }  fragment paper on Paper {  reference  shortName  name  description  body {  reference  shortName  name  levels {  reference  shortName  name  __typename  }  __typename  }  levels {  reference  shortName  name  __typename  }  isCba  examSchedule  timeInHours  createdBy  createdOn  updatedBy  updatedOn  __typename } "
+  "query": "mutation createPaper($command: CreatePaperCommandInput!) { createPaper(command: $command) { ...paper __typename }}fragment paper on Paper { reference shortName name description body { reference shortName name levels { reference shortName name __typename } __typename } levels { reference shortName name __typename } expiry { expiryOption expiryWeeks studyMode { reference name __typename } __typename } isCba examSchedule timeInHours createdBy createdOn updatedBy updatedOn __typename}"
 }
