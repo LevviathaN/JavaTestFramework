@@ -1876,8 +1876,8 @@ Feature: Product Factory API Data Creation
     Then I execute "Create Course Bulk Operation" API step
     Then I execute "Course Bulk Operation Deactivate" API step
 
-  @BulkOperation @BulkPublish @RET #TC-4127, TC-4128
-  Scenario: Course Bulk Action - Include/Exclude Behaviour
+  @BulkOperation @BulkPublish #TC-4127, TC-4128
+  Scenario: Course Bulk Action - Include and Exclude Behaviour
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
       |target       |COURSETYPE|
@@ -1908,7 +1908,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
     And I execute "Create Client" API step
-    Given I execute "Create Study Mode" API step
+    And I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -1972,10 +1972,17 @@ Feature: Product Factory API Data Creation
     And I execute "Calculate Course Price" API step
     Then I execute "Create Course Bulk Operation" API step with parameters saving as "SECOND_"
       |courseReferences|EC_COURSE_REFERENCE|
+    Then I execute "Exclude Course" API step with parameters
+      |operationReference|EC_SECOND_COURSE_BULK_OPERATION_REFERENCE|
+      |excludeInstances|true|
+    Then I execute "Get Course Bulk Operation" API step with parameters
+      |reference|EC_SECOND_COURSE_BULK_OPERATION_REFERENCE|
+    Then I verify that "EC_GET_COURSE_BULK_OPERATION_COURSES_INCLUDED" element is equal to "false" element
+    Then I verify that "EC_GET_COURSE_BULK_OPERATION_COURSES_INSTANCES_INCLUDED" element is equal to "false" element
     Then I execute "Include Course" API step with parameters
-      |includeInstances|false|
-    Then I execute "Get Course Bulk Operation" API step
-
-
-#    Then I execute "" API step with parameters
-#      |operationReference|EC_SECOND_COURSE_BULK_OPERATION_REFERENCE|
+      |operationReference|EC_SECOND_COURSE_BULK_OPERATION_REFERENCE|
+      |includeInstances|true|
+    Then I execute "Get Course Bulk Operation" API step with parameters saving as "SECOND_"
+      |reference|EC_SECOND_COURSE_BULK_OPERATION_REFERENCE|
+    Then I verify that "EC_SECOND_GET_COURSE_BULK_OPERATION_COURSES_INCLUDED" element is equal to "true" element
+    Then I verify that "EC_SECOND_GET_COURSE_BULK_OPERATION_COURSES_INSTANCES_INCLUDED" element is equal to "true" element
