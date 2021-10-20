@@ -183,7 +183,7 @@ Feature: Product Factory Api
 #      |Y           |$Y          |             |$Y      |       |
 #      |Z           |$Z          |             |$Z      |       |
 
-  @CreateDataDrivenApi @Runn
+  @CreateDataDrivenApi
   Scenario: Create Data Set To Check Ordering Using API
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_"
       |dimensionType|PROJECT   |
@@ -362,7 +362,7 @@ Feature: Product Factory Api
 
 
 
-  @CreateDataDrivenApi @Run
+  @Debug
   Scenario Outline: Create Data Set To Check Ordering Using API Debug <type>
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_"
       |dimensionType|PROJECT   |
