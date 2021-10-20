@@ -3,13 +3,20 @@
   "variables": {
     "command": {
       "reference":"EC_PAPER_REFERENCE",
-      "shortName": "ApiPSNU[###]",
-      "name": "ApiPaperNameUpdated[####]",
-      "description": "ApiPaperDescriptionUpdated[####]",
-      "isCba": false,
-      "timeInHours": 6,
-      "examSchedule": "ONSITTING"
+      "shortName":"ApiPSNU[###]",
+      "name":"ApiPaperNameUpdated[####]",
+      "description":"ApiPaperDescriptionUpdated[####]",
+      "isCba":false,
+      "timeInHours":1,
+      "examSchedule":"ONSITTING",
+      "paperExpiry":[
+        {
+          "expiryOption":"FIRSTSESSION",
+          "expiryWeeks":1,
+          "studyModeReference":"EC_STUDY_MODE_REFERENCE"
+        }
+      ]
     }
   },
-  "query": "mutation updatePaper($command: UpdatePaperCommandInput!) { updatePaper(command: $command) { ...paper __typename } } fragment paper on Paper { reference shortName name description body { reference shortName name levels { reference shortName name __typename } __typename } levels { reference shortName name __typename } isCba examSchedule timeInHours createdBy createdOn updatedBy updatedOn __typename } "
+  "query":"mutation updatePaper($command: UpdatePaperCommandInput!) { updatePaper(command: $command) { ...paper __typename }}fragment paper on Paper { reference shortName name description body { reference shortName name levels { reference shortName name __typename } __typename } levels { reference shortName name __typename } expiry { expiryOption expiryWeeks studyMode { reference name __typename } __typename } isCba examSchedule timeInHours createdBy createdOn updatedBy updatedOn __typename}"
 }

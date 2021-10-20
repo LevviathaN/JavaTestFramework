@@ -289,7 +289,7 @@ public class RestApiController {
                 } else if (inputObject.get(key) instanceof JSONObject) {
                     extractPropperties((JSONObject) inputObject.get(key), targetList, nameKey + capKey, arrSize);
                 } else {
-                    String entryKey = targetList.containsKey(nameKey + capKey) ? nameKey + capKey + " Copy" : nameKey + capKey;
+                    String entryKey = targetList.containsKey(nameKey + capKey) ? nameKey + capKey + "Copy" : nameKey + capKey;
                     targetList.put(entryKey, inputObject.get(key));
                 }
             }
