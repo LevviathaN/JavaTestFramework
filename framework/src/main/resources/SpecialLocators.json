@@ -609,6 +609,34 @@
     "value": "xpath=//h4[text()='Edit Course']/following-sibling::button[span[text()='PARAMETER']]"
   },
   {
+    "name": "Product Factory First PLP Column Text By Row Number",
+    "value": "xpath=(//tbody/tr/td[1])[PARAMETER]"
+  },
+  {
+    "name": "Product Factory Second PLP Column Text By Row Number",
+    "value": "xpath=(//tbody/tr/td[2])[PARAMETER]"
+  },
+  {
+    "name": "Product Factory Third PLP Column Text By Row Number",
+    "value": "xpath=(//tbody/tr/td[3])[PARAMETER]"
+  },
+  {
+    "name": "Product Factory Fourth PLP Column Text By Row Number",
+    "value": "xpath=(//tbody/tr/td[4])[PARAMETER]"
+  },
+  {
+    "name": "Product Factory First PLP Row Text By Column Number",
+    "value": "xpath=(//tbody/tr/td[PARAMETER])[1]"
+  },
+  {
+    "name": "Product Factory Second PLP Row Text By Column Number",
+    "value": "xpath=(//tbody/tr/td[PARAMETER])[2]"
+  },
+  {
+    "name": "Product Factory Third PLP Row Text By Column Number",
+    "value": "xpath=(//tbody/tr/td[PARAMETER])[3]"
+  },
+  {
     "name": "Salesforce New Qualification input fields",
     "value": "xpath=//*[text()='PARAMETER']/following::input[1]"
   },

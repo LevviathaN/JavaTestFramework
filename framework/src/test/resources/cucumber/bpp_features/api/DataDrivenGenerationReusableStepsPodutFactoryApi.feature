@@ -182,3 +182,390 @@ Feature: Product Factory Api
 #      |X           |$X          |             |$X      |       |
 #      |Y           |$Y          |             |$Y      |       |
 #      |Z           |$Z          |             |$Z      |       |
+
+  @CreateDataDrivenApi
+  Scenario: Create Data Set To Check Ordering Using API
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Vertical" API step
+    And I execute "Create Class Category" API step
+    And I execute "Create Programme" API step
+    And I execute "Create Cohort" API step
+    And I execute "Create Vertical" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+
+
+    Then I execute "Create Body" API step with parameters saving as "B_"
+      |name       |$Ordering[BodyName]      |
+      |shortName  |$BOrdering[BodyShortName]|
+      |description|$BAuto[BodyDescription]  |
+    Then I execute "Create Body" API step with parameters saving as "C_"
+      |name       |$Ordering[BodyName]      |
+      |shortName  |$COrdering[BodyShortName]|
+      |description|$CAuto[BodyDescription]  |
+    Then I execute "Create Body" API step with parameters saving as "D_"
+      |name       |$Ordering[BodyName]      |
+      |shortName  |$DOrdering[BodyShortName]|
+      |description|$DAuto[BodyDescription]  |
+
+
+    And I execute "Create Sitting" API step with parameters saving as "B_"
+      |name|$BOrdering[SittingName]      |
+      |bodyReferences|EC_B_BODY_REFERENCE|
+    And I execute "Create Sitting" API step with parameters saving as "C_"
+      |name|$COrdering[SittingName]      |
+      |bodyReferences|EC_B_BODY_REFERENCE|
+    And I execute "Create Sitting" API step with parameters saving as "D_"
+      |name|$DOrdering[SittingName]      |
+      |bodyReferences|EC_B_BODY_REFERENCE|
+
+
+    And I execute "Create Course Type" API step with parameters saving as "B_"
+      |description|$BOrdering[CourseTypeDescription]|
+      |costCentreFinancialDimensionReference|EC_COURSE_TYPE_FINANCIAL_DIMENSION_REFERENCE|
+      |projectFinancialDimensionReference   |EC_COURSE_TYPE_FINANCIAL_DIMENSION_REFERENCE|
+    And I execute "Create Course Type" API step with parameters saving as "C_"
+      |description|$COrdering[CourseTypeDescription]|
+      |costCentreFinancialDimensionReference|EC_COURSE_TYPE_FINANCIAL_DIMENSION_REFERENCE|
+      |projectFinancialDimensionReference   |EC_COURSE_TYPE_FINANCIAL_DIMENSION_REFERENCE|
+    And I execute "Create Course Type" API step with parameters saving as "D_"
+      |description|$DOrdering[CourseTypeDescription]|
+      |costCentreFinancialDimensionReference|EC_COURSE_TYPE_FINANCIAL_DIMENSION_REFERENCE|
+      |projectFinancialDimensionReference   |EC_COURSE_TYPE_FINANCIAL_DIMENSION_REFERENCE|
+
+
+    And I execute "Create Client" API step with parameters saving as "B_"
+      |name|$BOrdering[ClientName]|
+    And I execute "Create Client" API step with parameters saving as "C_"
+      |name|$COrdering[ClientName]|
+    And I execute "Create Client" API step with parameters saving as "D_"
+      |name|$DOrdering[ClientName]|
+
+
+    And I execute "Create Paper" API step with parameters saving as "B_"
+      |name       |$BOrdering[PaperName]|
+      |shortName  |$BO[PprSN]      |
+      |description|$BOrdering[PaperDescription]|
+    And I execute "Create Paper" API step with parameters saving as "C_"
+      |name       |$COrdering[PaperName]|
+      |shortName  |$CO[PprSN]      |
+      |description|$COrdering[PaperDescription]|
+    And I execute "Create Paper" API step with parameters saving as "D_"
+      |name       |$DOrdering[PaperName]|
+      |shortName  |$DO[PprSN]      |
+      |description|$DOrdering[PaperDescription]|
+
+
+    And I execute "Create Level" API step with parameters saving as "B_"
+      |name       |$BOrdering[LevelName]      |
+      |shortName  |$BOrdering[LevelShortName] |
+      |description|$Ordering[LevelDescription]|
+    And I execute "Create Level" API step with parameters saving as "C_"
+      |name       |$COrdering[LevelName]      |
+      |shortName  |$COrdering[LevelShortName] |
+      |description|$Ordering[LevelDescription]|
+    And I execute "Create Level" API step with parameters saving as "D_"
+      |name       |$DOrdering[LevelName]      |
+      |shortName  |$DOrdering[LevelShortName] |
+      |description|$Ordering[LevelDescription]|
+
+
+    And I execute "Link Body To Levels" API step with parameters
+      |bodyReference  |EC_B_BODY_REFERENCE |
+      |levelReferences|EC_B_LEVEL_REFERENCE|
+    And I execute "Link Body To Levels" API step with parameters
+      |bodyReference  |EC_C_BODY_REFERENCE |
+      |levelReferences|EC_C_LEVEL_REFERENCE|
+    And I execute "Link Body To Levels" API step with parameters
+      |bodyReference  |EC_D_BODY_REFERENCE |
+      |levelReferences|EC_D_LEVEL_REFERENCE|
+
+    And I execute "Change Paper Body" API step with parameters
+      |paperReference|EC_B_PAPER_REFERENCE|
+      |bodyReference |EC_B_BODY_REFERENCE |
+    And I execute "Change Paper Body" API step with parameters
+      |paperReference|EC_C_PAPER_REFERENCE|
+      |bodyReference |EC_C_BODY_REFERENCE |
+    And I execute "Change Paper Body" API step with parameters
+      |paperReference|EC_D_PAPER_REFERENCE|
+      |bodyReference |EC_D_BODY_REFERENCE |
+
+
+    And I execute "Link Paper To Levels" API step with parameters
+      |paperReference  |EC_B_PAPER_REFERENCE|
+      |levelReferences |EC_B_LEVEL_REFERENCE|
+    And I execute "Link Paper To Levels" API step with parameters
+      |paperReference  |EC_C_PAPER_REFERENCE|
+      |levelReferences |EC_C_LEVEL_REFERENCE|
+    And I execute "Link Paper To Levels" API step with parameters
+      |paperReference  |EC_D_PAPER_REFERENCE|
+      |levelReferences |EC_D_LEVEL_REFERENCE|
+
+
+    And I execute "Create Region" API step
+
+
+    And I execute "Create Location" API step with parameters saving as "B_"
+      |name|$BOrdering[LocationName]|
+    And I execute "Create Location" API step with parameters saving as "C_"
+      |name|$COrdering[LocationName]|
+    And I execute "Create Location" API step with parameters saving as "D_"
+      |name|$DOrdering[LocationName]|
+
+
+    And I execute "Create Stock Site" API step
+
+
+    And I execute "Create Material Type" API step with parameters saving as "B_"
+      |name       |$BOrdering[MaterialTypeName]      |
+      |description|$Ordering[MaterialTypeDescription]|
+    And I execute "Create Material Type" API step with parameters saving as "C_"
+      |name       |$COrdering[MaterialTypeName]      |
+      |description|$Ordering[MaterialTypeDescription]|
+    And I execute "Create Material Type" API step with parameters saving as "D_"
+      |name       |$DOrdering[MaterialTypeName]      |
+      |description|$Ordering[MaterialTypeDescription]|
+
+
+    And I execute "Create Session Duration" API step with parameters saving as "B_"
+      |description|$BOrdering[SessionDurationDescription]|
+      |dateCount  |43           |
+    And I execute "Create Session Duration" API step with parameters saving as "C_"
+      |description|$COrdering[SessionDurationDescription]|
+      |dateCount  |43           |
+    And I execute "Create Session Duration" API step with parameters saving as "D_"
+      |description|$DOrdering[SessionDurationDescription]|
+      |dateCount  |43           |
+
+
+    And I execute "Create Deactivation Reason" API step with parameters saving as "B_"
+      |description|$BOrdering[DeactivationReasonDescription]|
+    And I execute "Create Deactivation Reason" API step with parameters saving as "C_"
+      |description|$COrdering[DeactivationReasonDescription]|
+    And I execute "Create Deactivation Reason" API step with parameters saving as "D_"
+      |description|$DOrdering[DeactivationReasonDescription]|
+
+
+
+  @Debug
+  Scenario Outline: Create Data Set To Check Ordering Using API Debug <type>
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Vertical" API step
+    And I execute "Create Class Category" API step
+    And I execute "Create Programme" API step
+    And I execute "Create Cohort" API step
+    And I execute "Create Vertical" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+
+
+    Then I execute "Create Body" API step with parameters saving as "B_"
+      |name       |$Ordering[BodyName]<varName>      |
+      |shortName  |$BOrdering[BodyShortName]<varName>|
+      |description|$BAuto[BodyDescription]<varName>  |
+    Then I execute "Create Body" API step with parameters saving as "C_"
+      |name       |$Ordering[BodyName]<varName>      |
+      |shortName  |$COrdering[BodyShortName]<varName>|
+      |description|$CAuto[BodyDescription]<varName>  |
+    Then I execute "Create Body" API step with parameters saving as "D_"
+      |name       |$Ordering[BodyName]<varName>      |
+      |shortName  |$DOrdering[BodyShortName]<varName>|
+      |description|$DAuto[BodyDescription]<varName>  |
+
+
+    And I execute "Create Sitting" API step with parameters saving as "B_"
+      |name|$BOrdering[SittingName]<varName>|
+      |bodyReferences|EC_B_BODY_REFERENCE   |
+    And I execute "Create Sitting" API step with parameters saving as "C_"
+      |name|$COrdering[SittingName]<varName>|
+      |bodyReferences|EC_C_BODY_REFERENCE   |
+    And I execute "Create Sitting" API step with parameters saving as "D_"
+      |name|$DOrdering[SittingName]<varName>|
+      |bodyReferences|EC_D_BODY_REFERENCE   |
+
+
+    And I execute "Create Course Type" API step with parameters saving as "B_"
+      |description|$BOrdering[CourseTypeDescription]<varName>|
+      |costCentreFinancialDimensionReference|EC_COURSE_TYPE_FINANCIAL_DIMENSION_REFERENCE|
+      |projectFinancialDimensionReference   |EC_COURSE_TYPE_FINANCIAL_DIMENSION_REFERENCE|
+    And I execute "Create Course Type" API step with parameters saving as "C_"
+      |description|$COrdering[CourseTypeDescription]<varName>|
+      |costCentreFinancialDimensionReference|EC_COURSE_TYPE_FINANCIAL_DIMENSION_REFERENCE|
+      |projectFinancialDimensionReference   |EC_COURSE_TYPE_FINANCIAL_DIMENSION_REFERENCE|
+    And I execute "Create Course Type" API step with parameters saving as "D_"
+      |description|$DOrdering[CourseTypeDescription]<varName>|
+      |costCentreFinancialDimensionReference|EC_COURSE_TYPE_FINANCIAL_DIMENSION_REFERENCE|
+      |projectFinancialDimensionReference   |EC_COURSE_TYPE_FINANCIAL_DIMENSION_REFERENCE|
+
+
+    And I execute "Create Client" API step with parameters saving as "B_"
+      |name|$BOrdering[ClientName]<varName>|
+    And I execute "Create Client" API step with parameters saving as "C_"
+      |name|$COrdering[ClientName]<varName>|
+    And I execute "Create Client" API step with parameters saving as "D_"
+      |name|$DOrdering[ClientName]<varName>|
+
+
+    And I execute "Create Paper" API step with parameters saving as "B_"
+      |name       |$BOrdering[PaperName]<varName>|
+      |shortName  |$BO[PprSN]<varName>      |
+      |description|$BOrdering[PaperDescription]<varName>|
+    And I execute "Create Paper" API step with parameters saving as "C_"
+      |name       |$COrdering[PaperName]<varName>|
+      |shortName  |$CO[PprSN]<varName>      |
+      |description|$COrdering[PaperDescription]<varName>|
+    And I execute "Create Paper" API step with parameters saving as "D_"
+      |name       |$DOrdering[PaperName]<varName>|
+      |shortName  |$DO[PprSN]<varName>      |
+      |description|$DOrdering[PaperDescription]<varName>|
+
+
+    And I execute "Create Level" API step with parameters saving as "B_"
+      |name       |$BOrdering[LevelName]<varName>      |
+      |shortName  |$BOrdering[LevelShortName]<varName> |
+      |description|$Ordering[LevelDescription]<varName>|
+    And I execute "Create Level" API step with parameters saving as "C_"
+      |name       |$COrdering[LevelName]<varName>      |
+      |shortName  |$COrdering[LevelShortName]<varName> |
+      |description|$Ordering[LevelDescription]<varName>|
+    And I execute "Create Level" API step with parameters saving as "D_"
+      |name       |$DOrdering[LevelName]<varName>      |
+      |shortName  |$DOrdering[LevelShortName]<varName> |
+      |description|$Ordering[LevelDescription]<varName>|
+
+
+    And I execute "Link Body To Levels" API step with parameters
+      |bodyReference  |EC_B_BODY_REFERENCE |
+      |levelReferences|EC_B_LEVEL_REFERENCE|
+    And I execute "Link Body To Levels" API step with parameters
+      |bodyReference  |EC_C_BODY_REFERENCE |
+      |levelReferences|EC_C_LEVEL_REFERENCE|
+    And I execute "Link Body To Levels" API step with parameters
+      |bodyReference  |EC_D_BODY_REFERENCE |
+      |levelReferences|EC_D_LEVEL_REFERENCE|
+
+    And I execute "Change Paper Body" API step with parameters
+      |paperReference|EC_B_PAPER_REFERENCE|
+      |bodyReference |EC_B_BODY_REFERENCE |
+    And I execute "Change Paper Body" API step with parameters
+      |paperReference|EC_C_PAPER_REFERENCE|
+      |bodyReference |EC_C_BODY_REFERENCE |
+    And I execute "Change Paper Body" API step with parameters
+      |paperReference|EC_D_PAPER_REFERENCE|
+      |bodyReference |EC_D_BODY_REFERENCE |
+
+
+    And I execute "Link Paper To Levels" API step with parameters
+      |paperReference  |EC_B_PAPER_REFERENCE|
+      |levelReferences |EC_B_LEVEL_REFERENCE|
+    And I execute "Link Paper To Levels" API step with parameters
+      |paperReference  |EC_C_PAPER_REFERENCE|
+      |levelReferences |EC_C_LEVEL_REFERENCE|
+    And I execute "Link Paper To Levels" API step with parameters
+      |paperReference  |EC_D_PAPER_REFERENCE|
+      |levelReferences |EC_D_LEVEL_REFERENCE|
+
+
+#    And I execute "Create Digital Content" API step
+    And I execute "Create Region" API step
+
+
+    And I execute "Create Location" API step with parameters saving as "B_"
+      |name|$BOrdering[LocationName]<varName>|
+    And I execute "Create Location" API step with parameters saving as "C_"
+      |name|$COrdering[LocationName]<varName>|
+    And I execute "Create Location" API step with parameters saving as "D_"
+      |name|$DOrdering[LocationName]<varName>|
+
+
+    And I execute "Create Stock Site" API step
+
+
+    And I execute "Create Material Type" API step with parameters saving as "B_"
+      |name       |$BOrdering[MaterialTypeName]<varName>      |
+      |description|$Ordering[MaterialTypeDescription]<varName>|
+    And I execute "Create Material Type" API step with parameters saving as "C_"
+      |name       |$COrdering[MaterialTypeName]<varName>      |
+      |description|$Ordering[MaterialTypeDescription]<varName>|
+    And I execute "Create Material Type" API step with parameters saving as "D_"
+      |name       |$DOrdering[MaterialTypeName]<varName>      |
+      |description|$Ordering[MaterialTypeDescription]<varName>|
+
+
+    And I execute "Create Session Duration" API step with parameters saving as "B_"
+      |description|$BOrdering[SessionDurationDescription]<varName>|
+      |dateCount  |43           |
+    And I execute "Create Session Duration" API step with parameters saving as "C_"
+      |description|$COrdering[SessionDurationDescription]<varName>|
+      |dateCount  |43           |
+    And I execute "Create Session Duration" API step with parameters saving as "D_"
+      |description|$DOrdering[SessionDurationDescription]<varName>|
+      |dateCount  |43           |
+
+
+    And I execute "Create Deactivation Reason" API step with parameters saving as "B_"
+      |description|$BOrdering[DeactivationReasonDescription]<varName>|
+    And I execute "Create Deactivation Reason" API step with parameters saving as "C_"
+      |description|$COrdering[DeactivationReasonDescription]<varName>|
+    And I execute "Create Deactivation Reason" API step with parameters saving as "D_"
+      |description|$DOrdering[DeactivationReasonDescription]<varName>|
+
+
+    Examples:
+      |type|varName|
+#      |A   |$A     |
+#      |B   |$B     |
+#      |C   |$C     |
+#      |D   |$D     |
+#      |E   |$E     |
+      |F   |$F     |
+#      |G   |$G     |
+#      |H   |$H     |
+#      |I   |$I     |
+#      |J   |$J     |
+#      |K   |$K     |
+#      |L   |$L     |
+#      |M   |$M     |
+#      |N   |$N     |
+#      |O   |$O     |
+#      |P   |$P     |
+#      |Q   |$Q     |
+#      |R   |$R     |
+#      |S   |$S     |
+#      |T   |$T     |
+#      |U   |$U     |
+#      |V   |$V     |
+#      |W   |$W     |
+#      |X   |$X     |
+#      |Y   |$Y     |
+#      |Z   |$Z     |
