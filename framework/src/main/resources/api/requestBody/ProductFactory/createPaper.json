@@ -11,7 +11,7 @@
       "paperExpiry":[
         {
           "expiryOption":"FIRSTSESSION",
-          "expiryWeeks":1,
+          "expiryWeeks":"~PapersExpiryWeeks[##]",
           "studyModeReference":"EC_STUDY_MODE_REFERENCE"
         }
       ]

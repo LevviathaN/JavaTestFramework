@@ -145,7 +145,7 @@ public class RestApiController {
                         ArrayList<String> bodyList = new ArrayList<String>();
                         JSONArray bodyArray = (JSONArray) command.get("paperExpiry");
                         JSONObject timingObj = (JSONObject) bodyArray.get(0);
-                        Long expiryWeeks = (Long) timingObj.get("expiryWeeks");
+                        String expiryWeeks = (String) timingObj.get("expiryWeeks");
                         String expiryOption = (String) timingObj.get("expiryOption");
                         String studyModeReference = (String) timingObj.get("studyModeReference");
                         ((JSONObject) bodyArray.get(0)).put("expiryWeeks", Integer.parseInt(TestParametersController.checkIfSpecialParameter(String.valueOf(expiryWeeks))));
@@ -204,12 +204,17 @@ public class RestApiController {
                     if (!(value == null)) {
                         if (!(variables.get("reference") == null)
                                 || (!(variables.get("instanceReference") == null))
-                                || (!(variables.get("instanceGroupReference") == null))
-                        ) {
+                                || (!(variables.get("instanceGroupReference") == null)))
+                        {
                             variables.put(variablesKey, TestParametersController.checkIfSpecialParameter(value.toString()));
                         }
-                        if (!(variables.get("filter") == null)) {
+                        if (variables.get("filter").toString().equals("{}")) {
                             variables.put("filter", new JSONObject());
+                        } else if (variables.get("filter").toString().contains("searchTerm")) {
+                            JSONObject filterObj = (JSONObject) variables.get("filter");
+                            String searchTerm = (String) filterObj.get("searchTerm");
+                            filterObj.put("searchTerm", TestParametersController.checkIfSpecialParameter(searchTerm));
+
                         }
                     }
                 }
