@@ -84,3 +84,8 @@ Feature: Product Factory API Data Creation
     Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     Then I execute "Link Paper To Levels" API step
+
+  @StudyMode #TC-6685, TC-6686
+  Scenario: Scheduled Auto De-publish of courses from the website
+    Given I execute "Create Study Mode" API step
+    Given I execute "Create Paper" API step

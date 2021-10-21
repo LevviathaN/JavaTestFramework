@@ -145,7 +145,7 @@ public class RestApiController {
                         ArrayList<String> bodyList = new ArrayList<String>();
                         JSONArray bodyArray = (JSONArray) command.get("paperExpiry");
                         JSONObject timingObj = (JSONObject) bodyArray.get(0);
-                        Long expiryWeeks = (Long) timingObj.get("expiryWeeks");
+                        String expiryWeeks = (String) timingObj.get("expiryWeeks");
                         String expiryOption = (String) timingObj.get("expiryOption");
                         String studyModeReference = (String) timingObj.get("studyModeReference");
                         ((JSONObject) bodyArray.get(0)).put("expiryWeeks", Integer.parseInt(TestParametersController.checkIfSpecialParameter(String.valueOf(expiryWeeks))));
