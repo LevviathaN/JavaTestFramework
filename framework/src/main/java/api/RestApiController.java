@@ -204,12 +204,17 @@ public class RestApiController {
                     if (!(value == null)) {
                         if (!(variables.get("reference") == null)
                                 || (!(variables.get("instanceReference") == null))
-                                || (!(variables.get("instanceGroupReference") == null))
-                        ) {
+                                || (!(variables.get("instanceGroupReference") == null)))
+                        {
                             variables.put(variablesKey, TestParametersController.checkIfSpecialParameter(value.toString()));
                         }
-                        if (!(variables.get("filter") == null)) {
+                        if (variables.get("filter").toString().equals("{}")) {
                             variables.put("filter", new JSONObject());
+                        } else if (variables.get("filter").toString().contains("searchTerm")) {
+                            JSONObject filterObj = (JSONObject) variables.get("filter");
+                            String searchTerm = (String) filterObj.get("searchTerm");
+                            filterObj.put("searchTerm", TestParametersController.checkIfSpecialParameter(searchTerm));
+
                         }
                     }
                 }
