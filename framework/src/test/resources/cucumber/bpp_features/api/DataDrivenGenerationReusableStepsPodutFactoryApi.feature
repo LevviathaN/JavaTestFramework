@@ -184,7 +184,7 @@ Feature: Product Factory Api
 #      |Z           |$Z          |             |$Z      |       |
 
   @CreateDataDrivenApi
-  Scenario: Create Data Set To Check Ordering Using API
+  Scenario: Create Data Set To Check Alphabetic Ordering Using API
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_"
       |dimensionType|PROJECT   |
       |target       |COURSETYPE|
@@ -359,6 +359,184 @@ Feature: Product Factory Api
       |description|$COrdering[DeactivationReasonDescription]|
     And I execute "Create Deactivation Reason" API step with parameters saving as "D_"
       |description|$DOrdering[DeactivationReasonDescription]|
+
+
+  @CreateDataDrivenApi
+  Scenario: Create Data Set To Check Numeric Ordering Using API
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Vertical" API step
+    And I execute "Create Class Category" API step
+    And I execute "Create Programme" API step
+    And I execute "Create Cohort" API step
+    And I execute "Create Vertical" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+
+
+    Then I execute "Create Body" API step with parameters saving as "1_"
+      |name       |$Numeric[BodyName]      |
+      |shortName  |$1Ordering[BodyShortName]|
+      |description|$1Auto[BodyDescription]  |
+    Then I execute "Create Body" API step with parameters saving as "2_"
+      |name       |$Numeric[BodyName]      |
+      |shortName  |$2Ordering[BodyShortName]|
+      |description|$2Auto[BodyDescription]  |
+    Then I execute "Create Body" API step with parameters saving as "3_"
+      |name       |$Numeric[BodyName]      |
+      |shortName  |$3Ordering[BodyShortName]|
+      |description|$3Auto[BodyDescription]  |
+
+
+    And I execute "Create Sitting" API step with parameters saving as "1_"
+      |name|$1Ordering[SittingName]      |
+      |bodyReferences|EC_1_BODY_REFERENCE|
+    And I execute "Create Sitting" API step with parameters saving as "2_"
+      |name|$2Ordering[SittingName]      |
+      |bodyReferences|EC_2_BODY_REFERENCE|
+    And I execute "Create Sitting" API step with parameters saving as "3_"
+      |name|$3Ordering[SittingName]      |
+      |bodyReferences|EC_3_BODY_REFERENCE|
+
+
+    And I execute "Create Course Type" API step with parameters saving as "1_"
+      |description|$1Ordering[CourseTypeDescription]|
+      |costCentreFinancialDimensionReference|EC_COURSE_TYPE_FINANCIAL_DIMENSION_REFERENCE|
+      |projectFinancialDimensionReference   |EC_COURSE_TYPE_FINANCIAL_DIMENSION_REFERENCE|
+    And I execute "Create Course Type" API step with parameters saving as "2_"
+      |description|$2Ordering[CourseTypeDescription]|
+      |costCentreFinancialDimensionReference|EC_COURSE_TYPE_FINANCIAL_DIMENSION_REFERENCE|
+      |projectFinancialDimensionReference   |EC_COURSE_TYPE_FINANCIAL_DIMENSION_REFERENCE|
+    And I execute "Create Course Type" API step with parameters saving as "3_"
+      |description|$3Ordering[CourseTypeDescription]|
+      |costCentreFinancialDimensionReference|EC_COURSE_TYPE_FINANCIAL_DIMENSION_REFERENCE|
+      |projectFinancialDimensionReference   |EC_COURSE_TYPE_FINANCIAL_DIMENSION_REFERENCE|
+
+
+    And I execute "Create Client" API step with parameters saving as "1_"
+      |name|$1Ordering[ClientName]|
+    And I execute "Create Client" API step with parameters saving as "2_"
+      |name|$2Ordering[ClientName]|
+    And I execute "Create Client" API step with parameters saving as "3_"
+      |name|$3Ordering[ClientName]|
+
+
+    And I execute "Create Paper" API step with parameters saving as "1_"
+      |name       |$1Ordering[PaperName]|
+      |shortName  |$1O[PprSN]      |
+      |description|$1Ordering[PaperDescription]|
+    And I execute "Create Paper" API step with parameters saving as "2_"
+      |name       |$2Ordering[PaperName]|
+      |shortName  |$2O[PprSN]      |
+      |description|$2Ordering[PaperDescription]|
+    And I execute "Create Paper" API step with parameters saving as "3_"
+      |name       |$3Ordering[PaperName]|
+      |shortName  |$3O[PprSN]      |
+      |description|$3Ordering[PaperDescription]|
+
+
+    And I execute "Create Level" API step with parameters saving as "1_"
+      |name       |$1Ordering[LevelName]      |
+      |shortName  |$1Ordering[LevelShortName] |
+      |description|$Numeric[LevelDescription]|
+    And I execute "Create Level" API step with parameters saving as "2_"
+      |name       |$2Ordering[LevelName]      |
+      |shortName  |$2Ordering[LevelShortName] |
+      |description|$Numeric[LevelDescription]|
+    And I execute "Create Level" API step with parameters saving as "3_"
+      |name       |$3Ordering[LevelName]      |
+      |shortName  |$3Ordering[LevelShortName] |
+      |description|$Numeric[LevelDescription]|
+
+
+    And I execute "Link Body To Levels" API step with parameters
+      |bodyReference  |EC_1_BODY_REFERENCE |
+      |levelReferences|EC_1_LEVEL_REFERENCE|
+    And I execute "Link Body To Levels" API step with parameters
+      |bodyReference  |EC_2_BODY_REFERENCE |
+      |levelReferences|EC_2_LEVEL_REFERENCE|
+    And I execute "Link Body To Levels" API step with parameters
+      |bodyReference  |EC_3_BODY_REFERENCE |
+      |levelReferences|EC_3_LEVEL_REFERENCE|
+
+    And I execute "Change Paper Body" API step with parameters
+      |paperReference|EC_1_PAPER_REFERENCE|
+      |bodyReference |EC_1_BODY_REFERENCE |
+    And I execute "Change Paper Body" API step with parameters
+      |paperReference|EC_2_PAPER_REFERENCE|
+      |bodyReference |EC_2_BODY_REFERENCE |
+    And I execute "Change Paper Body" API step with parameters
+      |paperReference|EC_3_PAPER_REFERENCE|
+      |bodyReference |EC_3_BODY_REFERENCE |
+
+
+    And I execute "Link Paper To Levels" API step with parameters
+      |paperReference  |EC_1_PAPER_REFERENCE|
+      |levelReferences |EC_1_LEVEL_REFERENCE|
+    And I execute "Link Paper To Levels" API step with parameters
+      |paperReference  |EC_2_PAPER_REFERENCE|
+      |levelReferences |EC_2_LEVEL_REFERENCE|
+    And I execute "Link Paper To Levels" API step with parameters
+      |paperReference  |EC_3_PAPER_REFERENCE|
+      |levelReferences |EC_3_LEVEL_REFERENCE|
+
+
+    And I execute "Create Region" API step
+
+
+    And I execute "Create Location" API step with parameters saving as "1_"
+      |name|$1Ordering[LocationName]|
+    And I execute "Create Location" API step with parameters saving as "2_"
+      |name|$2Ordering[LocationName]|
+    And I execute "Create Location" API step with parameters saving as "3_"
+      |name|$3Ordering[LocationName]|
+
+
+    And I execute "Create Stock Site" API step
+
+
+    And I execute "Create Material Type" API step with parameters saving as "1_"
+      |name       |$1Ordering[MaterialTypeName]      |
+      |description|$Numeric[MaterialTypeDescription]|
+    And I execute "Create Material Type" API step with parameters saving as "2_"
+      |name       |$2Ordering[MaterialTypeName]      |
+      |description|$Numeric[MaterialTypeDescription]|
+    And I execute "Create Material Type" API step with parameters saving as "3_"
+      |name       |$3Ordering[MaterialTypeName]      |
+      |description|$Numeric[MaterialTypeDescription]|
+
+
+    And I execute "Create Session Duration" API step with parameters saving as "1_"
+      |description|$1Ordering[SessionDurationDescription]|
+      |dateCount  |34           |
+    And I execute "Create Session Duration" API step with parameters saving as "2_"
+      |description|$2Ordering[SessionDurationDescription]|
+      |dateCount  |34           |
+    And I execute "Create Session Duration" API step with parameters saving as "3_"
+      |description|$3Ordering[SessionDurationDescription]|
+      |dateCount  |34           |
+
+
+    And I execute "Create Deactivation Reason" API step with parameters saving as "1_"
+      |description|$1Ordering[DeactivationReasonDescription]|
+    And I execute "Create Deactivation Reason" API step with parameters saving as "2_"
+      |description|$2Ordering[DeactivationReasonDescription]|
+    And I execute "Create Deactivation Reason" API step with parameters saving as "3_"
+      |description|$3Ordering[DeactivationReasonDescription]|
 
 
 

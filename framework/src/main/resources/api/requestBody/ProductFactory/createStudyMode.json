@@ -1,10 +1,12 @@
 {
-  "operationName": "createStudyMode",
-  "variables": {
-    "command": {
+  "operationName":"createStudyMode",
+  "variables":{
+    "command":{
       "name": "ApiStudyModeName[####]",
-      "description": "ApiStudyModeDescription[####]"
+      "description": "ApiStudyModeDescription[####]",
+      "expiryOption":"SECONDSESSION",
+      "expiryWeeks": "~StudyModeExpiryWeeks[##]"
     }
   },
-  "query": "mutation createStudyMode($command: CreateStudyModeCommandInput!) {  createStudyMode(command: $command) {  ...studyMode  __typename  } }  fragment studyMode on StudyMode {  reference  name  description  createdBy  createdOn  updatedBy  updatedOn  __typename } "
+  "query":"mutation createStudyMode($command: CreateStudyModeCommandInput!) { createStudyMode(command: $command) { ...studyMode __typename }}fragment studyMode on StudyMode { reference name description expiryOption expiryWeeks createdBy createdOn updatedBy updatedOn __typename}"
 }
