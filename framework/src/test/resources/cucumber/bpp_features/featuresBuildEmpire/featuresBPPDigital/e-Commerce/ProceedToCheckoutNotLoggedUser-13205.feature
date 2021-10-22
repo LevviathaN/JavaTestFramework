@@ -7,7 +7,7 @@ Feature: Checkout Journey for Not Logged User
   So for example, I should NOT be able to view the 'payment details' page without accessing the 'booking details' page first.
   Also, reloading any page should reset the journey page to the first page.
 
-  @Positive @NotLogged #TC-5454, 6103, 6008, 6129, 6130, 6467, 6532, 6131, 6468
+  @Positive @NotLogged #TC-5454, 6103, 6008, 6129, 6130, 6467, 6532, 6131, 6468, 6174
   Scenario: eCommerce - Checkout Journey Not Logged User VISA
     #Navigation through checkout
     And I am on "MD_COMMON_LINKS_BPPDIGITALECOMMERCEURL" URL
@@ -16,7 +16,7 @@ Feature: Checkout Journey for Not Logged User
     Then I validate text "CONTAINS=in basket" to be displayed for "BPP Digital Add to Basket First Course" element
     And I validate text "CONTAINS=1" to be displayed for "BPP Digital Header Basket" element
     And I click on the "BPP Digital Header Basket" button by JS
-    #Then I validate text "1" to be displayed for "BPP Digital Basket Section Items" element
+    Then I validate text "1" to be displayed for "Items" "BPP Digital Basket Summary Section"
     And I capture text data "Total" "BPP Digital Basket Summary Section" as "EC_TOTAL" variable
     And I capture text data "Sub total" "BPP Digital Basket Summary Section" as "EC_SUBTOTAL" variable
     And I capture text data "VAT (20%)" "BPP Digital Basket Summary Section" as "EC_VAT" variable
@@ -53,15 +53,14 @@ Feature: Checkout Journey for Not Logged User
     Then I should see the "Booking Summary" "text"
     Then I should see the "Apprenticeship Level 3 course" "text"
     Then I should see the "Data Technician" "text"
-    Then I should see the "0 Sessions starting " "text"
+    Then I should see the "0 Day sessions starting " "text"
     Then I should see the "Online" "text"
     Then I should see the "VAT (20%)" "text"
     Then I should see the "Sub total" "text"
     Then I should see the "Total" "text"
     Then I should see the "Items" "text"
     And I click on the "Show details" "element by title"
-    Then I should see the "0 Day sessions" "text"
-    Then I should see the "Learning materials included" "text"
+    Then I should see the "0 Day sessions starting " "text"
     And Сss "background-color" of "Details" "BPP Digital Checkout Progress Bar" should have value "rgba(55, 99, 173, 1)"
     Then I click on the "Continue to payment" "button"
     And I wait for "2" seconds

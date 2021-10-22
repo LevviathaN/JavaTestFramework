@@ -72,7 +72,6 @@ Feature: Checkout Journey to Login While Registration Amex
     Then I should see the "Delivery 1" "text contained in element"
     Then I should see the "LONDON" "text contained in element"
     Then I should see the "COUNTY" "text contained in element"
-    Then I should see the "BM1 5YZ" "text contained in element"
     And I capture text data "BPP Digital Checkout Basket Id" as "EC_BASKET_ID" variable
     #Hub login page
     Then I click on the "Go to hub" "BPP Digital Button"

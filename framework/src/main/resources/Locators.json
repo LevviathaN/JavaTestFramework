@@ -665,7 +665,7 @@
   },
   {
     "name": "BPP Digital Add to Basket First Course",
-    "value": "xpath=(//div[@class='purchase col']/button)[1]"
+    "value": "xpath=(//div[contains(@class,'purchase col')]/button)[1]"
   },
   {
     "name": "BPP Digital Header Basket",
