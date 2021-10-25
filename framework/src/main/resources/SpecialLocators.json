@@ -206,7 +206,7 @@
   },
   {
     "name": "BPP Digital View Dates and Prices button",
-    "value": "xpath=//div[text()='PARAMETER' and @class='card-title']/following-sibling::div//button[text()='View dates & prices']"
+    "value": "xpath=//div[text()='PARAMETER' and @class='card-title']/following-sibling::div//button[contains(text(),'View and buy courses')]"
   },
   {
     "name": "BPP Digital dropdown item",
@@ -227,6 +227,10 @@
   {
     "name": "BPP Digital Dates and Prices Location filter option",
     "value": "xpath=//div[@class='button-text' and contains(.,'Location')]//following::div[@class='dropdown-menu']//span[contains(.,'PARAMETER')]"
+  },
+  {
+    "name": "BPP Digital Add to Basket Item",
+    "value": "xpath=(//div[contains(@class,'purchase col')]/button)[PARAMETER]"
   },
   {
     "name": "BPP Digital Basket Summary Section",

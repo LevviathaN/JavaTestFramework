@@ -84,3 +84,11 @@ Feature: Product Factory API Data Creation
     Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     Then I execute "Link Paper To Levels" API step
+
+  @StudyMode #TC-6685, TC-6686
+  Scenario: Scheduled Auto De-publish of courses from the website
+    Given I execute "Create Study Mode" API step
+    Given I execute "Create Paper" API step
+    And I execute "Search Paper" API step
+    And I verify that "EC_PAPER_EXPIRY_EXPIRY_WEEKS" element is equal to "EC_SEARCH_PAPER_RESULT_EXPIRY_EXPIRY_WEEKS" element
+    And I verify that "EC_PAPER_EXPIRY_EXPIRY_OPTION" element is equal to "EC_SEARCH_PAPER_RESULT_EXPIRY_EXPIRY_OPTION" element
