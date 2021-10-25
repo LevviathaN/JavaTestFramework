@@ -7,58 +7,74 @@ Feature: Course - Update Instances for non draft Courses - BPP-4968
   Background:
     Given I execute "Generate ISBN" reusable step
     Given I execute "Log In" reusable step
-    And I execute "Remember Variables For Creation " reusable step
-    And I execute "Remember Variables Two" reusable step
 
-    And I execute "Create Location" reusable step replacing some steps
-      |4|I set "LocationNameTwo[######]" text to the "Name" "Product Factory text field"|
-      |5|I set "LocationAddressTwo[######]" text to the "Address Line 1" "Product Factory text field"|
-      |11|I should see the "EC_LOCATION_NAME_TWO" element|
-    And I execute "Create Location" reusable step replacing some steps
-      |4|I set "LocationNameThree[######]" text to the "Name" "Product Factory text field"|
-      |5|I set "LocationAddressThree[######]" text to the "Address Line 1" "Product Factory text field"|
-      |11|I should see the "EC_LOCATION_NAME_THREE" element|
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Vat Rule" API step saving as "SECOND_"
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Client" API step
+    Given I execute "Create Study Mode" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Digital Content" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I execute "Create Location" API step with parameters saving as "TWO_"
+      |name        |LocationNameTwo[######]   |
+      |addressLine1|LocationAddressTwo[######]|
+    And I execute "Create Location" API step with parameters saving as "THREE_"
+      |name        |LocationNameThree[######]   |
+      |addressLine1|LocationAddressThree[######]|
+    And I execute "Create Session Duration" API step
+    And I execute "Create Pricing Matrix" API step
+    And I execute "Create Prices" API step
+
+
+    And I execute "Remember Variables Two" reusable step
 
 
   @Positive @P1 @HappyPath #TC-2406
   Scenario: Amend Non Draft Course Instance
-    When I click on the "Products" "Product Factory navigation item"
-    When I click on the "Courses" "Product Factory navigation sub item"
-    Then I set "EC_COURSE_TYPE_DESCRIPTION" text to the "Search" "Product Factory text field" from keyboard
-    And I click on the "submit" "element by type"
-    And I click on the "EC_COURSE_TYPE_DESCRIPTION" "Product Factory edit button"
+    And I execute "Create Course" API step
+    And I execute "Create Session Duration" API step
+    And I execute "Create Stream" API step
+    And I execute "Create Instance" API step
+    And I execute "Change Instance Capacity" API step with parameters
+      |capacity|15|
+    And I execute "Get Instance Sessions" API step
+    And I execute "Change Session Timings" API step
+    And I execute "Get Instance Steps" API step
+    And I execute "Change Step Due Date" API step
+    And I execute "Calculate Course Price" API step
+    Then I execute "Activate Course" API step
+    And I execute "Activate Instance" API step
 
-
-#    # delete all instances
-#    When For each "EC_SESSION_DURATION_DESCRIPTION" "Product Factory Course Instance Delete button":
-#      |I click on the "EC_SESSION_DURATION_DESCRIPTION" "Product Factory Course Instance Delete button"|
-#      |I click on the "Yes" "Product Factory button"|
-#      |I wait for "3" seconds                       |
-
-    # delete all materials
-    Given I click on the "Materials" element
-    When For each "Product Factory Delete Course Material button" element:
-      |I click on the "Product Factory Delete Course Material button" element|
-      |I click on the "Yes" "Product Factory button"|
-      |I wait for "3" seconds                       |
-    And I shouldn't see the "Product Factory Delete Course Material button" element
-    Then I click on the "Instances" element
-
-    #Create instance
-    Then I execute "Create Course Instance" reusable step if "EC_LOCATION_NAME" ""
-    And I execute "Populate Course Instance Session Dates" reusable step
-    And I execute "Populate Course Instance Step Due Dates" reusable step
-    Then I execute "Keep the Course Activated" reusable step
-    And I should see the "Deactivate" "Product Factory button"
-    Then I execute "Keep the Course Instance Activated" reusable step
-    And I shouldn't see the "EC_LOCATION_NAME" "Product Factory course instance Delete button"
-
-    #Edit course
-    When I click on the "Products" "Product Factory navigation item"
-    When I click on the "Courses" "Product Factory navigation sub item"
-    And I set "EC_COURSE_TYPE_DESCRIPTION" text to the "Search" "Product Factory text field" from keyboard
-    And I click on the "submit" "element by type"
-    And I click on the "EC_COURSE_TYPE_DESCRIPTION" "Product Factory edit button"
+    Given I execute "Edit Course" reusable step
 
     #Verify edit buttons presence
     When I click on the "EC_LOCATION_NAME" "Product Factory course instance sessions dropdown button"
@@ -70,55 +86,45 @@ Feature: Course - Update Instances for non draft Courses - BPP-4968
     And I shouldn't see the "Default Session Duration" "Product Factory edit button"
     And I shouldn't see the "EC_SESSION_DURATION_DESCRIPTION" "Product Factory edit button"
 
-#    And Attribute "tabindex" of "EC_LOCATION_NAME" "Product Factory course instance Publish button" should have value "-1"
     When I click on the "Default Location" "Product Factory edit button"
-    And I click on the "EC_LOCATION_NAME_TWO" "Product Factory select button"
+    And I click on the "EC_TWO_LOCATION_NAME" "Product Factory select button"
     And I click on the "No" "Product Factory button"
 
     #Edit Capacity and publish changes
     When I click on the "Capacity" "Product Factory edit button"
     And I set "2" text to the "Capacity" "Product Factory text field"
     And I click on the "Save" "Product Factory button"
-    And Attribute "tabindex" of "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button" should have value "0"
-    And I click on the "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button"
+    And Attribute "tabindex" of "EC_TWO_LOCATION_NAME" "Product Factory course instance Publish button" should have value "0"
+    And I click on the "EC_TWO_LOCATION_NAME" "Product Factory course instance Publish button"
     And I click on the "Yes" "Product Factory button"
-    Then Attribute "tabindex" of "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button" should have value "-1"
+    Then Attribute "tabindex" of "EC_TWO_LOCATION_NAME" "Product Factory course instance Publish button" should have value "-1"
 
     #Edit Stream and publish changes
     When I click on the "Stream" "Product Factory edit button"
     And I click on the "EC_STREAM_NAME_TWO" "Product Factory select button"
-    And Attribute "tabindex" of "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button" should have value "0"
-    And I click on the "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button"
+    And Attribute "tabindex" of "EC_TWO_LOCATION_NAME" "Product Factory course instance Publish button" should have value "0"
+    And I click on the "EC_TWO_LOCATION_NAME" "Product Factory course instance Publish button"
     And I click on the "Yes" "Product Factory button"
-    Then Attribute "tabindex" of "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button" should have value "-1"
+    Then Attribute "tabindex" of "EC_TWO_LOCATION_NAME" "Product Factory course instance Publish button" should have value "-1"
 
     #Edit Location and publish changes
     When I click on the "EC_LOCATION_NAME" "Product Factory edit button"
-    And I click on the "EC_LOCATION_NAME_TWO" "Product Factory select button"
-    And Attribute "tabindex" of "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button" should have value "0"
-    And I click on the "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button"
+    And I click on the "EC_TWO_LOCATION_NAME" "Product Factory select button"
+    And Attribute "tabindex" of "EC_TWO_LOCATION_NAME" "Product Factory course instance Publish button" should have value "0"
+    And I click on the "EC_TWO_LOCATION_NAME" "Product Factory course instance Publish button"
     And I click on the "Yes" "Product Factory button"
-    Then Attribute "tabindex" of "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button" should have value "-1"
+    Then Attribute "tabindex" of "EC_TWO_LOCATION_NAME" "Product Factory course instance Publish button" should have value "-1"
 
     #Edit Session Dates and publish changes
-    When I click on the "EC_LOCATION_NAME_TWO" "Product Factory Session Dates button"
-    And I fill the "Product Factory Session Dates Popup Start Time Input Field" field with "PM"
-    And I fill the "Product Factory Session Dates Popup End Time Input Field" field with "PM"
+    When I click on the "EC_TWO_LOCATION_NAME" "Product Factory Session Dates button"
+    And I fill the "Product Factory Session Dates Popup Start Time Input Field" field with "AM"
+    And I fill the "Product Factory Session Dates Popup End Time Input Field" field with "AM"
     And I click on the "Next" "Product Factory button"
-    Then I should see the "15:00:00" "element"
-    Then I should see the "16:00:00" "element"
     And I click on the "Finish" "Product Factory button"
-    And I click on the "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button"
+    And I click on the "EC_TWO_LOCATION_NAME" "Product Factory course instance Publish button"
     And I click on the "Yes" "Product Factory button"
-    Then Attribute "tabindex" of "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button" should have value "-1"
+    Then Attribute "tabindex" of "EC_TWO_LOCATION_NAME" "Product Factory course instance Publish button" should have value "-1"
 
-    #Cleanup
-    When I click on the "EC_LOCATION_NAME_TWO" "Product Factory edit button"
-    And I click on the "EC_LOCATION_NAME" "Product Factory select button"
-    And Attribute "tabindex" of "EC_LOCATION_NAME" "Product Factory course instance Publish button" should have value "0"
-    And I click on the "EC_LOCATION_NAME" "Product Factory course instance Publish button"
-    And I click on the "Yes" "Product Factory button"
-    Then Attribute "tabindex" of "EC_LOCATION_NAME" "Product Factory course instance Publish button" should have value "-1"
 
   @Positive @P2 #TC-2407
   Scenario: Amend Non Draft Course Instance Additional Scenario
@@ -129,9 +135,9 @@ Feature: Course - Update Instances for non draft Courses - BPP-4968
     #Create second instance
     Then I click on the "Create" "Product Factory button"
     And I click on the "Default Session Duration" "Product Factory dropdown"
-    And I click on the "EC_TWO_DATES_SESSION_DURATION_DESCRIPTION" "Product Factory dropdown option"
+    And I click on the "EC_TWO_DATES_SESSION_DURATION_DESCRIPTION_TWO" "Product Factory dropdown option"
     And I click on the "Default Location" "Product Factory dropdown"
-    And I click on the "EC_LOCATION_NAME_THREE" "Product Factory dropdown option"
+    And I click on the "EC_THREE_LOCATION_NAME" "Product Factory dropdown option"
     And I click on the "Save" "Product Factory button"
 
     #Set session dates for both sessions of first instance
@@ -214,40 +220,40 @@ Feature: Course - Update Instances for non draft Courses - BPP-4968
     #Edit default location of first instance
     And Attribute "tabindex" of "EC_LOCATION_NAME" "Product Factory course instance Publish button" should have value "-1"
     When I click on the "Default Location" "Product Factory edit button"
-    And I click on the "EC_LOCATION_NAME_TWO" "Product Factory select button"
+    And I click on the "EC_TWO_LOCATION_NAME" "Product Factory select button"
     And I click on the "No" "Product Factory button"
 
     #Edit capacity of first instance
     When I click on the "Capacity" "Product Factory edit button"
     And I set "2" text to the "Capacity" "Product Factory text field"
     And I click on the "Save" "Product Factory button"
-    And Attribute "tabindex" of "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button" should have value "0"
-    And I click on the "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button"
+    And Attribute "tabindex" of "EC_TWO_LOCATION_NAME" "Product Factory course instance Publish button" should have value "0"
+    And I click on the "EC_TWO_LOCATION_NAME" "Product Factory course instance Publish button"
     And I click on the "Yes" "Product Factory button"
-    Then Attribute "tabindex" of "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button" should have value "-1"
+    Then Attribute "tabindex" of "EC_TWO_LOCATION_NAME" "Product Factory course instance Publish button" should have value "-1"
 
     #Edit stream of first instance
     When I click on the "Stream" "Product Factory edit button"
     And I click on the "EC_STREAM_NAME" "Product Factory select button"
-    And Attribute "tabindex" of "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button" should have value "0"
-    And I click on the "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button"
+    And Attribute "tabindex" of "EC_TWO_LOCATION_NAME" "Product Factory course instance Publish button" should have value "0"
+    And I click on the "EC_TWO_LOCATION_NAME" "Product Factory course instance Publish button"
     And I click on the "Yes" "Product Factory button"
-    Then Attribute "tabindex" of "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button" should have value "-1"
+    Then Attribute "tabindex" of "EC_TWO_LOCATION_NAME" "Product Factory course instance Publish button" should have value "-1"
 
     #Edit location name of first instance
-    Then I click on the "EC_LOCATION_NAME_TWO" "Product Factory course instance sessions dropdown button"
+    Then I click on the "EC_TWO_LOCATION_NAME" "Product Factory course instance sessions dropdown button"
     When I click on the "EC_LOCATION_NAME" "Product Factory edit button"
-    And I click on the "EC_LOCATION_NAME_TWO" "Product Factory select button"
+    And I click on the "EC_TWO_LOCATION_NAME" "Product Factory select button"
     And I wait for "5" seconds
-    And Attribute "tabindex" of "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button" should have value "0"
-    And I click on the "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button"
+    And Attribute "tabindex" of "EC_TWO_LOCATION_NAME" "Product Factory course instance Publish button" should have value "0"
+    And I click on the "EC_TWO_LOCATION_NAME" "Product Factory course instance Publish button"
     And I click on the "Yes" "Product Factory button"
     And I wait for "5" seconds
     #todo potential bug button dont become inactive
-    Then Attribute "tabindex" of "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button" should have value "-1"
+    Then Attribute "tabindex" of "EC_TWO_LOCATION_NAME" "Product Factory course instance Publish button" should have value "-1"
 
     #Edit session dates of first instance
-    When I click on the "EC_LOCATION_NAME_TWO" "Product Factory Session Dates button"
+    When I click on the "EC_TWO_LOCATION_NAME" "Product Factory Session Dates button"
     And I set "PM" text to the "1" "Product Factory Session Dates Popup Start Time Input Field"
     And I set "PM" text to the "1" "Product Factory Session Dates Popup End Time Input Field"
     And I click on the "Next" "Product Factory button"
@@ -257,7 +263,7 @@ Feature: Course - Update Instances for non draft Courses - BPP-4968
     Then I should see the "15:00:00" "element"
     Then I should see the "16:00:00" "element"
     And I click on the "Finish" "Product Factory button"
-    And I click on the "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button"
+    And I click on the "EC_TWO_LOCATION_NAME" "Product Factory course instance Publish button"
     And I click on the "Yes" "Product Factory button"
     And I wait for "5" seconds
-    Then Attribute "tabindex" of "EC_LOCATION_NAME_TWO" "Product Factory course instance Publish button" should have value "-1"
+    Then Attribute "tabindex" of "EC_TWO_LOCATION_NAME" "Product Factory course instance Publish button" should have value "-1"
