@@ -617,11 +617,11 @@
   },
   {
     "name": "BPP Digital Dates and Prices Number of Sessions field",
-    "value": "xpath=//*[text()='Weekday' and text()='sessions']"
+    "value": "xpath=(//div[@class='table-content row open ']//div[contains(@class,'course-timings-and-address')]//div[contains(@class,'row')]//span)[1]"
   },
   {
     "name": "BPP Digital Dates and Prices Number of Sessions For Multiple Address",
-    "value": "xpath=//div[@class='table-content row open ']//div[contains(@class,'course-timings-and-address')]//div[@class='row']//p"
+    "value": "xpath=//div[@class='table-content row open ']//div[contains(@class,'course-timings-and-address')]//div[contains(@class,'row')]//span"
   },
   {
     "name": "BPP Digital Dates and Prices Location For Instance",
@@ -633,7 +633,7 @@
   },
   {
     "name": "BPP Digital Dates and Prices Active Instance Google Pin",
-    "value": "xpath=//*[@class='bi bi-geo-alt']"
+    "value": "xpath=//*[contains(@class,'gmaps-pin')]"
   },
   {
     "name": "BPP Digital Dates and Prices Papers dropdown",
@@ -641,7 +641,7 @@
   },
   {
     "name": "BPP Digital Dates and Prices Course Instance entry",
-    "value": "xpath=//div[@id='course-instances-list']/*"
+    "value": "xpath=//div[contains(@class,'course-instances-list')]/*"
   },
   {
     "name": "BPP Digital Dates and Prices Course And Timings Section",
@@ -657,7 +657,7 @@
   },
   {
     "name": "BPP Digital Dates and Prices Course Type Tooltip",
-    "value": "xpath=(//div[@class='col courseType']//following-sibling::div)[1]"
+    "value": "xpath=(//div[@class='filter-tip'])[1]"
   },
   {
     "name": "BPP Digital Dates and Prices Tooltip Content",

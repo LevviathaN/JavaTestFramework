@@ -229,6 +229,10 @@
     "value": "xpath=//div[@class='button-text' and contains(.,'Location')]//following::div[@class='dropdown-menu']//span[contains(.,'PARAMETER')]"
   },
   {
+    "name": "BPP Digital Dates and Prices Study Mode option",
+    "value": "xpath=//div[@class='dropdown-menu']//span[contains(.,'PARAMETER')]"
+  },
+  {
     "name": "BPP Digital Add to Basket Item",
     "value": "xpath=(//div[contains(@class,'purchase col')]/button)[PARAMETER]"
   },
