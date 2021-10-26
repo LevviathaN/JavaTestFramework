@@ -42,8 +42,8 @@ Feature: Dates & Prices - Add HTML field to D&P component and enable component w
     And I wait for "3" seconds
 
     # Verify Paper Filters: TC-4939
-    And I hover over the "BPP Digital Dates and Prices Papers dropdown" button
-    And I click on the "Tax Compliance" "BPP Digital dropdown item"
+    And I click on the "Financial Management" "BPP Digital View Dates and Prices button"
+    And I click on the "Tax Compliance" "BPP Digital View Dates and Prices button"
     And I should see the "Fri 26 Nov 2021" "element"
     And I should see the "Mon 11 Oct 2021" "element"
 
