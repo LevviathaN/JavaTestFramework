@@ -48,6 +48,11 @@ public class StepDefinitions extends SeleniumHelper {
         }
     }
 
+    @Given("^I do debug$")
+    public void i_do_debug() {
+        String debug = "debug";
+    }
+
     /**
      * Definition to go to specified url.
      * Also checks if the parameter is Meta Data or Execution Context value

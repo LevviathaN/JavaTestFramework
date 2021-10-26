@@ -77,7 +77,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
         Reporter.log("<pre>[input test parameter] " + param + "' -> '" + parameter + "' [output value]</pre>");
         switch (actionName) {
             case WAIT:
-                action = () -> sleepFor(Integer.parseInt(parameter));
+                action = () -> sleepFor(Integer.parseInt(parameter) * 1000);
                 break;
             case EXECUTE_REUSABLE:
                 action = () -> ReusableRunner.getInstance().executeReusable(parameter);
@@ -147,7 +147,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                 action = () -> Assert.assertTrue(seleniumHelper.isElementPresentAndDisplay(locator));
                 break;
             case ABSENT:
-                action = () -> Assert.assertTrue(seleniumHelper.checkIfElementNotExist(locator));
+                action = () -> Assert.assertFalse(seleniumHelper.isElementPresentAndDisplay(locator));
                 break;
         }
         return this;

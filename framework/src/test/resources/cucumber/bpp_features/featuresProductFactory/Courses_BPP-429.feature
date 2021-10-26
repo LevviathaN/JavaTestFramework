@@ -9,7 +9,7 @@ Feature: Create Course Instance - BPP-429
     Given I execute "Log In" reusable step
     And I execute "Remember Variables For Creation " reusable step
 
-  @Positive @P1 @PartiallyCoveredWithApi @NeedToBeUI #TC-696, TC-2793, TC-2794, TC-2769, TC-2382, TC-2402, TC-2403
+  @Positive @P1 @PartiallyCoveredWithApi @NeedToBeUI @Run #TC-696, TC-2793, TC-2794, TC-2769, TC-2382, TC-2402, TC-2403
   Scenario: Create Course Instance
     Given I execute modified "Create Course" reusable step
       |13|Add|I click on the "Finish" "Product Factory button"|
