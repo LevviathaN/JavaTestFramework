@@ -184,6 +184,8 @@ Feature: Course Deactivatation & Redirect Rules - BPP-5491
     Then I click on the "Deactivation Reason" "Product Factory change button"
     And I click on the "EC_DEACTIVATION_REASON_DESCRIPTION" "Product Factory select button"
     Then I click on the "Redirect to Course" "Product Factory change button"
+    And I set "EC_COURSE_TYPE_DESCRIPTION_TWO" text to the "Search" "Product Factory text field" from keyboard
+    And I click on the "submit" "element by type two"
     And I click on the "EC_COURSE_TYPE_DESCRIPTION_TWO" "Product Factory select button"
     Then I click on the "Confirm Deactivation" "Product Factory button"
     And I click on the "Yes" "Product Factory button" if "Yes,Product Factory button" "element is present"
@@ -202,6 +204,8 @@ Feature: Course Deactivatation & Redirect Rules - BPP-5491
     Then I click on the "Deactivation Reason" "Product Factory change button"
     And I click on the "EC_DEACTIVATION_REASON_DESCRIPTION" "Product Factory select button"
     Then I click on the "Redirect to Course" "Product Factory change button"
+    And I set "EC_COURSE_TYPE_DESCRIPTION_THREE" text to the "Search" "Product Factory text field" from keyboard
+    And I click on the "submit" "element by type two"
     And I click on the "EC_COURSE_TYPE_DESCRIPTION_THREE" "Product Factory select button"
     Then I click on the "Confirm Deactivation" "Product Factory button"
     And I click on the "Yes" "Product Factory button" if "Yes,Product Factory button" "element is present"

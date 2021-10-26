@@ -93,7 +93,7 @@ Feature: Product Factory Api
       |description|$Auto[SessionDurationDescription]<varName>|
     And I execute "Create Session Duration" API step with parameters saving as "TWO_DATES_"
       |description|$Auto[TwoDatesSessionDurationDescription]<varName>|
-      |dateCout   |2                                                 |
+      |dateCount   |2                                                |
     And I execute "Create Material" API step with parameters
       |cost      |~Cost[1000]              |
       |price     |~Price[1000]             |
