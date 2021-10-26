@@ -26,7 +26,7 @@ and the any named VLE to be hidden
     And I should see the "SF CPQ flow test" "BPP Digital View Dates and Prices button"
     And I click on the "SF CPQ flow test" "BPP Digital View Dates and Prices button"
     Then I click on the "Location" "BPP Digital Dates and Prices Filter By"
-    Then I click on the "London" "BPP Digital Dates and Prices Location filter option"
+    Then I click on the "London Waterloo" "BPP Digital Dates and Prices Location filter option"
     And I click on the "Fri 4 Jun 2021" "element"
     Then I shouldn't see the "VLE" "contained in P element"
     And I should see the "Audit of Banks" "contained in P element"

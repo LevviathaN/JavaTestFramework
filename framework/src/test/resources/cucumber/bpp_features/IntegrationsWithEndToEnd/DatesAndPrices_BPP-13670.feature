@@ -28,7 +28,7 @@ Feature: Dates & Prices - Display all records for multi location and session tim
     And I click on the "Fri 4 Jun 2021" "element"
     And I should see the "Fri 4 June" "element"
     And I should see the "9:25 am" "element"
-    And I validate text "CONTAINS=London" to be displayed for "BPP Digital Dates and Prices Location For Instance" element
+    And I validate text "CONTAINS=London Waterloo" to be displayed for "BPP Digital Dates and Prices Location For Instance" element
     And I validate text "CONTAINS=137 Stamford Street" to be displayed for "BPP Digital Dates and Prices Location For Instance" element
     And I validate text "CONTAINS=London SE1 9NN" to be displayed for "BPP Digital Dates and Prices Location For Instance" element
     And I validate text "CONTAINS=4" to be displayed for "BPP Digital Dates and Prices Number of Sessions For Multiple Address" element

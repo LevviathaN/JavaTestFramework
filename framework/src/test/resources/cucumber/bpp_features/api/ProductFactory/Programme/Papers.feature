@@ -4,12 +4,14 @@ Feature: Product Factory API Data Creation
 
   @Paper #TC-772
   Scenario: Add a New Paper Using a Modal
+    Given I execute "Create Study Mode" API step
     Given I execute "Create Paper" API step
     Then I execute "Create Paper" API step with parameters saving as "CBA_"
       |isCba|true|
 
-  @Paper @Update #TC-828
+  @Paper @Update#TC-828
   Scenario: Amend a Paper Using a Modal
+    Given I execute "Create Study Mode" API step
     Given I execute "Create Paper" API step
     Then I execute "Update Paper" API step
 
@@ -23,6 +25,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Body" API step saving as "TWO_"
     Given I execute "Create Level" API step
     And I execute "Create Level" API step saving as "TWO_"
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     Then I execute "Change Paper Body" API step
     Then I execute "Link Paper To Levels" API step
@@ -33,6 +36,7 @@ Feature: Product Factory API Data Creation
 
   @Paper @Update @Duplicate @Negative #TC-831
   Scenario: Amend a Paper Where Name Already Exists
+    Given I execute "Create Study Mode" API step
     Given I execute "Create Paper" API step
     And I execute "Create Paper" API step with parameters saving as "SECOND_"
       |shortName  |ApiPSNT[###]                 |
@@ -45,12 +49,14 @@ Feature: Product Factory API Data Creation
 
   @Paper @Negative #TC-773
   Scenario: Add a Paper Where Description Already Exists
+    Given I execute "Create Study Mode" API step
     Given I execute "Create Paper" API step
     And I execute "Create Paper" API step with parameters
       |description|EC_PAPER_DESCRIPTION|
 
   @Paper @Incomplete #TC-771
   Scenario: Submitting Incomplete Paper Fields
+    Given I execute "Create Study Mode" API step
     Then I execute negative "Create Paper" API step with error name "The ShortName field is required." and parameters
       |shortName    |    |
     And I execute negative "Create Paper" API step with error name "The Name field is required." and parameters
@@ -63,6 +69,7 @@ Feature: Product Factory API Data Creation
 
   @ChangePaperBody #TC-697
   Scenario: Link Body to Paper
+    Given I execute "Create Study Mode" API step
     Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
       |dimensionType|PRODUCT|
       |target       |BODY   |
@@ -74,5 +81,14 @@ Feature: Product Factory API Data Creation
   @LinkPaperToLevel #TC-716
   Scenario: Link Paper to Level
     Given I execute "Create Level" API step
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     Then I execute "Link Paper To Levels" API step
+
+  @StudyMode #TC-6685, TC-6686
+  Scenario: Scheduled Auto De-publish of courses from the website
+    Given I execute "Create Study Mode" API step
+    Given I execute "Create Paper" API step
+    And I execute "Search Paper" API step
+    And I verify that "EC_PAPER_EXPIRY_EXPIRY_WEEKS" element is equal to "EC_SEARCH_PAPER_RESULT_EXPIRY_EXPIRY_WEEKS" element
+    And I verify that "EC_PAPER_EXPIRY_EXPIRY_OPTION" element is equal to "EC_SEARCH_PAPER_RESULT_EXPIRY_EXPIRY_OPTION" element

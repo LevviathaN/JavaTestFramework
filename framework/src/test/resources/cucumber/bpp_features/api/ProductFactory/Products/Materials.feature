@@ -16,6 +16,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Sitting" API step
     And I execute "Create Vat Rule" API step
     And I execute "Create Vat Rule" API step saving as "SECOND_"
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step
@@ -39,6 +40,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Sitting" API step
     And I execute "Create Vat Rule" API step
     And I execute "Create Vat Rule" API step saving as "SECOND_"
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step
     And I execute "Create Level" API step
     And I execute "Link Body To Levels" API step

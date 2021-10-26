@@ -27,6 +27,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step with parameters
       |isCba|true|
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step with parameters
       |isCba|true|
     And I execute "Create Level" API step
@@ -65,6 +66,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step with parameters
       |isCba|true|
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step with parameters
       |isCba|true|
     And I execute "Create Level" API step
@@ -105,6 +107,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step with parameters
       |isCba|true|
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step with parameters
       |isCba|true|
     And I execute "Create Level" API step
@@ -162,6 +165,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step with parameters
       |isCba|true|
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step with parameters
       |isCba|true|
     And I execute "Create Level" API step
@@ -218,6 +222,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step with parameters
       |isCba|true|
+    Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step with parameters
       |isCba|true|
     And I execute "Create Level" API step

@@ -141,6 +141,17 @@ public class RestApiController {
                         ((JSONObject) bodyArray.get(0)).put("sessionDate", TestParametersController.checkIfSpecialParameter(sessionDate));
                         ((JSONObject) bodyArray.get(0)).put("startTime", TestParametersController.checkIfSpecialParameter(startTime));
                         bodyList.add(String.valueOf(bodyArray));
+                    } else if (commandKey.equals("paperExpiry")) {
+                        ArrayList<String> bodyList = new ArrayList<String>();
+                        JSONArray bodyArray = (JSONArray) command.get("paperExpiry");
+                        JSONObject timingObj = (JSONObject) bodyArray.get(0);
+                        String expiryWeeks = (String) timingObj.get("expiryWeeks");
+                        String expiryOption = (String) timingObj.get("expiryOption");
+                        String studyModeReference = (String) timingObj.get("studyModeReference");
+                        ((JSONObject) bodyArray.get(0)).put("expiryWeeks", Integer.parseInt(TestParametersController.checkIfSpecialParameter(String.valueOf(expiryWeeks))));
+                        ((JSONObject) bodyArray.get(0)).put("expiryOption", TestParametersController.checkIfSpecialParameter(expiryOption));
+                        ((JSONObject) bodyArray.get(0)).put("studyModeReference", TestParametersController.checkIfSpecialParameter(studyModeReference));
+                        bodyList.add(String.valueOf(bodyArray));
                     } else if (commandKey.toString().contains("References")) {
                         JSONArray jArray = (JSONArray) value;
                         ArrayList<String> bodyList = new ArrayList<String>();
@@ -193,12 +204,17 @@ public class RestApiController {
                     if (!(value == null)) {
                         if (!(variables.get("reference") == null)
                                 || (!(variables.get("instanceReference") == null))
-                                || (!(variables.get("instanceGroupReference") == null))
-                        ) {
+                                || (!(variables.get("instanceGroupReference") == null)))
+                        {
                             variables.put(variablesKey, TestParametersController.checkIfSpecialParameter(value.toString()));
                         }
-                        if (!(variables.get("filter") == null)) {
+                        if (variables.get("filter").toString().equals("{}")) {
                             variables.put("filter", new JSONObject());
+                        } else if (variables.get("filter").toString().contains("searchTerm")) {
+                            JSONObject filterObj = (JSONObject) variables.get("filter");
+                            String searchTerm = (String) filterObj.get("searchTerm");
+                            filterObj.put("searchTerm", TestParametersController.checkIfSpecialParameter(searchTerm));
+
                         }
                     }
                 }
@@ -278,7 +294,7 @@ public class RestApiController {
                 } else if (inputObject.get(key) instanceof JSONObject) {
                     extractPropperties((JSONObject) inputObject.get(key), targetList, nameKey + capKey, arrSize);
                 } else {
-                    String entryKey = targetList.containsKey(nameKey + capKey) ? nameKey + capKey + " Copy" : nameKey + capKey;
+                    String entryKey = targetList.containsKey(nameKey + capKey) ? nameKey + capKey + "Copy" : nameKey + capKey;
                     targetList.put(entryKey, inputObject.get(key));
                 }
             }
