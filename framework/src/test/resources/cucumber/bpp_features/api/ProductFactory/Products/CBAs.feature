@@ -124,21 +124,21 @@ Feature: Product Factory API Data Creation
     And I execute "Create Courses" API step with parameters
       |defaultInstituteFee|~DefaultInstitutionFee[####]|
     And I execute "Get Instance Name" API step
-    And I verify that "EC_INSTANCE_NAME_RESULT_INSTITUTE_FEE" element is equal to "EC_DEFAULT_INSTITUTION_FEE" element
+    And I verify that "EC_INSTANCE_NAME_RESULT_INSTITUTE_FEE" element "equal" to "EC_DEFAULT_INSTITUTION_FEE" element
     And I execute "Change Course Institution Fee" API step with parameters
       |instituteFee|~InstitutionFeeChanged[####]|
-    And I verify that "EC_CHANGE_COURSE_INSTITUTION_FEE_INSTITUTE_FEE" element is equal to "EC_INSTITUTION_FEE_CHANGED" element
-    And I verify that "EC_PRICE" element is equal to "EC_PRICES_PRICES_VALUE" element
+    And I verify that "EC_CHANGE_COURSE_INSTITUTION_FEE_INSTITUTE_FEE" element "equal" to "EC_INSTITUTION_FEE_CHANGED" element
+    And I verify that "EC_PRICE" element "equal" to "EC_PRICES_PRICES_VALUE" element
     And I execute "Change Price" API step
     And I execute "Get Instance Name" API step saving as "SECOND_"
-    And I verify that "EC_UPDATED_PRICE" element is equal to "EC_SECOND_GET_INSTANCE_NAME_RESULT_PRICE" element
+    And I verify that "EC_UPDATED_PRICE" element "equal" to "EC_SECOND_GET_INSTANCE_NAME_RESULT_PRICE" element
     And I execute "Change Course Institution Fee" API step with parameters saving as "SECOND_"
       |instituteFee|0|
     And I execute "Change Price" API step with parameters saving as "SECOND_"
       |newPrice|0|
     And I execute "Get Instance Name" API step saving as "THIRD_"
-    And I verify that "EC_THIRD_GET_INSTANCE_NAME_RESULT_PRICE" element is equal to "0" element
-    And I verify that "EC_THIRD_GET_INSTANCE_NAME_RESULT_INSTITUTE_FEE" element is equal to "0" element
+    And I verify that "EC_THIRD_GET_INSTANCE_NAME_RESULT_PRICE" element "equal" to "0" element
+    And I verify that "EC_THIRD_GET_INSTANCE_NAME_RESULT_INSTITUTE_FEE" element "equal" to "0" element
 
   @CBA #TC-3119
   Scenario: Deactivate CBA Course With Prevent Reactivation Option On

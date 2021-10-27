@@ -231,25 +231,8 @@ public class ProductFactoryStepDefs {
      * Definition to validate items are similar
      *
      */
-    @Then("^I verify that \"([^\"]*)\" element is equal to \"([^\"]*)\" element$")
-    public void i_verify_that_element_is_equal(String elementOne, String elementTwo) {
-        String resultElement = TestParametersController.checkIfSpecialParameter(elementOne);
-        String startElement = TestParametersController.checkIfSpecialParameter(elementTwo);
-        Reporter.log("Executing step: I verify that" + resultElement + " is equal to: " + startElement);
-        if (resultElement.contains("CONTAINS=")) {
-            String trimmedResultElement = resultElement.replace("CONTAINS=","");
-            Assert.assertTrue(startElement.contains(trimmedResultElement));
-        } else {
-            Assert.assertEquals(resultElement, startElement);
-        }
-    }
-
-    /**
-     * Definition to validate items are similar
-     *
-     */
     @Then("^I verify that \"([^\"]*)\" element \"(equal|contains)\" to \"([^\"]*)\" element$")
-    public void i_verify_that_element_is_equal(String elementOne, String value, String elementTwo) {
+    public void i_verify_that_element_is(String elementOne, String value, String elementTwo) {
         String resultElement = TestParametersController.checkIfSpecialParameter(elementOne);
         String startElement = TestParametersController.checkIfSpecialParameter(elementTwo);
         Reporter.log("Executing step: I verify that" + resultElement + " is equal to: " + startElement);
