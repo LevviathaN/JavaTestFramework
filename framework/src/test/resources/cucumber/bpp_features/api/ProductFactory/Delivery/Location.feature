@@ -184,3 +184,21 @@ Feature: Product Factory API Data Creation
     And I execute "Create Region" API step saving as "SECOND_"
     Then I execute negative "Update Location" API step with error name "The Location is already linked to one or more Sessions, so you cannot change the Financial Dimension" and parameters
       |financialDimensionReference|EC_SECOND_LOCATION_FINANCIAL_DIMENSION_REFERENCE|
+
+  @Location #TC-1044
+  Scenario: Audit Trail - Low Fidelity logging of Location record changes
+    Given I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT|
+      |target       |REGION |
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT |
+      |target       |LOCATION|
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I verify that "[TIMENOW-OHB-yyyy-MM-dd'T'HH:mm]" element "contains" to "EC_LOCATION_CREATED_ON" element
+    And I verify that "S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp@clients" element "equal" to "EC_LOCATION_CREATED_BY" element
+    And I verify that "EC_LOCATION_UPDATED_ON" element "equal" to "null" element
+    And I verify that "EC_LOCATION_UPDATED_BY" element "equal" to "null" element
+    And I execute "Update Location" API step
+    And I verify that "~Second[TIMENOW-OHB-yyyy-MM-dd'T'HH:mm]" element "contains" to "EC_LOCATION_UPDATED_ON" element
+    And I verify that "S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp@clients" element "equal" to "EC_LOCATION_UPDATED_BY" element

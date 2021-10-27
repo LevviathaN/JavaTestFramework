@@ -74,3 +74,19 @@ Feature: Product Factory API Data Creation
     And I execute "Create Sitting" API step saving as "TWO_"
     And I execute negative "Update Sitting" API step with error name "The combination of Name and Dates must be unique" and parameters
       |name|EC_TWO_SITTING_NAME|
+
+  @Sitting #TC-1044
+  Scenario: Audit Trail - Low Fidelity logging of Sitting record changes
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I verify that "[TIMENOW-OHB-yyyy-MM-dd'T'HH:mm]" element "contains" to "EC_SITTING_CREATED_ON" element
+    And I verify that "S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp@clients" element "equal" to "EC_SITTING_CREATED_BY" element
+    And I verify that "EC_SITTING_UPDATED_ON" element "equal" to "null" element
+    And I verify that "EC_SITTING_UPDATED_BY" element "equal" to "null" element
+    Then I execute "Update Sitting" API step
+    And I verify that "~Second[TIMENOW-OHB-yyyy-MM-dd'T'HH:mm]" element "contains" to "EC_SITTING_UPDATED_ON" element
+    And I verify that "S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp@clients" element "equal" to "EC_SITTING_UPDATED_BY" element
