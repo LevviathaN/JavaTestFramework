@@ -1,10 +1,7 @@
 package cucumber.stepdefs;
 
 import cucumber.reusablesteps.ReusableRunner;
-import cucumber.stepdefs.Actions.ActionsWithLocator;
-import cucumber.stepdefs.Actions.ActionsWithLocatorAndParameter;
-import cucumber.stepdefs.Actions.ActionsWithParameter;
-import cucumber.stepdefs.Actions.ActionsWithParameterAndTable;
+import cucumber.stepdefs.Actions.*;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import ui.utils.*;
@@ -12,51 +9,46 @@ import ui.utils.bpp.TestParametersController;
 
 import java.util.List;
 
+/**
+ * This class was created to provide easy way of creating step definitions for cucumber.
+ *
+ * @author Ruslan Levytskyi
+ */
 public class StepDefinitionBuilder extends SeleniumHelper {
-    //todo: replace strings in switch-cases with enums
 
     private final SeleniumHelper seleniumHelper = new SeleniumHelper();
     private Conditions conditions = new Conditions();
 
-    private By locator;
-    private boolean condition = true;
-    private String loop = "";
-    private String loopConditionParameter, loopConditionStatement;
-    private int loopLimit = 5;
-    private Action action;
-    private String reporterLog = "";
-    private String log = "";
+    private By locator; //locator of element (if it`s needed)
+    private boolean condition = true; //condition to decide whether step will be executed or skipped with no error.
+    private String loop = ""; // if set to FOR or UNTIL, step will be executed in corresponding loop.
+    private String loopConditionParameter, loopConditionStatement; // condition to quit the loop
+    private int loopLimit = 5; //restriction for loop execution number
+    private Action action; //mandatory. Make sure that if you want to execute action with locator, you need to specify locator prior the action
+    private String reporterLog = ""; //log string that will be passed to html extent report
+    private String log = ""; //log string that will be passed to console
 
     public StepDefinitionBuilder() {
 
     }
 
+    /**
+     * Method to add selenium By locator to the step
+     *
+     * @param element Locator name string. All simple locators are listed in \src\resources\Locators.json
+     */
     public StepDefinitionBuilder setLocator(String element) {
         locator = initElementLocator(element);
         return this;
     }
 
-    public StepDefinitionBuilder setCondition(String conditionParameter, String conditionStatement) {
-        conditionParameter = TestParametersController.checkIfSpecialParameter(conditionParameter);
-        if(!conditions.checkCondition(conditionStatement,conditionParameter)){
-            condition = false;
-            Reporter.log("Condition " + conditionParameter + " " + conditionStatement + " is not true");
-        }
-        return this;
-    }
-
-    public StepDefinitionBuilder setLoop(String type, String conditionParameter, String conditionStatement) {
-        loopConditionParameter = conditionParameter;
-        loopConditionStatement = conditionStatement;
-        loop = type;
-        return this;
-    }
-
-    public StepDefinitionBuilder setLoopLimit(String type) {
-        loop = type;
-        return this;
-    }
-
+    /**
+     * Method to add selenium 'By' parametrized(special) locator to the step
+     * All parametrized(special) locators are listed in \src\resources\SpecialLocators.json
+     *
+     * @param elementType xpath template, where 'PARAMETER' substring is replaced by elementLocator
+     * @param elementLocator parameter for elementType
+     */
     public StepDefinitionBuilder setLocator(String elementLocator, String elementType) {
         if(specialLocatorsMap.containsKey(elementType)) {
             String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
@@ -72,6 +64,60 @@ public class StepDefinitionBuilder extends SeleniumHelper {
         return this;
     }
 
+    /**
+     * Method to add condition to the step
+     * All conditions could be found in \src\main\java\ui\utils\Conditions.java
+     *
+     * @param conditionParameter subject of the condition. Can be a locator or EC_ variable
+     * @param conditionStatement condition statement for given parameter. For example: 'Submit Button (parameter)' 'should be present (statement)'
+     */
+    public StepDefinitionBuilder setCondition(String conditionParameter, String conditionStatement) {
+        conditionParameter = TestParametersController.checkIfSpecialParameter(conditionParameter);
+        if(!conditions.checkCondition(conditionStatement,conditionParameter)){
+            condition = false;
+            Reporter.log("Condition " + conditionParameter + " " + conditionStatement + " is not true");
+        }
+        return this;
+    }
+
+
+    /**
+     * Method to specify if the step should be executed repeatedly in loop.
+     * All conditions could be found in \src\main\java\ui\utils\Conditions.java
+     *
+     * @param type type of loop you want the step to be executed in. For example: for, until
+     * @param conditionParameter subject of the condition. Can be a locator or EC_ variable
+     * @param conditionStatement condition statement for given parameter. For example: 'Submit Button (parameter)' 'should be present (statement)'
+     */
+    public StepDefinitionBuilder setLoop(String type, String conditionParameter, String conditionStatement) {
+        loopConditionParameter = conditionParameter;
+        loopConditionStatement = conditionStatement;
+        loop = type;
+        return this;
+    }
+
+    /**
+     * Method to specify the limit for step execution number in loop. 5 by default.
+     *
+     * @param limit
+     */
+    public StepDefinitionBuilder setLoopLimit(String limit) {
+        loopLimit = Integer.parseInt(limit);
+        return this;
+    }
+
+    /**
+     * Method to specify action which the step will perform. Mandatory.
+     * Depending on type and number of parameters different overloads of this method will be executed
+     * All available actions cn be found under \src\test\java\cucumber\stepdefs\Actions directory
+     *
+     * Make sure to specify locator(if applicable) prior to action
+     * All simple locators are listed in \src\resources\Locators.json
+     * All parametrized(special) locators are listed in \src\resources\SpecialLocators.json
+     *
+     * @param actionName name of action to be performed. Taken from ActionsWithParameter.enum
+     * @param param string parameter. Depending on action can be: time to wait in seconds, reusable name, url e.t.c
+     */
     public StepDefinitionBuilder setAction(ActionsWithParameter actionName, String param) {
         String parameter = TestParametersController.checkIfSpecialParameter(param);
         Reporter.log("<pre>[input test parameter] " + param + "' -> '" + parameter + "' [output value]</pre>");
@@ -95,6 +141,15 @@ public class StepDefinitionBuilder extends SeleniumHelper {
         return this;
     }
 
+    /**
+     * Method to specify action which the step will perform. Mandatory.
+     * Depending on type and number of parameters different overloads of this method will be executed
+     * All available actions cn be found under \src\test\java\cucumber\stepdefs\Actions directory
+     *
+     * @param actionName name of action to be performed. Taken from ActionsWithParameterAndTable.enum
+     * @param param string parameter. Depending on action can be: reusable name
+     * @param table table underneath the step, which can contain modified steps of reusable, or steps to be executed in loop
+     */
     public StepDefinitionBuilder setAction(ActionsWithParameterAndTable actionName, String param, List table) {
         String parameter = TestParametersController.checkIfSpecialParameter(param);
         Reporter.log("<pre>[input test parameter] " + param + "' -> '" + parameter + "' [output value]</pre>");
@@ -109,6 +164,17 @@ public class StepDefinitionBuilder extends SeleniumHelper {
         return this;
     }
 
+    /**
+     * Method to specify action which the step will perform. Mandatory.
+     * Depending on type and number of parameters different overloads of this method will be executed
+     * All available actions cn be found under \src\test\java\cucumber\stepdefs\Actions directory
+     *
+     * Make sure to specify locator(if applicable) prior to action
+     * All simple locators are listed in \src\resources\Locators.json
+     * All parametrized(special) locators are listed in \src\resources\SpecialLocators.json
+     *
+     * @param actionName name of action to be performed. Taken from ActionsWithLocator.enum
+     */
     public StepDefinitionBuilder setAction(ActionsWithLocator actionName) {
         switch (actionName) {
             case CLICK:
@@ -153,6 +219,17 @@ public class StepDefinitionBuilder extends SeleniumHelper {
         return this;
     }
 
+    /**
+     * Method to specify action which the step will perform. Mandatory.
+     * Depending on type and number of parameters different overloads of this method will be executed
+     * All available actions cn be found under \src\test\java\cucumber\stepdefs\Actions directory
+     *
+     * Make sure to specify locator(if applicable) prior to action
+     * All simple locators are listed in \src\resources\Locators.json
+     * All parametrized(special) locators are listed in \src\resources\SpecialLocators.json
+     *
+     * @param actionName name of action to be performed. Taken from ActionsWithLocator.enum
+     */
     public StepDefinitionBuilder setAction(ActionsWithLocatorAndParameter actionName, String param) {
         String parameter = TestParametersController.checkIfSpecialParameter(param);
         Reporter.log("<pre>[input test parameter] " + param + "' -> '" + parameter + "' [output value]</pre>");
@@ -185,28 +262,41 @@ public class StepDefinitionBuilder extends SeleniumHelper {
         return this;
     }
 
-    //todo: create one method for setting reporter and logger messages
+    /**
+     * Method to set both console and reporter logs
+     */
     public StepDefinitionBuilder setReporterLog(String message) {
         reporterLog = message;
         return this;
     }
 
+    /**
+     * Method to set console log
+     */
     public StepDefinitionBuilder setLog(String message) {
         log = message;
         return this;
     }
 
+    /**
+     * Method to set reporter log
+     */
     public StepDefinitionBuilder setMessage(String message) {
         log = message;
         reporterLog = message;
         return this;
     }
 
+    /**
+     * This method is a final step of building process. Executes step with previously set parameters.
+     * Should be executed at the end of set-methods chain.
+     *
+     */
     public void execute() {
-        if(condition){
-            Reporter.log(reporterLog);
-            BPPLogManager.getLogger().info(log);
-            switch (loop) {
+        if(condition){ //
+            if (!reporterLog.equals("")) Reporter.log(reporterLog);   //set reporter log if provided
+            if (!log.equals("")) BPPLogManager.getLogger().info(log); //set console log if provided
+            switch (loop) { //if any loop name is provided(for,until) executes step in corresponding loop
                 case "until":
                     for (int i = 1; i < loopLimit && !conditions.checkCondition(loopConditionStatement,loopConditionParameter); i++) {
                         action.execute();
@@ -217,7 +307,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                         action.execute();
                     }
                     break;
-                default:
+                default: // if no loop name is provided, execute step as it is
                     action.execute();
                     break;
             }
