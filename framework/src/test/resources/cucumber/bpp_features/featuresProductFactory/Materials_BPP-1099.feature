@@ -86,7 +86,7 @@ Feature: Materials - Create Materials - BPP-1099
     And I validate text "£222" to be displayed for "Product Factory Material Edit Page Cost Readonly Field" element
 
   @Positive @P1 #TC-5309
-  Scenario: Remove Cost And Price from Material That Has Ones
+  Scenario: Remove Cost Price from Material That Has Ones
     Given I execute "Create Material" reusable step
     And I click on the "Search" "Product Factory text field"
     Then I set "EC_MATERIAL_TYPE_NAME" text to the "Search" "Product Factory text field" from keyboard

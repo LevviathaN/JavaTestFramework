@@ -17,6 +17,7 @@ Feature: Checkout Journey for Logged User MasterCard
     And I wait for "1" seconds
     Then I validate text "CONTAINS=in basket" to be displayed for "BPP Digital Add to Basket First Course" element
     And I click on the "BPP Digital Header Basket" button by JS
+    And I wait for "2" seconds
     And I capture text data "Total" "BPP Digital Basket Summary Section" as "EC_TOTAL" variable
     And I capture text data "Sub total" "BPP Digital Basket Summary Section" as "EC_SUBTOTAL" variable
     And I capture text data "VAT (20%)" "BPP Digital Basket Summary Section" as "EC_VAT" variable

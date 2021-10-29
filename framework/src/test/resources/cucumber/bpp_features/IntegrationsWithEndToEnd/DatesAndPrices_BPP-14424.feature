@@ -22,50 +22,32 @@ Feature: Following UAT of Dates & Prices, a requirement change exists to hide se
     And I wait for "5" seconds
     #Verify text displayed for Online type of learning
     And I am on "http://web-stage-bppdigital.bppuniversity.com/about-bpp/autodatesthree" URL
-    And I should see the "BA1 Fundamentals of Business Economics" "BPP Digital View Dates and Prices button"
-    And I click on the "BA1 Fundamentals of Business Economics" "BPP Digital View Dates and Prices button"
-    #Commented this part due to data changes in PF by UAT users....
+    And I should see the "BA3 Fundamentals of Financial Accounting" "BPP Digital View Dates and Prices button"
+    And I click on the "BA3 Fundamentals of Financial Accounting" "BPP Digital View Dates and Prices button"
     #Check Start Date dropdown options
-    #Then I click on the "Start date" "BPP Digital Dates and Prices Filter By"
-    #And I should see the "May 2021" "BPP Digital Dates and Prices Start date filter option"
-    #And I should see the "Jul 2021" "BPP Digital Dates and Prices Start date filter option"
-    #And I should see the "Aug 2021" "BPP Digital Dates and Prices Start date filter option"
-    #Then I click on the "May 2021" "BPP Digital Dates and Prices Start date filter option"
-    #And I should see the "Thu 20 May 2021" "element"
-    #Then I shouldn't see the "Tue 20 Jul 2021" "element"
-    #Then I shouldn't see the "Tue 17 Aug 2021" "element"
-    #Then I click on the "Start date" "BPP Digital Dates and Prices Filter By"
-    #Then I click on the "May 2021" "BPP Digital Dates and Prices Start date filter option"
-    #Then I should see the "Tue 20 Jul 2021" "element"
-    #Then I should see the "Tue 17 Aug 2021" "element"
-    #And I should see the "Thu 20 May 2021" "element"
-    #Then I click on the "Start date" "BPP Digital Dates and Prices Filter By"
-    #Then I click on the "Jul 2021" "BPP Digital Dates and Prices Start date filter option"
-    #Then I shouldn't see the "Thu 20 May 2021" "element"
-    #Then I shouldn't see the "Tue 17 Aug 2021" "element"
-    #And I hover over the "Location" "BPP Digital Dates and Prices Filter By"
-    #Then I should see the "Tue 20 Jul 2021" "element"
-    #Then I click on the "Start date" "BPP Digital Dates and Prices Filter By"
-    #Then I click on the "Jul 2021" "BPP Digital Dates and Prices Start date filter option"
-    #Then I should see the "Tue 17 Aug 2021" "element"
-    #And I should see the "Thu 20 May 2021" "element"
-    #Then I should see the "Tue 20 Jul 2021" "element"
-    #And I shouldn't see the "Syllabus" "BPP Digital Dates and Prices Filter By"
+    Then I click on the "Start date" "BPP Digital Dates and Prices Filter By"
+    And I should see the "Sep 2021" "BPP Digital Dates and Prices Start date filter option"
+    And I should see the "Oct 2021" "BPP Digital Dates and Prices Start date filter option"
+    And I should see the "Nov 2021" "BPP Digital Dates and Prices Start date filter option"
+    Then I click on the "Nov 2021" "BPP Digital Dates and Prices Start date filter option"
+    And I should see the "Sat 6 Nov 2021" "element"
+    Then I should see the "Tue 9 Nov 2021" "element"
+    Then I click on the "Nov 2021" "BPP Digital Dates and Prices Start date filter option"
+    Then I click on the "Start date" "BPP Digital Dates and Prices Filter By"
     #Check text in tooltips
     When I click on the "BPP Digital Dates and Prices Course Type Tooltip" element
     Then I should see the "BPP Digital Dates and Prices Tooltip Content" element
     Then I should see the "INTEGRATED" "contained in P element"
     Then I should see the "TAUGHT" "contained in P element"
     Then I should see the "REVISION" "contained in P element"
-    Then I should see the "A combination of Taught and Revision phases" "contained in P element"
+    Then I should see the "FINAL MOCK" "contained in P element"
+    Then I should see the "RECAP" "contained in P element"
+    Then I should see the "RECAP EXAM" "contained in P element"
+    #When I click on the "BPP Digital Dates and Prices Course Type Tooltip" element
     #Validate pluralisation is removed
-    Then I click on the "BPP Digital Dates and Prices Papers dropdown" element
-    And I hover over the "BA3 Fundamentals of Financial Accounting" "BPP Digital dropdown item"
-    And I click on the "BA3 Fundamentals of Financial Accounting" "BPP Digital dropdown item"
     And I wait for "3" seconds
-    And I click on the "Mon 20 Sep 2021" "element" by JS
-    And I validate text "CONTAINS=5 Weekday" to be displayed for "BPP Digital Dates and Prices Number of Sessions For Multiple Address" element
-    And I click on the "Mon 20 Sep 2021" "element" by JS
+    And I click on the "Sat 6 Nov 2021" "element"
+    And I validate text "CONTAINS=Weekend" to be displayed for "BPP Digital Dates and Prices Number of Sessions For Multiple Address" element
     #Delete DnP component in Admin
     And I am on "https://admin-stage-bppdigital.bppuniversity.com/admin/cms/pages/1560/edit" URL
     And I wait for "3" seconds
