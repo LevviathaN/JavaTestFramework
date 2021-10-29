@@ -53,6 +53,8 @@ Feature: Course - Update Instances for non draft Courses - BPP-4968
     And I execute "Create Session Duration" API step
     And I execute "Create Pricing Matrix" API step
     And I execute "Create Prices" API step
+    And I execute "Create Session Duration" API step
+    And I execute "Create Stream" API step
 
 
     And I execute "Remember Variables Two" reusable step
@@ -61,8 +63,6 @@ Feature: Course - Update Instances for non draft Courses - BPP-4968
   @Positive @P1 @HappyPath #TC-2406
   Scenario: Amend Non Draft Course Instance
     And I execute "Create Course" API step
-    And I execute "Create Session Duration" API step
-    And I execute "Create Stream" API step
     And I execute "Create Instance" API step
     And I execute "Change Instance Capacity" API step with parameters
       |capacity|15|
