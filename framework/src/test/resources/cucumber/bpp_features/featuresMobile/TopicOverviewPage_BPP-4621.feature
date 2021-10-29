@@ -1,4 +1,4 @@
-@Mobile
+@Mobile @TopicOverview
 Feature: Topic Overview Page
   The completion status key is below the Learning Material heading
   Labels, sub labels and learning activities appear across only one column
@@ -7,7 +7,7 @@ Feature: Topic Overview Page
 
   @Positive @iPad @iPhone @Samsung #TC-2232
   Scenario: Topic Overview Page_Mobile
-    Given I execute "Log In to Hub as Student" reusable step replacing some steps
+    Given I execute "Log In to Hub as Student VPE Mobile" reusable step replacing some steps
       | 2 | I set "automaureenmerritt7112@guerrillamail.info" text to the "Email" "Build Empire text field" |
       | 3 | I set "A@polloGlobal2020" text to the "Password" "Build Empire text field"                      |
     And I wait for "10" seconds
@@ -17,7 +17,7 @@ Feature: Topic Overview Page
     And I wait for "2" seconds
     And I click on the "Direct App Scorm Topic" element
     And I wait for "2" seconds
-    Then I should see the "Failed" message
+    And I validate text "CONTAINS=You haven't attempted this assessment yet" to be displayed for "Direct App Topic Assessment Status Results" element
     And I should see the "Direct App Topic Learning Material Legend One" element
     And I validate text "CONTAINS=You can mark these as complete" to be displayed for "Direct App Topic Learning Material Legend One" element
     And I should see the "Direct App Topic Learning Material Legend Two" element

@@ -25,7 +25,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Vat Rule" API step
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
-    And I execute "Create Course Type" API step with parameters
+    And I execute "Create Course Type" API step with parameters saving as "CBA_"
       |isCba|true|
     Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step with parameters
@@ -64,7 +64,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Vat Rule" API step
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
-    And I execute "Create Course Type" API step with parameters
+    And I execute "Create Course Type" API step with parameters saving as "CBA_"
       |isCba|true|
     Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step with parameters
@@ -105,7 +105,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Vat Rule" API step
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
-    And I execute "Create Course Type" API step with parameters
+    And I execute "Create Course Type" API step with parameters saving as "CBA_"
       |isCba|true|
     Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step with parameters
@@ -163,7 +163,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Vat Rule" API step
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
-    And I execute "Create Course Type" API step with parameters
+    And I execute "Create Course Type" API step with parameters saving as "CBA_"
       |isCba|true|
     Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step with parameters
@@ -220,7 +220,7 @@ Feature: Product Factory API Data Creation
     And I execute "Create Vat Rule" API step
     And I execute "Create Exam Preparation" API step
     And I execute "Create Study Mode" API step
-    And I execute "Create Course Type" API step with parameters
+    And I execute "Create Course Type" API step with parameters saving as "CBA_"
       |isCba|true|
     Given I execute "Create Study Mode" API step
     And I execute "Create Paper" API step with parameters
