@@ -56,3 +56,21 @@ Feature: Product Factory API Data Creation
     And I execute "Create Region" API step
     And I execute "Update Region" API step with parameters
       |financialDimensionReference|EC_REGION_NEW_FINANCIAL_DIMENSION_REFERENCE|
+
+  @Region #TC-1044
+  Scenario: Audit Trail - Low Fidelity logging of Region record changes
+    Given I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT|
+      |target       |REGION |
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_TWO_"
+      |dimensionType|PRODUCT|
+      |target       |REGION |
+    And I execute "Create Region" API step
+    And I verify that "[TIMENOW-OHB-yyyy-MM-dd'T'HH:mm]" element "contains" to "EC_REGION_CREATED_ON" element
+    And I verify that "S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp@clients" element "equal" to "EC_REGION_CREATED_BY" element
+    And I verify that "EC_REGION_UPDATED_ON" element "equal" to "null" element
+    And I verify that "EC_REGION_UPDATED_BY" element "equal" to "null" element
+    And I execute "Update Region" API step with parameters
+      |financialDimensionReference|EC_REGION_TWO_FINANCIAL_DIMENSION_REFERENCE|
+    And I verify that "~Second[TIMENOW-OHB-yyyy-MM-dd'T'HH:mm]" element "contains" to "EC_UPDATE_REGION_UPDATED_ON" element
+    And I verify that "S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp@clients" element "equal" to "EC_UPDATE_REGION_UPDATED_BY" element

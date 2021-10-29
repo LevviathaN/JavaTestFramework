@@ -300,7 +300,7 @@
     "value": "^I execute negative \"([^\"]*)\" API step with error name \"([^\"]*)\" and parameters$"
   },
   {
-    "name": "I_VERIFY_THAT_ELEMENT_IS_EQUAL",
-    "value": "^I verify that \"([^\"]*)\" element is equal to \"([^\"]*)\" element$"
+    "name": "I_VERIFY_THAT_ELEMENT_IS",
+    "value": "I verify that \"([^\"]*)\" element \"(equal|contains)\" to \"([^\"]*)\" element$"
   }
 ]

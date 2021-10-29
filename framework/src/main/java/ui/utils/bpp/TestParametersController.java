@@ -301,6 +301,8 @@ public class TestParametersController {
                         timePattern = "MMMM d, yyyy";
                     } else if (element.endsWith("yyyy-MM-dd")){
                         timePattern = "yyyy-MM-dd";
+                    } else if (element.endsWith("yyyy-MM-dd'T'HH:mm")){
+                        timePattern = "yyyy-MM-dd'T'HH:mm";
                     } else if (element.endsWith("VPE")) {
                         if (element.contains("CALENDAR")) {
                             String time = String.valueOf(Tools.getCurDateTimeInMilliseconds());
@@ -313,10 +315,13 @@ public class TestParametersController {
                     }
                     DateTimeFormatter dtf = DateTimeFormatter.ofPattern(timePattern);
                     LocalDateTime now = LocalDateTime.now(ZoneId.of("Europe/London"));
+
                     if (element.contains("TMR")) {
                         now = now.plusDays(1);
                     } else if (element.contains("YTD")) {
                         now = now.minusDays(1);
+                    } else if (element.contains("OHB")) {
+                        now = now.minusHours(1);
                     }
                     String currentDateTime = dtf.format(now);
                     ecVarNameSimplified.append("_");

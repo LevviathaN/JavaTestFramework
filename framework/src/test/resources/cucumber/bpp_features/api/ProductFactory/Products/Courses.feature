@@ -1631,7 +1631,6 @@ Feature: Product Factory API Data Creation
       |capacity|15|
     And I execute "Get Instance Sessions" API step
     And I execute "Change Session Timings" API step
-    And I verify that "1" element is equal to "1" element
     And I execute "Get Instance Steps" API step
     And I execute "Calculate Course Price" API step
     Then I execute "Activate Course" API step
@@ -1977,12 +1976,12 @@ Feature: Product Factory API Data Creation
       |excludeInstances|true|
     Then I execute "Get Course Bulk Operation" API step with parameters
       |reference|EC_SECOND_COURSE_BULK_OPERATION_REFERENCE|
-    Then I verify that "EC_GET_COURSE_BULK_OPERATION_COURSES_INCLUDED" element is equal to "false" element
-    Then I verify that "EC_GET_COURSE_BULK_OPERATION_COURSES_INSTANCES_INCLUDED" element is equal to "false" element
+    Then I verify that "EC_GET_COURSE_BULK_OPERATION_COURSES_INCLUDED" element "equal" to "false" element
+    Then I verify that "EC_GET_COURSE_BULK_OPERATION_COURSES_INSTANCES_INCLUDED" element "equal" to "false" element
     Then I execute "Include Course" API step with parameters
       |operationReference|EC_SECOND_COURSE_BULK_OPERATION_REFERENCE|
       |includeInstances|true|
     Then I execute "Get Course Bulk Operation" API step with parameters saving as "SECOND_"
       |reference|EC_SECOND_COURSE_BULK_OPERATION_REFERENCE|
-    Then I verify that "EC_SECOND_GET_COURSE_BULK_OPERATION_COURSES_INCLUDED" element is equal to "true" element
-    Then I verify that "EC_SECOND_GET_COURSE_BULK_OPERATION_COURSES_INSTANCES_INCLUDED" element is equal to "true" element
+    Then I verify that "EC_SECOND_GET_COURSE_BULK_OPERATION_COURSES_INCLUDED" element "equal" to "true" element
+    Then I verify that "EC_SECOND_GET_COURSE_BULK_OPERATION_COURSES_INSTANCES_INCLUDED" element "equal" to "true" element

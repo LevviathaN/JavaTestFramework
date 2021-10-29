@@ -16,3 +16,14 @@ Feature: Product Factory API Data Creation
     Given I execute "Create Session Duration" API step
     Then I execute negative "Create Session Duration" API step with error name "Description must be unique" and parameters
       |description|EC_SESSION_DURATION_DESCRIPTION|
+
+  @SessionDuration #TC-1044
+  Scenario: Audit Trail - Low Fidelity logging of Session Duration record changes
+    Given I execute "Create Session Duration" API step
+    And I verify that "[TIMENOW-OHB-yyyy-MM-dd'T'HH:mm]" element "contains" to "EC_SESSION_DURATION_CREATED_ON" element
+    And I verify that "S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp@clients" element "equal" to "EC_SESSION_DURATION_CREATED_BY" element
+    And I verify that "EC_SESSION_DURATION_UPDATED_ON" element "equal" to "null" element
+    And I verify that "EC_SESSION_DURATION_UPDATED_BY" element "equal" to "null" element
+    And I execute "Update Session Duration" API step
+    And I verify that "~Second[TIMENOW-OHB-yyyy-MM-dd'T'HH:mm]" element "contains" to "EC_SESSION_DURATION_UPDATED_ON" element
+    And I verify that "S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp@clients" element "equal" to "EC_SESSION_DURATION_UPDATED_BY" element
