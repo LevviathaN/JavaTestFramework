@@ -44,7 +44,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
 
     /**
      * Method to add selenium 'By' parametrized(special) locator to the step
-     * All parametrized(special) locators are listed in \src\resources\SpecialLocators.json
+     * All parametrized(special) locators are listed in /src/resources/SpecialLocators.json
      *
      * @param elementType xpath template, where 'PARAMETER' substring is replaced by elementLocator
      * @param elementLocator parameter for elementType
@@ -66,7 +66,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
 
     /**
      * Method to add condition to the step
-     * All conditions could be found in \src\main\java\ui\utils\Conditions.java
+     * All conditions could be found in /src/main/java/ui/utils/Conditions.java
      *
      * @param conditionParameter subject of the condition. Can be a locator or EC_ variable
      * @param conditionStatement condition statement for given parameter. For example: 'Submit Button (parameter)' 'should be present (statement)'
@@ -83,7 +83,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
 
     /**
      * Method to specify if the step should be executed repeatedly in loop.
-     * All conditions could be found in \src\main\java\ui\utils\Conditions.java
+     * All conditions could be found in /src/main/java/ui/utils/Conditions.java
      *
      * @param type type of loop you want the step to be executed in. For example: for, until
      * @param conditionParameter subject of the condition. Can be a locator or EC_ variable
@@ -109,11 +109,11 @@ public class StepDefinitionBuilder extends SeleniumHelper {
     /**
      * Method to specify action which the step will perform. Mandatory.
      * Depending on type and number of parameters different overloads of this method will be executed
-     * All available actions cn be found under \src\test\java\cucumber\stepdefs\Actions directory
+     * All available actions cn be found under /src/test/java/cucumber/stepdefs/Actions directory
      *
      * Make sure to specify locator(if applicable) prior to action
-     * All simple locators are listed in \src\resources\Locators.json
-     * All parametrized(special) locators are listed in \src\resources\SpecialLocators.json
+     * All simple locators are listed in /src/resources/Locators.json
+     * All parametrized(special) locators are listed in /src/resources/SpecialLocators.json
      *
      * @param actionName name of action to be performed. Taken from ActionsWithParameter.enum
      * @param param string parameter. Depending on action can be: time to wait in seconds, reusable name, url e.t.c
@@ -144,7 +144,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
     /**
      * Method to specify action which the step will perform. Mandatory.
      * Depending on type and number of parameters different overloads of this method will be executed
-     * All available actions cn be found under \src\test\java\cucumber\stepdefs\Actions directory
+     * All available actions cn be found under /src/test/java/cucumber/stepdefs/Actions directory
      *
      * @param actionName name of action to be performed. Taken from ActionsWithParameterAndTable.enum
      * @param param string parameter. Depending on action can be: reusable name
@@ -167,11 +167,11 @@ public class StepDefinitionBuilder extends SeleniumHelper {
     /**
      * Method to specify action which the step will perform. Mandatory.
      * Depending on type and number of parameters different overloads of this method will be executed
-     * All available actions cn be found under \src\test\java\cucumber\stepdefs\Actions directory
+     * All available actions cn be found under /src/test/java/cucumber/stepdefs/Actions directory
      *
      * Make sure to specify locator(if applicable) prior to action
-     * All simple locators are listed in \src\resources\Locators.json
-     * All parametrized(special) locators are listed in \src\resources\SpecialLocators.json
+     * All simple locators are listed in /src/resources/Locators.json
+     * All parametrized(special) locators are listed in /src/resources/SpecialLocators.json
      *
      * @param actionName name of action to be performed. Taken from ActionsWithLocator.enum
      */
@@ -222,11 +222,11 @@ public class StepDefinitionBuilder extends SeleniumHelper {
     /**
      * Method to specify action which the step will perform. Mandatory.
      * Depending on type and number of parameters different overloads of this method will be executed
-     * All available actions cn be found under \src\test\java\cucumber\stepdefs\Actions directory
+     * All available actions cn be found under /src/test/java/cucumber/stepdefs/Actions directory
      *
      * Make sure to specify locator(if applicable) prior to action
-     * All simple locators are listed in \src\resources\Locators.json
-     * All parametrized(special) locators are listed in \src\resources\SpecialLocators.json
+     * All simple locators are listed in /src/resources/Locators.json
+     * All parametrized(special) locators are listed in /src/resources/SpecialLocators.json
      *
      * @param actionName name of action to be performed. Taken from ActionsWithLocator.enum
      */
