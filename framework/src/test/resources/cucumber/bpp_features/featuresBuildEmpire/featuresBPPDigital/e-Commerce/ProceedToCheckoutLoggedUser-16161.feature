@@ -11,6 +11,7 @@ Feature: Checkout Journey for Logged User MasterCard
       | 2 | I set "AutoHarriettKierra5523@harakirimail.com" text to the "Email" "Build Empire text field" |
       | 3 | I set "A@polloGlobal2020" text to the "Password" "Build Empire text field"               |
     And I wait for "10" seconds
+    Then I click on the "Direct App My Applications Left Menu Link" element
     And I am on "MD_COMMON_LINKS_BPPDIGITALECOMMERCETWOURL" URL
     And I click on the "Paper auto-reg name" "BPP Digital View Dates and Prices button"
     And I click on the "BPP Digital Add to Basket First Course" button
@@ -97,7 +98,3 @@ Feature: Checkout Journey for Logged User MasterCard
     And I capture text data "Subtotal" "Salesforce Invoice Price Info" as "EC_SFSUBTOTAL" variable
     And I capture text data "Total Amount (With Tax)" "Salesforce Invoice Price Info" as "EC_SFTOTAL" variable
     And I capture text data "Tax" "Salesforce Invoice Price Info" as "EC_SFTAX" variable
-    #Temporarily commented due to https://jira.bpp.com/browse/BPP-17251
-    #And I verify that "EC_SFTOTAL" element is equal to "EC_TOTAL" element
-    #And I verify that "EC_SFTAX" element is equal to "EC_VAT" element
-    #And I verify that "EC_SUBTOTAL" element is equal to "EC_SFSUBTOTAL" element
