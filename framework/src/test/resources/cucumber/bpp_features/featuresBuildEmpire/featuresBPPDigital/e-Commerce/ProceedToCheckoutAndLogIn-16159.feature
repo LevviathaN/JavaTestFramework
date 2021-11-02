@@ -115,7 +115,7 @@ Feature: Checkout Journey to Login While Registration Amex
     And I capture text data "Subtotal" "Salesforce Invoice Price Info" as "EC_SFSUBTOTAL" variable
     And I capture text data "Total Amount (With Tax)" "Salesforce Invoice Price Info" as "EC_SFTOTAL" variable
     And I capture text data "Tax" "Salesforce Invoice Price Info" as "EC_SFTAX" variable
-    #Temporarily commented due to https://jira.bpp.com/browse/BPP-17251
-    #And I verify that "EC_SFTOTAL" element is equal to "EC_TOTAL" element
-    #And I verify that "EC_SFTAX" element is equal to "EC_VAT" element
-    #And I verify that "EC_SUBTOTAL" element is equal to "EC_SFSUBTOTAL" element
+
+    And I verify that "EC_SFTOTAL" element "equal" to "EC_TOTAL" element
+    And I verify that "EC_SFTAX" element "equal" to "EC_VAT" element
+    And I verify that "EC_SUBTOTAL" element "equal" to "EC_SFSUBTOTAL" element
