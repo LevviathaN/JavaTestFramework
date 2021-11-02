@@ -178,7 +178,8 @@ Feature: Product Factory API Data Creation
       |allowedForCba|true|
     And I execute "Create Instance Group" API step
     And I execute "Create Pricing Matrix" API step
-    And I execute "Create Prices" API step
+    And I execute "Create Prices" API step with parameters
+      |courseTypeReference|EC_CBA_COURSE_TYPE_REFERENCE|
     And I execute "Create Courses" API step
     And I execute "Create Deactivation Reason" API step with parameters saving as "PREVENT_"
       |preventReactivation|false|
