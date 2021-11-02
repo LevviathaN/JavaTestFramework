@@ -36,7 +36,7 @@ Feature: Amend Reference Data - Paper - BPP-660
       |14|Replace|I set "EC_PAPER_DESCRIPTION_EDIT" text to the "Search" "Product Factory text field" from keyboard|
       |16|Replace|I should see the "EC_PAPER_NAME_EDIT" element|
 
-  @Negative @P2 @BlockedByIssue #TC-827
+  @Negative @P2 #TC-827
   Scenario: Submitting Unchanged Paper Fields
     When I click on the "Programme" "Product Factory navigation item"
     When I click on the "Papers" "Product Factory navigation sub item"
