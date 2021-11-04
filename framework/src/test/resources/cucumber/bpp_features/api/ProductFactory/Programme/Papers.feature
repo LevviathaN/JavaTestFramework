@@ -9,7 +9,7 @@ Feature: Product Factory API Data Creation
     Then I execute "Create Paper" API step with parameters saving as "CBA_"
       |isCba|true|
 
-  @Paper @Update#TC-828
+  @Paper @Update #TC-828
   Scenario: Amend a Paper Using a Modal
     Given I execute "Create Study Mode" API step
     Given I execute "Create Paper" API step

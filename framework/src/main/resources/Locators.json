@@ -664,6 +664,10 @@
     "value": "xpath=//div[@class='tip-content']"
   },
   {
+    "name": "BPP Digital Dates and Prices Type And Location Row",
+    "value": "xpath=//div[@class='table-content row open ']//div[@class='studyType']"
+  },
+  {
     "name": "BPP Digital Add to Basket First Course",
     "value": "xpath=(//div[contains(@class,'purchase col')]/button)[1]"
   },
@@ -690,6 +694,18 @@
   {
     "name": "BPP Digital Checkout Basket Id",
     "value": "xpath=(//*[contains(@class,'bookingCompletion')])[1]"
+  },
+  {
+    "name": "BPP Digital Basket Popup Message",
+    "value": "xpath=//div[contains(@class,'basket-notification-widget')]//div[@class='notification-type']"
+  },
+  {
+    "name": "BPP Digital Basket Popup View Checkout",
+    "value": "xpath=//*[text()='View Basket & Checkout']"
+  },
+  {
+    "name": "BPP Digital Basket Popup Count",
+    "value": "xpath=//div[contains(@class,'basket-notification-widget')]//div[@class='notification-basket-count']"
   },
   {
     "name": "Banner Username",

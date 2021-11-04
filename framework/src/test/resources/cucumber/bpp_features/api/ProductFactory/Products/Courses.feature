@@ -821,8 +821,8 @@ Feature: Product Factory API Data Creation
     And I execute "Update Course Material" API step
     Then I execute "Link Course To Clients" API step
 
-  #TODO: Verify test after BPP-17225 is fixed;
-  @CourseMaterial #TC-1075
+  #TODO: Verify test after BPP-17225 is fixed; Till then executed in UI
+  @CourseMaterial @NeedToBeUi #TC-1075
   Scenario: Add Expired Material
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |

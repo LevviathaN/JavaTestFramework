@@ -31,7 +31,6 @@ Feature: The Hub - Law School - Moving between Hub and VPE
     And Сss "white-space" of "Hub VPE Assignment First Card Title" should have value "nowrap"
     And I should see the "Hub VPE Active First Topic" element
     And I validate text "Volodymyr Topic 1" to be displayed for "Hub VPE Active First Topic" element
-    And I should see the "This is a VPE course set for testing purposes" element
     And I switch to window with index "1"
     #Verify user is redirected to VPE after clicking Next Activity
     Then I click on the "Hub VPE View Next Activity" button

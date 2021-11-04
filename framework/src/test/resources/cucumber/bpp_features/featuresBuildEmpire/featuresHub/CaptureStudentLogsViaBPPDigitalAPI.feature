@@ -27,11 +27,10 @@ Feature: Student data API tracking
     #Logout Admin
     And I execute "Log Out from Hub Admin" reusable step
 
-  @Positive #TC-4708
+  @Positive @SubmitRFI #TC-4708
   Scenario: Submit RFI form for an Employer to capture API data
     #RFI Submitting
-    When I am on "https://web-stage-bppdigital.bppuniversity.com" URL
-    And I click on the "/request-information" "link address"
+    When I am on "https://web-stage-bppdigital.bppuniversity.com/request-information" URL
     When I click on the "I am an Employer" "Build Empire RFI Label text item"
     And I set "Auto[FIRSTNAME]" text to the "Enter your first name" "Build Empire text field"
     And I set "Auto[LASTNAME]" text to the "Enter your last name" "Build Empire text field"

@@ -19,12 +19,12 @@ Feature: Cypher Builder - Support for ordering - BPP-624
     Then I validate text "<third>" to be displayed for "<column>" "Product Factory Third PLP Row Text By Column Number"
 
     Examples:
-    |type      |category |data        |search                |first                 |second                |third                 |column|
-    |Alphabetic|Programme|Bodies      |OrderingBodyName      |BOrderingBodyShortName|COrderingBodyShortName|DOrderingBodyShortName|1     |
-    |Alphabetic|Programme|Papers      |OrderingBodyName      |BOrderingPaperName    |COrderingPaperName    |DOrderingPaperName    |1     |
-    |Alphabetic|Delivery |Sittings    |BOrderingBodyShortName|BOrderingSittingName  |COrderingSittingName  |DOrderingSittingName  |1     |
-    |Alphabetic|Types    |Course Types|BOrderingBodyShortName|BOrderingSittingName  |COrderingSittingName  |DOrderingSittingName  |1     |
-    |Numeric   |Programme|Bodies      |NumericBodyName       |1OrderingBodyShortName|2OrderingBodyShortName|3OrderingBodyShortName|1     |
-    |Numeric   |Programme|Papers      |NumericBodyName       |1OrderingPaperName    |2OrderingPaperName    |3OrderingPaperName    |1     |
-    |Numeric   |Delivery |Sittings    |1OrderingBodyShortName|1OrderingSittingName  |2OrderingSittingName  |3OrderingSittingName  |1     |
-    |Numeric   |Types    |Course Types|1OrderingBodyShortName|1OrderingSittingName  |2OrderingSittingName  |3OrderingSittingName  |1     |
+    |type      |category |data        |search                |first                         |second                        |third                         |column|
+    |Alphabetic|Programme|Bodies      |OrderingBodyName      |BOrderingBodyShortName        |COrderingBodyShortName        |DOrderingBodyShortName        |1     |
+    |Alphabetic|Programme|Papers      |OrderingBodyName      |BOrderingPaperName            |COrderingPaperName            |DOrderingPaperName            |1     |
+    |Alphabetic|Delivery |Sittings    |BOrderingBodyShortName|BOrderingSittingName          |COrderingSittingName          |DOrderingSittingName          |1     |
+#    |Alphabetic|Types    |Course Types|BOrderingBodyShortName|BOrderingCourseTypeDescription|COrderingCourseTypeDescription|DOrderingCourseTypeDescription|1     |
+    |Numeric   |Programme|Bodies      |NumericBodyName       |1OrderingBodyShortName        |2OrderingBodyShortName        |3OrderingBodyShortName        |1     |
+    |Numeric   |Programme|Papers      |NumericBodyName       |1OrderingPaperName            |2OrderingPaperName            |3OrderingPaperName            |1     |
+    |Numeric   |Delivery |Sittings    |1OrderingBodyShortName|1OrderingSittingName          |2OrderingSittingName          |3OrderingSittingName          |1     |
+#    |Numeric   |Types    |Course Types|1OrderingBodyShortName|1OrderingSittingName          |2OrderingSittingName          |3OrderingSittingName          |1     |
