@@ -63,10 +63,10 @@ Feature: Checkout Journey for Logged User MasterCard
     Then I click on the " Pay now" "BPP Digital Button"
     And I wait for "3" seconds
     Then I should see the "Booking complete." "text contained in element"
-    Then I should see the "You’ll shortly receive an email confirming your booking details." "text contained in element"
+    Then I should see the "You will be able to access your online course materials shortly." "text contained in element"
     And I capture text data "BPP Digital Checkout Basket Id" as "EC_BASKET_ID" variable
     #Hub login page
-    Then I click on the "Go to hub" "BPP Digital Button"
+    Then I click on the "Go to Hub" "BPP Digital Button"
     And I wait for "5" seconds
     And I should see the "Timeline and Dashboard" "element"
     Then I should see the "Booking complete" "element"
