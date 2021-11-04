@@ -39,7 +39,7 @@ Feature: Product Factory API Data Creation
       |code|EC_BODY_TWO_FINANCIAL_DIMENSION_CODE|
 
   @FinancialDimension #TC-1044
-  Scenario: Update created Financial Dimension record Body item
+  Scenario: Audit Trail - Low Fidelity logging of Financial Dimension record changes
     Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
       |dimensionType|PRODUCT|
       |target       |BODY   |

@@ -120,3 +120,23 @@ Feature: Product Factory API Data Creation
     And I execute "Create Course Type" API step
     Then I execute negative "Create Course Type" API step with error name "Description must be unique" and parameters
       |description|EC_COURSE_TYPE_DESCRIPTION|
+
+  @CourseType #TC-1044
+  Scenario: Audit Trail - Low Fidelity logging of Course Type record changes
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE|
+      |target       |COURSETYPE|
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    Then I execute "Create Course Type" API step
+    And I verify that "[TIMENOW-yyyy-MM-dd'T'HH:mm]" element "contains" to "EC_COURSE_TYPE_CREATED_ON" element
+    And I verify that "S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp@clients" element "equal" to "EC_COURSE_TYPE_CREATED_BY" element
+    And I verify that "EC_COURSE_TYPE_UPDATED_ON" element "equal" to "null" element
+    And I verify that "EC_COURSE_TYPE_UPDATED_BY" element "equal" to "null" element
+    And I execute "Update Course Type" API step
+    And I verify that "~Second[TIMENOW-yyyy-MM-dd'T'HH:mm]" element "contains" to "EC_COURSE_TYPE_UPDATED_ON" element
+    And I verify that "S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp@clients" element "equal" to "EC_COURSE_TYPE_UPDATED_BY" element
