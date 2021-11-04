@@ -45,6 +45,8 @@ Feature: CBA - Update CBA Course Institution fee - BPP-3207
 #    And I should see the "[SUM(EC_PRICING_MATRIX_PRICE,EC_UPDATED_INSTITUTE_FEE)]$.00" element
     When I click on the "Financials" "Product Factory navigation item"
     When I click on the "Prices" "Product Factory navigation sub item"
+    And I set "EC_SITTING_NAME" text to the "Search" "Product Factory text field" from keyboard
+    And I click on the "submit" "element by type"
     When I click on the "EC_SITTING_NAME" "Product Factory edit button"
     And I click on the "EC_CBA_COURSE_TYPE_DESCRIPTION" "text"
     And I click on the "EC_REGION_NAME" "Product Factory Pricing Matrix dropdown"
