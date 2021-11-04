@@ -27,7 +27,6 @@ Feature: As an admin, I expect the ability to add a "course block" component,
     And I click on the "Subject" "element"
     And I should see the "Business" element
     And I should see the "Accountancy and Tax" element
-    And I should see the "Law" element
     Then I should see the "CMS Courses Block" "BPP Digital Web Site CMS Anchors ID"
     And I click on the "Accountancy and Tax" element
     And I should see the "BSc (Hons) Accounting and Finance" element
