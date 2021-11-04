@@ -4,7 +4,7 @@ Feature: Checkout Journey to Login While Registration Amex
   wire submission of the form's contents (along with personal details and basket details) to the backend endpoint
   which then integrates with Salesforce to create an opportunity and quote.
 
-  @Positive @LoggedByCheckout #TC-6239, 6021, 6178, 6201, 6535б 6811
+  @Positive @LoggedByCheckout #TC-6239, 6021, 6178, 6201, 6535, 6811
   Scenario: eCommerce - Checkout Journey Log In While Registration American Express
     And I am on "MD_COMMON_LINKS_BPPDIGITALECOMMERCETWOURL" URL
     And I click on the "Elements of Costing" "BPP Digital View Dates and Prices button"
