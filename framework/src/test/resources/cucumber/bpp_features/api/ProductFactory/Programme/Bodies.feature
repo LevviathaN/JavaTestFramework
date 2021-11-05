@@ -92,3 +92,18 @@ Feature: Product Factory API Data Creation
     And I execute "Create Sitting" API step
     Then I execute negative "Update Body" API step with error name "This Body is already linked to one or more Sittings, so you cannot change the Financial Dimension" and parameters
       |financialDimensionReference|EC_COURSE_TYPE_PROJECT_TWOFINANCIAL_DIMENSION_REFERENCE|
+
+  @Body #TC-1044
+  Scenario: Audit Trail - Low Fidelity logging of Bodies record changes
+    Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT|
+      |target       |BODY   |
+    And I execute "Create Vertical" API step
+    Then I execute "Create Body" API step
+    And I verify that "[TIMENOW-yyyy-MM-dd'T'HH:mm]" element "contains" to "EC_BODY_CREATED_ON" element
+    And I verify that "S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp@clients" element "equal" to "EC_BODY_CREATED_BY" element
+    And I verify that "EC_BODY_UPDATED_ON" element "equal" to "null" element
+    And I verify that "EC_BODY_UPDATED_BY" element "equal" to "null" element
+    And I execute "Update Body" API step
+    And I verify that "~Second[TIMENOW-yyyy-MM-dd'T'HH:mm]" element "contains" to "EC_BODY_UPDATED_ON" element
+    And I verify that "S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp@clients" element "equal" to "EC_BODY_UPDATED_BY" element

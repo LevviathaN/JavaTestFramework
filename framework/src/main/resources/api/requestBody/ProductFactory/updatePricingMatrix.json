@@ -1,0 +1,11 @@
+{
+  "operationName":"updatePricingMatrix",
+  "variables":{
+    "command":{
+      "reference":"EC_PRICING_MATRIX_REFERENCE",
+      "bodyReference":"EC_BODY_REFERENCE",
+      "sittingReference":"EC_SITTING_REFERENCE"
+    }
+  },
+  "query":"mutation updatePricingMatrix($command: UpdatePricingMatrixCommandInput!) { updatePricingMatrix(command: $command) { ...pricingMatrixWithPrices __typename }}fragment pricingMatrixWithPrices on PricingMatrix { reference createdBy createdOn updatedBy updatedOn body { ...pricingBody __typename } sitting { ...pricingSitting __typename } prices { ...pricingPrice __typename } __typename}fragment pricingBody on Body { reference shortName name __typename}fragment pricingSitting on Sitting { reference name startDate endDate __typename}fragment pricingPrice on Price { reference value courseType { reference description __typename } region { reference name __typename } paper { reference shortName name __typename } __typename}"
+}

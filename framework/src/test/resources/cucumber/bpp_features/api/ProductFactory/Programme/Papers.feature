@@ -85,10 +85,22 @@ Feature: Product Factory API Data Creation
     And I execute "Create Paper" API step
     Then I execute "Link Paper To Levels" API step
 
-  @StudyMode #TC-6685, TC-6686
+  @Paper #TC-6685, TC-6686
   Scenario: Scheduled Auto De-publish of courses from the website
     Given I execute "Create Study Mode" API step
     Given I execute "Create Paper" API step
     And I execute "Search Paper" API step
     And I verify that "EC_PAPER_EXPIRY_EXPIRY_WEEKS" element "equal" to "EC_SEARCH_PAPER_RESULT_EXPIRY_EXPIRY_WEEKS" element
     And I verify that "EC_PAPER_EXPIRY_EXPIRY_OPTION" element "equal" to "EC_SEARCH_PAPER_RESULT_EXPIRY_EXPIRY_OPTION" element
+
+  @Paper #TC-1044
+  Scenario: Audit Trail - Low Fidelity logging of Papers record changes
+    Given I execute "Create Study Mode" API step
+    Given I execute "Create Paper" API step
+    And I verify that "[TIMENOW-yyyy-MM-dd'T'HH:mm]" element "contains" to "EC_PAPER_CREATED_ON" element
+    And I verify that "S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp@clients" element "equal" to "EC_PAPER_CREATED_BY" element
+    And I verify that "EC_PAPER_UPDATED_ON" element "equal" to "null" element
+    And I verify that "EC_PAPER_UPDATED_BY" element "equal" to "null" element
+    Then I execute "Update Paper" API step
+    And I verify that "~Second[TIMENOW-yyyy-MM-dd'T'HH:mm]" element "contains" to "EC_PAPER_UPDATED_ON" element
+    And I verify that "S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp@clients" element "equal" to "EC_PAPER_UPDATED_BY" element

@@ -1,0 +1,16 @@
+{
+  "operationName":"updateMaterialType",
+  "variables":{
+    "command":{
+      "reference":"EC_MATERIAL_TYPE_REFERENCE",
+      "name":"ApiMaterialTypeNameUpdated[####]",
+      "description":"ApiMaterialTypeDescriptionUpdated[####]",
+      "isExpiryDateRequired":true,
+      "isIsbnRequired":true,
+      "isPriceRequired":true,
+      "isWeightRequired":true,
+      "financialDimensionReference":"EC_MATERIAL_TYPE_FINANCIAL_DIMENSION_REFERENCE"
+    }
+  },
+  "query":"mutation updateMaterialType($command: UpdateMaterialTypeCommandInput!) { updateMaterialType(command: $command) { ...materialType __typename }}fragment materialType on MaterialType { reference name description isIsbnRequired isWeightRequired isExpiryDateRequired isPriceRequired financialDimension { ...financialDimension __typename } createdBy createdOn updatedBy updatedOn __typename}fragment financialDimension on FinancialDimension { reference code description target dimensionType createdBy createdOn updatedBy updatedOn __typename}"
+}

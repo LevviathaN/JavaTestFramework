@@ -24,3 +24,13 @@ Feature: Product Factory API Data Creation
     And I execute negative "Update Study Mode" API step with error name "Name must be unique" and parameters
       |name|EC_SECOND_STUDY_MODE_NAME|
 
+  @StudyMode #TC-1044
+  Scenario: Audit Trail - Low Fidelity logging of Study Mode record changes
+    Given I execute "Create Study Mode" API step
+    And I verify that "[TIMENOW-yyyy-MM-dd'T'HH:mm]" element "contains" to "EC_STUDY_MODE_CREATED_ON" element
+    And I verify that "S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp@clients" element "equal" to "EC_STUDY_MODE_CREATED_BY" element
+    And I verify that "EC_STUDY_MODE_UPDATED_ON" element "equal" to "null" element
+    And I verify that "EC_STUDY_MODE_UPDATED_BY" element "equal" to "null" element
+    And I execute "Update Study Mode" API step
+    And I verify that "~Second[TIMENOW-yyyy-MM-dd'T'HH:mm]" element "contains" to "EC_STUDY_MODE_UPDATED_ON" element
+    And I verify that "S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp@clients" element "equal" to "EC_STUDY_MODE_UPDATED_BY" element
