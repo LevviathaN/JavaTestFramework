@@ -249,11 +249,20 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @And("^I execute \"([^\"]*)\" JS code for \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_execute_js_code_for_element_special(String jsCode, String elementLocator, String elementType) {
-        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setLocator(elementLocator,elementType)
-                .setAction(ActionsWithLocatorAndParameter.EXECUTE_JS,jsCode)
-                .setMessage("Executing JS code: '" + jsCode + "' for " + elementLocator + " " + elementType)
-                .execute();
+        Reporter.log("Executing JS code: " + jsCode);
+        if(specialLocatorsMap.containsKey(elementType)) {
+            String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
+            String xpathTemplate = specialLocatorsMap.get(elementType);
+            String resultingXpath = xpathTemplate.replaceAll("PARAMETER", processedLocator);
+            isElementPresentAndDisplay(initElementLocator(resultingXpath));
+            BPPLogManager.getLogger().info("Executing JS code: " + jsCode + " for: " + elementLocator + " element");
+            executeJSCodeForElement(initElementLocator(resultingXpath),jsCode);
+            if(!elementLocator.equals(processedLocator)){
+                Reporter.log("<pre>[input test parameter] " + elementLocator + "' -> '" + processedLocator + "' [output value]</pre>");
+            }
+        } else {
+            Reporter.fail("No such locator template key");
+        }
     }
 
     /**

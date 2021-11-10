@@ -1985,3 +1985,55 @@ Feature: Product Factory API Data Creation
       |reference|EC_SECOND_COURSE_BULK_OPERATION_REFERENCE|
     Then I verify that "EC_SECOND_GET_COURSE_BULK_OPERATION_COURSES_INCLUDED" element "equal" to "true" element
     Then I verify that "EC_SECOND_GET_COURSE_BULK_OPERATION_COURSES_INSTANCES_INCLUDED" element "equal" to "true" element
+
+  @Course #TC-1045
+  Scenario: Audit Trail - Low Fidelity logging of Course record changes
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Vat Rule" API step saving as "SECOND_"
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Client" API step
+    Given I execute "Create Study Mode" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Digital Content" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I execute "Create Session Duration" API step
+    And I execute "Create Pricing Matrix" API step
+    And I execute "Create Prices" API step
+    And I execute "Create Course" API step
+    And I execute "Course Reference" API step
+    And I verify that "[TIMENOW-yyyy-MM-dd'T'HH:mm]" element "contains" to "EC_COURSE_REFERENCE_CREATED_ON" element
+    And I verify that "S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp@clients" element "equal" to "EC_COURSE_REFERENCE_CREATED_BY" element
+    And I verify that "EC_COURSE_REFERENCE_UPDATED_ON" element "equal" to "null" element
+    And I verify that "EC_COURSE_REFERENCE_UPDATED_BY" element "equal" to "null" element
+    And I execute "Calculate Course Price" API step
+    And I execute "Course Reference" API step
+    And I verify that "~Second[TIMENOW-yyyy-MM-dd'T'HH:mm]" element "contains" to "EC_COURSE_REFERENCE_UPDATED_ON" element
+    And I verify that "S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp@clients" element "equal" to "EC_COURSE_REFERENCE_UPDATED_BY" element

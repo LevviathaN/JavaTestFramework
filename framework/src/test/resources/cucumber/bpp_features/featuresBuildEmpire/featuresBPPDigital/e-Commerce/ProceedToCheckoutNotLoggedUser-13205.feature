@@ -7,15 +7,17 @@ Feature: Checkout Journey for Not Logged User
   So for example, I should NOT be able to view the 'payment details' page without accessing the 'booking details' page first.
   Also, reloading any page should reset the journey page to the first page.
 
-  @Positive @NotLogged #TC-5454, 6103, 6008, 6129, 6130, 6467, 6532, 6131, 6468, 6174
+  @Positive @NotLogged #TC-5454, 6103, 6008, 6129, 6130, 6467, 6532, 6131, 6468, 6174, 6469
   Scenario: eCommerce - Checkout Journey Not Logged User VISA
     #Navigation through checkout
     And I am on "MD_COMMON_LINKS_BPPDIGITALECOMMERCEURL" URL
     And I click on the "Data Technician" "BPP Digital View Dates and Prices button"
     And I click on the "BPP Digital Add to Basket First Course" button
-    Then I validate text "CONTAINS=in basket" to be displayed for "BPP Digital Add to Basket First Course" element
-    And I validate text "CONTAINS=1" to be displayed for "BPP Digital Header Basket" element
-    And I click on the "BPP Digital Header Basket" button by JS
+    Then I wait for "1" seconds
+    Then I validate text "CONTAINS=Added to basket!" to be displayed for "BPP Digital Basket Popup Message" element
+    Then I validate text "CONTAINS=In your basket" to be displayed for "BPP Digital Basket Popup Count" element
+    Then I validate text "CONTAINS=1" to be displayed for "BPP Digital Basket Popup Count" element
+    And I click on the "BPP Digital Basket Popup View Checkout" element
     Then I validate text "1" to be displayed for "Items" "BPP Digital Basket Summary Section"
     And I capture text data "Total" "BPP Digital Basket Summary Section" as "EC_TOTAL" variable
     And I capture text data "Sub total" "BPP Digital Basket Summary Section" as "EC_SUBTOTAL" variable
@@ -83,15 +85,16 @@ Feature: Checkout Journey for Not Logged User
     And I wait for "2" seconds
     #Complete page verification
     Then I should see the "Booking complete." "text contained in element"
-    Then I should see the "You’ll shortly receive an email confirming your booking details." "text contained in element"
+    Then I should see the "You will be able to access your online course materials shortly." "text contained in element"
     And Сss "background-color" of "Complete" "BPP Digital Checkout Progress Bar" should have value "rgba(55, 99, 173, 1)"
     And I capture text data "BPP Digital Checkout Basket Id" as "EC_BASKET_ID" variable
     #Hub login page
-    Then I click on the "Go to hub" "BPP Digital Button"
+    Then I click on the "Go to Hub" "BPP Digital Button"
     Then I should see the "Email" "Build Empire text field"
     And I execute "Harakirimail Verify Email" reusable step
     And I execute "Log In to Hub as Student" reusable step
     Then I should see the "Booking complete" "element"
+    Then I should see the "You will be able to access your course shortly." "element"
     And I should see the "EC_BASKET_ID" "text contained in element"
     #Then I should see the "EC_TOTAL" "element the last" WILL BE UNCOMMENTED AFTER PRICE IS FORMATTED CORRECTLY
     #Empty basket check

@@ -3,7 +3,7 @@
   "variables": {
     "command": {
       "reference":"EC_DEACTIVATION_REASON_REFERENCE",
-      "description": "ApiDeactivationReasonDescription[####]",
+      "description": "ApiDeactivationReasonDescriptionUpdated[####]",
       "preventReactivation": true
     }
   },

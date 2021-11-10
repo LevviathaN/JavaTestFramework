@@ -8,7 +8,7 @@ Feature: BPP Digital Edit New Course page to see School and Qualification type a
   Background:
     Given I execute "Log In to Hub as Admin" reusable step
 
-  @Positive @Smoke #TC-2520
+  @Positive @Smoke @CoursePageIntro #TC-2520
   Scenario: Edit New Course page to see School and Qualification type and Intro
     #Navigate and Create Courses(new) item
     Then I execute "Admin Hub Navigate to new Courses Pages" reusable step
@@ -56,8 +56,6 @@ Feature: BPP Digital Edit New Course page to see School and Qualification type a
     #Check for all Information
     Then I should see the "EC_NEW_COURSE_NAME" element
     Then I should see the "EC_INTRO" element
-    Then I should see the "Law" element
-    Then I should see the "Undergraduate" element
     #Login to Admin
     And I execute "Log In to Hub as Admin" reusable step
     #Delete New Profession

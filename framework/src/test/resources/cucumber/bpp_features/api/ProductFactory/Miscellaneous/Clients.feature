@@ -21,3 +21,14 @@ Feature: Product Factory API Data Creation
   Scenario: Submitting Incomplete Client Fields
     And I execute negative "Create Client" API step with error name "The Name field is required." and parameters
       |name||
+
+  @Clients #TC-1044
+  Scenario: Audit Trail - Low Fidelity logging of Clients record changes
+    Given I execute "Create Client" API step
+    And I verify that "[TIMENOW-yyyy-MM-dd'T'HH:mm]" element "contains" to "EC_CLIENT_CREATED_ON" element
+    And I verify that "S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp@clients" element "equal" to "EC_CLIENT_CREATED_BY" element
+    And I verify that "EC_CLIENT_UPDATED_ON" element "equal" to "null" element
+    And I verify that "EC_CLIENT_UPDATED_BY" element "equal" to "null" element
+    Then I execute "Update Client" API step
+    And I verify that "~Second[TIMENOW-yyyy-MM-dd'T'HH:mm]" element "contains" to "EC_CLIENT_UPDATED_ON" element
+    And I verify that "S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp@clients" element "equal" to "EC_CLIENT_UPDATED_BY" element

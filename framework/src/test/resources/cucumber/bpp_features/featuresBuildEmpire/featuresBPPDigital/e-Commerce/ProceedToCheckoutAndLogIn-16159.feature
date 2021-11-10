@@ -4,7 +4,7 @@ Feature: Checkout Journey to Login While Registration Amex
   wire submission of the form's contents (along with personal details and basket details) to the backend endpoint
   which then integrates with Salesforce to create an opportunity and quote.
 
-  @Positive @LoggedByCheckout #TC-6239, 6021, 6178, 6201, 6535
+  @Positive @LoggedByCheckout #TC-6239, 6021, 6178, 6201, 6535, 6811, 6471
   Scenario: eCommerce - Checkout Journey Log In While Registration American Express
     And I am on "MD_COMMON_LINKS_BPPDIGITALECOMMERCETWOURL" URL
     And I click on the "Elements of Costing" "BPP Digital View Dates and Prices button"
@@ -39,6 +39,11 @@ Feature: Checkout Journey to Login While Registration Amex
     Then I should see the "EC_SUBTOTAL" "text contained in SPAN element"
     Then I should see the "EC_VAT" "text contained in SPAN element"
     Then I should see the "EC_TOTAL" "element the last"
+    And I click on the "Show details" "element by title"
+    Then I should see the "View on map" "text"
+    Then I should see the "Face-to-face" "text"
+    Then I should see the "2 Weekend sessions starting " "text"
+    Then I should see the "Learning materials included" "text"
     Then I click on the "Continue to payment" "button"
     And I wait for "2" seconds
     #Payment page verification with new delivery address
@@ -65,16 +70,15 @@ Feature: Checkout Journey to Login While Registration Amex
     Then I click on the " Pay now" "BPP Digital Button"
     And I wait for "3" seconds
     Then I should see the "Booking complete." "text contained in element"
-    Then I should see the "You’ll shortly receive an email confirming your booking details." "text contained in element"
+    Then I should see the "You will be able to access your online course materials shortly." "text contained in element"
     Then I should see the "Delivery of learning materials to" "text contained in element"
-    Then I should see the "Your learning materials are usually dispatched 2 weeks before your course starts," "text contained in element"
     Then I should see the "Something 100" "text contained in element"
     Then I should see the "Delivery 1" "text contained in element"
     Then I should see the "LONDON" "text contained in element"
     Then I should see the "COUNTY" "text contained in element"
     And I capture text data "BPP Digital Checkout Basket Id" as "EC_BASKET_ID" variable
     #Hub login page
-    Then I click on the "Go to hub" "BPP Digital Button"
+    Then I click on the "Go to Hub" "BPP Digital Button"
     And I wait for "5" seconds
     And I should see the "Timeline and Dashboard" "element"
     Then I should see the "Booking complete" "element"
@@ -115,7 +119,6 @@ Feature: Checkout Journey to Login While Registration Amex
     And I capture text data "Subtotal" "Salesforce Invoice Price Info" as "EC_SFSUBTOTAL" variable
     And I capture text data "Total Amount (With Tax)" "Salesforce Invoice Price Info" as "EC_SFTOTAL" variable
     And I capture text data "Tax" "Salesforce Invoice Price Info" as "EC_SFTAX" variable
-
     And I verify that "EC_SFTOTAL" element "equal" to "EC_TOTAL" element
     And I verify that "EC_SFTAX" element "equal" to "EC_VAT" element
     And I verify that "EC_SUBTOTAL" element "equal" to "EC_SFSUBTOTAL" element

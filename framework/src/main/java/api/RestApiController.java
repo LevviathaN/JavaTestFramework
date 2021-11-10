@@ -215,6 +215,10 @@ public class RestApiController {
                             JSONObject filterObj = (JSONObject) variables.get("filter");
                             String searchTerm = (String) filterObj.get("searchTerm");
                             filterObj.put("searchTerm", TestParametersController.checkIfSpecialParameter(searchTerm));
+                            } else if (variables.get("filter").toString().contains("courseReference")) {
+                                JSONObject filterObj = (JSONObject) variables.get("filter");
+                                String courseReference = (String) filterObj.get("courseReference");
+                                filterObj.put("courseReference", TestParametersController.checkIfSpecialParameter(courseReference));
                             }
                         }
                     }
