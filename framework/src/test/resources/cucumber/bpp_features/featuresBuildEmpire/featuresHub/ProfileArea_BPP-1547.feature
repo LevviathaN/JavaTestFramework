@@ -6,13 +6,12 @@ Feature: BPP University Hub Profile Area
   @ProfileArea @Positive #TC-1170, TC-4962
   Scenario: Hub Profile Area
     #Register New Student
-    And I execute "Register New Student Account" reusable step
-    Then I execute "Harakirimail Verify Email" reusable step
+    And I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     #Profile Area validation
     Then I validate text "CONTAINS=EC_AUTO_FIRSTNAME" to be displayed for "Direct App Account Name Drop Down" element
     Then Attribute "style" of "Direct App Account Avatar Image" should have value "CONTAINS=/assets/icons/avatar-icon.svg"
-    And I click on the "Direct App Account Name Drop Down" element
+    And I click on the "Direct App Account Name Drop Down" element by JS
     Then I should see the "Account settings" "BPP Digital Student Applications Menu link"
     Then I should see the "Logout" "BPP Digital Student Applications Menu link"
     #Change Avatar

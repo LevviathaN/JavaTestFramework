@@ -3,7 +3,7 @@ Feature: BPP University Hub Direct App Notifications
   As a Hub user
   I would like to see notifications on my dashboard in regards to Direct Apps
 
-  @Positive @iPad @iPhone#TC-1130 TC-1104 TC-1171
+  @Positive @iPad @iPhone #TC-1130 TC-1104 TC-1171
   Scenario: Direct App Notifications_Mobile
     Then I execute "Log In to Hub as Student" reusable step replacing some steps
       | 2 | I set "AutoFrancisMcKnight2507@getnada.com" text to the "Email" "Build Empire text field" |

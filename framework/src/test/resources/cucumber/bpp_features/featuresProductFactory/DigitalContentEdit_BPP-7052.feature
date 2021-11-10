@@ -39,7 +39,7 @@ Feature: Digital Content Id - Edit - BPP-7052
     And I execute "Create Sitting" reusable step replacing some steps
       |4|I set "SittingNameTwo[######]" text to the "Name" "Product Factory text field"|
 
-  @Positive @P1 #TC-3169, TC-5450
+  @Positive @P1 @CoveredWithAPI @NeedToBeUI #TC-3169, TC-5450
   Scenario: Edit Digital Content
     Given I execute modified "Create Digital Content" reusable step
       |5|Add|Attribute "tabindex" of "Save" "Product Factory button" should have value "-1"|
@@ -67,7 +67,7 @@ Feature: Digital Content Id - Edit - BPP-7052
     And I click on the "Save" "Product Factory button last"
     Then I should see the "EC_COURSE_REFERENCE_ID_EDITED" "element"
 
-  @Negative @P1 #TC-3198
+  @Negative @P1 @CoveredWithApi #TC-3198
   Scenario: Edit Digital Content Duplicate
     Given I execute "Create Digital Content" reusable step replacing some steps
       |15|I "check" "EC_SITTING_NAME_TWO" "Product Factory dialog checkbox"|
@@ -126,7 +126,10 @@ Feature: Digital Content Id - Edit - BPP-7052
       |21|I set "EC_COURSE_TYPE_DESCRIPTION_TWO" text to the "Search" "Product Factory text field" from keyboard|
       |22|I click on the "submit" "element by type"                                         |
       |23|I "check" "EC_COURSE_TYPE_DESCRIPTION_TWO" "Product Factory dialog checkbox"|
+    Then I wait for "40" seconds
+    And Browser performs "REFRESH" command
     Then I should see the "EC_BODY_SHORT_NAME" element
+    And I click on the "EC_SITTING_NAME_TWO" "Product Factory edit button"
     And I click on the "EC_BODY_SHORT_NAME" "Product Factory edit button"
     And I click on the "Course Types" "Product Factory edit button"
     And I set "EC_COURSE_TYPE_DESCRIPTION_TWO" text to the "Search" "Product Factory text field" from keyboard

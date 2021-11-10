@@ -5,9 +5,12 @@ import ui.utils.SeleniumHelper;
 import ui.utils.Reporter;
 import ui.utils.Tools;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -291,12 +294,15 @@ public class TestParametersController {
                     }
                     ecVarNameSimplified.append("_");
                     ecVarNameSimplified.append("DOB");
-                } else if (element.startsWith("TIMENOW")) {
+                }
+                else if (element.startsWith("TIMENOW")) {
                     String timePattern = null;
                     if (element.endsWith("MMMMd,yyyy")) {
                         timePattern = "MMMM d, yyyy";
                     } else if (element.endsWith("yyyy-MM-dd")){
                         timePattern = "yyyy-MM-dd";
+                    } else if (element.endsWith("yyyy-MM-dd'T'HH:mm")){
+                        timePattern = "yyyy-MM-dd'T'HH:mm";
                     } else if (element.endsWith("VPE")) {
                         if (element.contains("CALENDAR")) {
                             String time = String.valueOf(Tools.getCurDateTimeInMilliseconds());
@@ -309,10 +315,37 @@ public class TestParametersController {
                     }
                     DateTimeFormatter dtf = DateTimeFormatter.ofPattern(timePattern);
                     LocalDateTime now = LocalDateTime.now(ZoneId.of("Europe/London"));
+
+                    if (element.contains("TMR")) {
+                        now = now.plusDays(1);
+                    } else if (element.contains("YTD")) {
+                        now = now.minusDays(1);
+                    } else if (element.contains("OHB")) {
+                        now = now.minusHours(1);
+                    }
                     String currentDateTime = dtf.format(now);
                     ecVarNameSimplified.append("_");
                     ecVarNameSimplified.append("TIMENOW");
                     resultingValueSimplified.append(currentDateTime);
+                }
+                else if (element.startsWith("DATEFORMAT")){
+                    String prenthesis = element.substring(11,element.length()-1);
+                    String dateString = prenthesis.split("[,]")[0];
+                    String givenPattern = prenthesis.split("[,]")[1];
+                    String desireblePattern = prenthesis.split("[,]")[2];
+                    SimpleDateFormat givenFormat = new SimpleDateFormat(givenPattern);
+                    SimpleDateFormat desirebleFormat = new SimpleDateFormat(desireblePattern);
+                    Date date = null;
+                    try {
+                        date = givenFormat.parse(checkIfSpecialParameter(dateString));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    String formattedDate = desirebleFormat.format(date);
+
+                    resultingValueSimplified.append(formattedDate);
+                    ecVarNameSimplified.append("_");
+                    ecVarNameSimplified.append("DATEFORMAT");
                 }
                 else if (element.startsWith("SUM")){
                     int sum = 0;

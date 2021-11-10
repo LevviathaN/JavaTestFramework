@@ -9,26 +9,26 @@ Feature: Verticals on Products (Terra Changes) - New Reference Data - BPP-12384
   Background:
     Given I execute "Log In" reusable step
 
-  @Positive @Regression @P1 @HappyPath #TC-4811
+  @Positive @Regression @P1 @HappyPath @CoveredWithApi #TC-4811
   Scenario: Add a New Vertical Using a Modal
     Given I execute "Create Vertical" reusable step
     Then I should see the "EC_VERTICAL_NAME" element
 
-  @Negative @P2 @HappyPath @NoQTest
+  @Negative @P2 @HappyPath @NoQTest @CoveredWithApi
   Scenario: Submitting Incomplete Vertical Fields
     When I click on the "Miscellaneous" "Product Factory navigation item"
     When I click on the "Verticals" "Product Factory navigation sub item"
     Then I click on the "Create" "Product Factory button"
     Then Attribute "tabindex" of "Save" "Product Factory button" should have value "-1"
 
-  @Negative @P2 @HappyPath #TC-4813
+  @Negative @P2 @HappyPath @CoveredWithApi #TC-4813
   Scenario: Add a Vertical Where Name Already Exists
     When I execute "Create Vertical" reusable step
     When I execute "Create Vertical" reusable step replacing some steps
       |4|I set "EC_VERTICAL_NAME" text to the "Name" "Product Factory text field"|
     Then I should see the "Name must be unique" message
 
-  @Negative @P2 #TC-4814
+  @Negative @CoveredWithApi @P2 #TC-4814
   Scenario: Amend a Vertical Where Name Already Exists
     When I execute "Create Vertical" reusable step
     When I execute "Create Vertical" reusable step replacing some steps
@@ -38,7 +38,7 @@ Feature: Verticals on Products (Terra Changes) - New Reference Data - BPP-12384
       |4|I set "EC_VERTICAL_NAME_TWO" text to the "Name" "Product Factory text field"|
     Then I should see the "Name must be unique" message
 
-  @Positive @Regression @P1 @Amend #TC-4812
+  @Positive @Regression @P1 @Amend @CoveredWithApi #TC-4812
   Scenario: Amend a Vertical Using a Modal
     Given I execute "Create Vertical" reusable step
     When I execute modified "Create Vertical" reusable step

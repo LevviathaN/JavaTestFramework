@@ -11,7 +11,7 @@ Feature: Pricing Matrix - update prices - BPP-1321
     And I remember "AutoRegionName" text as "EC_REGION_NAME" variable
     And I remember "AutoPaperName" text as "EC_PAPER_NAME" variable
 
-  @Positive @Regression @P1 #TC-1145
+  @Positive @Regression @P1 @CoveredWithApi #TC-1145
   Scenario: Update Pricing Matrix Price
     When I click on the "Financials" "Product Factory navigation item"
     When I click on the "Prices" "Product Factory navigation sub item"

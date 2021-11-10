@@ -12,7 +12,7 @@ Feature: Materials - Create Materials - BPP-1099
     And I execute "Remember Variables " reusable step
     And I execute "Remember Variables Two" reusable step
 
-  @Positive @P1 @HappyPath #TC-918
+  @Positive @P1 @HappyPath @CoveredWithApi @NeedToBeUI #TC-918
   Scenario: Create Material Wizard
     Given I execute "Create Material" reusable step
     When I click on the "Products" "Product Factory navigation item"
@@ -22,9 +22,8 @@ Feature: Materials - Create Materials - BPP-1099
     And I should see the "EC_MATERIAL_TYPE_NAME" "Product Factory edit button"
 
   @Positive @P1 #TC-5307
-  Scenario: Create Material Without Cost And Price
+  Scenario: Create Material Without Cost Price
     Given I execute modified "Create Material" reusable step
-      |6|Delete||
       |7|Delete||
     When I click on the "Products" "Product Factory navigation item"
     When I click on the "Materials" "Product Factory navigation sub item"
@@ -32,7 +31,7 @@ Feature: Materials - Create Materials - BPP-1099
     And I click on the "submit" "element by type"
     And I should see the "EC_MATERIAL_TYPE_NAME" "Product Factory edit button"
 
-  @Positive @P1 @Amend @HappyPath
+  @Positive @P1 @Amend @HappyPath @CoveredWithApi @NeedToBeUI #TC-1432
   Scenario: Amend Material Using Modal
     When I execute "Create Material" reusable step
     When I click on the "Products" "Product Factory navigation item"
@@ -74,7 +73,6 @@ Feature: Materials - Create Materials - BPP-1099
   @Positive @P1 #TC-5309
   Scenario: Add Cost And Price to Material Without Ones
     Given I execute modified "Create Material" reusable step
-      |6|Delete||
       |7|Delete||
     And I click on the "Search" "Product Factory text field"
     Then I set "EC_MATERIAL_TYPE_NAME" text to the "Search" "Product Factory text field" from keyboard
@@ -88,15 +86,13 @@ Feature: Materials - Create Materials - BPP-1099
     And I validate text "£222" to be displayed for "Product Factory Material Edit Page Cost Readonly Field" element
 
   @Positive @P1 #TC-5309
-  Scenario: Remove Cost And Price from Material That Has Ones
+  Scenario: Remove Cost Price from Material That Has Ones
     Given I execute "Create Material" reusable step
     And I click on the "Search" "Product Factory text field"
     Then I set "EC_MATERIAL_TYPE_NAME" text to the "Search" "Product Factory text field" from keyboard
     And I click on the "submit" "element by type"
     And I click on the "EC_MATERIAL_TYPE_NAME" "Product Factory edit button"
     When I click on the "Basic Properties" "Product Factory edit button"
-    And I set "" text to the "Price (£)" "Product Factory text field"
     And I set "" text to the "Cost (£)" "Product Factory text field"
     And I click on the "Save" "Product Factory button"
-    And I validate text "-" to be displayed for "Product Factory Material Edit Page Price Readonly Field" element
     And I validate text "-" to be displayed for "Product Factory Material Edit Page Cost Readonly Field" element

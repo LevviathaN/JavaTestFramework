@@ -59,7 +59,7 @@ Feature: Registry Case Management
     And I should scroll to the "top" of the page
     And I validate text "CONTAINS=Student Records" to be displayed for "Salesforce Case Owner Data Field" element
 
-  @AssignmentRules
+  @AssignmentRules1
   Scenario: Registry Case Management Verify Case Assignment Attendance and VLE
     Given I execute "Log In To Salesforce" reusable step
         #Attendance and Absences
@@ -67,7 +67,7 @@ Feature: Registry Case Management
       | 9  | I click on the "Attendance & Absences" "Salesforce cases dropdown option"            |
       | 11 | I click on the "Name missing from class register" "Salesforce cases dropdown option" |
     And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=Bus & Tech Attendance" to be displayed for "Salesforce Case Owner Data Field" element
+    And I validate text "CONTAINS=Business School Attendance" to be displayed for "Salesforce Case Owner Data Field" element
     #Book an Appointment
     And I execute "Create Assesments Registry Case" reusable step replacing some steps
       | 9  | I click on the "Book an Appointment" "Salesforce cases dropdown option"          |

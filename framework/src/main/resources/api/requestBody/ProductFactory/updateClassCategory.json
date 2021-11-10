@@ -1,0 +1,10 @@
+{
+  "operationName": "updateClassCategory",
+  "variables": {
+    "command": {
+      "reference": "EC_CLASS_CATEGORY_REFERENCE",
+      "name": "ApiClassCategoryNameUpdated[####]"
+    }
+  },
+  "query": "mutation updateClassCategory($command: UpdateClassCategoryCommandInput!) {  updateClassCategory(command: $command) {    ...classCategory    __typename  }}fragment classCategory on ClassCategory {  reference  name  createdBy  createdOn  updatedBy  updatedOn  __typename}"
+}

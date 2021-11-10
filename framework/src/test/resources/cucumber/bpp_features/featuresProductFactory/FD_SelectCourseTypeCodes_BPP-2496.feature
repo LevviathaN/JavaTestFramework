@@ -14,7 +14,7 @@ Feature: Financial Dimension - Select Course Type Codes - BPP-2496
     |4|I set "CourseTypeFDCodeThree[######]" text to the "Code" "Product Factory text field"|
     |5|I set "CourseTypeFDDescriptionThree[######]" text to the "Description" "Product Factory text field"|
 
-  @Negative @Regression @P1 #TC-1772
+  @Negative @Regression @P1 @CoveredWithApi #TC-1772
   Scenario: Edit Financial Dimension for the Course Type that is in use
     When I click on the "Types" "Product Factory navigation item"
     When I click on the "Course Types" "Product Factory navigation sub item"

@@ -15,9 +15,7 @@ Feature: CBA - Publish changes - BPP-3210
 
   @Positive @Regression @P1 #TC-3106
   Scenario: Publish CBA Changes Validation
-    And I execute "Log In" reusable step replacing some steps
-      |3|I fill the "Product Factory Email" field with "MD_COMMON_CREDENTIALS_PRODUCTFACTORYJUNIORPRODUCTSETTER"|
-      |4|I fill the "Product Factory Password" field with "MD_COMMON_CREDENTIALS_PRODUCTFACTORYJUNIORPSPASSWORD"|
+    And I execute "Log In" reusable step
     And I execute "Create CBA Record" reusable step
     When I click on the "Activate" "Product Factory button"
     Then I should see the "(Active)" element

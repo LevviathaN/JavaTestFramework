@@ -83,7 +83,8 @@ public enum UiHandlers {
     SF_CLICK_HANDLER((element, e) -> {
         SeleniumHelper.isHandled.put("sfClickHandler", false);
         if(e.getMessage().contains("javascript error: Cannot read property 'defaultView' of undefined") ||
-                e.getMessage().contains("Other element would receive the click: <one-record-home-flexipage2")){
+                e.getMessage().contains("Other element would receive the click: <one-record-home-flexipage2") ||
+                e.getMessage().contains("Other element would receive the click: <span force-lookup_lookup")){
             Reporter.log("Handling SF Click with JS");
             BPPLogManager.getLogger().info("Handling SF Click with JS");
             SeleniumHelper.clickWithJS(element);

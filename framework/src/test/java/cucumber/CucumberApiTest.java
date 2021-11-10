@@ -15,7 +15,7 @@ import ui.utils.RetryAnalyzer;
 @CucumberOptions(
         features = "src/test/resources/cucumber/bpp_features",
         glue = {"cucumber.api", "cucumber.productFactory"},
-        tags = {"@API"},
+        tags = {"@PF-API and not @NeedToBeUi"},
         plugin = {"pretty"})
 
 public class CucumberApiTest extends BaseApiTest {
@@ -34,8 +34,8 @@ public class CucumberApiTest extends BaseApiTest {
             groups = {"BPP API Automation"},
             dataProvider = "scenarios",
             retryAnalyzer = RetryAnalyzer.class,
-            invocationCount = 10,
-            threadPoolSize = 10
+            invocationCount = 1,
+            threadPoolSize = 1
     )
     public void runScenario(PickleEventWrapper pickleWrapper, CucumberFeatureWrapper featureWrapper) throws Throwable {
         scenarioName = pickleWrapper.getPickleEvent().pickle.getName();

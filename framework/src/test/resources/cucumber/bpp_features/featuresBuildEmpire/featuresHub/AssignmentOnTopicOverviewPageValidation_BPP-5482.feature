@@ -5,8 +5,7 @@ Feature: Verify Assignment Key Activity Completion Appearance In HUB - BPP-4488
 
   #TC-2716 Is not completed until issue with BrowserStack will be resolved
   Scenario: Assignment On Topic Overview Page Validation
-    When I execute "Register New Student Account" reusable step
-    Then I execute "Harakirimail Verify Email" reusable step
+    When I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     Then I shouldn't see the "My Learning" "Build Empire Navigation Menu elements"
     When I execute "Log Out from Hub Student" reusable step

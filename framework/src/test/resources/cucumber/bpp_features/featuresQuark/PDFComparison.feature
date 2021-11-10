@@ -3,8 +3,8 @@ Feature: Quark PDF File Comparison
 
   @ACCA @Automation
   Scenario Outline: <BaseFile> to <QuarkWebPlatformFile> ACCA PDF published comparison
-    Given I am on "http://yzosin:Welcome10%40@7.0.12.124/workspace/login.qsp" URL
-    Then I should see the "Quark Publishing Logo" element
+    #Given I am on "http://yzosin:Welcome10%40@7.0.12.124/workspace/login.qsp" URL
+    Then I execute "Quark New Platform Login" reusable step
     And I click on the "Quark Home Menu" element
     And I wait for "1" seconds
     Then I doubleclick on the "TEST" "element by title"
@@ -17,7 +17,7 @@ Feature: Quark PDF File Comparison
     Then I perform right mouse click "Quark Publish" button
     Then I click on the "Quark Publish BPP PDF" element by JS
     And I should see the "Quark Generating Output Window" element
-    Then I wait for "130" seconds
+    Then I wait for "400" seconds
     And I compare "<BaseFile>" file with "<QuarkWebPlatformFile>" PDF file
 
     Examples:
@@ -43,8 +43,7 @@ Feature: Quark PDF File Comparison
 
   @CIMA @Automation
   Scenario Outline: <BaseFile> to <QuarkWebPlatformFile> ACCA PDF published comparison
-    Given I am on "http://yzosin:Welcome10%40@7.0.12.124/workspace/login.qsp" URL
-    Then I should see the "Quark Publishing Logo" element
+    Then I execute "Quark New Platform Login" reusable step
     And I click on the "Quark Home Menu" element
     And I wait for "1" seconds
     Then I doubleclick on the "TEST" "element by title"
@@ -57,14 +56,14 @@ Feature: Quark PDF File Comparison
     Then I perform right mouse click "Quark Publish" button
     Then I click on the "Quark Publish BPP PDF" element by JS
     And I should see the "Quark Generating Output Window" element
-    Then I wait for "130" seconds
+    Then I wait for "320" seconds
     And I compare "<BaseFile>" file with "<QuarkWebPlatformFile>" PDF file
 
     Examples:
       | BaseFile                                        | QuarkWebPlatformFile|                    QuarkWebPlatformXML|
-      |CIMA Automation 21 - FQPBase.pdf                 |CIMA Automation 21 - FQP.pdf              |CIMA Automation 21 - FQP.xml |
+      |CIMA Automation 21 - FQPBase.pdf                 |CIMA Automation 21.pdf                    |CIMA Automation 21.xml |
       |CIMA Automation 22- ActivitiesBase.pdf           |CIMA Automation 22- Activities.pdf        |CIMA Automation 22- Activities.xml |
-      |CIMA Automation 23 - TYLBase.pdf                 |CIMA Automation 23 - TYL.pdf              |CIMA Automation 23 - TYL.xml |
+      |CIMA Automation 23 - TYLBase.pdf                 |CIMA Automation 23 - TYL.pdf               |CIMA Automation 23 - TYL.xml |
       |CIMA Automation 24 - Illustration1Base.pdf       |CIMA Automation 24 - Illustration1.pdf    |CIMA Automation 24 - Illustration1.xml |
       |CIMA Automation 25 - Illustration2Base.pdf       |CIMA Automation 25 - Illustration2.pdf    |CIMA Automation 25 - Illustration2.xml |
       |CIMA Automation 26 - FQP2Base.pdf                |CIMA Automation 26 - FQP2.pdf             |CIMA Automation 26 - FQP2.xml |

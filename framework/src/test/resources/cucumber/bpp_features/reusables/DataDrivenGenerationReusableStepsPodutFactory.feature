@@ -6,7 +6,7 @@ Feature: Product Factory
 
   Scenario Outline: Remember Variables <type>
     And I remember "AutoDeactivationReasonDescription<varName>" text as "EC_DEACTIVATION_REASON_DESCRIPTION<ecName>" variable
-    And I remember "AutoDeactivationReasonDescriptionPrevent<varName>" text as "EC_DEACTIVATION_REASON_DESCRIPTION_PREVENT<ecName>" variable
+    And I remember "AutoPreventDeactivationReasonDescription<varName>" text as "EC_PREVENT_DEACTIVATION_REASON_DESCRIPTION<ecName>" variable
     And I remember "22/02/2022" text as "EC_SITTING_START_DATE" variable
     And I remember "10/10/2025" text as "EC_SITTING_END_DATE" variable
     And I remember "AutoStudyModeName<varName>" text as "EC_STUDY_MODE_NAME<ecName>" variable
@@ -58,7 +58,7 @@ Feature: Product Factory
     And I remember "AutoMaterialTypeDescription<varName>" text as "EC_MATERIAL_TYPE_DESCRIPTION<ecName>" variable
     And I remember "AutoSessionDurationDescription<varName>" text as "EC_SESSION_DURATION_DESCRIPTION<ecName>" variable
     And I remember "AutoCBASessionDurationDescription<varName>" text as "EC_CBA_SESSION_DURATION_DESCRIPTION<ecName>" variable
-    And I remember "AutoSessionDurationDescriptionTwoDates<varName>" text as "EC_SESSION_DURATION_DESCRIPTION_TWO_DATES<ecName>" variable
+    And I remember "AutoTwoDatesSessionDurationDescription<varName>" text as "EC_TWO_DATES_SESSION_DURATION_DESCRIPTION<ecName>" variable
     And I remember "AutoClientName<varName>" text as "EC_CLIENT_NAME<ecName>" variable
     And I remember "2000" text as "EC_PRICE" variable
     And I remember "10" text as "EC_WEIGHT" variable
@@ -77,7 +77,7 @@ Feature: Product Factory
       #______________________________Remember Variables__________________________
   Scenario Outline: Remember Variables For Creation <type>
     And I remember "AutoDeactivationReasonDescription<varName>" text as "EC_DEACTIVATION_REASON_DESCRIPTION" variable
-    And I remember "AutoDeactivationReasonDescriptionPrevent<varName>" text as "EC_DEACTIVATION_REASON_DESCRIPTION_PREVENT" variable
+    And I remember "AutoPreventDeactivationReasonDescription<varName>" text as "EC_PREVENT_DEACTIVATION_REASON_DESCRIPTION" variable
     And I remember "23/10/2020" text as "EC_SITTING_START_DATE" variable
     And I remember "10/10/2025" text as "EC_SITTING_END_DATE" variable
     And I remember "AutoStudyModeName<varName>" text as "EC_STUDY_MODE_NAME" variable
@@ -106,6 +106,7 @@ Feature: Product Factory
     And I remember "AutoCourseTypeFDCode<varName>" text as "EC_COURSE_TYPE_FD_CODE" variable
     And I remember "AutoCourseTypeFDDescription<varName>" text as "EC_COURSE_TYPE_FD_DESCRIPTION" variable
     And I remember "AutoCourseTypeDescription<varName>" text as "EC_COURSE_TYPE_DESCRIPTION" variable
+    And I remember "AutoCBACourseTypeDescription<varName>" text as "EC_CBA_COURSE_TYPE_DESCRIPTION" variable
     And I remember "AutoLocationFDCode<varName>" text as "EC_LOCATION_FD_CODE" variable
     And I remember "AutoLocationFDDescription<varName>" text as "EC_LOCATION_FD_DESCRIPTION" variable
     And I remember "AutoRegionFDCode<varName>" text as "EC_REGION_FD_CODE" variable
@@ -129,7 +130,7 @@ Feature: Product Factory
     And I remember "AutoMaterialTypeDescription<varName>" text as "EC_MATERIAL_TYPE_DESCRIPTION" variable
     And I remember "AutoSessionDurationDescription<varName>" text as "EC_SESSION_DURATION_DESCRIPTION" variable
     And I remember "AutoCBASessionDurationDescription<varName>" text as "EC_CBA_SESSION_DURATION_DESCRIPTION" variable
-    And I remember "AutoSessionDurationDescriptionTwoDates<varName>" text as "EC_SESSION_DURATION_DESCRIPTION_TWO_DATES" variable
+    And I remember "AutoTwoDatesSessionDurationDescription<varName>" text as "EC_TWO_DATES_SESSION_DURATION_DESCRIPTION" variable
     And I remember "AutoClientName<varName>" text as "EC_CLIENT_NAME" variable
     And I remember "2000" text as "EC_PRICE" variable
     And I remember "10" text as "EC_WEIGHT" variable
@@ -167,7 +168,7 @@ Feature: Product Factory
       |4|Replace|I set "$Auto[StudyModeName]<varName>" text to the "Name" "Product Factory text field"|
       |5|Replace|I set "$Auto[StudyModeDescription]<varName>" text to the "Description" "Product Factory text field"|
     And I execute modified "Create Deactivation Reason" reusable step
-      |4|Replace|I set "$Auto[DeactivationReasonDescriptionPrevent]<varName>" text to the "Description" "Product Factory text field"|
+      |4|Replace|I set "$Auto[PreventDeactivationReasonDescription]<varName>" text to the "Description" "Product Factory text field"|
       |5|Add|I click on the "Prevent Reactivation" "Product Factory checkbox"|
       |7|Replace|I should see the "EC_DEACTIVATION_REASON_DESCRIPTION_PREVENT<ecName>" element|
     And I execute "Create Programme" reusable step replacing some steps
@@ -201,6 +202,9 @@ Feature: Product Factory
       |5|I set "$Auto[CourseTypeFDDescription]<varName>" text to the "Description" "Product Factory text field"|
     And I execute "Create Course Type" reusable step replacing some steps
       |4|I set "$Auto[CourseTypeDescription]<varName>" text to the "Description" "Product Factory text field"|
+    And I execute modified "Create Course Type" reusable step
+      |4|Replace|I set "$Auto[CBACourseTypeDescription]<varName>" text to the "Description" "Product Factory text field"|
+      |11|Add   |I "check" "Is CBA?" "Product Factory checkbox"                                                       |
     And I execute "Create Location Financial Dimension" reusable step replacing some steps
       |4|I set "$Auto[LocationFDCode]<varName>" text to the "Code" "Product Factory text field"|
       |5|I set "$Auto[LocationFDDescription]<varName>" text to the "Description" "Product Factory text field"|
@@ -257,7 +261,7 @@ Feature: Product Factory
       |6|Add    |I "check" "Allowed for CBA" "Product Factory checkbox"|
       |8|Replace|I should see the "EC_CBA_SESSION_DURATION_DESCRIPTION<ecName>" element|
     And I execute "Create Session Duration" reusable step replacing some steps
-      |4|I set "$Auto[SessionDurationDescriptionTwoDates]<varName>" text to the "Description" "Product Factory text field"|
+      |4|I set "$Auto[TwoDatesSessionDurationDescription]<varName>" text to the "Description" "Product Factory text field"|
       |5|I set "2" text to the "Number of Dates" "Product Factory text field"|
     And I execute "Create Client" reusable step replacing some steps
       |4|I set "$Auto[ClientName]<varName>" text to the "Name" "Product Factory text field"|
@@ -272,8 +276,6 @@ Feature: Product Factory
 #    And I execute modified "Create CBA Course" reusable step
 #      |11|Replace|I should see the "EC_CBA_PAPER_NAME<ecName>" element|
     And I execute "Create Digital Content" reusable step
-    And I execute "Create Stream" reusable step replacing some steps
-      |4|I set "$Auto[StreamName]<varName>" text to the "Name" "Product Factory text field"|
 
     Examples:
     |type        |varName     |ecName       |shortVar|shortEc|

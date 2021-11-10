@@ -14,7 +14,7 @@ Feature: Amend Reference Data - Paper - BPP-660
     And I remember "AutoPaperDescription" text as "EC_PAPER_DESCRIPTION" variable
     And I remember "AutoVerticalName" text as "EC_VERTICAL_NAME" variable
 
-  @Positive @Regression @P1 #TC-828
+  @Positive @Regression @P1 @CoveredWithApi #TC-828
   Scenario: Amend a Paper Using a Modal
     Given I execute modified "Create Paper" reusable step
       |3|Add|I set "EC_PAPER_DESCRIPTION_EDIT" text to the "Search" "Product Factory text field" from keyboard|
@@ -36,7 +36,7 @@ Feature: Amend Reference Data - Paper - BPP-660
       |14|Replace|I set "EC_PAPER_DESCRIPTION_EDIT" text to the "Search" "Product Factory text field" from keyboard|
       |16|Replace|I should see the "EC_PAPER_NAME_EDIT" element|
 
-  @Negative @P2 @BlockedByIssue #TC-827
+  @Negative @P2 #TC-827
   Scenario: Submitting Unchanged Paper Fields
     When I click on the "Programme" "Product Factory navigation item"
     When I click on the "Papers" "Product Factory navigation sub item"
@@ -57,7 +57,7 @@ Feature: Amend Reference Data - Paper - BPP-660
     And I click on the "Save" "Product Factory button"
     Then I should see the "Description must be unique" "message"
 
-  @Negative @P2 #TC-831
+  @Negative @P2 @CoveredWithApi #TC-831
   Scenario: Amend a Paper Where Name Already Exists
     When I click on the "Programme" "Product Factory navigation item"
     When I click on the "Papers" "Product Factory navigation sub item"
@@ -68,7 +68,7 @@ Feature: Amend Reference Data - Paper - BPP-660
     And I click on the "Save" "Product Factory button"
     Then I should see the "Name must be unique" "message"
 
-  @Positive @Regression @P1 #TC-1552
+  @Positive @Regression @P1 @CoveredWithApi #TC-1552
   Scenario: Amend a Paper Changing Body And Level
     Given I execute "Create Paper" reusable step
     When I execute "Create Body Financial Dimension" reusable step

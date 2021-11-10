@@ -1,0 +1,15 @@
+{
+  "operationName": "updateSitting",
+  "variables": {
+    "command": {
+      "reference":"EC_SITTING_REFERENCE",
+      "name": "ApiSittingNameUpdated[####]",
+      "startDate": "[TIMENOW-yyyy-MM-dd]",
+      "endDate": "[TIMENOW-yyyy-MM-dd]",
+      "bodyReferences": [
+        "EC_BODY_REFERENCE"
+        ]
+    }
+  },
+  "query": "mutation updateSitting($command: UpdateSittingCommandInput!) { updateSitting(command: $command) { ...sitting __typename } } fragment sitting on Sitting { reference name startDate endDate bodies { reference shortName name __typename } createdBy createdOn updatedBy updatedOn __typename } "
+}

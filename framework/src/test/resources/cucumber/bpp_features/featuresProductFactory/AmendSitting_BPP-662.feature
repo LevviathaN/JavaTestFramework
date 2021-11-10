@@ -10,7 +10,7 @@ Feature: Amend Reference Data - Sitting - BPP-662
     And I remember "AutoBodyName" text as "EC_BODY_NAME" variable
     And I remember "AutoSittingName" text as "EC_SITTING_NAME" variable
 
-  @Positive @Regression @P1 #TC-1547
+  @Positive @Regression @P1 @CoveredWithApi #TC-1547
   Scenario: Amend a Sitting Using a Modal
     Given I execute "Create Sitting" reusable step
 
@@ -18,10 +18,12 @@ Feature: Amend Reference Data - Sitting - BPP-662
   Scenario: Submitting Unchanged Sitting Fields
     When I click on the "Delivery" "Product Factory navigation item"
     When I click on the "Sittings" "Product Factory navigation sub item"
+    Then I set "EC_SITTING_NAME" text to the "Search" "Product Factory text field" from keyboard
+    And I click on the "submit" "element by type"
     When I click on the "EC_SITTING_NAME" "Product Factory edit button"
     Then Attribute "tabindex" of "Save" "Product Factory button" should have value "-1"
 
-  @Negative @P2 @NoQTest
+  @Negative @P2 @NoQTest @CoveredWithApi
   Scenario: Amend a Sitting Where Name Already Exists
     Given I execute "Create Sitting" reusable step replacing some steps
       |4|I set "AutoSittingNameTwo" text to the "Name" "Product Factory text field"|

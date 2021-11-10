@@ -36,6 +36,10 @@
     "value": "xpath=//*[text()='PARAMETER']"
   },
   {
+    "name": "element the last",
+    "value": "xpath=(//*[text()='PARAMETER'])[last()]"
+  },
+  {
     "name": "element by value",
     "value": "xpath=//*[@value='PARAMETER']"
   },
@@ -72,6 +76,10 @@
     "value": "xpath=//*[@class='PARAMETER']"
   },
   {
+    "name": "element by class first",
+    "value": "xpath=(//*[@class='PARAMETER'])[1]"
+  },
+  {
     "name": "element by data value",
     "value": "xpath=//*[@data-value='PARAMETER']"
   },
@@ -90,6 +98,10 @@
   {
     "name": "link address",
     "value": "xpath=//a[contains(@href,'PARAMETER')]"
+  },
+  {
+    "name": "element in label",
+    "value": "xpath=//label[contains(.,'PARAMETER')]"
   },
   {
     "name": "message",
@@ -120,12 +132,20 @@
     "value": "xpath=//p[contains(.,'PARAMETER')]"
   },
   {
+    "name": "contained in element",
+    "value": "xpath=//*[contains(.,'PARAMETER')]"
+  },
+  {
     "name": "text contained in SPAN element",
     "value": "xpath=//span[contains(text(),'PARAMETER')]"
   },
   {
     "name": "text contained in element",
     "value": "xpath=//*[contains(text(),'PARAMETER')]"
+  },
+  {
+    "name": "text contained in Option element",
+    "value": "xpath=//option[contains(text(),'PARAMETER')]"
   },
   {
     "name": "text in div element",

@@ -7,11 +7,11 @@ Feature: Reference Data - Create Session Duration - BPP-1316
   Background:
     Given I execute "Log In" reusable step
 
-  @Positive @Regression @P1 #TC-811
+  @Positive @Regression @P1 @CoveredWithApi #TC-811
   Scenario: Add a New Session Duration Using a Modal
     Given I execute "Create Session Duration" reusable step
 
-  @Negative @P2 #TC-812
+  @Negative @P2 @CoveredWithApi #TC-812
   Scenario: Add Session Duration where Description Already Exists
     And I remember "AutoSessionDurationDescription" text as "EC_AUTO_SESSION_DURATION_DESCRIPTION" variable
     When I execute modified "Create Session Duration" reusable step

@@ -9,7 +9,7 @@ Feature: Product Factory - Region - BPP-3648
     And I remember "AutoRegionFDCode" text as "EC_REGION_FD_CODE" variable
     And I remember "AutoRegionFDDescription" text as "EC_REGION_FD_DESCRIPTION" variable
 
-  @Positive @Regression @P1 @HappyPath #TC-1874, TC-1890
+  @Positive @Regression @P1 @HappyPath @CoveredWithApi #TC-1874, TC-1890
   Scenario: Create new Region
     When I execute "Create Region" reusable step
     And I click on the "EC_REGION_NAME" "Product Factory edit button"
@@ -20,7 +20,7 @@ Feature: Product Factory - Region - BPP-3648
     #todo date format issue
 #    Then I validate text "CONTAINS=EC_DATE" to be displayed for "Product Factory Audit Log Created When Node" element
 
-  @Negative @P2 #TC-1885
+  @Negative @P2 @CoveredWithApi #TC-1885
   Scenario: Create new Region with Duplicate Data
     When I execute "Create Region Financial Dimension" reusable step
     When I execute "Create Region" reusable step
@@ -41,7 +41,7 @@ Feature: Product Factory - Region - BPP-3648
     Then I shouldn't see the "Create" element
     Then I shouldn't see the "Product Factory Grid Button Icon Element" element
 
-  @Negative @P2 #TC-1901, TC-1892
+  @Negative @P2 @CoveredWithApi #TC-1901, TC-1892
   Scenario: Change Financial Dimension for created Region
     And I remember "AutoRegionFDDescription" text as "EC_REGION_FD_DESCRIPTION" variable
     And I remember "AutoRegionFDDescriptionTwo" text as "EC_REGION_FD_DESCRIPTION_TWO" variable
@@ -53,7 +53,7 @@ Feature: Product Factory - Region - BPP-3648
     And I click on the "Save" "Product Factory button"
     Then I should see the "EC_REGION_NAME_TWO" element
 
-  @Negative @P2 #TC-1902
+  @Negative @P2 @CoveredWithApi #TC-1902
   Scenario: Edit and save Region with Duplicate Data
     And I remember "AutoRegionFDDescription" text as "EC_REGION_FD_DESCRIPTION" variable
     And I remember "AutoRegionName" text as "EC_REGION_NAME" variable
@@ -66,7 +66,7 @@ Feature: Product Factory - Region - BPP-3648
     Then I validate text "Name must be unique" to be displayed for "Product Factory Toast Error Message Top-Right corner" element
     Then I validate text "Name must be unique" to be displayed for "Product Factory Name Filed Validation Error Message" element
 
-  @Negative @P2 #TC-1893
+  @Negative @P2 @CoveredWithApi #TC-1893
   Scenario: Edit Region that is in Use
     And I remember "AutoRegionFDDescription" text as "EC_REGION_FD_DESCRIPTION" variable
     And I remember "AutoRegionFDDescriptionTwo" text as "EC_REGION_FD_DESCRIPTION_TWO" variable

@@ -1,0 +1,10 @@
+{
+  "operationName":"includeInstance",
+  "variables":{
+    "command":{
+      "operationReference":"EC_COURSE_BULK_OPERATION_REFERENCE",
+      "instanceReference":"EC_INSTANCE_REFERENCE"
+    }
+  },
+  "query":"mutation includeInstance($command: CourseBulkOperationIncludeInstanceCommandInput!) { courseBulkOperationIncludeInstance(command: $command) { ...includedInstance __typename }}fragment includedInstance on IncludedInstance { included instance { reference defaultLocation { name __typename } defaultSessionDuration { description __typename } stream { name __typename } deactivationReason { preventReactivation __typename } capacity status startDate publishedDate availableOnWebsite createdOn updatedOn __typename } __typename}"
+}

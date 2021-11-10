@@ -1,0 +1,15 @@
+{
+  "operationName": "createMaterialType",
+  "variables": {
+    "command": {
+      "name": "ApiMaterialTypeName[####]",
+      "description": "ApiMaterialTypeDescription[####]",
+      "isExpiryDateRequired": true,
+      "isIsbnRequired": true,
+      "isPriceRequired": true,
+      "isWeightRequired": true,
+      "financialDimensionReference": "EC_MATERIAL_TYPE_FINANCIAL_DIMENSION_REFERENCE"
+    }
+  },
+  "query": "mutation createMaterialType($command: CreateMaterialTypeCommandInput!) {  createMaterialType(command: $command) {  ...materialType  __typename  } }  fragment materialType on MaterialType {  reference  name  description  isIsbnRequired  isWeightRequired  isExpiryDateRequired  isPriceRequired  financialDimension {  ...financialDimension  __typename  }  createdBy  createdOn  updatedBy  updatedOn  __typename }  fragment financialDimension on FinancialDimension {  reference  code  description  target  dimensionType  createdBy  createdOn  updatedBy  updatedOn  __typename } "
+}

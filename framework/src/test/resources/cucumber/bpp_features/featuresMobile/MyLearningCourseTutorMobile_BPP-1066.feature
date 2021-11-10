@@ -41,12 +41,12 @@ Feature: BPP University Hub My Learning Course Tutor
     Then I execute "Login as Admin Totara" reusable step replacing some steps
       |1|I am on "https://totara-stage-bppdigital.bppuniversity.com/auth/saml2/login.php?wants&idp=9ff4f795dc76021c15c1617ffeac8c28&passive=off" URL|
       |2|I wait for "3" seconds                                                                                                                     |
-    And I wait for "10" seconds
+    And I wait for "11" seconds
     #Totara UnAssign Tutor Role
     When I click on the "Totara ICAEW Course" link by JS
     And I click on the "Totara Left Menu Users link" link by JS
     And I click on the "Totara Enrolled Users button" button by JS
-    And I wait for "3" seconds
+    And I wait for "5" seconds
     And I click on the "Totara Course Remove Bpp Lead Tutor Button" button by JS
     And I click on the "Totara Course Confirm Remove Bpp Lead Tutor Button" button by JS
     #Admin Logout

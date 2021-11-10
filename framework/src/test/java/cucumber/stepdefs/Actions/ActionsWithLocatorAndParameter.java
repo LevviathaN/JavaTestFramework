@@ -3,6 +3,15 @@ package cucumber.stepdefs.Actions;
 public enum ActionsWithLocatorAndParameter {
     SET_TEXT,
     SET_TEXT_WITH_JS,
+    SET_TEXT_FROM_KEYBOARD,
+    PRESS_KEY,
     NUMBER_OF_ELEMENTS_PRESENT,
-    EXECUTE_JS
+    EXECUTE_JS,
+    PRESS_KEYBOARD,
+    CHECK_CHECKBOX,
+    UPLOAD_FILE_TO_ELEMENT,
+    CAPTURE_ELEMENT_TEXT,
+    COUNT_ELEMENTS,
+    VALIDATE_ELEMENT_TEXT,
+    SELECT_FROM_ELEMENT
 }

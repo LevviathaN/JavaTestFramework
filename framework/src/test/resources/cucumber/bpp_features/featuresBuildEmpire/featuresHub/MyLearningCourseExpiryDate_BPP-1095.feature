@@ -2,7 +2,7 @@
 Feature: BPP University Hub My Learning Course Expiry Date
   As a learner, at a glance, I'd like to be able to see when the access to my course expires
 
-  @Positive #TC-718
+  @Positive @CourseExpiry #TC-718
   Scenario: HUB - My Learning Course Expiry Date
     #Login to Totara
     Then I execute "Login as Admin Totara" reusable step
@@ -16,7 +16,7 @@ Feature: BPP University Hub My Learning Course Expiry Date
     And I click on the "Totara Edit Course Setting link Mobile" element with JS if "Totara Edit Course Setting link Mobile" "element is present"
     And I select "KW_AUTO_SELECT" from "Totara expiry Course Date Day dropdown" element
     And I select "KW_AUTO_SELECT" from "Totara expiry Course Date Month dropdown" element
-    And I select "KW_AUTO_SELECT" from "Totara expiry Course Date Year dropdown" element
+    And I select "2024" from "Totara expiry Course Date Year dropdown" element
     And I click on the "Save and display" "Totara button" by JS
     And I click on the "Totara Edit Course Setting link" link by JS
     And I capture text data "Totara expiry Course Date Day selected" as "EC_DAY" variable

@@ -9,7 +9,7 @@ Feature: Amend Reference Data - Level - BPP-658
     And I remember "AutoLevelNameEdit" text as "EC_LEVEL_NAME" variable
     And I remember "AutoLevelShortNameEdit" text as "EC_LEVEL_SHORT_NAME" variable
 
-  @Positive @Regression @P1 #TC-823
+  @Positive @Regression @P1 @CoveredWithApi #TC-823
   Scenario: Amend a Level Using a Modal
     And I remember "AutoLevelNameEdit" text as "EC_LEVEL_NAME" variable
     And I remember "AutoLevelShortNameEdit" text as "EC_LEVEL_SHORT_NAME" variable
@@ -19,7 +19,7 @@ Feature: Amend Reference Data - Level - BPP-658
       |5|I set "LevelName[######]" text to the "Name" "Product Factory text field"|
       |7|I should see the "EC_LEVEL_SHORT_NAME" element                           |
 
-  @Negative @P2 #TC-822
+  @Negative @P2 @CoveredWithApi #TC-822
   Scenario: Amend Submitting Incomplete Level Fields
     And I remember "AutoLevelName" text as "EC_LEVEL_NAME" variable
     When I click on the "Programme" "Product Factory navigation item"
@@ -27,7 +27,7 @@ Feature: Amend Reference Data - Level - BPP-658
     When I click on the "EC_LEVEL_NAME" "Product Factory edit button"
     Then Attribute "tabindex" of "Save" "Product Factory button" should have value "-1"
 
-  @Negative @P2 #TC-824
+  @Negative @P2 @CoveredWithApi #TC-824
   Scenario: Amend a Level Where Short Name Already Exists
     And I remember "AutoLevelName" text as "EC_LEVEL_NAME" variable
     Given I execute "Create Level" reusable step replacing some steps

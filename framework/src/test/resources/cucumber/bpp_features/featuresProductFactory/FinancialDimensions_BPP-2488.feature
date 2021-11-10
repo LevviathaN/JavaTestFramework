@@ -7,7 +7,7 @@ Feature: Financial Dimension - Reference Data Create Record - BPP-2488
   Background:
     Given I execute "Log In" reusable step
 
-  @Positive @Regression @P1 @HappyPath #TC-1532
+  @Positive @Regression @P1 @HappyPath @CoveredWithApi #TC-1532
   Scenario Outline: Create Financial Dimensions record <type> item
     Given I execute "Create Body Financial Dimension" reusable step replacing some steps
       |4|I set "FDCode[######]" text to the "Code" "Product Factory text field"|
@@ -25,7 +25,7 @@ Feature: Financial Dimension - Reference Data Create Record - BPP-2488
       |Body         |
       |Region       |
 
-  @Negative @P2 #TC-1542
+  @Negative @P2 @CoveredWithApi #TC-1542
   Scenario Outline: Create Financial Dimension record <type> item with Duplicate Data
     Given I execute modified "Create Body Financial Dimension" reusable step
       |4|Replace|I set "FDCode[######]" text to the "Code" "Product Factory text field"|

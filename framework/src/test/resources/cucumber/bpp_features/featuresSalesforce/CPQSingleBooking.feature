@@ -43,13 +43,17 @@ Feature: Create a Single Booking
     And I click on the "Salesforce Quotes Select Product Button" element
     And I wait for "2" seconds
     And I click on the "Salesforce Quotes Select Product Page Save" element
+    #And I wait for "1" seconds
+   # And I click on the "Salesforce Quotes Edit Page Save" element
     Then I click on the "Salesforce Quotes Edit" element
     And I click on the "Salesforce Quotes Ordered Checkbox" element by JS
     And I click on the "Salesforce Quote Booking Type Dropdown" element
     And I click on the "Salesforce Quote Booking Type Apprenticeships Chargeable" element
+    And I click on the "Salesforce Quote Billing Mode Dropdown" element
+    And I click on the "Salesforce Quote Billing Mode Salesforce Option" element
     And I capture text data "Salesforce Quote Edited Quote Number" as "EC_QUOTE" variable
     And I click on the "Salesforce Quote Edited Save" element
-    And I wait for "25" seconds
+    And I wait for "30" seconds
     Then I am on "EC_QUOTE_URL" URL
     And I wait for "1" seconds
     And I click on the "Salesforce Orders Quick Link Tab on Quote Page" element
@@ -79,6 +83,10 @@ Feature: Create a Single Booking
     And I click on the "Cancelled" "Salesforce booking dropdown option"
     And I click on the "Status Reason" "Salesforce booking dropdown field" by JS
     And I click on the "Changed Mind" "Salesforce booking dropdown option"
+    And I click on the "Cancellation Action" "Salesforce booking dropdown field" by JS
+    And I click on the "Credit Dispatched Materials" "Salesforce booking dropdown option"
+    And I click on the "Cancellation Terms" "Salesforce booking dropdown field" by JS
+    And I click on the "Inside" "Salesforce booking dropdown option"
     And I set "Automation Cancelled" text to the "Cancellation Reason" "Salesforce text field"
     And I click on the "Salesforce Quote Edited Save" element
     And I wait for "10" seconds

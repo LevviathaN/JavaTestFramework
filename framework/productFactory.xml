@@ -2,8 +2,9 @@
     <test name="Cucumber Test">
         <classes>
             <class name="cucumber.runners.PFCleanupRunner" />
-            <class name="cucumber.runners.DataGenerationRunner" />
+            <class name="cucumber.runners.DataGenerationRunnerApi" />
             <class name="cucumber.CucumberUITest" />
+            <class name="cucumber.CucumberApiTest" />
             <class name="cucumber.regressionSpreadsheetUpdate.UpdatePFRegression" />
         </classes>
     </test> <!-- test -->

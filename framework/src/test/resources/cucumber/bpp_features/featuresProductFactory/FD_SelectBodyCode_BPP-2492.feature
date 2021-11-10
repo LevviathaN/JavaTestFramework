@@ -10,7 +10,7 @@ Feature: Financial Dimension - Select Body Code - BPP-2492
     And I remember "AutoVerticalName" text as "EC_VERTICAL_NAME" variable
     And I execute "Remember Variables For Creation " reusable step
 
-  @Negative @Regression @P1 #TC-1756
+  @Negative @Regression @P1 @CoveredWithApi #TC-1756
   Scenario: Edit Financial Dimension for the Body that is in use
     And I remember "AutoBodyFDCodeTwo" text as "EC_BODY_FD_CODE_TWO" variable
 

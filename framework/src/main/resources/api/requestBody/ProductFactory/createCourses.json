@@ -1,0 +1,15 @@
+{
+  "operationName":"createCourses",
+  "variables":{
+    "command":{
+      "instanceGroupReference":"EC_INSTANCE_GROUP_REFERENCE",
+      "paperReference":"EC_PAPER_REFERENCE",
+      "sittingReference":"EC_SITTING_REFERENCE",
+      "courseTypeReference":"EC_CBA_COURSE_TYPE_REFERENCE",
+      "regionReference":"EC_REGION_REFERENCE",
+      "defaultInstituteFee":1,
+      "numberOfSessions":1
+    }
+  },
+  "query":"mutation createCourses($command: CreateCoursesCommandInput!) { createCourses(command: $command) { reference __typename } } "
+}

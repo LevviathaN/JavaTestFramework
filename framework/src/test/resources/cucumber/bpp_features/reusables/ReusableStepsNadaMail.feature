@@ -50,7 +50,7 @@ Feature: Nada
 
   Scenario: Nada Reset Line Manager Password
     Given I am on "https://getnada.com/" URL
-    And I wait for "1" seconds
+    And I wait for "5" seconds
     And I click on the "Nada Add Inbox" button by JS
     And I wait for "5" seconds
     And I fill the "Nada User Name Field" field with "[SUBSTRING(EC_LINEMANAGER_EMAIL,0,-12)]"
@@ -85,7 +85,8 @@ Feature: Nada
     And I wait for "2" seconds
     Then I click on the "Please verify your email" "message" by JS
     And I wait for "1" seconds
-    Then I click on the "Nada Verify Email" button
+    Then I click on the "Nada Verify Email" button by JS
+    And I wait for "1" seconds
     And I switch to window with index "2"
     And I wait for "2" seconds
     And I should see the "Email address verified! Please log in." "message"

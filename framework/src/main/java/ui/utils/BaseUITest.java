@@ -3,6 +3,7 @@ package ui.utils;
 import CodeEditor.GuiHelper;
 import api.RestApiController;
 import org.jooq.tools.json.ParseException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -85,7 +86,8 @@ public class BaseUITest {
     @AfterMethod
     public synchronized void endTest(ITestResult testResult) throws IOException, ParseException {
 
-        SpreadsheetsHelper.executionTime = testResult.getEndMillis() - testResult.getStartMillis();
+        if (SpreadsheetsHelper.executionStartTime > testResult.getStartMillis() || SpreadsheetsHelper.executionStartTime == 0) SpreadsheetsHelper.executionStartTime = testResult.getStartMillis();
+        if (SpreadsheetsHelper.executionEndTime < testResult.getEndMillis() || SpreadsheetsHelper.executionEndTime == 0) SpreadsheetsHelper.executionEndTime = testResult.getEndMillis();
 
         // close reporter
         Reporter.stopReporting(testResult);
@@ -128,7 +130,7 @@ public class BaseUITest {
                 SeleniumHelper.driver().quit();
                 DriverProvider.closeDriver();
             }
-        } catch (MalformedURLException e) {
+        } catch (MalformedURLException | TimeoutException e) {
             e.printStackTrace();
             SeleniumHelper.driver().quit();
             DriverProvider.closeDriver();
