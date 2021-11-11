@@ -1,5 +1,6 @@
 package ui.utils.bpp;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import ui.utils.SeleniumHelper;
 import ui.utils.Reporter;
@@ -228,6 +229,10 @@ public class TestParametersController {
             for (String element : splitArraySimplified) {
                 if (element.startsWith("#")){
                     resultingValueSimplified.append(KeywordsHandler.getValueByKeyword("AUTO_RANDOMNUMBER|" + element));
+                }
+                else if (element.startsWith("*") && element.endsWith("*")){
+                    String randomizedString = RandomStringUtils.randomAlphabetic(element.length());
+                    resultingValueSimplified.append(KeywordsHandler.getValueByKeyword(randomizedString));
                 }
                 else if (element.startsWith("FIRSTNAME")){
                     resultingValueSimplified.append(KeywordsHandler.getValueByKeyword("AUTO_FIRSTNAME"));
