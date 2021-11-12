@@ -49,7 +49,7 @@ Feature: Dates & Prices - Add HTML field to D&P component and enable component w
     And I wait for "3" seconds
 
 
-  @Positive #TC-5473
+  @Positive @HTML #TC-5473, 6673
   Scenario: Add Dates n Prices Component With HTML Field
     Given I execute "Log In to Hub as Admin" reusable step
     And I am on "https://admin-stage-bppdigital.bppuniversity.com/admin/cms/pages/3028/edit" URL
@@ -69,6 +69,8 @@ Feature: Dates & Prices - Add HTML field to D&P component and enable component w
     #Check no address displayed for Online type of learning
     And I click on the "Data Technician" "BPP Digital View Dates and Prices button"
     And I click on the "Tue 3 Aug 2021" "element the last"
+    And I should see the "Exam sitting" element
+    Then I validate text "CONTAINS=EXAM SITTING" to be displayed for "BPP Digital Dates and Prices Syllabus" element
     Then I shouldn't see the "BPP Digital Dates and Prices Location For Instance" element
     Then I shouldn't see the "BPP Digital Dates and Prices Second Location For Instance" element
     # Delete DnP component in Admin

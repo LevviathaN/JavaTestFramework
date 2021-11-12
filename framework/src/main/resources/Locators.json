@@ -668,6 +668,10 @@
     "value": "xpath=//div[@class='table-content row open ']//div[@class='studyType']"
   },
   {
+    "name": "BPP Digital Dates and Prices Syllabus",
+    "value": "xpath=//div[@class='syllabus']"
+  },
+  {
     "name": "BPP Digital Add to Basket First Course",
     "value": "xpath=(//div[contains(@class,'purchase col')]/button)[1]"
   },
