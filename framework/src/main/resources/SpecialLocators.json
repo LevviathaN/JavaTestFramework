@@ -237,6 +237,10 @@
     "value": "xpath=(//div[contains(@class,'purchase col')]/button)[PARAMETER]"
   },
   {
+    "name": "BPP Digital Basket Instance Item Price",
+    "value": "xpath=(//*[contains(@class,'basketPaper')]//span[contains(@class,'price')])[PARAMETER]"
+  },
+  {
     "name": "BPP Digital Basket Summary Section",
     "value": "xpath=(//section[contains(@class,'priceGrid')]//dt[contains(.,'PARAMETER')]//following::dd)[1]"
   },

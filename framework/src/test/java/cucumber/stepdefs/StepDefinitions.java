@@ -165,11 +165,14 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @Then("^I should see the \"([^\"]*)\" (?:button|message|element)$")
     public void i_should_see_the_text(String element) {
-        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setLocator(element)
-                .setAction(ActionsWithLocator.PRESENT)
-                .setMessage("Executing step: I should see the '" + element + "' element")
-                .execute();
+        Reporter.log("Executing step: I should see the '" + element + "' element");
+        boolean isDisplayed = false;
+        for (int i = 0; i < findElements(initElementLocator(element)).size(); i++) {
+            if (findElements(initElementLocator(element)).get(i).isDisplayed()) {
+                isDisplayed = true;
+            }
+        }
+        Assert.assertTrue(isDisplayed, "Element with " + element + " text is not displayed");
     }
 
     /**
