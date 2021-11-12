@@ -36,9 +36,14 @@ public class qTestAPI {
          * @param browserVersion - used to get Version of the Current Browser
          * @param browserInformation - Variable to get Browser Type and Version. Currently this information is sent to qTest execution logs to Operating System column**/
 
-        String browserName = DriverProvider.getCurrentBrowserName();
-        String browserVersion = ((RemoteWebDriver) DriverProvider.getDriver()).getCapabilities().getVersion();
-        String browserInformation = browserName.toUpperCase() + " " + browserVersion;
+        String browserInformation = "";
+        if (!(DriverProvider.instance.get() == null)) {
+            String browserName = DriverProvider.getCurrentBrowserName();
+            String browserVersion = ((RemoteWebDriver) DriverProvider.getDriver()).getCapabilities().getVersion();
+            browserInformation = browserName.toUpperCase() + " " + browserVersion;
+        } else {
+            BPPLogManager.getLogger().info("WebDriver instance not found. If UI test is executed, please check browser configuration");
+        }
 
         /**This block is created to generate specific data in Date/Time/Time Zone format
          * @param formattedDate - generate current Date in (YYYY-MM-ddThh:mm:ssXXX) format
