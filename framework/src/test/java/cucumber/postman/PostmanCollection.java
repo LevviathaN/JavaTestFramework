@@ -11,6 +11,15 @@ import java.io.InputStreamReader;
 
 public class PostmanCollection {
 
+    /*
+    * To Activate test execution. Follow next steps:
+    * 1 - Navigate to terminal tab in IDEA
+    * 2 - Enter commands:
+    *  a - npm install -g newman
+    *  b - npm install -g newman-reporter-htmlextra
+    * 3 - Run postman tests
+    * */
+
     @When("^I execute postman \"([^\"]*)\" collection using \"([^\"]*)\" environment$")
 
     public PostmanCollection i_execute_postman_collection(String collection, String environment) throws IOException {
