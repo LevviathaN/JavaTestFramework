@@ -1,0 +1,1180 @@
+{
+  "info": {
+    "_postman_id": "e5431d27-6968-49d2-8f19-40faa53156ca",
+    "name": "CBAs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Token for PF",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "132e578f-d56d-482c-969a-559f5d38c92c",
+            "exec": [
+              "var jsonData = JSON.parse(responseBody);",
+              "postman.setEnvironmentVariable(\"pf_graph_token\", jsonData.access_token);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "8f8aaf90-df08-47b2-8a73-74b589e26ed5",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/x-www-form-urlencoded",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "audience",
+              "value": "{{pf_auth0_token_audience}}",
+              "type": "text"
+            },
+            {
+              "key": "grant_type",
+              "value": "{{pf_auth0_token_grant_type}}",
+              "type": "text"
+            },
+            {
+              "key": "client_id",
+              "value": "{{pf_auth0_token_client_id}}",
+              "type": "text"
+            },
+            {
+              "key": "client_secret",
+              "value": "{{pf_auth0_token_client_secret}}",
+              "type": "text"
+            }
+          ],
+          "options": {
+            "urlencoded": {}
+          }
+        },
+        "url": "{{pf_auth0_token_url}}"
+      },
+      "response": []
+    },
+    {
+      "name": "Instance Group (CBA)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "ef02d258-2e0f-4b45-b36d-8621c045abb3",
+            "exec": [
+              "var jsonData = JSON.parse(responseBody);\r",
+              "let ExamPFrefArray = new Array();\r",
+              "let PapersName = new Array();\r",
+              "let ExamPrice = new Array();\r",
+              "let InstituteFee = new Array();\r",
+              "let CourseType = new Array();\r",
+              "let BodyName = new Array();\r",
+              "let LevelName = new Array();\r",
+              "let SittingName = new Array();\r",
+              "let Clients = new Array();\r",
+              "let Region = new Array();\r",
+              "let CourseName = new Array();\r",
+              "let CourseDesc = new Array();\r",
+              "let ProductTaxCateg = new Array();\r",
+              "let ProjectFD = new Array();\r",
+              "let ProductFD = new Array();\r",
+              "let DivisionFD = new Array();\r",
+              "let CostCentreFD = new Array();\r",
+              "var separator = \" - \";\r",
+              "\r",
+              "for (i = 0; i < jsonData.data.courses.result.length; i++){\r",
+              "    ExamPFrefArray.push(jsonData.data.courses.result[i].reference);\r",
+              "    PapersName.push(jsonData.data.courses.result[i].paper.name);\r",
+              "    var clearPrice = jsonData.data.courses.result[i].price;\r",
+              "    var cost = jsonData.data.courses.result[i].instituteFee;\r",
+              "    var TotalPrice = clearPrice + cost;\r",
+              "    ExamPrice.push(TotalPrice); \r",
+              "    InstituteFee.push(jsonData.data.courses.result[i].instituteFee); \r",
+              "    CourseType.push(jsonData.data.courses.result[i].courseType.description); \r",
+              "    BodyName.push(jsonData.data.courses.result[i].paper.body.shortName); \r",
+              "    LevelName.push(jsonData.data.courses.result[i].level.shortName);     \r",
+              "    SittingName.push(jsonData.data.courses.result[i].sitting.name);\r",
+              "    Region.push(jsonData.data.courses.result[i].region.name);\r",
+              "    var courseName = jsonData.data.courses.result[i].paper.body.shortName + separator + jsonData.data.courses.result[i].level.shortName + separator + jsonData.data.courses.result[i].paper.name + separator + jsonData.data.courses.result[i].region.name + separator + jsonData.data.courses.result[i].courseType.description + separator + jsonData.data.courses.result[i].sitting.name;\r",
+              "    CourseName.push(courseName);\r",
+              "    var courseDesc = jsonData.data.courses.result[i].paper.body.name + separator + jsonData.data.courses.result[i].level.name + separator + jsonData.data.courses.result[i].paper.name + separator + jsonData.data.courses.result[i].region.name + separator + jsonData.data.courses.result[i].courseType.description + separator + jsonData.data.courses.result[i].sitting.name;\r",
+              "    CourseDesc.push(courseDesc);\r",
+              "    ProductTaxCateg.push(jsonData.data.courses.result[i].courseType.vatRule.description);\r",
+              "    ProjectFD.push(jsonData.data.courses.result[i].courseType.projectFinancialDimension.code);\r",
+              "    ProductFD.push(jsonData.data.courses.result[i].paper.body.financialDimension.code);\r",
+              "    DivisionFD.push(jsonData.data.courses.result[i].region.financialDimension.code);\r",
+              "    CostCentreFD.push(jsonData.data.courses.result[i].courseType.costCentreFinancialDimension.code);\r",
+              "}\r",
+              "    \r",
+              "for (i = 0; i < jsonData.data.courses.result.length; i++){\r",
+              "    if(jsonData.data.courses.result[i].clients.length == 0){\r",
+              "        Clients.push(null)\r",
+              "    }\r",
+              "    else {\r",
+              "        var x =\"\"; \r",
+              "        for (j = 0; j < jsonData.data.courses.result[i].clients.length; j++){\r",
+              "            x += jsonData.data.courses.result[i].clients[j].name;\r",
+              "            x += \", \"\r",
+              "        }\r",
+              "        Clients.push(x.slice(0,-2))\r",
+              "    }\r",
+              "}\r",
+              "\r",
+              "pm.environment.set(\"CostCentreFD\", CostCentreFD);\r",
+              "pm.environment.set(\"DivisionFD\", DivisionFD);\r",
+              "pm.environment.set(\"ProductFD\", ProductFD);\r",
+              "pm.environment.set(\"ProjectFD\", ProjectFD);\r",
+              "pm.environment.set(\"ProductTaxCateg\", ProductTaxCateg);\r",
+              "pm.environment.set(\"CourseName\", CourseName);\r",
+              "pm.environment.set(\"CourseDesc\", CourseDesc);\r",
+              "pm.environment.set(\"ExamPFrefArray\", ExamPFrefArray);\r",
+              "pm.environment.set(\"PapersName\", PapersName);\r",
+              "pm.environment.set(\"ExamPrice\", ExamPrice);\r",
+              "pm.environment.set(\"InstituteFee\", InstituteFee);\r",
+              "pm.environment.set(\"CourseType\", CourseType);\r",
+              "pm.environment.set(\"BodyName\", BodyName);\r",
+              "pm.environment.set(\"LevelName\", LevelName);\r",
+              "pm.environment.set(\"SittingName\", SittingName);\r",
+              "pm.environment.set(\"Clients\", Clients);\r",
+              "pm.environment.set(\"Region\", Region);\r",
+              "var TotalExamQTY = jsonData.data.courses.result.length;\r",
+              "pm.environment.set(\"TotalExamQTY\", TotalExamQTY);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "e484ec78-39d1-4a3f-959c-fbd5f8e824c4",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true,
+        "followAuthorizationHeader": false
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{pf_graph_token}}"
+          }
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "{\r\n  courses(instanceGroupReference: \"{{cbaPFref}}\") {\r\n    result {\r\n        instances{\r\n            reference\r\n            defaultLocation{\r\n                name\r\n                address\r\n                addressLine1\r\n                addressLine2\r\n                addressLine3\r\n                city\r\n                countryCode\r\n                financialDimension{\r\n                    code\r\n                    dimensionType\r\n                    target\r\n                    description\r\n                }\r\n                postcode\r\n                reference}\r\n            defaultSessionDuration{\r\n                description\r\n                dateCount\r\n                }\r\n            startDate    \r\n            endDate\r\n            sessions{\r\n                reference\r\n                sessionNumber\r\n                timings{\r\n                    reference\r\n                    startTime\r\n                    endTime}\r\n            }\r\n        }\r\n        reference\r\n        price\r\n        instituteFee\r\n        courseType {\r\n            description\r\n            costCentreFinancialDimension {code}\r\n            vatRule{\r\n                code\r\n                description\r\n                rate}\r\n            examPreparation{\r\n                name\r\n                description}\r\n            studyMode{\r\n                name\r\n                description}\r\n            projectFinancialDimension {\r\n                code\r\n            }\r\n            vatRule {\r\n                description\r\n            }\r\n        }\r\n        region {\r\n            name\r\n            financialDimension {\r\n                code\r\n            }\r\n        }\r\n        paper {\r\n            isCba\r\n            name\r\n            body {\r\n                shortName\r\n                name\r\n                financialDimension {\r\n                code\r\n            }\r\n        }\r\n        name\r\n        }\r\n        level {\r\n            shortName\r\n            name\r\n            }\r\n        sitting {\r\n            name\r\n            }\r\n        clients {\r\n            name\r\n        }\r\n    }\r\n  }\r\n}"
+          },
+          "options": {
+            "graphql": {}
+          }
+        },
+        "url": "{{pf_graph_url}}graphql"
+      },
+      "response": []
+    },
+    {
+      "name": "Token for SF",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "e6ab51c8-34b3-4970-a5a7-90cd0a982436",
+            "exec": [
+              "var jsonData = JSON.parse(responseBody);",
+              "postman.setEnvironmentVariable(\"qa_sf_token\", jsonData.access_token);",
+              "pm.environment.set(\"ExamIndex\", 0);",
+              "let SFExamIdArr = new Array();",
+              "let SFInstanceIdArr = Array();",
+              "pm.environment.set(\"SFExamIdArr\", SFExamIdArr);",
+              "pm.environment.set(\"SFInstanceIdArr\", SFInstanceIdArr);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "50c98ba7-1453-468e-aaec-5a00f76472c5",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "https://test.salesforce.com/services/oauth2/token?grant_type=password&client_id={{SFclient_idForToken}}&client_secret={{SFclient_secretForToken}}&username={{SFusernameForToken}}&password={{SFpasswordForToken}}",
+          "protocol": "https",
+          "host": [
+            "test",
+            "salesforce",
+            "com"
+          ],
+          "path": [
+            "services",
+            "oauth2",
+            "token"
+          ],
+          "query": [
+            {
+              "key": "grant_type",
+              "value": "password"
+            },
+            {
+              "key": "client_id",
+              "value": "{{SFclient_idForToken}}"
+            },
+            {
+              "key": "client_secret",
+              "value": "{{SFclient_secretForToken}}"
+            },
+            {
+              "key": "username",
+              "value": "{{SFusernameForToken}}"
+            },
+            {
+              "key": "password",
+              "value": "{{SFpasswordForToken}}"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "SoQL to find SF Exam",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "a944a965-7a02-441b-83bf-8cf374ce2dd5",
+            "exec": [
+              "var jsonData = JSON.parse(responseBody);",
+              "var SF_Exam_id = jsonData.records[0].Id;",
+              "pm.environment.set(\"SF_Exam_id\", SF_Exam_id);",
+              "var SFExamIdArr = pm.environment.get(\"SFExamIdArr\");",
+              "SFExamIdArr.push(SF_Exam_id);",
+              "pm.environment.set(\"SFExamIdArr\", SFExamIdArr);"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "223ea592-cb31-4e4c-b0ed-69c98e1fde41",
+            "exec": [
+              "ExamIndex = pm.environment.get(\"ExamIndex\");\r",
+              "//console.log(ExamIndex)\r",
+              "ExamPFrefArray = pm.environment.get(\"ExamPFrefArray\");\r",
+              "//console.log(ExamPFrefArray)\r",
+              "var PF_reference = ExamPFrefArray[ExamIndex]\r",
+              "pm.environment.set(\"PF_reference\", PF_reference);\r",
+              "//console.log(PF_reference)"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "e50b92b0-5146-4efc-b73f-be45df8fb9a1",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true,
+        "followAuthorizationHeader": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{qa_sf_token}}"
+          }
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{SFpublicURL}}/query/?q=SELECT Id\nFrom Product2\nwhere  BPP_ProductFactoryID__c ='{{PF_reference}}'",
+          "host": [
+            "{{SFpublicURL}}"
+          ],
+          "path": [
+            "query",
+            ""
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "SELECT Id\nFrom Product2\nwhere  BPP_ProductFactoryID__c ='{{PF_reference}}'"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Exam test in SF",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "95d89b6c-2034-4499-91ca-9a066401f4c7",
+            "exec": [
+              "var TotalExamQTY = pm.environment.get(\"TotalExamQTY\");\r",
+              "var jsonData = JSON.parse(responseBody);\r",
+              "var ExamIndex = pm.environment.get(\"ExamIndex\");\r",
+              "var SF_Exam_id = pm.environment.get(\"SF_Exam_id\");\r",
+              "var CostCentreFD =  pm.environment.get(\"CostCentreFD\"); \r",
+              "var DivisionFD = pm.environment.get(\"DivisionFD\"); \r",
+              "var ProductFD = pm.environment.get(\"ProductFD\"); \r",
+              "var ProjectFD = pm.environment.get(\"ProjectFD\"); \r",
+              "var ProductTaxCateg = pm.environment.get(\"ProductTaxCateg\");\r",
+              "var CourseName = pm.environment.get(\"CourseName\"); \r",
+              "var CourseDesc = pm.environment.get(\"CourseDesc\"); \r",
+              "var ExamPFrefArray = pm.environment.get(\"ExamPFrefArray\");\r",
+              "var PapersName = pm.environment.get(\"PapersName\");\r",
+              "var CourseType = pm.environment.get(\"CourseType\");\r",
+              "var BodyName = pm.environment.get(\"BodyName\");\r",
+              "var LevelName = pm.environment.get(\"LevelName\");\r",
+              "var SittingName = pm.environment.get(\"SittingName\");\r",
+              "var Clients = pm.environment.get(\"Clients\");\r",
+              "var Le4galEntity = pm.environment.get(\"Le4galEntity\");\r",
+              "var RRRule = pm.environment.get(\"RRRule\");\r",
+              "var TaxRule = pm.environment.get(\"TaxRule\");\r",
+              "var BillingRule = pm.environment.get(\"BillingRule\");\r",
+              "var Region = pm.environment.get(\"Region\");\r",
+              "\r",
+              "pm.test(\"CBA name check\", function () {\r",
+              "    pm.expect(jsonData.Name).to.eql(CourseName[ExamIndex]);\r",
+              "});\r",
+              "pm.test(\"CBA description check\", function () {\r",
+              "    pm.expect(jsonData.Description).to.eql(CourseDesc[ExamIndex]);\r",
+              "});\r",
+              "pm.test(\"CBA Active check\", function () {\r",
+              "    pm.expect(jsonData.IsActive).to.be.true;\r",
+              "});\r",
+              "pm.test(\"CBA Family check\", function () {\r",
+              "    pm.expect(jsonData.Family).to.eql(\"Exam\");\r",
+              "});\r",
+              "pm.test(\"CBA Cost Centre FinDim check\", function () {\r",
+              "    pm.expect(jsonData.Cost_Centre_Financial_Dimension__c).to.eql(CostCentreFD[ExamIndex]);\r",
+              "});\r",
+              "pm.test(\"CBA Division FinDim check\", function () {\r",
+              "    pm.expect(jsonData.Division_Financial_Dimension__c).to.eql(DivisionFD[ExamIndex]);\r",
+              "});\r",
+              "pm.test(\"CBA Product FinDim check\", function () {\r",
+              "    pm.expect(jsonData.Product_Financial_Dimension__c).to.eql(ProductFD[ExamIndex]);\r",
+              "});\r",
+              "pm.test(\"CBA Project FinDim check\", function () {\r",
+              "    pm.expect(jsonData.Project_Financial_Dimension__c).to.eql(ProjectFD[ExamIndex]);\r",
+              "});\r",
+              "pm.test(\"CBA Product Tax Category check\", function () {\r",
+              "    pm.expect(jsonData.BPP_Product_Tax_Category__c).to.eql(ProductTaxCateg[ExamIndex]);\r",
+              "});\r",
+              "pm.test(\"CBA PF reference check\", function () {\r",
+              "    pm.expect(jsonData.BPP_ProductFactoryID__c).to.eql(ExamPFrefArray[ExamIndex]);\r",
+              "});\r",
+              "pm.test(\"CBA Paper check\", function () {\r",
+              "    pm.expect(jsonData.Paper__c).to.eql(PapersName[ExamIndex]);\r",
+              "});\r",
+              "pm.test(\"CBA Body check\", function () {\r",
+              "    pm.expect(jsonData.Qualification__c).to.eql(BodyName[ExamIndex]);\r",
+              "});\r",
+              "pm.test(\"CBA Course Type check\", function () {\r",
+              "    pm.expect(jsonData.Course_Type__c).to.eql(CourseType[ExamIndex]);\r",
+              "});\r",
+              "pm.test(\"CBA Level check\", function () {\r",
+              "    pm.expect(jsonData.Level_PQ__c).to.eql(LevelName[ExamIndex]);\r",
+              "});\r",
+              "pm.test(\"CBA Sitting check\", function () {\r",
+              "    pm.expect(jsonData.Sitting__c).to.eql(SittingName[ExamIndex]);\r",
+              "});\r",
+              "pm.test(\"CBA Clients check\", function () {\r",
+              "    pm.expect(jsonData.Client_Tags__c).to.eql(Clients[ExamIndex]);\r",
+              "});\r",
+              "pm.test(\"CBA Legal Entity check\", function () {\r",
+              "    pm.expect(jsonData.BPP_Legal_Entity__c).to.eql(Le4galEntity);\r",
+              "});\r",
+              "pm.test(\"CBA RR Rule check\", function () {\r",
+              "    pm.expect(jsonData.blng__RevenueRecognitionRule__c).to.eql(RRRule);\r",
+              "});\r",
+              "pm.test(\"CBA Tax Rule check\", function () {\r",
+              "    pm.expect(jsonData.blng__TaxRule__c).to.eql(TaxRule);\r",
+              "});\r",
+              "pm.test(\"CBA Billing Rule check\", function () {\r",
+              "    pm.expect(jsonData.blng__BillingRule__c).to.eql(BillingRule);\r",
+              "});\r",
+              "pm.test(\"CBA Location check\", function () {\r",
+              "    pm.expect(jsonData.Location__c).to.eql(Region[ExamIndex]);\r",
+              "});\r",
+              "pm.test(\"CBA QTYEditable check\", function () {\r",
+              "    pm.expect(jsonData.SBQQ__QuantityEditable__c).to.be.true;\r",
+              "});\r",
+              "pm.test(\"CBA Price Editable check\", function () {\r",
+              "    pm.expect(jsonData.SBQQ__PriceEditable__c).to.be.false;\r",
+              "});\r",
+              "pm.test(\"CBA NonDiscountable check\", function () {\r",
+              "    pm.expect(jsonData.SBQQ__NonDiscountable__c).to.be.false;\r",
+              "});\r",
+              "pm.test(\"CBA ConfigurationEvent check\", function () {\r",
+              "    pm.expect(jsonData.SBQQ__ConfigurationEvent__c).to.be.null;\r",
+              "});\r",
+              "pm.test(\"CBA ConfigurationType check\", function () {\r",
+              "    pm.expect(jsonData.SBQQ__ConfigurationType__c).to.eql(\"Disabled\");\r",
+              "});\r",
+              "pm.test(\"CBA Charge Type check\", function () {\r",
+              "    pm.expect(jsonData.SBQQ__ChargeType__c).to.eql(\"Usage\");\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "e3b6734c-f43b-4150-a4f9-acf4abbc7831",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true,
+        "followAuthorizationHeader": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{qa_sf_token}}"
+          }
+        },
+        "method": "GET",
+        "header": [],
+        "url": "{{SFpublicURL}}/sobjects/Product2/{{SF_Exam_id}}"
+      },
+      "response": []
+    },
+    {
+      "name": "SoQL to find Exam PriceEntry",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "6584b255-4f0c-4a19-ab8f-8dd21e05bc68",
+            "exec": [
+              "var jsonData = JSON.parse(responseBody);",
+              "var ExamIndex = pm.environment.get(\"ExamIndex\"); ",
+              "var ExamPrice = pm.environment.get(\"ExamPrice\");",
+              "pm.test(\"Exam price match\", function () {",
+              "    pm.expect(jsonData.records[0].UnitPrice).to.eql(ExamPrice[ExamIndex]);",
+              "});",
+              "pm.test(\"Exam price entry Active match\", function () {",
+              "    pm.expect(jsonData.records[0].IsActive).to.be.true;",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "692e9be7-4c0e-45cb-9d31-201de9d418fe",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "6e4c4d47-8852-4a11-b064-807f6c0bab2d",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true,
+        "followAuthorizationHeader": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{qa_sf_token}}"
+          }
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{SFpublicURL}}/query/?q=SELECT Id,Name,UnitPrice,IsActive,Pricebook2Id,Product2Id FROM PricebookEntry where Product2Id='{{SF_Exam_id}}'",
+          "host": [
+            "{{SFpublicURL}}"
+          ],
+          "path": [
+            "query",
+            ""
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "SELECT Id,Name,UnitPrice,IsActive,Pricebook2Id,Product2Id FROM PricebookEntry where Product2Id='{{SF_Exam_id}}'"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "SoQL to find Exam Cost",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "9251f574-acec-4898-8e63-e35ce6001be3",
+            "exec": [
+              "var jsonData = JSON.parse(responseBody);",
+              "var InstituteFee = pm.environment.get(\"InstituteFee\");",
+              "var ExamIndex = pm.environment.get(\"ExamIndex\"); ",
+              "var TotalExamQTY = pm.environment.get(\"TotalExamQTY\"); ",
+              "",
+              "pm.test(\"Exam Cost match\", function () {",
+              "    pm.expect(jsonData.records[0].SBQQ__UnitCost__c).to.eql(InstituteFee[ExamIndex]);",
+              "});",
+              "pm.test(\"Exam Cost Active match\", function () {",
+              "    pm.expect(jsonData.records[0].SBQQ__Active__c).to.be.true;",
+              "});",
+              "",
+              "ExamIndex = +ExamIndex + 1;",
+              "pm.environment.set(\"ExamIndex\", ExamIndex);",
+              "if (TotalExamQTY == ExamIndex) {",
+              "    postman.setNextRequest(\"Instance Group (CBA Instance)\");",
+              "}",
+              "else {",
+              "    postman.setNextRequest(\"SoQL to find SF Exam\");",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "e095b0f8-4860-4e49-b0d8-efc8123da65b",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "31126edf-519f-4b18-8f7e-fbef4d865b7d",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true,
+        "followAuthorizationHeader": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{qa_sf_token}}"
+          }
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{SFpublicURL}}/query/?q=SELECT Id, SBQQ__UnitCost__c, SBQQ__Active__c FROM SBQQ__Cost__c where SBQQ__Product__c='{{SF_Exam_id}}'",
+          "host": [
+            "{{SFpublicURL}}"
+          ],
+          "path": [
+            "query",
+            ""
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "SELECT Id, SBQQ__UnitCost__c, SBQQ__Active__c FROM SBQQ__Cost__c where SBQQ__Product__c='{{SF_Exam_id}}'"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Instance Group (CBA Instance)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "79bd4a54-43f8-4d69-aba8-dd44cb2a23a7",
+            "exec": [
+              "var jsonData = JSON.parse(responseBody);\r",
+              "let coursesqty = jsonData.data.courses.result.length;\r",
+              "let instanceqtyArr = new Array();\r",
+              "for (i= 0; i < coursesqty; i++){\r",
+              "    instanceqtyArr.push(jsonData.data.courses.result[i].instances.length);\r",
+              "}\r",
+              "var maxValue = instanceqtyArr[0];\r",
+              "for(i = 0; i < instanceqtyArr.length; i++){\r",
+              "    if ( maxValue < instanceqtyArr[i]){\r",
+              "        maxValue = instanceqtyArr[i]\r",
+              "    }\r",
+              "}\r",
+              "let InstancePFRef = new Array();\r",
+              "for(i = 0; i < coursesqty; i++){\r",
+              "    if (maxValue == jsonData.data.courses.result[i].instances.length){\r",
+              "        let test = new Array();\r",
+              "        for (j = 0; j < maxValue; j++){\r",
+              "        test.push(jsonData.data.courses.result[i].instances[j].reference);}\r",
+              "    InstancePFRef.push(test);\r",
+              "    }\r",
+              "    else{\r",
+              "        console.error(\"Not all Instances linked to all CBAs\");\r",
+              "        console.log(instanceqtyArr);\r",
+              "        postman.setNextRequest(null);\r",
+              "    }\r",
+              "    \r",
+              "}\r",
+              "var intiation = JSON.stringify(InstancePFRef[0]);\r",
+              "for (i = 0; i < InstancePFRef.length; i++){\r",
+              "    if (intiation == JSON.stringify(InstancePFRef[i])){\r",
+              "        intiation = JSON.stringify(InstancePFRef[i]);\r",
+              "        console.log(\"All instances linked to all CBAs\");\r",
+              "    }\r",
+              "    else{\r",
+              "        console.error(\"Not all Instances linked to all CBAs\");\r",
+              "        postman.setNextRequest(null);\r",
+              "    }\r",
+              "}\r",
+              "let PFInstanceRef = new Array();\r",
+              "let DeactivationReason = new Array();\r",
+              "let InstanceStatus = new Array();\r",
+              "let InstanceCapacity = new Array();\r",
+              "let InstanceFinancialDimension = new Array();\r",
+              "let InstanceEndDate = new Array();\r",
+              "let InstanceStartDate = new Array();\r",
+              "let InstanceSessionDuration = new Array();\r",
+              "let InstanceName = new Array();\r",
+              "let InstanceLocation = new Array();\r",
+              "var separator = \" - \";\r",
+              "\r",
+              "let LocationName = new Array();\r",
+              "let LocationAddressLine1 = new Array();\r",
+              "let LocationAddressLine2 = new Array();\r",
+              "let LocationAddressLine3 = new Array();\r",
+              "let LocationCity = new Array();\r",
+              "let LocationCountryCode = new Array();\r",
+              "let LocationPostcode = new Array();\r",
+              "let LocationReference = new Array();\r",
+              "\r",
+              "for(i = 0; i < maxValue; i++){\r",
+              "    PFInstanceRef.push(jsonData.data.courses.result[0].instances[i].reference);\r",
+              "    InstanceCapacity.push(jsonData.data.courses.result[0].instances[i].capacity);\r",
+              "    InstanceFinancialDimension.push(jsonData.data.courses.result[0].instances[i].defaultLocation.financialDimension.code);\r",
+              "    InstanceEndDate.push(jsonData.data.courses.result[0].instances[i].endDate);\r",
+              "    InstanceStartDate.push(jsonData.data.courses.result[0].instances[i].startDate);\r",
+              "    InstanceSessionDuration.push(jsonData.data.courses.result[0].instances[i].defaultSessionDuration.description);\r",
+              "    var PFconvertedDate = jsonData.data.courses.result[0].instances[i].startDate;\r",
+              "    var moment = require('moment');\r",
+              "    var SFconvertedDate = moment(PFconvertedDate).format(\"DD/MM/YYYY\");\r",
+              "    InstanceName.push(\"CBA\" + separator + jsonData.data.courses.result[0].region.name + separator + SFconvertedDate + separator + jsonData.data.courses.result[0].instances[i].defaultSessionDuration.description);\r",
+              "    InstanceLocation.push(jsonData.data.courses.result[0].instances[i].defaultLocation.name);\r",
+              "    if (jsonData.data.courses.result[0].instances[i].deactivationReason == null){\r",
+              "        DeactivationReason.push(null);\r",
+              "        InstanceStatus.push(\"Active\");\r",
+              "    }\r",
+              "    else {\r",
+              "        DeactivationReason.push(jsonData.data.courses.result[0].instances[i].deactivationReason.description);\r",
+              "        InstanceStatus.push(\"Deactivated\");\r",
+              "    }\r",
+              "    LocationName.push(ValueCheck(jsonData.data.courses.result[0].instances[i].defaultLocation.name));\r",
+              "    LocationAddressLine1.push(ValueCheck(jsonData.data.courses.result[0].instances[i].defaultLocation.addressLine1));\r",
+              "    LocationAddressLine2.push(ValueCheck(jsonData.data.courses.result[0].instances[i].defaultLocation.addressLine2));\r",
+              "    LocationAddressLine3.push(ValueCheck(jsonData.data.courses.result[0].instances[i].defaultLocation.addressLine3));\r",
+              "    LocationCity.push(ValueCheck(jsonData.data.courses.result[0].instances[i].defaultLocation.city));\r",
+              "    LocationCountryCode.push(ValueCheck(jsonData.data.courses.result[0].instances[i].defaultLocation.countryCode));\r",
+              "    LocationPostcode.push(ValueCheck(jsonData.data.courses.result[0].instances[i].defaultLocation.postcode));\r",
+              "    LocationReference.push(ValueCheck(jsonData.data.courses.result[0].instances[i].defaultLocation.reference));\r",
+              "}\r",
+              "\r",
+              "pm.environment.set(\"LocationReference\", LocationReference);\r",
+              "pm.environment.set(\"LocationPostcode\", LocationPostcode);\r",
+              "pm.environment.set(\"LocationCountryCode\", LocationCountryCode);\r",
+              "pm.environment.set(\"LocationCity\", LocationCity);\r",
+              "pm.environment.set(\"LocationAddressLine1\", LocationAddressLine1);\r",
+              "pm.environment.set(\"LocationAddressLine2\", LocationAddressLine2);\r",
+              "pm.environment.set(\"LocationAddressLine3\", LocationAddressLine3);\r",
+              "pm.environment.set(\"LocationName\", LocationName);\r",
+              "\r",
+              "pm.environment.set(\"InstanceLocation\", InstanceLocation);\r",
+              "pm.environment.set(\"InstanceName\", InstanceName);\r",
+              "pm.environment.set(\"InstanceSessionDuration\", InstanceSessionDuration);\r",
+              "pm.environment.set(\"InstanceEndDate\", InstanceEndDate);\r",
+              "pm.environment.set(\"InstanceStartDate\", InstanceStartDate);\r",
+              "pm.environment.set(\"InstanceFinancialDimension\", InstanceFinancialDimension);\r",
+              "pm.environment.set(\"InstanceCapacity\", InstanceCapacity);\r",
+              "pm.environment.set(\"DeactivationReason\", DeactivationReason);\r",
+              "pm.environment.set(\"InstanceStatus\", InstanceStatus);\r",
+              "pm.environment.set(\"PFInstanceRef\", PFInstanceRef);\r",
+              "var InstanceIndex = 0;\r",
+              "pm.environment.set(\"InstanceIndex\", InstanceIndex);\r",
+              "pm.environment.set(\"maxValue\", maxValue);\r",
+              "function ValueCheck (value){\r",
+              "    if (value == ''){\r",
+              "        return null\r",
+              "    }\r",
+              "    else {\r",
+              "        return value\r",
+              "    }\r",
+              "}\r",
+              "var InstanceQTY = jsonData.data.courses.result[0].instances.length;\r",
+              "pm.environment.set(\"InstanceQTY\", InstanceQTY);\r",
+              "pm.environment.set(\"CBAindex\", 0);\r",
+              "pm.environment.set(\"ExamIndex\", 0);\r",
+              "pm.environment.set(\"InsIndex\", 0);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "b90790aa-efbd-40f2-97d9-242a29eaa84c",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true,
+        "followAuthorizationHeader": false
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{pf_graph_token}}"
+          }
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "graphql",
+          "graphql": {
+            "query": "{\r\n  courses(instanceGroupReference: \"{{cbaPFref}}\") {\r\n    result {\r\n        region{name}\r\n        instances{\r\n            deactivationReason{description}\r\n            reference\r\n            capacity\r\n            defaultLocation{\r\n                name\r\n                address\r\n                addressLine1\r\n                addressLine2\r\n                addressLine3\r\n                city\r\n                countryCode\r\n                financialDimension{\r\n                    code\r\n                    dimensionType\r\n                    target\r\n                    description\r\n                }\r\n                postcode\r\n                reference}\r\n            defaultSessionDuration{\r\n                description\r\n                dateCount\r\n                }\r\n            startDate    \r\n            endDate\r\n            sessions{\r\n                reference\r\n                sessionNumber\r\n                timings{\r\n                    reference\r\n                    startTime\r\n                    endTime}\r\n            }\r\n        }\r\n    }    \r\n  }\r\n}"
+          },
+          "options": {
+            "graphql": {}
+          }
+        },
+        "url": "{{pf_graph_url}}graphql"
+      },
+      "response": []
+    },
+    {
+      "name": "SoQL to find Instance Copy",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "28d3fd69-7898-4dcb-a5c5-4e6863bea266",
+            "exec": [
+              "var jsonData = JSON.parse(responseBody);",
+              "var InstanceID = jsonData.records[0].Id;",
+              "pm.environment.set(\"InstanceID\", InstanceID);",
+              "",
+              "var SFInstanceIdArr = pm.environment.get(\"SFInstanceIdArr\");",
+              "SFInstanceIdArr.push(InstanceID);",
+              "pm.environment.set(\"SFInstanceIdArr\", SFInstanceIdArr);"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "e39d1ff8-fd9f-450f-b491-024b8be93f70",
+            "exec": [
+              "PFInstanceRef = pm.environment.get(\"PFInstanceRef\");\r",
+              "console.log(PFInstanceRef);\r",
+              "InstanceIndex = pm.environment.get(\"InstanceIndex\");\r",
+              "console.log(+InstanceIndex);\r",
+              "var InstancePFRef = PFInstanceRef[+InstanceIndex];\r",
+              "pm.environment.set(\"InstancePFRef\", InstancePFRef);\r",
+              "console.log(InstancePFRef);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "587a31e8-3e42-451a-bcee-62d22469d53a",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{qa_sf_token}}"
+          }
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{SFpublicURL}}/query/?q=SELECT Id\nFROM Instance__c\nWHERE Instance_ID__c = '{{InstancePFRef}}'",
+          "host": [
+            "{{SFpublicURL}}"
+          ],
+          "path": [
+            "query",
+            ""
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "SELECT Id\nFROM Instance__c\nWHERE Instance_ID__c = '{{InstancePFRef}}'"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "SF Instance test",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "9f0c1f9e-ac7c-436d-a41c-5a995f9f576d",
+            "exec": [
+              ""
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "id": "01dacc52-a3ae-4e8c-97fb-0b8b3c0ccf94",
+            "exec": [
+              "var jsonData = JSON.parse(responseBody);",
+              "var InstanceName = pm.environment.get(\"InstanceName\");",
+              "var InstanceSessionDuration = pm.environment.get(\"InstanceSessionDuration\");",
+              "var InstanceEndDate = pm.environment.get(\"InstanceEndDate\");",
+              "var InstanceStartDate = pm.environment.get(\"InstanceStartDate\");",
+              "var InstanceFinancialDimension = pm.environment.get(\"InstanceFinancialDimension\");",
+              "var InstanceCapacity = pm.environment.get(\"InstanceCapacity\");",
+              "var DeactivationReason = pm.environment.get(\"DeactivationReason\");",
+              "var InstanceStatus = pm.environment.get(\"InstanceStatus\");",
+              "var PFInstanceRef = pm.environment.get(\"PFInstanceRef\");",
+              "var InstanceIndex = pm.environment.get(\"InstanceIndex\");",
+              "var InstanceLocation = pm.environment.get(\"InstanceLocation\");",
+              "",
+              "pm.test(\"CBA Instance Name check\", function () {",
+              "    pm.expect(jsonData.Instance_Name__c).to.eql(InstanceName[InstanceIndex]);",
+              "});",
+              "pm.test(\"CBA Instance End Date check\", function () {",
+              "    pm.expect(jsonData.End_Date__c).to.eql(InstanceEndDate[InstanceIndex]);",
+              "});",
+              "pm.test(\"CBA Instance Start Date check\", function () {",
+              "    pm.expect(jsonData.Start_Date__c).to.eql(InstanceStartDate[InstanceIndex]);",
+              "});",
+              "pm.test(\"CBA Instance Session Duration check\", function () {",
+              "    pm.expect(jsonData.Session_Duration__c).to.eql(InstanceSessionDuration[InstanceIndex]);",
+              "});",
+              "pm.test(\"CBA Instance Financial Dimension check\", function () {",
+              "    pm.expect(jsonData.Location_Financial_Dimension__c).to.eql(InstanceFinancialDimension[InstanceIndex]);",
+              "});",
+              "pm.test(\"CBA Instance Capacity check\", function () {",
+              "    pm.expect(jsonData.Instance_Capacity__c).to.eql(InstanceCapacity[InstanceIndex]);",
+              "});",
+              "pm.test(\"CBA Instance Deactivation Reason check\", function () {",
+              "    pm.expect(jsonData.Deactivation_Reason__c).to.eql(DeactivationReason[InstanceIndex]);",
+              "});",
+              "pm.test(\"CBA Instance Status check\", function () {",
+              "    pm.expect(jsonData.BPP_Instance_Status__c).to.eql(InstanceStatus[InstanceIndex]);",
+              "});",
+              "pm.test(\"CBA Instance PFRef check\", function () {",
+              "    pm.expect(jsonData.Instance_ID__c).to.eql(PFInstanceRef[InstanceIndex]);",
+              "});",
+              "pm.test(\"CBA Instance Location check\", function () {",
+              "    pm.expect(jsonData.Location__c).to.eql(InstanceLocation[InstanceIndex]);",
+              "});",
+              "",
+              "var StudyLocationSFId = jsonData.Study_Location__c;",
+              "pm.environment.set(\"StudyLocationSFId\", StudyLocationSFId);"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "8564f82d-7ac6-457f-97df-5912dbca6aed",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true,
+        "followAuthorizationHeader": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{qa_sf_token}}"
+          }
+        },
+        "method": "GET",
+        "header": [],
+        "url": "{{SFpublicURL}}/sobjects/Instance__c/{{InstanceID}}"
+      },
+      "response": []
+    },
+    {
+      "name": "Study Location test",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "51c83825-0262-4961-849e-413c3db5a9d0",
+            "exec": [
+              "var jsonData = JSON.parse(responseBody);\r",
+              "var CountryISOcode = jsonData.Country__c;\r",
+              "pm.environment.set(\"CountryISOcode\", CountryISOcode);\r",
+              "\r",
+              "var InstanceIndex = pm.environment.get(\"InstanceIndex\");\r",
+              "\r",
+              "var LocationReference = pm.environment.get(\"LocationReference\");\r",
+              "var LocationPostcode = pm.environment.get(\"LocationPostcode\");\r",
+              "var LocationCity = pm.environment.get(\"LocationCity\");\r",
+              "var LocationAddressLine1 = pm.environment.get(\"LocationAddressLine1\");\r",
+              "var LocationAddressLine2 = pm.environment.get(\"LocationAddressLine2\");\r",
+              "var LocationAddressLine3 = pm.environment.get(\"LocationAddressLine3\");\r",
+              "var LocationName = pm.environment.get(\"LocationName\");\r",
+              "\r",
+              "pm.test(\"CBA Instance Study Location reference check\", function () {\r",
+              "    pm.expect(jsonData.Product_Factory_Id__c).to.eql(LocationReference[InstanceIndex]);\r",
+              "});\r",
+              "pm.test(\"CBA Instance Study Location Name check\", function () {\r",
+              "    pm.expect(jsonData.Name).to.eql(LocationName[InstanceIndex]);\r",
+              "});\r",
+              "pm.test(\"CBA Instance Study Location Postcode check\", function () {\r",
+              "    pm.expect(jsonData.Postal_Code__c).to.eql(LocationPostcode[InstanceIndex]);\r",
+              "});\r",
+              "pm.test(\"CBA Instance Study Location City check\", function () {\r",
+              "    pm.expect(jsonData.City__c).to.eql(LocationCity[InstanceIndex]);\r",
+              "});\r",
+              "pm.test(\"CBA Instance Study Location LocationAddressLine1 check\", function () {\r",
+              "    pm.expect(jsonData.Address_1__c).to.eql(LocationAddressLine1[InstanceIndex]);\r",
+              "});\r",
+              "pm.test(\"CBA Instance Study Location LocationAddressLine2 check\", function () {\r",
+              "    pm.expect(jsonData.Address_2__c).to.eql(LocationAddressLine2[InstanceIndex]);\r",
+              "});\r",
+              "pm.test(\"CBA Instance Study Location LocationAddressLine3 check\", function () {\r",
+              "    pm.expect(jsonData.Address_3__c).to.eql(LocationAddressLine3[InstanceIndex]);\r",
+              "});\r",
+              "pm.test(\"CBA Instance Study Location Active check\", function () {\r",
+              "    pm.expect(jsonData.Active__c).to.be.true;\r",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "3ae09057-4d0e-454f-bf4b-d386bd918c76",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{qa_sf_token}}"
+          }
+        },
+        "method": "GET",
+        "header": [],
+        "url": "{{SFpublicURL}}/sobjects/Study_Location__c/{{StudyLocationSFId}}"
+      },
+      "response": []
+    },
+    {
+      "name": "Country code test",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "d0d7ddf4-e88d-4bd3-bb2d-0e9dc0eb44f8",
+            "exec": [
+              "var jsonData = JSON.parse(responseBody);\r",
+              "LocationCountryCode = pm.environment.get(\"LocationCountryCode\");\r",
+              "var InstanceIndex = pm.environment.get(\"InstanceIndex\");\r",
+              "\r",
+              "pm.test(\"CBA Instance Study Location Country Code check\", function () {\r",
+              "    pm.expect(jsonData.ISO_CODE__c).to.eql(LocationCountryCode[InstanceIndex]);\r",
+              "});\r",
+              "pm.test(\"CBA Instance Study Location Country Code Active check\", function () {\r",
+              "    pm.expect(jsonData.enabled__c).to.be.true;\r",
+              "});\r",
+              "\r",
+              "var maxValue = pm.environment.get(\"maxValue\");\r",
+              "InstanceIndex = +InstanceIndex + 1;\r",
+              "pm.environment.set(\"InstanceIndex\", InstanceIndex);\r",
+              "if (maxValue == InstanceIndex) {\r",
+              "    postman.setNextRequest(\"SoQL to find CBA\");\r",
+              "}\r",
+              "else {\r",
+              "    postman.setNextRequest(\"SoQL to find Instance Copy\");\r",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "f50b325a-3274-45dc-9d42-40f18409dfd4",
+            "exec": [
+              "LocationCountryCode = pm.environment.get(\"LocationCountryCode\");\r",
+              "var InstanceIndex = pm.environment.get(\"InstanceIndex\");\r",
+              "if (LocationCountryCode == null) {\r",
+              "    postman.setNextRequest(\"SoQL to find CBA\");\r",
+              "}"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "125f666d-b2e6-4fbc-97c5-34261eca470a",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{qa_sf_token}}"
+          }
+        },
+        "method": "GET",
+        "header": [],
+        "url": "{{SFpublicURL}}/sobjects/country_list__c/{{CountryISOcode}}"
+      },
+      "response": []
+    },
+    {
+      "name": "SoQL to find CBA",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "id": "d2e55f8a-3c98-40b0-81c8-3106347952f0",
+            "exec": [
+              "var jsonData = JSON.parse(responseBody);",
+              "var SFExamIdArr = pm.environment.get(\"SFExamIdArr\");",
+              "var SFInstanceIdArr = pm.environment.get(\"SFInstanceIdArr\");",
+              "var CBAqty = pm.environment.get(\"CBAqty\");",
+              "var CBAindex = pm.environment.get(\"CBAindex\");",
+              "CBAindex = +CBAindex + 1;",
+              "pm.environment.set(\"CBAindex\", CBAindex);",
+              "if(CBAindex < CBAqty){",
+              "    postman.setNextRequest(\"SoQL to find CBA\");",
+              "}",
+              "else {",
+              "    console.log(\"That's all folks!!!\")",
+              "}",
+              "var InstanceQTY = pm.environment.get(\"InstanceQTY\");",
+              "var TotalExamQTY = pm.environment.get(\"TotalExamQTY\");",
+              "var ExamIndex = pm.environment.get(\"ExamIndex\");",
+              "var InsIndex = pm.environment.get(\"InsIndex\");",
+              "var InstanceLocation = pm.environment.get(\"InstanceLocation\");",
+              "var InstanceStartDate = pm.environment.get(\"InstanceStartDate\");",
+              "var InstanceCapacity = pm.environment.get(\"InstanceCapacity\");",
+              "var InstanceSessionDuration = pm.environment.get(\"InstanceSessionDuration\");",
+              "var PapersName = pm.environment.get(\"PapersName\");",
+              "var CourseType = pm.environment.get(\"CourseType\");",
+              "var BodyName = pm.environment.get(\"BodyName\");",
+              "var LevelName = pm.environment.get(\"LevelName\");",
+              "var separator = \" - \";",
+              "var CBAname = BodyName[ExamIndex] + separator + LevelName[ExamIndex] + separator + PapersName[ExamIndex] + separator + CourseType[ExamIndex] + separator + InstanceLocation[InsIndex] + separator + InstanceStartDate[InsIndex] + separator + InstanceSessionDuration[InsIndex];",
+              "",
+              "pm.test(\"CBA object Instance match\", function () {",
+              "    pm.expect(jsonData.records[0].Instance__c).to.eql(SFInstanceIdArr[InsIndex]);",
+              "});",
+              "pm.test(\"CBA object Active match\", function () {",
+              "    pm.expect(jsonData.records[0].Active__c).to.be.true;",
+              "});",
+              "pm.test(\"CBA object Name match\", function () {",
+              "    pm.expect(jsonData.records[0].CBA_Name__c).to.eql(CBAname);",
+              "});",
+              "pm.test(\"CBA object Availability match\", function () {",
+              "    pm.expect(jsonData.records[0].Instance_Availability__c).to.eql(InstanceCapacity[InsIndex]);",
+              "});",
+              "pm.test(\"CBA object Exam match\", function () {",
+              "    pm.expect(jsonData.records[0].Product__c).to.eql(SFExamIdArr[ExamIndex]);",
+              "});",
+              "pm.test(\"CBA object Instance Session Duration match\", function () {",
+              "    pm.expect(jsonData.records[0].Session_Duration__c).to.eql(InstanceSessionDuration[InsIndex]);",
+              "});",
+              "pm.test(\"CBA object Instance Start Date match\", function () {",
+              "    pm.expect(jsonData.records[0].Start_Date__c).to.eql(InstanceStartDate[InsIndex]);",
+              "});",
+              "pm.test(\"CBA object Instance Study Location match\", function () {",
+              "    pm.expect(jsonData.records[0].Study_Location__c).to.eql(InstanceLocation[InsIndex]);",
+              "});",
+              "",
+              "InsIndex = +InsIndex + 1;",
+              "if(InsIndex < InstanceQTY){",
+              "    pm.environment.set(\"InsIndex\", InsIndex);",
+              "}",
+              "else {",
+              "    ExamIndex = +ExamIndex + 1;",
+              "    pm.environment.set(\"InsIndex\", 0);",
+              "    pm.environment.set(\"ExamIndex\", ExamIndex);",
+              "}",
+              "var NumberOfTests = 31*TotalExamQTY + 20*InstanceQTY + 8*CBAqty",
+              "console.log(NumberOfTests)"
+            ],
+            "type": "text/javascript"
+          }
+        },
+        {
+          "listen": "prerequest",
+          "script": {
+            "id": "b78b9278-7362-4d91-81f1-66718dae9ba0",
+            "exec": [
+              "var TotalExamQTY = pm.environment.get(\"TotalExamQTY\");\r",
+              "var InstanceQTY = pm.environment.get(\"InstanceQTY\");\r",
+              "var CBAqty = TotalExamQTY*InstanceQTY;\r",
+              "pm.environment.set(\"CBAqty\", CBAqty);\r",
+              "var CBAindex = pm.environment.get(\"CBAindex\");\r",
+              "var ExamPFrefArray = pm.environment.get(\"ExamPFrefArray\");\r",
+              "var PFInstanceRef = pm.environment.get(\"PFInstanceRef\");\r",
+              "var ExamIndex = pm.environment.get(\"ExamIndex\");\r",
+              "var InsIndex = pm.environment.get(\"InsIndex\");\r",
+              "var CBAconcId = ExamPFrefArray[ExamIndex] + '_' + PFInstanceRef[InsIndex];\r",
+              "pm.environment.set(\"CBAconcId\", CBAconcId);\r",
+              "var SFExamIdArr = pm.environment.get(\"SFExamIdArr\");\r",
+              "var SFInstanceIdArr = pm.environment.get(\"SFInstanceIdArr\");"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "_postman_id": "6f549bf6-a742-483f-b864-081375945160",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": {
+            "token": "{{qa_sf_token}}"
+          }
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{SFpublicURL}}/query/?q=SELECT Id,Instance__c,Active__c,CBA_Name__c,Instance_Availability__c,Product__c,Session_Duration__c,Start_Date__c,Study_Location__c\nFROM CBA__c\nWHERE Product_Factory_Instance_Group_Id__c = '{{CBAconcId}}'",
+          "host": [
+            "{{SFpublicURL}}"
+          ],
+          "path": [
+            "query",
+            ""
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "SELECT Id,Instance__c,Active__c,CBA_Name__c,Instance_Availability__c,Product__c,Session_Duration__c,Start_Date__c,Study_Location__c\nFROM CBA__c\nWHERE Product_Factory_Instance_Group_Id__c = '{{CBAconcId}}'"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
