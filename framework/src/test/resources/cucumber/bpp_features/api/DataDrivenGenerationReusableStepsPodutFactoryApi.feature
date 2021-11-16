@@ -142,10 +142,7 @@ Feature: Product Factory Api
       |paperReferences    |EC_CBA_PAPER_REFERENCE      |
     And I execute "Create Instance Group" API step with parameters
       |sessionDurationReference|EC_CBA_SESSION_DURATION_REFERENCE|
-    And I execute "Create Courses" API step with parameters
-      |instanceGroupReference|EC_INSTANCE_GROUP_REFERENCE |
-      |paperReference        |EC_CBA_PAPER_REFERENCE      |
-      |courseTypeReference   |EC_CBA_COURSE_TYPE_REFERENCE|
+    And I execute "Create Courses" API step
 
     Examples:
       |type        |varName     |ecName       |shortVar|shortEc|
