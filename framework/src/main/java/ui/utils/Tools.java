@@ -96,10 +96,10 @@ public class Tools {
         return result;
     }
 
-    public static String fromCamelCaseToUpperWithDash (String camelCase) {
+    public static String fromCamelCaseToUpperWithDash(String camelCase) {
         StringBuilder value = new StringBuilder();
         for (String w : camelCase.split("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])")) {
-            if (!w.isEmpty()){
+            if (!w.isEmpty()) {
                 if (value.length() > 0) value.append("_");
                 value.append(w.toUpperCase());
             }
@@ -262,7 +262,7 @@ public class Tools {
         //required to trim 0 as Totara dropdown options don't have 01, 02 etc.
         if (trimmedNumber.startsWith("0")) {
             String removedZero = trimmedNumber.substring(1);
-            return  removedZero;
+            return removedZero;
         }
         return trimmedNumber;
     }
@@ -274,6 +274,19 @@ public class Tools {
         } else {
             return FileIO.getConfigProperty(key);
         }
+    }
+
+    //used to add 20% VAT for prices displayed on eCommerce pages
+    public static String calculatePriceWithVat(String price) {
+        //trim if price has '£' sign
+        String trimmedPrice = price;
+        if(price.startsWith("£")){
+            trimmedPrice = price.substring(1);
+        }
+        double sumVat = 1.20 *  Double.valueOf(trimmedPrice);
+        double round = Math.round(sumVat*100.0)/100.0;
+        String priceWithVat = String.valueOf(round);
+        return priceWithVat;
     }
 
     public static long checkExpiryTimeForCookies() {

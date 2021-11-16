@@ -508,6 +508,7 @@ public class SpecialStepDefs extends SeleniumHelper {
                     if (text.contains("EC")) {
                         String executionContextValue = ExecutionContextHandler.getExecutionContextValueByKey(newValue);
                         assertThat(actualValue.trim().toLowerCase(), Matchers.containsString(executionContextValue.toLowerCase()));
+                        Reporter.log("<pre>Actual value '" + actualValue + "' contains the string " + "'" + executionContextValue + "'</pre>");
                     } else {
                         assertThat(actualValue.trim(), Matchers.containsString(newValue));
                         Reporter.log("<pre>Actual value '" + actualValue + "' contains the string " + "'" + newValue + "'</pre>");

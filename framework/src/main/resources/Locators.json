@@ -2812,6 +2812,10 @@
     "value": "xpath=(//span[text()='Session Date']/following-sibling::div//input)[2]"
   },
   {
+    "name": "Product Factory Course Page Price Without VAT",
+    "value": "xpath=(//span[contains(.,'All prices are excluding VAT')]/preceding-sibling::span)[last()]"
+  },
+  {
     "name": "Salesforce Account Creation Save button",
     "value": "xpath=(//div[@class='windowViewMode-normal oneRecordActionWrapper isModal active lafPageHost']//button[normalize-space()='Save'])[1]"
   },
