@@ -45,6 +45,8 @@ public class ExecutionContextHandler {
     public static synchronized void setExecutionContextValueByKey(String key, String value) {
         if (key.contains("DEADLINEDAY")) {
             handler.get().setValue(key, Tools.editDay(value, 0, 2));
+        } else if (key.contains("PRICEVAT")) {
+            handler.get().setValue(key,Tools.calculatePriceWithVat(value));
         } else {
             handler.get().setValue(key, value);
         }
