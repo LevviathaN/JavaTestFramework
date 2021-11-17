@@ -1,7 +1,6 @@
 package cucumber.postman;
 
 import io.cucumber.java.en.When;
-import ui.utils.Reporter;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,6 +13,7 @@ public class PostmanCollection {
      * 2 - Enter commands:
      *  a - npm install -g newman
      *  b - npm install -g newman-reporter-htmlextra
+     *  c - install Node.js
      * 3 - Run postman tests
      * */
 
@@ -64,7 +64,6 @@ public class PostmanCollection {
             if (line == null) {
                 break;
             }
-            Reporter.log(line);
         }
         return this;
     }
