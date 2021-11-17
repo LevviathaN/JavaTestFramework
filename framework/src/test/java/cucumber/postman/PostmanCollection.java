@@ -51,13 +51,12 @@ public class PostmanCollection {
         String newmanFile = collectionPath + collection + " ";
         String newmanEnvironment = "-e " + envPath + environment + " ";
         String newmanReporter = "-r htmlextra ";
-        String newmanReporterPath = "--reporter-htmlextra-export " + reporterPath + collection + ".html ";
+        String newmanReporterPath = "--reporter-htmlextra-export " + reporterPath + collection + ".html";
 
         ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", newmanRun + newmanFile + newmanEnvironment + newmanReporter + newmanReporterPath);
         builder.redirectErrorStream(true);
         Process p = builder.start();
         BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
-        ;
 
         String line;
         while (true) {
