@@ -553,6 +553,10 @@
     "value": "xpath=//td[text()='PARAMETER']/preceding-sibling::td[last()]"
   },
   {
+    "name": "Product Factory Course Bulk Operation Page checkbox by Status",
+    "value": "xpath=//span[text()='PARAMETER']/../../following-sibling::div/span"
+  },
+  {
     "name": "Product Factory dialog checkbox",
     "value": "xpath=//td[text()='PARAMETER']//preceding-sibling::td/span/span[1]"
   },
