@@ -162,3 +162,76 @@ Feature: Bulk Operation -Course List Page - multiple selection for Bulk Publish/
     Then Attribute "tabindex" of "Deactivate" "Product Factory button" should have value "-1"
     And Attribute "tabindex" of "Publish" "Product Factory button" should have value "-1"
     And I should see the "Reactivation not allowed due to the Deactivation Reason(s) selected" message
+
+  @Positive @P1 @NeedToBeUI #TC-4044
+  Scenario: Multiple Courses Bulk Activation
+
+    #Create Reference data for courses creation
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
+      |dimensionType|PRODUCT   |
+      |target       |BODY|
+    And I execute "Create Financial Dimension" API step with parameters saving as "REGION_"
+      |dimensionType|PRODUCT   |
+      |target       |REGION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "LOCATION_"
+      |dimensionType|PRODUCT   |
+      |target       |LOCATION|
+    And I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_TYPE_"
+      |dimensionType|PRODUCT     |
+      |target       |MATERIALTYPE|
+    And I execute "Create Vertical" API step
+    And I execute "Create Body" API step
+    And I execute "Create Sitting" API step
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Vat Rule" API step saving as "SECOND_"
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step
+    And I execute "Create Client" API step
+    Given I execute "Create Study Mode" API step
+    And I execute "Create Paper" API step
+    And I execute "Create Level" API step
+    And I execute "Link Body To Levels" API step
+    And I execute "Change Paper Body" API step
+    And I execute "Link Paper To Levels" API step
+    And I execute "Create Digital Content" API step
+    And I execute "Create Region" API step
+    And I execute "Create Location" API step
+    And I execute "Create Session Duration" API step
+    And I execute "Create Pricing Matrix" API step
+    And I execute "Create Prices" API step
+    And I execute "Create Session Duration" API step
+    And I execute "Create Stream" API step
+
+    Given I execute "Log In" reusable step
+
+    #Create Draft Course
+    And I execute "Create Course" API step
+    And I execute "Create Course" API step saving as "SECOND_"
+    And I execute "Create Course" API step saving as "THIRD_"
+
+
+    #Navigate to Courses Page
+    Given I click on the "Products" "Product Factory navigation item"
+    When I click on the "Courses" "Product Factory navigation sub item"
+
+    #Perform Bulk Operation
+    And I set "EC_BODY_SHORT_NAME" text to the "Search" "Product Factory text field" from keyboard
+    And I click on the "submit" "element by type"
+    And I wait for "5" seconds
+    When I click on the "Product Factory Course Page Select All Checkbox" element
+    Then I click on the "Perform Bulk Operation" "Product Factory button"
+
+    #Verify that Publish, Activate and Deactivate buttons on the top of the page (TC-4140)
+    Then Attribute "tabindex" of "Publish" "Product Factory button" should have value "-1"
+    Then Attribute "tabindex" of "Activate" "Product Factory button" should have value "0"
+    Then Attribute "tabindex" of "Deactivate" "Product Factory button" should have value "-1"
+
+    When I click on the "Activate" "Product Factory button"
+    And I should see "ACTIVE" "Product Factory Course Bulk Operation Page checkbox by Status" in quantity of "3"
