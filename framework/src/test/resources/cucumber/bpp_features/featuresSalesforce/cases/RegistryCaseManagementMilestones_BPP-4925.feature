@@ -18,20 +18,6 @@ Feature: Registry Case Management
     Then I validate text "RE=4.+" to be displayed for "Salesforce Case Milestones Tab Milestone One" element
     Then I validate text "RE=9.+" to be displayed for "Salesforce Case Milestones Tab Milestone Two" element
 
-  Scenario: Registry Case Verify Milestones Letter Production and IOS
-    Given I execute "Log In To Salesforce" reusable step
-    And I execute "Create Letter Production Registry Case" reusable step
-    And I click on the "Salesforce Case Milestones Tab" button
-    And I wait for "1" seconds
-    Then I validate text "RE=9.+" to be displayed for "Salesforce Case Milestones Tab Milestone One" element
-    And I execute "Create IOS Registry Case" reusable step
-    And I click on the "Salesforce Case Milestones Tab" button
-    And I wait for "1" seconds
-    Then I validate text "CONTAINS=Student Query - Work Started" to be displayed for "Salesforce Case Milestones Tab First Milestone Name" element
-    Then I validate text "CONTAINS=Student Query - Ready to Close" to be displayed for "Salesforce Case Milestones Tab Second Milestone Name" element
-    Then I validate text "RE=4.+" to be displayed for "Salesforce Case Milestones Tab Milestone One" element
-    Then I validate text "RE=9.+" to be displayed for "Salesforce Case Milestones Tab Milestone Two" element
-
   Scenario: Registry Case Verify Milestones Registration and Induction
     Given I execute "Log In To Salesforce" reusable step
     And I execute "Create Registration and Induction Registry Case" reusable step
@@ -46,16 +32,9 @@ Feature: Registry Case Management
     Then I validate text "CONTAINS=Student Query - Ready to Close" to be displayed for "Salesforce Case Milestones Tab First Milestone Name" element
     Then I validate text "RE=4.+" to be displayed for "Salesforce Case Milestones Tab Milestone One" element
 
-  Scenario: Registry Case Verify Milestones Timetable, VLE
+  Scenario: Registry Case Verify Milestones Timetable
     Given I execute "Log In To Salesforce" reusable step
     And I execute "Create Timetable Registry Case" reusable step
-    And I click on the "Salesforce Case Milestones Tab" button
-    And I wait for "2" seconds
-    Then I validate text "CONTAINS=Student Query - Ready to Close" to be displayed for "Salesforce Case Milestones Tab First Milestone Name" element
-    Then I validate text "RE=9.+" to be displayed for "Salesforce Case Milestones Tab Milestone One" element
-    When I execute "Create Timetable Registry Case" reusable step replacing some steps
-      | 9  | I click on the "VLE" "Salesforce cases dropdown option"                   |
-      | 11 | I click on the "Missing or wrong modules" "Salesforce cases dropdown option" |
     And I click on the "Salesforce Case Milestones Tab" button
     And I wait for "2" seconds
     Then I validate text "CONTAINS=Student Query - Ready to Close" to be displayed for "Salesforce Case Milestones Tab First Milestone Name" element
@@ -113,7 +92,7 @@ Feature: Registry Case Management
     Then I validate text "CONTAINS=Student Query - Ready to Close" to be displayed for "Salesforce Case Milestones Tab First Milestone Name" element
     Then I validate text "RE=4.+" to be displayed for "Salesforce Case Milestones Tab Milestone One" element
 
-  Scenario: Registry Case Verify Milestones Student Loans and Locker Key
+  Scenario: Registry Case Verify Milestones Student Loans
     Given I execute "Log In To Salesforce" reusable step
     When I execute "Create Complaints Registry Case" reusable step replacing some steps
       | 9 | I click on the "Student Loans Company query" "Salesforce cases dropdown option" |
@@ -121,15 +100,6 @@ Feature: Registry Case Management
     And I wait for "2" seconds
     Then I validate text "CONTAINS=Student Query - Ready to Close" to be displayed for "Salesforce Case Milestones Tab First Milestone Name" element
     Then I validate text "RE=4.+" to be displayed for "Salesforce Case Milestones Tab Milestone One" element
-    When I execute "Create Timetable Registry Case" reusable step replacing some steps
-      | 9  | I click on the "Locker Key" "Salesforce cases dropdown option" |
-      | 11 | I click on the "Returned" "Salesforce cases dropdown option"   |
-    And I click on the "Salesforce Case Milestones Tab" button
-    And I wait for "2" seconds
-    Then I validate text "CONTAINS=Student Query - Work Started" to be displayed for "Salesforce Case Milestones Tab First Milestone Name" element
-    Then I validate text "CONTAINS=Student Query - Ready to Close" to be displayed for "Salesforce Case Milestones Tab Second Milestone Name" element
-    Then I validate text "RE=4.+" to be displayed for "Salesforce Case Milestones Tab Milestone One" element
-    Then I validate text "RE=9.+" to be displayed for "Salesforce Case Milestones Tab Milestone Two" element
 
   Scenario: Registry Case Verify Milestones International Support
     Given I execute "Log In To Salesforce" reusable step

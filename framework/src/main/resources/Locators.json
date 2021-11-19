@@ -668,6 +668,10 @@
     "value": "xpath=//div[@class='table-content row open ']//div[@class='studyType']"
   },
   {
+    "name": "BPP Digital Dates and Prices Syllabus",
+    "value": "xpath=//div[@class='syllabus']"
+  },
+  {
     "name": "BPP Digital Add to Basket First Course",
     "value": "xpath=(//div[contains(@class,'purchase col')]/button)[1]"
   },
@@ -2806,6 +2810,14 @@
   {
     "name": "Product Factory Course Page Session Date Additional Filter To Field",
     "value": "xpath=(//span[text()='Session Date']/following-sibling::div//input)[2]"
+  },
+  {
+    "name": "Product Factory Course Page Price Without VAT",
+    "value": "xpath=(//span[contains(.,'All prices are excluding VAT')]/preceding-sibling::span)[last()]"
+  },
+  {
+    "name": "Product Factory Course Page Select All Checkbox",
+    "value": "xpath=//span[@title='Select/Deselect All Courses']"
   },
   {
     "name": "Salesforce Account Creation Save button",
