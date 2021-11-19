@@ -1,13 +1,13 @@
 package cucumber.postman;
 
 import io.cucumber.java.en.When;
+import ui.utils.BPPLogManager;
+import ui.utils.Reporter;
 import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class PostmanCollection {
 
-    /*
+    /**
      * To Activate test execution. Follow next steps:
      * 1 - Navigate to terminal tab in IDEA
      * 2 - Enter commands:
@@ -15,42 +15,20 @@ public class PostmanCollection {
      *  b - npm install -g newman-reporter-htmlextra
      *  c - install Node.js
      * 3 - Run postman tests
-     * */
+     **/
 
     @When("^I execute postman \"([^\"]*)\" collection using \"([^\"]*)\" environment$")
 
     public PostmanCollection i_execute_postman_collection(String collection, String environment) throws IOException {
 
-        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd_HH_mm_ss");
-        Date date = new Date(System.currentTimeMillis());
-
-        StringBuilder collectionPath = new StringBuilder();
-        collectionPath.append(System.getProperty("user.dir"))
-                .append(File.separator + "src")
-                .append(File.separator + "main")
-                .append(File.separator + "resources")
-                .append(File.separator + "api")
-                .append(File.separator + "postman")
-                .append(File.separator + "collections" + File.separator);
-
-        StringBuilder envPath = new StringBuilder();
-        envPath.append(System.getProperty("user.dir"))
-                .append(File.separator + "src")
-                .append(File.separator + "main")
-                .append(File.separator + "resources")
-                .append(File.separator + "api")
-                .append(File.separator + "postman")
-                .append(File.separator + "environments" + File.separator);
-
-        StringBuilder reporterPath = new StringBuilder();
-        reporterPath.append(System.getProperty("user.dir"))
-                .append(File.separator + "report" + File.separator)
-                .append("newman_report_" + formatter.format(date) + File.separator);
+        String collectionPath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "api" + File.separator + "postman" + File.separator + "collections" + File.separator;
+        String environmentPath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator + "api" + File.separator + "postman" + File.separator + "environments" + File.separator;
+        String reporterPath = Reporter.getFilePath() + File.separator;
 
         String newmanRun = "newman run ";
         String newmanFile = collectionPath + collection + " ";
-        String newmanEnvironment = "-e " + envPath + environment + " ";
-        String newmanReporter = "-r htmlextra ";
+        String newmanEnvironment = "-e " + environmentPath + environment + " ";
+        String newmanReporter = "-r htmlextra,cli --reporter-htmlextra-logs ";
         String newmanReporterPath = "--reporter-htmlextra-export " + reporterPath + collection + ".html";
 
         ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", newmanRun + newmanFile + newmanEnvironment + newmanReporter + newmanReporterPath);
@@ -64,6 +42,8 @@ public class PostmanCollection {
             if (line == null) {
                 break;
             }
+            Reporter.log(line);
+            BPPLogManager.getLogger().info(line);
         }
         return this;
     }

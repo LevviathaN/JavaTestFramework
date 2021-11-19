@@ -173,6 +173,10 @@ public class Reporter {
         return Paths.get(root, "report", reportName);
     }
 
+    public static Path getFilePath() {
+        return reportPath;
+    }
+
     /**
      * <p>
      * Add test to the report with the give test name
