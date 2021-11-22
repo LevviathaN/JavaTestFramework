@@ -30,7 +30,6 @@ Feature: Following UAT of Dates & Prices, a requirement change exists to hide se
     And I should see the "Oct 2021" "BPP Digital Dates and Prices Start date filter option"
     And I should see the "Nov 2021" "BPP Digital Dates and Prices Start date filter option"
     Then I click on the "Nov 2021" "BPP Digital Dates and Prices Start date filter option"
-    And I should see the "Sat 6 Nov 2021" "element"
     Then I should see the "Tue 9 Nov 2021" "element"
     Then I click on the "Nov 2021" "BPP Digital Dates and Prices Start date filter option"
     Then I click on the "Start date" "BPP Digital Dates and Prices Filter By"
@@ -43,11 +42,6 @@ Feature: Following UAT of Dates & Prices, a requirement change exists to hide se
     Then I should see the "FINAL MOCK" "contained in P element"
     Then I should see the "RECAP" "contained in P element"
     Then I should see the "RECAP EXAM" "contained in P element"
-    #When I click on the "BPP Digital Dates and Prices Course Type Tooltip" element
-    #Validate pluralisation is removed
-    And I wait for "3" seconds
-    And I click on the "Sat 6 Nov 2021" "element"
-    And I validate text "CONTAINS=Weekend" to be displayed for "BPP Digital Dates and Prices Number of Sessions For Multiple Address" element
     #Delete DnP component in Admin
     And I am on "https://admin-stage-bppdigital.bppuniversity.com/admin/cms/pages/1560/edit" URL
     And I wait for "3" seconds

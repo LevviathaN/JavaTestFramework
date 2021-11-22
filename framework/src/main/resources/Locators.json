@@ -2141,7 +2141,7 @@
   },
   {
     "name": "Guerilla New Line Manager Email",
-    "value": "xpath=//div[@class='email_body']|https:\\/\\/bpp-stage.eu.auth0.com\\/lo\\/reset.+[aA-zZ0-9]\\#"
+    "value": "xpath=//div[@class='email_body']"
   },
   {
     "name": "Guerilla Validate Mitigating Circustances Submitted Link",
@@ -2937,7 +2937,7 @@
   },
   {
     "name": "Salesforce First Opportunity",
-    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//th/span[contains(.,'EC_BASKET_ID')]/a"
+    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//th//a[contains(.,'EC_BASKET_ID')]"
   },
   {
     "name": "Salesforce Frame",

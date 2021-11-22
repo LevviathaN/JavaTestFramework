@@ -13,7 +13,7 @@ Feature: Checkout Journey for Not Logged User
     And I am on "MD_COMMON_LINKS_BPPDIGITALECOMMERCEURL" URL
     And I click on the "Data Technician" "BPP Digital View Dates and Prices button"
     And I click on the "BPP Digital Add to Basket First Course" button
-    Then I wait for "1" seconds
+    Then I wait for "2" seconds
     Then I validate text "CONTAINS=Added to basket!" to be displayed for "BPP Digital Basket Popup Message" element
     Then I validate text "CONTAINS=In your basket" to be displayed for "BPP Digital Basket Popup Count" element
     Then I validate text "CONTAINS=1" to be displayed for "BPP Digital Basket Popup Count" element
