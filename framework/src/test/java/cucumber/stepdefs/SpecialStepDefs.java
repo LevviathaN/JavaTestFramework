@@ -36,6 +36,7 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @When("^I click on the \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_click_on_element_with_parameter_special(String elementLocator, String elementType) {
+        //todo: there is an issue with locators that not allow to use '//' or '/descendant::' in locators. Investigate
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(elementLocator,elementType)
                 .setAction(ActionsWithLocator.CLICK)
