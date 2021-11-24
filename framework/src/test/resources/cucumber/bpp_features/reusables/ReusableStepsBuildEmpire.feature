@@ -20,7 +20,7 @@ Feature: BuildEmpire
     And I set "EC_AUTO_EMAIL" text to the "Email" "Build Empire text field"
     And I set "EC_PASSWORD" text to the "Password" "Build Empire text field"
     Then I click on the "Direct App Login Button" button by JS
-    And I wait for "1" seconds
+    And I wait for "3" seconds
     And I should see the "Timeline and Dashboard" "element"
 
   Scenario: Log In to Hub as Admin
@@ -1456,7 +1456,7 @@ Feature: BuildEmpire
     And I wait for "1" seconds
     And I fill the "Direct App Admin Company Text Field Line Manager Creation" field with "Automation"
     Then I click on the "Automation" "Build Empire application type"
-    Then I remember "Email[#####]/@/getnada.com" text as "EC_LINEMANAGER_EMAIL" variable
+    Then I remember "Email[#####]/@/guerrillamail.com" text as "EC_LINEMANAGER_EMAIL" variable
     And I fill the "Direct App Admin Email Line Manager Creation" field with "EC_LINEMANAGER_EMAIL"
     And I fill the "Direct App Admin Firstname Line Manager Creation" field with "AutoFirst"
     And I fill the "Direct App Admin Lastname Line Manager Creation" field with "AutoLast"
@@ -1503,7 +1503,7 @@ Feature: BuildEmpire
     And I set "12345" text to the "Postcode" "Build Empire Channel Islands text field"
     And I click on the "Direct App Channel Islands Country Dropdown" button
     And I click on the "United Kingdom" "Build Empire dropdown option"
-    Then I remember "e-mail[#####]/@/getnada.com" text as "EC_LINEMANAGER_EMAIL" variable
+    Then I remember "e-mail[#####]/@/guerrillamail.com" text as "EC_LINEMANAGER_EMAIL" variable
     And I fill the "Direct App Channel Islands Email Training Manager" field with "EC_LINEMANAGER_EMAIL"
     And I fill the "Direct App Channel Islands Address Training Manager" field with "Simple Test 1"
     And I click on the "Direct App Mark As Complete Checkbox" button
