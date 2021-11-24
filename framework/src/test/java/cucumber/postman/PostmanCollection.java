@@ -37,14 +37,18 @@ public class PostmanCollection {
         BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
 
         String line;
+
         while (true) {
             line = r.readLine();
             if (line == null) {
                 break;
             }
+
             Reporter.log(line);
             BPPLogManager.getLogger().info(line);
+
         }
+        Reporter.addPostmanReporterLink(collection + ".html");
         return this;
     }
 }

@@ -43,6 +43,7 @@ public class Reporter {
     private static String filePath = "report.html";
     private static Path reportPath;
     private static Path quarkPath;
+    private static String newmanReportLink;
     private static Path screenshotFolder;
     private static Path ecFolder;
     private static Path logFolder;
@@ -653,6 +654,14 @@ public class Reporter {
 
         String link = String.format("<a target='_blank' href='%s'>qTest Link</a>", qtestBuild);
         node("qTest Execution Link", link);
+    }
+
+    public static void addPostmanReporterLink(String collectionPath) {
+
+        newmanReportLink = String.format(collectionPath);
+
+        String link = String.format("<a target='_blank' href='%s'>Newman Report Link</a>", newmanReportLink);
+        node("Newman Report Link", link);
     }
 
     //https://automate.browserstack.com/dashboard/v2/builds/7c8b609afec733f8009687fb45014e5efe9278a2/sessions/bbcd18b49789624603a57d2bfcd9522073f21ea3
