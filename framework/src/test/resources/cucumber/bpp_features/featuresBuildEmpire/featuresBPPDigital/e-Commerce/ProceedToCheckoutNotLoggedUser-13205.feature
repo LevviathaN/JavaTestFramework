@@ -7,7 +7,7 @@ Feature: Checkout Journey for Not Logged User
   So for example, I should NOT be able to view the 'payment details' page without accessing the 'booking details' page first.
   Also, reloading any page should reset the journey page to the first page.
 
-  @Positive @NotLogged #TC-5454, 6103, 6008, 6129, 6130, 6467, 6532, 6131, 6468, 6174, 6469
+  @Positive @NotLogged #TC-5454, 6103, 6008, 6129, 6130, 6467, 6532, 6131, 6468, 6174, 6469, 5455
   Scenario: eCommerce - Checkout Journey Not Logged User VISA
     #Navigation through checkout
     And I am on "MD_COMMON_LINKS_BPPDIGITALECOMMERCEURL" URL
