@@ -48,6 +48,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
      * @param element Locator name string. All simple locators are listed in \src\resources\Locators.json
      */
     public StepDefinitionBuilder setLocator(String element) {
+        locatorString = element;
         locator = initElementLocator(element);
         return this;
     }
@@ -203,16 +204,18 @@ public class StepDefinitionBuilder extends SeleniumHelper {
     public StepDefinitionBuilder setAction(ActionsWithTwoParameters actionName, String param1, String param2) {
         //todo: triggers a warning message 'EC not found' when REMEMBER_TEXT action is executed, due to this parameter is EC
         //todo: checking if special parameter should be refactored
-        String parameter1 = param1.startsWith("EC_") ? param1 : TestParametersController.checkIfSpecialParameter(param1);
-        String parameter2 = param2.startsWith("EC_") ? param2 : TestParametersController.checkIfSpecialParameter(param2);
-        Reporter.log("<pre>[input test parameter] " + param1 + "' -> '" + parameter1 + "' [output value]</pre>");
-        Reporter.log("<pre>[input test parameter] " + param2 + "' -> '" + parameter2 + "' [output value]</pre>");
         switch (actionName) {
             case REMEMBER_TEXT:
-                action = () -> ExecutionContextHandler.setExecutionContextValueByKey(parameter2, parameter1);
+                String parameter1Rem = TestParametersController.checkIfSpecialParameter(param1);
+                Reporter.log("<pre>[input test parameter] " + param1 + "' -> '" + parameter1Rem + "' [output value]</pre>");
+                action = () -> ExecutionContextHandler.setExecutionContextValueByKey(param2, parameter1Rem);
                 break;
             case SCROLL:
                 action = () -> {
+                    String parameter1 = TestParametersController.checkIfSpecialParameter(param1);
+                    Reporter.log("<pre>[input test parameter] " + param1 + "' -> '" + parameter1 + "' [output value]</pre>");
+                    String parameter2 = TestParametersController.checkIfSpecialParameter(param2);
+                    Reporter.log("<pre>[input test parameter] " + param2 + "' -> '" + parameter2 + "' [output value]</pre>");
                     String xAxis, yAxis = "0";
                     xAxis = parameter1.equals("right") ? "document.body.scrollLeft" : parameter1.equals("left") ? "0" : parameter1;
                     yAxis = parameter2.equals("bottom") ? "document.body.scrollHigh" : parameter2.equals("top") ? "0" : parameter2;
@@ -349,7 +352,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
      */
     public StepDefinitionBuilder setAction(ActionsWithLocatorAndParameter actionName, String param) {
         //todo: checking if special parameter should be refactored
-        String parameter = param.startsWith("EC_") ? param : TestParametersController.checkIfSpecialParameter(param);
+        String parameter = TestParametersController.checkIfSpecialParameter(param);
         Reporter.log("<pre>[input test parameter] " + param + "' -> '" + parameter + "' [output value]</pre>");
         switch (actionName) {
             case SET_TEXT:
@@ -384,7 +387,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                 };
                 break;
             case EXECUTE_JS:
-                action = () -> executeJSCodeForElement(locator,parameter);
+                action = () -> executeJSCodeForElement(locator,param);
                 break;
             case CHECK_CHECKBOX:
                 action = () -> {

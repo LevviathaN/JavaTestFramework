@@ -4,6 +4,7 @@ import cucumber.stepdefs.Actions.*;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import ui.utils.BPPLogManager;
 import ui.utils.SeleniumHelper;
 import ui.utils.Reporter;
 import ui.utils.UiHandlers;
