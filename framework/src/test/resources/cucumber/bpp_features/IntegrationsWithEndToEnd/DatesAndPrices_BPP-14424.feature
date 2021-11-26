@@ -7,7 +7,7 @@ Feature: Following UAT of Dates & Prices, a requirement change exists to hide se
   Loreum Ipsum text can be used temporarily.
   NOTE: This change ONLY applies to Online Classroom course instances, and not Online Classroom Live course instances.
 
-  @Positive @OnlineClassroom @Filter @Tooltip #TC-5348, 5347, 5349, 5350, 5351, 5353
+  @Positive @OnlineClassroom @Filter @Tooltip #TC-5348, 5347, 5349, 5350, 5351, 5353, 6644
   Scenario:Dates n Prices Pluralisation and Hide Session Timings
     Given I execute "Log In to Hub as Admin" reusable step
     And I am on "https://admin-stage-bppdigital.bppuniversity.com/admin/cms/pages/1560/edit" URL
