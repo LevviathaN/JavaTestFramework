@@ -10,7 +10,7 @@ Feature: Reject Channel Islands Application
     And I execute "Complete Channel Islands Mk2 Application" reusable step
     Then I execute "Submit Application Hub" reusable step
     And I execute "Log Out from Hub Student" reusable step
-    Then I execute "Nada Reset Line Manager Password" reusable step
+    Then I execute "Guerillamail Reset Line Manager Password" reusable step
     Then I execute "Reset Line Manager Password" reusable step
     Given I am on "MD_COMMON_LINKS_BUILDEMPIREURL" URL
     And I set "EC_LINEMANAGER_EMAIL" text to the "Email" "Build Empire text field"
@@ -26,8 +26,9 @@ Feature: Reject Channel Islands Application
     Then I click on the "Harakirimail Get Inbox" button
     Then I click on the "Harakirimail First Email" button
     And I wait for "2" seconds
-    Then I execute "document.getElementsByClassName('adsbygoogle adsbygoogle-noablate')[2].remove();" JS code if "Harakirimail Adds Banner" "element is present"
-    Then I click on the "Harakirimail First Email" button if "Harakirimail First Email" "element is present"
+    And Browser performs "REFRESH" command
+    And I wait for "1" seconds
+    Then I click on the "Harakirimail First Email" element if "Harakirimail First Email" "element is present"
     Then I validate text "CONTAINS=Your application has been rejected" to be displayed for "Harakirimail Validate Mitigating Header" element
 
     Then I execute "Log In to Hub as Student" reusable step
@@ -68,6 +69,8 @@ Feature: Reject Channel Islands Application
     Then I click on the "Harakirimail Get Inbox" button
     Then I click on the "Harakirimail First Email" button
     And I wait for "2" seconds
-    Then I execute "document.getElementsByClassName('adsbygoogle adsbygoogle-noablate')[2].remove();" JS code if "Harakirimail Adds Banner" "element is present"
-    Then I click on the "Harakirimail First Email" button if "Harakirimail First Email" "element is present"
+    And Browser performs "REFRESH" command
+    And I wait for "1" seconds
+    Then I click on the "Harakirimail First Email" element if "Harakirimail First Email" "element is present"
+    And I wait for "2" seconds
     Then I validate text "CONTAINS=Your application has been rejected" to be displayed for "Harakirimail Validate Mitigating Header" element

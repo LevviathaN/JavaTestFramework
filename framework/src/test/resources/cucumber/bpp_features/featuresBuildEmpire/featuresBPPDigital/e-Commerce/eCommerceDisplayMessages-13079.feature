@@ -30,7 +30,7 @@ Feature: Enable Display of Messages for Updated Course Instances in Basket
     And I set "~UpdatedPMPrice[##]" text to the "Enter a Price (£)" "Product Factory text field"
     And I click on the "Save" "Product Factory active button"
     And I wait for "3" seconds
-    And I am on "https://uat-products.bpp.com/courses/edit/07846e8a-20b6-425c-afa9-0bba2e6c7952" URL
+    And I am on "MD_COMMON_LINKS_PRODUCTFACTORYUPDATEINSTANCEURL" URL
     And I click on the "refresh" element
     Then I wait for "1" seconds
     And I capture text data "Product Factory Course Page Price Without VAT" as "EC_PRICEVAT" variable
@@ -50,7 +50,7 @@ Feature: Enable Display of Messages for Updated Course Instances in Basket
     And I click on the "BPP Digital Header Basket" button by JS
     Then I validate text "5" to be displayed for "Items" "BPP Digital Basket Summary Section"
     #Change Instance Location
-    And I am on "https://uat-products.bpp.com/courses/edit/07846e8a-20b6-425c-afa9-0bba2e6c7952" URL
+    And I am on "MD_COMMON_LINKS_PRODUCTFACTORYUPDATEINSTANCEURL" URL
     When I click on the "Location MVM 2" "Product Factory course instance sessions dropdown button"
     When I click on the "Default Location" "Product Factory edit button"
     And I click on the "Location MVM 1" "Product Factory select button"
@@ -62,7 +62,7 @@ Feature: Enable Display of Messages for Updated Course Instances in Basket
     Then I should see the "Information for 1 of your chosen courses has changed since you added it to your basket." "text contained in P element"
     Then I should see the "Check the latest information to be sure you want to book it?" "text contained in P element"
     #Return instance location to primary state
-    And I am on "https://uat-products.bpp.com/courses/edit/07846e8a-20b6-425c-afa9-0bba2e6c7952" URL
+    And I am on "MD_COMMON_LINKS_PRODUCTFACTORYUPDATEINSTANCEURL" URL
     When I click on the "Location MVM 1" "Product Factory course instance sessions dropdown button"
     When I click on the "Default Location" "Product Factory edit button"
     And I click on the "Location MVM 2" "Product Factory select button"
