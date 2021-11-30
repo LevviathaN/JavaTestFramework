@@ -454,11 +454,16 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @When("^I set \"([^\"]*)\" text to the element with ID \"([^\"]*)\" using JS$")
     public void i_set_text_with_js(String text, String element) {
-        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setLocator(element)
-                .setAction(ActionsWithLocatorAndParameter.SET_TEXT_WITH_JS, text)
-                .setMessage("Executing step: I set '" + text + "' text to the element with ID '" + element + "' using JS")
-                .execute();
+        //todo: does not worn in Sub Topics And Labels. To be fixed. Reverted to old version for now.
+        Reporter.log("Executing step: I set '" + text + "' text to the element with ID '" + element + "' using JS");
+        //executeJSCode("document.getElementById('" + element + "').setAttribute('value', '" + text + "')");
+
+        String processedText = TestParametersController.checkIfSpecialParameter(text);
+        BPPLogManager.getLogger().info("Setting: " + element + " with value: " + text);
+        executeJSCode("document.getElementById('" + element + "').setAttribute('value', '" + processedText + "')");
+        if (!text.equals(processedText)) {
+            Reporter.log("<pre>[input test parameter] " + text + "' -> '" + processedText + " [output value]</pre>");
+        }
     }
 
     /**
