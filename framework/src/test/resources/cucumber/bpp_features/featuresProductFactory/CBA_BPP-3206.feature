@@ -31,7 +31,7 @@ Feature: CBA - Create Courses and Instances - BPP-3206
     And I execute "Create Course Type" API step with parameters saving as "2_"
       |description|$Auto[2CourseTypeDescription]###|
 
-  @Positive @Regression @P1 @CoveredWithAPI @NeedToBeUI @Run #TC-3000
+  @Positive @Regression @P1 @CoveredWithAPI @NeedToBeUI #TC-3000
   Scenario: Create New CBA Record
     Given I execute modified "Create CBA Record" reusable step
       |16|Add|I should see the "EC_CBA1_COURSE_TYPE_DESCRIPTION" "Product Factory select button"|

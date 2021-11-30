@@ -289,6 +289,34 @@ public class StepDefinitionBuilder extends SeleniumHelper {
      * Depending on type and number of parameters different overloads of this method will be executed
      * All available actions cn be found under /src/test/java/cucumber/stepdefs/Actions directory
      *
+     * @param actionName name of action to be performed. Taken from ActionsWithLocatorAndTable.enum
+     * @param table table underneath the step, which can contain modified steps of reusable, or steps to be executed in loop
+     */
+    public StepDefinitionBuilder setAction(ActionsWithTable actionName, List<String> table) {
+        switch (actionName) {
+            case EXECUTE_STEPS:
+                action = () -> {
+                    for(String step : table) {
+                        ReusableRunner.getInstance().executeStep(step);
+                    }
+                };
+                break;
+            case EXECUTE_REUSABLES:
+                action = () -> {
+                    for(String reusable : table) {
+                        ReusableRunner.getInstance().executeReusable(reusable);
+                    }
+                };
+                break;
+        }
+        return this;
+    }
+
+    /**
+     * Method to specify action which the step will perform. Mandatory.
+     * Depending on type and number of parameters different overloads of this method will be executed
+     * All available actions cn be found under /src/test/java/cucumber/stepdefs/Actions directory
+     *
      * Make sure to specify locator(if applicable) prior to action
      * All simple locators are listed in /src/resources/Locators.json
      * All parametrized(special) locators are listed in /src/resources/SpecialLocators.json
@@ -586,6 +614,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
         if(condition){ //
             if (!reporterLog.equals("")) Reporter.log(reporterLog);   //set reporter log if provided
             if (!log.equals("")) BPPLogManager.getLogger().info(log); //set console log if provided
+            //todo: add logs to mark iterations if loop is specified
             switch (loop) { //if any loop name is provided(for,until) executes step in corresponding loop
                 case "until":
                     for (int i = 1; i < loopLimit && !conditions.checkCondition(loopConditionStatement,loopConditionParameter); i++) {

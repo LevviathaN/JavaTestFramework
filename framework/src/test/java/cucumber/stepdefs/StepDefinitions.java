@@ -435,6 +435,7 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @When("^I click on the \"([^\"]*)\" (?:button|link|option|element) by JS$")
     public void i_click_with_JS(String element) {
+        sleepFor(1500);
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(element)
                 .setAction(ActionsWithLocator.CLICK_WITH_JS)

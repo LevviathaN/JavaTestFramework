@@ -284,6 +284,34 @@ public class SpecialStepDefs extends SeleniumHelper {
     }
 
     /**
+     * Definition to execute specified set of steps until given condition is true, up to 10 times
+     *
+     * @author Ruslan Levytskyi
+     */
+    @When("^I execute steps until \"([^\"]*)\" \"([^\"]*)\"$")
+    public void i_execute_steps_until(String conditionParameter, String condition, List<String> steps) {
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLoop("until", conditionParameter, condition)
+                .setAction(ActionsWithTable.EXECUTE_STEPS, steps)
+                .setReporterLog("Executing step: Execute steps until '" + conditionParameter + " " + condition + "' condition is true")
+                .execute();
+    }
+
+    /**
+     * Definition to execute specified set of reusables until given condition is true, up to 10 times
+     *
+     * @author Ruslan Levytskyi
+     */
+    @When("^I execute reusables until \"([^\"]*)\" \"([^\"]*)\"$")
+    public void i_execute_reusables_until(String conditionParameter, String condition, List<String> reusables) {
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLoop("until", conditionParameter, condition)
+                .setAction(ActionsWithTable.EXECUTE_REUSABLES, reusables)
+                .setReporterLog("Executing step: Execute reusables until '" + conditionParameter + " " + condition + "' condition is true")
+                .execute();
+    }
+
+    /**
      * Definition to hover over element
      *
      * @param elementLocator locator of element you want to hover over
