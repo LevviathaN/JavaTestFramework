@@ -4,13 +4,18 @@ import cucumber.stepdefs.Actions.*;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.hamcrest.Matchers;
+import org.testng.Assert;
 import ui.utils.BPPLogManager;
 import ui.utils.SeleniumHelper;
 import ui.utils.Reporter;
 import ui.utils.UiHandlers;
+import ui.utils.bpp.ExecutionContextHandler;
 import ui.utils.bpp.TestParametersController;
-
 import java.util.List;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+import static org.hamcrest.text.MatchesPattern.matchesPattern;
 
 public class SpecialStepDefs extends SeleniumHelper {
 
@@ -365,12 +370,72 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @Then("^I validate text \"([^\"]*)\" to be displayed for \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_validate_text_to_be_displayed_for_element_special(String text, String elementLocator, String elementType) {
-        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setLocator(elementLocator, elementType)
-                .setAction(ActionsWithLocatorAndParameter.VALIDATE_ELEMENT_TEXT, text)
-                .setReporterLog("Executing step: I validate " + text + " to be displayed for: " + elementLocator)
-                .execute();
+        String actualValue = "";
+        Reporter.log("Executing step: I validate " + text + " to be displayed for: " + elementLocator);
+
+        if(specialLocatorsMap.containsKey(elementType)) {
+            String xpathTemplate = specialLocatorsMap.get(elementType);
+            String resultingXpath = xpathTemplate.replaceAll("PARAMETER",
+                    TestParametersController.checkIfSpecialParameter(elementLocator));
+            if (elementType.equalsIgnoreCase("CHECK_URL")) {
+                actualValue = SeleniumHelper.driver().getCurrentUrl();
+                Reporter.log("Validating URL to match :" + text);
+                assertThat(actualValue, containsString(text));
+            } else {
+                actualValue = getTextValueFromField(initElementLocator(resultingXpath));
+                String newValue = text.replaceAll("''", "\"");
+                if (text.toUpperCase().trim().startsWith("RE=")) {
+                    newValue = newValue.substring("RE=".length());
+                    assertThat(actualValue.trim(), matchesPattern(newValue));
+                    Reporter.log("<pre>Actual value '" + actualValue + "' matches the pattern " + "'" + newValue + "'</pre>");
+                    BPPLogManager.getLogger().info("Actual value '" + actualValue + "' matches the pattern " + "'" + newValue + "'");
+                } else if (text.toUpperCase().startsWith("CONTAINS=")) {
+                    newValue = newValue.substring("CONTAINS=".length());
+                    if (text.contains("EC")) {
+                        String executionContextValue = ExecutionContextHandler.getExecutionContextValueByKey(newValue);
+                        assertThat(actualValue.trim().toLowerCase(), containsString(executionContextValue.toLowerCase()));
+                        Reporter.log("<pre>Actual value '" + actualValue + "' contains the string " + "'" + executionContextValue + "'</pre>");
+                    } else {
+                        assertThat(actualValue.trim(), containsString(newValue));
+                        Reporter.log("<pre>Actual value '" + actualValue + "' contains the string " + "'" + newValue + "'</pre>");
+                        BPPLogManager.getLogger().info("Actual value '" + actualValue + "' contains the string " + "'" + newValue + "'");
+                    }
+                } else if (text.toUpperCase().startsWith("NOT_CONTAINS=")) {
+                    newValue = newValue.substring("NOT_CONTAINS=".length());
+                    if (text.contains("EC")) {
+                        String executionContextValue = ExecutionContextHandler.getExecutionContextValueByKey(newValue);
+                        assertThat(actualValue.trim(), not(containsString(executionContextValue)));
+                    } else {
+                        assertThat(actualValue.trim(), not(containsString(newValue)));
+                        Reporter.log("<pre>Actual value '" + actualValue + "' not contains the string " + "'" + newValue + "'</pre>");
+                        BPPLogManager.getLogger().info("Actual value '" + actualValue + "' not contains the string " + "'" + newValue + "'");
+                    }
+                } else if (text.toUpperCase().startsWith("CASE=")) {
+                    newValue = newValue.substring("CASE=".length());
+                    assertThat(actualValue.trim(), Matchers.equalTo(newValue));
+                    Reporter.log("<pre>Actual value '" + actualValue + "' equals to the case sensitive string " + "'" + newValue + "'</pre>");
+                    BPPLogManager.getLogger().info("Actual value '" + actualValue + "' equals to the case sensitive string " + "'" + newValue + "'");
+                } else if (text.toUpperCase().contains("STARTS-WITH=")) {
+                    newValue = newValue.substring("STARTS-WITH=".length());
+                    assertThat(actualValue.trim(), Matchers.startsWith(newValue));
+                    Reporter.log("<pre>Actual value '" + actualValue + "' starts with case sensitive string " + "'" + newValue + "'</pre>");
+                    BPPLogManager.getLogger().info("Actual value '" + actualValue + "' starts with case sensitive string " + "'" + newValue + "'");
+                } else if (text.contains("EC_")) {
+                    String executionContextValue = ExecutionContextHandler.getExecutionContextValueByKey(newValue);
+                    assertThat(actualValue.trim(), Matchers.equalTo(executionContextValue));
+                    Reporter.log("<pre>Actual value '" + actualValue + "' equals to " + "'" + newValue + ": " + executionContextValue + "'</pre>");
+                    BPPLogManager.getLogger().info("Actual value '" + actualValue + "' equals to " + "'" + newValue + ": " + executionContextValue + "'");
+                } else {
+                    assertThat(actualValue.trim(), Matchers.equalToIgnoringWhiteSpace(text));
+                    BPPLogManager.getLogger().info("Actual value '" + actualValue + "' equals to the case insensitive string " + "'" + newValue + "'");
+                    Reporter.log("<pre>Actual value '" + actualValue + "' equals to the case insensitive string " + "'" + newValue + "'</pre>");
+                }
+            }
+        } else {
+            Reporter.fail("No such locator template key");
+        }
     }
+
 
     /**
      * Definition to double-click an element on the page
@@ -490,11 +555,18 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @And("^I capture text data \"([^\"]*)\" \"([^\"]*)\" as \"([^\"]*)\" variable$")
     public void i_capture_text_data_special_as_variable(String elementLocator, String elementType, String executionContext) {
-        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setLocator(elementLocator, elementType)
-                .setAction(ActionsWithLocatorAndParameter.CAPTURE_ELEMENT_TEXT, executionContext)
-                .setReporterLog("Capturing data from : " + elementLocator + ": " + executionContext)
-                .execute();
+        //todo: StepDefBuilder throws error while trying to get EC  -2021-12-01 17:05:39 [PoolService] ERROR ExecutionContextHandler:35 - Requested EC_BASKET_ID execution context key is absent
+        if (specialLocatorsMap.containsKey(elementType)) {
+            String xpathTemplate = specialLocatorsMap.get(elementType);
+            String resultingXpath = xpathTemplate.replaceAll("PARAMETER",
+                    TestParametersController.checkIfSpecialParameter(elementLocator));
+            String value = getTextValueFromField(initElementLocator(resultingXpath));
+            Reporter.log("Capturing data from : " + initElementLocator(resultingXpath) + ": " + executionContext);
+            ExecutionContextHandler.setExecutionContextValueByKey(executionContext, value);
+            Reporter.log("Saving EC key " + executionContext + " = " + value);
+        } else {
+            Reporter.log("Cannot save EC value with an empty key. Check your parameters.");
+        }
     }
 }
 
