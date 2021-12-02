@@ -436,12 +436,12 @@ public class StepDefinitions extends SeleniumHelper {
     @When("^I click on the \"([^\"]*)\" (?:button|link|option|element) by JS$")
     public void i_click_with_JS(String element) {
        //todo: StepDefBuilder doesn't handle clicking in another window
-        Reporter.log("Executing step: I click on the '" + element + "' element by JS");
-        String condition = driver().getTitle();
-        clickWithJS(initElementLocator(element));
-        if (!condition.equals("Media") & (!condition.equals("BPP Totara Staging: Log in to the site"))
-                & (!condition.equals("BPPTS: My Learning"))) {
-        }
+        sleepFor(1500);
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(element)
+                .setAction(ActionsWithLocator.CLICK_WITH_JS)
+                .setMessage("Executing step: I click on the '" + element + "' element by JS")
+                .execute();
     }
 
     /**

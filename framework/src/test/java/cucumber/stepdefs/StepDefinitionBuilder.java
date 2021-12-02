@@ -631,7 +631,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                     action.execute();
                     break;
             }
-            waitForPageToLoad();
+            //waitForPageToLoad();
         }
     }
 }
