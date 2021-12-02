@@ -435,12 +435,13 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @When("^I click on the \"([^\"]*)\" (?:button|link|option|element) by JS$")
     public void i_click_with_JS(String element) {
-        sleepFor(1500);
-        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setLocator(element)
-                .setAction(ActionsWithLocator.CLICK_WITH_JS)
-                .setMessage("Executing step: I click on the '" + element + "' element by JS")
-                .execute();
+       //todo: StepDefBuilder doesn't handle clicking in another window
+        Reporter.log("Executing step: I click on the '" + element + "' element by JS");
+        String condition = driver().getTitle();
+        clickWithJS(initElementLocator(element));
+        if (!condition.equals("Media") & (!condition.equals("BPP Totara Staging: Log in to the site"))
+                & (!condition.equals("BPPTS: My Learning"))) {
+        }
     }
 
     /**
@@ -489,11 +490,18 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @And("^I capture text data \"([^\"]*)\" as \"([^\"]*)\" variable$")
     public void i_capture_text_data_as_variable(String element, String executionContext) {
-        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setLocator(element)
-                .setAction(ActionsWithLocatorAndParameter.CAPTURE_ELEMENT_TEXT, executionContext)
-                .setReporterLog("Capturing data from : " + element + ": " + executionContext)
-                .execute();
+        //todo: StepDefBuilder throws error while trying to get EC  -2021-12-01 17:05:39 [PoolService] ERROR ExecutionContextHandler:35 - Requested EC_BASKET_ID execution context key is absent
+        String value = getTextValueFromField(initElementLocator(element));
+        Reporter.log("Capturing data from : " + initElementLocator(element) + ": " + executionContext);
+        if (!executionContext.equals("")) {
+            if (value.equals("")) {
+                Reporter.log("Saving EC key " + executionContext + " with an empty string. No application data found.");
+            } else {
+                Reporter.log("Saving EC key " + executionContext + " = " + value);
+            }
+            ExecutionContextHandler.setExecutionContextValueByKey(executionContext, value);
+        } else
+            Reporter.log("Cannot save EC value with an empty key. Check your parameters.");
     }
 
     /**

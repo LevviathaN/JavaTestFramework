@@ -56,8 +56,8 @@ Feature: Remove Items From Basket And Validation of Error Messages
     Then I click on the "1" "BPP Digital Add to Basket Item"
     Then I click on the "2" "BPP Digital Add to Basket Item"
     And I click on the "BPP Digital Header Basket" button by JS
-    Then I should see the "Association Of Accounting Technicians Level 2 - Certificate in Accounting (AQ2016) courses" "text"
-    Then I should see the "Body auto-checkout regression name Level Auto-checkout regression name courses" "text"
+    Then I should see the "AAT Level 2 - Certificate in Accounting (AQ2016) courses" "text"
+    Then I should see the "Body auto-checkout regression Level Auto-checkout regression name courses" "text"
     Then I should see the "Inc. VAT" "element the last"
     Then I should see the "Elements of Costing" "element the last"
     Then I should see the "Paper auto-checkout regression" "element the last"

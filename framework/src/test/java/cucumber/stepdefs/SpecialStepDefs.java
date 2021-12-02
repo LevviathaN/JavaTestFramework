@@ -555,11 +555,18 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @And("^I capture text data \"([^\"]*)\" \"([^\"]*)\" as \"([^\"]*)\" variable$")
     public void i_capture_text_data_special_as_variable(String elementLocator, String elementType, String executionContext) {
-        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setLocator(elementLocator, elementType)
-                .setAction(ActionsWithLocatorAndParameter.CAPTURE_ELEMENT_TEXT, executionContext)
-                .setReporterLog("Capturing data from : " + elementLocator + ": " + executionContext)
-                .execute();
+        //todo: StepDefBuilder throws error while trying to get EC  -2021-12-01 17:05:39 [PoolService] ERROR ExecutionContextHandler:35 - Requested EC_BASKET_ID execution context key is absent
+        if (specialLocatorsMap.containsKey(elementType)) {
+            String xpathTemplate = specialLocatorsMap.get(elementType);
+            String resultingXpath = xpathTemplate.replaceAll("PARAMETER",
+                    TestParametersController.checkIfSpecialParameter(elementLocator));
+            String value = getTextValueFromField(initElementLocator(resultingXpath));
+            Reporter.log("Capturing data from : " + initElementLocator(resultingXpath) + ": " + executionContext);
+            ExecutionContextHandler.setExecutionContextValueByKey(executionContext, value);
+            Reporter.log("Saving EC key " + executionContext + " = " + value);
+        } else {
+            Reporter.log("Cannot save EC value with an empty key. Check your parameters.");
+        }
     }
 }
 

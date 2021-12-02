@@ -30,7 +30,7 @@ Feature: Following UAT of Dates & Prices, a requirement change exists to hide se
     And I should see the "Oct 2021" "BPP Digital Dates and Prices Start date filter option"
     And I should see the "Nov 2021" "BPP Digital Dates and Prices Start date filter option"
     Then I click on the "Nov 2021" "BPP Digital Dates and Prices Start date filter option"
-    Then I should see the "Tue 9 Nov 2021" "element"
+    Then I should see the "Wed 10 Nov 2021" "element"
     Then I click on the "Nov 2021" "BPP Digital Dates and Prices Start date filter option"
     Then I click on the "Start date" "BPP Digital Dates and Prices Filter By"
     #Check text in tooltips

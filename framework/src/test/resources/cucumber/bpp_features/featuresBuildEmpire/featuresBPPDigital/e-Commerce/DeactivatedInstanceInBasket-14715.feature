@@ -15,6 +15,11 @@ Unavailable courses need to be removed from the basket before the checkout butto
     And I click on the "BPP Digital Header Basket" button by JS
     Then I validate text "3" to be displayed for "Items" "BPP Digital Basket Summary Section"
     And I am on "https://uat-products.bpp.com/courses/edit/f052d387-3722-47c4-9722-6ec7769ab268" URL
+    When I click on the "Sign in with Auth0" button
+    And I fill the "Product Factory Email" field with "MD_COMMON_CREDENTIALS_PRODUCTFACTORYUSER"
+    And I fill the "Product Factory Password" field with "MD_COMMON_CREDENTIALS_PRODUCTFACTORYPASSWORD"
+    And I click on the "Product Factory Login" button
+    And I wait for "1" seconds
     When I click on the "Deactivate" "Product Factory button last"
     Then I click on the "Deactivation Reason" "Product Factory change button"
     And I click on the "Deactivation Reason PR OFF" "Product Factory select button"
