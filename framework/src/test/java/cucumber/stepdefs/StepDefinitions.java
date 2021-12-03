@@ -398,13 +398,15 @@ public class StepDefinitions extends SeleniumHelper {
      *
      * @author Andrii Yakymchuk
      */
-    //todo: make this stepdef with 2 parameters and update all scenarios that uses it
+    //todo: this step doesn't work with StepdefBuilder logic
     @And("^I should scroll to the \"(top|bottom)\" of the page$")
     public void i_should_scroll_to_top_bottom_of_the_page(String value) {
-        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setAction(ActionsWithTwoParameters.SCROLL, "0", value)
-                .setReporterLog("Executing step: I should scroll to the " + value + " of the page")
-                .execute();
+        Reporter.log("Executing step: I should scroll to the " + value + " of the page");
+        if (value.equals("top")) {
+            scrollToTopOfPage();
+        } else if (value.equals("bottom")) {
+            scrollToBottomOfPage();
+        }
     }
 
     @And("I select \"([^\"]*)\" from \"([^\"]*)\" element")
