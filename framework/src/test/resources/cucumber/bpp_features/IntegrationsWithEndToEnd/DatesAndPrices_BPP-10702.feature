@@ -148,13 +148,13 @@ Feature: Dates & Prices - Dates and Prices 'pods' (front-end) component
     And I click on the "Face-to-face" "BPP Digital Dates and Prices Study Mode option"
     # Check Location filter
     When I click on the "Online Classroom Live" "BPP Digital Dates and Prices Study Mode option"
-    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "4"
+    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "2"
     And I click on the "Online Classroom Live" "BPP Digital Dates and Prices Study Mode option"
     # Check Exam sitting filter
     When I click on the "Exam sitting" element
     And I should see the "December 2021" element
     When I click on the "December 2021" element
-    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "7"
+    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "5"
     When I click on the "December 2021" element
     # Check filters interaction
     When I click on the "Course type" element
