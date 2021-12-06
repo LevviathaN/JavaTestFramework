@@ -183,7 +183,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                 };
                 break;
             case EXECUTE_JS_CODE:
-                action = () -> executeJSCode(parameter);;
+                action = () -> executeJSCode(param);;
                 break;
         }
         return this;
@@ -380,18 +380,18 @@ public class StepDefinitionBuilder extends SeleniumHelper {
      */
     public StepDefinitionBuilder setAction(ActionsWithLocatorAndParameter actionName, String param) {
         //todo: checking if special parameter should be refactored
-        String parameter = TestParametersController.checkIfSpecialParameter(param);
-        Reporter.log("<pre>[input test parameter] " + param + "' -> '" + parameter + "' [output value]</pre>");
+        //Reporter.log("<pre>[input test parameter] " + param + "' -> '" + parameter + "' [output value]</pre>");
         switch (actionName) {
             case SET_TEXT:
-                action = () -> setText(locator, parameter);
+                action = () -> setText(locator, TestParametersController.checkIfSpecialParameter(param));
                 break;
             case SET_TEXT_WITH_JS:
-                action = () -> setText(locator, parameter);
+                //todo: replace setText with setTextWithJs
+                action = () -> setText(locator, TestParametersController.checkIfSpecialParameter(param));
                 break;
             case SET_TEXT_FROM_KEYBOARD:
                 action = () -> {
-                    char[] string = parameter.toCharArray();
+                    char[] string = TestParametersController.checkIfSpecialParameter(param).toCharArray();
                     clearEntireField(locator);
                     for (int i=0; i<string.length; i++) {
                         WebElement keyItem = findElement(locator);
@@ -402,15 +402,15 @@ public class StepDefinitionBuilder extends SeleniumHelper {
             case NUMBER_OF_ELEMENTS_PRESENT:
                 action = () -> {
                     int actualNumberOfElements = numberOfElements(locator);
-                    if (parameter.contains("more than")) {
-                        BPPLogManager.getLogger().info("Expected quantity of elements is more than " + parameter + ", but found " + actualNumberOfElements);
-                        Assert.assertTrue(actualNumberOfElements > Integer.parseInt(parameter.substring(10)));
-                    } else if (parameter.contains("less than")) {
-                        BPPLogManager.getLogger().info("Expected quantity of elements is less than " + parameter + ", but found " + actualNumberOfElements);
-                        Assert.assertTrue(actualNumberOfElements < Integer.parseInt(parameter.substring(10)));
+                    if (TestParametersController.checkIfSpecialParameter(param).contains("more than")) {
+                        BPPLogManager.getLogger().info("Expected quantity of elements is more than " + TestParametersController.checkIfSpecialParameter(param) + ", but found " + actualNumberOfElements);
+                        Assert.assertTrue(actualNumberOfElements > Integer.parseInt(TestParametersController.checkIfSpecialParameter(param).substring(10)));
+                    } else if (TestParametersController.checkIfSpecialParameter(param).contains("less than")) {
+                        BPPLogManager.getLogger().info("Expected quantity of elements is less than " + TestParametersController.checkIfSpecialParameter(param) + ", but found " + actualNumberOfElements);
+                        Assert.assertTrue(actualNumberOfElements < Integer.parseInt(TestParametersController.checkIfSpecialParameter(param).substring(10)));
                     } else {
-                        BPPLogManager.getLogger().info("Expected quantity of elements is: " + parameter + ", but found " + actualNumberOfElements);
-                        Assert.assertTrue(parameter.equals(String.valueOf(actualNumberOfElements)));
+                        BPPLogManager.getLogger().info("Expected quantity of elements is: " + TestParametersController.checkIfSpecialParameter(param) + ", but found " + actualNumberOfElements);
+                        Assert.assertTrue(TestParametersController.checkIfSpecialParameter(param).equals(String.valueOf(actualNumberOfElements)));
                     }
                 };
                 break;
@@ -420,37 +420,36 @@ public class StepDefinitionBuilder extends SeleniumHelper {
             case CHECK_CHECKBOX:
                 action = () -> {
                     boolean state = true;
-                    if (parameter.equals("check")) {
+                    if (TestParametersController.checkIfSpecialParameter(param).equals("check")) {
                         state = true;
-                    } else if (parameter.equals("uncheck")) {
+                    } else if (TestParametersController.checkIfSpecialParameter(param).equals("uncheck")) {
                         state = false;
                     }
                     checkCheckbox(locator, state);
                 };
                 break;
             case PRESS_KEYBOARD:
-                action = () -> pressKeyFromKeyboard(locator, parameter);
+                action = () -> pressKeyFromKeyboard(locator, TestParametersController.checkIfSpecialParameter(param));
                 break;
             case UPLOAD_FILE_TO_ELEMENT:
-                action = () -> fileUpload(locator, parameter);
+                action = () -> fileUpload(locator, TestParametersController.checkIfSpecialParameter(param));
                 break;
             case CAPTURE_ELEMENT_TEXT:
                 action = () -> {
                     String value = getTextValueFromField(locator);
-                    if (!parameter.equals("")) {
+                    if (!param.equals("")) {
                         if (value.equals("")) {
-                            Reporter.log("Saving EC key " + parameter + " with an empty string. No application data found.");
+                            Reporter.log("Saving EC key " + param + " with an empty string. No application data found.");
                         } else {
-                            Reporter.log("Saving EC key " + parameter + " = " + value);
+                            Reporter.log("Saving EC key " + param + " = " + value);
                         }
-                        ExecutionContextHandler.setExecutionContextValueByKey(parameter, value);
+                        ExecutionContextHandler.setExecutionContextValueByKey(param, value);
                     } else
                         Reporter.log("Cannot save EC value with an empty key. Check your parameters.");
                 };
                 break;
             case COUNT_ELEMENTS:
-                action = () -> ExecutionContextHandler.setExecutionContextValueByKey(parameter,
-                        String.valueOf(numberOfElements(locator)));
+                action = () -> ExecutionContextHandler.setExecutionContextValueByKey(param, String.valueOf(numberOfElements(locator)));
                 break;
             case VALIDATE_ELEMENT_TEXT:
                 action = () -> {
@@ -513,13 +512,13 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                 break;
             case SELECT_FROM_ELEMENT:
                 action = () -> {
-                    if (parameter.equals("KW_AUTO_SELECT")) {
+                    if (param.equals("KW_AUTO_SELECT")) {
                         Reporter.log("Starting random selection from dropdown.");
                         String autoSelectedValue = autoSelectFromDropdown(locator);
                         Reporter.log("Selected \"" + autoSelectedValue + "\" value from " + locatorString);
                     } else {
-                        Reporter.log("Selecting \"" + parameter + "\" value from " + locatorString);
-                        selectValueFromDropDown(locator, parameter);
+                        Reporter.log("Selecting \"" + param + "\" value from " + locatorString);
+                        selectValueFromDropDown(locator, TestParametersController.checkIfSpecialParameter(param));
                     }
                 };
                 break;
@@ -631,7 +630,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                     action.execute();
                     break;
             }
-            waitForPageToLoad();
+//            waitForPageToLoad();
         }
     }
 }

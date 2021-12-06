@@ -88,6 +88,7 @@ Feature: Material Search - additional filter fields - BPP-10792
     And I execute "Create Level" API step
     And I execute "Create Stock Site" API step
     And I execute "Create Sitting" API step
+    And I execute "Link Body To Levels" API step
 
     And I click on the "Product Factory Additional Filters Button" button
     And I click on the "Body" "Product Factory dropdown"
@@ -110,9 +111,9 @@ Feature: Material Search - additional filter fields - BPP-10792
     And I click on the "Body" "Product Factory dropdown"
     And I click on the "[EC_BODY_SHORT_NAME_TWO] - [EC_BODY_NAME_TWO]" "Product Factory dropdown option"
     And I click on the "Level" "Product Factory dropdown"
-    And I click on the "[EC_LEVEL_SHORT_NAME_THREE] - [EC_LEVEL_NAME_THREE]" "Product Factory dropdown option"
+    And I click on the "[EC_LEVEL_SHORT_NAME_TWO] - [EC_LEVEL_NAME_TWO]" "Product Factory dropdown option"
     And I click on the "Material Type" "Product Factory dropdown"
-    And I click on the "[EC_MATERIAL_TYPE_NAME_TWO] - [EC_MATERIAL_TYPE_DESCRIPTION_TWO]" "Product Factory dropdown option"
+    And I click on the "[EC_MATERIAL_TYPE_NAME_THREE] - [EC_MATERIAL_TYPE_DESCRIPTION_THREE]" "Product Factory dropdown option"
     And I click on the "Sitting" "Product Factory dropdown"
     And I click on the "[EC_SITTING_NAME_TWO] ([EC_SITTING_START_DATE] - [EC_SITTING_END_DATE])" "Product Factory dropdown option"
     And I click on the "Done" "Product Factory button"

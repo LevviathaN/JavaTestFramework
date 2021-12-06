@@ -25,7 +25,7 @@ Feature: CBA - Publish changes - BPP-3210
     #Some edit options are no longer available, so they were removed
 
     #edit Capacity
-    And I click on the "edit" "text contained in SPAN element"
+    And I click on the "Edit" "element by title"
     And I set "2" text to the "EC_LOCATION_NAME" "Product Factory text field"
     And I click on the "Yes" "element by title"
     Then I should see the "2" element
@@ -70,7 +70,7 @@ Feature: CBA - Publish changes - BPP-3210
     And I should see the "Deactivate" "Product Factory button"
     And Attribute "tabindex" of "Publish" "Product Factory button" should have value "-1"
 
-    And I click on the "edit" "text contained in SPAN element"
+    And I click on the "Edit" "element by title"
     And I set "2" text to the "EC_LOCATION_NAME" "Product Factory text field"
     And I click on the "Cancel" "element by title"
     And Attribute "tabindex" of "Publish" "Product Factory button" should have value "-1"

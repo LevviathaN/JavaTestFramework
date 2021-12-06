@@ -1,16 +1,22 @@
 package cucumber.stepdefs;
 
+import cucumber.reusablesteps.ReusableRunner;
 import cucumber.stepdefs.Actions.*;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import ui.utils.BPPLogManager;
-import ui.utils.SeleniumHelper;
-import ui.utils.Reporter;
-import ui.utils.UiHandlers;
+import org.hamcrest.Matchers;
+import org.openqa.selenium.WebElement;
+import ui.utils.*;
+import ui.utils.bpp.ExecutionContextHandler;
 import ui.utils.bpp.TestParametersController;
 
 import java.util.List;
+
+import static com.jcabi.matchers.RegexMatchers.matchesPattern;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.not;
 
 public class SpecialStepDefs extends SeleniumHelper {
 
@@ -365,11 +371,71 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @Then("^I validate text \"([^\"]*)\" to be displayed for \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_validate_text_to_be_displayed_for_element_special(String text, String elementLocator, String elementType) {
-        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setLocator(elementLocator, elementType)
-                .setAction(ActionsWithLocatorAndParameter.VALIDATE_ELEMENT_TEXT, text)
-                .setReporterLog("Executing step: I validate " + text + " to be displayed for: " + elementLocator)
-                .execute();
+        //todo: stepdefBuilder's VALIDATE_ELEMENT_TEXT is not working (PF Alphabetic Ordering). To be fixed
+        String actualValue = "";
+        Reporter.log("Executing step: I validate " + text + " to be displayed for: " + elementLocator);
+
+        if(specialLocatorsMap.containsKey(elementType)) {
+            String xpathTemplate = specialLocatorsMap.get(elementType);
+            String resultingXpath = xpathTemplate.replaceAll("PARAMETER",
+                    TestParametersController.checkIfSpecialParameter(elementLocator));
+            if (elementType.equalsIgnoreCase("CHECK_URL")) {
+                actualValue = SeleniumHelper.driver().getCurrentUrl();
+                Reporter.log("Validating URL to match :" + text);
+                assertThat(actualValue, containsString(text));
+            } else {
+                actualValue = getTextValueFromField(initElementLocator(resultingXpath));
+                String newValue = text.replaceAll("''", "\"");
+                if (text.toUpperCase().trim().startsWith("RE=")) {
+                    newValue = newValue.substring("RE=".length());
+                    assertThat(actualValue.trim(), matchesPattern(newValue));
+                    Reporter.log("<pre>Actual value '" + actualValue + "' matches the pattern " + "'" + newValue + "'</pre>");
+                    BPPLogManager.getLogger().info("Actual value '" + actualValue + "' matches the pattern " + "'" + newValue + "'");
+                } else if (text.toUpperCase().startsWith("CONTAINS=")) {
+                    newValue = newValue.substring("CONTAINS=".length());
+                    if (text.contains("EC")) {
+                        String executionContextValue = ExecutionContextHandler.getExecutionContextValueByKey(newValue);
+                        assertThat(actualValue.trim().toLowerCase(), Matchers.containsString(executionContextValue.toLowerCase()));
+                        Reporter.log("<pre>Actual value '" + actualValue + "' contains the string " + "'" + executionContextValue + "'</pre>");
+                    } else {
+                        assertThat(actualValue.trim(), Matchers.containsString(newValue));
+                        Reporter.log("<pre>Actual value '" + actualValue + "' contains the string " + "'" + newValue + "'</pre>");
+                        BPPLogManager.getLogger().info("Actual value '" + actualValue + "' contains the string " + "'" + newValue + "'");
+                    }
+                } else if (text.toUpperCase().startsWith("NOT_CONTAINS=")) {
+                    newValue = newValue.substring("NOT_CONTAINS=".length());
+                    if (text.contains("EC")) {
+                        String executionContextValue = ExecutionContextHandler.getExecutionContextValueByKey(newValue);
+                        assertThat(actualValue.trim(), not(Matchers.containsString(executionContextValue)));
+                    } else {
+                        assertThat(actualValue.trim(), not(Matchers.containsString(newValue)));
+                        Reporter.log("<pre>Actual value '" + actualValue + "' not contains the string " + "'" + newValue + "'</pre>");
+                        BPPLogManager.getLogger().info("Actual value '" + actualValue + "' not contains the string " + "'" + newValue + "'");
+                    }
+                } else if (text.toUpperCase().startsWith("CASE=")) {
+                    newValue = newValue.substring("CASE=".length());
+                    assertThat(actualValue.trim(), Matchers.equalTo(newValue));
+                    Reporter.log("<pre>Actual value '" + actualValue + "' equals to the case sensitive string " + "'" + newValue + "'</pre>");
+                    BPPLogManager.getLogger().info("Actual value '" + actualValue + "' equals to the case sensitive string " + "'" + newValue + "'");
+                } else if (text.toUpperCase().contains("STARTS-WITH=")) {
+                    newValue = newValue.substring("STARTS-WITH=".length());
+                    assertThat(actualValue.trim(), Matchers.startsWith(newValue));
+                    Reporter.log("<pre>Actual value '" + actualValue + "' starts with case sensitive string " + "'" + newValue + "'</pre>");
+                    BPPLogManager.getLogger().info("Actual value '" + actualValue + "' starts with case sensitive string " + "'" + newValue + "'");
+                } else if (text.contains("EC_")) {
+                    String executionContextValue = ExecutionContextHandler.getExecutionContextValueByKey(newValue);
+                    assertThat(actualValue.trim(), Matchers.equalTo(executionContextValue));
+                    Reporter.log("<pre>Actual value '" + actualValue + "' equals to " + "'" + newValue + ": " + executionContextValue + "'</pre>");
+                    BPPLogManager.getLogger().info("Actual value '" + actualValue + "' equals to " + "'" + newValue + ": " + executionContextValue + "'");
+                } else {
+                    assertThat(actualValue.trim(), Matchers.equalToIgnoringWhiteSpace(text));
+                    BPPLogManager.getLogger().info("Actual value '" + actualValue + "' equals to the case insensitive string " + "'" + newValue + "'");
+                    Reporter.log("<pre>Actual value '" + actualValue + "' equals to the case insensitive string " + "'" + newValue + "'</pre>");
+                }
+            }
+        } else {
+            Reporter.fail("No such locator template key");
+        }
     }
 
     /**
@@ -425,11 +491,37 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @When("^For each \"([^\"]*)\" \"([^\"]*)\":$")
     public void for_each_special(String elementLocator, String elementType,  List<String> steps) {
-        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setLocator(elementLocator, elementType)
-                .setAction(ActionsWithLocatorAndTable.FOR_EACH, steps)
-                .setReporterLog("Executing step: For each '" + elementLocator + " " + elementType + "' element")
-                .execute();
+        //todo: reverted to previous version till FOR_EACH issue with special locators is fixed
+        if(specialLocatorsMap.containsKey(elementType)) {
+            String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
+            String xpathTemplate = specialLocatorsMap.get(elementType);
+            String resultingXpath = xpathTemplate.replaceAll("PARAMETER", processedLocator);
+
+            if(isElementPresentAndDisplay(initElementLocator(resultingXpath))) {
+
+                Reporter.log("Executing step: For each '" + elementLocator + " " + elementType + "' element");
+                List<WebElement> elements = findElements(initElementLocator(resultingXpath));
+                String xpathLocator = "";
+                BPPLogManager.getLogger().info("There are " + elements.size() + " '" + elementLocator + " " + elementType + "' elements found on the page");
+                //todo: To be discussed, to move all cycling through elements and steps into separate method in ReusableRunner
+                for (int i = 1; i <= elements.size(); i++) {
+                    BPPLogManager.getLogger().info("For " + i + " element");
+                    for (String step : steps) {
+                        BPPLogManager.getLogger().info("Executing: " + step + " iteration " + i);
+                        xpathLocator = resultingXpath.replace("xpath=", "xpath=(") + ")[" + i + "]";
+                        ReusableRunner.getInstance().executeStep(step.replace("FOR_ITEM", xpathLocator));
+                    }
+                }
+            } else {
+                Reporter.fail("No such elements present on the page");
+            }
+
+            if(!elementLocator.equals(processedLocator)){
+                Reporter.log("<pre>[input test parameter] " + elementLocator + "' -> '" + processedLocator + "' [output value]</pre>");
+            }
+        } else {
+            Reporter.fail("No such locator template key");
+        }
     }
 
     /**
