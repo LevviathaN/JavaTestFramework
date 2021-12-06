@@ -6,7 +6,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.hamcrest.Matchers;
-import org.testng.Assert;
+import org.openqa.selenium.WebElement;
 import ui.utils.BPPLogManager;
 import ui.utils.SeleniumHelper;
 import ui.utils.Reporter;
@@ -15,11 +15,8 @@ import ui.utils.bpp.ExecutionContextHandler;
 import ui.utils.bpp.TestParametersController;
 import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 import static org.hamcrest.text.MatchesPattern.matchesPattern;
 
-import static com.jcabi.matchers.RegexMatchers.matchesPattern;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
 
