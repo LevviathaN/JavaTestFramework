@@ -40,18 +40,18 @@ Feature: Enable Display of Messages for Updated Course Instances in Basket
     And I am on "https://web-stage-bppdigital.bppuniversity.com/basket/#/" URL
     Then I should see the "The price for 1 of your chosen courses has changed since you added it to your basket." "text contained in P element"
     Then I should see the "Check the latest price information to be sure you want to book it?" "text contained in P element"
-    And I validate text "NOT_CONTAINS=EC_PRICEBEFORE" to be displayed for "4" "BPP Digital Basket Instance Item Price"
-    And I validate text "CONTAINS=EC_PRICEVAT" to be displayed for "4" "BPP Digital Basket Instance Item Price"
-    Then I click on the "4" "BPP Digital Basket Instance Item Remove"
+    And I validate text "NOT_CONTAINS=EC_PRICEBEFORE" to be displayed for "5" "BPP Digital Basket Instance Item Price"
+    And I validate text "CONTAINS=EC_PRICEVAT" to be displayed for "5" "BPP Digital Basket Instance Item Price"
+    Then I click on the "5" "BPP Digital Basket Instance Item Remove"
     And I wait for "1" seconds
     And I am on "MD_COMMON_LINKS_BPPDIGITALECOMMERCELOCALSTORAGE" URL
     And I click on the "Paper MVM 1 name" "BPP Digital View Dates and Prices button"
-    Then I click on the "5" "BPP Digital Add to Basket Item"
+    Then I click on the "8" "BPP Digital Add to Basket Item"
     And I click on the "BPP Digital Header Basket" button by JS
     Then I validate text "5" to be displayed for "Items" "BPP Digital Basket Summary Section"
     #Change Instance Location
     And I am on "MD_COMMON_LINKS_PRODUCTFACTORYUPDATEINSTANCEURL" URL
-    When I click on the "Location MVM 2" "Product Factory course instance sessions dropdown button"
+    When I click on the "Location MVM 3" "Product Factory course instance sessions dropdown button"
     When I click on the "Default Location" "Product Factory edit button"
     And I click on the "Location MVM 1" "Product Factory select button"
     And I click on the "Yes" "Product Factory button"
@@ -65,8 +65,8 @@ Feature: Enable Display of Messages for Updated Course Instances in Basket
     And I am on "MD_COMMON_LINKS_PRODUCTFACTORYUPDATEINSTANCEURL" URL
     When I click on the "Location MVM 1" "Product Factory course instance sessions dropdown button"
     When I click on the "Default Location" "Product Factory edit button"
-    And I click on the "Location MVM 2" "Product Factory select button"
+    And I click on the "Location MVM 3" "Product Factory select button"
     And I click on the "Yes" "Product Factory button"
-    And I click on the "Location MVM 2" "Product Factory course instance Publish button"
+    And I click on the "Location MVM 3" "Product Factory course instance Publish button"
     And I click on the "Yes" "text contained in SPAN element"
     Then I wait for "10" seconds

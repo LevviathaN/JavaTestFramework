@@ -28,22 +28,7 @@ Feature: Dates & Prices - Filter tweaks - BPP-12913
     And I should see the "Financial Accounting and Reporting" "BPP Digital View Dates and Prices button"
     And I should see the "Financial Management" "BPP Digital View Dates and Prices button"
     And I should see the "Tax Compliance" "BPP Digital View Dates and Prices button"
-
     And I click on the "Audit & Assurance" "BPP Digital View Dates and Prices button"
-    #And I click on the "Thu 25 Mar 2021" "element"
-
-    # Check Course type filter COMMENTED UNTIL GET CLEAR WHY FINAL MOCK COURSE TYPE IS NOT VISIBLE FOR D&P COMPONENT
-    # Given I click on the "Filters" button
-    # And I click on the "Final Mock" "BPP Digital Dates and Prices Course Filter radiobutton"
-    # Then I click on the "Show " button
-    #Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "2"
-
-    #Given I click on the "Filters" button
-     #And I click on the "Final Mock" "BPP Digital Dates and Prices Course Filter radiobutton"
-    #And I click on the "Taught" "BPP Digital Dates and Prices Course Filter radiobutton"
-    #And I validate text "CONTAINS=4" to be displayed for "Show " element
-    #Then I click on the "Show " button
-    #Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "4"
     Given I click on the "Filters" button
     And I click on the "Taught" "BPP Digital Dates and Prices Course Filter radiobutton"
 

@@ -6,12 +6,17 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.hamcrest.Matchers;
-import org.openqa.selenium.WebElement;
-import ui.utils.*;
+import org.testng.Assert;
+import ui.utils.BPPLogManager;
+import ui.utils.SeleniumHelper;
+import ui.utils.Reporter;
+import ui.utils.UiHandlers;
 import ui.utils.bpp.ExecutionContextHandler;
 import ui.utils.bpp.TestParametersController;
-
 import java.util.List;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+import static org.hamcrest.text.MatchesPattern.matchesPattern;
 
 import static com.jcabi.matchers.RegexMatchers.matchesPattern;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -395,10 +400,10 @@ public class SpecialStepDefs extends SeleniumHelper {
                     newValue = newValue.substring("CONTAINS=".length());
                     if (text.contains("EC")) {
                         String executionContextValue = ExecutionContextHandler.getExecutionContextValueByKey(newValue);
-                        assertThat(actualValue.trim().toLowerCase(), Matchers.containsString(executionContextValue.toLowerCase()));
+                        assertThat(actualValue.trim().toLowerCase(), containsString(executionContextValue.toLowerCase()));
                         Reporter.log("<pre>Actual value '" + actualValue + "' contains the string " + "'" + executionContextValue + "'</pre>");
                     } else {
-                        assertThat(actualValue.trim(), Matchers.containsString(newValue));
+                        assertThat(actualValue.trim(), containsString(newValue));
                         Reporter.log("<pre>Actual value '" + actualValue + "' contains the string " + "'" + newValue + "'</pre>");
                         BPPLogManager.getLogger().info("Actual value '" + actualValue + "' contains the string " + "'" + newValue + "'");
                     }
@@ -406,9 +411,9 @@ public class SpecialStepDefs extends SeleniumHelper {
                     newValue = newValue.substring("NOT_CONTAINS=".length());
                     if (text.contains("EC")) {
                         String executionContextValue = ExecutionContextHandler.getExecutionContextValueByKey(newValue);
-                        assertThat(actualValue.trim(), not(Matchers.containsString(executionContextValue)));
+                        assertThat(actualValue.trim(), not(containsString(executionContextValue)));
                     } else {
-                        assertThat(actualValue.trim(), not(Matchers.containsString(newValue)));
+                        assertThat(actualValue.trim(), not(containsString(newValue)));
                         Reporter.log("<pre>Actual value '" + actualValue + "' not contains the string " + "'" + newValue + "'</pre>");
                         BPPLogManager.getLogger().info("Actual value '" + actualValue + "' not contains the string " + "'" + newValue + "'");
                     }
@@ -582,11 +587,18 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @And("^I capture text data \"([^\"]*)\" \"([^\"]*)\" as \"([^\"]*)\" variable$")
     public void i_capture_text_data_special_as_variable(String elementLocator, String elementType, String executionContext) {
-        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setLocator(elementLocator, elementType)
-                .setAction(ActionsWithLocatorAndParameter.CAPTURE_ELEMENT_TEXT, executionContext)
-                .setReporterLog("Capturing data from : " + elementLocator + ": " + executionContext)
-                .execute();
+        //todo: StepDefBuilder throws error while trying to get EC  -2021-12-01 17:05:39 [PoolService] ERROR ExecutionContextHandler:35 - Requested EC_BASKET_ID execution context key is absent
+        if (specialLocatorsMap.containsKey(elementType)) {
+            String xpathTemplate = specialLocatorsMap.get(elementType);
+            String resultingXpath = xpathTemplate.replaceAll("PARAMETER",
+                    TestParametersController.checkIfSpecialParameter(elementLocator));
+            String value = getTextValueFromField(initElementLocator(resultingXpath));
+            Reporter.log("Capturing data from : " + initElementLocator(resultingXpath) + ": " + executionContext);
+            ExecutionContextHandler.setExecutionContextValueByKey(executionContext, value);
+            Reporter.log("Saving EC key " + executionContext + " = " + value);
+        } else {
+            Reporter.log("Cannot save EC value with an empty key. Check your parameters.");
+        }
     }
 }
 

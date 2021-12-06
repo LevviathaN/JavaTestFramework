@@ -398,13 +398,15 @@ public class StepDefinitions extends SeleniumHelper {
      *
      * @author Andrii Yakymchuk
      */
-    //todo: make this stepdef with 2 parameters and update all scenarios that uses it
+    //todo: this step doesn't work with StepdefBuilder logic
     @And("^I should scroll to the \"(top|bottom)\" of the page$")
     public void i_should_scroll_to_top_bottom_of_the_page(String value) {
-        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setAction(ActionsWithTwoParameters.SCROLL, "0", value)
-                .setReporterLog("Executing step: I should scroll to the " + value + " of the page")
-                .execute();
+        Reporter.log("Executing step: I should scroll to the " + value + " of the page");
+        if (value.equals("top")) {
+            scrollToTopOfPage();
+        } else if (value.equals("bottom")) {
+            scrollToBottomOfPage();
+        }
     }
 
     @And("I select \"([^\"]*)\" from \"([^\"]*)\" element")
@@ -435,6 +437,7 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @When("^I click on the \"([^\"]*)\" (?:button|link|option|element) by JS$")
     public void i_click_with_JS(String element) {
+       //todo: StepDefBuilder doesn't handle clicking in another window
         sleepFor(1500);
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(element)
@@ -489,11 +492,18 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @And("^I capture text data \"([^\"]*)\" as \"([^\"]*)\" variable$")
     public void i_capture_text_data_as_variable(String element, String executionContext) {
-        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setLocator(element)
-                .setAction(ActionsWithLocatorAndParameter.CAPTURE_ELEMENT_TEXT, executionContext)
-                .setReporterLog("Capturing data from : " + element + ": " + executionContext)
-                .execute();
+        //todo: StepDefBuilder throws error while trying to get EC  -2021-12-01 17:05:39 [PoolService] ERROR ExecutionContextHandler:35 - Requested EC_BASKET_ID execution context key is absent
+        String value = getTextValueFromField(initElementLocator(element));
+        Reporter.log("Capturing data from : " + initElementLocator(element) + ": " + executionContext);
+        if (!executionContext.equals("")) {
+            if (value.equals("")) {
+                Reporter.log("Saving EC key " + executionContext + " with an empty string. No application data found.");
+            } else {
+                Reporter.log("Saving EC key " + executionContext + " = " + value);
+            }
+            ExecutionContextHandler.setExecutionContextValueByKey(executionContext, value);
+        } else
+            Reporter.log("Cannot save EC value with an empty key. Check your parameters.");
     }
 
     /**
