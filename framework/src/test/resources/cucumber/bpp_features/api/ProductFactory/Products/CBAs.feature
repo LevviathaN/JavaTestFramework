@@ -120,7 +120,8 @@ Feature: Product Factory API Data Creation
       |allowedForCba|true|
     And I execute "Create Instance Group" API step
     And I execute "Create Pricing Matrix" API step
-    And I execute "Create Prices" API step
+    And I execute "Create Prices" API step with parameters
+      |courseTypeReference|EC_CBA_COURSE_TYPE_REFERENCE|
     And I execute "Create Courses" API step with parameters
       |defaultInstituteFee|~DefaultInstitutionFee[####]|
     And I execute "Get Instance Name" API step
@@ -141,7 +142,7 @@ Feature: Product Factory API Data Creation
     And I verify that "EC_THIRD_GET_INSTANCE_NAME_RESULT_INSTITUTE_FEE" element "equal" to "0" element
 
   @CBA #TC-3119
-  Scenario: Deactivate CBA Course With Prevent Reactivation Option On
+  Scenario: Deactivate CBA Course With Prevent Reactivation Option Off
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
       |target       |COURSETYPE|
@@ -199,7 +200,7 @@ Feature: Product Factory API Data Creation
 
   #TODO: Verify test after BPP-17463  is fixed
   @CBA #TC-3118, TC-3121
-  Scenario: Deactivate CBA Course With Prevent Reactivation Option Off
+  Scenario: Deactivate CBA Course With Prevent Reactivation Option On
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
       |target       |COURSETYPE|
@@ -236,7 +237,8 @@ Feature: Product Factory API Data Creation
       |allowedForCba|true|
     And I execute "Create Instance Group" API step
     And I execute "Create Pricing Matrix" API step
-    And I execute "Create Prices" API step
+    And I execute "Create Prices" API step with parameters
+      |courseTypeReference|EC_CBA_COURSE_TYPE_REFERENCE|
     And I execute "Create Courses" API step
     And I execute "Create Deactivation Reason" API step with parameters saving as "PREVENT_"
       |preventReactivation|true|
