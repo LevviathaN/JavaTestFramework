@@ -173,6 +173,10 @@ public class Reporter {
         return Paths.get(root, "report", reportName);
     }
 
+    public static Path getFilePath() {
+        return reportPath;
+    }
+
     /**
      * <p>
      * Add test to the report with the give test name
@@ -649,6 +653,17 @@ public class Reporter {
 
         String link = String.format("<a target='_blank' href='%s'>qTest Link</a>", qtestBuild);
         node("qTest Execution Link", link);
+    }
+
+    /**
+     * Method is used only for Postman Collection via Newman
+     * **/
+
+    public static void addPostmanReporterLink(String reporterPath) {
+
+        String link = String.format("<a target='_blank' href='%s'>Allure Report Link</a>", "../../" + reporterPath);
+        node("Allure Report Link", link);
+
     }
 
     //https://automate.browserstack.com/dashboard/v2/builds/7c8b609afec733f8009687fb45014e5efe9278a2/sessions/bbcd18b49789624603a57d2bfcd9522073f21ea3
