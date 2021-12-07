@@ -12,8 +12,9 @@ public class PostmanCollection {
      * 1 - Navigate to terminal tab in IDEA
      * 2 - Enter commands:
      *  a - npm install -g newman
-     *  b - npm install -g newman-reporter-htmlextra
-     *  c - install Node.js
+     *  b - npm install -g allure-commandline --save-dev (Allure require Java 8+)
+     *  c - npm install -g newman-reporter-allure
+     *  d - install Node.js
      * 3 - Run postman tests
      **/
 
@@ -28,8 +29,8 @@ public class PostmanCollection {
         String newmanRun = "newman run ";
         String newmanFile = collectionPath + collection + " ";
         String newmanEnvironment = "-e " + environmentPath + environment + " ";
-        String newmanReporter = "-r htmlextra,cli --reporter-htmlextra-logs ";
-        String newmanReporterPath = "--reporter-htmlextra-export " + reporterPath + collection + ".html";
+        String newmanReporter = "-r allure ";
+        String newmanReporterPath = "--reporter-allure-export " + reporterPath  + "allure-results";
 
         ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", newmanRun + newmanFile + newmanEnvironment + newmanReporter + newmanReporterPath);
         builder.redirectErrorStream(true);
@@ -42,13 +43,18 @@ public class PostmanCollection {
             line = r.readLine();
             if (line == null) {
                 break;
+            } else {
+                BPPLogManager.getLogger().info(line);
+                Reporter.log(line);
             }
-
-            Reporter.log(line);
-            BPPLogManager.getLogger().info(line);
-
         }
-        Reporter.addPostmanReporterLink(collection + ".html");
+
+        ProcessBuilder reportBuilder = new ProcessBuilder("cmd.exe", "/c", "allure generate " + newmanReporterPath + " --clean");
+        reportBuilder.start();
+
+        Reporter.addPostmanReporterLink("allure-report" + File.separator + "index.html");
+
         return this;
+
     }
 }
