@@ -1,11 +1,12 @@
 package cucumber.stepdefs;
 
+import cucumber.reusablesteps.ReusableRunner;
 import cucumber.stepdefs.Actions.*;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.hamcrest.Matchers;
-import org.testng.Assert;
+import org.openqa.selenium.WebElement;
 import ui.utils.BPPLogManager;
 import ui.utils.SeleniumHelper;
 import ui.utils.Reporter;
@@ -14,8 +15,10 @@ import ui.utils.bpp.ExecutionContextHandler;
 import ui.utils.bpp.TestParametersController;
 import java.util.List;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
 import static org.hamcrest.text.MatchesPattern.matchesPattern;
+
+import static org.hamcrest.Matchers.containsString;
+import static org.hamcrest.Matchers.not;
 
 public class SpecialStepDefs extends SeleniumHelper {
 
@@ -370,6 +373,7 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @Then("^I validate text \"([^\"]*)\" to be displayed for \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_validate_text_to_be_displayed_for_element_special(String text, String elementLocator, String elementType) {
+        //todo: stepdefBuilder's VALIDATE_ELEMENT_TEXT is not working (PF Alphabetic Ordering). To be fixed
         String actualValue = "";
         Reporter.log("Executing step: I validate " + text + " to be displayed for: " + elementLocator);
 
@@ -436,7 +440,6 @@ public class SpecialStepDefs extends SeleniumHelper {
         }
     }
 
-
     /**
      * Definition to double-click an element on the page
      *
@@ -490,11 +493,37 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @When("^For each \"([^\"]*)\" \"([^\"]*)\":$")
     public void for_each_special(String elementLocator, String elementType,  List<String> steps) {
-        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setLocator(elementLocator, elementType)
-                .setAction(ActionsWithLocatorAndTable.FOR_EACH, steps)
-                .setReporterLog("Executing step: For each '" + elementLocator + " " + elementType + "' element")
-                .execute();
+        //todo: reverted to previous version till FOR_EACH issue with special locators is fixed
+        if(specialLocatorsMap.containsKey(elementType)) {
+            String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
+            String xpathTemplate = specialLocatorsMap.get(elementType);
+            String resultingXpath = xpathTemplate.replaceAll("PARAMETER", processedLocator);
+
+            if(isElementPresentAndDisplay(initElementLocator(resultingXpath))) {
+
+                Reporter.log("Executing step: For each '" + elementLocator + " " + elementType + "' element");
+                List<WebElement> elements = findElements(initElementLocator(resultingXpath));
+                String xpathLocator = "";
+                BPPLogManager.getLogger().info("There are " + elements.size() + " '" + elementLocator + " " + elementType + "' elements found on the page");
+                //todo: To be discussed, to move all cycling through elements and steps into separate method in ReusableRunner
+                for (int i = 1; i <= elements.size(); i++) {
+                    BPPLogManager.getLogger().info("For " + i + " element");
+                    for (String step : steps) {
+                        BPPLogManager.getLogger().info("Executing: " + step + " iteration " + i);
+                        xpathLocator = resultingXpath.replace("xpath=", "xpath=(") + ")[" + i + "]";
+                        ReusableRunner.getInstance().executeStep(step.replace("FOR_ITEM", xpathLocator));
+                    }
+                }
+            } else {
+                Reporter.fail("No such elements present on the page");
+            }
+
+            if(!elementLocator.equals(processedLocator)){
+                Reporter.log("<pre>[input test parameter] " + elementLocator + "' -> '" + processedLocator + "' [output value]</pre>");
+            }
+        } else {
+            Reporter.fail("No such locator template key");
+        }
     }
 
     /**

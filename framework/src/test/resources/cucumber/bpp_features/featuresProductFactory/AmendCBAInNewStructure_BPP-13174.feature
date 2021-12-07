@@ -59,11 +59,11 @@ Feature: To allow for Editing of CBAs in the new structure - BPP-13174
 #    And I set "EC_REGION_NAME" text to the "Search" "Product Factory text field" from keyboard
 #    And I click on the "submit" "element by type"
     And I click on the "EC_REGION_NAME" "Product Factory edit button"
-    And I click on the "edit" "text contained in SPAN element"
+    And I click on the "Edit" "element by title"
     And I set "-2" text to the "EC_LOCATION_NAME" "Product Factory text field"
     And I click on the "Yes" "element by title"
     Then I should see the "Capacity must be at least 0" message
-    And I click on the "edit" "text contained in SPAN element"
+    And I click on the "Edit" "element by title"
     And I set "2" text to the "EC_LOCATION_NAME" "Product Factory text field"
     And I click on the "Yes" "element by title"
     Then I should see the "2" element

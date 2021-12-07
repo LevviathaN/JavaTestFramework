@@ -34,14 +34,14 @@ Feature: Financial Dimension - Select Material Code - Initial Selection - BPP-24
 
     Then I set "EC_LEVEL_SHORT_NAME" text to the "Search" "Product Factory text field" from keyboard
     And I click on the "submit" "element by type"
-    And For each "1 Levels" "1 Levels":
+    And For each "1 Levels" element:
       |Attribute "title" of "1 Levels" "element" should have value "EC_LEVEL_SHORT_NAME"|
     And I click on the "Clear the search text" "element by title"
     Then Attribute "value" of "Search" "Product Factory text field" should have value ""
 
     Then I set "EC_SITTING_NAME" text to the "Search" "Product Factory text field" from keyboard
     And I click on the "submit" "element by type"
-    And For each "1 Sittings" "element":
+    And For each "1 Sittings" element:
       |Attribute "title" of "1 Sittings" "element" should have value "EC_SITTING_NAME"|
     And I click on the "Clear the search text" "element by title"
     Then Attribute "value" of "Search" "Product Factory text field" should have value ""
