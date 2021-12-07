@@ -284,6 +284,10 @@
     "value": "^I register new \"([^\"]*)\" Hub account using API$"
   },
   {
+    "name": "I_REGISTER_NEW_HUB_ACCOUNT_WITHOUT_PHONE_FIELD_API",
+    "value": "^I register new standard Hub account without phone field using API$"
+  },
+  {
     "name": "I_EXECUTE_API_STEP_SAVING_AS",
     "value": "^I execute \"([^\"]*)\" API step saving as \"([^\"]*)\"$"
   },
