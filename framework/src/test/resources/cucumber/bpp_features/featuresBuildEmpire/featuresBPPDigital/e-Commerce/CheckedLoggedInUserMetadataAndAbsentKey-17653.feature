@@ -4,7 +4,7 @@ I have logged in to the checkout journey and have incomplete metadata in my Auth
 then I am presented with a form with mandatory fields for the phone number and marketing opt-in choice that I need to complete before proceeding to the Booking Details step
 
   @Positive @NoPhone #TC-6700
-  Scenario: eCommerce - Checkout Journey Log In While Registration American Express
+  Scenario: eCommerce - Check Logged In User Metadata and Absent Key
     Given I register new standard Hub account without phone field using API
     Then I execute "Log In to Hub as Student" reusable step
     And I wait for "2" seconds
