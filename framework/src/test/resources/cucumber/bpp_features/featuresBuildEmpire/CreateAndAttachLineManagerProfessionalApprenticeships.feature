@@ -19,7 +19,7 @@ Feature: Submit Professional Apprenticeship Applications With New Line Manager
     Then I should scroll to the "top" of the page
     And I validate text "CONTAINS=>2 YEARS" to be displayed for "Direct App Admin Employment Status for Apprenticeships" element
     And I execute "Log Out from Hub Admin" reusable step
-    And I execute "Nada Reset Line Manager Password" reusable step
+    And I execute "Guerillamail Reset Line Manager Password" reusable step
     And I execute "Reset Line Manager Password" reusable step
     Given I am on "MD_COMMON_LINKS_BUILDEMPIREURL" URL
     And I set "EC_LINEMANAGER_EMAIL" text to the "Email" "Build Empire text field"

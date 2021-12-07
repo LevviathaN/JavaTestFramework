@@ -101,7 +101,8 @@ Feature: BPP University Hub Sub Topics and Labels
     Then Attribute "data-icon" of "BPP Digital Automation Validate Quiz Square Svg Item" should have value "check"
     And I click on the "BPP Digital Automation Validate Quiz Square Svg Item" element
     And Browser performs "Refresh" command
-    And I click on the "BPP Digital Automation Validate Expandable Sub Topic Header" link by JS
+    And I wait for "3" seconds
+    And I click on the "BPP Digital Automation Validate Expandable Sub Topic Header" link
     And Attribute "data-icon" of "BPP Digital Automation Validate Quiz Check Svg Item" should have value "check"
     And Attribute "class" of "BPP Digital Automation Validate Green Check Icon" should have value "CONTAINS=complete"
     #Student Logout

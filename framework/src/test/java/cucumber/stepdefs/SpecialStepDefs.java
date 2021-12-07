@@ -1,27 +1,22 @@
 package cucumber.stepdefs;
 
 import cucumber.reusablesteps.ReusableRunner;
-import cucumber.stepdefs.Actions.ActionsWithLocator;
-import cucumber.stepdefs.Actions.ActionsWithLocatorAndParameter;
+import cucumber.stepdefs.Actions.*;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.hamcrest.Matchers;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
-import ui.utils.SeleniumHelper;
 import ui.utils.BPPLogManager;
-import ui.utils.Conditions;
+import ui.utils.SeleniumHelper;
 import ui.utils.Reporter;
 import ui.utils.UiHandlers;
 import ui.utils.bpp.ExecutionContextHandler;
 import ui.utils.bpp.TestParametersController;
-
 import java.util.List;
-
-import static com.jcabi.matchers.RegexMatchers.matchesPattern;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.text.MatchesPattern.matchesPattern;
+
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.not;
 
@@ -36,6 +31,7 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @When("^I click on the \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_click_on_element_with_parameter_special(String elementLocator, String elementType) {
+        //todo: there is an issue with locators that not allow to use '//' or '/descendant::' in locators. Investigate
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(elementLocator,elementType)
                 .setAction(ActionsWithLocator.CLICK)
@@ -86,7 +82,8 @@ public class SpecialStepDefs extends SeleniumHelper {
     @When("^I click on the \"([^\"]*)\" \"([^\"]*)\" by JS if \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_click_on_element_with_parameter_by_js_special_if(String elementLocator, String elementType, String conditionParameter, String condition) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setAction(ActionsWithLocator.CLICK_WITH_JS)
+        stepDef.setLocator(elementLocator, elementType)
+                .setAction(ActionsWithLocator.CLICK_WITH_JS)
                 .setCondition(conditionParameter,condition)
                 .setMessage("Executing step: I click on the '" + elementLocator + "' " + elementType + " with JS")
                 .execute();
@@ -101,66 +98,12 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @When("^I validate text \"([^\"]*)\" to be displayed for \"([^\"]*)\" element if \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_validate_text_to_be_displayed_for_element_special_if(String text, String element, String conditionParameter, String condition) {
-        Conditions conditions = new Conditions();
-        String actualValue = "";
-        if (conditions.checkCondition(condition, conditionParameter)) {
-            Reporter.log("Executing step: I validate " + text + " to be displayed for: " + element);
-            if (element.equalsIgnoreCase("CHECK_URL")) {
-                actualValue = SeleniumHelper.driver().getCurrentUrl();
-                Reporter.log("Validating URL to match :" + text);
-                assertThat(actualValue, containsString(text));
-            } else {
-                actualValue = getTextValueFromField(initElementLocator(element));
-                String newValue = text.replaceAll("''", "\"");
-                if (text.toUpperCase().trim().startsWith("RE=")) {
-                    newValue = newValue.substring("RE=".length());
-                    assertThat(actualValue.trim(), matchesPattern(newValue));
-                    Reporter.log("<pre>Actual value '" + actualValue + "' matches the pattern " + "'" + newValue + "'</pre>");
-                    BPPLogManager.getLogger().info("Actual value '" + actualValue + "' matches the pattern " + "'" + newValue + "'");
-                } else if (text.toUpperCase().startsWith("CONTAINS=")) {
-                    newValue = newValue.substring("CONTAINS=".length());
-                    if (text.contains("EC")) {
-                        String executionContextValue = ExecutionContextHandler.getExecutionContextValueByKey(newValue);
-                        assertThat(actualValue.trim().toLowerCase(), Matchers.containsString(executionContextValue.toLowerCase()));
-                    } else {
-                        assertThat(actualValue.trim(), Matchers.containsString(newValue));
-                        Reporter.log("<pre>Actual value '" + actualValue + "' contains the string " + "'" + newValue + "'</pre>");
-                        BPPLogManager.getLogger().info("Actual value '" + actualValue + "' contains the string " + "'" + newValue + "'");
-                    }
-                } else if (text.toUpperCase().startsWith("NOT_CONTAINS=")) {
-                    newValue = newValue.substring("NOT_CONTAINS=".length());
-                    if (text.contains("EC")) {
-                        String executionContextValue = ExecutionContextHandler.getExecutionContextValueByKey(newValue);
-                        assertThat(actualValue.trim(), not(Matchers.containsString(executionContextValue)));
-                    } else {
-                        assertThat(actualValue.trim(), not(Matchers.containsString(newValue)));
-                        Reporter.log("<pre>Actual value '" + actualValue + "' not contains the string " + "'" + newValue + "'</pre>");
-                        BPPLogManager.getLogger().info("Actual value '" + actualValue + "' not contains the string " + "'" + newValue + "'");
-                    }
-                } else if (text.toUpperCase().startsWith("CASE=")) {
-                    newValue = newValue.substring("CASE=".length());
-                    assertThat(actualValue.trim(), Matchers.equalTo(newValue));
-                    Reporter.log("<pre>Actual value '" + actualValue + "' equals to the case sensitive string " + "'" + newValue + "'</pre>");
-                    BPPLogManager.getLogger().info("Actual value '" + actualValue + "' equals to the case sensitive string " + "'" + newValue + "'");
-                } else if (text.toUpperCase().contains("STARTS-WITH=")) {
-                    newValue = newValue.substring("STARTS-WITH=".length());
-                    assertThat(actualValue.trim(), Matchers.startsWith(newValue));
-                    Reporter.log("<pre>Actual value '" + actualValue + "' starts with case sensitive string " + "'" + newValue + "'</pre>");
-                    BPPLogManager.getLogger().info("Actual value '" + actualValue + "' starts with case sensitive string " + "'" + newValue + "'");
-                } else if (text.contains("EC_")) {
-                    String executionContextValue = ExecutionContextHandler.getExecutionContextValueByKey(newValue);
-                    assertThat(actualValue.trim(), Matchers.equalTo(executionContextValue));
-                    Reporter.log("<pre>Actual value '" + actualValue + "' equals to " + "'" + newValue + ": " + executionContextValue + "'</pre>");
-                    BPPLogManager.getLogger().info("Actual value '" + actualValue + "' equals to " + "'" + newValue + ": " + executionContextValue + "'");
-                } else {
-                    assertThat(actualValue.trim(), Matchers.equalToIgnoringWhiteSpace(text));
-                    BPPLogManager.getLogger().info("Actual value '" + actualValue + "' equals to the case insensitive string " + "'" + newValue + "'");
-                    Reporter.log("<pre>Actual value '" + actualValue + "' equals to the case insensitive string " + "'" + newValue + "'</pre>");
-                }
-            }
-        } else {
-            Reporter.log("Condition " + conditionParameter + condition + " is not true, so '" + element + text + "' element step will not be validated");
-        }
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(element)
+                .setCondition(conditionParameter, condition)
+                .setAction(ActionsWithLocatorAndParameter.VALIDATE_ELEMENT_TEXT, text)
+                .setReporterLog("Executing step: I validate text " + text + " to be displayed for " + element + " element")
+                .execute();
     }
 
     /**
@@ -240,16 +183,11 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @When("^Attribute \"([^\"]*)\" of \"([^\"]*)\" \"([^\"]*)\" should have value \"([^\"]*)\"$")
     public void elements_attribute_should_have_value_special(String attributeName, String elementLocator, String elementType, String attributeValue) {
-        Reporter.log("Executing step: Attribute '" + attributeName + "' of '" + elementLocator + "' " + elementType + " should have value '" + attributeValue + "'");
-        if(specialLocatorsMap.containsKey(elementType)) {
-            String xpathTemplate = specialLocatorsMap.get(elementType);
-            String resultingXpath = xpathTemplate.replaceAll("PARAMETER",
-                    TestParametersController.checkIfSpecialParameter(elementLocator));
-            String actualAttributeValue = findElement(initElementLocator(resultingXpath)).getAttribute(attributeName);
-            Assert.assertTrue(actualAttributeValue.equalsIgnoreCase(TestParametersController.checkIfSpecialParameter(attributeValue)));
-        } else {
-            Reporter.fail("No such locator template key");
-        }
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(elementLocator, elementType)
+                .setAction(ActionsWithLocatorAndTwoParameters.VALIDATE_ELEMENT_ATTRIBUTE, attributeName, attributeValue)
+                .setReporterLog("Executing step: Attribute '" + attributeName + "' of '" + elementLocator + "' " + elementType + " should have value '" + attributeValue + "'")
+                .execute();
     }
 
     /**
@@ -262,29 +200,11 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @When("^I \"(check|uncheck)\" \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_check_uncheck_special(String value, String elementLocator, String elementType){
-        Reporter.log("Executing step: I " + value + " '" + elementLocator + "' " + elementType);
-        boolean state = true;
-        if(value.equals("check")){state = true;}
-        else if(value.equals("uncheck")){state = false;}
-        if(specialLocatorsMap.containsKey(elementType)) {
-            String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
-            String xpathTemplate = specialLocatorsMap.get(elementType);
-            String resultingXpath = xpathTemplate.replaceAll("PARAMETER", processedLocator);
-            checkCheckbox(initElementLocator(resultingXpath),state,
-                    UiHandlers.PF_SPINNER_HANDLER,
-                    UiHandlers.ACCEPT_ALERT,
-                    UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
-                    UiHandlers.PF_SCROLL_HANDLER,
-                    UiHandlers.PAGE_NOT_LOAD_HANDLER,
-                    UiHandlers.SF_CLICK_HANDLER,
-                    UiHandlers.WAIT_HANDLER,
-                    UiHandlers.DEFAULT_HANDLER);
-            if(!elementLocator.equals(processedLocator)){
-                Reporter.log("<pre>[input test parameter] " + elementLocator + "' -> '" + processedLocator + "' [output value]</pre>");
-            }
-        } else {
-            Reporter.fail("No such locator template key");
-        }
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(elementLocator, elementType)
+                .setAction(ActionsWithLocatorAndParameter.CHECK_CHECKBOX, value)
+                .setReporterLog("Executing step: I " + value + " '" + elementLocator + "' " + elementType)
+                .execute();
     }
 
     /**
@@ -324,28 +244,11 @@ public class SpecialStepDefs extends SeleniumHelper {
 
     @And("^I select \"([^\"]*)\" from \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_select_from_element_special(String value, String elementLocator, String elementType) {
-        Reporter.log("Executing step: I select: " + value + " from " + elementLocator + "' " + elementType);
-        if(specialLocatorsMap.containsKey(elementType)) {
-            String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
-            String xpathTemplate = specialLocatorsMap.get(elementType);
-            String resultingXpath = xpathTemplate.replaceAll("PARAMETER", processedLocator);
-
-            if (value.equals("KW_AUTO_SELECT")) {
-                Reporter.log("Starting random selection from dropdown.");
-                String autoSelectedValue = autoSelectFromDropdown(initElementLocator(resultingXpath));
-                Reporter.log("Selected \"" + autoSelectedValue + "\" value from " + elementLocator + "' " + elementType);
-            } else if (value.contains("EC_")) {
-                Reporter.log("Selecting value using Execution Context");
-                String executionContextValue = ExecutionContextHandler.getExecutionContextValueByKey(value);
-                selectValueFromDropDown(initElementLocator(resultingXpath), executionContextValue);
-                Reporter.log("Selected \"" + executionContextValue + "\" value from " + elementLocator + "' " + elementType);
-            } else {
-                Reporter.log("Selecting \"" + value + "\" value from " + elementLocator + "' " + elementType);
-                selectValueFromDropDown(initElementLocator(resultingXpath), value);
-            }
-        }else {
-            Reporter.fail("No such locator template key");
-        }
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(elementLocator,elementType)
+                .setAction(ActionsWithLocatorAndParameter.SELECT_FROM_ELEMENT,value)
+                .setReporterLog("Executing step: I select: " + value + " from " + elementLocator + "' " + elementType)
+                .execute();
     }
 
     /**
@@ -379,37 +282,41 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @When("^I click on the \"([^\"]*)\" \"([^\"]*)\" until \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_click_on_element_until_special(String elementLocator, String elementType, String conditionParameter, String condition) {
-        Conditions conditions = new Conditions();
-        int attempt = 1;
-        Reporter.log("Executing step: I click on the '" + elementLocator + "' element");
-        do {
-            Reporter.log("attempt " + attempt);
-            if(specialLocatorsMap.containsKey(elementType)) {
-                String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
-                String xpathTemplate = specialLocatorsMap.get(elementType);
-                String resultingXpath = xpathTemplate.replaceAll("PARAMETER", processedLocator);
-                clickOnElement(initElementLocator(resultingXpath),
-                        UiHandlers.PF_SCROLL_HANDLER,
-                        UiHandlers.ACCEPT_ALERT,
-                        UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
-                        UiHandlers.PAGE_NOT_LOAD_HANDLER,
-                        UiHandlers.PF_SPINNER_HANDLER,
-                        UiHandlers.PF_PREMATURE_MENU_CLICK_HANDLER,
-                        UiHandlers.DEFAULT_HANDLER);
-                if(!elementLocator.equals(processedLocator)){
-                    Reporter.log("<pre>[input test parameter] " + elementLocator + "' -> '" + processedLocator + "' [output value]</pre>");
-                }
-            } else {
-                Reporter.fail("No such locator template key");
-            }
-            attempt++;
-            if (attempt > 5) {
-                Reporter.log("Condition " + conditionParameter + condition + " is not true, so '" + elementLocator + "' element step will not be clicked");
-                break;
-            } else {
-                sleepFor(5000);
-            }
-        } while (!conditions.checkCondition(condition, conditionParameter));
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(elementLocator, elementType)
+                .setLoop("until", conditionParameter, condition)
+                .setAction(ActionsWithLocator.CLICK)
+                .setReporterLog("Executing step: I click on the '" + elementLocator + " " + elementType
+                        + "' element until '" + conditionParameter + " " + condition + "' condition is true")
+                .execute();
+    }
+
+    /**
+     * Definition to execute specified set of steps until given condition is true, up to 10 times
+     *
+     * @author Ruslan Levytskyi
+     */
+    @When("^I execute steps until \"([^\"]*)\" \"([^\"]*)\"$")
+    public void i_execute_steps_until(String conditionParameter, String condition, List<String> steps) {
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLoop("until", conditionParameter, condition)
+                .setAction(ActionsWithTable.EXECUTE_STEPS, steps)
+                .setReporterLog("Executing step: Execute steps until '" + conditionParameter + " " + condition + "' condition is true")
+                .execute();
+    }
+
+    /**
+     * Definition to execute specified set of reusables until given condition is true, up to 10 times
+     *
+     * @author Ruslan Levytskyi
+     */
+    @When("^I execute reusables until \"([^\"]*)\" \"([^\"]*)\"$")
+    public void i_execute_reusables_until(String conditionParameter, String condition, List<String> reusables) {
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLoop("until", conditionParameter, condition)
+                .setAction(ActionsWithTable.EXECUTE_REUSABLES, reusables)
+                .setReporterLog("Executing step: Execute reusables until '" + conditionParameter + " " + condition + "' condition is true")
+                .execute();
     }
 
     /**
@@ -436,17 +343,11 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @Then("^I press \"([^\"]*)\" for \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_press_from_keyboard_special(String fieldValue,String elementLocator, String elementType) {
-        Reporter.log("Executing step: I press the " + fieldValue + " from keyboard for special parameter");
-        if(specialLocatorsMap.containsKey(elementType)) {
-            String processedText = TestParametersController.checkIfSpecialParameter(fieldValue);
-            String xpathTemplate = specialLocatorsMap.get(elementType);
-            String resultingXpath = xpathTemplate.replaceAll("PARAMETER",
-                    TestParametersController.checkIfSpecialParameter(elementLocator));
-            pressKeyFromKeyboard(initElementLocator(resultingXpath), TestParametersController.checkIfSpecialParameter(processedText));
-            waitForPageToLoad();
-        } else {
-            Reporter.fail("No such locator template key");
-        }
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(elementLocator, elementType)
+                .setAction(ActionsWithLocatorAndParameter.PRESS_KEYBOARD, fieldValue)
+                .setReporterLog("Executing step: I press the " + fieldValue + " from keyboard for special parameter")
+                .execute();
     }
 
     /**
@@ -457,23 +358,11 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @Then("^I set \"([^\"]*)\" text to the \"([^\"]*)\" \"([^\"]*)\" from keyboard$")
     public void i_set_text_from_keyboard_special(String fieldValue,String elementLocator, String elementType) {
-        Reporter.log("Executing step: I press the " + fieldValue + " from keyboard for special parameter");
-        if(specialLocatorsMap.containsKey(elementType)) {
-            String processedText = TestParametersController.checkIfSpecialParameter(fieldValue);
-            String xpathTemplate = specialLocatorsMap.get(elementType);
-            String resultingXpath = xpathTemplate.replaceAll("PARAMETER",
-                    TestParametersController.checkIfSpecialParameter(elementLocator));
-            char[] string = processedText.toCharArray();
-            By element = initElementLocator(resultingXpath);
-            clearEntireField(element);
-            for (int i=0; i<string.length; i++) {
-                WebElement keyItem = findElement(element);
-                keyItem.sendKeys(String.valueOf(string[i]));
-            }
-            waitForPageToLoad();
-        } else {
-            Reporter.fail("No such locator template key");
-        }
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(elementLocator, elementType)
+                .setAction(ActionsWithLocatorAndParameter.SET_TEXT_FROM_KEYBOARD, fieldValue)
+                .setReporterLog("Executing step: I press the " + fieldValue + " from keyboard for special parameter")
+                .execute();
     }
 
     /**
@@ -484,6 +373,7 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @Then("^I validate text \"([^\"]*)\" to be displayed for \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_validate_text_to_be_displayed_for_element_special(String text, String elementLocator, String elementType) {
+        //todo: stepdefBuilder's VALIDATE_ELEMENT_TEXT is not working (PF Alphabetic Ordering). To be fixed
         String actualValue = "";
         Reporter.log("Executing step: I validate " + text + " to be displayed for: " + elementLocator);
 
@@ -507,9 +397,10 @@ public class SpecialStepDefs extends SeleniumHelper {
                     newValue = newValue.substring("CONTAINS=".length());
                     if (text.contains("EC")) {
                         String executionContextValue = ExecutionContextHandler.getExecutionContextValueByKey(newValue);
-                        assertThat(actualValue.trim().toLowerCase(), Matchers.containsString(executionContextValue.toLowerCase()));
+                        assertThat(actualValue.trim().toLowerCase(), containsString(executionContextValue.toLowerCase()));
+                        Reporter.log("<pre>Actual value '" + actualValue + "' contains the string " + "'" + executionContextValue + "'</pre>");
                     } else {
-                        assertThat(actualValue.trim(), Matchers.containsString(newValue));
+                        assertThat(actualValue.trim(), containsString(newValue));
                         Reporter.log("<pre>Actual value '" + actualValue + "' contains the string " + "'" + newValue + "'</pre>");
                         BPPLogManager.getLogger().info("Actual value '" + actualValue + "' contains the string " + "'" + newValue + "'");
                     }
@@ -517,9 +408,9 @@ public class SpecialStepDefs extends SeleniumHelper {
                     newValue = newValue.substring("NOT_CONTAINS=".length());
                     if (text.contains("EC")) {
                         String executionContextValue = ExecutionContextHandler.getExecutionContextValueByKey(newValue);
-                        assertThat(actualValue.trim(), not(Matchers.containsString(executionContextValue)));
+                        assertThat(actualValue.trim(), not(containsString(executionContextValue)));
                     } else {
-                        assertThat(actualValue.trim(), not(Matchers.containsString(newValue)));
+                        assertThat(actualValue.trim(), not(containsString(newValue)));
                         Reporter.log("<pre>Actual value '" + actualValue + "' not contains the string " + "'" + newValue + "'</pre>");
                         BPPLogManager.getLogger().info("Actual value '" + actualValue + "' not contains the string " + "'" + newValue + "'");
                     }
@@ -602,6 +493,7 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @When("^For each \"([^\"]*)\" \"([^\"]*)\":$")
     public void for_each_special(String elementLocator, String elementType,  List<String> steps) {
+        //todo: reverted to previous version till FOR_EACH issue with special locators is fixed
         if(specialLocatorsMap.containsKey(elementType)) {
             String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
             String xpathTemplate = specialLocatorsMap.get(elementType);
@@ -643,20 +535,11 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @When("^I store \"([^\"]*)\" \"([^\"]*)\" elements number in \"([^\"]*)\" variable$")
     public void i_count_elements_special(String elementLocator, String elementType, String varName) {
-        Reporter.log("Executing step: I count '" + elementLocator + "' " + elementType);
-        if(specialLocatorsMap.containsKey(elementType)) {
-            String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
-            String xpathTemplate = specialLocatorsMap.get(elementType);
-            String resultingXpath = xpathTemplate.replaceAll("PARAMETER", processedLocator);
-            BPPLogManager.getLogger().info("Counting: " + elementLocator + " elements");
-            int actualNumberOfElements = numberOfElements(initElementLocator(resultingXpath));
-            ExecutionContextHandler.setExecutionContextValueByKey(varName, TestParametersController.checkIfSpecialParameter(String.valueOf(actualNumberOfElements)));
-            if(!elementLocator.equals(processedLocator)){
-                Reporter.log("<pre>[input test parameter] " + elementLocator + "' -> '" + processedLocator + "' [output value]</pre>");
-            }
-        } else {
-            Reporter.fail("No such locator template key");
-        }
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(elementLocator, elementType)
+                .setAction(ActionsWithLocatorAndParameter.COUNT_ELEMENTS, varName)
+                .setReporterLog("Executing step: I count '" + elementLocator + "' " + elementType)
+                .execute();
     }
 
 
@@ -668,13 +551,11 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @When("^I execute \"([^\"]*)\" JS code if \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_execute_js_code_if(String jsCode, String conditionParameter, String condition) {
-        Conditions conditions = new Conditions();
-        if (conditions.checkCondition(condition, conditionParameter)) {
-            Reporter.log("Executing JS code: " + jsCode);
-            executeJSCode(TestParametersController.checkIfSpecialParameter(jsCode));
-        } else {
-            Reporter.log("Condition " + conditionParameter + condition + " is not true, so JS code will not be executed!");
-        }
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setCondition(conditionParameter, condition)
+                .setAction(ActionsWithParameter.EXECUTE_JS_CODE, jsCode)
+                .setReporterLog("Executing JS code: " + jsCode)
+                .execute();
     }
 
     /**
@@ -687,18 +568,11 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @When("^Сss \"([^\"]*)\" of \"([^\"]*)\" \"([^\"]*)\" should have value \"([^\"]*)\"$")
     public void element_special_css_should_have_value(String attributeName, String elementLocator, String elementType, String cssValue) {
-        Reporter.log("Executing step: CSS value '" + attributeName + "' of '" + elementLocator + "' should have value '" + cssValue + "'");
-        if(specialLocatorsMap.containsKey(elementType)) {
-            String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
-            String xpathTemplate = specialLocatorsMap.get(elementType);
-            String resultingXpath = xpathTemplate.replaceAll("PARAMETER", processedLocator);
-            Assert.assertTrue(findElement(initElementLocator(resultingXpath)).getCssValue(attributeName).equalsIgnoreCase(cssValue));
-            if(!elementLocator.equals(processedLocator)){
-                Reporter.log("<pre>[input test parameter] " + elementLocator + "' -> '" + processedLocator + "' [output value]</pre>");
-            }
-        } else {
-            Reporter.fail("No such locator template key");
-        }
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(elementLocator, elementType)
+                .setAction(ActionsWithLocatorAndTwoParameters.VALIDATE_ELEMENT_CSS, attributeName, cssValue)
+                .setReporterLog("Executing step: CSS value '" + attributeName + "' of '" + elementLocator + "' should have value '" + cssValue + "'")
+                .execute();
     }
 
     /**
@@ -710,6 +584,7 @@ public class SpecialStepDefs extends SeleniumHelper {
      */
     @And("^I capture text data \"([^\"]*)\" \"([^\"]*)\" as \"([^\"]*)\" variable$")
     public void i_capture_text_data_special_as_variable(String elementLocator, String elementType, String executionContext) {
+        //todo: StepDefBuilder throws error while trying to get EC  -2021-12-01 17:05:39 [PoolService] ERROR ExecutionContextHandler:35 - Requested EC_BASKET_ID execution context key is absent
         if (specialLocatorsMap.containsKey(elementType)) {
             String xpathTemplate = specialLocatorsMap.get(elementType);
             String resultingXpath = xpathTemplate.replaceAll("PARAMETER",

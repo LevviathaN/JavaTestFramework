@@ -208,7 +208,9 @@ public class TestParametersController {
                 if (element.startsWith(EXECUTION_CONTEXT_PREFIX)) {
                     if (element.contains("DEADLINEMONTH")) {
                         splittedValue.append(Tools.editMonth(ExecutionContextHandler.getExecutionContextValueByKey(element), 2, 4));
-                    } else {
+                    } else if(element.contains("PRICEVAT")) {
+                        splittedValue.append(Tools.calculatePriceWithVat(element));
+                    }else {
                         splittedValue.append(ExecutionContextHandler.getExecutionContextValueByKey(element));
                     }
                 } else {

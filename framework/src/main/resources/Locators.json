@@ -668,6 +668,10 @@
     "value": "xpath=//div[@class='table-content row open ']//div[@class='studyType']"
   },
   {
+    "name": "BPP Digital Dates and Prices Syllabus",
+    "value": "xpath=//div[@class='syllabus']"
+  },
+  {
     "name": "BPP Digital Add to Basket First Course",
     "value": "xpath=(//div[contains(@class,'purchase col')]/button)[1]"
   },
@@ -2137,7 +2141,7 @@
   },
   {
     "name": "Guerilla New Line Manager Email",
-    "value": "xpath=//div[@class='email_body']|https:\\/\\/bpp-stage.eu.auth0.com\\/lo\\/reset.+[aA-zZ0-9]\\#"
+    "value": "xpath=//div[@class='email_body']"
   },
   {
     "name": "Guerilla Validate Mitigating Circustances Submitted Link",
@@ -2808,6 +2812,14 @@
     "value": "xpath=(//span[text()='Session Date']/following-sibling::div//input)[2]"
   },
   {
+    "name": "Product Factory Course Page Price Without VAT",
+    "value": "xpath=(//span[contains(.,'All prices are excluding VAT')]/preceding-sibling::span)[last()]"
+  },
+  {
+    "name": "Product Factory Course Page Select All Checkbox",
+    "value": "xpath=//span[@title='Select/Deselect All Courses']"
+  },
+  {
     "name": "Salesforce Account Creation Save button",
     "value": "xpath=(//div[@class='windowViewMode-normal oneRecordActionWrapper isModal active lafPageHost']//button[normalize-space()='Save'])[1]"
   },
@@ -2929,7 +2941,7 @@
   },
   {
     "name": "Salesforce First Opportunity",
-    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//th/span[contains(.,'EC_BASKET_ID')]/a"
+    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//th//a[contains(.,'EC_BASKET_ID')]"
   },
   {
     "name": "Salesforce Frame",

@@ -10,7 +10,7 @@ Feature: Approve Channel Islands Application
     And I execute "Complete Channel Islands Mk2 Application" reusable step
     Then I execute "Submit Application Hub" reusable step
     And I execute "Log Out from Hub Student" reusable step
-    Then I execute "Nada Reset Line Manager Password" reusable step
+    Then I execute "Guerillamail Reset Line Manager Password" reusable step
     Then I execute "Reset Line Manager Password" reusable step
     Given I am on "MD_COMMON_LINKS_BUILDEMPIREURL" URL
     And I set "EC_LINEMANAGER_EMAIL" text to the "Email" "Build Empire text field"

@@ -1,7 +1,7 @@
 @Mobile
 Feature: BPP University Hub Sub Topics and Labels
 
-  @Positive @iPhone @Samsung #TC-867
+  @Positive @SubTopicsMobile @Samsung #TC-867
   Scenario: Hub Sub Topics and Labels_Mobile
     #login to Totara as an Admin
     Given I am on "MD_COMMON_LINKS_TOTARALOGINURL" URL

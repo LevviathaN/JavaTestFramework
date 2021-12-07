@@ -30,26 +30,26 @@ Feature: Dates & Prices - Add HTML field to D&P component and enable component w
     And I should see the "Financial Management" "BPP Digital View Dates and Prices button"
     And I should see the "Tax Compliance" "BPP Digital View Dates and Prices button"
     And I click on the "Financial Management" "BPP Digital View Dates and Prices button"
-    And I click on the "Wed 17 Mar 2021" "element"
+    And I click on the "Fri 26 Nov 2021" "element"
     Then I validate text "Inc. VAT" to be displayed for "price-inc-vat" "element by class first"
     And Сss "font-weight" of "BPP Digital Dates and Prices Type And Location Row" should have value "700"
-    And I should see the "Wed 17 March" "element"
-    And I should see the "Thu 18 March" "element"
-    And I should see the "Fri 19 March" "element"
+    And I should see the "Fri 26 November" "element"
+    And I should see the "Fri 26 November" "element"
+    And I should see the "Fri 3 December" "element"
     And I validate text "CONTAINS=3" to be displayed for "BPP Digital Dates and Prices Number of Sessions field" element
     And I wait for "3" seconds
     # Verify Paper Filters: TC-4939
     And I click on the "Financial Management" "BPP Digital View Dates and Prices button"
     And I click on the "Tax Compliance" "BPP Digital View Dates and Prices button"
-    And I should see the "Fri 26 Nov 2021" "element"
-    And I should see the "Mon 11 Oct 2021" "element"
+    And I should see the "Wed 3 Nov 2021" "element"
+    And I should see the "Mon 16 Aug 2021" "element"
     # Delete Grid component in Admin
     And I am on "https://admin-stage-bppdigital.bppuniversity.com/admin/cms/pages/3028/edit" URL
     And I click on the "Grid" "BPP Digital Admin Pages Delete Button for Specific Component name"
     And I wait for "3" seconds
 
 
-  @Positive #TC-5473
+  @Positive @HTML #TC-5473, 6673
   Scenario: Add Dates n Prices Component With HTML Field
     Given I execute "Log In to Hub as Admin" reusable step
     And I am on "https://admin-stage-bppdigital.bppuniversity.com/admin/cms/pages/3028/edit" URL
@@ -69,6 +69,8 @@ Feature: Dates & Prices - Add HTML field to D&P component and enable component w
     #Check no address displayed for Online type of learning
     And I click on the "Data Technician" "BPP Digital View Dates and Prices button"
     And I click on the "Tue 3 Aug 2021" "element the last"
+    And I should see the "Exam sitting" element
+    Then I validate text "CONTAINS=EXAM SITTING" to be displayed for "BPP Digital Dates and Prices Syllabus" element
     Then I shouldn't see the "BPP Digital Dates and Prices Location For Instance" element
     Then I shouldn't see the "BPP Digital Dates and Prices Second Location For Instance" element
     # Delete DnP component in Admin

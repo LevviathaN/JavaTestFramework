@@ -237,6 +237,14 @@
     "value": "xpath=(//div[contains(@class,'purchase col')]/button)[PARAMETER]"
   },
   {
+    "name": "BPP Digital Basket Instance Item Price",
+    "value": "xpath=(//*[contains(@class,'basketPaper')]//span[contains(@class,'price')])[PARAMETER]"
+  },
+  {
+    "name": "BPP Digital Basket Instance Item Remove",
+    "value": "xpath=(//*[contains(@class,'basketPaper')]//*[@title='Remove course from basket'])[PARAMETER]"
+  },
+  {
     "name": "BPP Digital Basket Summary Section",
     "value": "xpath=(//section[contains(@class,'priceGrid')]//dt[contains(.,'PARAMETER')]//following::dd)[1]"
   },
@@ -543,6 +551,10 @@
   {
     "name": "Product Factory Course Page checkbox",
     "value": "xpath=//td[text()='PARAMETER']/preceding-sibling::td[last()]"
+  },
+  {
+    "name": "Product Factory Course Bulk Operation Page checkbox by Status",
+    "value": "xpath=//span[text()='PARAMETER']/../../following-sibling::div/span"
   },
   {
     "name": "Product Factory dialog checkbox",

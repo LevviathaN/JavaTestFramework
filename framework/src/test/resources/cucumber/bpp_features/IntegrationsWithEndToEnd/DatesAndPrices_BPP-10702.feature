@@ -30,13 +30,15 @@ Feature: Dates & Prices - Dates and Prices 'pods' (front-end) component
     And I wait for "3" seconds
     # Verify Paper Filters: TC-4939
     And I click on the "Tax Compliance" "BPP Digital View Dates and Prices button"
-    And I should see the "Fri 19 Nov 2021" "element the last"
-    And I should see the "Fri 26 Nov 2021" "element the last"
+    And I should see the "Wed 3 Nov 2021" "element the last"
+    And I should see the "Mon 16 Aug 2021" "element the last"
     # Log in to Product Factory UAT
     Given I execute "Log In" reusable step
     # Amend Body
     When I click on the "Programme" "Product Factory navigation item"
     When I click on the "Bodies" "Product Factory navigation sub item"
+    When I set "Institute Chartered Accountants of England & Wales" text to the "Search" "Product Factory text field" from keyboard
+    And I press "MD_COMMON_KEYBOARD_ENTER" for "Search" "Product Factory text field"
     And I click on the "ICAEW" "Product Factory edit button"
     And I set "ICAEWU" text to the "Short Name" "Product Factory text field"
     And I set "Institute Chartered Accountants of England & Wales Updated" text to the "Name" "Product Factory text field"
@@ -86,6 +88,8 @@ Feature: Dates & Prices - Dates and Prices 'pods' (front-end) component
     Given I click on the "Sign in with Auth0" element if "Sign in with Auth0" "element is present"
     When I click on the "Programme" "Product Factory navigation item"
     When I click on the "Bodies" "Product Factory navigation sub item"
+    When I set "Institute Chartered Accountants of England & Wales Updated (ICAEWU)" text to the "Search" "Product Factory text field" from keyboard
+    And I press "MD_COMMON_KEYBOARD_ENTER" for "Search" "Product Factory text field"
     And I click on the "ICAEWU" "Product Factory edit button"
     And I set "ICAEW" text to the "Short Name" "Product Factory text field"
     And I set "Institute Chartered Accountants of England & Wales" text to the "Name" "Product Factory text field"
@@ -144,13 +148,13 @@ Feature: Dates & Prices - Dates and Prices 'pods' (front-end) component
     And I click on the "Face-to-face" "BPP Digital Dates and Prices Study Mode option"
     # Check Location filter
     When I click on the "Online Classroom Live" "BPP Digital Dates and Prices Study Mode option"
-    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "4"
+    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "2"
     And I click on the "Online Classroom Live" "BPP Digital Dates and Prices Study Mode option"
     # Check Exam sitting filter
     When I click on the "Exam sitting" element
     And I should see the "December 2021" element
     When I click on the "December 2021" element
-    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "7"
+    Then I should see the "BPP Digital Dates and Prices Course Instance entry" element in quantity of "5"
     When I click on the "December 2021" element
     # Check filters interaction
     When I click on the "Course type" element

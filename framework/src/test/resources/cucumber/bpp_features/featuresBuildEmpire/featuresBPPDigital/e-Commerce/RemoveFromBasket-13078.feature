@@ -4,7 +4,7 @@ Feature: Remove Items From Basket And Validation of Error Messages
   This ticket is to enable the remove capability to a basket.
   A remove can be done by either deselecting the 'Add to basket' button on the Dates & Prices course instances view or by choosing the Remove option in the Basket view.
 
-  @RemoveItems @Negative #TC-5201, 5445, 6175, 6205, 6364, 6368, 6531
+  @RemoveItems @Negative #TC-5201, 5445, 6175, 6205, 6364, 6368, 6531, 5441, 5455
   Scenario: eCommerce - Remove Items From Basket And Verify Error Messages
     #Add and remove items
     And I am on "MD_COMMON_LINKS_BPPDIGITALECOMMERCETWOURL" URL
@@ -45,6 +45,24 @@ Feature: Remove Items From Basket And Validation of Error Messages
     Then I validate text "15" to be displayed for "Items" "BPP Digital Basket Summary Section"
     Then I should see the "Are you sure you want to book them?" "message"
     Then I should see the "Session timing clashes exist for 14 of your chosen courses." "message"
+    Then I click on the "1" "BPP Digital Basket Instance Item Remove"
+    Then I click on the "2" "BPP Digital Basket Instance Item Remove"
+    Then I click on the "3" "BPP Digital Basket Instance Item Remove"
+    Then I click on the "4" "BPP Digital Basket Instance Item Remove"
+    Then I click on the "5" "BPP Digital Basket Instance Item Remove"
+    And Browser performs "BACK" command
+    And I wait for "2" seconds
+    And I click on the "Elements of Costing" "BPP Digital View Dates and Prices button"
+    Then I click on the "1" "BPP Digital Add to Basket Item"
+    Then I click on the "2" "BPP Digital Add to Basket Item"
+    And I click on the "BPP Digital Header Basket" button by JS
+    Then I should see the "AAT Level 2 - Certificate in Accounting (AQ2016) courses" "text"
+    Then I should see the "Body auto-checkout regression Level Auto-checkout regression name courses" "text"
+    Then I should see the "Inc. VAT" "element the last"
+    Then I should see the "Elements of Costing" "element the last"
+    Then I should see the "Paper auto-checkout regression" "element the last"
+    Then I should see the "Exam Preparation MVM 1" "element the last"
+    Then I should see the "EXAM SITTING" "element the last"
     Then I click on the "Proceed to checkout" "button"
     #Check invalid email
     And I click on the "Already got an account? Login" "text contained in A element"
