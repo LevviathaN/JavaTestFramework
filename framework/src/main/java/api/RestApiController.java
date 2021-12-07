@@ -354,12 +354,14 @@ public class RestApiController {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("first_name",TestParametersController.checkIfSpecialParameter(firstName));
         jsonObject.put("last_name",TestParametersController.checkIfSpecialParameter(lastName));
-        jsonObject.put("phone",TestParametersController.checkIfSpecialParameter(phone));
-        jsonObject.put("full_phone",TestParametersController.checkIfSpecialParameter(fullPhone));
         jsonObject.put("terms",TestParametersController.checkIfSpecialParameter(terms));
         jsonObject.put("marketing_opt_in",TestParametersController.checkIfSpecialParameter(marketingOpt));
         jsonObject.put("registration_type",TestParametersController.checkIfSpecialParameter(registration));
         jsonObject.put("registration_type_token",TestParametersController.checkIfSpecialParameter(registrationToken));
+        if (!(phone == null)) {
+            jsonObject.put("phone",TestParametersController.checkIfSpecialParameter(phone));
+            jsonObject.put("full_phone",TestParametersController.checkIfSpecialParameter(fullPhone));
+        }
 
         map.put("user_metadata",jsonObject);
         map.put("email",TestParametersController.checkIfSpecialParameter(email));
