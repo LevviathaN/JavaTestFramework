@@ -3,7 +3,7 @@ Feature: Registry Case Management
   As a Registry Salesforce Classic User switching to Lightning Experience,
   I want Registry Case Management to perform as expected
 
-  @EndToEnd #TC-2535
+  @EndToEndCases #TC-2535
   Scenario: Registry Case Management End To End
     Given I execute "Log In To Salesforce" reusable step
     And I execute "Create ID Card Registry Case" reusable step
@@ -22,7 +22,7 @@ Feature: Registry Case Management
     And I wait for "2" seconds
     And I validate text "Ready to Close" to be displayed for "Salesforce Case Status Data Field" element
 
-  @AssignmentRules1
+  @AssignmentRules
   Scenario: Registry Case Management Verify Case Assignment Assessments and IOS
     Given I execute "Log In To Salesforce" reusable step
     And I execute "Validate All Registry Cases Types" reusable step
@@ -64,7 +64,7 @@ Feature: Registry Case Management
     Given I execute "Log In To Salesforce" reusable step
         #Attendance and Absences
     And I execute "Create Assesments Registry Case" reusable step replacing some steps
-      | 9  | I click on the "Attendance & Absences" "Salesforce cases dropdown option"            |
+      | 9  | I click on the "Attendance and Absences" "Salesforce cases dropdown option"            |
       | 11 | I click on the "Name missing from class register" "Salesforce cases dropdown option" |
     And I should scroll to the "top" of the page
     And I validate text "CONTAINS=Business School Attendance" to be displayed for "Salesforce Case Owner Data Field" element
