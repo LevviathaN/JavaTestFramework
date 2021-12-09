@@ -17,12 +17,12 @@ import java.util.*;
 import static com.jcabi.matchers.RegexMatchers.matchesPattern;
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertThat;
-import static org.junit.internal.matchers.StringContains.containsString;
 
 public class RestApiController {
 
     private final PropertiesHelper propertiesHelper = new PropertiesHelper();
     String Reference = null;
+    String requestLink = null;
 
     /**
      * @param baseURI     - will be changed based of record type to be created
@@ -234,7 +234,13 @@ public class RestApiController {
 
     public synchronized JSONObject requestProcess(String fileName, Map<String, String> parameters)  {
 
-        Response Response = postRequest(propertiesHelper.getProperties().getProperty("pf_request_link"),
+        if (System.getProperty("environment").equals("UAT")) {
+            requestLink = "pf_request_link_UAT";
+        } else {
+            requestLink = "pf_request_link";
+        }
+
+        Response Response = postRequest(propertiesHelper.getProperties().getProperty(requestLink),
                 processPropertiesPF("ProductFactory/" + fileName, parameters),
                 ProductFactoryAuthentication.getInstance().requestHeaderSpecification()
         );
@@ -371,7 +377,13 @@ public class RestApiController {
 
     public synchronized JSONObject requestNegativeProcess(String fileName, Map<String, String> parameters)  {
 
-        Response Response = postRequest(propertiesHelper.getProperties().getProperty("pf_request_link"),
+        if (System.getProperty("environment").equals("UAT")) {
+            requestLink = "pf_request_link_UAT";
+        } else {
+            requestLink = "pf_request_link";
+        }
+
+        Response Response = postRequest(propertiesHelper.getProperties().getProperty(requestLink),
                 processPropertiesPF("ProductFactory/" + fileName, parameters),
                 ProductFactoryAuthentication.getInstance().requestHeaderSpecification()
         );

@@ -7,28 +7,24 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.hamcrest.Matchers;
 import org.jooq.tools.json.ParseException;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchWindowException;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.ITest;
 import ui.utils.SeleniumHelper;
 import ui.utils.*;
 import ui.utils.bpp.ExecutionContextHandler;
 import ui.utils.bpp.TestParametersController;
 import ui.utils.pdf.PDFHandler;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
-
 import static com.jcabi.matchers.RegexMatchers.matchesPattern;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.not;
+
 
 /**
  * Created by Ruslan Levytskyi on 15/3/2019.
@@ -521,6 +517,35 @@ public class StepDefinitions extends SeleniumHelper {
         stepDef.setAction(ActionsWithParameter.EXECUTE_JS_CODE, jsCode)
                 .setReporterLog("Executing JS code: " + jsCode)
                 .execute();
+    }
+
+    /**
+     * Definition to execute JS code (Console command for Chrome) to grab Auth key from Chrome's Local Storage.
+     *
+     * @param jsCode JS code to execute
+     * @param ecValue ec Value to store returned js code
+     * @author Andrii Yakymchuk
+     */
+
+    @And("^I execute \"([^\"]*)\" JS code and saving value as \"([^\"]*)\"$")
+    public void i_execute_js_code_and_saving_value_as(String jsCode, String ecValue) {
+
+        JavascriptExecutor js = (JavascriptExecutor)  SeleniumHelper.driver();
+        String value = (String) js.executeScript(jsCode);
+
+        JSONParser parser = new JSONParser();
+        JSONObject json = null;
+        try {
+            json = (JSONObject) parser.parse(value);
+        } catch (org.json.simple.parser.ParseException e) {
+            e.printStackTrace();
+        }
+        String accessToken = (String) json.get("accessToken");
+
+        ExecutionContextHandler.setExecutionContextValueByKey(ecValue,accessToken);
+
+        BPPLogManager.getLogger().info("Saving " + ecValue + " with parameter: " + accessToken);
+        Reporter.log("Saving " + ecValue + " with parameter: " + accessToken);
     }
 
     /**
