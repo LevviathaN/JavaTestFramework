@@ -8,7 +8,7 @@ when the course instances includes the learning material VLE
 then I expect all other learning materials to display
 and the any named VLE to be hidden
 
-  @Positive @VLEDoNotDisplay #TC-5105
+  @Positive @VLEDoNotDisplay #TC-5105,6650
   Scenario:Dates n Prices Hide VLE Learning Material
     Given I execute "Log In to Hub as Admin" reusable step
     And I am on "https://admin-stage-bppdigital.bppuniversity.com/admin/cms/pages/2805/edit" URL
@@ -38,7 +38,15 @@ and the any named VLE to be hidden
     And I click on the "Sun 27 Jun 2021" "element"
     Then I shouldn't see the "VLE" "contained in P element"
     And I should see the "Audit of Banks" "contained in P element"
-    And I click on the "Sun 27 Jun 2021" "element"
+    Then I click on the "Location" "BPP Digital Dates and Prices Filter By"
+    Then I click on the "London Waterloo" "BPP Digital Dates and Prices Location filter option"
+    Then I click on the "11" "BPP Digital Add to Basket Item"
+    And I click on the "BPP Digital Header Basket" button by JS
+    #Perform session amount validation. Part for D&P page will be completed after resolving https://jira.bpp.com/browse/BPP-18624
+    Then I should see the "4 Evenings sessions starting" "text contained in P element"
+    And I click on the "4 Evenings sessions starting" "text contained in P element"
+    And I should see the "London (2 Evenings sessions)" "element the last"
+    And I should see the "London (2 Evenings sessions)" "element the first"
     #Delete DnP component in Admin
     And I am on "https://admin-stage-bppdigital.bppuniversity.com/admin/cms/pages/2805/edit" URL
     And I wait for "5" seconds
