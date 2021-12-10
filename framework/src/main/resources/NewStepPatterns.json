@@ -306,5 +306,9 @@
   {
     "name": "I_VERIFY_THAT_ELEMENT_IS",
     "value": "I verify that \"([^\"]*)\" element \"(equal|contains)\" to \"([^\"]*)\" element$"
+  },
+  {
+    "name": "I_EXECUTE_JS_CODE_AND_SAVING_VALUE_AS",
+    "value": "^I execute \"([^\"]*)\" JS code and saving value as \"([^\"]*)\"$"
   }
 ]

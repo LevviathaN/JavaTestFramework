@@ -529,23 +529,10 @@ public class StepDefinitions extends SeleniumHelper {
 
     @And("^I execute \"([^\"]*)\" JS code and saving value as \"([^\"]*)\"$")
     public void i_execute_js_code_and_saving_value_as(String jsCode, String ecValue) {
-
-        JavascriptExecutor js = (JavascriptExecutor)  SeleniumHelper.driver();
-        String value = (String) js.executeScript(jsCode);
-
-        JSONParser parser = new JSONParser();
-        JSONObject json = null;
-        try {
-            json = (JSONObject) parser.parse(value);
-        } catch (org.json.simple.parser.ParseException e) {
-            e.printStackTrace();
-        }
-        String accessToken = (String) json.get("accessToken");
-
-        ExecutionContextHandler.setExecutionContextValueByKey(ecValue,accessToken);
-
-        BPPLogManager.getLogger().info("Saving " + ecValue + " with parameter: " + accessToken);
-        Reporter.log("Saving " + ecValue + " with parameter: " + accessToken);
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setAction(ActionsWithTwoParameters.RETURN_REQUEST_WITH_JS, jsCode, ecValue)
+                .setReporterLog("Executing step: I execute '" + jsCode + "' JS code and saving value as '" + ecValue)
+                .execute();
     }
 
     /**
