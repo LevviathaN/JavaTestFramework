@@ -22,12 +22,12 @@ Feature: Registry Case Management
     And I wait for "2" seconds
     And I validate text "Ready to Close" to be displayed for "Salesforce Case Status Data Field" element
 
-  @QueryVerification
+  @QueryVerification #TC-6557,6558,6559,6560,6561,6562
   Scenario: Registry Case Management Verify Case Queues
     Given I execute "Log In To Salesforce" reusable step
     And I execute "Validate All Registry Cases Types" reusable step
 
-  @AssignmentRulesAssessments
+  @AssignmentRulesAssessments #TC-6614,6616,6618,6619,6671,6651,6652,6653,6654,6655,6656,6657,6664,6665,6666,6667,6668,6669,6670
   Scenario Outline: Registry Case Management Verify Assignment Assessments For <school> School and <caseOwner> Case Owner
     Given I execute "Log In To Salesforce" reusable step
     And I click on the "Cases" "Salesforce navigation menu option"
@@ -60,7 +60,7 @@ Feature: Registry Case Management
       |Psychology  |I have a question about my assessments feedback             |Psychology School Programme Support|
       |Technology  |I would like to resit my exam                               |Technology School Support|
 
-  @AssignmentRulesAttendance
+  @AssignmentRulesAttendance #TC-6936,6937,6938,6939
   Scenario Outline: Registry Case Management Verify Assignment Attendance For <school> School and <caseOwner> Case Owner
     Given I execute "Log In To Salesforce" reusable step
     And I click on the "Cases" "Salesforce navigation menu option"
@@ -91,7 +91,7 @@ Feature: Registry Case Management
       |Psychology  |I need to inform you about my absence                       |Psychology School Programme Support|
       |Technology  |I have a query about my attendance record                   |Technology School Support|
 
-  @AssignmentRulesAppointment
+  @AssignmentRulesAppointment #TC-6940,6941,6942,6943,6944,6945,6946,6947,6948,6949,6950,6951,6952,6953,6954,6955,6956,6957
   Scenario: Registry Case Management Verify Assignment Book an Appointment
     Given I execute "Log In To Salesforce" reusable step
     And I click on the "Cases" "Salesforce navigation menu option"
@@ -115,7 +115,7 @@ Feature: Registry Case Management
     And I validate text "CONTAINS=Business School Programme Support" to be displayed for "Salesforce Case Owner Data Field" element
     And I capture text data "Salesforce Case Number Data Field" as "EC_CASENUMBER" variable
 
-  @AssignmentRulesChangesStudies
+  @AssignmentRulesChangesStudies #TC-6958,6961,6962,6963,6964
   Scenario Outline: Registry Case Management Verify Assignment Changes to Studies For <school> School and <caseOwner> Case Owner
     Given I execute "Log In To Salesforce" reusable step
     And I click on the "Cases" "Salesforce navigation menu option"
@@ -177,7 +177,7 @@ Feature: Registry Case Management
       |Law         |I have not received my certificate                          |Graduation Team|
       |Technology  |I need a replacement certificate                            |Technology School Support|
 
-  @AssignmentRulesIOS
+  @AssignmentRulesIOS #TC-6965,6966,6967,6968,6969,6970,6971,6972,6973,6974,6975,6976,6977,6978,6979,6980
   Scenario Outline: Registry Case Management Verify Assignment IOS For <school> School and <caseOwner> Case Owner
     Given I execute "Log In To Salesforce" reusable step
     And I click on the "Cases" "Salesforce navigation menu option"
@@ -245,7 +245,7 @@ Feature: Registry Case Management
       |Nursing     |Status Letter                                               |Student Records|
       |Technology  |Authorised Leave                                            |Technology School Support|
 
-  @AssignmentRulesLockers
+  @AssignmentRulesLockers #TC-6988,6989,6990,6991,6992,6993,6994,6995,6996,6997,6998,6999,7000,7001,7002,7003,7004,7005,7006,7007,7008,7009,7010
   Scenario Outline: Registry Case Management Verify Assignment Lockers For <school> School and <caseOwner> Case Owner
     Given I execute "Log In To Salesforce" reusable step
     And I click on the "Cases" "Salesforce navigation menu option"
@@ -273,7 +273,7 @@ Feature: Registry Case Management
       |school      |subQueue                                                    |caseOwner|
       |Business    |I have a question about my locker key                       |Student Records|
 
-  @AssignmentRulesOnlineLearning
+  @AssignmentRulesOnlineLearning #TC-7011,7012,7013,7014,7015,7016,7017,7018,7019,7020
   Scenario Outline: Registry Case Management Verify Assignment Online Learning For <school> School and <caseOwner> Case Owner
     Given I execute "Log In To Salesforce" reusable step
     And I click on the "Cases" "Salesforce navigation menu option"
@@ -457,6 +457,30 @@ Feature: Registry Case Management
       |Law         |I need to report a problem with my Biometric Resident Permit|International Student Advice|
       |Psychology  |I want to apply for a Shengen/travel Visa                   |International Student Advice|
       |Technology  |I would like to book an appointment for Visa advice         |International Student Advice|
+
+  @AssignmentRulesUnverified #TC-7046
+  Scenario: Registry Case Management Verify Assignment For University-Unverified Case Owner
+    Given I execute "Log In To Salesforce" reusable step
+    And I click on the "Cases" "Salesforce navigation menu option"
+    And I click on the "Salesforce New Case Button" element
+    And I click on the "Student Query" "Salesforce radiobutton"
+    And I click on the "Next" "button"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    And I click on the "Case Origin" "Salesforce cases dropdown field"
+    And I click on the "Face-to-Face" "Salesforce cases dropdown option"
+    And I click on the "Query Type" "Salesforce cases dropdown field"
+    And I click on the "Attendance and Absences" "Salesforce cases dropdown option"
+    And I click on the "Query Subtype" "Salesforce cases dropdown field"
+    Then I click on the "Absence" "Salesforce cases dropdown option"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    Then I click on the "Leeds" "Salesforce cases dropdown option"
+    And I click on the "School" "Salesforce cases dropdown field"
+    Then I click on the "Technology" "Salesforce cases dropdown option"
+    And I click on the "Save" "Product Factory button title"
+    And I wait for "2" seconds
+    And I should scroll to the "top" of the page
+    And I validate text "CONTAINS=University - Unverified" to be displayed for "Salesforce Case Owner Data Field" element
+    And I capture text data "Salesforce Case Number Data Field" as "EC_CASENUMBER" variable
 
   @GDL #TC-3975,3984,3974,3983,3982,3973,3966,3965,3964,3981,3976,3978,3980,3977,3979
   Scenario: Registry Case Management Verify Case Assignment GDL Law Schools

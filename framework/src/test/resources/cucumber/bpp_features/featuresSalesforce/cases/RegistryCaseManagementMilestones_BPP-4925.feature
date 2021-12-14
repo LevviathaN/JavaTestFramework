@@ -1,4 +1,5 @@
-@Salesforce @RegistryCaseManagement @Milestones @Cases
+#@Salesforce @RegistryCaseManagement @Milestones @Cases
+#Temporarily removed from executions until https://jira.bpp.com/browse/BPP-17344 will be completed
 Feature: Registry Case Management
   As a Registry Salesforce Classic User switching to Lightning Experience,
   I want Registry Case Management to perform as expected
