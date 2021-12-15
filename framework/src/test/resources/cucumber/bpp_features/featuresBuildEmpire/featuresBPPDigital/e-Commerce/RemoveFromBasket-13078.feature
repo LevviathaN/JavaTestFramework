@@ -4,7 +4,7 @@ Feature: Remove Items From Basket And Validation of Error Messages
   This ticket is to enable the remove capability to a basket.
   A remove can be done by either deselecting the 'Add to basket' button on the Dates & Prices course instances view or by choosing the Remove option in the Basket view.
 
-  @RemoveItems @Negative #TC-5201, 5445, 6175, 6205, 6364, 6368, 6531, 5441, 5455
+  @RemoveItems @Negative #TC-5201, 5445, 6175, 6205, 6364, 6368, 6531, 5441, 5455, 5457
   Scenario: eCommerce - Remove Items From Basket And Verify Error Messages
     #Add and remove items
     And I am on "MD_COMMON_LINKS_BPPDIGITALECOMMERCETWOURL" URL
