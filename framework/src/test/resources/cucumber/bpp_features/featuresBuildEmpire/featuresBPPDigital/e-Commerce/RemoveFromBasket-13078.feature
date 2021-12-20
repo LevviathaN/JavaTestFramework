@@ -17,6 +17,10 @@ Feature: Remove Items From Basket And Validation of Error Messages
     Then I click on the "BPP Digital Add to Basket First Course" element
     And I click on the "BPP Digital Header Basket" button by JS
     And I wait for "1" seconds
+    #BPP-15097
+    When I click on the "Events" "BPP Digital Student Applications Menu link"
+    And I validate text "CONTAINS=1" to be displayed for "BPP Digital Header Basket" element
+    And I click on the "BPP Digital Header Basket" button by JS
     Then I click on the "Remove" "button"
     And I wait for "1" seconds
     Then I should see the "Your Basket is empty" "message"
