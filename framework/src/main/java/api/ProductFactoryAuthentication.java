@@ -21,8 +21,12 @@ public class ProductFactoryAuthentication {
     private static api.ProductFactoryAuthentication instance = null;
 
     private ProductFactoryAuthentication() {
-        token = getAccessTokenPF();
-        ExecutionContextHandler.setExecutionContextValueByKey("EC_AUTH_TOKEN_PF", token);
+        if(System.getProperty("environment").equals("UAT")) {
+            token = ExecutionContextHandler.getExecutionContextValueByKey("EC_AUTH_TOKEN_PF_UAT");
+        } else {
+            token = getAccessTokenPF();
+            ExecutionContextHandler.setExecutionContextValueByKey("EC_AUTH_TOKEN_PF", token);
+        }
     }
 
     public static api.ProductFactoryAuthentication getInstance() {

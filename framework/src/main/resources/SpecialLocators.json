@@ -257,6 +257,50 @@
     "value": "xpath=//h2[contains(.,'be enrolled as')]/following-sibling::dl//*[contains(.,'PARAMETER')]"
   },
   {
+    "name": "BPP Digital Course Type from Product Factory",
+    "value": "xpath=(//div[@class='courseType'])[PARAMETER]/div[1]"
+  },
+  {
+    "name": "BPP Digital Study Type from Product Factory",
+    "value": "xpath=(//div[@class='studyType'])[PARAMETER]"
+  },
+  {
+    "name": "BPP Digital Inc Vat from Product Factory",
+    "value": "xpath=(//div[@class='price-holder'])[PARAMETER]/div[@class='price-inc-vat']"
+  },
+  {
+    "name": "BPP Digital Price with Vat from Product Factory",
+    "value": "xpath=(//div[@class='price-holder'])[PARAMETER]/div[contains(@class,'price ')]"
+  },
+  {
+    "name": "BPP Digital Course Start from Product Factory",
+    "value": "xpath=(//div[@class='courseStart'])[PARAMETER]"
+  },
+  {
+    "name": "BPP Digital Syllabus from Product Factory",
+    "value": "xpath=(//div[@class='syllabus'])[PARAMETER]"
+  },
+  {
+    "name": "BPP Digital Add to Basket button from Product Factory",
+    "value": "xpath=(//div[contains(@class,'purchase col')]/button)[PARAMETER]"
+  },
+  {
+    "name": "BPP Digital Expand paper course arrow from Product Factory",
+    "value": "xpath=(//div[contains(@class,'expand-arrow')]/p/*[name()='svg'])[PARAMETER]"
+  },
+  {
+    "name": "BPP Digital Row Courses from Product Factory",
+    "value": "xpath=(//div[@class='row courses'])[PARAMETER]"
+  },
+  {
+    "name": "BPP Digital Course Timing and Address from Product Factory",
+    "value": "xpath=(//div[contains(@class,'course-timings-and-address')])[PARAMETER]"
+  },
+  {
+    "name": "BPP Digital Course Coverage from Product Factory",
+    "value": "xpath=(//div[contains(@class,'course-coverage')])[PARAMETER]"
+  },
+  {
     "name": "Build Empire Breadcrumb Not Clickable Tab",
     "value": "xpath=//ul[@class='breadcrumb ember-view']/li//li[contains(.,'PARAMETER')]"
   },

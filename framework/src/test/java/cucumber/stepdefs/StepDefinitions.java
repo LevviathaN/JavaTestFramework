@@ -7,28 +7,24 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.hamcrest.Matchers;
 import org.jooq.tools.json.ParseException;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.NoSuchWindowException;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.ITest;
 import ui.utils.SeleniumHelper;
 import ui.utils.*;
 import ui.utils.bpp.ExecutionContextHandler;
 import ui.utils.bpp.TestParametersController;
 import ui.utils.pdf.PDFHandler;
-
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
-
 import static com.jcabi.matchers.RegexMatchers.matchesPattern;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.not;
+
 
 /**
  * Created by Ruslan Levytskyi on 15/3/2019.
@@ -521,6 +517,51 @@ public class StepDefinitions extends SeleniumHelper {
         stepDef.setAction(ActionsWithParameter.EXECUTE_JS_CODE, jsCode)
                 .setReporterLog("Executing JS code: " + jsCode)
                 .execute();
+    }
+
+    /**
+     * Definition to execute JS code (Console command for Chrome) to grab Auth key from Chrome's Local Storage.
+     *
+     * @param jsCode JS code to execute
+     * @param ecValue ec Value to store returned js code
+     * @apiNote There should be timeout before the method, cause Token need time to be shown.
+     * @see  [[[   return localStorage.getItem('product-factory-react-token')   ]]]
+     * @author Andrii Yakymchuk
+     *
+     */
+
+    @And("^I execute \"([^\"]*)\" JS code and saving value as \"([^\"]*)\"$")
+    public void i_execute_js_code_and_saving_value_as(String jsCode, String ecValue) {
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setAction(ActionsWithTwoParameters.RETURN_REQUEST_WITH_JS, jsCode, ecValue)
+                .setReporterLog("Executing step: I execute '" + jsCode + "' JS code and saving value as '" + ecValue)
+                .execute();
+    }
+
+    /**
+     * Definition to transform date from one pattern to another and saving as EC.
+     *
+     * @param dateParse JS code to execute
+     * @param datePattern ec Value to store returned js code
+     * @param ecValue
+     * @author Andrii Yakymchuk
+     *
+     */
+
+    @And("^I transform \"([^\"]*)\" date with pattern \"([^\"]*)\" to another \"([^\"]*)\" pattern saving value as \"([^\"]*)\"$")
+    public void i_transform_date_to_another_pattern_saving_value_as(String dateParse, String oldDatePattern, String datePattern, String ecValue) {
+
+        DateFormat originalFormat = new SimpleDateFormat(oldDatePattern);
+        DateFormat targetFormat = new SimpleDateFormat(datePattern);
+        Date date = null;
+        try {
+            date = originalFormat.parse(TestParametersController.checkIfSpecialParameter(dateParse));
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+        String formattedDate = targetFormat.format(date);
+        ExecutionContextHandler.setExecutionContextValueByKey(ecValue, formattedDate);
+
     }
 
     /**

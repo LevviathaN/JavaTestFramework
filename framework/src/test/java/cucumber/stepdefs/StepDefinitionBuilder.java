@@ -3,7 +3,10 @@ package cucumber.stepdefs;
 import cucumber.reusablesteps.ReusableRunner;
 import cucumber.stepdefs.Actions.*;
 import org.hamcrest.Matchers;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import ui.utils.*;
@@ -220,6 +223,26 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                     xAxis = parameter1.equals("right") ? "document.body.scrollLeft" : parameter1.equals("left") ? "0" : parameter1;
                     yAxis = parameter2.equals("bottom") ? "document.body.scrollHigh" : parameter2.equals("top") ? "0" : parameter2;
                     executeJSCode("window.scrollBy(" + xAxis + ", " + yAxis +")");
+                };
+                break;
+            case RETURN_REQUEST_WITH_JS:
+                action = () -> {
+                    JavascriptExecutor js = (JavascriptExecutor)  SeleniumHelper.driver();
+                    String value = (String) js.executeScript(param1);
+
+                    JSONParser parser = new JSONParser();
+                    JSONObject json = null;
+                    try {
+                        json = (JSONObject) parser.parse(value);
+                    } catch (org.json.simple.parser.ParseException e) {
+                        e.printStackTrace();
+                    }
+                    String accessToken = (String) json.get("accessToken");
+
+                    ExecutionContextHandler.setExecutionContextValueByKey(param2,accessToken);
+
+                    BPPLogManager.getLogger().info("Saving " + param2 + " with parameter: " + accessToken);
+                    Reporter.log("Saving " + param2 + " with parameter: " + accessToken);
                 };
                 break;
         }
