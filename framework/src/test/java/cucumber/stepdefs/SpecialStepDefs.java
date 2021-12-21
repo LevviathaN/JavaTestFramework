@@ -395,7 +395,7 @@ public class SpecialStepDefs extends SeleniumHelper {
                     BPPLogManager.getLogger().info("Actual value '" + actualValue + "' matches the pattern " + "'" + newValue + "'");
                 } else if (text.toUpperCase().startsWith("CONTAINS=")) {
                     newValue = newValue.substring("CONTAINS=".length());
-                    if (text.contains("EC")) {
+                    if (text.contains("EC_")) {
                         String executionContextValue = ExecutionContextHandler.getExecutionContextValueByKey(newValue);
                         assertThat(actualValue.trim().toLowerCase(), containsString(executionContextValue.toLowerCase()));
                         Reporter.log("<pre>Actual value '" + actualValue + "' contains the string " + "'" + executionContextValue + "'</pre>");
@@ -406,7 +406,7 @@ public class SpecialStepDefs extends SeleniumHelper {
                     }
                 } else if (text.toUpperCase().startsWith("NOT_CONTAINS=")) {
                     newValue = newValue.substring("NOT_CONTAINS=".length());
-                    if (text.contains("EC")) {
+                    if (text.contains("EC_")) {
                         String executionContextValue = ExecutionContextHandler.getExecutionContextValueByKey(newValue);
                         assertThat(actualValue.trim(), not(containsString(executionContextValue)));
                     } else {

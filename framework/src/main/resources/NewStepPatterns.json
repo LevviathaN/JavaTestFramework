@@ -310,5 +310,9 @@
   {
     "name": "I_EXECUTE_JS_CODE_AND_SAVING_VALUE_AS",
     "value": "^I execute \"([^\"]*)\" JS code and saving value as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_TRANSFORM_DATE_TO_ANOTHER_PATTERN_SAVING_VALUE_AS",
+    "value": "^I transform \"([^\"]*)\" date with pattern \"([^\"]*)\" to another \"([^\"]*)\" pattern saving value as \"([^\"]*)\"$"
   }
 ]

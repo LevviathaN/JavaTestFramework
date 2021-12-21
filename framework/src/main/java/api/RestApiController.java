@@ -11,12 +11,8 @@ import ui.utils.Tools;
 import ui.utils.bpp.ExecutionContextHandler;
 import ui.utils.bpp.PropertiesHelper;
 import ui.utils.bpp.TestParametersController;
-
 import java.util.*;
-
-import static com.jcabi.matchers.RegexMatchers.matchesPattern;
 import static io.restassured.RestAssured.given;
-import static org.junit.Assert.assertThat;
 
 public class RestApiController {
 
@@ -198,27 +194,27 @@ public class RestApiController {
                         }
                     } else {
                         value = variables.get(variablesKey);
+                        if (variablesKey.equals("filter")) {
+                            Map filter = ((Map) variables.get("filter"));
+                            for (Object filterKey : filter.keySet()) {
+                                value = parameters.get(filterKey);
+                                filter.put(filterKey, TestParametersController.checkIfSpecialParameter(value.toString()));
+                            }
+                        }
                     }
                     String updatedValue = value.equals(null) ? "null" : TestParametersController.checkIfSpecialParameter(value.toString());
                     value = (value.toString().equals(updatedValue) || value instanceof JSONArray) ? value : updatedValue;
                     if (!(value == null)) {
                         if (!(variables.get("reference") == null)
                                 || (!(variables.get("instanceReference") == null))
-                                || (!(variables.get("instanceGroupReference") == null)))
+                                || (!(variables.get("instanceGroupReference") == null))
+                                || (!(variables.get("courseReference") == null)))
                         {
                             variables.put(variablesKey, TestParametersController.checkIfSpecialParameter(value.toString()));
                         }
                         if (!(variables.get("filter") == null)) {
                             if (variables.get("filter").toString().equals("{}")) {
                             variables.put("filter", new JSONObject());
-                        } else if (variables.get("filter").toString().contains("searchTerm")) {
-                            JSONObject filterObj = (JSONObject) variables.get("filter");
-                            String searchTerm = (String) filterObj.get("searchTerm");
-                            filterObj.put("searchTerm", TestParametersController.checkIfSpecialParameter(searchTerm));
-                            } else if (variables.get("filter").toString().contains("courseReference")) {
-                                JSONObject filterObj = (JSONObject) variables.get("filter");
-                                String courseReference = (String) filterObj.get("courseReference");
-                                filterObj.put("courseReference", TestParametersController.checkIfSpecialParameter(courseReference));
                             }
                         }
                     }
@@ -282,7 +278,7 @@ public class RestApiController {
             throw new RuntimeException("Can't proceed with response: " + error);
         }
 
-        assertThat(Reference, matchesPattern("([a-z0-9-]){36}"));
+//        assertThat(Reference, matchesPattern("([a-z0-9-]){36}"));
 //        assertThat(ResponseString, containsString(objName));
 
         return recordsList;
