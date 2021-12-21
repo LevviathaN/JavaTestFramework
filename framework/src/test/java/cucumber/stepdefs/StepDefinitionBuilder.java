@@ -226,7 +226,6 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                 };
                 break;
             case RETURN_REQUEST_WITH_JS:
-                //TODO: Insert wait
                 action = () -> {
                     JavascriptExecutor js = (JavascriptExecutor)  SeleniumHelper.driver();
                     String value = (String) js.executeScript(param1);

@@ -12,7 +12,7 @@ Feature: Ability for Course / Paper etc to be published from Product Factory int
     # Online Classroom: d2adc14d-16d5-4c1c-8444-5fa153380864
     Given I remember "d2adc14d-16d5-4c1c-8444-5fa153380864" text as "EC_COURSE_REFERENCE_THREE" variable
 
-  @EndToEnd @BET #TC-6135
+  @EndToEnd #TC-6135
   Scenario: Verify the Published Course is Successfully Transferred From PF to the BPP Website
     Given I execute "Log In" reusable step
     And I wait for "3" seconds
