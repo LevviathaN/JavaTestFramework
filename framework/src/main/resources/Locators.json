@@ -2933,11 +2933,11 @@
   },
   {
     "name": "Salesforce First Case Number",
-    "value": "xpath=//span/a[contains(.,'EC_CASENUMBER')]"
+    "value": "xpath=//span//a[contains(.,'EC_CASENUMBER')]"
   },
   {
     "name": "Salesforce First Case Number Search Table",
-    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//td/span[contains(.,'EC_CASENUMBER')]"
+    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//td//span[contains(.,'EC_CASENUMBER')]"
   },
   {
     "name": "Salesforce First Qualification Subject",

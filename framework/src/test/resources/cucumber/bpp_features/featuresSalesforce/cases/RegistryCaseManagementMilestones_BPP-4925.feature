@@ -1,4 +1,5 @@
-@Salesforce @RegistryCaseManagement @Milestones @Cases
+#@Salesforce @RegistryCaseManagement @Milestones @Cases
+#Temporarily removed from executions until https://jira.bpp.com/browse/BPP-17344 will be completed
 Feature: Registry Case Management
   As a Registry Salesforce Classic User switching to Lightning Experience,
   I want Registry Case Management to perform as expected
@@ -89,15 +90,6 @@ Feature: Registry Case Management
       | 11 | I click on the "Change of contact details" "Salesforce cases dropdown option" |
     And I click on the "Salesforce Case Milestones Tab" button
     And I wait for "1" seconds
-    Then I validate text "CONTAINS=Student Query - Ready to Close" to be displayed for "Salesforce Case Milestones Tab First Milestone Name" element
-    Then I validate text "RE=4.+" to be displayed for "Salesforce Case Milestones Tab Milestone One" element
-
-  Scenario: Registry Case Verify Milestones Student Loans
-    Given I execute "Log In To Salesforce" reusable step
-    When I execute "Create Complaints Registry Case" reusable step replacing some steps
-      | 9 | I click on the "Student Loans Company query" "Salesforce cases dropdown option" |
-    And I click on the "Salesforce Case Milestones Tab" button
-    And I wait for "2" seconds
     Then I validate text "CONTAINS=Student Query - Ready to Close" to be displayed for "Salesforce Case Milestones Tab First Milestone Name" element
     Then I validate text "RE=4.+" to be displayed for "Salesforce Case Milestones Tab Milestone One" element
 
