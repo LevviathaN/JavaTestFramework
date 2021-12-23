@@ -5,7 +5,7 @@ Feature: Topic Overview Page
   As a Hub user, viewing the Topic Overview page, expect to see a new "completion status" indicator on labels that are not indented,
   that indicates how many sub-labels / unindented activities under this label have been completed
 
-  @Positive @iPad @iPhone @Samsung @BET #TC-2232
+  @Positive @iPad @iPhone @Samsung #TC-2232
   Scenario: Topic Overview Page_Mobile
     Given I execute "Log In to Hub as Student VPE Mobile" reusable step replacing some steps
       | 2 | I set "autobrogansasha5546@harakirimail.com" text to the "Email" "Build Empire text field"    |
