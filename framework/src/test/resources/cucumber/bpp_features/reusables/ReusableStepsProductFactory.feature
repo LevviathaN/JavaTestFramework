@@ -658,3 +658,29 @@ Feature: Product Factory
     And I click on the "Perform Bulk Operation" button
     And I click on the "Remove from the website" "element by title" if "Remove from the website,element by title" "Product Factory special element is enabled"
     Then Attribute "tabindex" of "Remove from the website" "element by title" should have value "-1"
+
+  Scenario: Search Non Existing Material Products
+    And I set "EC_BODY_NAME" text to the "Search" "Product Factory Search Field" from keyboard
+    And I press "MD_COMMON_KEYBOARD_ENTER" for "Search" "Product Factory Search Field"
+    And I wait for "1" seconds
+    And I should see the "No Materials" message
+    And I should see the "Materials will be displayed here once added or searched" message
+
+  Scenario: Search Existing Course Material Products
+    And I set "EC_BODY_NAME" text to the "Search" "Product Factory Search Field" from keyboard
+    And I press "MD_COMMON_KEYBOARD_ENTER" for "Search" "Product Factory Search Field"
+    And I wait for "1" seconds
+    And I should see the "EC_BODY_SHORT_NAME" message
+
+  Scenario: Search Non Existing Courses
+    And I set "EC_BODY_NAME" text to the "Search" "Product Factory Search Field" from keyboard
+    And I press "MD_COMMON_KEYBOARD_ENTER" for "Search" "Product Factory Search Field"
+    And I wait for "1" seconds
+    And I should see the "No Courses" message
+    And I should see the "Courses will show up here once added or searched" message
+
+  Scenario: Search Existing Courses
+    And I set "EC_BODY_NAME" text to the "Search" "Product Factory Search Field" from keyboard
+    And I press "MD_COMMON_KEYBOARD_ENTER" for "Search" "Product Factory Search Field"
+    And I wait for "1" seconds
+    And I should see the "EC_BODY_SHORT_NAME" message

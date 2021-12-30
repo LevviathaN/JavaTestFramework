@@ -701,6 +701,10 @@
     "value": "xpath=(//tbody/tr/td[PARAMETER])[3]"
   },
   {
+    "name": "Product Factory Search Field",
+    "value": "xpath=(//label[normalize-space()='PARAMETER']/following::input)[1]"
+  },
+  {
     "name": "Salesforce New Qualification input fields",
     "value": "xpath=//*[text()='PARAMETER']/following::input[1]"
   },
