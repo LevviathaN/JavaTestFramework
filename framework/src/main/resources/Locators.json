@@ -2820,6 +2820,10 @@
     "value": "xpath=//span[@title='Select/Deselect All Courses']"
   },
   {
+    "name": "Product Factory Submit Button",
+    "value": "xpath=(//button[@type='submit'])[1]"
+  },
+  {
     "name": "Salesforce Account Creation Save button",
     "value": "xpath=(//div[@class='windowViewMode-normal oneRecordActionWrapper isModal active lafPageHost']//button[normalize-space()='Save'])[1]"
   },

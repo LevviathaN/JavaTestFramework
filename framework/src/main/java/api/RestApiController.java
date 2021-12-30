@@ -197,7 +197,11 @@ public class RestApiController {
                         if (variablesKey.equals("filter")) {
                             Map filter = ((Map) variables.get("filter"));
                             for (Object filterKey : filter.keySet()) {
-                                value = parameters.get(filterKey);
+                                if (!parameters.isEmpty()) {
+                                    value = parameters.get(filterKey);
+                                } else {
+                                    value = filter.get(filterKey);
+                                }
                                 filter.put(filterKey, TestParametersController.checkIfSpecialParameter(value.toString()));
                             }
                         }
