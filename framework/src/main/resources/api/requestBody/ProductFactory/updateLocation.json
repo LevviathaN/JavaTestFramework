@@ -7,8 +7,8 @@
       "addressLine1": "ApiAddressLineOneUpdated[####]",
       "addressLine2": "ApiAddressLineTwoUpdated[####]",
       "addressLine3": "ApiAddressLineThreeUpdated[####]",
-      "postcode":"AE312",
-      "city":"London",
+      "postcode":"AE[###]",
+      "city":"KW_AUTO_CITYEU",
       "countryCode":"GBR",
       "regionReference": "EC_REGION_REFERENCE",
       "financialDimensionReference": "EC_LOCATION_FINANCIAL_DIMENSION_REFERENCE"
