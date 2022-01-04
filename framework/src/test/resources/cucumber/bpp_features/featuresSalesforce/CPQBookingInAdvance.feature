@@ -20,7 +20,7 @@ Feature: Create a Single Booking
     And I wait for "2" seconds
     #Create Student Account
     Given I execute "Create Student Account" reusable step with some additional steps
-    |11|I click on the "Account Tax Category" "Salesforce dropdown field"|
+    |11|I click on the "Account Tax Category" "Salesforce dropdown field" by JS|
     |12|I click on the "Domestic Business" "element by title"|
     |13|I wait for "2" seconds|
     |14|I click on the "Billing Type" "Salesforce dropdown field" by JS|
