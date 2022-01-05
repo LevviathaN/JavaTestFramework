@@ -8,8 +8,8 @@ Feature: Topic Overview Page
   @Positive @iPad @iPhone @Samsung #TC-2232
   Scenario: Topic Overview Page_Mobile
     Given I execute "Log In to Hub as Student VPE Mobile" reusable step replacing some steps
-      | 2 | I set "automaureenmerritt7112@guerrillamail.info" text to the "Email" "Build Empire text field" |
-      | 3 | I set "A@polloGlobal2020" text to the "Password" "Build Empire text field"                      |
+      | 2 | I set "autobrogansasha5546@harakirimail.com" text to the "Email" "Build Empire text field"    |
+      | 3 | I set "A@polloGlobal2020" text to the "Password" "Build Empire text field"                    |
     And I wait for "10" seconds
     And I click on the "Hub VPE Mobile Hamburger Menu" button if "Hub VPE Mobile Hamburger Menu" "element is present"
     Then I click on the "Hub Mobile My Learning Link Hamburger Menu" element

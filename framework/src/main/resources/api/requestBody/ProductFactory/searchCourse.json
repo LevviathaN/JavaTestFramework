@@ -1,0 +1,8 @@
+{
+  "variables":{
+    "filter":{
+      "courseReference":"EC_COURSE_REFERENCE"
+    }
+  },
+  "query":"query ($filter: FindCourseFilterInput!) { findCourse(filter: $filter) { reference status paper { reference name body { reference shortName name __typename } __typename } level { reference shortName name __typename } sitting { reference name startDate endDate __typename } courseType { reference description vatRule { reference description __typename } __typename } region { reference name __typename } instanceGroup { reference __typename } numberOfSessions numberOfSteps __typename }}"
+}

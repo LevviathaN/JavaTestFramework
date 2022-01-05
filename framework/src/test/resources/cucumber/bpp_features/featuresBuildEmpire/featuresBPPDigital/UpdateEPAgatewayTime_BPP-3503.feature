@@ -4,7 +4,7 @@ Feature: BPP Digital Update EPA gateway time
   Background:
     Given I execute "Log In to Hub as Admin" reusable step
 
-  @Positive @EPA #TC-1823
+  @Positive @EPA #TC-1823, 6743
   Scenario: Update EPA gateway time
     When I execute "Admin Hub Navigate to Applications list" reusable step
     And I click on the "Direct App Admin Apprenticeships Tab" link by JS
@@ -45,3 +45,14 @@ Feature: BPP Digital Update EPA gateway time
     And I click on the "Change" "button"
     And I set "MD_COMMON_CREDENTIALS_BUILDEMPIRENEILADMINPASSWORD" text to the "Password" "Build Empire text field"
     And I click on the "OK" "button"
+    And I wait for "3" seconds
+    #Verification for BPP-17339
+    Given I am on "https://admin-stage-bppdigital.bppuniversity.com/admin/mobile_applications" URL
+    When I click on the "Add" "BPP Digital Admin Page Button"
+    And I select "AAT - Level 2 - Certificate in Accounting (AQ2016) - Bookkeeping Transactions - February 2021 to February 2021" from "Totara course " "BPP Digital dropdown"
+    And I select "AAT - Level 2 - Certificate in Accounting (AQ2016) - Elements of Costing - February 2022" from "Totara course " "BPP Digital dropdown"
+    And I select "AAT - Level 2 - Certificate in Accounting (AQ2016) - Level 2 Foundation Certificate Synoptic - February 2022" from "Totara course " "BPP Digital dropdown"
+    And I select "AAT - Level 3 - Diploma in Accounting (AQ2016) - Advanced Bookkeeping - December 2020" from "Totara course " "BPP Digital dropdown"
+    And I select "AAT - Level 3 - Diploma in Accounting (AQ2016) - Advanced Bookkeeping - February 2022" from "Totara course " "BPP Digital dropdown"
+    And I select "AAT - Level 4 - Diploma in Accounting Mandatory (AQ2016) - Management Accounting Decision &amp; Control - February 2021" from "Totara course " "BPP Digital dropdown"
+    And I select "Liam's Mini Course for Volodymyr" from "Totara course " "BPP Digital dropdown"

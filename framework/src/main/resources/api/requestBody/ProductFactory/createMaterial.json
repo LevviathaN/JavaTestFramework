@@ -3,6 +3,7 @@
   "variables": {
     "command": {
       "materialTypeReference": "EC_MATERIAL_TYPE_REFERENCE",
+      "paperReference":"EC_PAPER_REFERENCE",
       "bodyReference": "EC_BODY_REFERENCE",
       "sittingReferences": [
         "EC_SITTING_REFERENCE"
