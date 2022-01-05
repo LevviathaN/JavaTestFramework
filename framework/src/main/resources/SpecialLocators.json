@@ -841,6 +841,14 @@
     "value": "xpath=//span[contains(.,'Price Information')]//following::div[1]//span[text()='PARAMETER']//following::div[2]//span//slot/slot//slot/*"
   },
   {
+    "name": "Salesforce Quotes Page Product Quantity Element To Click",
+    "value": "inframe=Salesforce Frame>xpath=(//span[@class='style-scope sf-le-table-row']/../following::div[@field='SBQQ__Quantity__c']/div)[PARAMETER]"
+  },
+  {
+    "name": "Salesforce Quotes Page Product Quantity Pencil Element",
+    "value": "inframe=Salesforce Frame>xpath=(//span[@class='style-scope sf-le-table-row']/..//../following::div[@field='SBQQ__Quantity__c']/div)[PARAMETER]"
+  },
+  {
     "name": "Totara Assessment radiobutton",
     "value": "inframe=TotaraScromFrame>xpath=//span[contains(text(),'PARAMETER')]/../../preceding-sibling::td/input"
   },
