@@ -846,7 +846,7 @@
   },
   {
     "name": "Salesforce Quotes Page Product Quantity Pencil Element",
-    "value": "inframe=Salesforce Frame>xpath=(//span[@class='style-scope sf-le-table-row']/..//../following::div[@field='SBQQ__Quantity__c']//span[contains(@class,'pencil')])[PARAMETER]"
+    "value": "inframe=Salesforce Frame>xpath=(//span[@class='style-scope sf-le-table-row']/..//../following::div[@field='SBQQ__Quantity__c']/div)[PARAMETER]"
   },
   {
     "name": "Totara Assessment radiobutton",

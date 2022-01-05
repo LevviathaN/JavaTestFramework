@@ -50,31 +50,30 @@ Feature: Create a Single Booking
     And I click on the "Salesforce Quotes Select Product Button" element
     And I wait for "3" seconds
     #Add 10 to quantity for Bulk Update
-    Then I click on the "6" "Salesforce Quotes Page Product Quantity Element To Click"
-    And I click on the "6" "Salesforce Quotes Page Product Quantity Pencil Element" by JS
-    Then I fill the "Salesforce Quotes Page Product Quantity Input" field with "10"
+    Then I doubleclick on the "6" "Salesforce Quotes Page Product Quantity Element To Click"
+    And I click on the "6" "Salesforce Quotes Page Product Quantity Pencil Element"
+    Then I fill the "Salesforce Quotes Page Product Quantity Input" field with "1"
     And I press "MD_COMMON_KEYBOARD_ENTER" for "Salesforce Quotes Page Product Quantity Input"
     Then I click on the "5" "Salesforce Quotes Page Product Quantity Element To Click"
     And I click on the "5" "Salesforce Quotes Page Product Quantity Pencil Element"
-    Then I fill the "Salesforce Quotes Page Product Quantity Input" field with "10"
+    Then I fill the "Salesforce Quotes Page Product Quantity Input" field with "1"
     And I press "MD_COMMON_KEYBOARD_ENTER" for "Salesforce Quotes Page Product Quantity Input"
     Then I click on the "4" "Salesforce Quotes Page Product Quantity Element To Click"
     And I click on the "4" "Salesforce Quotes Page Product Quantity Pencil Element"
-    Then I fill the "Salesforce Quotes Page Product Quantity Input" field with "10"
+    Then I fill the "Salesforce Quotes Page Product Quantity Input" field with "1"
     And I press "MD_COMMON_KEYBOARD_ENTER" for "Salesforce Quotes Page Product Quantity Input"
     Then I click on the "3" "Salesforce Quotes Page Product Quantity Element To Click"
     And I click on the "3" "Salesforce Quotes Page Product Quantity Pencil Element"
-    Then I fill the "Salesforce Quotes Page Product Quantity Input" field with "10"
+    Then I fill the "Salesforce Quotes Page Product Quantity Input" field with "1"
     And I press "MD_COMMON_KEYBOARD_ENTER" for "Salesforce Quotes Page Product Quantity Input"
     Then I click on the "2" "Salesforce Quotes Page Product Quantity Element To Click"
     And I click on the "2" "Salesforce Quotes Page Product Quantity Pencil Element"
-    Then I fill the "Salesforce Quotes Page Product Quantity Input" field with "10"
+    Then I fill the "Salesforce Quotes Page Product Quantity Input" field with "1"
     And I press "MD_COMMON_KEYBOARD_ENTER" for "Salesforce Quotes Page Product Quantity Input"
     Then I click on the "1" "Salesforce Quotes Page Product Quantity Element To Click"
     And I click on the "1" "Salesforce Quotes Page Product Quantity Pencil Element"
-    Then I fill the "Salesforce Quotes Page Product Quantity Input" field with "10"
+    Then I fill the "Salesforce Quotes Page Product Quantity Input" field with "1"
     And I press "MD_COMMON_KEYBOARD_ENTER" for "Salesforce Quotes Page Product Quantity Input"
-
     And I click on the "Salesforce Quotes Select Product Page Save" element
     #And I click on the "Salesforce Quotes Edit Page Save" element
     Then I click on the "Salesforce Quotes Edit" element
