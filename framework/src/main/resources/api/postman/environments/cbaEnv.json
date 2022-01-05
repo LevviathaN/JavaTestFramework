@@ -3,6 +3,11 @@
 	"name": "CBAs env UAT",
 	"values": [
 		{
+			"key": "cbaPFref",
+			"value": "a6f30a1d-6a54-4bad-af30-b733c7e53fe5",
+			"enabled": true
+		},
+		{
 			"key": "pf_auth0_token_url",
 			"value": "https://bpp-stage.eu.auth0.com/oauth/token/",
 			"enabled": true
@@ -360,11 +365,6 @@
 		{
 			"key": "SFInstanceIdArr",
 			"value": "",
-			"enabled": true
-		},
-		{
-			"key": "cbaPFref",
-			"value": "a6f30a1d-6a54-4bad-af30-b733c7e53fe5",
 			"enabled": true
 		},
 		{
