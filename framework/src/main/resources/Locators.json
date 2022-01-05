@@ -3204,6 +3204,10 @@
     "value": "inframe=Salesforce Frame>xpath=(//*[@id='mainButton'])[last()]"
   },
   {
+    "name": "Salesforce Quotes Page Product Quantity Input",
+    "value": "inframe=Salesforce Frame>xpath=(//input[contains(@class,'numberInput')])[last()]"
+  },
+  {
     "name": "Salesforce Quotes Edit Page Save",
     "value": "inframe=Salesforce Frame>xpath=//*[@name='Save']/paper-button"
   },
