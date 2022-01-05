@@ -19,10 +19,10 @@ Feature: Product Factory API Data Creation
       |target       |COURSE     |
 
   @FinancialDimension @Duplicate #TC-1543
-  Scenario: Update created Financial Dimension record Location item
+  Scenario: Update created Financial Dimension record Course item
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_LEGAL_ENTITY_"
       |dimensionType|PRODUCT |
-      |target       |LOCATION|
+      |target       |MATERIAL|
     Then I execute "Update Financial Dimension" API step with parameters
       |reference|EC_COURSE_LEGAL_ENTITY_FINANCIAL_DIMENSION_REFERENCE|
 

@@ -21,8 +21,8 @@ Feature: Product Factory API Data Creation
       |dimensionType|PROJECT   |
       |target       |COURSETYPE|
 
-  @FinancialDimension @Duplicate #TC-1543
-  Scenario: Update created Financial Dimension record Course item with Duplicate Data
+  @FinancialDimension #TC-1543
+  Scenario: Update created Financial Dimension record Course Type item
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
       |dimensionType|PROJECT   |
       |target       |COURSETYPE|

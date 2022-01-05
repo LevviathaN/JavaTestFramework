@@ -15,6 +15,20 @@ Feature: Product Factory API Data Creation
     And I execute "Create Study Mode" API step
     And I execute "Create Course Type" API step
 
+  @CourseType @CBA #TC-6158
+  Scenario: Create CBA Course Type
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
+      |dimensionType|PROJECT   |
+      |target       |COURSETYPE|
+    And I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_COST_CENTRE_"
+      |dimensionType|COSTCENTRE|
+      |target       |COURSETYPE|
+    And I execute "Create Vat Rule" API step
+    And I execute "Create Exam Preparation" API step
+    And I execute "Create Study Mode" API step
+    And I execute "Create Course Type" API step with parameters
+      |isCba|true|
+
   @CourseType @Incomplete #TC-700
   Scenario: Submitting Incomplete Course Type Fields
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"
