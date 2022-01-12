@@ -354,7 +354,7 @@
   },
   {
     "name": "Build Empire RFI dropdown option",
-    "value": "xpath=//li[text()=\"PARAMETER\"]"
+    "value": "xpath=//li[text()='PARAMETER']"
   },
   {
     "name": "Build Empire admin applications tab",
@@ -801,6 +801,10 @@
     "value": "xpath=//span[text()='PARAMETER']/../following-sibling::div/span/slot/slot/*"
   },
   {
+    "name": "Salesforce read field",
+    "value": "xpath=(//span[text()='PARAMETER']/../following-sibling::div/span/span)[1]"
+  },
+  {
     "name": "Salesforce related dropdown",
     "value": "xpath=//span[text()='PARAMETER']/ancestor::header/following-sibling::div[@class='slds-no-flex']/descendant::a"
   },
@@ -847,6 +851,10 @@
   {
     "name": "Salesforce Quotes Page Product Quantity Pencil Element",
     "value": "inframe=Salesforce Frame>xpath=(//span[@class='style-scope sf-le-table-row']/..//../following::div[@field='SBQQ__Quantity__c']/div)[PARAMETER]"
+  },
+  {
+    "name": "Salesforce First Lead In Search",
+    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//th//a[contains(.,'PARAMETER')]"
   },
   {
     "name": "Totara Assessment radiobutton",

@@ -3388,6 +3388,10 @@
     "value": "xpath=(//span[text()='Shipping Address']//following::div/span/a[@title])[1]"
   },
   {
+    "name": "Salesforce Lead Page Task Today",
+    "value": "xpath=(//*[@title='Upcoming & Overdue']//following::div[contains(text(),'You have an upcoming task')])[1]"
+  },
+  {
     "name": "Totara Account Expandable Menu",
     "value": "id=action-menu-toggle-0"
   },

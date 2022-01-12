@@ -121,6 +121,9 @@ public class SalesforceBusinessProcessesUAT {
 
         Response dataResponse = restController.getRequest(propertiesHelper.getProperties().getProperty("sf_account_url_UAT") + "/" + ExecutionContextHandler.getExecutionContextValueByKey("EC_ACCOUNT_ID"), SalesforceAuthentication.getInstance().requestHeaderSpecification());
         ArrayList<String> recordData = utils.getRecordData(utils.getResponseProperty(dataResponse));
+        ExecutionContextHandler.setExecutionContextValueByKey("EC_AUTO_FIRSTNAME", recordData.get(102));
+        ExecutionContextHandler.setExecutionContextValueByKey("EC_AUTO_LASTNAME", recordData.get(110));
+        ExecutionContextHandler.setExecutionContextValueByKey("EC_AUTO_EMAIL", recordData.get(58));
         GlobalDataBridge.getInstance().setBufferValueByKey("Student UAT".concat(Integer.toString(new Random().nextInt(999999999))), recordData);
 
         return this;
