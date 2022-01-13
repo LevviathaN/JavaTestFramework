@@ -141,7 +141,7 @@ Feature: Product Factory API Data Creation
     Then I execute negative "Create Digital Content" API step with error name "Digital Content already exists with the display name '<EC_API_DIGITAL_CONTENT_NAME> - <EC_API_DIGITAL_CONTENT_SUFFIX>'" and parameters
       |name      |EC_API_DIGITAL_CONTENT_NAME  |
       |nameSuffix|EC_API_DIGITAL_CONTENT_SUFFIX|
-      |courseTypeReferences|<EC_COURSE_TYPE_REFERENCE>,<EC_SECOND_COURSE_TYPE_REFERENCE>|
+      |courseTypeReferences|EC_COURSE_TYPE_REFERENCE,EC_SECOND_COURSE_TYPE_REFERENCE|
 
   @DigitalContent #TC-3203
   Scenario: Create Digital Content Multiple Course Types
@@ -305,10 +305,10 @@ Feature: Product Factory API Data Creation
     Then I execute "Create Cohort" API step
     And I execute "Create Module" API step
     Then I execute "Create Digital Content University" API step with parameters
-      |name|<EC_MODULE_NAME> - <EC_SIS_CODE> - <EC_MODULE_TERM_CODE> - <EC_MODULE_REFERENCE_NUMBER>|
+      |name|EC_MODULE_NAME - EC_SIS_CODE - EC_MODULE_TERM_CODE - EC_MODULE_REFERENCE_NUMBER|
     And I execute negative "Create Digital Content University" API step with error name "Digital Content already exists with the display name '<EC_MODULE_NAME> - <EC_SIS_CODE> - <EC_TERM_CODE> - <EC_CRN_CODE> - <EC_NAME_SUFFIX>'" and parameters
       |nameSuffix|EC_NAME_SUFFIX|
-      |name|<EC_MODULE_NAME> - <EC_SIS_CODE> - <EC_MODULE_TERM_CODE> - <EC_MODULE_REFERENCE_NUMBER>|
+      |name|EC_MODULE_NAME - EC_SIS_CODE - EC_MODULE_TERM_CODE - EC_MODULE_REFERENCE_NUMBER|
 
   @DigitalContent @Create #TC-3194
   Scenario: Create Digital Content Additional Scenarios
@@ -344,11 +344,11 @@ Feature: Product Factory API Data Creation
     And I execute "Change Paper Body" API step
     And I execute "Link Paper To Levels" API step
     Then I execute "Create Digital Content" API step with parameters
-      |sittingReferences|<EC_SITTING_REFERENCE>, <EC_SECOND_SITTING_REFERENCE>|
+      |sittingReferences|EC_SITTING_REFERENCE, EC_SECOND_SITTING_REFERENCE|
     And I execute "Create Level" API step saving as "SECOND_"
     And I execute "Link Body To Levels" API step with parameters
       |bodyReference|EC_SECOND_BODY_REFERENCE|
-      |levelReferences|<EC_LEVEL_REFERENCE>,<EC_SECOND_LEVEL_REFERENCE>|
+      |levelReferences|EC_LEVEL_REFERENCE,EC_SECOND_LEVEL_REFERENCE|
     Then I execute "Create Digital Content" API step with parameters
       |bodyReference|EC_SECOND_BODY_REFERENCE|
     And I execute "Create Paper" API step saving as "SECOND_"
