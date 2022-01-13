@@ -29,7 +29,7 @@ Feature: Checkout Journey for Logged User MasterCard
     Then I should see the "Booking details" "text"
     Then I should see the "AutoAyaan AutoCarson" "BPP Digital Checkout Personal Details Booking Page"
     Then I should see the "autoharriettkierra5523@harakirimail.com" "BPP Digital Checkout Personal Details Booking Page"
-    Then I should see the "+441234567892" "BPP Digital Checkout Personal Details Booking Page"
+    Then I should see the "+449135420086" "BPP Digital Checkout Personal Details Booking Page"
     And I should see the "Address 1" "element by value"
     And I should see the "Address 222" "element by value"
     And I should see the "London" "element by value"
@@ -43,7 +43,7 @@ Feature: Checkout Journey for Logged User MasterCard
     #Payment page verification with contact address
     Then I should see the "AutoAyaan AutoCarson" "BPP Digital Checkout Personal Details Booking Page"
     Then I should see the "autoharriettkierra5523@harakirimail.com" "BPP Digital Checkout Personal Details Booking Page"
-    Then I should see the "+441234567892" "BPP Digital Checkout Personal Details Booking Page"
+    Then I should see the "+449135420086" "BPP Digital Checkout Personal Details Booking Page"
     And I validate text "CONTAINS=Address 1" to be displayed for "BPP Digital Checkout Payment Contact Address" element
     And I validate text "CONTAINS=Address 222" to be displayed for "BPP Digital Checkout Payment Contact Address" element
     And I validate text "CONTAINS=LONDON" to be displayed for "BPP Digital Checkout Payment Contact Address" element
@@ -79,8 +79,8 @@ Feature: Checkout Journey for Logged User MasterCard
     And I wait for "2" seconds
     Then I click on the "Salesforce First Opportunity" element
     Then I click on the "Salesforce Account Details Tab" element
-    Then I validate text "Closed Won" to be displayed for "Salesforce Case Status Data Field" element
-    And I should see the "Amount" "Salesforce readonly field"
+    Then I validate text "CONTAINS=Closed Won" to be displayed for "Salesforce Case Status Data Field" element
+    And I validate text "EC_SUBTOTAL" to be displayed for "Amount" "Salesforce readonly field"
     And I click on the "Salesforce Orders Quick Link Tab on Quote Page" element
     Then I click on the "Salesforce Orders First Link" link
     And I wait for "1" seconds

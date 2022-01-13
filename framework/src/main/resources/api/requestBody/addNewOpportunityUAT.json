@@ -4,6 +4,6 @@
   "StageName":"Accepted - Conditional Firm",
   "Cycle_Override__c":"Pursue",
   "Customer_Group__c":["SLC","SELFFUND","ONLINE","INTSTUDENT","FF"],
-  "CloseDate":"2022-12-31",
+  "CloseDate":"2023-12-31",
   "Enrolment_Status__c":"Welcome"
 }
