@@ -168,8 +168,9 @@ Feature: Product Factory API Data Creation
     And I execute "Link Body To Levels" API step
     And I execute "Change Paper Body" API step
     And I execute "Link Paper To Levels" API step
+    And I debug
     Then I execute "Create Digital Content" API step with parameters
-      |courseTypeReferences|<EC_COURSE_TYPE_REFERENCE>,<EC_SECOND_COURSE_TYPE_REFERENCE>|
+      |courseTypeReferences|EC_COURSE_TYPE_REFERENCE,EC_SECOND_COURSE_TYPE_REFERENCE|
 
   @DigitalContent @Duplicate #TC-3198
   Scenario: Edit Digital Content Duplicate
@@ -270,7 +271,7 @@ Feature: Product Factory API Data Creation
     And I execute "Change Paper Body" API step
     And I execute "Link Paper To Levels" API step
     Then I execute "Create Digital Content" API step with parameters
-      |courseTypeReferences|<EC_COURSE_TYPE_REFERENCE>,<EC_SECOND_COURSE_TYPE_REFERENCE>|
+      |courseTypeReferences|EC_COURSE_TYPE_REFERENCE,EC_SECOND_COURSE_TYPE_REFERENCE|
     And I execute "Digital Contents" API step
     Then I execute "Update Combination" API step with parameters
       |reference|EC_DIGITAL_CONTENTS_RESULT_COMBINATIONS_REFERENCE|
