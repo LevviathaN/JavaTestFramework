@@ -798,7 +798,7 @@
   },
   {
     "name": "Salesforce readonly field",
-    "value": "xpath=//span[text()='PARAMETER']/../following-sibling::div/span/slot/slot/*"
+    "value": "xpath=//span[text()='PARAMETER']/../following-sibling::div/span/slot/*"
   },
   {
     "name": "Salesforce read field",
@@ -842,7 +842,7 @@
   },
   {
     "name": "Salesforce Invoice Price Info",
-    "value": "xpath=//span[contains(.,'Price Information')]//following::div[1]//span[text()='PARAMETER']//following::div[2]//span//slot/slot//slot/*"
+    "value": "xpath=//span[contains(.,'Price Information')]//following::div[1]//span[text()='PARAMETER']//following::div[2]//span/slot/*"
   },
   {
     "name": "Salesforce Quotes Page Product Quantity Element To Click",

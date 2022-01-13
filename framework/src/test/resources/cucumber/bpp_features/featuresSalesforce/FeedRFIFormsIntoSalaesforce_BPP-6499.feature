@@ -4,7 +4,7 @@ Feature: To Feed RFI Form
   The middleware will make a REST API call to Salesforce with the RFI form data.
 
   @AccountRFI #TC-3471
-  Scenario: Submit RFI as a Learner and Creating Task for Existing Account
+  Scenario: Submit RFI as a Learner and Create Task for Existing Account
     When I create new student account API
     Given I am on "MD_COMMON_LINKS_BPPDIGITALRFILINK" URL
     And I remember "KW_AUTO_TODAY|DD/MM/YYYY" text as "EC_DATE" variable
@@ -27,10 +27,13 @@ Feature: To Feed RFI Form
     Then I should see the "Task" "element by title two"
     Then Сss "height" of "Task" "element by title two" should have value "24px"
     And I should see the "Form: RFI Form - New 2020" "text contained in A element"
-    #Add additional verification for Task!!!!!!!!!!!!!!!!!!!!!
+    And I should see the "Callback: RFI Form - New 2020" "text contained in A element"
+    And I click on the "Callback: RFI Form - New 2020" "text contained in A element"
+    Then I validate text "Call" to be displayed for "Type" "Salesforce read field"
+    Then I validate text "EC_DATE" to be displayed for "Due Date" "Salesforce read field"
 
   @LeadRFI #TC-3474
-  Scenario: Submit RFI as a Learner and Creating Task for Existing Prospective Lead
+  Scenario: Submit RFI as a Learner and Create Task for Existing Prospective Lead
     Given I am on "MD_COMMON_LINKS_BPPDIGITALRFILINK" URL
     And I remember "KW_AUTO_TODAY|DD/MM/YYYY" text as "EC_DATE" variable
     When I click on the "I am a Learner" "Build Empire RFI Label text item"
@@ -56,7 +59,7 @@ Feature: To Feed RFI Form
     Then I validate text "EC_DATE" to be displayed for "Due Date" "Salesforce read field"
 
   @NewLeadRFI #TC-3475
-  Scenario: Submit RFI as a Learner and Creating Task for a New Prospective Lead
+  Scenario: Submit RFI as a Learner and Create Task for a New Prospective Lead
     Given I am on "MD_COMMON_LINKS_BPPDIGITALRFILINK" URL
     And I remember "KW_AUTO_TODAY|DD/MM/YYYY" text as "EC_DATE" variable
     When I click on the "I am a Learner" "Build Empire RFI Label text item"
@@ -85,7 +88,7 @@ Feature: To Feed RFI Form
     Then I validate text "EC_DATE" to be displayed for "Due Date" "Salesforce read field"
 
   @NewBDLeadRFI  #TC-3478
-  Scenario: Submit RFI as an Employer and Creating Task for New BD Account
+  Scenario: Submit RFI as an Employer and Create Task for New BD Account
     #RFI Submitting Employer
     When I am on "MD_COMMON_LINKS_BPPDIGITALRFILINK" URL
     And I remember "KW_AUTO_TODAY|DD/MM/YYYY" text as "EC_DATE" variable
@@ -120,7 +123,7 @@ Feature: To Feed RFI Form
     Then I validate text "EC_DATE" to be displayed for "Due Date" "Salesforce read field"
 
   @ExistingBDLeadRFI  #TC-3477
-  Scenario: Submit RFI as an Employer and Creating Task for Existing BD Lead
+  Scenario: Submit RFI as an Employer and Create Task for Existing BD Lead
     #RFI Submitting Employer
     When I am on "MD_COMMON_LINKS_BPPDIGITALRFILINK" URL
     And I remember "KW_AUTO_TODAY|DD/MM/YYYY" text as "EC_DATE" variable
@@ -150,7 +153,7 @@ Feature: To Feed RFI Form
     Then I validate text "EC_DATE" to be displayed for "Due Date" "Salesforce read field"
 
   @ExistingBDContactRFI  #TC-3476
-  Scenario: Submit RFI as an Employer and Creating Task for Existing BD Contact
+  Scenario: Submit RFI as an Employer and Create Task for Existing BD Contact
     #RFI Submitting Employer
     When I am on "MD_COMMON_LINKS_BPPDIGITALRFILINK" URL
     And I remember "KW_AUTO_TODAY|DD/MM/YYYY" text as "EC_DATE" variable

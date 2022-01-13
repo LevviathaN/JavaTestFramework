@@ -2861,11 +2861,11 @@
   },
   {
     "name": "Salesforce Banner ID Field",
-    "value": "xpath=//span[text()='Banner ID']/../following-sibling::div/span/slot/slot/*"
+    "value": "xpath=//span[text()='Banner ID']/../following-sibling::div/span/slot/*"
   },
   {
     "name": "Salesforce Account Phone Field",
-    "value": "xpath=//span[text()='Phone']/../following-sibling::div/span/slot/slot/*"
+    "value": "xpath=//span[text()='Phone']/../following-sibling::div/span/slot/*"
   },
   {
     "name": "Salesforce CS Ready to Close",
@@ -2909,7 +2909,7 @@
   },
   {
     "name": "Salesforce Case Number Data Field",
-    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//span[text()='Case Number']/../following-sibling::div/span/slot/slot/*"
+    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//span[text()='Case Number']/../following-sibling::div/span/slot/*"
   },
   {
     "name": "Salesforce Case Owner Data Field",
@@ -2917,7 +2917,7 @@
   },
   {
     "name": "Salesforce Case Status Data Field",
-    "value": "xpath=//span[text()='Status']/../following-sibling::div/span/slot/slot/*"
+    "value": "xpath=//span[text()='Status']/../following-sibling::div/span/slot/*[1]"
   },
   {
     "name": "Salesforce Case Status Dropdown",
@@ -3005,7 +3005,7 @@
   },
   {
     "name": "Salesforce Profile Services ID Field",
-    "value": "xpath=//span[text()='Profile Services ID']/../following-sibling::div/span/slot/slot/*"
+    "value": "xpath=//span[text()='Profile Services ID']/../following-sibling::div/span/slot/*"
   },
   {
     "name": "Salesforce Provisioning Email Address field",

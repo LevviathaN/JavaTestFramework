@@ -113,7 +113,7 @@ Feature: Checkout Journey for Not Logged User
     Then I click on the "Salesforce First Opportunity" element
     Then I click on the "Salesforce Account Details Tab" element
     Then I validate text "Closed Won" to be displayed for "Salesforce Case Status Data Field" element
-    And I should see the "Amount" "Salesforce readonly field"
+    And I validate text "EC_SUBTOTAL" to be displayed for "Amount" "Salesforce readonly field"
     And I click on the "Salesforce Orders Quick Link Tab on Quote Page" element
     Then I click on the "Salesforce Orders First Link" link
     And I wait for "1" seconds
