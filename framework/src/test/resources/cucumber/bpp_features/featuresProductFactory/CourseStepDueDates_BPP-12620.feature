@@ -4,7 +4,7 @@ Feature: Ability to add Step Due Dates in Product Factory Course Instance - BPP-
   I expect to be able to set due dates to any steps that have been added to the course.
 
   Background:
-    Given I execute "Generate ISBN" reusable step
+    Given I generate new ISBN code saving as "EC_ISBN"
     Given I execute "Log In" reusable step
     And I execute "Remember Variables For Creation " reusable step
 

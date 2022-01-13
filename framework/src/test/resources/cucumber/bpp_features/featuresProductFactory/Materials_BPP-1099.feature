@@ -5,7 +5,7 @@ Feature: Materials - Create Materials - BPP-1099
   so that the Material is available for Courses.
 
   Background:
-    Given I execute "Generate ISBN" reusable step
+    Given I generate new ISBN code saving as "EC_ISBN"
     And I click on the " generate" "button"
     And I capture text data "ISBN Generator Number Field" as "EC_NEW_ISBN" variable
     Given I execute "Log In" reusable step

@@ -5,7 +5,7 @@ Feature: Financial Dimension - Select Body Code - BPP-2492
   so that I can track this for accounting purposes.
 
   Background:
-    Given I execute "Generate ISBN" reusable step
+    Given I generate new ISBN code saving as "EC_ISBN"
     Given I execute "Log In" reusable step
     And I remember "AutoVerticalName" text as "EC_VERTICAL_NAME" variable
     And I execute "Remember Variables For Creation " reusable step

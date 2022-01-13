@@ -3,7 +3,7 @@ Feature: Long Tests Debug
 
   @Runn
   Scenario: Create Debugging Data
-    Given I execute "Generate ISBN" reusable step
+    Given I generate new ISBN code saving as "EC_ISBN"
     Given I execute "Log In" reusable step
     When I execute "Create Body Financial Dimension" reusable step replacing some steps
       |4|I set "$Debug[BodyFDCode]" text to the "Code" "Product Factory text field"|
@@ -81,7 +81,7 @@ Feature: Long Tests Debug
 
   @Runn
   Scenario: Set EC Variables
-    Given I execute "Generate ISBN" reusable step
+    Given I generate new ISBN code saving as "EC_ISBN"
     Given I execute "Log In" reusable step
     And I remember "23/10/2020" text as "EC_SITTING_START_DATE" variable
     And I remember "10/10/2025" text as "EC_SITTING_END_DATE" variable
