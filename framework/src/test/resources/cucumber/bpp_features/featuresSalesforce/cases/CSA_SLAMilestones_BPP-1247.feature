@@ -12,15 +12,17 @@ Feature: CSA - SLA Milestones
     And I click on the "Customer Service" "Salesforce radiobutton"
     And I click on the "Next" "button"
     And I set "2Automation 2CSA" text to the "Contact Name" "Salesforce text field label"
-    And I click on the "2Automation 2CSA" "Salesforce cases search student"
-    And I should scroll to the "top" of the page
+    Then I press "MD_COMMON_KEYBOARD_ENTER" for "Contact Name" "Salesforce text field label"
+    And I wait for "1" seconds
+    And I click on the "2Automation 2CSA" "text contained in A element first" by JS
+    And I wait for "1" seconds
+    And I click on the "Salesforce CS Ready to Close" element
     And I click on the "Case Origin" "Salesforce cases dropdown field"
     And I click on the "Email" "Salesforce cases dropdown option"
     And I click on the "Query Type" "Salesforce cases dropdown field"
     And I click on the "My online learning and VLE" "Salesforce cases dropdown option"
     And I click on the "Query Subtype" "Salesforce cases dropdown field"
     Then I click on the "I need to remove old papers from my VLE" element
-    And I click on the "Salesforce CS Ready to Close" element
     And I click on the "Save" "Product Factory button title"
     And I wait for "3" seconds
     Then I should see the "Salesforce Case Milestone Name" element

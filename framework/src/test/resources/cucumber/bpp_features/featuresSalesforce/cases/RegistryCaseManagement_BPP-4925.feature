@@ -7,7 +7,7 @@ Feature: Registry Case Management
   Scenario: Registry Case Management End To End
     Given I execute "Log In To Salesforce" reusable step
     And I execute "Create ID Card Registry Case" reusable step
-    And I validate text "CONTAINS=Student Records" to be displayed for "Salesforce Case Owner Data Field" element
+    And I validate text "CONTAINS=University - Unverified" to be displayed for "Salesforce Case Owner Data Field" element
     And I capture text data "Salesforce Case Number Data Field" as "EC_CASENUMBER_ENDTOEND" variable
     Then I click on the "Salesforce Edit Case Status" button by JS
     And I click on the "Salesforce Case Status Dropdown" element

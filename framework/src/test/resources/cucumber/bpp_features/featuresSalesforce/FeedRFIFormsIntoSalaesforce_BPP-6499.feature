@@ -53,9 +53,8 @@ Feature: To Feed RFI Form
     Then I am on "https://bpp-13fd3e55182--noahuat.lightning.force.com/lightning/r/Lead/00Qg000000FLsmrEAD/view" URL
     And I wait for "1" seconds
     Then I should see the "Salesforce Lead Page Task Today" element
-    And I should see the "Callback: RFI Form - New 2020" "text contained in A element"
-    And I click on the "Callback: RFI Form - New 2020" "text contained in A element"
-    Then I validate text "Call" to be displayed for "Type" "Salesforce read field"
+    And I should see the "Form: RFI Form - New 2020" "text contained in A element first"
+    And I click on the "Form: RFI Form - New 2020" "text contained in A element first"
     Then I validate text "EC_DATE" to be displayed for "Due Date" "Salesforce read field"
 
   @NewLeadRFI #TC-3475
@@ -147,9 +146,8 @@ Feature: To Feed RFI Form
     Then I wait for "30" seconds
     Given I execute "Log In To Salesforce" reusable step
     Then I am on "https://bpp-13fd3e55182--noahuat.lightning.force.com/lightning/r/Lead/00Qg000000FLtSkEAL/view" URL
-    And I should see the "Callback: RFI Form - New 2020" "text contained in A element"
-    And I click on the "Callback: RFI Form - New 2020" "text contained in A element"
-    Then I validate text "Call" to be displayed for "Type" "Salesforce read field"
+    And I should see the "Form: RFI Form - New 2020" "text contained in A element first"
+    And I click on the "Form: RFI Form - New 2020" "text contained in A element first"
     Then I validate text "EC_DATE" to be displayed for "Due Date" "Salesforce read field"
 
   @ExistingBDContactRFI  #TC-3476
@@ -177,7 +175,6 @@ Feature: To Feed RFI Form
     Then I wait for "30" seconds
     Given I execute "Log In To Salesforce" reusable step
     Then I am on "https://bpp-13fd3e55182--noahuat.lightning.force.com/lightning/r/Contact/003g0000029g0ifAAA/view" URL
-    And I should see the "Callback: RFI Form - New 2020" "text contained in A element"
-    And I click on the "Callback: RFI Form - New 2020" "text contained in A element"
-    Then I validate text "Call" to be displayed for "Type" "Salesforce read field"
+    And I should see the "Form: RFI Form - New 2020" "text contained in A element first"
+    And I click on the "Form: RFI Form - New 2020" "text contained in A element first"
     Then I validate text "EC_DATE" to be displayed for "Due Date" "Salesforce read field"

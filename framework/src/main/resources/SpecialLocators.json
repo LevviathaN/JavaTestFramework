@@ -1037,6 +1037,10 @@
     "value": "xpath=//a[contains(text(),'PARAMETER')]"
   },
   {
+    "name": "text contained in A element first",
+    "value": "xpath=(//a[contains(text(),'PARAMETER')])[1]"
+  },
+  {
     "name": "text contained in P element",
     "value": "xpath=//p[contains(text(),'PARAMETER')]"
   },

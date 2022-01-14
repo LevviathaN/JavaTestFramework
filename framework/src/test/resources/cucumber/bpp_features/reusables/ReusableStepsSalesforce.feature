@@ -160,8 +160,11 @@ Feature: Salesforce
     And I click on the "Customer Service" "Salesforce radiobutton"
     And I click on the "Next" "button"
     And I set "2Automation 2CSA" text to the "Contact Name" "Salesforce text field label"
+    Then I press "MD_COMMON_KEYBOARD_ENTER" for "Contact Name" "Salesforce text field label"
     And I wait for "1" seconds
-    And I click on the "2Automation 2CSA" "Salesforce cases search student"
+    And I click on the "2Automation 2CSA" "text contained in A element first" by JS
+    And I wait for "1" seconds
+    And I click on the "Salesforce CS Ready to Close" element
     And I click on the "Case Origin" "Salesforce cases dropdown field"
     And I click on the "Email" "Salesforce cases dropdown option"
     And I click on the "Query Type" "Salesforce cases dropdown field"
@@ -224,10 +227,8 @@ Feature: Salesforce
     Then I should see the "I need my invoice to be re-sent to me" "Salesforce cases dropdown option"
     Then I should see the "I need my receipt to be re-sent to me" "Salesforce cases dropdown option"
     Then I click on the "My invoice address is incorrect" "Salesforce cases dropdown option"
-    And I click on the "Salesforce CS Ready to Close" element
     And I click on the "Save" "Product Factory button title"
     And I wait for "3" seconds
-    And I validate text "CONTAINS=Customer Service Team" to be displayed for "Salesforce Case Owner Data Field" element
     And I capture text data "Salesforce Case Number Data Field" as "EC_CASENUMBER" variable
 
   Scenario: Create CSA Case My Course
