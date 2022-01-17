@@ -2913,7 +2913,7 @@
   },
   {
     "name": "Salesforce Case Owner Data Field",
-    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//span[text()='Case Owner']/../following-sibling::div/span/slot/slot//slot[@force-lookup_lookup]"
+    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//span[text()='Case Owner']/../following-sibling::div/span/slot//slot[@force-lookup_lookup]"
   },
   {
     "name": "Salesforce Case Status Data Field",
@@ -2921,7 +2921,7 @@
   },
   {
     "name": "Salesforce Case Status Dropdown",
-    "value": "xpath=//label[text()='Status']//following-sibling::div[1]//div[1]/div/input"
+    "value": "xpath=//label[text()='Status']//following-sibling::div[1]//div//button"
   },
   {
     "name": "Salesforce Cases Option",

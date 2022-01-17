@@ -26,12 +26,11 @@ Feature: Following UAT of Dates & Prices, a requirement change exists to hide se
     And I click on the "BA3 Fundamentals of Financial Accounting" "BPP Digital View Dates and Prices button"
     #Check Start Date dropdown options
     Then I click on the "Start date" "BPP Digital Dates and Prices Filter By"
-    And I should see the "Sep 2021" "BPP Digital Dates and Prices Start date filter option"
-    And I should see the "Oct 2021" "BPP Digital Dates and Prices Start date filter option"
-    And I should see the "Nov 2021" "BPP Digital Dates and Prices Start date filter option"
-    Then I click on the "Nov 2021" "BPP Digital Dates and Prices Start date filter option"
-    Then I should see the "Wed 10 Nov 2021" "element"
-    Then I click on the "Nov 2021" "BPP Digital Dates and Prices Start date filter option"
+    And I should see the "Jul 2021" "BPP Digital Dates and Prices Start date filter option"
+    And I should see the "Feb 2022" "BPP Digital Dates and Prices Start date filter option"
+    Then I click on the "Feb 2022" "BPP Digital Dates and Prices Start date filter option"
+    Then I should see the "Wed 2 Feb 2022" "element"
+    Then I click on the "Feb 2022" "BPP Digital Dates and Prices Start date filter option"
     Then I click on the "Start date" "BPP Digital Dates and Prices Filter By"
     #Check text in tooltips
     When I click on the "BPP Digital Dates and Prices Course Type Tooltip" element

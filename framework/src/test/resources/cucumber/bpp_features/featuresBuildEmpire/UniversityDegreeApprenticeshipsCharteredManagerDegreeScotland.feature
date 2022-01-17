@@ -1,7 +1,7 @@
 @BuildEmpire @DirectApps @UniversityDegreeApprenticeships @Smoke
 Feature: University Degree Apprenticeships
 
-  @Positive @Smoke @Scotland
+  @Positive @Smoke @ScotlandApprenticeships
   Scenario: Create University Degree Apprenticeships Application Chartered Manager Degree Scotland
     Given I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
