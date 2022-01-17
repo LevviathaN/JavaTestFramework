@@ -94,7 +94,7 @@ Feature: Web Pages - Ability to publish CMS pages into Hub and View webpages in 
     And I click on the "Save" "BPP Digital Admin Value attribute button"
     Then I execute "Log Out from Hub Admin" reusable step
     #Validate CMS is displayed on Website
-    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/<EC_AUTO_CMS_URL>" URL
+    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/EC_AUTO_CMS_URL" URL
     Then I should see the "CMS Blockquote" "BPP Digital Web Site CMS Anchors ID"
     And Attribute "alt" of "BPP Digital Web Blockquote Image" should have value "santander"
     And Attribute "class" of "BPP Digital Web Square Quotes Image" should have value "component-square-quotation"
