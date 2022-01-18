@@ -1105,6 +1105,14 @@
     "value": "xpath=//a[contains(.,'PARAMETER')]"
   },
   {
+    "name": "Harakirimail BPP Specific Email First",
+    "value": "xpath=(//a[contains(.,'PARAMETER')])[1]"
+  },
+  {
+    "name": "Harakirimail BPP Specific Email Second",
+    "value": "xpath=(//a[contains(.,'PARAMETER')])[2]"
+  },
+  {
     "name": "Quark XML File",
     "value": "xpath=//td[contains(.,'PARAMETER')]"
   }

@@ -29,4 +29,4 @@ Feature: Accept Mitigating Circumstances Application
     And I execute "Log In to Hub as Admin" reusable step
     And I execute "Mitigating Circumstances Admin Status Change" reusable step
     And I execute "Mitigating Circumstances Admin Status Validation" reusable step
-    And I execute "Maildrop Mitigating Circustances Status Validations" reusable step
+    And I execute "Harakirimail Mitigating Circumstances Status Validations" reusable step
