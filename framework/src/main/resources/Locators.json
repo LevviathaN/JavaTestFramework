@@ -2861,11 +2861,11 @@
   },
   {
     "name": "Salesforce Banner ID Field",
-    "value": "xpath=//span[text()='Banner ID']/../following-sibling::div/span/slot/slot/*"
+    "value": "xpath=//span[text()='Banner ID']/../following-sibling::div/span/slot/*"
   },
   {
     "name": "Salesforce Account Phone Field",
-    "value": "xpath=//span[text()='Phone']/../following-sibling::div/span/slot/slot/*"
+    "value": "xpath=//span[text()='Phone']/../following-sibling::div/span/slot/*"
   },
   {
     "name": "Salesforce CS Ready to Close",
@@ -2909,19 +2909,19 @@
   },
   {
     "name": "Salesforce Case Number Data Field",
-    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//span[text()='Case Number']/../following-sibling::div/span/slot/slot/*"
+    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//span[text()='Case Number']/../following-sibling::div/span/slot/*"
   },
   {
     "name": "Salesforce Case Owner Data Field",
-    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//span[text()='Case Owner']/../following-sibling::div/span/slot/slot//slot[@force-lookup_lookup]"
+    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//span[text()='Case Owner']/../following-sibling::div/span/slot//slot[@force-lookup_lookup]"
   },
   {
     "name": "Salesforce Case Status Data Field",
-    "value": "xpath=//span[text()='Status']/../following-sibling::div/span/slot/slot/*"
+    "value": "xpath=//span[text()='Status']/../following-sibling::div/span/slot/*[1]"
   },
   {
     "name": "Salesforce Case Status Dropdown",
-    "value": "xpath=//label[text()='Status']//following-sibling::div[1]//div[1]/div/input"
+    "value": "xpath=//label[text()='Status']//following-sibling::div[1]//div//button"
   },
   {
     "name": "Salesforce Cases Option",
@@ -3005,7 +3005,7 @@
   },
   {
     "name": "Salesforce Profile Services ID Field",
-    "value": "xpath=//span[text()='Profile Services ID']/../following-sibling::div/span/slot/slot/*"
+    "value": "xpath=//span[text()='Profile Services ID']/../following-sibling::div/span/slot/*"
   },
   {
     "name": "Salesforce Provisioning Email Address field",
@@ -3386,6 +3386,10 @@
   {
     "name": "Salesforce Shipping Address Order Page",
     "value": "xpath=(//span[text()='Shipping Address']//following::div/span/a[@title])[1]"
+  },
+  {
+    "name": "Salesforce Lead Page Task Today",
+    "value": "xpath=(//*[@title='Upcoming & Overdue']//following::div[contains(text(),'You have an upcoming task')])[1]"
   },
   {
     "name": "Totara Account Expandable Menu",

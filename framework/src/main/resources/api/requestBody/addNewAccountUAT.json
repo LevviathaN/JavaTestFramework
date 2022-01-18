@@ -18,14 +18,14 @@
   "Student_Occupation__pc":["1111~ Senior officials in national government","1133~ Purchasing managers","2128~ Planning & quality control engineers","2432~ Town planners"],
   "PersonBirthdate":"1995-10-10",
   "Gender__pc":["Male","Female"],
-  "Passport_Number__pc":"KW_AUTO_RANDOMNUMBER|########",
+  "Passport_Number__pc":"[########]",
   "Primary_Nationality__pc":["a0Qg0000000Cb7A","a0Qg0000000Cb7B","a0Qg0000000Cb78","a0Qg0000000Cb9i","a0Qg0000000Cb87"],
   "Domicile__pc":["XH~ Scotland","XF~ England","US~ United States","CN~ China","NG~ Nigeria","UA~ Ukraine"],
   "Preferred_Phone__pc":"Work",
-  "Work_Phone__pc":"KW_AUTO_PHONE|##########",
+  "Work_Phone__pc":"[##########]",
   "Preferred_Email__pc":"Work",
   "Work_Email__pc":"KW_AUTO_EMAIL",
   "AR_Student_Finance_England_SFE__c":"ABCD11112222Z",
-  "VAT_Code__pc":"KW_AUTO_RANDOMNUMBER|#####",
+  "VAT_Code__pc":"[#####]",
   "Legal_Entity__c":"UC~COL"
 }

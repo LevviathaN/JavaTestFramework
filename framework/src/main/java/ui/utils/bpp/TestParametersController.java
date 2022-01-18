@@ -75,7 +75,7 @@ public class TestParametersController {
         retrieversMap.put("RD",(s) -> RandomDataGenerator.getInstance().generateValue(s));
 
         dataRegexMap.put("RD",RegexPattern.RANDOM_DATA.getRegex());
-        dataRegexMap.put("KW",RegexPattern.GENERAL_KEYWORD_PATTERN.getRegex());
+        dataRegexMap.put("KW",RegexPattern.ACCEPTABLE_KEYWORD_PATTERN.getRegex());
         dataRegexMap.put("MD",RegexPattern.META_DATA.getRegex());
         dataRegexMap.put("EC", RegexPattern.EC.getRegex());
     }
@@ -159,6 +159,7 @@ public class TestParametersController {
                 .replace(".","\\.")
                 .replace("#","\\#")
                 .replace("{","\\{")
+                .replace("|","\\|")
                 .replace("}","\\}");
     }
 }
