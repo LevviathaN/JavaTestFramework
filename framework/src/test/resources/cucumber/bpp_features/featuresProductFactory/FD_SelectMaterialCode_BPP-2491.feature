@@ -5,7 +5,7 @@ Feature: Financial Dimension - Select Material Code - Initial Selection - BPP-24
   so that I can track this for accounting purposes.
 
   Background:
-    Given I execute "Generate ISBN" reusable step
+    Given I generate new ISBN code saving as "EC_ISBN"
     Given I execute "Log In" reusable step
     And I execute "Remember Variables " reusable step
 

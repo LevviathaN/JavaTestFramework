@@ -404,10 +404,10 @@ Feature: Product Factory Api
       |bodyReferences|EC_1_BODY_REFERENCE|
     And I execute "Create Sitting" API step with parameters saving as "2_"
       |name|$2Ordering[SittingName]      |
-      |bodyReferences|EC_2_BODY_REFERENCE|
+      |bodyReferences|EC_1_BODY_REFERENCE|
     And I execute "Create Sitting" API step with parameters saving as "3_"
       |name|$3Ordering[SittingName]      |
-      |bodyReferences|EC_3_BODY_REFERENCE|
+      |bodyReferences|EC_1_BODY_REFERENCE|
 
 
     And I execute "Create Course Type" API step with parameters saving as "1_"

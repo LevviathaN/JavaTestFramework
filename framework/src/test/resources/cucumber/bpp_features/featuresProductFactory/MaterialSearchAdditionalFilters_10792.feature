@@ -5,7 +5,7 @@ Feature: Material Search - additional filter fields - BPP-10792
   so that I have a consistent user experience when searching.
 
   Background:
-    Given I execute "Generate ISBN" reusable step
+    Given I generate new ISBN code saving as "EC_ISBN"
     Given I execute "Log In" reusable step
 
 

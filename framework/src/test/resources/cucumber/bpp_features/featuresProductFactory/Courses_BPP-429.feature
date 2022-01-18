@@ -5,7 +5,7 @@ Feature: Create Course Instance - BPP-429
   so that I can sell, schedule and publish a Course.
 
   Background:
-    Given I execute "Generate ISBN" reusable step
+    Given I generate new ISBN code saving as "EC_ISBN"
     Given I execute "Log In" reusable step
     And I execute "Remember Variables For Creation " reusable step
 

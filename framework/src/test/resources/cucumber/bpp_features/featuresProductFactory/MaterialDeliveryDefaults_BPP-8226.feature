@@ -5,7 +5,7 @@ Feature: Abilit to specify Material Delivery Defaults during Product Setup - BPP
   So that I don't have to remember to update the Delivery Address each time
 
   Background:
-    Given I execute "Generate ISBN" reusable step
+    Given I generate new ISBN code saving as "EC_ISBN"
     Given I execute "Log In" reusable step
     And I execute "Remember Variables " reusable step
 

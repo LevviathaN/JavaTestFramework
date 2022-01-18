@@ -5,7 +5,7 @@ Feature: Course - Update Instances for non draft Courses - BPP-4968
   So that the Course published AWS notification is published for consumption by the middleware.
 
   Background:
-    Given I execute "Generate ISBN" reusable step
+    Then I generate new ISBN code saving as "EC_ISBN"
     Given I execute "Log In" reusable step
 
     Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_TYPE_PROJECT_"

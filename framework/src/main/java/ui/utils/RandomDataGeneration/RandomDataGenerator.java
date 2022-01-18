@@ -1,5 +1,6 @@
 package ui.utils.RandomDataGeneration;
 
+import com.google.api.client.repackaged.com.google.common.base.CharMatcher;
 import enums.RegexPattern;
 import org.apache.commons.lang3.RandomStringUtils;
 import ui.utils.Reporter;
@@ -96,6 +97,8 @@ public class RandomDataGenerator {
                 } else {
                     timePattern = "MMM d yyyy";
                 }
+            } else if (s.startsWith("TIMENOW-PLUS") || s.startsWith("TIMENOW-MINUS")) {
+                timePattern = "yyyy-MM-dd HH:mm";
             } else {
                 timePattern = "dd MMM HH:mm";
             }
@@ -108,6 +111,20 @@ public class RandomDataGenerator {
                 now = now.minusDays(1);
             } else if (s.contains("OHB")) {
                 now = now.minusHours(1);
+            } else if (s.matches("TIMENOW-PLUS-(\\d+)DAYS") || s.matches("TIMENOW-MINUS-(\\d+)DAYS")) {
+                int number = Integer.parseInt(s
+                        .replace("TIMENOW-PLUS-","+")
+                        .replace("DAYS","")
+                        .replace("TIMENOW-MINUS-","-")
+                );
+                now = now.plusDays(number);
+            } else if (s.matches("TIMENOW-PLUS-(\\d+)HOURS") || s.matches("TIMENOW-MINUS-(\\d+)HOURS")) {
+                int number = Integer.parseInt(s
+                        .replace("TIMENOW-PLUS-","+")
+                        .replace("HOURS","")
+                        .replace("TIMENOW-MINUS-","-")
+                );
+                now = now.plusHours(number);
             }
             return  dtf.format(now);
         });
