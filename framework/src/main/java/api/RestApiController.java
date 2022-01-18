@@ -112,11 +112,10 @@ public class RestApiController {
                 } else {
                     value = command.get(commandKey);
                 }
-                String updatedValue = value.equals(null) ? "null" : TestParametersController.checkIfSpecialParameter(value.toString());
+                String updatedValue = value.equals(null) ? "null" : TestParametersController.checkIfSpecialParameter(String.valueOf(value));
                 value = (value.toString().equals(updatedValue)||value instanceof JSONArray) ? value : updatedValue;
                 if (!(value==null)) {
                     if (commandKey.equals("timings")) {
-                        ArrayList<String> bodyList = new ArrayList<String>();
                         JSONArray bodyArray = (JSONArray) command.get("timings");
                         JSONObject timingObj = (JSONObject) bodyArray.get(0);
                         String sessionTimingReference = parameters.containsKey("sessionTimingReference") ? parameters.get("sessionTimingReference") : (String) timingObj.get("sessionTimingReference");
@@ -127,7 +126,7 @@ public class RestApiController {
                         ((JSONObject) bodyArray.get(0)).put("sessionDate", TestParametersController.checkIfSpecialParameter(sessionDate));
                         ((JSONObject) bodyArray.get(0)).put("startTime", TestParametersController.checkIfSpecialParameter(startTime));
                         ((JSONObject) bodyArray.get(0)).put("endTime", TestParametersController.checkIfSpecialParameter(endTime));
-                        bodyList.add(String.valueOf(bodyArray));
+                        command.put(commandKey,bodyArray);
                     } else if (commandKey.equals("dateTimes")) {
                         ArrayList<String> bodyList = new ArrayList<String>();
                         JSONArray bodyArray = (JSONArray) command.get("dateTimes");
@@ -176,7 +175,7 @@ public class RestApiController {
                             command.put(commandKey, Integer.parseInt(TestParametersController.checkIfSpecialParameter(value.toString())));
                         }
                     } else {
-                        command.put(commandKey, TestParametersController.checkIfSpecialParameter(value.toString()));
+                        command.put(commandKey, TestParametersController.checkIfSpecialParameter(String.valueOf(value)));
                     }
                 }
             }
