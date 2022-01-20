@@ -46,19 +46,19 @@ Feature: Harakirimail, Guerrillamail
 
   Scenario: Guerillamail Reset Line Manager Password
     Given I am on "https://www.guerrillamail.com/" URL
-    Then I click on the "Guerilla Edit" button
-    And I fill the "Guerilla Email Input" field with "EC_LINEMANAGER_EMAIL"
-    Then I click on the "Guerilla Email Set" button
-    And I wait for "10" seconds
-    Given I am on "https://www.guerrillamail.com/" URL
+    And I wait for "2" seconds
+    And I select "guerrillamail.com" from "Guerilla Mail Select Domain" element
     Then I click on the "Guerilla Edit" button
     And I fill the "Guerilla Email Input" field with "EC_LINEMANAGER_EMAIL"
     Then I click on the "Guerilla Email Set" button
     And I wait for "10" seconds
     And Browser performs "Refresh" command
-    And I wait for "2" seconds
+    And I select "guerrillamail.com" from "Guerilla Mail Select Domain" element
+    Then I click on the "Guerilla Edit" button
+    And I fill the "Guerilla Email Input" field with "EC_LINEMANAGER_EMAIL"
+    Then I click on the "Guerilla Email Set" button
+    And I wait for "11" seconds
     Then I click on the "Guerilla BPP Email" element
-    Then I capture a part of "Guerilla New Line Manager Email" element text by "https:\/\/bpp-stage.eu.auth0.com\/lo\/reset.+[aA-zZ0-9]\#" regex and save as "EC_RESET_PASSWORD" variable
 
   Scenario: Harakirimail Validate Accepted Application Email
     Given I am on "https://www.guerrillamail.com/" URL
@@ -90,7 +90,6 @@ Feature: Harakirimail, Guerrillamail
     Given I am on "https://harakirimail.com/" URL
     And I fill the "Harakirimail Inbox Name" field with "EC_AUTO_EMAIL"
     Then I click on the "Harakirimail Get Inbox" button
-    And I validate text "CONTAINS=no-reply@testmail.bpp.com" to be displayed for "Harakirimail First Email From" element
     And I click on the "Harakirimail Validate Mitigating Circumstances Submitted Link" button by JS
     Then Browser performs "REFRESH" command
     And I wait for "1" seconds
@@ -123,13 +122,11 @@ Feature: Harakirimail, Guerrillamail
     Given I am on "https://harakirimail.com/" URL
     And I fill the "Harakirimail Inbox Name" field with "EC_AUTO_EMAIL"
     Then I click on the "Harakirimail Get Inbox" button
-    And I validate text "CONTAINS=no-reply@testmail.bpp.com" to be displayed for "Harakirimail First Email From" element
     And I click on the "Your Appeals application has been submitted" "Harakirimail BPP Specific Email First" by JS
     Then Browser performs "REFRESH" command
     And I wait for "1" seconds
     Then I click on the "Your Appeals application has been submitted" "Harakirimail BPP Specific Email First" by JS
-    And I validate text "CONTAINS=You will be informed by email normally within 10 clear working days whether your application has met the threshold conditions for further consideration." to be displayed for "Harakirimail Validate Letter Body" element
-    And I validate text "CONTAINS=From the date of lodging the appeal, a Stay of Action is placed on any action or decision being appealed (Manual of Policies and Procedures/Park K/Section 3/ Paragraphs 14 and 15)" to be displayed for "Harakirimail Validate Letter Body" element
+    And I validate text "CONTAINS=Office of Regulation and Compliance" to be displayed for "Harakirimail Validate Letter Body" element
     Then I click on the "Harakirimail Back To Inbox" button
     Then I click on the "Your Appeals application is now being reviewed" "Harakirimail BPP Specific Email First" by JS
     And I validate text "CONTAINS=I am writing to inform you that your academic appeal application has now been allocated to a Regulation and Compliance Officer." to be displayed for "Harakirimail Validate Letter Body" element
@@ -188,7 +185,6 @@ Feature: Harakirimail, Guerrillamail
     Given I am on "https://harakirimail.com/" URL
     And I fill the "Harakirimail Inbox Name" field with "EC_AUTO_EMAIL"
     Then I click on the "Harakirimail Get Inbox" button
-    And I validate text "CONTAINS=no-reply@testmail.bpp.com" to be displayed for "Harakirimail First Email From" element
     Then I click on the "Harakirimail First Email" element by JS
     And Browser performs "REFRESH" command
     Then I click on the "Harakirimail First Email" element if "Harakirimail First Email" "element is present"
@@ -206,3 +202,27 @@ Feature: Harakirimail, Guerrillamail
     And I click on the "Thank you for submitting your application" "Harakirimail BPP Specific Email Second"
     And I validate text "CONTAINS=This email is to confirm that we have received your application and will now review the information provided." to be displayed for "Harakirimail Validate Letter Body" element
     And I validate text "CONTAINS=Our Apprenticeships Team will make an assessment on your eligibility for the programme and contact your line manager to confirm they are also happy to proceed with your application" to be displayed for "Harakirimail Validate Letter Body" element
+
+  Scenario: Harakirimail Verify Line Manager Emails for Apprenticeships
+    Given I am on "https://harakirimail.com/" URL
+    And I fill the "Harakirimail Inbox Name" field with "automationLinemanager8@harakirimail.com"
+    Then I click on the "Harakirimail Get Inbox" button
+    Then I click on the "Harakirimail First Email" element by JS
+    And Browser performs "REFRESH" command
+    Then I click on the "Harakirimail First Email" element if "Harakirimail First Email" "element is present"
+    And I validate text "CONTAINS=We are pleased to confirm that following the successful completion of our onboarding process" to be displayed for "Harakirimail Validate Letter Body" element
+    And I validate text "CONTAINS=Please find attached a copy of the Commitment Statement and Apprenticeship Agreement signed by learner, employer and BPP." to be displayed for "Harakirimail Validate Letter Body" element
+    Then I click on the "Harakirimail Back To Inbox" button
+    And I click on the "You have a new apprenticeship application to review" "Harakirimail BPP Specific Email First"
+    And I validate text "CONTAINS=We have received an apprenticeship application from an employee at your organisation - Automation, who has named you as their line manager." to be displayed for "Harakirimail Validate Letter Body" element
+    And I validate text "CONTAINS=We can confirm that this application has been pre-approved by BPP and that we believe the applicant is eligible for an apprenticeship." to be displayed for "Harakirimail Validate Letter Body" element
+
+  Scenario: Harakirimail Verify Email for Channel Islands
+    Given I am on "https://harakirimail.com/" URL
+    And I fill the "Harakirimail Inbox Name" field with "EC_AUTO_EMAIL"
+    Then I click on the "Harakirimail Get Inbox" button
+    Then I click on the "Harakirimail First Email" element by JS
+    And Browser performs "REFRESH" command
+    Then I click on the "Harakirimail First Email" element if "Harakirimail First Email" "element is present"
+    And I validate text "CONTAINS=Thank you for submitting a booking for approval." to be displayed for "Harakirimail Validate Letter Body" element
+    And I validate text "CONTAINS=We are pleased to confirm that your booking for programme on Test Channel Islands at location has been approved by your training manager." to be displayed for "Harakirimail Validate Letter Body" element

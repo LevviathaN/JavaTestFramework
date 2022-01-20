@@ -1,7 +1,7 @@
 @BuildEmpire @DirectApps @ChannelIslands
 Feature: Reject Channel Islands Application
 
-  @Negative #TC-1270
+  @Negative @RejectChannelIslands #TC-1270
   Scenario: Reject Channel Islands Application as Training Manager
     Given I register new "Channel" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
@@ -10,7 +10,18 @@ Feature: Reject Channel Islands Application
     And I execute "Complete Channel Islands Mk2 Application" reusable step
     Then I execute "Submit Application Hub" reusable step
     And I execute "Log Out from Hub Student" reusable step
-    Then I execute "Guerillamail Reset Line Manager Password" reusable step
+    Given I am on "https://www.guerrillamail.com/" URL
+    And I wait for "2" seconds
+    And I select "guerrillamail.com" from "Guerilla Mail Select Domain" element
+    Then I click on the "Guerilla Edit" button
+    And I fill the "Guerilla Email Input" field with "EC_LINEMANAGER_EMAIL"
+    Then I click on the "Guerilla Email Set" button
+    And I wait for "10" seconds
+    And Browser performs "Refresh" command
+    And I wait for "2" seconds
+    Then I click on the "Guerilla BPP Email" element
+    Then I capture a part of "Guerilla New Line Manager Email" element text by "https:\/\/bpp-stage.eu.auth0.com\/lo\/reset.+[aA-zZ0-9]\#" regex and save as "EC_RESET_PASSWORD" variable
+    And I validate text "CONTAINS=We have received a booking from an employee at your organisation, who has named you as their training manager." to be displayed for "Guerilla New Line Manager Email" element
     Then I execute "Reset Line Manager Password" reusable step
     Given I am on "MD_COMMON_LINKS_BUILDEMPIREURL" URL
     And I set "EC_LINEMANAGER_EMAIL" text to the "Email" "Build Empire text field"
@@ -19,58 +30,8 @@ Feature: Reject Channel Islands Application
     And I should see the "Direct App My Approvals Tab" element
     Then I execute "Reject Channel Isalnds Application as Training Manager" reusable step
     And I click on the "Direct App Channel Islands Training Manager OK" button
-    And I wait for "10" seconds
+    And I wait for "5" seconds
     And I execute "Log Out from Hub Student" reusable step
-    Given I am on "https://harakirimail.com/" URL
-    And I fill the "Harakirimail Inbox Name" field with "EC_AUTO_EMAIL"
-    Then I click on the "Harakirimail Get Inbox" button
-    Then I click on the "Harakirimail First Email" button
-    And I wait for "2" seconds
-    And Browser performs "REFRESH" command
-    And I wait for "1" seconds
-    Then I click on the "Harakirimail First Email" element if "Harakirimail First Email" "element is present"
-    Then I validate text "CONTAINS=Your application has been rejected" to be displayed for "Harakirimail Validate Mitigating Header" element
-
-    Then I execute "Log In to Hub as Student" reusable step
-    And I wait for "2" seconds
-    Given I click on the "Direct App My Applications Left Menu Link" button by JS
-    And I wait for "3" seconds
-    Then I click on the "Direct App Start New Application Button" button
-    And I wait for "2" seconds
-    And I click on the "Direct App Create Application" button
-    Given I click on the "Direct App Start Application" button
-    And I click on the " Personal details" "Build Empire application section"
-    And I click on the "Direct App Mark As Complete Checkbox" button
-    And I wait for "2" seconds
-    And I click on the "Direct App Next" button
-    And I click on the "Direct App Payment Employer Funded" button
-    And I wait for "2" seconds
-    And I click on the "Direct App Mark As Complete Checkbox" button
-    And I wait for "2" seconds
-    And I click on the "Direct App Next" button
-    And I click on the "Direct App Mark As Complete Checkbox" button
-    And I wait for "1" seconds
-    And I click on the "Direct App Save And Return" button
-    And I wait for "1" seconds
-    Then I execute "Submit Application Hub" reusable step
-    And I execute "Log Out from Hub Student" reusable step
-    And I wait for "2" seconds
-    Then I execute "Log In to Hub as Student" reusable step replacing some steps
-      | 2 | I set "EC_LINEMANAGER_EMAIL" text to the "Email" "Build Empire text field" |
-      | 3 | I set "Welcome2@#!Welc" text to the "Password" "Build Empire text field"               |
-    And I should see the "Direct App My Approvals Tab" element
-    And I click on the "Direct App My Approvals Tab" button by JS
-    And I click on the "Direct App Channel Islands Training Manager Review Application Details" button
-    And I click on the "Reject" "button"
-    And I fill the "Direct App Channel Islands Training Manager Reason" field with "Automation Testing"
-    And I click on the "Direct App Channel Islands Training Manager OK" button
-    And I am on "https://harakirimail.com/" URL
-    And I fill the "Harakirimail Inbox Name" field with "EC_AUTO_EMAIL"
-    Then I click on the "Harakirimail Get Inbox" button
-    Then I click on the "Harakirimail First Email" button
-    And I wait for "2" seconds
-    And Browser performs "REFRESH" command
-    And I wait for "1" seconds
-    Then I click on the "Harakirimail First Email" element if "Harakirimail First Email" "element is present"
-    And I wait for "2" seconds
-    Then I validate text "CONTAINS=Your application has been rejected" to be displayed for "Harakirimail Validate Mitigating Header" element
+    And I execute "Harakirimail Verify Email for Channel Islands" reusable step replacing some steps
+    |8|I validate text "CONTAINS=Thank you very much for submitting a booking form for approval." to be displayed for "Harakirimail Validate Letter Body" element|
+    |9|I validate text "CONTAINS=has not been accepted by your training manager." to be displayed for "Harakirimail Validate Letter Body" element|

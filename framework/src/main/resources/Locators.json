@@ -188,6 +188,10 @@
     "value": "xpath=//div[@class='list-group-item']//div[2]/a[contains(.,'Edit')]"
   },
   {
+    "name": "BPP Digital Invite Button",
+    "value": "xpath=//button[contains(.,'Invite')]"
+  },
+  {
     "name": "BPP Digital Edit News",
     "value": "xpath=//tbody//tr[contains(.,'EC_AUTOMATION_NEWS')]//td[5]/a[1]"
   },
@@ -974,6 +978,10 @@
   {
     "name": "Direct App Additional Info Aged 16 and 18",
     "value": "xpath=//label[contains(.,'aged between 16 and 18 years old, at the start of the course and have been in the care of your local authority')]"
+  },
+  {
+    "name": "Direct App Additional Info Aged 16 and 18 first",
+    "value": "xpath=(//div[@class='radio-container']/label)[1]"
   },
   {
     "name": "Direct App Additional Info Upload Button",
@@ -1769,7 +1777,7 @@
   },
   {
     "name": "Direct App Privacy Notice By Email",
-    "value": "xpath=//div[@class='content-app ']/div[5]/label"
+    "value": "xpath=//div[@class='content-app ']/div[6]/label"
   },
   {
     "name": "Direct App Programme Dropdown",
@@ -2112,8 +2120,12 @@
     "value": "xpath=//div[@class='course-info']"
   },
   {
+    "name": "Guerilla Mail Select Domain",
+    "value": "xpath=//select[@id='gm-host-select']"
+  },
+  {
     "name": "Guerilla BPP Email",
-    "value": "xpath=//tbody[@id='email_list']//td[contains(.,'no-reply@staging.bppdigital.buildempire.co.uk ')]"
+    "value": "xpath=(//tbody[@id='email_list']//td[contains(.,'bpp.com')])[1]"
   },
   {
     "name": "Guerilla Back To Inbox",

@@ -37,3 +37,4 @@ Feature: University Degree Apprenticeships
     And I execute "Validate Successful Application As Student" reusable step
     And I execute "Log Out from Hub Student" reusable step
     Then I execute "Harakirimail Verify Emails Apprenticeships" reusable step
+    And I execute "Harakirimail Verify Line Manager Emails for Apprenticeships" reusable step

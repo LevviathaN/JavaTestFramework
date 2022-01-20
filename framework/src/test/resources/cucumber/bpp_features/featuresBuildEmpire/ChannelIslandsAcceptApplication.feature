@@ -21,7 +21,6 @@ Feature: Approve Channel Islands Application
     And I click on the "Direct App Channel Islands Training Manager OK" button
     And I wait for "10" seconds
     And I execute "Log Out from Hub Student" reusable step
-    And I execute "Nada Validate Accepted Application Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     And I wait for "2" seconds
     Given I click on the "Direct App My Applications Left Menu Link" button by JS
@@ -56,4 +55,4 @@ Feature: Approve Channel Islands Application
     And I fill the "Direct App Channel Islands Training Manager Reason" field with "Automation Testing"
     And I click on the "Direct App Channel Islands Training Manager OK" button
     And I wait for "1" seconds
-    And I execute "Nada Validate Accepted Application Email" reusable step
+    And I execute "Harakirimail Verify Email for Channel Islands" reusable step
