@@ -28,10 +28,12 @@ Feature: Product Factory API Data Creation
   @UniversityProgrammes #TC-1044
   Scenario: Audit Trail - Low Fidelity logging of University Programmes record changes
     Given I execute "Create Programme" API step
-    And I verify that "[TIMENOW-yyyy-MM-dd'T'HH:mm]" element "contains" to "EC_PROGRAMME_CREATED_ON" element
+    And I transform "[TIMENOW-PLUS-0HOURS]" date with pattern "yyyy-MM-dd HH:mm" to another "yyyy-MM-dd'T'HH:mm" pattern saving value as "EC_TIME_NOW_ONE"
+    And I verify that "EC_TIME_NOW_ONE" element "contains" to "EC_PROGRAMME_CREATED_ON" element
     And I verify that "S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp@clients" element "equal" to "EC_PROGRAMME_CREATED_BY" element
     And I verify that "EC_PROGRAMME_UPDATED_ON" element "equal" to "null" element
     And I verify that "EC_PROGRAMME_UPDATED_BY" element "equal" to "null" element
     Then I execute "Update Programme" API step
-    And I verify that "~Second[TIMENOW-yyyy-MM-dd'T'HH:mm]" element "contains" to "EC_PROGRAMME_UPDATED_ON" element
+    And I transform "[TIMENOW-PLUS-0HOURS]" date with pattern "yyyy-MM-dd HH:mm" to another "yyyy-MM-dd'T'HH:mm" pattern saving value as "EC_TIME_NOW_ONE"
+    And I verify that "EC_TIME_NOW_TWO" element "contains" to "EC_PROGRAMME_UPDATED_ON" element
     And I verify that "S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp@clients" element "equal" to "EC_PROGRAMME_UPDATED_BY" element
