@@ -5,7 +5,7 @@ Feature: Course Instance - Redirect Instance - BPP-5195
   so that the new instance in available.
 
   Background:
-    Given I execute "Generate ISBN" reusable step
+    Given I generate new ISBN code saving as "EC_ISBN"
     Given I execute "Log In" reusable step
     And I execute "Remember Variables For Creation Three" reusable step
     And I execute "Remember Variables Two" reusable step

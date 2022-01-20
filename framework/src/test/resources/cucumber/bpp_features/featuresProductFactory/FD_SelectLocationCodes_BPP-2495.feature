@@ -5,7 +5,7 @@ Feature: Financial Dimension - Select Location Codes - BPP-2495
   so that I can track both the "AX Division" and "AX Location" codes for accounting purposes.
 
   Background:
-    Given I execute "Generate ISBN" reusable step
+    Given I generate new ISBN code saving as "EC_ISBN"
     Given I execute "Log In" reusable step
     And I execute "Remember Variables For Creation " reusable step
     And I execute "Remember Variables Two" reusable step

@@ -5,7 +5,7 @@ Feature: Financial Dimension - Select Course Code initial selection - BPP-2490
   I can track appropriate figures for accounting purposes.
 
   Background:
-    Given I execute "Generate ISBN" reusable step
+    Given I generate new ISBN code saving as "EC_ISBN"
     Given I execute "Log In" reusable step
     And I execute "Remember Variables For Creation Dont Touch" reusable step
 

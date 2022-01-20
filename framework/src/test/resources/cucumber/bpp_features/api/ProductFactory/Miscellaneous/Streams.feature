@@ -11,7 +11,7 @@ Feature: Product Factory API Data Creation
     Given I execute "Create Stream" API step
     Then I execute "Update Stream" API step
 
-  @Streams @Duplicate #TC-TC-2930
+  @Streams @Duplicate #TC-2930
   Scenario: Add a Stream Where Name Already Exists
     Given I execute "Create Stream" API step
     Then I execute negative "Create Stream" API step with error name "Name must be unique" and parameters
