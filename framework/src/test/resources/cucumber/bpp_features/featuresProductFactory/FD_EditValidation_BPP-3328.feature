@@ -13,7 +13,8 @@ Feature: Financial Dimension - Edit Validation - BPP-3328
   Scenario Outline: Validate that Applies To drop-down is locked for <type> item
     When I click on the "Financials" "Product Factory navigation item"
     When I click on the "Financial Dimensions" "Product Factory navigation sub item"
-    And I click on the "<EC>" "Product Factory edit button"
+    And I should scroll to the "bottom" of the page
+    And I click on the "<EC>" "Product Factory edit button" by JS
     Then Attribute "aria-pressed" of "<type>" "Product Factory Locked Applies To drop-down item" should have value "false"
 
     Examples:
