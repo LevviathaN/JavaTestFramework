@@ -41,3 +41,11 @@ Feature: Reject Professional Apprenticeship Applications
     Then I execute "Log In to Hub as Student" reusable step
     And I click on the "Direct App My Applications Left Menu Link" link by JS
     Then I validate text "CONTAINS=Unfortunately," to be displayed for "Direct App Validate As Student Application Accepted" element
+    Given I am on "https://harakirimail.com/" URL
+    And I fill the "Harakirimail Inbox Name" field with "EC_AUTO_EMAIL"
+    Then I click on the "Harakirimail Get Inbox" button
+    Then I click on the "Harakirimail First Email" element by JS
+    And Browser performs "REFRESH" command
+    Then I click on the "Harakirimail First Email" element if "Harakirimail First Email" "element is present"
+    And I validate text "CONTAINS=Thank you very much for submitting an application to BPP Professional Apprenticeships." to be displayed for "Harakirimail Validate Letter Body" element
+    And I validate text "CONTAINS=Unfortunately your application for Chartered Manager Degree Apprenticeship has not been accepted." to be displayed for "Harakirimail Validate Letter Body" element

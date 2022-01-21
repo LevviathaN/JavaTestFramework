@@ -38,6 +38,7 @@ and then appears corrects as soon we change it back to the default "Never"
     And I wait for "2" seconds
     Then I switch to window with index "2"
     And I wait for "2" seconds
+    And I execute "Log In to Hub as Student" reusable step if "Direct App Login Button" "element is present"
     Then I click on the "Totara Add Submission Button" button by JS
     And I wait for "2" seconds
     Then I click on the "Add..." "element by title"

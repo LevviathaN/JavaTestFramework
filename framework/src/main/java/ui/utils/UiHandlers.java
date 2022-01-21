@@ -121,6 +121,7 @@ public enum UiHandlers {
                     ||e.getMessage().contains("Are you sure?")
                     ||e.getMessage().contains("Are you sure want to remove this component from a page?")
                     ||e.getMessage().contains("Some questions are not answered yet.")
+                    ||e.getMessage().contains("Are you sure you wish to confirm this student is eligible?")
                     ||e.getMessage().contains("Are you sure want to publish this page?")) {
                 BPPLogManager.getLogger().info("Handling an expected JS Alert" );
                 Reporter.log("Handling an expected JS Alert");

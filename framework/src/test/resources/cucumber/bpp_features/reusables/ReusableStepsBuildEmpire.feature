@@ -970,62 +970,60 @@ Feature: BuildEmpire
     Then I wait for "1" seconds
     And I click on the "Direct App Save And Return" button
 
-  Scenario: Complete University Degree Apprenticeships Application Chartered Manager Parent Guardian
+  Scenario: Complete Professional Apprenticeships UAT Accounting Assistant Parent Guardian
     Given I click on the "Direct App Start Application" button
     And I click on the "Eligibility criteria" "Build Empire application section"
     And I click on the "Are you aged over 15" "Build Empire bespoke Scotland eligibility"
-    And I click on the "Do you have a husband, wife," "Build Empire bespoke Scotland eligibility"
+    And I click on the "Do you have a husband, wife, civil partner and child of any of the above?" "Build Empire bespoke Scotland eligibility"
     And I click on the "Direct App Right To Work in England?" element
     And I click on the "Direct App Do You Spend 50 Percent" element
     And I click on the "Direct App Bespoke Enrolled On Another Apprenticeship No" element
     And I click on the "Direct App Are You In Employment" element
     And I click on the "Direct App Are You Working At Least 16 Hours" element
     And I click on the "Are you applying for a programme" "Build Empire bespoke Scotland eligibility"
-    And I click on the "Do you confirm that your job is a" "Build Empire bespoke Scotland eligibility"
-    And I click on the "Do you confirm that you have discussed" "Build Empire bespoke Scotland eligibility"
-    Then I wait for "1" seconds
+    And I click on the "Do you confirm that your job is a new job role relevant to the career development" "Build Empire bespoke Scotland eligibility"
+    And I click on the "You confirm that you have discussed" "Build Empire bespoke Scotland eligibility"
+    And I wait for "2" seconds
     And I click on the "Direct App Next" button
-    And I click on the "Title" "Build Empire dropdown"
-    And I click on the "Mr" "Build Empire dropdown option"
-    And I set "EC_AUTO_FIRSTNAME" text to the "Forenames" "Build Empire text field by title"
-    And I set "EC_AUTO_LASTNAME" text to the "Family name" "Build Empire text field by title"
-    And I set "12345" text to the "National insurance number" "Build Empire text field by title"
-    And I set "[DOB-17]" text to the "Date of Birth" "Build Empire text field by title"
-    And I press "MD_COMMON_KEYBOARD_ENTER" for "Direct App DOB"
-    And I set "EC_PHONE" text to the "Phone number" "Build Empire text field by title"
+    And I fill the "Direct App Insurance Number" field with "12345"
+    And I click on the "Direct App Country Dropdown" button
+    And I click on the "Direct App Country Dropdown UK Option" button
+    And I fill the "Diret App Phone Number" field with "EC_PHONE"
     And I set "Address 1" text to the "Address Line 1*" "Build Empire text field"
     And I set "Address 2" text to the "Address Line 2" "Build Empire text field"
-    And I set "Address 3" text to the "Address Line 3" "Build Empire text field"
-    And I set "80004" text to the "Postcode" "Build Empire text field by title"
-    And I set "[CITYUSA]" text to the "Town/City*" "Build Empire text field"
-    And I click on the "Country*" "Build Empire dropdown"
-    And I click on the "Afghanistan" "Build Empire dropdown option"
-    #Parent/Legal Guardian Information
+    And I fill the "Diret App Postal Code" field with "12345"
+    And I set "[DOB-16]" text to the "Date of Birth" "Build Empire text field by title"
+    And I press "MD_COMMON_KEYBOARD_ENTER" for "Direct App DOB"
+    And I set "London" text to the "Town/City*" "Build Empire text field"
+     #Parent/Legal Guardian Information
     And I validate text "CONTAINS=If you are under 18 years of age at the point you are accepted" to be displayed for "Direct App If You Are Under 18 Note" element
     And I set "Autotest" text to the "Name of Parent/Legal" "Build Empire text field by title"
-    Then I remember "email11@mail.com" text as "EC_GUARDIAN_EMAIL" variable
+    Then I remember "[EMAIL-YOPMAIL]" text as "EC_GUARDIAN_EMAIL" variable
     And I set "EC_GUARDIAN_EMAIL" text to the "Email Address of Parent/Legal" "Build Empire text field by title"
     And I set "1234567890" text to the "Phone Number of Parent/Legal" "Build Empire text field by title"
     And I set "JustTest" text to the "What is your relationship with this person?" "Build Empire text field by title"
     And I click on the "Direct App Mark As Complete Checkbox" button
     And I wait for "2" seconds
     And I click on the "Direct App Next" button
-    And I click on the "Direct App Additional Info Aged 19" element
+    And I click on the "Direct App Additional Info Aged 16 and 18 first" element
     And I click on the "employment status?:" "Build Empire nationality dropdown"
-    And I click on the "I have work experience in this sector of up to 2 years" "Build Empire nationality option"
+    And I click on the "I am a school / college leaver (This is my first professional role)" "Build Empire nationality option"
+    And I click on the "Direct App Mark As Complete Checkbox" button
+    And I wait for "2" seconds
+    And I click on the "Direct App Next" button
+    Then I click on the "Direct App Scholarship Add" button
+    And I set "AutomationTest" text to the "Kin/Emergency" "Build Empire emergency field"
+    And I set "AutomationTest" text to the "What is your relationship with this person?" "Build Empire emergency field"
+    Then I fill the "Direct App Line Manager Telephone" field with "09138333731"
+    And I fill the "Direct App Admin Email" field with "automation111@mailinator.com"
+    Then I click on the "Direct App Scholarship Add" button
     And I click on the "Direct App Mark As Complete Checkbox" button
     And I wait for "2" seconds
     And I click on the "Direct App Next" button
     And I click on the "Diret App Gender Dropdown" element
     And I click on the "Diret App Gender Not To Say" element
-    And I click on the "Diret App Gender At Birth Dropdown" element
-    And I click on the "Diret App Gender At Birth Yes" element
     And I click on the "Diret App Ethnicity Dropdown" element
     And I click on the "Diret App Ethnicity White And Black African" element
-    And I click on the "Diret App Religion Dropdown" element
-    And I click on the "Diret App Religion Chrisitan" element
-    And I click on the "Diret App Sexual Orientation Dropdown" element
-    And I click on the "Diret App Sexual Orientation Heterosexual" element
     And I click on the "Diret App Learning Disability No" element
     And I click on the "Direct App Mark As Complete Checkbox" button
     And I wait for "2" seconds
@@ -1063,10 +1061,6 @@ Feature: BuildEmpire
     And I click on the "Direct App Mark As Complete Checkbox" button
     And I wait for "2" seconds
     And I click on the "Direct App Next" button
-    And I click on the "Do you have any criminal" "Build Empire radiobutton no"
-    And I click on the "Direct App Mark As Complete Checkbox" button
-    And I wait for "2" seconds
-    And I click on the "Direct App Next" button
     And I fill the "Direct App Job Title" field with "Job Title"
     And I set "32" text to the "contracted working hours?" "Build Empire employment element"
     And I set "Manager Name" text to the "Manager First Name" "Build Empire employment element"
@@ -1074,21 +1068,20 @@ Feature: BuildEmpire
     And I set "AutoTitle" text to the "Manager Job Title" "Build Empire employment element"
     And I set "automation11@mail.com" text to the "Manager Email" "Build Empire employment element"
     And I fill the "Direct App Line Manager Telephone" field with "[PHONE-0913]"
-    And I click on the "Do you know how to raise" "Build Empire radiobutton yes"
     And I set "Address 1" text to the "Address Line 1" "Build Empire employment element"
     And I set "London" text to the "Company/Employer City" "Build Empire employment element"
-    And I click on the "Direct App Company Country Dropdown" element
-    And I click on the "Direct App Company Country Dropdown UK Option" element
-    And I set "12345" text to the "Postcode" "Build Empire employment element"
+    And I set "Employee" text to the "Company/Employer Name" "Build Empire employment element"
     And I click on the "Direct App Company Health And Safety" element
     And I fill the "Direct App When You Start At Company" field with "05/05/2018"
     And I press "MD_COMMON_KEYBOARD_ENTER" for "Direct App When You Start At Company"
+    And I click on the "Direct App Company Country Dropdown" element
+    And I click on the "Direct App Company Country Dropdown UK Option" element
+    And I set "12345" text to the "Postcode" "Build Empire employment element"
     And I click on the "Direct App Mark As Complete Checkbox" button
     And I wait for "2" seconds
     And I click on the "Direct App Next" button
     And I click on the "Direct App Privacy Notice By Email" button
     And I click on the "Direct App Mark As Complete Checkbox" button
-    Then I wait for "1" seconds
     And I click on the "Direct App Save And Return" button
 
   Scenario: Line Manager Review University Degree Apprenticeships Scotland
@@ -1959,3 +1952,38 @@ Feature: BuildEmpire
     Then I click on the "Accept - Induction Email Sent to Both" "text contained in Option element"
     Then I click on the "Submit" "button"
     Then I validate text "CONTAINS=Accepted induction email sent to both" to be displayed for "Direct App Admin Status Changed for Apprenticeships" element
+
+  Scenario: Academic Appeals Admin Status Change
+    Given I click on the "Direct App Admin Apps Top Link" button
+    And I click on the "Direct App Admin Direct Apps List Option" element
+    Then I click on the "Academic Appeals" "Build Empire admin applications tab"
+    And I fill the "Direct App Admin Filter By User" field with "EC_AUTO_EMAIL"
+    And I press "MD_COMMON_KEYBOARD_ENTER" for "Direct App Admin Filter By User"
+    And I click on the "Show" "button"
+    Then I click on the "Begin review" "Build Empire admin applications tab"
+    And I select "Referral Panel" from "Direct App Admin New Status Dropdown" element
+    And I fill the "Direct App Admin Reason" field with "Reason Referral Panel"
+    Then I click on the "Submit" "button"
+    Then I validate text "Referral panel" to be displayed for "Direct App Admin Status Changed for Academic Appeals" element
+    And I select "Referral ODP" from "Direct App Admin New Status Dropdown" element
+    And I fill the "Direct App Admin Reason" field with "Reason Referral ODP"
+    Then I click on the "Submit" "button"
+    Then I validate text "Referral ODP" to be displayed for "Direct App Admin Status Changed for Academic Appeals" element
+    And I select "Part Accept" from "Direct App Admin New Status Dropdown" element
+    And I fill the "Direct App Admin Reason" field with "Reason Part Accept"
+    Then I click on the "Submit" "button"
+    Then I validate text "Part accepted" to be displayed for "Direct App Admin Status Changed for Academic Appeals" element
+    And I fill the "Direct App Admin Reason" field with "Reason Full Application In Review Second"
+    Then I click on the "Submit" "button"
+    Then I validate text "Full application in review" to be displayed for "Direct App Admin Status Changed for Academic Appeals" element
+    And I select "Accept" from "Direct App Admin New Status Dropdown" element
+    And I fill the "Direct App Admin Reason" field with "Reason Referral ODP"
+    Then I click on the "Submit" "button"
+    Then I validate text "Accepted" to be displayed for "Direct App Admin Status Changed for Academic Appeals" element
+    And I fill the "Direct App Admin Reason" field with "Reason Full Application In Review Second"
+    Then I click on the "Submit" "button"
+    Then I validate text "Full application in review" to be displayed for "Direct App Admin Status Changed for Academic Appeals" element
+    And I select "Reject" from "Direct App Admin New Status Dropdown" element
+    And I fill the "Direct App Admin Reason" field with "Reason Reject"
+    Then I click on the "Submit" "button"
+    Then I validate text "Rejected" to be displayed for "Direct App Admin Status Changed for Academic Appeals" element

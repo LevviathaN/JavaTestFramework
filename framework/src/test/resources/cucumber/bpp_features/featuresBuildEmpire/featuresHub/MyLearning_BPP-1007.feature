@@ -45,6 +45,8 @@ Feature: BPP University Hub My Learning
     And I wait for "5" seconds
     Then I execute "window.stop()" JS code
     Then I switch to window with index "2"
+    And I wait for "1" seconds
+    And I execute "Log In to Hub as Student" reusable step if "Direct App Login Button" "element is present"
     Then I should see the "Totara Assessment Title" element
     Then I should see the "Totara Assessment Next Button" element
     Then I switch to window with index "1"
