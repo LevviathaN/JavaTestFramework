@@ -232,7 +232,7 @@ Feature: Salesforce
     And I capture text data "Salesforce Case Number Data Field" as "EC_CASENUMBER" variable
 
   Scenario: Create CSA Case My Course
-    And I click on the "Cases" "Salesforce navigation menu option"
+    And I click on the "Cases" "Salesforce navigation menu option" by JS
     And I click on the "Salesforce New Case Button" element
     And I wait for "1" seconds
     And I click on the "Customer Service" "Salesforce radiobutton"
