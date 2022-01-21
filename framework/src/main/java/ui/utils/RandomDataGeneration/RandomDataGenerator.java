@@ -54,7 +54,9 @@ public class RandomDataGenerator {
                 mail += "@harakirimail.com";
             } else if (s.contains("GUERILLA")){
                 mail += "@guerillamail.info";
-            } else {
+            } else if (s.contains("YOPMAIL")){
+                mail += "@yopmail.com";
+            }else {
                 mail += KeywordsHandler.getValueByKeyword("AUTO_EMAIL");
             }
             return mail;

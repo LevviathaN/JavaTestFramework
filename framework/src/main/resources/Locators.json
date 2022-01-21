@@ -4230,5 +4230,13 @@
   {
     "name": "Quark Generating Output Window",
     "value": "xpath=//span[contains(.,'Generating output...')]"
+  },
+  {
+    "name": "Yopmail Iframe",
+    "value": "xpath=//iframe[@name='ifmail']"
+  },
+  {
+    "name": "Yopmail Letter",
+    "value": "inframe=Yopmail Iframe>xpath=//div[@id='mail']"
   }
 ]

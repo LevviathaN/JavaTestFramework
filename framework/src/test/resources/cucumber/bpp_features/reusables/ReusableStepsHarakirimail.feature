@@ -126,7 +126,6 @@ Feature: Harakirimail, Guerrillamail
     Then Browser performs "REFRESH" command
     And I wait for "1" seconds
     Then I click on the "Your Appeals application has been submitted" "Harakirimail BPP Specific Email First" by JS
-    And I validate text "CONTAINS=Office of Regulation and Compliance" to be displayed for "Harakirimail Validate Letter Body" element
     Then I click on the "Harakirimail Back To Inbox" button
     Then I click on the "Your Appeals application is now being reviewed" "Harakirimail BPP Specific Email First" by JS
     And I validate text "CONTAINS=I am writing to inform you that your academic appeal application has now been allocated to a Regulation and Compliance Officer." to be displayed for "Harakirimail Validate Letter Body" element

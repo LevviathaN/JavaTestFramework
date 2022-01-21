@@ -23,10 +23,9 @@ Feature: As a student who, is under 18, I expect to provide more information abo
     And I execute "Log Out from Hub Student" reusable step
     And I execute "Log In to Hub as Admin" reusable step
     And I execute "Accept Application As Admin" reusable step
-    Given I am on "https://harakirimail.com/" URL
-    And I fill the "Harakirimail Inbox Name" field with "EC_GUARDIAN_EMAIL"
-    Then I click on the "Harakirimail Get Inbox" button
-    Then I click on the "Harakirimail First Email" element by JS
-    And Browser performs "REFRESH" command
-    Then I click on the "Harakirimail First Email" element if "Harakirimail First Email" "element is present"
-    And I validate text "CONTAINS= has identified you as their parent/guardian during their application to study an apprenticeship with BPP. We are pleased to confirm that they have been successful in their application and have now secured a place on the apprenticeship programme." to be displayed for "Harakirimail Validate Letter Body" element
+    Given I am on "https://yopmail.com/" URL
+    And I wait for "2" seconds
+    Then I click on the "Continue with Recommended Cookies" "button"
+    And I set "EC_GUARDIAN_EMAIL" text to the "login" "element by name"
+    Then I press "MD_COMMON_KEYBOARD_ENTER" for "login" "element by name"
+    And I validate text "CONTAINS=has identified you as their parent/guardian during their application to study an apprenticeship with BPP. We are pleased to confirm that they have been successful in their application and have now secured a place on the apprenticeship programme." to be displayed for "Yopmail Letter" element

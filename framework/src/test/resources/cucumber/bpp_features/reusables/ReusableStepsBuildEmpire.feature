@@ -218,7 +218,7 @@ Feature: BuildEmpire
     Given I click on the "Direct App Admin Apprenticeships Tab" link by JS
     And I fill the "Direct App Admin Filter By User" field with "EC_AUTO_EMAIL"
     And I press "MD_COMMON_KEYBOARD_ENTER" for "Direct App Admin Filter By User"
-    And I click on the "Show" "element the first"
+    And I click on the "Show" "button"
     Then I click on the "Begin review" "Build Empire admin applications tab"
     Then I click on the "Direct App Admin Submit Apprenticeships" button
     Then I validate text "CONTAINS=Pre approved" to be displayed for "Direct App Admin Status Changed for Apprenticeships" element
@@ -998,7 +998,7 @@ Feature: BuildEmpire
      #Parent/Legal Guardian Information
     And I validate text "CONTAINS=If you are under 18 years of age at the point you are accepted" to be displayed for "Direct App If You Are Under 18 Note" element
     And I set "Autotest" text to the "Name of Parent/Legal" "Build Empire text field by title"
-    Then I remember "[EMAIL-HARAKIRI]" text as "EC_GUARDIAN_EMAIL" variable
+    Then I remember "[EMAIL-YOPMAIL]" text as "EC_GUARDIAN_EMAIL" variable
     And I set "EC_GUARDIAN_EMAIL" text to the "Email Address of Parent/Legal" "Build Empire text field by title"
     And I set "1234567890" text to the "Phone Number of Parent/Legal" "Build Empire text field by title"
     And I set "JustTest" text to the "What is your relationship with this person?" "Build Empire text field by title"

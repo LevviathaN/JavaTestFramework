@@ -1,7 +1,7 @@
 @BuildEmpire @DirectApps @MitigatingCircumstances
 Feature: Accept Mitigating Circumstances Application
 
-  @PositiveEmails  @Smoke #TC-1266 #TC-1257 #TC-1264
+  @PositiveEmails @Smoke #TC-1266 #TC-1257 #TC-1264
   Scenario: Mitigating Circumstances Send Emails to Students
     Given I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
@@ -30,3 +30,9 @@ Feature: Accept Mitigating Circumstances Application
     And I execute "Mitigating Circumstances Admin Status Change" reusable step
     And I execute "Mitigating Circumstances Admin Status Validation" reusable step
     And I execute "Harakirimail Mitigating Circumstances Status Validations" reusable step
+    Given I am on "https://harakirimail.com/" URL
+    And I fill the "Harakirimail Inbox Name" field with "autonedmaximilian8670@harakirimail.com"
+    Then I click on the "Harakirimail Get Inbox" button
+    Then I click on the "BPP University Mitigating Circumstances Submission Notification" "Harakirimail BPP Specific Email First" by JS
+    And I validate text "CONTAINS=A new application has been made for you to review:" to be displayed for "Harakirimail Validate Letter Body" element
+    And I validate text "CONTAINS=Application Name: BPP University Mitigating Circumstances" to be displayed for "Harakirimail Validate Letter Body" element
