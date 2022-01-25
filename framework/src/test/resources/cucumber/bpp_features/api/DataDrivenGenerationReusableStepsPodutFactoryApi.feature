@@ -111,6 +111,8 @@ Feature: Product Factory Api
     And I execute "Create Pricing Matrix" API step
     And I execute "Create Prices" API step
     And I execute "Create Course" API step
+    And I execute "Create Course Materials" API step
+    And I execute "Update Course Material" API step
     And I execute "Create Stream" API step with parameters
       |name       |$Auto[StreamName]<varName>       |
     And I execute "Create Deactivation Reason" API step with parameters
