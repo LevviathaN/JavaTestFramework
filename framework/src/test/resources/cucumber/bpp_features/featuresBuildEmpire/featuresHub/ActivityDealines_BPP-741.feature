@@ -17,7 +17,7 @@ Feature: The Hub - Dashboard / Timeline - Activity Deadline
     Then I click on the "Totara Assignment Due Date Day" element by JS
     Then I select "EC_DEADLINEDAY" from "Totara Assignment Due Date Day" element
     Then I select "EC_DEADLINEMONTH" from "Totara Assignment Due Date Month" element
-    And I select "2021" from "Totara Assignment Due Date Year" element
+    And I select "2022" from "Totara Assignment Due Date Year" element
     And I click on the "Save and return to course" "element by value" by JS
     And I wait for "2" seconds
     Then I click on the "Scorm Deadline Assignment" "Totara Edit Activity Dropdown Button" by JS
@@ -25,7 +25,7 @@ Feature: The Hub - Dashboard / Timeline - Activity Deadline
     Then I wait for "2" seconds
     Then I select "EC_DEADLINEDAY" from "Totara Assignment Due Date Day" element
     Then I select "EC_DEADLINEMONTH" from "Totara Assignment Due Date Month" element
-    And I select "2021" from "Totara Assignment Due Date Year" element
+    And I select "2022" from "Totara Assignment Due Date Year" element
     And I click on the "Save and return to course" "element by value"
     Then I wait for "2" seconds
     And I execute "Logout as Admin Totara" reusable step
@@ -66,13 +66,13 @@ Feature: The Hub - Dashboard / Timeline - Activity Deadline
     Then I click on the "Assignment Deadline" "Totara Edit Activity Dropdown Button" by JS
     Then I click on the "Assignment Deadline" "Totara Edit Activity Edit Settings option" by JS
     Then I wait for "2" seconds
-    And I select "2023" from "Totara Assignment Due Date Year" element
+    And I select "2024" from "Totara Assignment Due Date Year" element
     And I click on the "Save and return to course" "element by value" by JS
     And I wait for "2" seconds
     Then I click on the "Scorm Deadline Assignment" "Totara Edit Activity Dropdown Button" by JS
     Then I click on the "Scorm Deadline Assignment" "Totara Edit Activity Edit Settings option" by JS
     Then I wait for "2" seconds
-    And I select "2023" from "Totara Assignment Due Date Year" element
+    And I select "2024" from "Totara Assignment Due Date Year" element
     And I click on the "Save and return to course" "element by value"
     Then I wait for "2" seconds
     And I execute "Logout as Admin Totara" reusable step

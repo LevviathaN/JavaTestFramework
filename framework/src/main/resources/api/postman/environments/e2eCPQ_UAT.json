@@ -1,0 +1,169 @@
+{
+	"id": "9ebd56e8-71a9-496f-bcc8-b6919d0b8a6c",
+	"name": "CPQ full flow UAT",
+	"values": [
+		{
+			"key": "pf_auth0_token_url",
+			"value": "https://bpp-stage.eu.auth0.com/oauth/token/",
+			"enabled": true
+		},
+		{
+			"key": "pf_auth0_token_audience",
+			"value": "https://uat.product-factory.bpp.com/api",
+			"enabled": true
+		},
+		{
+			"key": "pf_auth0_token_grant_type",
+			"value": "client_credentials",
+			"enabled": true
+		},
+		{
+			"key": "pf_auth0_token_client_id",
+			"value": "gSQmoLDjvORorNkQUHoIkt04hua0sRFG",
+			"enabled": true
+		},
+		{
+			"key": "pf_auth0_token_client_secret",
+			"value": "YJxSqcJcsVbk3N8qB5saqPEOoe3p28gUsT9YRsVhPpsktTnQFJ1xlkdTId-VeVNK",
+			"enabled": true
+		},
+		{
+			"key": "pf_graph_url",
+			"value": "https://uat-products.bpp.com/",
+			"enabled": true
+		},
+		{
+			"key": "pf_graph_token",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTVNRVF6TmpOR05FVTBNVUZETXpCRk0wSTRSVUl5TlRNeFFUSTRNMEpGTlRGRE9UTkNPQSJ9.eyJpc3MiOiJodHRwczovL2JwcC1xYS5ldS5hdXRoMC5jb20vIiwic3ViIjoiTll2aWF4V1BCaXZPMjhONFgxQTBvaHVZcVpGOTMyajZAY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vcWEucHJvZHVjdC1mYWN0b3J5LmJwcC5jb20vYXBpIiwiaWF0IjoxNjExMjQ2Mzk1LCJleHAiOjE2MTEzMzI3OTUsImF6cCI6Ik5ZdmlheFdQQml2TzI4TjRYMUEwb2h1WXFaRjkzMmo2Iiwic2NvcGUiOiJyZWFkOmJvZHkgcmVhZDpsZXZlbCByZWFkOnBhcGVyIHJlYWQ6Y291cnNlLXR5cGUgcmVhZDpsb2NhdGlvbiByZWFkOmNvdXJzZSByZWFkOnNpdHRpbmcgcmVhZDptYXRlcmlhbCByZWFkOm1hdGVyaWFsLXR5cGUgcmVhZDpjbGllbnQgcmVhZDpkZWFjdGl2YXRpb24tcmVhc29uIHJlYWQ6cHJpY2luZy1tYXRyaXggcmVhZDpzZXNzaW9uLWR1cmF0aW9uIHJlYWQ6dmF0LXJ1bGUgcmVhZDpzZXNzaW9uIHJlYWQ6ZmluYW5jaWFsLWRpbWVuc2lvbiByZWFkOnN5c3RlbSByZWFkOnJlZ2lvbiByZWFkOmluc3RhbmNlIHJlYWQ6Y2JhIHJlYWQ6c3RyZWFtIHJlYWQ6ZGlnaXRhbC1jb250ZW50IHJlYWQ6Y291cnNlLWJ1bGstb3BlcmF0aW9uIHJlYWQ6ZXhhbS1wcmVwYXJhdGlvbiByZWFkOnN0dWR5LW1vZGUgcmVhZDp2ZXJ0aWNhbCIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyIsInBlcm1pc3Npb25zIjpbInJlYWQ6Ym9keSIsInJlYWQ6bGV2ZWwiLCJyZWFkOnBhcGVyIiwicmVhZDpjb3Vyc2UtdHlwZSIsInJlYWQ6bG9jYXRpb24iLCJyZWFkOmNvdXJzZSIsInJlYWQ6c2l0dGluZyIsInJlYWQ6bWF0ZXJpYWwiLCJyZWFkOm1hdGVyaWFsLXR5cGUiLCJyZWFkOmNsaWVudCIsInJlYWQ6ZGVhY3RpdmF0aW9uLXJlYXNvbiIsInJlYWQ6cHJpY2luZy1tYXRyaXgiLCJyZWFkOnNlc3Npb24tZHVyYXRpb24iLCJyZWFkOnZhdC1ydWxlIiwicmVhZDpzZXNzaW9uIiwicmVhZDpmaW5hbmNpYWwtZGltZW5zaW9uIiwicmVhZDpzeXN0ZW0iLCJyZWFkOnJlZ2lvbiIsInJlYWQ6aW5zdGFuY2UiLCJyZWFkOmNiYSIsInJlYWQ6c3RyZWFtIiwicmVhZDpkaWdpdGFsLWNvbnRlbnQiLCJyZWFkOmNvdXJzZS1idWxrLW9wZXJhdGlvbiIsInJlYWQ6ZXhhbS1wcmVwYXJhdGlvbiIsInJlYWQ6c3R1ZHktbW9kZSIsInJlYWQ6dmVydGljYWwiXX0.GNFcRranoCtRAnmpnHN0ScT4J5_EQ22M960WNBrhp4Cm_QtJdc7tvsFnDqGNtRdZejC8kAXesm51rFYGrEE43JDmoiES6P1x5fprFEJevfBBoCKwE2bKzKCUayzJUmDPtxtHUzfraj-xydc-OUWKgzDtO9-Fo04SUuiTwOx94WzyrFQRiRw01wQeAcZc0r1rkSsyzPJ4cluuJeO0psc0i8TOEQO9CvUz9EDL9CVcDVwmOluDlnASQEH9zaWbsywGOuXcEKncpTb79dA_vDq0R-BnLP9UJd26VC6gWSxAdNHxg-dD344i_5vTCJdtjF9TeLxuVUUj2G75B4KnRVRelg",
+			"enabled": true
+		},
+		{
+			"key": "qa_sf_graph_token",
+			"value": "00Dg0000006S5LR!AQEAQE5GeazBytvm7WAXxMc.yv5.yxAsl0eakgfSUO8NTWkyeKblZpXFftyhmOhMbuPKPMapSgjYlsgIe2ffqiXb4iHXfmh0",
+			"enabled": true
+		},
+		{
+			"key": "ConfigurationEvent",
+			"value": "Edit",
+			"enabled": true
+		},
+		{
+			"key": "ConfigurationType",
+			"value": "Allowed",
+			"enabled": true
+		},
+		{
+			"key": "PF_reference",
+			"value": "d4a9f656-722e-44f3-9150-8c7c33da7a48",
+			"enabled": true
+		},
+		{
+			"key": "SFpublicURL",
+			"value": "https://bpp-13fd3e55182--noahuat.my.salesforce.com/services/data/v47.0",
+			"enabled": true
+		},
+		{
+			"key": "TotaraAPIUrl",
+			"value": "https://totara-stage-bppdigital.bppuniversity.com/webservice/restjson/server.php",
+			"enabled": true
+		},
+		{
+			"key": "SFclient_idForToken",
+			"value": "3MVG9ahGHqp.k2_wASZlL4kleU10AfCXnm0BGJ_w9Mcrt_vYv2zSruJFN4srMfkyisytycDQpd4rFA18HrVZB",
+			"enabled": true
+		},
+		{
+			"key": "SFclient_secretForToken",
+			"value": "8592CC1DDC3B953D2A5944EFDEA8BC6F95C7ACB11E62C7B45C3B06B29558D629",
+			"enabled": true
+		},
+		{
+			"key": "SFusernameForToken",
+			"value": "ruslanharlitskyi@bpp.com.noahuat",
+			"enabled": true
+		},
+		{
+			"key": "SFpasswordForToken",
+			"value": "t3st1ngHRVLLwg3HRQZYZO9CxaY0tquuKW",
+			"enabled": true
+		},
+		{
+			"key": "TotaraWStoken",
+			"value": "j3XtNO5UHnyBLICvEVY45pXWGAVrSjrl",
+			"enabled": true
+		},
+		{
+			"key": "BillingFreq",
+			"value": "Monthly",
+			"enabled": true
+		},
+		{
+			"key": "BillingRule",
+			"value": "a4Cg00000006VfTEAU",
+			"enabled": true
+		},
+		{
+			"key": "ChargeType",
+			"value": "Usage",
+			"enabled": true
+		},
+		{
+			"key": "TaxRule",
+			"value": "a53g0000000hg2ZAAQ",
+			"enabled": true
+		},
+		{
+			"key": "SF_course_id",
+			"value": "01tg000000BzAyZAAV",
+			"enabled": true
+		},
+		{
+			"key": "HUBauth0URL",
+			"value": "https://bpp-stage.eu.auth0.com",
+			"enabled": true
+		},
+		{
+			"key": "auth0_token",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6Ik5rUTVNRVF6TmpOR05FVTBNVUZETXpCRk0wSTRSVUl5TlRNeFFUSTRNMEpGTlRGRE9UTkNPQSJ9.eyJpc3MiOiJodHRwczovL2JwcC1xYS5ldS5hdXRoMC5jb20vIiwic3ViIjoiRXVtUjFmQnJaalo0dldycEI0cUk1Y1RRSGpYUWhRVlFAY2xpZW50cyIsImF1ZCI6Imh0dHBzOi8vYnBwLXFhLmV1LmF1dGgwLmNvbS9hcGkvdjIvIiwiaWF0IjoxNjExMjQ3MzA3LCJleHAiOjE2MTEzMzM3MDcsImF6cCI6IkV1bVIxZkJyWmpaNHZXcnBCNHFJNWNUUUhqWFFoUVZRIiwic2NvcGUiOiJyZWFkOnVzZXJzIHJlYWQ6dXNlcnNfYXBwX21ldGFkYXRhIHJlYWQ6dXNlcl9jdXN0b21fYmxvY2tzIHJlYWQ6c3RhdHMgcmVhZDpsb2dzIHJlYWQ6YW5vbWFseV9ibG9ja3MgcmVhZDpsb2dfc3RyZWFtcyIsImd0eSI6ImNsaWVudC1jcmVkZW50aWFscyJ9.y3qhOEQbpwGEGUG1dJUMhzXAyDZDTmxYkxTPWcEpSCXBXwq84gMhBHqlYZumw3wsIGmRAgfCQ6cbuANnhrgQXeiuciSrSvbdyRreNzSsYR-Bqz7Xfji7a_tcTzjAqfFtxIy6Ut3BawqXniNhjcBoPgV2yK0Lm6hwqQnpNnRvviKwzUx5LyMEIItEFCXjAHdTPe9vuhCZHFMpLVfZr003MbvpltaP-C1aS2urBGf3AW3MVAcQjH_o9Odn7LwfoWKLZzjpKLgtn5me2nkrVBq3-t91ZI1sOl4_0gy0Utx77FgKFCkStXPJHMVnluLxYbBLC5ePj14ifPRio0Vn7Ncrng",
+			"enabled": true
+		},
+		{
+			"key": "auth0client_id",
+			"value": "qaHd2Jot6wuGmldE32mkkDO8HxtMjWfX",
+			"enabled": true
+		},
+		{
+			"key": "auth0client_secret",
+			"value": "CIbrI7dhlxca0MqPoTbYn5T1F_J3QlmXJmk86OsOAwOAiUdyXRAp0OCDtUpAMmDa",
+			"enabled": true
+		},
+		{
+			"key": "auth0audience",
+			"value": "https://bpp-stage.eu.auth0.com/api/v2/",
+			"enabled": true
+		},
+		{
+			"key": "auth0grant_type",
+			"value": "client_credentials",
+			"enabled": true
+		},
+		{
+			"key": "RevenueRecRule",
+			"value": "a4vg0000000RPdhAAG",
+			"enabled": true
+		},
+		{
+			"key": "InstanceID",
+			"value": "a5Cg0000000DczmEAC",
+			"enabled": true
+		},
+		{
+			"key": "BookingSFId",
+			"value": "a5Bg0000001ty7hEAA",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2021-12-28T14:42:25.719Z",
+	"_postman_exported_using": "Postman/9.7.0"
+}

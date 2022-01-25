@@ -188,6 +188,10 @@
     "value": "xpath=//div[@class='list-group-item']//div[2]/a[contains(.,'Edit')]"
   },
   {
+    "name": "BPP Digital Invite Button",
+    "value": "xpath=//button[contains(.,'Invite')]"
+  },
+  {
     "name": "BPP Digital Edit News",
     "value": "xpath=//tbody//tr[contains(.,'EC_AUTOMATION_NEWS')]//td[5]/a[1]"
   },
@@ -974,6 +978,10 @@
   {
     "name": "Direct App Additional Info Aged 16 and 18",
     "value": "xpath=//label[contains(.,'aged between 16 and 18 years old, at the start of the course and have been in the care of your local authority')]"
+  },
+  {
+    "name": "Direct App Additional Info Aged 16 and 18 first",
+    "value": "xpath=(//div[@class='radio-container']/label)[1]"
   },
   {
     "name": "Direct App Additional Info Upload Button",
@@ -1769,7 +1777,7 @@
   },
   {
     "name": "Direct App Privacy Notice By Email",
-    "value": "xpath=//div[@class='content-app ']/div[5]/label"
+    "value": "xpath=//div[@class='content-app ']/div[6]/label"
   },
   {
     "name": "Direct App Programme Dropdown",
@@ -2112,8 +2120,12 @@
     "value": "xpath=//div[@class='course-info']"
   },
   {
+    "name": "Guerilla Mail Select Domain",
+    "value": "xpath=//select[@id='gm-host-select']"
+  },
+  {
     "name": "Guerilla BPP Email",
-    "value": "xpath=//tbody[@id='email_list']//td[contains(.,'no-reply@staging.bppdigital.buildempire.co.uk ')]"
+    "value": "xpath=(//tbody[@id='email_list']//td[contains(.,'bpp.com')])[1]"
   },
   {
     "name": "Guerilla Back To Inbox",
@@ -2200,6 +2212,10 @@
     "value": "css=tbody#mail_list_body>tr:nth-child(1)>td:nth-child(2)>a"
   },
   {
+    "name": "Harakirimail First Email From",
+    "value": "css=tbody#mail_list_body>tr:nth-child(1)>td:nth-child(1)"
+  },
+  {
     "name": "Harakirimail First Email Body",
     "value": "css=div#email_body_html|https:\\/\\/bpp-stage.eu.auth0.com\\/lo\\/reset.+[aA-zZ0-9]\\#"
   },
@@ -2221,31 +2237,31 @@
   },
   {
     "name": "Harakirimail Validate Mitigating Circumstances Submitted Link",
-    "value": "xpath=//tbody[@id='mail_list_body']/tr[7]/td[normalize-space()='Your Mitigating Circumstances has been submitted']"
+    "value": "xpath=//tbody[@id='mail_list_body']/tr[7]/td[normalize-space()='Your Mitigating Circumstances has been submitted']/a"
   },
   {
     "name": "Harakirimail Your MC Are Now Reviewed",
-    "value": "xpath=//tbody[@id='mail_list_body']/tr[6]/td[normalize-space()='Your Mitigating Circumstances are now being reviewed']"
+    "value": "xpath=//tbody[@id='mail_list_body']/tr[6]/td[normalize-space()='Your Mitigating Circumstances are now being reviewed']/a"
   },
   {
     "name": "Harakirimail Your MC Referred",
-    "value": "xpath=//tbody[@id='mail_list_body']/tr[5]/td[normalize-space()='Your Mitigating Circumstances application has been referred']"
+    "value": "xpath=//tbody[@id='mail_list_body']/tr[5]/td[normalize-space()='Your Mitigating Circumstances application has been referred']/a"
   },
   {
     "name": "Harakirimail Your MC Progressing",
-    "value": "xpath=//tbody[@id='mail_list_body']/tr[4]/td[normalize-space()='Your Mitigating Circumstances is progressing']"
+    "value": "xpath=//tbody[@id='mail_list_body']/tr[4]/td[normalize-space()='Your Mitigating Circumstances is progressing']/a"
   },
   {
     "name": "Harakirimail Your MC Outcome",
-    "value": "xpath=//tbody[@id='mail_list_body']/tr[3]/td[normalize-space()='Your Mitigating Circumstances application outcome']"
+    "value": "xpath=//tbody[@id='mail_list_body']/tr[3]/td[normalize-space()='Your Mitigating Circumstances application outcome']/a"
   },
   {
     "name": "Harakirimail Your MC Accepted",
-    "value": "xpath=//tbody[@id='mail_list_body']/tr[2]/td[normalize-space()='Your Mitigating Circumstances application has been accepted']"
+    "value": "xpath=//tbody[@id='mail_list_body']/tr[2]/td[normalize-space()='Your Mitigating Circumstances application has been accepted']/a"
   },
   {
     "name": "Harakirimail Your MC Outcome Second",
-    "value": "xpath=//tbody[@id='mail_list_body']/tr[1]/td[normalize-space()='Your Mitigating Circumstances application outcome']"
+    "value": "xpath=//tbody[@id='mail_list_body']/tr[1]/td[normalize-space()='Your Mitigating Circumstances application outcome']/a"
   },
   {
     "name": "Harakirimail Verify Email",
@@ -2629,7 +2645,7 @@
   },
   {
     "name": "Product Factory Database Query Field",
-    "value": "xpath=//div[@class='CodeMirror-code']//pre"
+    "value": "xpath=//div[@class='view-lines monaco-mouse-cursor-text']/div"
   },
   {
     "name": "Product Factory Database Submit Query Button",
@@ -2861,11 +2877,11 @@
   },
   {
     "name": "Salesforce Banner ID Field",
-    "value": "xpath=//span[text()='Banner ID']/../following-sibling::div/span/slot/slot/*"
+    "value": "xpath=//span[text()='Banner ID']/../following-sibling::div/span/slot/*"
   },
   {
     "name": "Salesforce Account Phone Field",
-    "value": "xpath=//span[text()='Phone']/../following-sibling::div/span/slot/slot/*"
+    "value": "xpath=//span[text()='Phone']/../following-sibling::div/span/slot/*"
   },
   {
     "name": "Salesforce CS Ready to Close",
@@ -2909,19 +2925,19 @@
   },
   {
     "name": "Salesforce Case Number Data Field",
-    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//span[text()='Case Number']/../following-sibling::div/span/slot/slot/*"
+    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//span[text()='Case Number']/../following-sibling::div/span/slot/*"
   },
   {
     "name": "Salesforce Case Owner Data Field",
-    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//span[text()='Case Owner']/../following-sibling::div/span/slot/slot//slot[@force-lookup_lookup]"
+    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//span[text()='Case Owner']/../following-sibling::div/span/slot//slot[@force-lookup_lookup]"
   },
   {
     "name": "Salesforce Case Status Data Field",
-    "value": "xpath=//span[text()='Status']/../following-sibling::div/span/slot/slot/*"
+    "value": "xpath=//span[text()='Status']/../following-sibling::div/span/slot/*[1]"
   },
   {
     "name": "Salesforce Case Status Dropdown",
-    "value": "xpath=//label[text()='Status']//following-sibling::div[1]//div[1]/div/input"
+    "value": "xpath=//label[text()='Status']//following-sibling::div[1]//div//button"
   },
   {
     "name": "Salesforce Cases Option",
@@ -3005,7 +3021,7 @@
   },
   {
     "name": "Salesforce Profile Services ID Field",
-    "value": "xpath=//span[text()='Profile Services ID']/../following-sibling::div/span/slot/slot/*"
+    "value": "xpath=//span[text()='Profile Services ID']/../following-sibling::div/span/slot/*"
   },
   {
     "name": "Salesforce Provisioning Email Address field",
@@ -3204,6 +3220,10 @@
     "value": "inframe=Salesforce Frame>xpath=(//*[@id='mainButton'])[last()]"
   },
   {
+    "name": "Salesforce Quotes Page Product Quantity Input",
+    "value": "inframe=Salesforce Frame>xpath=(//input[contains(@class,'numberInput')])[last()]"
+  },
+  {
     "name": "Salesforce Quotes Edit Page Save",
     "value": "inframe=Salesforce Frame>xpath=//*[@name='Save']/paper-button"
   },
@@ -3382,6 +3402,10 @@
   {
     "name": "Salesforce Shipping Address Order Page",
     "value": "xpath=(//span[text()='Shipping Address']//following::div/span/a[@title])[1]"
+  },
+  {
+    "name": "Salesforce Lead Page Task Today",
+    "value": "xpath=(//*[@title='Upcoming & Overdue']//following::div[contains(text(),'You have an upcoming task')])[1]"
   },
   {
     "name": "Totara Account Expandable Menu",
@@ -4206,5 +4230,13 @@
   {
     "name": "Quark Generating Output Window",
     "value": "xpath=//span[contains(.,'Generating output...')]"
+  },
+  {
+    "name": "Yopmail Iframe",
+    "value": "xpath=//iframe[@name='ifmail']"
+  },
+  {
+    "name": "Yopmail Letter",
+    "value": "inframe=Yopmail Iframe>xpath=//div[@id='mail']"
   }
 ]

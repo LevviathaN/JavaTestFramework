@@ -5,7 +5,7 @@ Feature: Edit Instance - Streams - BPP-6518
   so that the relationship is made.
 
   Background:
-    Given I execute "Generate ISBN" reusable step
+    Given I generate new ISBN code saving as "EC_ISBN"
     Given I execute "Log In" reusable step
     And I execute "Remember Variables For Creation Draft Course" reusable step
     And I remember "AutoStreamNameTwo" text as "EC_STREAM_NAME_TWO" variable

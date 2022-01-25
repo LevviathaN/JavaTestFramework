@@ -84,10 +84,9 @@ Feature: As a BPP PD Learner I need to Book Single Courses online
     Then I click on the "BPP Digital Course Card Month Dropdown" element
     And I click on the "01" "BPP Digital Drop Down Option value"
     Then I click on the "BPP Digital Course Card Year Dropdown" element
-    And I click on the "2021" "BPP Digital Drop Down Option value"
+    And I click on the "2022" "BPP Digital Drop Down Option value"
     And I set "123" text to the "card_cvn" "BPP Digital Booking Payment Data"
     And I should see the "Enter a valid card number" "message"
-    And I should see the "Enter a valid expiry date" "message"
     And I click on the "Pay" "BPP Digital Admin Value attribute button"
     And I should see the "You have one or more errors in your payment details. Please fix to continue." "message"
     And I set "6759411100000008" text to the "card_number" "BPP Digital Booking Payment Data"

@@ -66,6 +66,8 @@ Feature: The Hub - Law School - Assignments/Emails - Inbox Overview
     Then I click on the "VPE Course Automation" "Build Empire My Learning Right Block Course name"
     And Browser deletes cookies
     And I switch to window with index "2"
+    And I wait for "1" seconds
+    And I execute "Log In to Hub as Student" reusable step if "Direct App Login Button" "element is present"
     Then I should see the "AutoTest Created" "element"
     Then I should see the "Script Created" "element"
     Then I should see the "AutoTest Assignment3" "element"

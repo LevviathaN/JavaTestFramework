@@ -5,7 +5,7 @@ Feature: Ability to add Steps in Product Factory Course - BPP-12616
   as this will allow me to add due dates to those steps.
 
   Background:
-    Given I execute "Generate ISBN" reusable step
+    Given I generate new ISBN code saving as "EC_ISBN"
     Given I execute "Log In" reusable step
     And I execute "Remember Variables " reusable step
 

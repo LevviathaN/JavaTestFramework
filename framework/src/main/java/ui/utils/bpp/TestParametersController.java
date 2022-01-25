@@ -75,7 +75,7 @@ public class TestParametersController {
         retrieversMap.put("RD",(s) -> RandomDataGenerator.getInstance().generateValue(s));
 
         dataRegexMap.put("RD",RegexPattern.RANDOM_DATA.getRegex());
-        dataRegexMap.put("KW",RegexPattern.GENERAL_KEYWORD_PATTERN.getRegex());
+        dataRegexMap.put("KW",RegexPattern.ACCEPTABLE_KEYWORD_PATTERN.getRegex());
         dataRegexMap.put("MD",RegexPattern.META_DATA.getRegex());
         dataRegexMap.put("EC", RegexPattern.EC.getRegex());
     }
@@ -97,7 +97,7 @@ public class TestParametersController {
             }
             for (String data : dataList) { //replace all special parameters with their calculated values in the string
                 String value = retrieversMap.get(retriever).retrieve(data);
-                parameter = parameter.replaceAll(shieldRegexSpecialChars(data), value);
+                parameter = parameter.replaceAll(shieldRegexSpecialChars(data), String.valueOf(value));
                 BPPLogManager.getLogger().info("'" + data + "' " + retriever
                         + " variable was successfully replaced with '" + value + "' in '" + parameter + "' string");
             }
@@ -159,6 +159,7 @@ public class TestParametersController {
                 .replace(".","\\.")
                 .replace("#","\\#")
                 .replace("{","\\{")
+                .replace("|","\\|")
                 .replace("}","\\}");
     }
 }

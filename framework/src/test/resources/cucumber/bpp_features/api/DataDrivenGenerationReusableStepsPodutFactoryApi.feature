@@ -32,6 +32,16 @@ Feature: Product Factory Api
       |description|$Auto[MaterialTypeFDDescription]<varName>|
       |dimensionType|PRODUCT     |
       |target       |MATERIALTYPE|
+    Given I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_"
+      |code       |$Auto[MaterialFDCode]<varName>       |
+      |description|$Auto[MaterialFDDescription]<varName>|
+      |dimensionType|PRODUCT  |
+      |target       |MATERIAL |
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_"
+      |code       |$Auto[CourseFDCode]<varName>       |
+      |description|$Auto[CourseFDDescription]<varName>|
+      |dimensionType|PRODUCT|
+      |target       |COURSE |
     And I execute "Create Class Category" API step with parameters
       |name|$Auto[ClassCategoryName]<varName>|
     And I execute "Create Programme" API step with parameters
@@ -404,10 +414,10 @@ Feature: Product Factory Api
       |bodyReferences|EC_1_BODY_REFERENCE|
     And I execute "Create Sitting" API step with parameters saving as "2_"
       |name|$2Ordering[SittingName]      |
-      |bodyReferences|EC_2_BODY_REFERENCE|
+      |bodyReferences|EC_1_BODY_REFERENCE|
     And I execute "Create Sitting" API step with parameters saving as "3_"
       |name|$3Ordering[SittingName]      |
-      |bodyReferences|EC_3_BODY_REFERENCE|
+      |bodyReferences|EC_1_BODY_REFERENCE|
 
 
     And I execute "Create Course Type" API step with parameters saving as "1_"

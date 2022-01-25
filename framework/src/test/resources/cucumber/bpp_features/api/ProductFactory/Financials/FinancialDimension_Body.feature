@@ -43,11 +43,13 @@ Feature: Product Factory API Data Creation
     Given I execute "Create Financial Dimension" API step with parameters saving as "BODY_"
       |dimensionType|PRODUCT|
       |target       |BODY   |
-    And I verify that "[TIMENOW-OHB-yyyy-MM-dd'T'HH:mm]" element "contains" to "EC_BODY_FINANCIAL_DIMENSION_CREATED_ON" element
+    And I transform "[TIMENOW-PLUS-0HOURS]" date with pattern "yyyy-MM-dd HH:mm" to another "yyyy-MM-dd'T'HH:mm" pattern saving value as "EC_TIME_NOW_ONE"
+    And I verify that "EC_TIME_NOW_ONE" element "contains" to "EC_BODY_FINANCIAL_DIMENSION_CREATED_ON" element
     And I verify that "S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp@clients" element "equal" to "EC_BODY_FINANCIAL_DIMENSION_CREATED_BY" element
     And I verify that "EC_BODY_FINANCIAL_DIMENSION_UPDATED_ON" element "equal" to "null" element
     And I verify that "EC_BODY_FINANCIAL_DIMENSION_UPDATED_BY" element "equal" to "null" element
     Then I execute "Update Financial Dimension" API step with parameters
       |reference|EC_BODY_FINANCIAL_DIMENSION_REFERENCE|
-    And I verify that "~Second[TIMENOW-OHB-yyyy-MM-dd'T'HH:mm]" element "contains" to "EC_UPDATE_FINANCIAL_DIMENSION_UPDATED_ON" element
+    And I transform "[TIMENOW-PLUS-0HOURS]" date with pattern "yyyy-MM-dd HH:mm" to another "yyyy-MM-dd'T'HH:mm" pattern saving value as "EC_TIME_NOW_ONE"
+    And I verify that "EC_TIME_NOW_TWO" element "contains" to "EC_UPDATE_FINANCIAL_DIMENSION_UPDATED_ON" element
     And I verify that "S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp@clients" element "equal" to "EC_UPDATE_FINANCIAL_DIMENSION_UPDATED_BY" element

@@ -354,7 +354,7 @@
   },
   {
     "name": "Build Empire RFI dropdown option",
-    "value": "xpath=//li[text()=\"PARAMETER\"]"
+    "value": "xpath=//li[text()='PARAMETER']"
   },
   {
     "name": "Build Empire admin applications tab",
@@ -798,7 +798,11 @@
   },
   {
     "name": "Salesforce readonly field",
-    "value": "xpath=//span[text()='PARAMETER']/../following-sibling::div/span/slot/slot/*"
+    "value": "xpath=//span[text()='PARAMETER']/../following-sibling::div/span/slot/*"
+  },
+  {
+    "name": "Salesforce read field",
+    "value": "xpath=(//span[text()='PARAMETER']/../following-sibling::div/span/span)[1]"
   },
   {
     "name": "Salesforce related dropdown",
@@ -838,7 +842,19 @@
   },
   {
     "name": "Salesforce Invoice Price Info",
-    "value": "xpath=//span[contains(.,'Price Information')]//following::div[1]//span[text()='PARAMETER']//following::div[2]//span//slot/slot//slot/*"
+    "value": "xpath=//span[contains(.,'Price Information')]//following::div[1]//span[text()='PARAMETER']//following::div[2]//span/slot/*"
+  },
+  {
+    "name": "Salesforce Quotes Page Product Quantity Element To Click",
+    "value": "inframe=Salesforce Frame>xpath=(//span[@class='style-scope sf-le-table-row']/../following::div[@field='SBQQ__Quantity__c']/div)[PARAMETER]"
+  },
+  {
+    "name": "Salesforce Quotes Page Product Quantity Pencil Element",
+    "value": "inframe=Salesforce Frame>xpath=(//span[@class='style-scope sf-le-table-row']/..//../following::div[@field='SBQQ__Quantity__c']/div)[PARAMETER]"
+  },
+  {
+    "name": "Salesforce First Lead In Search",
+    "value": "xpath=//div[contains(@class,'oneContent active lafPageHost')]//th//a[contains(.,'PARAMETER')]"
   },
   {
     "name": "Totara Assessment radiobutton",
@@ -1021,6 +1037,10 @@
     "value": "xpath=//a[contains(text(),'PARAMETER')]"
   },
   {
+    "name": "text contained in A element first",
+    "value": "xpath=(//a[contains(text(),'PARAMETER')])[1]"
+  },
+  {
     "name": "text contained in P element",
     "value": "xpath=//p[contains(text(),'PARAMETER')]"
   },
@@ -1083,6 +1103,14 @@
   {
     "name": "Nada BPP Specific Email",
     "value": "xpath=//a[contains(.,'PARAMETER')]"
+  },
+  {
+    "name": "Harakirimail BPP Specific Email First",
+    "value": "xpath=(//a[contains(.,'PARAMETER')])[1]"
+  },
+  {
+    "name": "Harakirimail BPP Specific Email Second",
+    "value": "xpath=(//a[contains(.,'PARAMETER')])[2]"
   },
   {
     "name": "Quark XML File",
