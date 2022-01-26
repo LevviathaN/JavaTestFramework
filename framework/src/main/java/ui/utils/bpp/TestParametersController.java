@@ -149,7 +149,7 @@ public class TestParametersController {
     /**
      * Method is used to shield special characters with escape character in provided string
      */
-    private static String shieldRegexSpecialChars(String string) {
+    public static String shieldRegexSpecialChars(String string) {
         return string.replace("$","\\$")
                 .replace("[","\\[")
                 .replace("]","\\]")
@@ -158,6 +158,7 @@ public class TestParametersController {
                 .replace(")","\\)")
                 .replace(".","\\.")
                 .replace("#","\\#")
+                .replace("*","\\*")
                 .replace("{","\\{")
                 .replace("|","\\|")
                 .replace("}","\\}");

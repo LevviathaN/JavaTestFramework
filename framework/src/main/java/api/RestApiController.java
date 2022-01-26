@@ -87,17 +87,21 @@ public class RestApiController {
         return map.toString();
     }
 
-    public String processPropertiesPF(String requestTemplate, Map<String, String> parameters) {
+    public String processPropertiesPF(String jsonPath, Map<String, String> parameters) {
 
         //get json string from file
-        JSONObject jo = new Utilities().getJsonObject(requestTemplate);
-        requestTemplate = jo.toString();
+        JSONObject jo = new Utilities().getJsonObject(jsonPath);
+        String requestTemplate = jo.toString();
 
         //replace selected parameters in json string with values provided in parameters map
         if (parameters==null) parameters = new HashMap<String,String>();
         for (String parameter : parameters.keySet()) {
             String value = parameters.get(parameter);
-            requestTemplate = requestTemplate.replaceAll("\""+parameter+"\":\"([^\"]*)\"",value);
+            if (parameter.contains("References")) {
+                requestTemplate = requestTemplate.replaceAll("\""+parameter+"\":\\[?\"?([^\"},]*)\"?\\]?","\""+parameter+"\":[\"" + value + "\"]");
+            } else {
+                requestTemplate = requestTemplate.replaceAll("\""+parameter+"\":\"?([^\"},]*)\"?","\""+parameter+"\":\"" + value + "\"");
+            }
         }
 
         //process all special parameters in requestTemplate string
@@ -113,7 +117,7 @@ public class RestApiController {
         //remove quotes from all integer values, except ones in list below
         List<String> intsWithQuotes =  new ArrayList<>(Arrays.asList("edition","referenceNumber","sisCode","termCode","productInstanceCode"));
         for (String object : objectsList.keySet()) {
-            if (objectsList.get(object).matches("\\d+") && !intsWithQuotes.contains(object)) {
+            if (objectsList.get(object).matches("\\d+") && !intsWithQuotes.contains(object) || objectsList.get(object).equals("true") || objectsList.get(object).equals("false")) {
                 requestTemplate = requestTemplate.replace("\"" + object + "\":\"" + objectsList.get(object) + "\"", "\"" + object + "\":" + objectsList.get(object));
             }
         }
