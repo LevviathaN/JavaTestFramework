@@ -9,7 +9,7 @@ Feature: Course Search - Start Date filter - BPP-10777
 
 
   @Positive #TC-4416
-  Scenario: Course Search - Additional Filters
+  Scenario: Course Search - Start Date filter
     And I execute "Remember Variables " reusable step
     And I execute "Remember Variables Two" reusable step
 

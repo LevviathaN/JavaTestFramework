@@ -4,8 +4,8 @@ Feature: Course Search - Infinite Scrolling - BPP-10787
   I want to traverse multiple pages of results
   so that the set of Courses is limited and load times are significantly reduced.
 
-  @Positive #TC-4416
-  Scenario: Course Search - Additional Filters
+  @Positive #TC-4415
+  Scenario: Course Search - Infinite Scrolling
     Given I execute "Log In" reusable step
     When I click on the "Products" "Product Factory navigation item"
     Then I click on the "Courses" "Product Factory navigation sub item"
