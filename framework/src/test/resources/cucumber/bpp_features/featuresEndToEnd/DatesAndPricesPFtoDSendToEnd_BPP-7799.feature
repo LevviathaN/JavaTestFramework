@@ -1,4 +1,4 @@
-@ProductFactoryUAT @DigitalSite
+@ProductFactoryUAT @EndToEnd
 Feature: Ability for Course / Paper etc to be published from Product Factory into BPP.com / The Hub and viewable as an Admin within The Hub
   As a Hub Admin,
   After items were published to Web from Product Factory,

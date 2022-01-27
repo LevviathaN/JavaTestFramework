@@ -1,4 +1,4 @@
-@BuildEmpire @Hub @ScormAssesment1
+@BuildEmpire @Hub @ScormAssesment
 Feature: SCORM Asessment Not Submit
   As a user, if I start but do not submit a scorm attempt,
   I do not expect this to be recorded as an attempt in my 'assessment block' as these attempts are not relevant

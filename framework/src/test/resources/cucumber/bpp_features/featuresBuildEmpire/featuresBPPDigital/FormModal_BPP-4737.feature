@@ -49,7 +49,7 @@ Feature: As an admin I can set a form display as Modal and can access it via lin
     Then I execute "Publish a CMS or Blog Post page" reusable step
     And I wait for "2" seconds
     And I execute "Log Out from Hub Admin" reusable step
-    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/<EC_AUTO_CMS_URL>" URL
+    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/EC_AUTO_CMS_URL" URL
     And I click on the "#cmsformmodal" "text contained in A element"
     And I should see the "EC_MODAL_TITLE" element
     And I should see the "EC_MODAL_DESCRIPTION" element
