@@ -482,7 +482,7 @@ Feature: Redirect to Requested URL after Authentication - BPP-844
   Scenario: Redirect to Requested URL after Authentication - Simple Product Setter Restrictions
     Given I execute "Log In" reusable step
     When I execute "Create Body Financial Dimension" reusable step
-    And I click on the "EC_BODY_FD_CODE" "Product Factory edit button"
+    And I click on the "EC_BODY_FD_CODE" "Product Factory edit button" by JS
     Then I capture current URL as "EC_BODIES_URL" variable
     When I click on the "exit_to_app" button
     Given I execute "Log In" reusable step replacing some steps

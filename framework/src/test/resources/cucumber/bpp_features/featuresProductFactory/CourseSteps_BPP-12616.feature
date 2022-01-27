@@ -15,7 +15,7 @@ Feature: Ability to add Steps in Product Factory Course - BPP-12616
       |16|Delete||
       |17|Delete||
       |18|Delete||
-    Then I should see the "Edit Course" element
+    Then I validate text "-" to be displayed for "Product Factory Number of Steps field" element
 
   @Positive @P1 #TC-5332
   Scenario: Create Course With Number of Steps
