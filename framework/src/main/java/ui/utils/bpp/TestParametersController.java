@@ -97,7 +97,7 @@ public class TestParametersController {
             }
             for (String data : dataList) { //replace all special parameters with their calculated values in the string
                 String value = retrieversMap.get(retriever).retrieve(data);
-                parameter = parameter.replaceAll(shieldRegexSpecialChars(data), String.valueOf(value));
+                parameter = parameter.replaceAll(shieldRegexSpecialChars(data) + "([^_]|\\Z)", String.valueOf(value) + "$1");
                 BPPLogManager.getLogger().info("'" + data + "' " + retriever
                         + " variable was successfully replaced with '" + value + "' in '" + parameter + "' string");
             }
@@ -149,7 +149,7 @@ public class TestParametersController {
     /**
      * Method is used to shield special characters with escape character in provided string
      */
-    private static String shieldRegexSpecialChars(String string) {
+    public static String shieldRegexSpecialChars(String string) {
         return string.replace("$","\\$")
                 .replace("*","\\*")
                 .replace("[","\\[")
@@ -159,6 +159,7 @@ public class TestParametersController {
                 .replace(")","\\)")
                 .replace(".","\\.")
                 .replace("#","\\#")
+                .replace("*","\\*")
                 .replace("{","\\{")
                 .replace("|","\\|")
                 .replace("}","\\}");
