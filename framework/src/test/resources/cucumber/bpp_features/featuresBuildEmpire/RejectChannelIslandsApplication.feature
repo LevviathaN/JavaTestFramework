@@ -10,16 +10,19 @@ Feature: Reject Channel Islands Application
     And I execute "Complete Channel Islands Mk2 Application" reusable step
     Then I execute "Submit Application Hub" reusable step
     And I execute "Log Out from Hub Student" reusable step
+    And I wait for "60" seconds
     Given I am on "https://www.guerrillamail.com/" URL
     And I wait for "2" seconds
     And I select "guerrillamail.com" from "Guerilla Mail Select Domain" element
     Then I click on the "Guerilla Edit" button
     And I fill the "Guerilla Email Input" field with "EC_LINEMANAGER_EMAIL"
     Then I click on the "Guerilla Email Set" button
-    And I wait for "10" seconds
+    And I wait for "11" seconds
     And Browser performs "Refresh" command
-    And I wait for "2" seconds
-    Then I click on the "Guerilla BPP Email" element
+    And I wait for "11" seconds
+    And I select "guerrillamail.com" from "Guerilla Mail Select Domain" element
+    And I wait for "1" seconds
+    Then I click on the "Guerilla BPP Email" element by JS
     Then I capture a part of "Guerilla New Line Manager Email" element text by "https:\/\/bpp-stage.eu.auth0.com\/lo\/reset.+[aA-zZ0-9]\#" regex and save as "EC_RESET_PASSWORD" variable
     And I validate text "CONTAINS=We have received a booking from an employee at your organisation, who has named you as their training manager." to be displayed for "Guerilla New Line Manager Email" element
     Then I execute "Reset Line Manager Password" reusable step
@@ -33,5 +36,5 @@ Feature: Reject Channel Islands Application
     And I wait for "5" seconds
     And I execute "Log Out from Hub Student" reusable step
     And I execute "Harakirimail Verify Email for Channel Islands" reusable step replacing some steps
-    |8|I validate text "CONTAINS=Thank you very much for submitting a booking form for approval." to be displayed for "Harakirimail Validate Letter Body" element|
-    |9|I validate text "CONTAINS=has not been accepted by your training manager." to be displayed for "Harakirimail Validate Letter Body" element|
+    |7|I validate text "CONTAINS=Thank you very much for submitting a booking form for approval." to be displayed for "Harakirimail Validate Letter Body" element|
+    |8|I validate text "CONTAINS=has not been accepted by your training manager." to be displayed for "Harakirimail Validate Letter Body" element|

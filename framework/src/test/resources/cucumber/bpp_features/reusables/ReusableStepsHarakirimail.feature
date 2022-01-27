@@ -51,14 +51,14 @@ Feature: Harakirimail, Guerrillamail
     Then I click on the "Guerilla Edit" button
     And I fill the "Guerilla Email Input" field with "EC_LINEMANAGER_EMAIL"
     Then I click on the "Guerilla Email Set" button
-    And I wait for "10" seconds
-    And Browser performs "Refresh" command
-    And I select "guerrillamail.com" from "Guerilla Mail Select Domain" element
-    Then I click on the "Guerilla Edit" button
-    And I fill the "Guerilla Email Input" field with "EC_LINEMANAGER_EMAIL"
-    Then I click on the "Guerilla Email Set" button
     And I wait for "11" seconds
-    Then I click on the "Guerilla BPP Email" element
+    And Browser performs "Refresh" command
+    And I wait for "11" seconds
+    And I select "guerrillamail.com" from "Guerilla Mail Select Domain" element
+    And I wait for "1" seconds
+    Then I click on the "Guerilla BPP Email" element by JS
+    Then I capture a part of "Guerilla New Line Manager Email" element text by "https:\/\/bpp-stage.eu.auth0.com\/lo\/reset.+[aA-zZ0-9]\#" regex and save as "EC_RESET_PASSWORD" variable
+    And I validate text "CONTAINS=We have received a booking from an employee at your organisation, who has named you as their training manager." to be displayed for "Guerilla New Line Manager Email" element
 
   Scenario: Harakirimail Validate Accepted Application Email
     Given I am on "https://www.guerrillamail.com/" URL
@@ -213,7 +213,7 @@ Feature: Harakirimail, Guerrillamail
     And I validate text "CONTAINS=Please find attached a copy of the Commitment Statement and Apprenticeship Agreement signed by learner, employer and BPP." to be displayed for "Harakirimail Validate Letter Body" element
     Then I click on the "Harakirimail Back To Inbox" button
     And I click on the "You have a new apprenticeship application to review" "Harakirimail BPP Specific Email First"
-    And I validate text "CONTAINS=We have received an apprenticeship application from an employee at your organisation - Automation, who has named you as their line manager." to be displayed for "Harakirimail Validate Letter Body" element
+    And I validate text "CONTAINS=who has named you as their line manager." to be displayed for "Harakirimail Validate Letter Body" element
     And I validate text "CONTAINS=We can confirm that this application has been pre-approved by BPP and that we believe the applicant is eligible for an apprenticeship." to be displayed for "Harakirimail Validate Letter Body" element
 
   Scenario: Harakirimail Verify Email for Channel Islands

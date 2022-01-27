@@ -36,7 +36,7 @@ Feature: As an admin, when I create a grid component with a "STANDARD" style,
     #Admin Log out
     Then I execute "Log Out from Hub Admin" reusable step
     #Validate CMS Page was published and validate it's components
-    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/<EC_AUTO_CMS_URL>" URL
+    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/EC_AUTO_CMS_URL" URL
     #Validate Grid:
     Then I should see the "BPP Digital Web Site Grid Component Red block" element
     Then Сss "padding-top" of "BPP Digital Web Site Grid Component Red block" should have value "35px"

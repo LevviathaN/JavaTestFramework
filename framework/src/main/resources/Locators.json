@@ -625,7 +625,7 @@
   },
   {
     "name": "BPP Digital Dates and Prices Number of Sessions For Multiple Address",
-    "value": "xpath=//div[@class='table-content row open ']//div[contains(@class,'course-timings-and-address')]//div[contains(@class,'row')]//span"
+    "value": "xpath=(//div[@class='table-content row open ']//div[contains(@class,'course-timings-and-address')]//div[contains(@class,'row')]//span)[1]"
   },
   {
     "name": "BPP Digital Dates and Prices Location For Instance",
@@ -1780,6 +1780,10 @@
     "value": "xpath=//div[@class='content-app ']/div[6]/label"
   },
   {
+    "name": "Direct App Privacy Notice By Email Bespoke England",
+    "value": "xpath=//div[@class='content-app ']/div[5]/label"
+  },
+  {
     "name": "Direct App Programme Dropdown",
     "value": "xpath=//div[@class='programmes-row ']//span[@class='ember-power-select-status-icon']"
   },
@@ -2125,7 +2129,7 @@
   },
   {
     "name": "Guerilla BPP Email",
-    "value": "xpath=(//tbody[@id='email_list']//td[contains(.,'bpp.com')])[1]"
+    "value": "xpath=(//tbody[@id='email_list']//td[contains(.,'bppdigital')])[1]"
   },
   {
     "name": "Guerilla Back To Inbox",
