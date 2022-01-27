@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
  * */
 public enum RegexPattern {
     EC("(EC_[A-Z0-9_]*)"),
-    RANDOM_DATA("([A-Za-z0-9_~$]*\\[[^\"]*?\\][A-Za-z0-9_~$]*)"),
+    RANDOM_DATA("([A-Za-z0-9_~$]*\\[[^\"]+?\\][A-Za-z0-9_~$]*)"),
     PROP("(PR_[A-Za-z0-9_]*)"),
     META_DATA("(MD_[A-Z_]*)"),
 

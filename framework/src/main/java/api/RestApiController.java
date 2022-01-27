@@ -98,6 +98,7 @@ public class RestApiController {
         for (String parameter : parameters.keySet()) {
             String value = parameters.get(parameter);
             if (parameter.contains("References")) {
+                value = value.replaceAll(",","\",\"");
                 requestTemplate = requestTemplate.replaceAll("\""+parameter+"\":\\[?\"?([^\"},]*)\"?\\]?","\""+parameter+"\":[\"" + value + "\"]");
             } else {
                 requestTemplate = requestTemplate.replaceAll("\""+parameter+"\":\"?([^\"},]*)\"?","\""+parameter+"\":\"" + value + "\"");
