@@ -7,33 +7,31 @@ Feature: Course Search - Start Date filter - BPP-10777
   Background:
     Given I execute "Log In" reusable step
 
-
   @Positive #TC-4416
   Scenario: Course Search - Start Date filter
     And I execute "Remember Variables " reusable step
     And I execute "Remember Variables Two" reusable step
-
     When I click on the "Products" "Product Factory navigation item"
     When I click on the "Courses" "Product Factory navigation sub item"
     # Check Body Additional Filter
-    And I click on the "Product Factory Additional Filters Button" button
+    And I click on the "Product Factory Additional Filters Button" button by JS
     And I wait for "7" seconds
     And I click on the "Body" "Product Factory dropdown"
-    And I click on the "[EC_BODY_SHORT_NAME] - [EC_BODY_NAME]" "Product Factory dropdown option"
+    And I click on the "EC_BODY_SHORT_NAME - EC_BODY_NAME" "Product Factory dropdown option"
     And I click on the "Done" "Product Factory button"
     Then I should see the "EC_BODY_SHORT_NAME" "button"
     And I shouldn't see the "EC_BODY_SHORT_NAME_TWO" element
     And I click on the "Product Factory Clear Body Additional Filter" button
     # Check Level Additional Filter
-    And I click on the "Product Factory Additional Filters Button" button
+    And I click on the "Product Factory Additional Filters Button" button by JS
     And I click on the "Level" "Product Factory dropdown"
-    And I click on the "[EC_LEVEL_SHORT_NAME] - [EC_LEVEL_NAME]" "Product Factory dropdown option"
+    And I click on the "EC_LEVEL_SHORT_NAME - EC_LEVEL_NAME" "Product Factory dropdown option"
     And I click on the "Done" "Product Factory button"
     Then I should see the "EC_LEVEL_NAME" "button"
     And I shouldn't see the "EC_LEVEL_NAME_TWO" element
     And I click on the "Product Factory Clear Level Additional Filter" button
     # Check Course Type Additional Filter
-    And I click on the "Product Factory Additional Filters Button" button
+    And I click on the "Product Factory Additional Filters Button" button by JS
     And I click on the "CourseType" "Product Factory dropdown"
     And I click on the "EC_COURSE_TYPE_DESCRIPTION" "Product Factory dropdown option"
     And I click on the "Done" "Product Factory button"
@@ -41,15 +39,15 @@ Feature: Course Search - Start Date filter - BPP-10777
     And I shouldn't see the "EC_COURSE_TYPE_DESCRIPTION_TWO" element
     And I click on the "Product Factory Clear Course Type Additional Filter" button
     # Check Sitting Additional Filter
-    And I click on the "Product Factory Additional Filters Button" button
+    And I click on the "Product Factory Additional Filters Button" button by JS
     And I click on the "Sitting" "Product Factory dropdown"
-    And I click on the "[EC_SITTING_NAME] ([EC_SITTING_START_DATE] - [EC_SITTING_END_DATE])" "Product Factory dropdown option"
+    And I click on the "EC_SITTING_NAME (EC_SITTING_START_DATE - EC_SITTING_END_DATE)" "Product Factory dropdown option"
     And I click on the "Done" "Product Factory button"
     Then I should see the "EC_SITTING_NAME" "button"
     And I shouldn't see the "EC_SITTING_NAME_TWO" element
     And I click on the "Product Factory Clear Sitting Additional Filter" button
     # Check Paper Additional Filter
-    And I click on the "Product Factory Additional Filters Button" button
+    And I click on the "Product Factory Additional Filters Button" button by JS
     And I click on the "Paper" "Product Factory dropdown"
     And I click on the "Equals" "Product Factory dropdown option"
     And I set "EC_PAPER_NAME" text to the "Paper" "Product Factory text field"
@@ -58,7 +56,7 @@ Feature: Course Search - Start Date filter - BPP-10777
     And I shouldn't see the "EC_PAPER_NAME_TWO" element
     And I click on the "Product Factory Clear Paper Additional Filter" button
     # Check Session Date Additional Filter
-    And I click on the "Product Factory Additional Filters Button" button
+    And I click on the "Product Factory Additional Filters Button" button by JS
     And I remember "22/02/2022" text as "EC_SESSION_DATE_FROM" variable
     And I fill the "Product Factory Course Page Session Date Additional Filter From Field" field with "EC_SESSION_DATE_FROM"
     And I remember "10/10/2025" text as "EC_SESSION_DATE_TO" variable
@@ -66,15 +64,15 @@ Feature: Course Search - Start Date filter - BPP-10777
     And I click on the "Done" "Product Factory button"
     And I click on the "Clear Additional Filters" "element by title"
     # Check all Additional Filters at once
-    And I click on the "Product Factory Additional Filters Button" button
+    And I click on the "Product Factory Additional Filters Button" button by JS
     And I click on the "Body" "Product Factory dropdown"
-    And I click on the "[EC_BODY_SHORT_NAME] - [EC_BODY_NAME]" "Product Factory dropdown option"
+    And I click on the "EC_BODY_SHORT_NAME - EC_BODY_NAME" "Product Factory dropdown option"
     And I click on the "Level" "Product Factory dropdown"
-    And I click on the "[EC_LEVEL_SHORT_NAME] - [EC_LEVEL_NAME]" "Product Factory dropdown option"
+    And I click on the "EC_LEVEL_SHORT_NAME - EC_LEVEL_NAME" "Product Factory dropdown option"
     And I click on the "CourseType" "Product Factory dropdown"
     And I click on the "EC_COURSE_TYPE_DESCRIPTION" "Product Factory dropdown option"
     And I click on the "Sitting" "Product Factory dropdown"
-    And I click on the "[EC_SITTING_NAME] ([EC_SITTING_START_DATE] - [EC_SITTING_END_DATE])" "Product Factory dropdown option"
+    And I click on the "EC_SITTING_NAME (EC_SITTING_START_DATE - EC_SITTING_END_DATE)" "Product Factory dropdown option"
     And I click on the "Paper" "Product Factory dropdown"
     And I click on the "Equals" "Product Factory dropdown option"
     And I set "EC_PAPER_NAME" text to the "Paper" "Product Factory text field"
@@ -147,7 +145,7 @@ Feature: Course Search - Start Date filter - BPP-10777
     When I click on the "Courses" "Product Factory navigation sub item"
 
     # Check Session Date Additional Filter All 3
-    And I click on the "Product Factory Additional Filters Button" button
+    And I click on the "Product Factory Additional Filters Button" button by JS
     And I click on the "Body" "Product Factory dropdown"
     And I click on the "[EC_BODY_SHORT_NAME] - [EC_BODY_NAME]" "Product Factory dropdown option"
     And I fill the "Product Factory Course Page Session Date Additional Filter From Field" field with "[DATEFORMAT(EC_SECOND_CHANGE_SESSION_TIMINGS_SECOND_TIMINGS_SESSION_DATE,yyyy-MM-dd,dd/MM/yyyy)]"
@@ -157,7 +155,7 @@ Feature: Course Search - Start Date filter - BPP-10777
     And I click on the "Clear Additional Filters" "element by title"
 
     # Check Session Date Additional Filter 1 and 2
-    And I click on the "Product Factory Additional Filters Button" button
+    And I click on the "Product Factory Additional Filters Button" button by JS
     And I click on the "Body" "Product Factory dropdown"
     And I click on the "[EC_BODY_SHORT_NAME] - [EC_BODY_NAME]" "Product Factory dropdown option"
     And I fill the "Product Factory Course Page Session Date Additional Filter From Field" field with "[DATEFORMAT(EC_SECOND_CHANGE_SESSION_TIMINGS_SECOND_TIMINGS_SESSION_DATE,yyyy-MM-dd,dd/MM/yyyy)]"
@@ -167,7 +165,7 @@ Feature: Course Search - Start Date filter - BPP-10777
     And I click on the "Clear Additional Filters" "element by title"
 
     # Check Session Date Additional Filter 1 and 3
-    And I click on the "Product Factory Additional Filters Button" button
+    And I click on the "Product Factory Additional Filters Button" button by JS
     And I click on the "Body" "Product Factory dropdown"
     And I click on the "[EC_BODY_SHORT_NAME] - [EC_BODY_NAME]" "Product Factory dropdown option"
     And I fill the "Product Factory Course Page Session Date Additional Filter From Field" field with "[DATEFORMAT(EC_CHANGE_SESSION_TIMINGS_TIMINGS_SESSION_DATE,yyyy-MM-dd,dd/MM/yyyy)]"
@@ -177,7 +175,7 @@ Feature: Course Search - Start Date filter - BPP-10777
     And I click on the "Clear Additional Filters" "element by title"
 
     # Check Session Date Additional Filter only 1
-    And I click on the "Product Factory Additional Filters Button" button
+    And I click on the "Product Factory Additional Filters Button" button by JS
     And I click on the "Body" "Product Factory dropdown"
     And I click on the "[EC_BODY_SHORT_NAME] - [EC_BODY_NAME]" "Product Factory dropdown option"
     And I fill the "Product Factory Course Page Session Date Additional Filter From Field" field with "[DATEFORMAT(EC_CHANGE_SESSION_TIMINGS_TIMINGS_SESSION_DATE,yyyy-MM-dd,dd/MM/yyyy)]"

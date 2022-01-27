@@ -23,7 +23,7 @@ Feature: Course Instance - Redirect Instance - BPP-5195
     And I click on the "EC_DEACTIVATION_REASON_DESCRIPTION" "Product Factory select button"
     And I click on the "Redirect to Course" "Product Factory change button"
     Then I set "EC_COURSE_TYPE_DESCRIPTION_TWO" text to the "Search" "Product Factory text field" from keyboard
-    And I click on the "submit" "element by type two"
+    And I click on the "submit" "element by type two" by JS
     And I click on the "EC_COURSE_TYPE_DESCRIPTION_TWO" "Product Factory select button"
     And I click on the "Confirm Deactivation" "Product Factory button"
     And I click on the "Yes" "Product Factory button" if "Yes,Product Factory button" "special element is present"

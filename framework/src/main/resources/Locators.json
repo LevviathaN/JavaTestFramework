@@ -2736,6 +2736,10 @@
     "value": "xpath=//span[text()='Additional Filters']"
   },
   {
+    "name": "Product Factory Number of Steps field",
+    "value": "xpath=//span[normalize-space()='Number of Steps']/following-sibling::p"
+  },
+  {
     "name": "Product Factory Clear Body Additional Filter",
     "value": "xpath=//div[span[contains(text(),'body: ')]]/*[2]"
   },

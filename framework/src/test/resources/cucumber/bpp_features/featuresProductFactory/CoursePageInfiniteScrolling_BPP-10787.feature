@@ -10,5 +10,6 @@ Feature: Course Search - Infinite Scrolling - BPP-10787
     When I click on the "Products" "Product Factory navigation item"
     Then I click on the "Courses" "Product Factory navigation sub item"
     And I execute steps until "There are no more Courses to be loaded" "element is present"
-    |I should scroll to the "bottom" of the page       |
+    |I should scroll to the "bottom" of the page|
+    |I wait for "1" seconds|
     |I should see the "Loading more Courses..." message|

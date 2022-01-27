@@ -151,6 +151,7 @@ public class TestParametersController {
      */
     private static String shieldRegexSpecialChars(String string) {
         return string.replace("$","\\$")
+                .replace("*","\\*")
                 .replace("[","\\[")
                 .replace("]","\\]")
                 .replace("~","\\~")
