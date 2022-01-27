@@ -44,19 +44,7 @@ Feature: Dates & Prices - Dates and Prices 'pods' (front-end) component
     And I set "Institute Chartered Accountants of England & Wales Updated" text to the "Name" "Product Factory text field"
     And I click on the "Save" "Product Factory button"
     And I wait for "180" seconds
-    # Find Course in Product factory
-    When I click on the "Products" "Product Factory navigation item"
-    When I click on the "Courses" "Product Factory navigation sub item"
-    And I click on the "Additional Filters" "button"
-    And I click on the "Body" "Product Factory dropdown"
-    And I click on the "ICAEWU - Institute Chartered Accountants of England & Wales Updated" "Product Factory dropdown option"
-    And I click on the "Level" "Product Factory dropdown"
-    And I click on the "Professional Level - Professional Level" "Product Factory dropdown option"
-    And I click on the "CourseType" "Product Factory dropdown"
-    And I click on the "Revision - OCR Live" "Product Factory dropdown option"
-    And I set "Financial Management" text to the "Paper" "Product Factory text field"
-    And I click on the "Done" "Product Factory button"
-    And I click on the "ICAEWU" "Product Factory edit button"
+    Given I am on "https://uat-products.bpp.com/courses/edit/eea1d69a-3dad-4ece-9382-e087a3dda0a4" URL
     # Amend first session date of the instance
     And I click on the "Online" "Product Factory course instance sessions dropdown button"
     And I click on the "Online" "Product Factory Session Dates button"
@@ -94,19 +82,7 @@ Feature: Dates & Prices - Dates and Prices 'pods' (front-end) component
     And I set "ICAEW" text to the "Short Name" "Product Factory text field"
     And I set "Institute Chartered Accountants of England & Wales" text to the "Name" "Product Factory text field"
     And I click on the "Save" "Product Factory button"
-    # Find Course in Product factory
-    When I click on the "Products" "Product Factory navigation item"
-    When I click on the "Courses" "Product Factory navigation sub item"
-    And I click on the "Additional Filters" "button"
-    And I click on the "Body" "Product Factory dropdown"
-    And I click on the "ICAEW - Institute Chartered Accountants of England & Wales" "Product Factory dropdown option"
-    And I click on the "Level" "Product Factory dropdown"
-    And I click on the "Professional Level - Professional Level" "Product Factory dropdown option"
-    And I click on the "CourseType" "Product Factory dropdown"
-    And I click on the "Revision - OCR Live" "Product Factory dropdown option"
-    And I set "Financial Management" text to the "Paper" "Product Factory text field"
-    And I click on the "Done" "Product Factory button"
-    And I click on the "ICAEW" "Product Factory edit button"
+    Given I am on "https://uat-products.bpp.com/courses/edit/eea1d69a-3dad-4ece-9382-e087a3dda0a4" URL
     # Revert Course Instance session dates changes in Product Factory
     And I click on the "Online" "Product Factory course instance sessions dropdown button"
     And I click on the "Online" "Product Factory Session Dates button"
@@ -117,6 +93,7 @@ Feature: Dates & Prices - Dates and Prices 'pods' (front-end) component
     And I click on the "Finish" "Product Factory button"
     And I click on the "Online" "Product Factory course instance Publish button"
     And I click on the "Yes" "Product Factory button"
+    Then I wait for "2" seconds
 
   @Positive @CourseFilters #TC-4940
   Scenario: Verify Course Filters on Dates and Prices Page

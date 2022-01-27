@@ -481,7 +481,7 @@ Feature: BuildEmpire
     And I click on the "Direct App Mark As Complete Checkbox" button
     And I wait for "1" seconds
     And I click on the "Direct App Next" button
-    And I click on the "Direct App Privacy Notice By Email" button
+    And I click on the "Direct App Privacy Notice By Email Bespoke England" button
     And I click on the "Direct App Mark As Complete Checkbox" button
     And I click on the "Direct App Save And Return" button
 
@@ -962,6 +962,7 @@ Feature: BuildEmpire
     And I click on the "Direct App Company Health And Safety" element
     And I fill the "Direct App When You Start At Company" field with "05/05/2018"
     And I press "MD_COMMON_KEYBOARD_ENTER" for "Direct App When You Start At Company"
+    And I set "Automation Company" text to the "Company/Employer Name*" "Build Empire employment element"
     And I click on the "Direct App Mark As Complete Checkbox" button
     And I wait for "2" seconds
     And I click on the "Direct App Next" button

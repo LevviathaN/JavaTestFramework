@@ -9,8 +9,8 @@ Feature: Enable Display of Messages for Updated Course Instances in Basket
     And I am on "MD_COMMON_LINKS_BPPDIGITALECOMMERCELOCALSTORAGE" URL
     And I click on the "Paper MVM 1 name" "BPP Digital View Dates and Prices button"
     Then I click on the "1" "BPP Digital Add to Basket Item"
-    Then I click on the "5" "BPP Digital Add to Basket Item"
     Then I click on the "8" "BPP Digital Add to Basket Item"
+    Then I click on the "10" "BPP Digital Add to Basket Item"
     And I validate text "CONTAINS=3" to be displayed for "BPP Digital Header Basket" element
     And I click on the "BPP Digital Header Basket" button by JS
     Then I validate text "3" to be displayed for "Items" "BPP Digital Basket Summary Section"
@@ -22,7 +22,7 @@ Feature: Enable Display of Messages for Updated Course Instances in Basket
     And I fill the "Product Factory Password" field with "MD_COMMON_CREDENTIALS_PRODUCTFACTORYPASSWORD"
     And I click on the "Product Factory Login" button
     And I wait for "1" seconds
-    And I click on the "Course Type MVM 1" "text"
+    And I click on the "Course Type MVM 1" "text" by JS
     And I click on the "Region MVM 1" "Product Factory Pricing Matrix dropdown"
     And I click on the "Paper MVM 1 name" "Product Factory Pricing Matrix change button"
     And I set "~UpdatedPMPrice[##]" text to the "Enter a Price (£)" "Product Factory text field"
@@ -38,8 +38,8 @@ Feature: Enable Display of Messages for Updated Course Instances in Basket
     And I am on "https://web-stage-bppdigital.bppuniversity.com/basket/#/" URL
     Then I should see the "The price for 1 of your chosen courses has changed since you added it to your basket." "text contained in P element"
     Then I should see the "Check the latest price information to be sure you want to book it?" "text contained in P element"
-    And I validate text "NOT_CONTAINS=EC_PRICEBEFORE" to be displayed for "1" "BPP Digital Basket Instance Item Price"
-    And I validate text "CONTAINS=EC_PRICEVAT" to be displayed for "1" "BPP Digital Basket Instance Item Price"
+    And I validate text "NOT_CONTAINS=EC_PRICEBEFORE" to be displayed for "2" "BPP Digital Basket Instance Item Price"
+    And I validate text "CONTAINS=EC_PRICEVAT" to be displayed for "2" "BPP Digital Basket Instance Item Price"
     Then I click on the "1" "BPP Digital Basket Instance Item Remove"
     And I wait for "1" seconds
     And I am on "MD_COMMON_LINKS_BPPDIGITALECOMMERCELOCALSTORAGE" URL

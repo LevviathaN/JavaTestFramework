@@ -20,7 +20,7 @@ Unavailable courses need to be removed from the basket before the checkout butto
     And I fill the "Product Factory Password" field with "MD_COMMON_CREDENTIALS_PRODUCTFACTORYPASSWORD"
     And I click on the "Product Factory Login" button
     And I wait for "1" seconds
-    When I click on the "Deactivate" "Product Factory button last"
+    When I click on the "Location MVM 1" "Product Factory course instance Deactivate button"
     Then I click on the "Deactivation Reason" "Product Factory change button"
     And I click on the "Deactivation Reason PR OFF" "Product Factory select button"
     And I click on the "Confirm Deactivation" "Product Factory button"
@@ -36,21 +36,7 @@ Unavailable courses need to be removed from the basket before the checkout butto
     When I click on the "Reactivate" "Product Factory button last"
     And I click on the "Yes" "text contained in SPAN element"
     And I wait for "2" seconds
-    When I click on the "Products" "Product Factory navigation item"
-    When I click on the "Courses" "Product Factory navigation sub item"
-    And I click on the "Additional Filters" "button"
-    And I click on the "Body" "Product Factory dropdown"
-    And I click on the "Body MVM 1 - Body MVM 1 name" "Product Factory dropdown option"
-    And I click on the "Level" "Product Factory dropdown"
-    And I click on the "Level MVM 1 - Level MVM 1 name" "Product Factory dropdown option"
-    And I click on the "CourseType" "Product Factory dropdown"
-    And I click on the "Automation Regression E2E" "Product Factory dropdown option"
-    And I set "Paper MVM 1 name" text to the "Paper" "Product Factory text field"
-    And I click on the "Sitting" "Product Factory dropdown"
-    And I click on the "Sitting MVM 1 (Summer - Autumn 2021) (09/08/2021 - 31/12/2021)" "Product Factory dropdown option"
-    And I click on the "Done" "Product Factory button"
-    When I click on the "Product Factory Course Page Select All Checkbox" element
-    Then I click on the "Perform Bulk Operation" "Product Factory button"
+    Then I am on "https://uat-products.bpp.com/courses/bulk-action/06f8024c-8900-4cc4-b137-0495d20831f0" URL
     And I click on the "Make available on website" "element by title"
     Then Attribute "tabindex" of "Make available on website" "element by title" should have value "-1"
     Then I wait for "190" seconds

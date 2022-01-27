@@ -19,20 +19,19 @@ Feature: Submit Professional Apprenticeship Applications With New Line Manager
     Then I should scroll to the "top" of the page
     And I validate text "CONTAINS=>2 YEARS" to be displayed for "Direct App Admin Employment Status for Apprenticeships" element
     And I execute "Log Out from Hub Admin" reusable step
+    And I wait for "60" seconds
     Given I am on "https://www.guerrillamail.com/" URL
     And I wait for "2" seconds
     And I select "guerrillamail.com" from "Guerilla Mail Select Domain" element
     Then I click on the "Guerilla Edit" button
     And I fill the "Guerilla Email Input" field with "EC_LINEMANAGER_EMAIL"
     Then I click on the "Guerilla Email Set" button
-    And I wait for "10" seconds
-    And Browser performs "Refresh" command
-    And I select "guerrillamail.com" from "Guerilla Mail Select Domain" element
-    Then I click on the "Guerilla Edit" button
-    And I fill the "Guerilla Email Input" field with "EC_LINEMANAGER_EMAIL"
-    Then I click on the "Guerilla Email Set" button
     And I wait for "11" seconds
-    Then I click on the "Guerilla BPP Email" element
+    And Browser performs "Refresh" command
+    And I wait for "11" seconds
+    And I select "guerrillamail.com" from "Guerilla Mail Select Domain" element
+    And I wait for "1" seconds
+    Then I click on the "Guerilla BPP Email" element by JS
     Then I capture a part of "Guerilla New Line Manager Email" element text by "https:\/\/bpp-stage.eu.auth0.com\/lo\/reset.+[aA-zZ0-9]\#" regex and save as "EC_RESET_PASSWORD" variable
     And I validate text "CONTAINS=We have received an apprenticeship application from an employee at your organisation" to be displayed for "Guerilla New Line Manager Email" element
     And I validate text "CONTAINS=As named line manager you are required to review their application and decide whether you would like us to proceed." to be displayed for "Guerilla New Line Manager Email" element

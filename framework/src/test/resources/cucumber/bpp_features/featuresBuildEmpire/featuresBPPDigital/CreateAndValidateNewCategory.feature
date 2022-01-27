@@ -25,15 +25,15 @@ Feature: BPP Digital Create and Validate New Category
     #Create new User for Created Category
     And I execute "Register New Student Account" reusable step replacing some steps
     |1|I am on "https://web-stage-bppdigital.bppuniversity.com/account?registration_type=bpp-automation" URL|
-    |5| I set "Auto[EMAIL-NADA]" text to the "Email" "Build Empire text field"|
-    Then I execute "Nada Student Email Verification" reusable step
+    |5| I set "Auto[EMAIL-HARAKIRI]" text to the "Email" "Build Empire text field"|
+    Then I execute "Harakirimail Verify Email" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     #Register to Created Category
     When I click on the "Direct App My Applications Left Menu Link" button by JS
     And I click on the "Direct App What Are You Applying For Dropdown" element
-    And I click on the "EC_AUTO_CATEGORY_TITLE" "Build Empire application type"
+    #And I click on the "EC_AUTO_CATEGORY_TITLE" "Build Empire application type"
     And I hover over the "Direct App Location Dropdown" button
-    And I click on the "Direct App Location Dropdown" element
+    And I click on the "Direct App Location Dropdown" element by JS
     And I wait for "2" seconds
     Then I click on the "Scotland" "Build Empire application type"
     Then I click on the "Direct App Create Application" button

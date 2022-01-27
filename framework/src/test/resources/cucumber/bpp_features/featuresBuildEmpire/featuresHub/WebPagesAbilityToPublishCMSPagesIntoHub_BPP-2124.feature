@@ -46,7 +46,7 @@ Feature: Web Pages - Ability to publish CMS pages into Hub and View webpages in 
     #Admin Log out
     Then I execute "Log Out from Hub Admin" reusable step
     #Validate CMS Page is not published and validate it's components
-    When I am on "https://web-stage-bppdigital.bppuniversity.com/<EC_AUTO_CMS_URL>" URL
+    When I am on "https://web-stage-bppdigital.bppuniversity.com/EC_AUTO_CMS_URL" URL
     Then I should see the "Please check the URL and try again" "text contained in element"
     Then I should see the "Sorry, we " "text contained in element"
     #Validate in HUB

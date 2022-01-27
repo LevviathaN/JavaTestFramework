@@ -24,7 +24,7 @@ Feature: As a user, viewing a "employer (basic)" form,
     When I should scroll to the "top" of the page
     Then I execute "Publish a CMS or Blog Post page" reusable step
     And I wait for "2" seconds
-    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/<EC_AUTO_CMS_URL>" URL
+    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/EC_AUTO_CMS_URL" URL
     Then I should see the "CMS Form" "BPP Digital Web Site CMS Anchors ID"
     And I should see the "EC_FORM_TITLE" element
     And I should see the "EC_FORM_DESCRIPTION" element
@@ -41,7 +41,7 @@ Feature: As a user, viewing a "employer (basic)" form,
     And I select "Learner (advanced)" from "Form type" "BPP Digital Mandatory select field"
     Then I click on the "Save" "BPP Digital Admin Value attribute button"
     And I wait for "2" seconds
-    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/<EC_AUTO_CMS_URL>" URL
+    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/EC_AUTO_CMS_URL" URL
     Then I should see the "CMS Form" "BPP Digital Web Site CMS Anchors ID"
     And I should see the "EC_FORM_TITLE" element
     And I should see the "EC_FORM_DESCRIPTION" element
@@ -59,7 +59,7 @@ Feature: As a user, viewing a "employer (basic)" form,
     And I select "Employer (basic)" from "Form type" "BPP Digital Mandatory select field"
     Then I click on the "Save" "BPP Digital Admin Value attribute button"
     And I wait for "2" seconds
-    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/<EC_AUTO_CMS_URL>" URL
+    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/EC_AUTO_CMS_URL" URL
     Then I should see the "CMS Form" "BPP Digital Web Site CMS Anchors ID"
     And I should see the "EC_FORM_TITLE" element
     And I should see the "EC_FORM_DESCRIPTION" element
@@ -78,7 +78,7 @@ Feature: As a user, viewing a "employer (basic)" form,
     And I select "Employer (advanced)" from "Form type" "BPP Digital Mandatory select field"
     Then I click on the "Save" "BPP Digital Admin Value attribute button"
     And I wait for "2" seconds
-    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/<EC_AUTO_CMS_URL>" URL
+    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/EC_AUTO_CMS_URL" URL
     Then I should see the "CMS Form" "BPP Digital Web Site CMS Anchors ID"
     And I should see the "EC_FORM_TITLE" element
     And I should see the "EC_FORM_DESCRIPTION" element
@@ -99,7 +99,7 @@ Feature: As a user, viewing a "employer (basic)" form,
     And I select "Learner / Employer Dual" from "Form type" "BPP Digital Mandatory select field"
     Then I click on the "Save" "BPP Digital Admin Value attribute button"
     And I wait for "2" seconds
-    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/<EC_AUTO_CMS_URL>" URL
+    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/EC_AUTO_CMS_URL" URL
     Then I should see the "CMS Form" "BPP Digital Web Site CMS Anchors ID"
     And I should see the "EC_FORM_TITLE" element
     And I should see the "EC_FORM_DESCRIPTION" element
@@ -124,7 +124,7 @@ Feature: As a user, viewing a "employer (basic)" form,
     And I select "Dual (advanced)" from "Form type" "BPP Digital Mandatory select field"
     Then I click on the "Save" "BPP Digital Admin Value attribute button"
     And I wait for "2" seconds
-    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/<EC_AUTO_CMS_URL>" URL
+    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/EC_AUTO_CMS_URL" URL
     Then I should see the "CMS Form" "BPP Digital Web Site CMS Anchors ID"
     And I should see the "EC_FORM_TITLE" element
     And I should see the "EC_FORM_DESCRIPTION" element
@@ -201,7 +201,7 @@ Feature: As a user, viewing a "employer (basic)" form,
     Given I execute "Log In to Hub as Student" reusable step replacing some steps
       | 2 | I set "AutoAdonisDuarte6846@guerrillamail.info" text to the "Email" "Build Empire text field" |
       | 3 | I set "A@polloGlobal2020" text to the "Password" "Build Empire text field"                    |
-    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/<EC_AUTO_CMS_URL>" URL
+    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/EC_AUTO_CMS_URL" URL
     And I shouldn't see the "EC_TITLE" "element"
     And I shouldn't see the "EC_SUMMARY" "element"
     #Add Clean Up Component

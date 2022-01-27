@@ -14,7 +14,7 @@ Feature: Checkout Journey for Logged User MasterCard
     Then I click on the "Direct App My Applications Left Menu Link" element
     And I am on "MD_COMMON_LINKS_BPPDIGITALECOMMERCETWOURL" URL
     And I click on the "Level 2 Foundation Certificate Synoptic" "BPP Digital View Dates and Prices button"
-    Then I click on the "2" "BPP Digital Add to Basket Item"
+    Then I click on the "1" "BPP Digital Add to Basket Item"
     And I wait for "1" seconds
     And I click on the "BPP Digital Header Basket" button by JS
     And I wait for "2" seconds

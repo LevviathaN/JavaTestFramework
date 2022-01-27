@@ -19,12 +19,13 @@ then I am presented with a form with mandatory fields for the phone number and m
     #Update phone and check it displayed on Booking page and Auth0 is updated as well
     Then I should see the "Update your account" "text"
     Then I should see the "We appear to be missing some account details we need to progress your booking and ensure we can support your learning experience." "text contained in P element"
-    And I set "[PHONE-0913]" text to the "Enter your telephone number" "Build Empire text field"
+    And I set "1234567890" text to the "Enter your telephone number" "Build Empire text field"
     And I click on the "Direct App I Am Happy To Receive Information" button
     And I click on the "submit" "element by type"
     Then I should see the "EC_AUTO_LASTNAME" "BPP Digital Checkout Personal Details Booking Page"
     Then I should see the "EC_AUTO_FIRSTNAME" "BPP Digital Checkout Personal Details Booking Page"
-    And I validate text "CONTAINS=EC_PHONE" to be displayed for "EC_PHONE" "BPP Digital Checkout Personal Details Booking Page"
+    Then I should see the "EC_AUTO_FIRSTNAME" "BPP Digital Checkout Personal Details Booking Page"
+    And I validate text "CONTAINS=+441234567890" to be displayed for "+441234567890" "BPP Digital Checkout Personal Details Booking Page"
     #Complete checkout
     And I set "AddressOne[####]" text to the "Address line 1" "BPP Digital Checkout Registration Input Field"
     And I set "AddressTwo[####]" text to the "Address line 2" "BPP Digital Checkout Registration Input Field"
@@ -49,6 +50,6 @@ then I am presented with a form with mandatory fields for the phone number and m
     And I press "MD_COMMON_KEYBOARD_ENTER" for "Salesforce Main Header Search"
     And I wait for "2" seconds
     Then I click on the "Salesforce First Opportunity" element
-    Then I click on the "Salesforce Account Details Tab" element
-    And I click on the "Salesforce Account Name Link" element
-    Then I validate text "CONTAINS=EC_PHONE" to be displayed for "Salesforce Account Phone Field" element
+    Then I click on the "Salesforce Account Details Tab" element by JS
+    And I click on the "Salesforce Account Name Link" element by JS
+    Then I validate text "CONTAINS=+441234567890" to be displayed for "Salesforce Account Phone Field" element
