@@ -248,7 +248,7 @@ Feature: BPP Digital Create and Validate CMS Page Components
     #Admin Log out
     Then I execute "Log Out from Hub Admin" reusable step
     #Validate CMS Page was published and validate it's components
-    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/<EC_AUTO_CMS_URL>" URL
+    When I am on "https://web-stage-bppdigital.bppuniversity.com/about-bpp/EC_AUTO_CMS_URL" URL
     #Validate components:
     #Accordion
     Then I should see the "CMS Accordion" "BPP Digital Web Site CMS Anchors ID"

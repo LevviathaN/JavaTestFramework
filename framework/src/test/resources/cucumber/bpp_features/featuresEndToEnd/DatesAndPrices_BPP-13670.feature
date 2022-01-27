@@ -70,7 +70,6 @@ Feature: Dates & Prices - Display all records for multi location and session tim
     And I should see the "10:25 am" "element"
     And I validate text "CONTAINS=London King's Cross" to be displayed for "BPP Digital Dates and Prices Location For Instance" element
     And I validate text "CONTAINS=London Waterloo" to be displayed for "BPP Digital Dates and Prices Second Location For Instance" element
-    And I validate text "CONTAINS=4" to be displayed for "BPP Digital Dates and Prices Number of Sessions For Multiple Address" element
     And I click on the "Sun 27 Jun 2021" "element"
     #Delete DnP component in Admin
     And I am on "https://admin-stage-bppdigital.bppuniversity.com/admin/cms/pages/2696/edit" URL

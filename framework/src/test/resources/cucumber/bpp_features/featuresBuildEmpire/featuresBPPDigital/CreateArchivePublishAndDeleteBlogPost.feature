@@ -18,7 +18,7 @@ Feature: BPP Digital Create Archive Publish and Delete a Blog Post
     When I click on the "EC_AUTO_BLOG_POST" "BPP Digital Admin Edit Button for Specific name"
     And I execute "Publish a CMS or Blog Post page" reusable step
     Then I execute "Log Out from Hub Admin" reusable step
-    When I am on "https://web-stage-bppdigital.bppuniversity.com/insights/<EC_AUTO_URL>" URL
+    When I am on "https://web-stage-bppdigital.bppuniversity.com/insights/EC_AUTO_URL" URL
     Then I validate text "EC_AUTO_BLOG_POST" to be displayed for "BPP Digital Breadcrumb Level Three" element
     And I validate text "Topic 1" to be displayed for "BPP Digital Blog Post Topic name" element
     And I remember "[TIMENOW-MMMMd,yyyy]" text as "EC_CURRENT_DATE" variable

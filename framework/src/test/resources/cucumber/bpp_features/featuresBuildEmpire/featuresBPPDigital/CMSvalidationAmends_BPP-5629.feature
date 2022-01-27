@@ -54,11 +54,11 @@ Feature: BPP Digital CMS Validation Amends
     #Admin Logout
     And I execute "Log Out from Hub Admin" reusable step
     #Validate Created Page [1]
-    And I am on "https://web-stage-bppdigital.bppuniversity.com/<EC_AUTO_PARENT_URL_ONE>/<EC_AUTO_SAME_PATH>" URL
+    And I am on "https://web-stage-bppdigital.bppuniversity.com/EC_AUTO_PARENT_URL_ONE/EC_AUTO_SAME_PATH" URL
     Then I validate text "EC_AUTO_PARENT_URL_ONE" to be displayed for "BPP Digital Breadcrumb Level Two" element
     Then I validate text "EC_AUTO_AMEND_CMS_ONE" to be displayed for "BPP Digital Breadcrumb Level Three" element
     #Validate Created Page [2]
-    And I am on "https://web-stage-bppdigital.bppuniversity.com/<EC_AUTO_PARENT_URL_TWO>/<EC_AUTO_SAME_PATH>" URL
+    And I am on "https://web-stage-bppdigital.bppuniversity.com/EC_AUTO_PARENT_URL_TWO/EC_AUTO_SAME_PATH" URL
     Then I validate text "EC_AUTO_PARENT_URL_TWO" to be displayed for "BPP Digital Breadcrumb Level Two" element
     Then I validate text "EC_AUTO_AMEND_CMS_TWO" to be displayed for "BPP Digital Breadcrumb Level Three" element
     #Add Clean Up Component for first CMS page
