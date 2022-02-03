@@ -5,7 +5,7 @@ Feature: Financial Dimension - Select Course Type Codes - BPP-2496
   so that I can track both the "AX Cost Centre" and "AX Project" codes for accounting purposes.
 
   Background:
-    Given I execute "Generate ISBN" reusable step
+    Given I generate new ISBN code saving as "EC_ISBN"
     Given I execute "Log In" reusable step
     And I execute "Remember Variables For Creation " reusable step
     And I remember "AutoCourseTypeFDCodeTwo" text as "EC_COURSE_TYPE_FD_CODE_TWO" variable

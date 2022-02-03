@@ -1,14 +1,14 @@
-@Salesforce @RegistryCaseManagement @Cases
+@Salesforce @RegistryCaseManagement @Cases @AssignmentRules
 Feature: Registry Case Management
   As a Registry Salesforce Classic User switching to Lightning Experience,
   I want Registry Case Management to perform as expected
 
-  @EndToEnd #TC-2535
+  @EndToEndCases #TC-2535,3975,3984,3974,3983,3982,3973,3966,3965,3964,3981,3976,3978,3980,3977,3979
   Scenario: Registry Case Management End To End
     Given I execute "Log In To Salesforce" reusable step
     And I execute "Create ID Card Registry Case" reusable step
-    And I validate text "CONTAINS=Student Records" to be displayed for "Salesforce Case Owner Data Field" element
-    And I capture text data "Salesforce Case Number Data Field" as "EC_CASENUMBER" variable
+    And I validate text "CONTAINS=University - Unverified" to be displayed for "Salesforce Case Owner Data Field" element
+    And I capture text data "Salesforce Case Number Data Field" as "EC_CASENUMBER_ENDTOEND" variable
     Then I click on the "Salesforce Edit Case Status" button by JS
     And I click on the "Salesforce Case Status Dropdown" element
     And I click on the "In Progress" "Salesforce cases status option"
@@ -22,146 +22,467 @@ Feature: Registry Case Management
     And I wait for "2" seconds
     And I validate text "Ready to Close" to be displayed for "Salesforce Case Status Data Field" element
 
-  @AssignmentRules
-  Scenario: Registry Case Management Verify Case Assignment Assessments and IOS
+  @QueryVerification #TC-6557,6558,6559,6560,6561,6562
+  Scenario: Registry Case Management Verify Case Queues
     Given I execute "Log In To Salesforce" reusable step
     And I execute "Validate All Registry Cases Types" reusable step
-    #Assesments
-    And I execute "Create Assesments Registry Case" reusable step
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=School Programme Support" to be displayed for "Salesforce Case Owner Data Field" element
-    And I execute "Create Assesments Registry Case" reusable step replacing some steps
-      | 11 | I click on the "Overseas Exams" "Salesforce cases dropdown option" |
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=Overseas Exams" to be displayed for "Salesforce Case Owner Data Field" element
-    And I execute "Create Assesments Registry Case" reusable step replacing some steps
-      | 11 | I click on the "Transcripts" "Salesforce cases dropdown option" |
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=Exam Queries" to be displayed for "Salesforce Case Owner Data Field" element
-    And I execute "Create Assesments Registry Case" reusable step replacing some steps
-      | 11 | I click on the "Examination Date /Venue/Time" "Salesforce cases dropdown option" |
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=Exam Operations" to be displayed for "Salesforce Case Owner Data Field" element
-    And I execute "Create Assesments Registry Case" reusable step replacing some steps
-      | 11 | I click on the "Feedback" "Salesforce cases dropdown option" |
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=Academic Admin" to be displayed for "Salesforce Case Owner Data Field" element
-    And I execute "Create Assesments Registry Case" reusable step replacing some steps
-      | 11 | I click on the "Results" "Salesforce cases dropdown option" |
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=Exam Results" to be displayed for "Salesforce Case Owner Data Field" element
-     #IOS
-    And I execute "Create IOS Registry Case" reusable step replacing some steps
-      | 11 | I click on the "New" "Salesforce cases dropdown option" |
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=Student Records" to be displayed for "Salesforce Case Owner Data Field" element
-    And I execute "Create IOS Registry Case" reusable step
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=Student Records" to be displayed for "Salesforce Case Owner Data Field" element
 
-  @AssignmentRules1
-  Scenario: Registry Case Management Verify Case Assignment Attendance and VLE
+  @AssignmentRulesAssessments #TC-6614,6616,6618,6619,6671,6651,6652,6653,6654,6655,6656,6657,6664,6665,6666,6667,6668,6669,6670
+  Scenario Outline: Registry Case Management Verify Assignment Assessments For <school> School and <caseOwner> Case Owner
     Given I execute "Log In To Salesforce" reusable step
-        #Attendance and Absences
-    And I execute "Create Assesments Registry Case" reusable step replacing some steps
-      | 9  | I click on the "Attendance & Absences" "Salesforce cases dropdown option"            |
-      | 11 | I click on the "Name missing from class register" "Salesforce cases dropdown option" |
+    And I click on the "Cases" "Salesforce navigation menu option"
+    And I click on the "Salesforce New Case Button" element
+    And I click on the "Student Query" "Salesforce radiobutton"
+    And I click on the "Next" "button"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    And I click on the "Case Origin" "Salesforce cases dropdown field"
+    And I click on the "Face-to-Face" "Salesforce cases dropdown option"
+    And I click on the "Query Type" "Salesforce cases dropdown field"
+    And I click on the "Assessments" "Salesforce cases dropdown option"
+    And I click on the "Query Subtype" "Salesforce cases dropdown field"
+    Then I click on the "<subQueue>" "Salesforce cases dropdown option"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    Then I click on the "Leeds" "Salesforce cases dropdown option"
+    And I click on the "School" "Salesforce cases dropdown field"
+    Then I click on the "<school>" "Salesforce cases dropdown option"
+    And I click on the "Save" "Product Factory button title"
+    And I wait for "2" seconds
     And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=Business School Attendance" to be displayed for "Salesforce Case Owner Data Field" element
-    #Book an Appointment
-    And I execute "Create Assesments Registry Case" reusable step replacing some steps
-      | 9  | I click on the "Book an Appointment" "Salesforce cases dropdown option"          |
-      | 11 | I click on the "International Student Advice" "Salesforce cases dropdown option" |
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=International Student Advice" to be displayed for "Salesforce Case Owner Data Field" element
-    And I execute "Create Assesments Registry Case" reusable step replacing some steps
-      | 9  | I click on the "Book an Appointment" "Salesforce cases dropdown option" |
-      | 11 | I click on the "Personal Tutor" "Salesforce cases dropdown option"      |
-      | 15 | I click on the "Business & Technology" "Salesforce cases dropdown option"      |
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=Personal Tutor" to be displayed for "Salesforce Case Owner Data Field" element
-   #VLE
-    And I execute "Create Assesments Registry Case" reusable step replacing some steps
-      | 9  | I click on the "VLE" "Salesforce cases dropdown option"                   |
-      | 11 | I click on the "Missing or wrong modules" "Salesforce cases dropdown option" |
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=Student Records" to be displayed for "Salesforce Case Owner Data Field" element
-    And I execute "Create Assesments Registry Case" reusable step replacing some steps
-      | 9  | I click on the "VLE" "Salesforce cases dropdown option"                                 |
-      | 11 | I click on the "Cant see submission link on the VLE" "Salesforce cases dropdown option" |
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=Academic Admin" to be displayed for "Salesforce Case Owner Data Field" element
-    And I execute "Create Assesments Registry Case" reusable step replacing some steps
-      | 9  | I click on the "VLE" "Salesforce cases dropdown option"                      |
-      | 11 | I click on the "Missing or wrong modules" "Salesforce cases dropdown option" |
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=Student Records" to be displayed for "Salesforce Case Owner Data Field" element
+    And I validate text "CONTAINS=<caseOwner>" to be displayed for "Salesforce Case Owner Data Field" element
+    And I capture text data "Salesforce Case Number Data Field" as "EC_CASENUMBER" variable
 
-  @AssignmentRules
-  Scenario: Registry Case Management Verify Case Assignment Rules Letter_Key_Oyster_Timetable_Complaint
+    Examples:
+      |school      |subQueue                                                    |caseOwner|
+      |Business    |I have a Turnitin issue                                     |Business School Academic Admin|
+      |Law         |I have a question about my results                          |Exam Operations|
+      |Psychology  |I have a question about my exam arrangements                |Exam Operations|
+      |Law         |I would like to defer my assessment or request an extension |Law School Programme Support|
+      |Psychology  |I have a question about my assessments feedback             |Psychology School Programme Support|
+      |Technology  |I would like to resit my exam                               |Technology School Support|
+
+  @AssignmentRulesAttendance #TC-6936,6937,6938,6939
+  Scenario Outline: Registry Case Management Verify Assignment Attendance For <school> School and <caseOwner> Case Owner
     Given I execute "Log In To Salesforce" reusable step
-    #Letter Production
-    And I execute "Create Assesments Registry Case" reusable step replacing some steps
-      | 9  | I click on the "Letter Production" "Salesforce cases dropdown option"   |
-      | 11 | I click on the "Academic References" "Salesforce cases dropdown option" |
+    And I click on the "Cases" "Salesforce navigation menu option"
+    And I click on the "Salesforce New Case Button" element
+    And I click on the "Student Query" "Salesforce radiobutton"
+    And I click on the "Next" "button"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    And I click on the "Case Origin" "Salesforce cases dropdown field"
+    And I click on the "Face-to-Face" "Salesforce cases dropdown option"
+    And I click on the "Query Type" "Salesforce cases dropdown field"
+    And I click on the "Attendance and Absences" "Salesforce cases dropdown option"
+    And I click on the "Query Subtype" "Salesforce cases dropdown field"
+    Then I click on the "<subQueue>" "Salesforce cases dropdown option"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    Then I click on the "Leeds" "Salesforce cases dropdown option"
+    And I click on the "School" "Salesforce cases dropdown field"
+    Then I click on the "<school>" "Salesforce cases dropdown option"
+    And I click on the "Save" "Product Factory button title"
+    And I wait for "2" seconds
     And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=Academic Admin" to be displayed for "Salesforce Case Owner Data Field" element
-    And I execute "Create Letter Production Registry Case" reusable step replacing some steps
-      | 11 | I click on the "Academic References" "Salesforce cases dropdown option" |
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=Academic Admin" to be displayed for "Salesforce Case Owner Data Field" element
-    And I execute "Create Letter Production Registry Case" reusable step replacing some steps
-      | 11 | I click on the "Schengen" "Salesforce cases dropdown option" |
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=International Student Advice" to be displayed for "Salesforce Case Owner Data Field" element
-    And I execute "Create Letter Production Registry Case" reusable step replacing some steps
-      | 11 | I click on the "Confirmation of completion letter" "Salesforce cases dropdown option" |
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=Exam Queries" to be displayed for "Salesforce Case Owner Data Field" element
-    #Locker Key
-    And I execute "Create Assesments Registry Case" reusable step replacing some steps
-      | 9  | I click on the "Locker Key" "Salesforce cases dropdown option"       |
-      | 11 | I click on the "Withheld Results" "Salesforce cases dropdown option" |
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=Student Records" to be displayed for "Salesforce Case Owner Data Field" element
-    #Oyster Card
-    And I execute "Create Assesments Registry Case" reusable step replacing some steps
-      | 9  | I click on the "Oyster Card" "Salesforce cases dropdown option" |
-      | 11 | I click on the "Other" "Salesforce cases dropdown option"       |
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=Student Records" to be displayed for "Salesforce Case Owner Data Field" element
-    #Personal Details
-    And I execute "Create Assesments Registry Case" reusable step replacing some steps
-      | 9  | I click on the "Personal Details" "Salesforce cases dropdown option"          |
-      | 11 | I click on the "Change of contact details" "Salesforce cases dropdown option" |
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=Student Records" to be displayed for "Salesforce Case Owner Data Field" element
-    #Registartion and Induction
-    And I execute "Create Registration and Induction Registry Case" reusable step
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=School Programme Support" to be displayed for "Salesforce Case Owner Data Field" element
-    And I execute "Create Registration and Induction Registry Case" reusable step replacing some steps
-      | 11 | I click on the "Exemptions" "Salesforce cases dropdown option" |
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=Academic Admin" to be displayed for "Salesforce Case Owner Data Field" element
-    And I execute "Create Registration and Induction Registry Case" reusable step replacing some steps
-      | 11 | I click on the "Not Received Joining Instructions" "Salesforce cases dropdown option" |
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=Student Records" to be displayed for "Salesforce Case Owner Data Field" element
-    And I execute "Create Registration and Induction Registry Case" reusable step replacing some steps
-      | 11 | I click on the "International Query" "Salesforce cases dropdown option" |
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=International Student Advice" to be displayed for "Salesforce Case Owner Data Field" element
-    #Timetable
-    And I execute "Create Timetable Registry Case" reusable step
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=School Programme Support" to be displayed for "Salesforce Case Owner Data Field" element
-    And I execute "Create Timetable Registry Case" reusable step replacing some steps
-      | 11 | I click on the "Group number" "Salesforce cases dropdown option" |
-    And I should scroll to the "top" of the page
-    And I validate text "CONTAINS=Student Records" to be displayed for "Salesforce Case Owner Data Field" element
+    And I validate text "CONTAINS=<caseOwner>" to be displayed for "Salesforce Case Owner Data Field" element
+    And I capture text data "Salesforce Case Number Data Field" as "EC_CASENUMBER" variable
 
-  @AssignmentRules @GDL #TC-3975,3984,3974,3983,3982,3973,3966,3965,3964,3981,3976,3978,3980,3977,3979
+    Examples:
+      |school      |subQueue                                                    |caseOwner|
+      |Business    |I have a query about my attendance record                   |Business School Attendance|
+      |Law         |My name is missing from the class register                  |Law School Attendance|
+      |Psychology  |I need to inform you about my absence                       |Psychology School Programme Support|
+      |Technology  |I have a query about my attendance record                   |Technology School Support|
+
+  @AssignmentRulesAppointment #TC-6940,6941,6942,6943,6944,6945,6946,6947,6948,6949,6950,6951,6952,6953,6954,6955,6956,6957
+  Scenario: Registry Case Management Verify Assignment Book an Appointment
+    Given I execute "Log In To Salesforce" reusable step
+    And I click on the "Cases" "Salesforce navigation menu option"
+    And I click on the "Salesforce New Case Button" element
+    And I click on the "Student Query" "Salesforce radiobutton"
+    And I click on the "Next" "button"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    And I click on the "Case Origin" "Salesforce cases dropdown field"
+    And I click on the "Face-to-Face" "Salesforce cases dropdown option"
+    And I click on the "Query Type" "Salesforce cases dropdown field"
+    And I click on the "Book an Appointment" "Salesforce cases dropdown option"
+    And I click on the "Query Subtype" "Salesforce cases dropdown field"
+    Then I click on the "I would like an Appointment with an academic" "Salesforce cases dropdown option"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    Then I click on the "Leeds" "Salesforce cases dropdown option"
+    And I click on the "School" "Salesforce cases dropdown field"
+    Then I click on the "Business" "Salesforce cases dropdown option"
+    And I click on the "Save" "Product Factory button title"
+    And I wait for "2" seconds
+    And I should scroll to the "top" of the page
+    And I validate text "CONTAINS=Business School Programme Support" to be displayed for "Salesforce Case Owner Data Field" element
+    And I capture text data "Salesforce Case Number Data Field" as "EC_CASENUMBER" variable
+
+  @AssignmentRulesChangesStudies #TC-6958,6961,6962,6963,6964
+  Scenario Outline: Registry Case Management Verify Assignment Changes to Studies For <school> School and <caseOwner> Case Owner
+    Given I execute "Log In To Salesforce" reusable step
+    And I click on the "Cases" "Salesforce navigation menu option"
+    And I click on the "Salesforce New Case Button" element
+    And I click on the "Student Query" "Salesforce radiobutton"
+    And I click on the "Next" "button"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    And I click on the "Case Origin" "Salesforce cases dropdown field"
+    And I click on the "Face-to-Face" "Salesforce cases dropdown option"
+    And I click on the "Query Type" "Salesforce cases dropdown field"
+    And I click on the "Changes to studies or personal details" "Salesforce cases dropdown option"
+    And I click on the "Query Subtype" "Salesforce cases dropdown field"
+    Then I click on the "<subQueue>" "Salesforce cases dropdown option"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    Then I click on the "Leeds" "Salesforce cases dropdown option"
+    And I click on the "School" "Salesforce cases dropdown field"
+    Then I click on the "<school>" "Salesforce cases dropdown option"
+    And I click on the "Save" "Product Factory button title"
+    And I wait for "2" seconds
+    And I should scroll to the "top" of the page
+    And I validate text "CONTAINS=<caseOwner>" to be displayed for "Salesforce Case Owner Data Field" element
+    And I capture text data "Salesforce Case Number Data Field" as "EC_CASENUMBER" variable
+
+    Examples:
+      |school      |subQueue                                                    |caseOwner|
+      |Business    |I want to change my programme, mode or location             |Business School Programme Support|
+      |Law         |I want to change my programme, mode or location             |Law School Programme Support|
+      |Psychology  |I want to change my programme, mode or location             |Psychology School Programme Support|
+      |Nursing     |I need to change my personal details                        |Student Records|
+      |Technology  |I want to change my programme, mode or location             |Technology School Support|
+
+  @AssignmentRulesGraduationCertificates
+  Scenario Outline: Registry Case Management Verify Assignment Graduation For <school> School and <caseOwner> Case Owner
+    Given I execute "Log In To Salesforce" reusable step
+    And I click on the "Cases" "Salesforce navigation menu option"
+    And I click on the "Salesforce New Case Button" element
+    And I click on the "Student Query" "Salesforce radiobutton"
+    And I click on the "Next" "button"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    And I click on the "Case Origin" "Salesforce cases dropdown field"
+    And I click on the "Face-to-Face" "Salesforce cases dropdown option"
+    And I click on the "Query Type" "Salesforce cases dropdown field"
+    And I click on the "Graduation and Certificates" "Salesforce cases dropdown option"
+    And I click on the "Query Subtype" "Salesforce cases dropdown field"
+    Then I click on the "<subQueue>" "Salesforce cases dropdown option"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    Then I click on the "Leeds" "Salesforce cases dropdown option"
+    And I click on the "School" "Salesforce cases dropdown field"
+    Then I click on the "<school>" "Salesforce cases dropdown option"
+    And I click on the "Save" "Product Factory button title"
+    And I wait for "2" seconds
+    And I should scroll to the "top" of the page
+    And I validate text "CONTAINS=<caseOwner>" to be displayed for "Salesforce Case Owner Data Field" element
+    And I capture text data "Salesforce Case Number Data Field" as "EC_CASENUMBER" variable
+
+    Examples:
+      |school      |subQueue                                                    |caseOwner|
+      |Business    |I would like my highest module mark certificate             |Business School Academic Admin|
+      |Law         |I have not received my certificate                          |Graduation Team|
+      |Technology  |I need a replacement certificate                            |Technology School Support|
+
+  @AssignmentRulesIOS #TC-6965,6966,6967,6968,6969,6970,6971,6972,6973,6974,6975,6976,6977,6978,6979,6980
+  Scenario Outline: Registry Case Management Verify Assignment IOS For <school> School and <caseOwner> Case Owner
+    Given I execute "Log In To Salesforce" reusable step
+    And I click on the "Cases" "Salesforce navigation menu option"
+    And I click on the "Salesforce New Case Button" element
+    And I click on the "Student Query" "Salesforce radiobutton"
+    And I click on the "Next" "button"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    And I click on the "Case Origin" "Salesforce cases dropdown field"
+    And I click on the "Face-to-Face" "Salesforce cases dropdown option"
+    And I click on the "Query Type" "Salesforce cases dropdown field"
+    And I click on the "IoS (Interruption of Studies)" "Salesforce cases dropdown option"
+    And I click on the "Query Subtype" "Salesforce cases dropdown field"
+    Then I click on the "<subQueue>" "Salesforce cases dropdown option"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    Then I click on the "Leeds" "Salesforce cases dropdown option"
+    And I click on the "School" "Salesforce cases dropdown field"
+    Then I click on the "<school>" "Salesforce cases dropdown option"
+    And I click on the "IOS Form Received?" "Salesforce cases dropdown field"
+    Then I click on the "Yes" "Salesforce cases dropdown option"
+    And I click on the "Save" "Product Factory button title"
+    And I wait for "2" seconds
+    And I should scroll to the "top" of the page
+    And I validate text "CONTAINS=<caseOwner>" to be displayed for "Salesforce Case Owner Data Field" element
+    And I capture text data "Salesforce Case Number Data Field" as "EC_CASENUMBER" variable
+
+    Examples:
+      |school      |subQueue                                                    |caseOwner|
+      |Business    |I am on Interruption of Studies and wish to extend          |Business School Programme Support|
+      |Law         |I would like to apply for Interruption of Studies           |Law School Programme Support|
+      |Psychology  |I am on Interruption of Studies and wish to extend          |Psychology School Programme Support|
+      |Nursing     |I would like to apply for Interruption of Studies           |Student Records|
+      |Technology  |I would like to apply for Interruption of Studies           |Technology School Support|
+
+  @AssignmentRulesLetterRequests
+  Scenario Outline: Registry Case Management Verify Assignment Letter Requests For <school> School and <caseOwner> Case Owner
+    Given I execute "Log In To Salesforce" reusable step
+    And I click on the "Cases" "Salesforce navigation menu option"
+    And I click on the "Salesforce New Case Button" element
+    And I click on the "Student Query" "Salesforce radiobutton"
+    And I click on the "Next" "button"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    And I click on the "Case Origin" "Salesforce cases dropdown field"
+    And I click on the "Face-to-Face" "Salesforce cases dropdown option"
+    And I click on the "Query Type" "Salesforce cases dropdown field"
+    And I click on the "Letter requests" "Salesforce cases dropdown option"
+    And I click on the "Query Subtype" "Salesforce cases dropdown field"
+    Then I click on the "<subQueue>" "Salesforce cases dropdown option"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    Then I click on the "Leeds" "Salesforce cases dropdown option"
+    And I click on the "School" "Salesforce cases dropdown field"
+    Then I click on the "<school>" "Salesforce cases dropdown option"
+    And I click on the "Save" "Product Factory button title"
+    And I wait for "2" seconds
+    And I should scroll to the "top" of the page
+    And I validate text "CONTAINS=<caseOwner>" to be displayed for "Salesforce Case Owner Data Field" element
+    And I capture text data "Salesforce Case Number Data Field" as "EC_CASENUMBER" variable
+
+    Examples:
+      |school      |subQueue                                                    |caseOwner|
+      |Business    |I would like an academic reference                          |Business School Academic Admin|
+      |Business    |Authorised Leave                                            |Business School Attendance|
+      |Business    |Holiday                                                     |Business School Programme Support|
+      |Law         |Authorised Leave                                            |Law School Attendance|
+      |Psychology  |I would like a holiday letter                               |Psychology School Programme Support|
+      |Nursing     |Status Letter                                               |Student Records|
+      |Technology  |Authorised Leave                                            |Technology School Support|
+
+  @AssignmentRulesLockers #TC-6988,6989,6990,6991,6992,6993,6994,6995,6996,6997,6998,6999,7000,7001,7002,7003,7004,7005,7006,7007,7008,7009,7010
+  Scenario Outline: Registry Case Management Verify Assignment Lockers For <school> School and <caseOwner> Case Owner
+    Given I execute "Log In To Salesforce" reusable step
+    And I click on the "Cases" "Salesforce navigation menu option"
+    And I click on the "Salesforce New Case Button" element
+    And I click on the "Student Query" "Salesforce radiobutton"
+    And I click on the "Next" "button"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    And I click on the "Case Origin" "Salesforce cases dropdown field"
+    And I click on the "Face-to-Face" "Salesforce cases dropdown option"
+    And I click on the "Query Type" "Salesforce cases dropdown field"
+    And I click on the "Lockers" "Salesforce cases dropdown option"
+    And I click on the "Query Subtype" "Salesforce cases dropdown field"
+    Then I click on the "<subQueue>" "Salesforce cases dropdown option"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    Then I click on the "Leeds" "Salesforce cases dropdown option"
+    And I click on the "School" "Salesforce cases dropdown field"
+    Then I click on the "<school>" "Salesforce cases dropdown option"
+    And I click on the "Save" "Product Factory button title"
+    And I wait for "2" seconds
+    And I should scroll to the "top" of the page
+    And I validate text "CONTAINS=<caseOwner>" to be displayed for "Salesforce Case Owner Data Field" element
+    And I capture text data "Salesforce Case Number Data Field" as "EC_CASENUMBER" variable
+
+    Examples:
+      |school      |subQueue                                                    |caseOwner|
+      |Business    |I have a question about my locker key                       |Student Records|
+
+  @AssignmentRulesOnlineLearning #TC-7011,7012,7013,7014,7015,7016,7017,7018,7019,7020
+  Scenario Outline: Registry Case Management Verify Assignment Online Learning For <school> School and <caseOwner> Case Owner
+    Given I execute "Log In To Salesforce" reusable step
+    And I click on the "Cases" "Salesforce navigation menu option"
+    And I click on the "Salesforce New Case Button" element
+    And I click on the "Student Query" "Salesforce radiobutton"
+    And I click on the "Next" "button"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    And I click on the "Case Origin" "Salesforce cases dropdown field"
+    And I click on the "Face-to-Face" "Salesforce cases dropdown option"
+    And I click on the "Query Type" "Salesforce cases dropdown field"
+    And I click on the "Online learning" "Salesforce cases dropdown option"
+    And I click on the "Query Subtype" "Salesforce cases dropdown field"
+    Then I click on the "<subQueue>" "Salesforce cases dropdown option"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    Then I click on the "Leeds" "Salesforce cases dropdown option"
+    And I click on the "School" "Salesforce cases dropdown field"
+    Then I click on the "<school>" "Salesforce cases dropdown option"
+    And I click on the "Save" "Product Factory button title"
+    And I wait for "2" seconds
+    And I should scroll to the "top" of the page
+    And I validate text "CONTAINS=<caseOwner>" to be displayed for "Salesforce Case Owner Data Field" element
+    And I capture text data "Salesforce Case Number Data Field" as "EC_CASENUMBER" variable
+
+    Examples:
+      |school      |subQueue                                                    |caseOwner|
+      |Business    |I cannot see a submission link on Hub/VLE                   |Business School Academic Admin|
+      |Business    |I have a group number Issue                                 |Business School Programme Support|
+      |Law         |I have a group number Issue                                 |Law School Programme Support|
+      |Psychology  |I have an issue with my online materials                    |Psychology School Programme Support|
+      |Technology  |I have missing or wrong modules on Hub/VLE                  |Technology School Support|
+
+  @AssignmentRulesPersonalTutor
+  Scenario Outline: Registry Case Management Verify Assignment Personal Tutor For <school> School and <caseOwner> Case Owner
+    Given I execute "Log In To Salesforce" reusable step
+    And I click on the "Cases" "Salesforce navigation menu option"
+    And I click on the "Salesforce New Case Button" element
+    And I click on the "Student Query" "Salesforce radiobutton"
+    And I click on the "Next" "button"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    And I click on the "Case Origin" "Salesforce cases dropdown field"
+    And I click on the "Face-to-Face" "Salesforce cases dropdown option"
+    And I click on the "Query Type" "Salesforce cases dropdown field"
+    And I click on the "Personal Tutor Support" "Salesforce cases dropdown option"
+    And I click on the "Query Subtype" "Salesforce cases dropdown field"
+    Then I click on the "<subQueue>" "Salesforce cases dropdown option"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    Then I click on the "Leeds" "Salesforce cases dropdown option"
+    And I click on the "School" "Salesforce cases dropdown field"
+    Then I click on the "<school>" "Salesforce cases dropdown option"
+    And I click on the "Save" "Product Factory button title"
+    And I wait for "2" seconds
+    And I should scroll to the "top" of the page
+    And I validate text "CONTAINS=<caseOwner>" to be displayed for "Salesforce Case Owner Data Field" element
+    And I capture text data "Salesforce Case Number Data Field" as "EC_CASENUMBER" variable
+
+    Examples:
+      |school      |subQueue                                                    |caseOwner|
+      |Business    |I would like help with study skills                         |Business School Personal Tutors|
+
+  @AssignmentRulesRegistration
+  Scenario Outline: Registry Case Management Verify Assignment Registration For <school> School and <caseOwner> Case Owner
+    Given I execute "Log In To Salesforce" reusable step
+    And I click on the "Cases" "Salesforce navigation menu option"
+    And I click on the "Salesforce New Case Button" element
+    And I click on the "Student Query" "Salesforce radiobutton"
+    And I click on the "Next" "button"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    And I click on the "Case Origin" "Salesforce cases dropdown field"
+    And I click on the "Face-to-Face" "Salesforce cases dropdown option"
+    And I click on the "Query Type" "Salesforce cases dropdown field"
+    And I click on the "Registration and enrolment" "Salesforce cases dropdown option"
+    And I click on the "Query Subtype" "Salesforce cases dropdown field"
+    Then I click on the "<subQueue>" "Salesforce cases dropdown option"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    Then I click on the "Leeds" "Salesforce cases dropdown option"
+    And I click on the "School" "Salesforce cases dropdown field"
+    Then I click on the "<school>" "Salesforce cases dropdown option"
+    And I click on the "Save" "Product Factory button title"
+    And I wait for "2" seconds
+    And I should scroll to the "top" of the page
+    And I validate text "CONTAINS=<caseOwner>" to be displayed for "Salesforce Case Owner Data Field" element
+    And I capture text data "Salesforce Case Number Data Field" as "EC_CASENUMBER" variable
+
+    Examples:
+      |school      |subQueue                                                    |caseOwner|
+      |Business    |I have an exemptions question                               |Business School Programme Support|
+      |Law         |I am an international student with a registration query     |International Student Advice|
+      |Law         |I have an exemptions question                               |Law School Programme Support|
+      |Psychology  |I missed my induction, how do I catch up?                   |Psychology School Programme Support|
+      |Nursing     |My ID card has been lost or stolen                          |Student Records|
+      |Technology  |I missed my induction, how do I catch up?                   |Technology School Support|
+
+  @AssignmentRulesStudentFinance
+  Scenario Outline: Registry Case Management Verify Assignment Student Finance and Loans For <school> School and <caseOwner> Case Owner
+    Given I execute "Log In To Salesforce" reusable step
+    And I click on the "Cases" "Salesforce navigation menu option"
+    And I click on the "Salesforce New Case Button" element
+    And I click on the "Student Query" "Salesforce radiobutton"
+    And I click on the "Next" "button"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    And I click on the "Case Origin" "Salesforce cases dropdown field"
+    And I click on the "Face-to-Face" "Salesforce cases dropdown option"
+    And I click on the "Query Type" "Salesforce cases dropdown field"
+    And I click on the "Student finance and loans" "Salesforce cases dropdown option"
+    And I click on the "Query Subtype" "Salesforce cases dropdown field"
+    Then I click on the "<subQueue>" "Salesforce cases dropdown option"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    Then I click on the "Leeds" "Salesforce cases dropdown option"
+    And I click on the "School" "Salesforce cases dropdown field"
+    Then I click on the "<school>" "Salesforce cases dropdown option"
+    And I click on the "Save" "Product Factory button title"
+    And I wait for "2" seconds
+    And I should scroll to the "top" of the page
+    And I validate text "CONTAINS=<caseOwner>" to be displayed for "Salesforce Case Owner Data Field" element
+    And I capture text data "Salesforce Case Number Data Field" as "EC_CASENUMBER" variable
+
+    Examples:
+      |school      |subQueue                                                    |caseOwner|
+      |Business    |Can I have a copy of my payment plan?                       |Finance Queue|
+      |Law         |How can I pay my fees?                                      |Finance Queue|
+      |Technology  |I have a question about my student loan                     |SLC Queries|
+
+  @AssignmentRulesTimetables
+  Scenario Outline: Registry Case Management Verify Assignment Timetables For <school> School and <caseOwner> Case Owner
+    Given I execute "Log In To Salesforce" reusable step
+    And I click on the "Cases" "Salesforce navigation menu option"
+    And I click on the "Salesforce New Case Button" element
+    And I click on the "Student Query" "Salesforce radiobutton"
+    And I click on the "Next" "button"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    And I click on the "Case Origin" "Salesforce cases dropdown field"
+    And I click on the "Face-to-Face" "Salesforce cases dropdown option"
+    And I click on the "Query Type" "Salesforce cases dropdown field"
+    And I click on the "Timetables" "Salesforce cases dropdown option"
+    And I click on the "Query Subtype" "Salesforce cases dropdown field"
+    Then I click on the "<subQueue>" "Salesforce cases dropdown option"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    Then I click on the "Leeds" "Salesforce cases dropdown option"
+    And I click on the "School" "Salesforce cases dropdown field"
+    Then I click on the "<school>" "Salesforce cases dropdown option"
+    And I click on the "Save" "Product Factory button title"
+    And I wait for "2" seconds
+    And I should scroll to the "top" of the page
+    And I validate text "CONTAINS=<caseOwner>" to be displayed for "Salesforce Case Owner Data Field" element
+    And I capture text data "Salesforce Case Number Data Field" as "EC_CASENUMBER" variable
+
+    Examples:
+      |school      |subQueue                                                    |caseOwner|
+      |Business    |I have a question about my term dates                       |Business School Programme Support|
+      |Law         |I have an issue with my timetable                           |Law School Programme Support|
+      |Psychology  |I have a question about my term dates                       |Psychology School Programme Support|
+      |Technology  |I have an issue with my timetable                           |Technology School Support|
+
+  @AssignmentRulesVisa
+  Scenario Outline: Registry Case Management Verify Assignment Visa For <school> School and <caseOwner> Case Owner
+    Given I execute "Log In To Salesforce" reusable step
+    And I click on the "Cases" "Salesforce navigation menu option"
+    And I click on the "Salesforce New Case Button" element
+    And I click on the "Student Query" "Salesforce radiobutton"
+    And I click on the "Next" "button"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    And I click on the "Case Origin" "Salesforce cases dropdown field"
+    And I click on the "Face-to-Face" "Salesforce cases dropdown option"
+    And I click on the "Query Type" "Salesforce cases dropdown field"
+    And I click on the "Visa" "Salesforce cases dropdown option"
+    And I click on the "Query Subtype" "Salesforce cases dropdown field"
+    Then I click on the "<subQueue>" "Salesforce cases dropdown option"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    Then I click on the "Leeds" "Salesforce cases dropdown option"
+    And I click on the "School" "Salesforce cases dropdown field"
+    Then I click on the "<school>" "Salesforce cases dropdown option"
+    And I click on the "Save" "Product Factory button title"
+    And I wait for "2" seconds
+    And I should scroll to the "top" of the page
+    And I validate text "CONTAINS=<caseOwner>" to be displayed for "Salesforce Case Owner Data Field" element
+    And I capture text data "Salesforce Case Number Data Field" as "EC_CASENUMBER" variable
+
+    Examples:
+      |school      |subQueue                                                    |caseOwner|
+      |Business    |I have a question about my Visa                             |International Student Advice|
+      |Law         |I need to report a problem with my Biometric Resident Permit|International Student Advice|
+      |Psychology  |I want to apply for a Shengen/travel Visa                   |International Student Advice|
+      |Technology  |I would like to book an appointment for Visa advice         |International Student Advice|
+
+  @AssignmentRulesUnverified #TC-7046
+  Scenario: Registry Case Management Verify Assignment For University-Unverified Case Owner
+    Given I execute "Log In To Salesforce" reusable step
+    And I click on the "Cases" "Salesforce navigation menu option"
+    And I click on the "Salesforce New Case Button" element
+    And I click on the "Student Query" "Salesforce radiobutton"
+    And I click on the "Next" "button"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    And I click on the "Case Origin" "Salesforce cases dropdown field"
+    And I click on the "Face-to-Face" "Salesforce cases dropdown option"
+    And I click on the "Query Type" "Salesforce cases dropdown field"
+    And I click on the "Attendance and Absences" "Salesforce cases dropdown option"
+    And I click on the "Query Subtype" "Salesforce cases dropdown field"
+    Then I click on the "Absence" "Salesforce cases dropdown option"
+    And I click on the "Study Location" "Salesforce cases dropdown field"
+    Then I click on the "Leeds" "Salesforce cases dropdown option"
+    And I click on the "School" "Salesforce cases dropdown field"
+    Then I click on the "Technology" "Salesforce cases dropdown option"
+    And I click on the "Save" "Product Factory button title"
+    And I wait for "2" seconds
+    And I should scroll to the "top" of the page
+    And I validate text "CONTAINS=University - Unverified" to be displayed for "Salesforce Case Owner Data Field" element
+    And I capture text data "Salesforce Case Number Data Field" as "EC_CASENUMBER" variable
+
+  @GDL #TC-3975,3984,3974,3983,3982,3973,3966,3965,3964,3981,3976,3978,3980,3977,3979
   Scenario: Registry Case Management Verify Case Assignment GDL Law Schools
     Given I execute "Log In To Salesforce" reusable step
     And I execute "Create Complaints Registry Case" reusable step replacing some steps

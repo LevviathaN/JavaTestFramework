@@ -5,10 +5,14 @@ import api.RestApiController;
 import api.Utilities;
 import io.cucumber.java.en.When;
 import io.restassured.response.Response;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import ui.utils.BPPLogManager;
 import ui.utils.Reporter;
+import ui.utils.bpp.ExecutionContextHandler;
 import ui.utils.bpp.PropertiesHelper;
+
+import java.util.ArrayList;
 
 
 public class VenusStepDefsAPI {
@@ -36,6 +40,22 @@ public class VenusStepDefsAPI {
             accountResponse = restController.postRequest(propertiesHelper.getProperties().getProperty("hub_register_linkUAT"),
                     String.valueOf(restController.processPropertiesHubRegistration("registerHubAccountVerifiedUAT")), Auth0Authentication.getInstance().requestHeaderSpecification());
         }
+        JSONObject recordsObject = new Utilities().getResponseProperty(accountResponse);
+        String userID = String.valueOf(recordsObject.get("user_id"));
+        BPPLogManager.getLogger().info("Hub user is successfully registered via API request. User id is: " + userID.substring(6));
+        Reporter.log("<pre>" + "User Id: " + userID + "</pre>");
+
+        return this;
+    }
+
+    //required to test BPP-17653
+    @When("^I register new standard Hub account without phone field using API$")
+    public VenusStepDefsAPI i_register_new_hub_account_without_phone_field() {
+
+        Response accountResponse;
+        accountResponse = restController.postRequest(propertiesHelper.getProperties().getProperty("hub_register_linkUAT"),
+                String.valueOf(restController.processPropertiesHubRegistration("registerHubAccountNoPhoneUAT")), Auth0Authentication.getInstance().requestHeaderSpecification());
+
         JSONObject recordsObject = new Utilities().getResponseProperty(accountResponse);
         String userID = String.valueOf(recordsObject.get("user_id"));
         BPPLogManager.getLogger().info("Hub user is successfully registered via API request. User id is: " + userID.substring(6));

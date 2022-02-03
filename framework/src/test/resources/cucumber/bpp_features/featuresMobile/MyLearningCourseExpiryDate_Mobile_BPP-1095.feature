@@ -1,4 +1,4 @@
-@Mobile
+@Mobile @CourseExpiryMobile
 Feature: BPP University Hub My Learning Course Expiry Date
   As a learner, at a glance, I'd like to be able to see when the access to my course expires
 
@@ -17,7 +17,7 @@ Feature: BPP University Hub My Learning Course Expiry Date
     And I click on the "Totara Edit Course Setting link Mobile" element with JS if "Totara Edit Course Setting link Mobile" "element is present"
     And I select "KW_AUTO_SELECT" from "Totara expiry Course Date Day dropdown" element
     And I select "KW_AUTO_SELECT" from "Totara expiry Course Date Month dropdown" element
-    And I select "KW_AUTO_SELECT" from "Totara expiry Course Date Year dropdown" element
+    And I select "2024" from "Totara expiry Course Date Year dropdown" element
     And I click on the "Save and display" "Totara button" by JS
     And I wait for "8" seconds
     And Browser performs "Refresh" command
@@ -26,9 +26,7 @@ Feature: BPP University Hub My Learning Course Expiry Date
     And I capture text data "Totara expiry Course Date Day selected" as "EC_DAY" variable
     And I capture text data "Totara expiry Course Date Month selected" as "EC_MONTH" variable
     And I capture text data "Totara expiry Course Date Year selected" as "EC_YEAR" variable
-    And I remember "<EC_DAY> " text as "EC_DAY_SPACE" variable
-    And I remember "<EC_MONTH> " text as "EC_MONTH_SPACE" variable
-    And I remember "<EC_DAY_SPACE><EC_MONTH_SPACE><EC_YEAR>" text as "EC_EXPIRY_DATE" variable
+    And I remember "EC_DAY EC_MONTH EC_YEAR" text as "EC_EXPIRY_DATE" variable
     #Admin Logout
     Then I execute "Logout as Admin Totara" reusable step
     And Browser deletes cookies
@@ -40,4 +38,6 @@ Feature: BPP University Hub My Learning Course Expiry Date
     And I click on the "Hub VPE Mobile Hamburger Menu" button by JS
     And I click on the "Hub Mobile My Learning Link Hamburger Menu" option by JS
     And I click on the "BPP Digital Student My Learning Page Open First Course Sticker" element
+    Then I should scroll to the "bottom" of the page
+    And I hover over the "Direct App Expiry Date status field" element
     And I validate text "CONTAINS=EC_EXPIRY_DATE" to be displayed for "Direct App Expiry Date status field" element

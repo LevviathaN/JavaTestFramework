@@ -5,7 +5,7 @@ Feature: Course - Copy Instance Location to Sessions Option
   so that I don't have to update each individual session.
 
   Background:
-    Given I execute "Generate ISBN" reusable step
+    Given I generate new ISBN code saving as "EC_ISBN"
     Given I execute "Log In" reusable step
     And I remember "AutoDeactivationReasonDescription" text as "EC_DEACTIVATION_REASON_DESCRIPTION" variable
     And I remember "23/10/2020" text as "EC_SITTING_START_DATE" variable

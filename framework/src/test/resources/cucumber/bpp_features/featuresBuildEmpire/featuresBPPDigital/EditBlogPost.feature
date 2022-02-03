@@ -18,7 +18,7 @@ Feature: BPP Digital Edit Blog Post
     When I click on the "EC_AUTO_BLOG_POST" "BPP Digital Admin Edit Button for Specific name"
     And I execute "Publish a CMS or Blog Post page" reusable step
     Then I execute "Log Out from Hub Admin" reusable step
-    When I am on "https://web-stage-bppdigital.bppuniversity.com/insights/<EC_AUTO_URL>" URL
+    When I am on "https://web-stage-bppdigital.bppuniversity.com/insights/EC_AUTO_URL" URL
     Then I validate text "EC_AUTO_BLOG_POST" to be displayed for "BPP Digital Breadcrumb Level Three" element
     And I validate text "Topic 1" to be displayed for "BPP Digital Blog Post Topic name" element
     And I remember "[TIMENOW-MMMMd,yyyy]" text as "EC_CURRENT_DATE" variable
@@ -90,7 +90,7 @@ Feature: BPP Digital Edit Blog Post
     When I click on the "Images" "BPP Digital Admin Pages Delete Button for Specific Component name"
     #Validateon Web Page without image
     When I execute "Log Out from Hub Admin" reusable step
-    And I am on "https://web-stage-bppdigital.bppuniversity.com/insights/<EC_AUTO_URL>" URL
+    And I am on "https://web-stage-bppdigital.bppuniversity.com/insights/EC_AUTO_URL" URL
     Then I validate text "EC_AUTO_BLOG_POST" to be displayed for "BPP Digital Breadcrumb Level Three" element
     Then I validate text "Apprenticeships" to be displayed for "BPP Digital Blog Post Topic name" element
     Then I validate text "EC_CURRENT_DATE" to be displayed for "BPP Digital Blog Post Topic date" element

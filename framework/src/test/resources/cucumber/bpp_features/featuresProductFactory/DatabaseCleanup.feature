@@ -3,8 +3,8 @@ Feature: Product Factory database cleanup
 
   #TC-1668, TC-1666, TC-1606
   Scenario: Clean Product Factory Database
-    Given I am on "http://ec2-3-10-141-182.eu-west-2.compute.amazonaws.com:7474/browser/" URL
-    When I fill the "Product Factory Database Connect URL Field" field with "bolt://ec2-3-10-141-182.eu-west-2.compute.amazonaws.com:7687"
+    Given I am on "http://ec2-35-178-212-44.eu-west-2.compute.amazonaws.com:7474/browser/" URL
+    When I fill the "Product Factory Database Connect URL Field" field with "bolt://ec2-35-178-212-44.eu-west-2.compute.amazonaws.com:7687"
     Then I fill the "Product Factory Database Username Field" field with "Neo4j"
     And I fill the "Product Factory Database Password Field" field with "3M#$,qns5uw*W#jr"
     And I click on the "Product Factory Database Connect Button" button
@@ -12,7 +12,7 @@ Feature: Product Factory database cleanup
     And I fill the "Product Factory Database Query Field" field with "MATCH (n) DETACH DELETE n"
     Then I click on the "Product Factory Database Submit Query Button" button
 
-    Given I execute "Generate ISBN" reusable step
+    Then I generate new ISBN code saving as "EC_ISBN"
     And I execute "Log In" reusable step replacing some steps
       |3|I fill the "Product Factory Email" field with "MD_COMMON_CREDENTIALS_PRODUCTFACTORYJUNIORPRODUCTSETTER"|
       |4|I fill the "Product Factory Password" field with "MD_COMMON_CREDENTIALS_PRODUCTFACTORYJUNIORPSPASSWORD"|

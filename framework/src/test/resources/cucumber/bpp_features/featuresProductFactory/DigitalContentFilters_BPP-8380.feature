@@ -47,7 +47,8 @@ Feature: Digital Content List - add Search Filter - BPP-8380
     And I click on the "Product Factory Additional Filters Button" button
     And I wait for "7" seconds
     And I click on the "Body" "Product Factory dropdown"
-    And I click on the "[EC_BODY_SHORT_NAME] - [EC_BODY_NAME]" "Product Factory dropdown option"
+    And I wait for "1" seconds
+    And I click on the "EC_BODY_SHORT_NAME - EC_BODY_NAME" "Product Factory dropdown option" by JS
     And I click on the "Done" "Product Factory button"
     Then I should see the "EC_BODY_SHORT_NAME" "button"
     And I shouldn't see the "EC_BODY_SHORT_NAME_TWO" element
@@ -55,7 +56,7 @@ Feature: Digital Content List - add Search Filter - BPP-8380
     # Check Level Additional Filter
     And I click on the "Product Factory Additional Filters Button" button
     And I click on the "Level" "Product Factory dropdown"
-    And I click on the "[EC_LEVEL_SHORT_NAME] - [EC_LEVEL_NAME]" "Product Factory dropdown option"
+    And I click on the "EC_LEVEL_SHORT_NAME - EC_LEVEL_NAME" "Product Factory dropdown option"
     And I click on the "Done" "Product Factory button"
     Then I should see the "EC_LEVEL_SHORT_NAME" "button"
     And I shouldn't see the "EC_LEVEL_SHORT_NAME_TWO" element
@@ -71,7 +72,7 @@ Feature: Digital Content List - add Search Filter - BPP-8380
     # Check Sitting Additional Filter
     And I click on the "Product Factory Additional Filters Button" button
     And I click on the "Sitting" "Product Factory dropdown"
-    And I click on the "[EC_SITTING_NAME] ([EC_SITTING_START_DATE] - [EC_SITTING_END_DATE])" "Product Factory dropdown option"
+    And I click on the "EC_SITTING_NAME (EC_SITTING_START_DATE - EC_SITTING_END_DATE)" "Product Factory dropdown option"
     And I click on the "Done" "Product Factory button"
     Then I should see the "EC_SITTING_NAME" "button"
     And I shouldn't see the "EC_SITTING_SHORT_NAME_TWO" element
@@ -88,13 +89,14 @@ Feature: Digital Content List - add Search Filter - BPP-8380
     # Check all Additional Filters at once
     And I click on the "Product Factory Additional Filters Button" button
     And I click on the "Body" "Product Factory dropdown"
-    And I click on the "[EC_BODY_SHORT_NAME] - [EC_BODY_NAME]" "Product Factory dropdown option"
+    And I wait for "1" seconds
+    And I click on the "EC_BODY_SHORT_NAME - EC_BODY_NAME" "Product Factory dropdown option" by JS
     And I click on the "Level" "Product Factory dropdown"
-    And I click on the "[EC_LEVEL_SHORT_NAME] - [EC_LEVEL_NAME]" "Product Factory dropdown option"
+    And I click on the "EC_LEVEL_SHORT_NAME - EC_LEVEL_NAME" "Product Factory dropdown option"
     And I click on the "CourseType" "Product Factory dropdown"
     And I click on the "EC_COURSE_TYPE_DESCRIPTION" "Product Factory dropdown option"
     And I click on the "Sitting" "Product Factory dropdown"
-    And I click on the "[EC_SITTING_NAME] ([EC_SITTING_START_DATE] - [EC_SITTING_END_DATE])" "Product Factory dropdown option"
+    And I click on the "EC_SITTING_NAME (EC_SITTING_START_DATE - EC_SITTING_END_DATE)" "Product Factory dropdown option" by JS
     And I click on the "Paper" "Product Factory dropdown"
     And I click on the "Equals" "Product Factory dropdown option"
     And I set "EC_PAPER_NAME" text to the "Paper" "Product Factory text field"

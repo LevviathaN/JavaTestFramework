@@ -2,7 +2,7 @@
 Feature: CSA Workflow Alerts
   As a Salesforce CSA member:
 
-  @EndToEnd #TC-804 TC-805 TC-1418 TC-1419
+  @EndToEndCSA #TC-804 TC-805 TC-1418 TC-1419
   Scenario: CSA Workflow Alerts End To End
     Given I execute "Log In To Salesforce" reusable step
     And I execute "Create CSA Case My Course" reusable step

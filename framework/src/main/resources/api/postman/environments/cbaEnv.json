@@ -1,0 +1,394 @@
+{
+	"id": "0d936346-6499-4ab2-8b3a-a8d53d24c4f3",
+	"name": "CBAs env UAT",
+	"values": [
+		{
+			"key": "cbaPFref",
+			"value": "a6f30a1d-6a54-4bad-af30-b733c7e53fe5",
+			"enabled": true
+		},
+		{
+			"key": "pf_auth0_token_url",
+			"value": "https://bpp-stage.eu.auth0.com/oauth/token/",
+			"enabled": true
+		},
+		{
+			"key": "pf_auth0_token_audience",
+			"value": "https://uat.product-factory.bpp.com/api",
+			"enabled": true
+		},
+		{
+			"key": "pf_auth0_token_grant_type",
+			"value": "client_credentials",
+			"enabled": true
+		},
+		{
+			"key": "pf_auth0_token_client_id",
+			"value": "gSQmoLDjvORorNkQUHoIkt04hua0sRFG",
+			"enabled": true
+		},
+		{
+			"key": "pf_auth0_token_client_secret",
+			"value": "YJxSqcJcsVbk3N8qB5saqPEOoe3p28gUsT9YRsVhPpsktTnQFJ1xlkdTId-VeVNK",
+			"enabled": true
+		},
+		{
+			"key": "pf_graph_url",
+			"value": "https://uat-products.bpp.com/",
+			"enabled": true
+		},
+		{
+			"key": "SFpublicURL",
+			"value": "https://bpp-13fd3e55182--noahuat.my.salesforce.com/services/data/v47.0",
+			"enabled": true
+		},
+		{
+			"key": "PF_reference",
+			"value": "a6f30a1d-6a54-4bad-af30-b733c7e53fe5",
+			"enabled": true
+		},
+		{
+			"key": "SFclient_idForToken",
+			"value": "3MVG9ahGHqp.k2_wASZlL4kleU10AfCXnm0BGJ_w9Mcrt_vYv2zSruJFN4srMfkyisytycDQpd4rFA18HrVZB",
+			"enabled": true
+		},
+		{
+			"key": "SFclient_secretForToken",
+			"value": "8592CC1DDC3B953D2A5944EFDEA8BC6F95C7ACB11E62C7B45C3B06B29558D629",
+			"enabled": true
+		},
+		{
+			"key": "SFusernameForToken",
+			"value": "ruslanharlitskyi@bpp.com.noahuat",
+			"enabled": true
+		},
+		{
+			"key": "SFpasswordForToken",
+			"value": "t3st1ngHRVLLwg3HRQZYZO9CxaY0tquuKW",
+			"enabled": true
+		},
+		{
+			"key": "pf_graph_token",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "qa_sf_token",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "SF_Exam_id",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "ExamIndex",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "ExamPFrefArray",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "TotalExamQTY",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "PapersName",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "ExamPrice",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "InstituteFee",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "CourseType",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "BodyName",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "LevelName",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "SittingName",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "Clients",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "CourseName",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "CourseDesc",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "CostCentreFD",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "DivisionFD",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "ProductFD",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "ProjectFD",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "ProductTaxCateg",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "Region",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "qa_sf_admin_token",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "auth0_token",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "PFInstanceRef",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "InstanceIndex",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "SFIidM",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "refindex",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "startIndex",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "g",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "InstancePFRef",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "InstanceID",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "DeactivationReason",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "InstanceStatus",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "InstanceName",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "InstanceSessionDuration",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "InstanceEndDate",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "InstanceStartDate",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "InstanceFinancialDimension",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "InstanceCapacity",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "maxValue",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "StudyLocationSFId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "CountryISOcode",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "LocationReference",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "LocationPostcode",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "LocationCountryCode",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "LocationCity",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "LocationAddressLine1",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "LocationAddressLine2",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "LocationAddressLine3",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "LocationName",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "InstanceLocation",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "IstanceQTY",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "CBAqty",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "InstanceQTY",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "CBAindex",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "InsIndex",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "CBAconcId",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "SFExamIdArr",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "SFInstanceIdArr",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "Le4galEntity",
+			"value": "a4ag0000004cZE0AAM",
+			"enabled": true
+		},
+		{
+			"key": "RRRule",
+			"value": "a4vg0000000RPdhAAG",
+			"enabled": true
+		},
+		{
+			"key": "TaxRule",
+			"value": "a53g0000000hg2ZAAQ",
+			"enabled": true
+		},
+		{
+			"key": "BillingRule",
+			"value": "a4Cg00000006VfTEAU",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2021-11-05T15:49:36.893Z",
+	"_postman_exported_using": "Postman/9.1.3"
+}

@@ -5,9 +5,7 @@ Feature: Materials - Create Materials - BPP-1099
   so that the Material is available for Courses.
 
   Background:
-    Given I execute "Generate ISBN" reusable step
-    And I click on the " generate" "button"
-    And I capture text data "ISBN Generator Number Field" as "EC_NEW_ISBN" variable
+    Given I generate new ISBN code saving as "EC_ISBN"
     Given I execute "Log In" reusable step
     And I execute "Remember Variables " reusable step
     And I execute "Remember Variables Two" reusable step
@@ -82,6 +80,7 @@ Feature: Materials - Create Materials - BPP-1099
     And I set "111" text to the "Price (£)" "Product Factory text field"
     And I set "222" text to the "Cost (£)" "Product Factory text field"
     And I click on the "Save" "Product Factory button"
+    And I wait for "1" seconds
     And I validate text "£111" to be displayed for "Product Factory Material Edit Page Price Readonly Field" element
     And I validate text "£222" to be displayed for "Product Factory Material Edit Page Cost Readonly Field" element
 
@@ -92,7 +91,8 @@ Feature: Materials - Create Materials - BPP-1099
     Then I set "EC_MATERIAL_TYPE_NAME" text to the "Search" "Product Factory text field" from keyboard
     And I click on the "submit" "element by type"
     And I click on the "EC_MATERIAL_TYPE_NAME" "Product Factory edit button"
-    When I click on the "Basic Properties" "Product Factory edit button"
+    When I click on the "Basic Properties" "Product Factory edit button" by JS
     And I set "" text to the "Cost (£)" "Product Factory text field"
     And I click on the "Save" "Product Factory button"
+    And I wait for "2" seconds
     And I validate text "-" to be displayed for "Product Factory Material Edit Page Cost Readonly Field" element

@@ -84,7 +84,7 @@ Feature: Create a Single Booking
     And I click on the "Status Reason" "Salesforce booking dropdown field" by JS
     And I click on the "Changed Mind" "Salesforce booking dropdown option"
     And I click on the "Cancellation Action" "Salesforce booking dropdown field" by JS
-    And I click on the "Credit Dispatched Materials" "Salesforce booking dropdown option"
+    And I click on the "Credit Fulfilled Materials" "Salesforce booking dropdown option"
     And I click on the "Cancellation Terms" "Salesforce booking dropdown field" by JS
     And I click on the "Inside" "Salesforce booking dropdown option"
     #And I set "Automation Cancelled" text to the "Cancellation Reason" "Salesforce text field"

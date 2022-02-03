@@ -12,7 +12,7 @@ Feature: Onboarding - Digital Content - ability to define Type - BPP-14452
   Scenario: Create Digital Content University Type
     When I click on the "Delivery" "Product Factory navigation item"
     When I click on the "Digital Content" "Product Factory navigation sub item"
-    Then I click on the "Create" "Product Factory button"
+    Then I click on the "Create" "Product Factory button" by JS
     And I click on the "University" "text contained in SPAN element"
     And I click on the "Totara" "Product Factory button"
     And I click on the "Save" "Product Factory button"
@@ -27,6 +27,7 @@ Feature: Onboarding - Digital Content - ability to define Type - BPP-14452
     And I click on the "Next" "Product Factory button"
     And I set "Suffix[###]" text to the "Name Suffix" "Product Factory text field"
     And I click on the "Finish" "Product Factory button"
+    And I wait for "1" seconds
     Then I should see the "Additional Filters" element
     Then I should see the "EC_COHORT_NAME" element
 
@@ -41,7 +42,7 @@ Feature: Onboarding - Digital Content - ability to define Type - BPP-14452
     And I click on the "Provisioning Start Date" "Product Factory dropdown option"
     Then I set "[TODAY]" text to the "Provisioning Start Date" "Product Factory text field"
     And I click on the "Content Restriction" "Product Factory dropdown"
-    Then I click on the "Save" "Product Factory button"
+    Then I click on the "Save" "Product Factory button" by JS
     Then I should see the "Provisioning Start Date" element
 
   @Negative @P1 #TC-5489

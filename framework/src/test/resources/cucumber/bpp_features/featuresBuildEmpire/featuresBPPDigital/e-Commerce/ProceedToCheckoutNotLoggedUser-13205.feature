@@ -7,7 +7,7 @@ Feature: Checkout Journey for Not Logged User
   So for example, I should NOT be able to view the 'payment details' page without accessing the 'booking details' page first.
   Also, reloading any page should reset the journey page to the first page.
 
-  @Positive @NotLogged #TC-5454, 6103, 6008, 6129, 6130, 6467, 6532, 6131, 6468, 6174, 6469
+  @Positive @NotLogged #TC-5454, 6103, 6008, 6129, 6130, 6467, 6532, 6131, 6468, 6174, 6469, 5455
   Scenario: eCommerce - Checkout Journey Not Logged User VISA
     #Navigation through checkout
     And I am on "MD_COMMON_LINKS_BPPDIGITALECOMMERCEURL" URL
@@ -113,7 +113,7 @@ Feature: Checkout Journey for Not Logged User
     Then I click on the "Salesforce First Opportunity" element
     Then I click on the "Salesforce Account Details Tab" element
     Then I validate text "Closed Won" to be displayed for "Salesforce Case Status Data Field" element
-    And I should see the "Amount" "Salesforce readonly field"
+    And I validate text "EC_SUBTOTAL" to be displayed for "Amount" "Salesforce readonly field"
     And I click on the "Salesforce Orders Quick Link Tab on Quote Page" element
     Then I click on the "Salesforce Orders First Link" link
     And I wait for "1" seconds

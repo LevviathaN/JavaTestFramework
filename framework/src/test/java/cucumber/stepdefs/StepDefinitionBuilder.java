@@ -3,7 +3,10 @@ package cucumber.stepdefs;
 import cucumber.reusablesteps.ReusableRunner;
 import cucumber.stepdefs.Actions.*;
 import org.hamcrest.Matchers;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import ui.utils.*;
@@ -48,6 +51,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
      * @param element Locator name string. All simple locators are listed in \src\resources\Locators.json
      */
     public StepDefinitionBuilder setLocator(String element) {
+        locatorString = element;
         locator = initElementLocator(element);
         return this;
     }
@@ -182,7 +186,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                 };
                 break;
             case EXECUTE_JS_CODE:
-                action = () -> executeJSCode(parameter);;
+                action = () -> executeJSCode(param);;
                 break;
         }
         return this;
@@ -203,20 +207,42 @@ public class StepDefinitionBuilder extends SeleniumHelper {
     public StepDefinitionBuilder setAction(ActionsWithTwoParameters actionName, String param1, String param2) {
         //todo: triggers a warning message 'EC not found' when REMEMBER_TEXT action is executed, due to this parameter is EC
         //todo: checking if special parameter should be refactored
-        String parameter1 = param1.startsWith("EC_") ? param1 : TestParametersController.checkIfSpecialParameter(param1);
-        String parameter2 = param2.startsWith("EC_") ? param2 : TestParametersController.checkIfSpecialParameter(param2);
-        Reporter.log("<pre>[input test parameter] " + param1 + "' -> '" + parameter1 + "' [output value]</pre>");
-        Reporter.log("<pre>[input test parameter] " + param2 + "' -> '" + parameter2 + "' [output value]</pre>");
         switch (actionName) {
             case REMEMBER_TEXT:
-                action = () -> ExecutionContextHandler.setExecutionContextValueByKey(parameter2, parameter1);
+                String parameter1Rem = TestParametersController.checkIfSpecialParameter(param1);
+                Reporter.log("<pre>[input test parameter] " + param1 + "' -> '" + parameter1Rem + "' [output value]</pre>");
+                action = () -> ExecutionContextHandler.setExecutionContextValueByKey(param2, parameter1Rem);
                 break;
             case SCROLL:
                 action = () -> {
+                    String parameter1 = TestParametersController.checkIfSpecialParameter(param1);
+                    Reporter.log("<pre>[input test parameter] " + param1 + "' -> '" + parameter1 + "' [output value]</pre>");
+                    String parameter2 = TestParametersController.checkIfSpecialParameter(param2);
+                    Reporter.log("<pre>[input test parameter] " + param2 + "' -> '" + parameter2 + "' [output value]</pre>");
                     String xAxis, yAxis = "0";
                     xAxis = parameter1.equals("right") ? "document.body.scrollLeft" : parameter1.equals("left") ? "0" : parameter1;
                     yAxis = parameter2.equals("bottom") ? "document.body.scrollHigh" : parameter2.equals("top") ? "0" : parameter2;
                     executeJSCode("window.scrollBy(" + xAxis + ", " + yAxis +")");
+                };
+                break;
+            case RETURN_REQUEST_WITH_JS:
+                action = () -> {
+                    JavascriptExecutor js = (JavascriptExecutor)  SeleniumHelper.driver();
+                    String value = (String) js.executeScript(param1);
+
+                    JSONParser parser = new JSONParser();
+                    JSONObject json = null;
+                    try {
+                        json = (JSONObject) parser.parse(value);
+                    } catch (org.json.simple.parser.ParseException e) {
+                        e.printStackTrace();
+                    }
+                    String accessToken = (String) json.get("accessToken");
+
+                    ExecutionContextHandler.setExecutionContextValueByKey(param2,accessToken);
+
+                    BPPLogManager.getLogger().info("Saving " + param2 + " with parameter: " + accessToken);
+                    Reporter.log("Saving " + param2 + " with parameter: " + accessToken);
                 };
                 break;
         }
@@ -274,6 +300,34 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                     } else {
                         Reporter.log("Element '" + locatorString + "' not found");
                         BPPLogManager.getLogger().info("Element '" + locatorString + "' not found");
+                    }
+                };
+                break;
+        }
+        return this;
+    }
+
+    /**
+     * Method to specify action which the step will perform. Mandatory.
+     * Depending on type and number of parameters different overloads of this method will be executed
+     * All available actions cn be found under /src/test/java/cucumber/stepdefs/Actions directory
+     *
+     * @param actionName name of action to be performed. Taken from ActionsWithLocatorAndTable.enum
+     * @param table table underneath the step, which can contain modified steps of reusable, or steps to be executed in loop
+     */
+    public StepDefinitionBuilder setAction(ActionsWithTable actionName, List<String> table) {
+        switch (actionName) {
+            case EXECUTE_STEPS:
+                action = () -> {
+                    for(String step : table) {
+                        ReusableRunner.getInstance().executeStep(step);
+                    }
+                };
+                break;
+            case EXECUTE_REUSABLES:
+                action = () -> {
+                    for(String reusable : table) {
+                        ReusableRunner.getInstance().executeReusable(reusable);
                     }
                 };
                 break;
@@ -349,18 +403,18 @@ public class StepDefinitionBuilder extends SeleniumHelper {
      */
     public StepDefinitionBuilder setAction(ActionsWithLocatorAndParameter actionName, String param) {
         //todo: checking if special parameter should be refactored
-        String parameter = param.startsWith("EC_") ? param : TestParametersController.checkIfSpecialParameter(param);
-        Reporter.log("<pre>[input test parameter] " + param + "' -> '" + parameter + "' [output value]</pre>");
+        //Reporter.log("<pre>[input test parameter] " + param + "' -> '" + parameter + "' [output value]</pre>");
         switch (actionName) {
             case SET_TEXT:
-                action = () -> setText(locator, parameter);
+                action = () -> setText(locator, TestParametersController.checkIfSpecialParameter(param));
                 break;
             case SET_TEXT_WITH_JS:
-                action = () -> setText(locator, parameter);
+                //todo: replace setText with setTextWithJs
+                action = () -> setText(locator, TestParametersController.checkIfSpecialParameter(param));
                 break;
             case SET_TEXT_FROM_KEYBOARD:
                 action = () -> {
-                    char[] string = parameter.toCharArray();
+                    char[] string = TestParametersController.checkIfSpecialParameter(param).toCharArray();
                     clearEntireField(locator);
                     for (int i=0; i<string.length; i++) {
                         WebElement keyItem = findElement(locator);
@@ -371,55 +425,54 @@ public class StepDefinitionBuilder extends SeleniumHelper {
             case NUMBER_OF_ELEMENTS_PRESENT:
                 action = () -> {
                     int actualNumberOfElements = numberOfElements(locator);
-                    if (parameter.contains("more than")) {
-                        BPPLogManager.getLogger().info("Expected quantity of elements is more than " + parameter + ", but found " + actualNumberOfElements);
-                        Assert.assertTrue(actualNumberOfElements > Integer.parseInt(parameter.substring(10)));
-                    } else if (parameter.contains("less than")) {
-                        BPPLogManager.getLogger().info("Expected quantity of elements is less than " + parameter + ", but found " + actualNumberOfElements);
-                        Assert.assertTrue(actualNumberOfElements < Integer.parseInt(parameter.substring(10)));
+                    if (TestParametersController.checkIfSpecialParameter(param).contains("more than")) {
+                        BPPLogManager.getLogger().info("Expected quantity of elements is more than " + TestParametersController.checkIfSpecialParameter(param) + ", but found " + actualNumberOfElements);
+                        Assert.assertTrue(actualNumberOfElements > Integer.parseInt(TestParametersController.checkIfSpecialParameter(param).substring(10)));
+                    } else if (TestParametersController.checkIfSpecialParameter(param).contains("less than")) {
+                        BPPLogManager.getLogger().info("Expected quantity of elements is less than " + TestParametersController.checkIfSpecialParameter(param) + ", but found " + actualNumberOfElements);
+                        Assert.assertTrue(actualNumberOfElements < Integer.parseInt(TestParametersController.checkIfSpecialParameter(param).substring(10)));
                     } else {
-                        BPPLogManager.getLogger().info("Expected quantity of elements is: " + parameter + ", but found " + actualNumberOfElements);
-                        Assert.assertTrue(parameter.equals(String.valueOf(actualNumberOfElements)));
+                        BPPLogManager.getLogger().info("Expected quantity of elements is: " + TestParametersController.checkIfSpecialParameter(param) + ", but found " + actualNumberOfElements);
+                        Assert.assertTrue(TestParametersController.checkIfSpecialParameter(param).equals(String.valueOf(actualNumberOfElements)));
                     }
                 };
                 break;
             case EXECUTE_JS:
-                action = () -> executeJSCodeForElement(locator,parameter);
+                action = () -> executeJSCodeForElement(locator,param);
                 break;
             case CHECK_CHECKBOX:
                 action = () -> {
                     boolean state = true;
-                    if (parameter.equals("check")) {
+                    if (TestParametersController.checkIfSpecialParameter(param).equals("check")) {
                         state = true;
-                    } else if (parameter.equals("uncheck")) {
+                    } else if (TestParametersController.checkIfSpecialParameter(param).equals("uncheck")) {
                         state = false;
                     }
                     checkCheckbox(locator, state);
                 };
                 break;
             case PRESS_KEYBOARD:
-                action = () -> pressKeyFromKeyboard(locator, parameter);
+                action = () -> pressKeyFromKeyboard(locator, TestParametersController.checkIfSpecialParameter(param));
                 break;
             case UPLOAD_FILE_TO_ELEMENT:
-                action = () -> fileUpload(locator, parameter);
+                action = () -> fileUpload(locator, TestParametersController.checkIfSpecialParameter(param));
                 break;
             case CAPTURE_ELEMENT_TEXT:
                 action = () -> {
                     String value = getTextValueFromField(locator);
-                    if (!parameter.equals("")) {
+                    if (!param.equals("")) {
                         if (value.equals("")) {
-                            Reporter.log("Saving EC key " + parameter + " with an empty string. No application data found.");
+                            Reporter.log("Saving EC key " + param + " with an empty string. No application data found.");
                         } else {
-                            Reporter.log("Saving EC key " + parameter + " = " + value);
+                            Reporter.log("Saving EC key " + param + " = " + value);
                         }
-                        ExecutionContextHandler.setExecutionContextValueByKey(parameter, value);
+                        ExecutionContextHandler.setExecutionContextValueByKey(param, value);
                     } else
                         Reporter.log("Cannot save EC value with an empty key. Check your parameters.");
                 };
                 break;
             case COUNT_ELEMENTS:
-                action = () -> ExecutionContextHandler.setExecutionContextValueByKey(parameter,
-                        String.valueOf(numberOfElements(locator)));
+                action = () -> ExecutionContextHandler.setExecutionContextValueByKey(param, String.valueOf(numberOfElements(locator)));
                 break;
             case VALIDATE_ELEMENT_TEXT:
                 action = () -> {
@@ -482,13 +535,13 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                 break;
             case SELECT_FROM_ELEMENT:
                 action = () -> {
-                    if (parameter.equals("KW_AUTO_SELECT")) {
+                    if (param.equals("KW_AUTO_SELECT")) {
                         Reporter.log("Starting random selection from dropdown.");
                         String autoSelectedValue = autoSelectFromDropdown(locator);
                         Reporter.log("Selected \"" + autoSelectedValue + "\" value from " + locatorString);
                     } else {
-                        Reporter.log("Selecting \"" + parameter + "\" value from " + locatorString);
-                        selectValueFromDropDown(locator, parameter);
+                        Reporter.log("Selecting \"" + param + "\" value from " + locatorString);
+                        selectValueFromDropDown(locator, TestParametersController.checkIfSpecialParameter(param));
                     }
                 };
                 break;
@@ -583,6 +636,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
         if(condition){ //
             if (!reporterLog.equals("")) Reporter.log(reporterLog);   //set reporter log if provided
             if (!log.equals("")) BPPLogManager.getLogger().info(log); //set console log if provided
+            //todo: add logs to mark iterations if loop is specified
             switch (loop) { //if any loop name is provided(for,until) executes step in corresponding loop
                 case "until":
                     for (int i = 1; i < loopLimit && !conditions.checkCondition(loopConditionStatement,loopConditionParameter); i++) {
@@ -599,7 +653,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                     action.execute();
                     break;
             }
-            waitForPageToLoad();
+//            waitForPageToLoad();
         }
     }
 }

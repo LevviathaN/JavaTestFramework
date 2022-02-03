@@ -284,6 +284,10 @@
     "value": "^I register new \"([^\"]*)\" Hub account using API$"
   },
   {
+    "name": "I_REGISTER_NEW_HUB_ACCOUNT_WITHOUT_PHONE_FIELD_API",
+    "value": "^I register new standard Hub account without phone field using API$"
+  },
+  {
     "name": "I_EXECUTE_API_STEP_SAVING_AS",
     "value": "^I execute \"([^\"]*)\" API step saving as \"([^\"]*)\"$"
   },
@@ -302,5 +306,13 @@
   {
     "name": "I_VERIFY_THAT_ELEMENT_IS",
     "value": "I verify that \"([^\"]*)\" element \"(equal|contains)\" to \"([^\"]*)\" element$"
+  },
+  {
+    "name": "I_EXECUTE_JS_CODE_AND_SAVING_VALUE_AS",
+    "value": "^I execute \"([^\"]*)\" JS code and saving value as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_TRANSFORM_DATE_TO_ANOTHER_PATTERN_SAVING_VALUE_AS",
+    "value": "^I transform \"([^\"]*)\" date with pattern \"([^\"]*)\" to another \"([^\"]*)\" pattern saving value as \"([^\"]*)\"$"
   }
 ]

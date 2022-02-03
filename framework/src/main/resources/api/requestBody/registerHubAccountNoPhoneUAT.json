@@ -1,0 +1,14 @@
+{
+  "connection": "bpp-digital",
+  "email": "Auto[EMAIL-HARAKIRI]",
+  "password": "A@polloGlobal2020",
+  "email_verified": true,
+  "user_metadata": {
+    "first_name": "Auto[FIRSTNAME]",
+    "last_name": "Auto[LASTNAME]",
+    "terms": "false",
+    "marketing_opt_in": "true",
+    "registration_type": "default",
+    "registration_type_token": ""
+  }
+}

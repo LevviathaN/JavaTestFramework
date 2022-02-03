@@ -19,7 +19,7 @@ Feature: BPP Digital Profession Related Content on an Appropriate URL Structure
     Then I should see the "Profession was successfully created." "BPP Digital Admin Alert Message"
     And I wait for "2" seconds
     And I execute "Log Out from Hub Admin" reusable step
-    And I am on "https://web-stage-bppdigital.bppuniversity.com/courses/<EC_AUTO_OLD_PROF_URL>" URL
+    And I am on "https://web-stage-bppdigital.bppuniversity.com/courses/EC_AUTO_OLD_PROF_URL" URL
     And I should see the "EC_OLD_PROFESSION_NAME" element
   #Validate New Profession page Type under CMS Pages
     When I execute "Log In to Hub as Admin" reusable step
@@ -41,7 +41,7 @@ Feature: BPP Digital Profession Related Content on an Appropriate URL Structure
     And I should scroll to the "top" of the page
     And I execute "Publish a CMS or Blog Post page" reusable step
     And I execute "Log Out from Hub Admin" reusable step
-    And I am on "https://web-stage-bppdigital.bppuniversity.com/courses/<EC_AUTO_OLD_PROF_URL>" URL
+    And I am on "https://web-stage-bppdigital.bppuniversity.com/courses/EC_AUTO_OLD_PROF_URL" URL
     And I should see the "EC_NEW_PROFESSION_NAME" element
   #Delete Old Profession Page
     When I execute "Log In to Hub as Admin" reusable step

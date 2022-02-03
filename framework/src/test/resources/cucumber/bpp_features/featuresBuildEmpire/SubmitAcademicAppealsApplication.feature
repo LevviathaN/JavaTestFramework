@@ -101,5 +101,43 @@ Feature: Complete Academic Appeals Application - BPPPMO-1091
     And I shouldn't see the "AutoTitle" "element"
     And I execute "Log Out from Hub Student" reusable step
     And I execute "Log In to Hub as Admin" reusable step
-    And I execute "Accept Academic Appeals As Admin" reusable step
-    Then I validate text "CONTAINS=Accepted" to be displayed for "Direct App Admin Status Changed for Academic Appeals" element
+    And I execute "Academic Appeals Admin Status Change" reusable step
+    Given I am on "https://harakirimail.com/" URL
+    And I fill the "Harakirimail Inbox Name" field with "EC_AUTO_EMAIL"
+    Then I click on the "Harakirimail Get Inbox" button
+    And I click on the "Your Appeals application has been submitted" "Harakirimail BPP Specific Email First" by JS
+    Then Browser performs "REFRESH" command
+    And I wait for "1" seconds
+    Then I click on the "Your Appeals application has been submitted" "Harakirimail BPP Specific Email First" by JS
+    Then I click on the "Harakirimail Back To Inbox" button
+    Then I click on the "Your Appeals application is now being reviewed" "Harakirimail BPP Specific Email First" by JS
+    And I validate text "CONTAINS=I am writing to inform you that your academic appeal application has now been allocated to a Regulation and Compliance Officer." to be displayed for "Harakirimail Validate Letter Body" element
+    Then I click on the "Harakirimail Back To Inbox" button
+    Then I click on the "Your Appeals application has been referred" "Harakirimail BPP Specific Email First" by JS
+    And I validate text "CONTAINS=will be referred to the next available Academic Appeals Board (date to be confirmed)" to be displayed for "Harakirimail Validate Letter Body" element
+    Then I click on the "Harakirimail Back To Inbox" button
+    Then I click on the "Your Appeals application has been accepted" "Harakirimail BPP Specific Email First" by JS
+    And I validate text "CONTAINS=Your application has been granted and the reasoning behind this decision is as follows:" to be displayed for "Harakirimail Validate Letter Body" element
+    And I validate text "CONTAINS=Office of Regulation and Compliance" to be displayed for "Harakirimail Validate Letter Body" element
+    Then I click on the "Harakirimail Back To Inbox" button
+    Then I click on the "Your Appeals application outcome" "Harakirimail BPP Specific Email First" by JS
+    And I validate text "CONTAINS=Reason Reject" to be displayed for "Harakirimail Validate Letter Body" element
+    And I validate text "CONTAINS=Your application has been rejected and the reasoning behind this decision is as follows:" to be displayed for "Harakirimail Validate Letter Body" element
+    Then I click on the "Harakirimail Back To Inbox" button
+    Then I click on the "Your Appeals application outcome" "Harakirimail BPP Specific Email Second" by JS
+    And I validate text "CONTAINS=Reason Part Accept" to be displayed for "Harakirimail Validate Letter Body" element
+    And I validate text "CONTAINS=Your application has been part granted and the reasoning behind this decision is as follows:" to be displayed for "Harakirimail Validate Letter Body" element
+    #Check notification emails for reviewer. This part of a test should be executed as regression part only!
+    #DO NOT RUN THE BELOW PART OF A TEST IN SEPARATE EXECUTION!!
+    Given I am on "https://harakirimail.com/" URL
+    And I fill the "Harakirimail Inbox Name" field with "autofreddiesammie7318@harakirimail.com"
+    Then I click on the "Harakirimail Get Inbox" button
+    And I click on the "BPP University Academic Appeals Submission Notification" "Harakirimail BPP Specific Email First" by JS
+    And I wait for "1" seconds
+    And I validate text "CONTAINS=A new application has been made for you to review:" to be displayed for "Harakirimail Validate Letter Body" element
+    And I validate text "CONTAINS=Application Name: BPP University Academic Appeals" to be displayed for "Harakirimail Validate Letter Body" element
+    Then I click on the "Harakirimail Back To Inbox" button
+    Then I click on the "BPP Professional Apprenticeships Submission Notification" "Harakirimail BPP Specific Email First" by JS
+    And I validate text "CONTAINS=A new application has been made for you to review:" to be displayed for "Harakirimail Validate Letter Body" element
+    And I validate text "CONTAINS=Application Name: BPP Professional Apprenticeships" to be displayed for "Harakirimail Validate Letter Body" element
+    Then I click on the "Harakirimail Back To Inbox" button

@@ -368,8 +368,8 @@ Feature: Product Factory
   Scenario: Create Material
     When I click on the "Products" "Product Factory navigation item"
     When I click on the "Materials" "Product Factory navigation sub item"
-    And I click on the "Create" "Product Factory button"
-    And I click on the "BPP Learning Media" "Product Factory button"
+    And I click on the "Create" "Product Factory button" by JS
+    And I click on the "BPP Learning Media" "Product Factory button" by JS
     And I click on the "EC_MATERIAL_TYPE_NAME" "Product Factory select button"
     And I set "~Price[####]" text to the "Price (£)" "Product Factory text field"
     And I set "~Cost[####]" text to the "Cost (£)" "Product Factory text field"
@@ -403,7 +403,7 @@ Feature: Product Factory
   Scenario: Create Course
     When I click on the "Products" "Product Factory navigation item"
     When I click on the "Courses" "Product Factory navigation sub item"
-    And I click on the "Create" "Product Factory button"
+    And I click on the "Create" "Product Factory button" by JS
     Then I set "EC_PAPER_NAME" text to the "Search" "Product Factory text field" from keyboard
     And I click on the "submit" "element by type"
     And I click on the "EC_PAPER_NAME" "Product Factory select button" by JS
@@ -477,7 +477,7 @@ Feature: Product Factory
   Scenario: Create CBA Record
     When I click on the "Products" "Product Factory navigation item"
     When I click on the "CBAs" "Product Factory navigation sub item"
-    And I click on the "Create" "Product Factory button"
+    And I click on the "Create" "Product Factory button" by JS
     And I click on the "EC_CBA_SESSION_DURATION_DESCRIPTION" "Product Factory select button"
     And I click on the "Region" "Product Factory dropdown"
     And I click on the "EC_REGION_NAME" "element"
@@ -545,7 +545,7 @@ Feature: Product Factory
   Scenario: Create Digital Content University Type
     When I click on the "Delivery" "Product Factory navigation item"
     When I click on the "Digital Content" "Product Factory navigation sub item"
-    Then I click on the "Create" "Product Factory button"
+    Then I click on the "Create" "Product Factory button" by JS
     And I click on the "University" "text contained in SPAN element"
     And I click on the "Totara" "Product Factory button"
     And I click on the "Save" "Product Factory button"
@@ -658,3 +658,29 @@ Feature: Product Factory
     And I click on the "Perform Bulk Operation" button
     And I click on the "Remove from the website" "element by title" if "Remove from the website,element by title" "Product Factory special element is enabled"
     Then Attribute "tabindex" of "Remove from the website" "element by title" should have value "-1"
+
+  Scenario: Search Non Existing Material Products
+    And I set "EC_BODY_NAME" text to the "Search" "Product Factory Search Field" from keyboard
+    And I press "MD_COMMON_KEYBOARD_ENTER" for "Search" "Product Factory Search Field"
+    And I wait for "1" seconds
+    And I should see the "No Materials" message
+    And I should see the "Materials will be displayed here once added or searched" message
+
+  Scenario: Search Existing Course Material Products
+    And I set "EC_BODY_NAME" text to the "Search" "Product Factory Search Field" from keyboard
+    And I press "MD_COMMON_KEYBOARD_ENTER" for "Search" "Product Factory Search Field"
+    And I wait for "1" seconds
+    And I should see the "EC_BODY_SHORT_NAME" message
+
+  Scenario: Search Non Existing Courses
+    And I set "EC_BODY_NAME" text to the "Search" "Product Factory Search Field" from keyboard
+    And I press "MD_COMMON_KEYBOARD_ENTER" for "Search" "Product Factory Search Field"
+    And I wait for "1" seconds
+    And I should see the "No Courses" message
+    And I should see the "Courses will show up here once added or searched" message
+
+  Scenario: Search Existing Courses
+    And I set "EC_BODY_NAME" text to the "Search" "Product Factory Search Field" from keyboard
+    And I press "MD_COMMON_KEYBOARD_ENTER" for "Search" "Product Factory Search Field"
+    And I wait for "1" seconds
+    And I should see the "EC_BODY_SHORT_NAME" message

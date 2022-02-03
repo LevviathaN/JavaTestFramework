@@ -235,7 +235,7 @@ public class ProductFactoryStepDefs {
     public void i_verify_that_element_is(String elementOne, String value, String elementTwo) {
         String resultElement = TestParametersController.checkIfSpecialParameter(elementOne);
         String startElement = TestParametersController.checkIfSpecialParameter(elementTwo);
-        Reporter.log("Executing step: I verify that" + resultElement + " is equal to: " + startElement);
+        Reporter.log("Executing step: I verify that " + resultElement + " is "+ value + " to: " + startElement);
         if (value.equals("contains")) {
             Assert.assertTrue(startElement.contains(resultElement));
         } else if (value.equals("equal")) {

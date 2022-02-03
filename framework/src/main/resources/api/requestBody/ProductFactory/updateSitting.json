@@ -4,6 +4,7 @@
     "command": {
       "reference":"EC_SITTING_REFERENCE",
       "name": "ApiSittingNameUpdated[####]",
+      "eCommerceName":"UpdatedEcommerceName[#####]",
       "startDate": "[TIMENOW-yyyy-MM-dd]",
       "endDate": "[TIMENOW-yyyy-MM-dd]",
       "bodyReferences": [

@@ -1,14 +1,14 @@
 @BuildEmpire @DirectApps @UniversityDegreeApprenticeships @Smoke
 Feature: University Degree Apprenticeships
 
-  @Positive @Smoke @Scotland
+  @Positive @Smoke @ScotlandApprenticeships
   Scenario: Create University Degree Apprenticeships Application Chartered Manager Degree Scotland
     Given I register new "Standard" Hub account using API
     Then I execute "Log In to Hub as Student" reusable step
     And I wait for "2" seconds
     When I execute "Create University Degree Apprenticeships Application" reusable step
     And I execute "Complete University Degree Apprenticeships Application Chartered Manager" reusable step replacing some steps
-    |35|I click on the "I am a recent (within the last 12 months) graduate (This is my first professional role)" "Build Empire nationality option"|
+      |35|I click on the "I am a recent (within the last 12 months) graduate (This is my first professional role)" "Build Empire nationality option"|
     Then I execute "Submit Application Hub" reusable step
     And I execute "Log Out from Hub Student" reusable step
     And I execute "Log In to Hub as Admin" reusable step
@@ -24,7 +24,7 @@ Feature: University Degree Apprenticeships
     And I set "Line Manager008!" text to the "Password" "Build Empire text field"
     Then I click on the "Direct App Login Button" button
     Then I execute "Line Manager Review University Degree Apprenticeships Scotland" reusable step replacing some steps
-    |17|I switch to window with index "1"|
+      |17|I switch to window with index "1"|
     And I execute "Log Out from Hub Student" reusable step
     Then I execute "Log In to Hub as Student" reusable step
     And I execute "Complete Professional Apprenticeships Application After Review" reusable step
@@ -36,3 +36,5 @@ Feature: University Degree Apprenticeships
     And I execute "Log In to Hub as Student" reusable step
     And I execute "Validate Successful Application As Student" reusable step
     And I execute "Log Out from Hub Student" reusable step
+    Then I execute "Harakirimail Verify Emails Apprenticeships" reusable step
+    And I execute "Harakirimail Verify Line Manager Emails for Apprenticeships" reusable step

@@ -32,6 +32,16 @@ Feature: Product Factory Api
       |description|$Auto[MaterialTypeFDDescription]<varName>|
       |dimensionType|PRODUCT     |
       |target       |MATERIALTYPE|
+    Given I execute "Create Financial Dimension" API step with parameters saving as "MATERIAL_"
+      |code       |$Auto[MaterialFDCode]<varName>       |
+      |description|$Auto[MaterialFDDescription]<varName>|
+      |dimensionType|PRODUCT  |
+      |target       |MATERIAL |
+    Given I execute "Create Financial Dimension" API step with parameters saving as "COURSE_"
+      |code       |$Auto[CourseFDCode]<varName>       |
+      |description|$Auto[CourseFDDescription]<varName>|
+      |dimensionType|PRODUCT|
+      |target       |COURSE |
     And I execute "Create Class Category" API step with parameters
       |name|$Auto[ClassCategoryName]<varName>|
     And I execute "Create Programme" API step with parameters
@@ -101,6 +111,8 @@ Feature: Product Factory Api
     And I execute "Create Pricing Matrix" API step
     And I execute "Create Prices" API step
     And I execute "Create Course" API step
+    And I execute "Create Course Materials" API step
+    And I execute "Update Course Material" API step
     And I execute "Create Stream" API step with parameters
       |name       |$Auto[StreamName]<varName>       |
     And I execute "Create Deactivation Reason" API step with parameters
@@ -142,10 +154,7 @@ Feature: Product Factory Api
       |paperReferences    |EC_CBA_PAPER_REFERENCE      |
     And I execute "Create Instance Group" API step with parameters
       |sessionDurationReference|EC_CBA_SESSION_DURATION_REFERENCE|
-    And I execute "Create Courses" API step with parameters
-      |instanceGroupReference|EC_INSTANCE_GROUP_REFERENCE |
-      |paperReference        |EC_CBA_PAPER_REFERENCE      |
-      |courseTypeReference   |EC_CBA_COURSE_TYPE_REFERENCE|
+    And I execute "Create Courses" API step
 
     Examples:
       |type        |varName     |ecName       |shortVar|shortEc|
@@ -407,10 +416,10 @@ Feature: Product Factory Api
       |bodyReferences|EC_1_BODY_REFERENCE|
     And I execute "Create Sitting" API step with parameters saving as "2_"
       |name|$2Ordering[SittingName]      |
-      |bodyReferences|EC_2_BODY_REFERENCE|
+      |bodyReferences|EC_1_BODY_REFERENCE|
     And I execute "Create Sitting" API step with parameters saving as "3_"
       |name|$3Ordering[SittingName]      |
-      |bodyReferences|EC_3_BODY_REFERENCE|
+      |bodyReferences|EC_1_BODY_REFERENCE|
 
 
     And I execute "Create Course Type" API step with parameters saving as "1_"

@@ -11,18 +11,17 @@ import ui.utils.Tools;
 import ui.utils.bpp.ExecutionContextHandler;
 import ui.utils.bpp.PropertiesHelper;
 import ui.utils.bpp.TestParametersController;
-
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import static com.jcabi.matchers.RegexMatchers.matchesPattern;
 import static io.restassured.RestAssured.given;
-import static org.junit.Assert.assertThat;
-import static org.junit.internal.matchers.StringContains.containsString;
 
 public class RestApiController {
 
     private final PropertiesHelper propertiesHelper = new PropertiesHelper();
     String Reference = null;
+    String requestLink = null;
 
     /**
      * @param baseURI     - will be changed based of record type to be created
@@ -88,143 +87,45 @@ public class RestApiController {
         return map.toString();
     }
 
-    public String processPropertiesPF(String requestTemplate, Map<String, String> parameters) {
+    public String processPropertiesPF(String jsonPath, Map<String, String> parameters) {
 
-        JSONObject jo = new Utilities().getJsonObject(requestTemplate);
+        //get json string from file
+        JSONObject jo = new Utilities().getJsonObject(jsonPath);
+        String requestTemplate = jo.toString();
+
+        //replace selected parameters in json string with values provided in parameters map
         if (parameters==null) parameters = new HashMap<String,String>();
-
-        /*Get command list*/
-        Map variables = ((Map) jo.get("variables"));
-        Map.Entry<String,String> entry = (Map.Entry<String, String>) variables.entrySet().iterator().next();
-        String key = entry.getKey();
-
-        if(key.equals("command")) {
-
-            Map command = (Map) variables.get(key);
-            for (Object commandKey : command.keySet()) {
-                Object value = null;
-                if (parameters.containsKey(commandKey)) {
-                    if (commandKey.toString().contains("References")) {
-                        JSONArray arry = new JSONArray();
-                        for (String element : parameters.get(commandKey).split(",")) {
-                            arry.add(element);
-                        }
-                        value = arry;
-                    } else {
-                        value = parameters.get(commandKey);
-                    }
-                } else {
-                    value = command.get(commandKey);
-                }
-                String updatedValue = value.equals(null) ? "null" : TestParametersController.checkIfSpecialParameter(value.toString());
-                value = (value.toString().equals(updatedValue)||value instanceof JSONArray) ? value : updatedValue;
-                if (!(value==null)) {
-                    if (commandKey.equals("timings")) {
-                        ArrayList<String> bodyList = new ArrayList<String>();
-                        JSONArray bodyArray = (JSONArray) command.get("timings");
-                        JSONObject timingObj = (JSONObject) bodyArray.get(0);
-                        String sessionTimingReference = parameters.containsKey("sessionTimingReference") ? parameters.get("sessionTimingReference") : (String) timingObj.get("sessionTimingReference");
-                        String sessionDate = parameters.containsKey("sessionDate") ? parameters.get("sessionDate") : (String) timingObj.get("sessionDate");
-                        String startTime = parameters.containsKey("startTime") ? parameters.get("startTime") : (String) timingObj.get("startTime");
-                        String endTime = parameters.containsKey("endTime") ? parameters.get("endTime") : (String) timingObj.get("endTime");
-                        ((JSONObject) bodyArray.get(0)).put("sessionTimingReference", TestParametersController.checkIfSpecialParameter(sessionTimingReference));
-                        ((JSONObject) bodyArray.get(0)).put("sessionDate", TestParametersController.checkIfSpecialParameter(sessionDate));
-                        ((JSONObject) bodyArray.get(0)).put("startTime", TestParametersController.checkIfSpecialParameter(startTime));
-                        ((JSONObject) bodyArray.get(0)).put("endTime", TestParametersController.checkIfSpecialParameter(endTime));
-                        bodyList.add(String.valueOf(bodyArray));
-                    } else if (commandKey.equals("dateTimes")) {
-                        ArrayList<String> bodyList = new ArrayList<String>();
-                        JSONArray bodyArray = (JSONArray) command.get("dateTimes");
-                        JSONObject timingObj = (JSONObject) bodyArray.get(0);
-                        String sessionDate = (String) timingObj.get("sessionDate");
-                        String startTime = (String) timingObj.get("startTime");
-                        ((JSONObject) bodyArray.get(0)).put("sessionDate", TestParametersController.checkIfSpecialParameter(sessionDate));
-                        ((JSONObject) bodyArray.get(0)).put("startTime", TestParametersController.checkIfSpecialParameter(startTime));
-                        bodyList.add(String.valueOf(bodyArray));
-                    } else if (commandKey.equals("paperExpiry")) {
-                        ArrayList<String> bodyList = new ArrayList<String>();
-                        JSONArray bodyArray = (JSONArray) command.get("paperExpiry");
-                        JSONObject timingObj = (JSONObject) bodyArray.get(0);
-                        String expiryWeeks = (String) timingObj.get("expiryWeeks");
-                        String expiryOption = (String) timingObj.get("expiryOption");
-                        String studyModeReference = (String) timingObj.get("studyModeReference");
-                        ((JSONObject) bodyArray.get(0)).put("expiryWeeks", Integer.parseInt(TestParametersController.checkIfSpecialParameter(String.valueOf(expiryWeeks))));
-                        ((JSONObject) bodyArray.get(0)).put("expiryOption", TestParametersController.checkIfSpecialParameter(expiryOption));
-                        ((JSONObject) bodyArray.get(0)).put("studyModeReference", TestParametersController.checkIfSpecialParameter(studyModeReference));
-                        bodyList.add(String.valueOf(bodyArray));
-                    } else if (commandKey.toString().contains("References")) {
-                        JSONArray jArray = (JSONArray) value;
-                        ArrayList<String> bodyList = new ArrayList<String>();
-                        for (Object v : jArray) {
-                            bodyList.add(TestParametersController.checkIfSpecialParameter(String.valueOf(v)));
-                        }
-                        command.put(commandKey, bodyList);
-                    } else if (commandKey.equals("stockSiteProductionMethods")) {
-                        JSONArray jArray = (JSONArray) value;
-                        JSONObject jObject = (JSONObject) jArray.get(0);
-                        ArrayList<JSONArray> bodyList = new ArrayList<JSONArray>();
-                        String stockSiteReference = (String) jObject.get("stockSiteReference");
-                        ((JSONObject) jArray.get(0)).put("stockSiteReference", TestParametersController.checkIfSpecialParameter(stockSiteReference));
-//                        bodyList.add((JSONArray)jArray);
-                        command.put(commandKey, jArray);
-                    } else if (value.equals(true) || value.equals(false) || value.equals("true") || value.equals("false")) {
-                        command.put(commandKey, Boolean.parseBoolean(value.toString()));
-                    } else if (value.toString().matches("\\d+")) {
-                        if (commandKey.toString().equals("edition")
-                                ||commandKey.toString().equals("referenceNumber")
-                                ||commandKey.toString().equals("sisCode")
-                                ||commandKey.toString().equals("termCode")
-                                ||commandKey.toString().equals("productInstanceCode")) {
-                            command.put(commandKey, value.toString());
-                        } else {
-                            command.put(commandKey, Integer.parseInt(TestParametersController.checkIfSpecialParameter(value.toString())));
-                        }
-                    } else {
-                        command.put(commandKey, TestParametersController.checkIfSpecialParameter(value.toString()));
-                    }
-                }
+        for (String parameter : parameters.keySet()) {
+            String value = parameters.get(parameter);
+            if (parameter.contains("References")) {
+                value = value.replaceAll(",","\",\"");
+                requestTemplate = requestTemplate.replaceAll("\""+parameter+"\":\\[?\"?([^\"},]*)\"?\\]?","\""+parameter+"\":[\"" + value + "\"]");
+            } else {
+                requestTemplate = requestTemplate.replaceAll("\""+parameter+"\":\"?([^\"},]*)\"?","\""+parameter+"\":\"" + value + "\"");
             }
+        }
 
-        } else {
-                for (Object variablesKey : variables.keySet()) {
-                    Object value = null;
-                    if (parameters.containsKey(variablesKey)) {
-                        if (variablesKey.toString().contains("References")) {
-                            JSONArray arry = new JSONArray();
-                            arry.add(parameters.get(variablesKey));
-                            value = arry;
-                        } else {
-                            value = parameters.get(variablesKey);
-                        }
-                    } else {
-                        value = variables.get(variablesKey);
-                    }
-                    String updatedValue = value.equals(null) ? "null" : TestParametersController.checkIfSpecialParameter(value.toString());
-                    value = (value.toString().equals(updatedValue) || value instanceof JSONArray) ? value : updatedValue;
-                    if (!(value == null)) {
-                        if (!(variables.get("reference") == null)
-                                || (!(variables.get("instanceReference") == null))
-                                || (!(variables.get("instanceGroupReference") == null)))
-                        {
-                            variables.put(variablesKey, TestParametersController.checkIfSpecialParameter(value.toString()));
-                        }
-                        if (!(variables.get("filter") == null)) {
-                            if (variables.get("filter").toString().equals("{}")) {
-                            variables.put("filter", new JSONObject());
-                        } else if (variables.get("filter").toString().contains("searchTerm")) {
-                            JSONObject filterObj = (JSONObject) variables.get("filter");
-                            String searchTerm = (String) filterObj.get("searchTerm");
-                            filterObj.put("searchTerm", TestParametersController.checkIfSpecialParameter(searchTerm));
-                            } else if (variables.get("filter").toString().contains("courseReference")) {
-                                JSONObject filterObj = (JSONObject) variables.get("filter");
-                                String courseReference = (String) filterObj.get("courseReference");
-                                filterObj.put("courseReference", TestParametersController.checkIfSpecialParameter(courseReference));
-                            }
-                        }
-                    }
-                }
+        //process all special parameters in requestTemplate string
+        requestTemplate = TestParametersController.checkIfSpecialParameter(requestTemplate);
+
+        //extract all key-value properties from string into map
+        Map<String,String> objectsList = new HashMap<>();
+        Matcher dataPattern = Pattern.compile("\"([A-Za-z]*)\":\"(.*?)\"").matcher(requestTemplate);
+        while (dataPattern.find()) { //add found data into previously created list
+            objectsList.put(dataPattern.group(1),dataPattern.group(2));
+        }
+
+        //remove quotes from all integer values, except ones in list below
+        List<String> intsWithQuotes =  new ArrayList<>(Arrays.asList("edition","referenceNumber","sisCode","termCode","productInstanceCode"));
+        for (String object : objectsList.keySet()) {
+            if (objectsList.get(object).matches("\\d+") && !intsWithQuotes.contains(object) || objectsList.get(object).equals("true") || objectsList.get(object).equals("false")) {
+                requestTemplate = requestTemplate.replace("\"" + object + "\":\"" + objectsList.get(object) + "\"", "\"" + object + "\":" + objectsList.get(object));
             }
-        return jo.toString();
+        }
+
+        //process all special parameters in requestTemplate string
+        return requestTemplate;
+
     }
 
     /**
@@ -234,7 +135,13 @@ public class RestApiController {
 
     public synchronized JSONObject requestProcess(String fileName, Map<String, String> parameters)  {
 
-        Response Response = postRequest(propertiesHelper.getProperties().getProperty("pf_request_link"),
+        if (System.getProperty("environment").equals("UAT")) {
+            requestLink = "pf_request_link_UAT";
+        } else {
+            requestLink = "pf_request_link";
+        }
+
+        Response Response = postRequest(propertiesHelper.getProperties().getProperty(requestLink),
                 processPropertiesPF("ProductFactory/" + fileName, parameters),
                 ProductFactoryAuthentication.getInstance().requestHeaderSpecification()
         );
@@ -276,7 +183,7 @@ public class RestApiController {
             throw new RuntimeException("Can't proceed with response: " + error);
         }
 
-        assertThat(Reference, matchesPattern("([a-z0-9-]){36}"));
+//        assertThat(Reference, matchesPattern("([a-z0-9-]){36}"));
 //        assertThat(ResponseString, containsString(objName));
 
         return recordsList;
@@ -354,12 +261,14 @@ public class RestApiController {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("first_name",TestParametersController.checkIfSpecialParameter(firstName));
         jsonObject.put("last_name",TestParametersController.checkIfSpecialParameter(lastName));
-        jsonObject.put("phone",TestParametersController.checkIfSpecialParameter(phone));
-        jsonObject.put("full_phone",TestParametersController.checkIfSpecialParameter(fullPhone));
         jsonObject.put("terms",TestParametersController.checkIfSpecialParameter(terms));
         jsonObject.put("marketing_opt_in",TestParametersController.checkIfSpecialParameter(marketingOpt));
         jsonObject.put("registration_type",TestParametersController.checkIfSpecialParameter(registration));
         jsonObject.put("registration_type_token",TestParametersController.checkIfSpecialParameter(registrationToken));
+        if (!(phone == null)) {
+            jsonObject.put("phone",TestParametersController.checkIfSpecialParameter(phone));
+            jsonObject.put("full_phone",TestParametersController.checkIfSpecialParameter(fullPhone));
+        }
 
         map.put("user_metadata",jsonObject);
         map.put("email",TestParametersController.checkIfSpecialParameter(email));
@@ -369,7 +278,13 @@ public class RestApiController {
 
     public synchronized JSONObject requestNegativeProcess(String fileName, Map<String, String> parameters)  {
 
-        Response Response = postRequest(propertiesHelper.getProperties().getProperty("pf_request_link"),
+        if (System.getProperty("environment").equals("UAT")) {
+            requestLink = "pf_request_link_UAT";
+        } else {
+            requestLink = "pf_request_link";
+        }
+
+        Response Response = postRequest(propertiesHelper.getProperties().getProperty(requestLink),
                 processPropertiesPF("ProductFactory/" + fileName, parameters),
                 ProductFactoryAuthentication.getInstance().requestHeaderSpecification()
         );

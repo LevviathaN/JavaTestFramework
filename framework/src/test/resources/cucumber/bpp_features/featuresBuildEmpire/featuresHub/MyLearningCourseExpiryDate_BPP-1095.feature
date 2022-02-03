@@ -22,9 +22,7 @@ Feature: BPP University Hub My Learning Course Expiry Date
     And I capture text data "Totara expiry Course Date Day selected" as "EC_DAY" variable
     And I capture text data "Totara expiry Course Date Month selected" as "EC_MONTH" variable
     And I capture text data "Totara expiry Course Date Year selected" as "EC_YEAR" variable
-    And I remember "<EC_DAY> " text as "EC_DAY_SPACE" variable
-    And I remember "<EC_MONTH> " text as "EC_MONTH_SPACE" variable
-    And I remember "<EC_DAY_SPACE><EC_MONTH_SPACE><EC_YEAR>" text as "EC_EXPIRY_DATE" variable
+    And I remember "EC_DAY EC_MONTH EC_YEAR" text as "EC_EXPIRY_DATE" variable
     #Admin Logout
     Then I execute "Logout as Admin Totara" reusable step
     And Browser deletes cookies

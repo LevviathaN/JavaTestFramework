@@ -7,28 +7,24 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.hamcrest.Matchers;
 import org.jooq.tools.json.ParseException;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.NoSuchWindowException;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.ITest;
 import ui.utils.SeleniumHelper;
 import ui.utils.*;
 import ui.utils.bpp.ExecutionContextHandler;
 import ui.utils.bpp.TestParametersController;
 import ui.utils.pdf.PDFHandler;
-
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
-
 import static com.jcabi.matchers.RegexMatchers.matchesPattern;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsString;
-import static org.hamcrest.Matchers.not;
+
 
 /**
  * Created by Ruslan Levytskyi on 15/3/2019.
@@ -162,11 +158,14 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @Then("^I should see the \"([^\"]*)\" (?:button|message|element)$")
     public void i_should_see_the_text(String element) {
-        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setLocator(element)
-                .setAction(ActionsWithLocator.PRESENT)
-                .setMessage("Executing step: I should see the '" + element + "' element")
-                .execute();
+        Reporter.log("Executing step: I should see the '" + element + "' element");
+        boolean isDisplayed = false;
+        for (int i = 0; i < findElements(initElementLocator(element)).size(); i++) {
+            if (findElements(initElementLocator(element)).get(i).isDisplayed()) {
+                isDisplayed = true;
+            }
+        }
+        Assert.assertTrue(isDisplayed, "Element with " + element + " text is not displayed");
     }
 
     /**
@@ -395,13 +394,15 @@ public class StepDefinitions extends SeleniumHelper {
      *
      * @author Andrii Yakymchuk
      */
-    //todo: make this stepdef with 2 parameters and update all scenarios that uses it
+    //todo: this step doesn't work with StepdefBuilder logic
     @And("^I should scroll to the \"(top|bottom)\" of the page$")
     public void i_should_scroll_to_top_bottom_of_the_page(String value) {
-        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setAction(ActionsWithTwoParameters.SCROLL, "0", value)
-                .setReporterLog("Executing step: I should scroll to the " + value + " of the page")
-                .execute();
+        Reporter.log("Executing step: I should scroll to the " + value + " of the page");
+        if (value.equals("top")) {
+            scrollToTopOfPage();
+        } else if (value.equals("bottom")) {
+            scrollToBottomOfPage();
+        }
     }
 
     @And("I select \"([^\"]*)\" from \"([^\"]*)\" element")
@@ -432,6 +433,8 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @When("^I click on the \"([^\"]*)\" (?:button|link|option|element) by JS$")
     public void i_click_with_JS(String element) {
+       //todo: StepDefBuilder doesn't handle clicking in another window
+        sleepFor(1500);
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(element)
                 .setAction(ActionsWithLocator.CLICK_WITH_JS)
@@ -450,11 +453,16 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @When("^I set \"([^\"]*)\" text to the element with ID \"([^\"]*)\" using JS$")
     public void i_set_text_with_js(String text, String element) {
-        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setLocator(element)
-                .setAction(ActionsWithLocatorAndParameter.SET_TEXT_WITH_JS, text)
-                .setMessage("Executing step: I set '" + text + "' text to the element with ID '" + element + "' using JS")
-                .execute();
+        //todo: does not worn in Sub Topics And Labels. To be fixed. Reverted to old version for now.
+        Reporter.log("Executing step: I set '" + text + "' text to the element with ID '" + element + "' using JS");
+        //executeJSCode("document.getElementById('" + element + "').setAttribute('value', '" + text + "')");
+
+        String processedText = TestParametersController.checkIfSpecialParameter(text);
+        BPPLogManager.getLogger().info("Setting: " + element + " with value: " + text);
+        executeJSCode("document.getElementById('" + element + "').setAttribute('value', '" + processedText + "')");
+        if (!text.equals(processedText)) {
+            Reporter.log("<pre>[input test parameter] " + text + "' -> '" + processedText + " [output value]</pre>");
+        }
     }
 
     /**
@@ -480,11 +488,18 @@ public class StepDefinitions extends SeleniumHelper {
      */
     @And("^I capture text data \"([^\"]*)\" as \"([^\"]*)\" variable$")
     public void i_capture_text_data_as_variable(String element, String executionContext) {
-        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setLocator(element)
-                .setAction(ActionsWithLocatorAndParameter.CAPTURE_ELEMENT_TEXT, executionContext)
-                .setReporterLog("Capturing data from : " + element + ": " + executionContext)
-                .execute();
+        //todo: StepDefBuilder throws error while trying to get EC  -2021-12-01 17:05:39 [PoolService] ERROR ExecutionContextHandler:35 - Requested EC_BASKET_ID execution context key is absent
+        String value = getTextValueFromField(initElementLocator(element));
+        Reporter.log("Capturing data from : " + initElementLocator(element) + ": " + executionContext);
+        if (!executionContext.equals("")) {
+            if (value.equals("")) {
+                Reporter.log("Saving EC key " + executionContext + " with an empty string. No application data found.");
+            } else {
+                Reporter.log("Saving EC key " + executionContext + " = " + value);
+            }
+            ExecutionContextHandler.setExecutionContextValueByKey(executionContext, value);
+        } else
+            Reporter.log("Cannot save EC value with an empty key. Check your parameters.");
     }
 
     /**
@@ -502,6 +517,51 @@ public class StepDefinitions extends SeleniumHelper {
         stepDef.setAction(ActionsWithParameter.EXECUTE_JS_CODE, jsCode)
                 .setReporterLog("Executing JS code: " + jsCode)
                 .execute();
+    }
+
+    /**
+     * Definition to execute JS code (Console command for Chrome) to grab Auth key from Chrome's Local Storage.
+     *
+     * @param jsCode JS code to execute
+     * @param ecValue ec Value to store returned js code
+     * @apiNote There should be timeout before the method, cause Token need time to be shown.
+     * @see  [[[   return localStorage.getItem('product-factory-react-token')   ]]]
+     * @author Andrii Yakymchuk
+     *
+     */
+
+    @And("^I execute \"([^\"]*)\" JS code and saving value as \"([^\"]*)\"$")
+    public void i_execute_js_code_and_saving_value_as(String jsCode, String ecValue) {
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setAction(ActionsWithTwoParameters.RETURN_REQUEST_WITH_JS, jsCode, ecValue)
+                .setReporterLog("Executing step: I execute '" + jsCode + "' JS code and saving value as '" + ecValue)
+                .execute();
+    }
+
+    /**
+     * Definition to transform date from one pattern to another and saving as EC.
+     *
+     * @param dateParse JS code to execute
+     * @param datePattern ec Value to store returned js code
+     * @param ecValue
+     * @author Andrii Yakymchuk
+     *
+     */
+
+    @And("^I transform \"([^\"]*)\" date with pattern \"([^\"]*)\" to another \"([^\"]*)\" pattern saving value as \"([^\"]*)\"$")
+    public void i_transform_date_to_another_pattern_saving_value_as(String dateParse, String oldDatePattern, String datePattern, String ecValue) {
+
+        DateFormat originalFormat = new SimpleDateFormat(oldDatePattern);
+        DateFormat targetFormat = new SimpleDateFormat(datePattern);
+        Date date = null;
+        try {
+            date = originalFormat.parse(TestParametersController.checkIfSpecialParameter(dateParse));
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+        String formattedDate = targetFormat.format(date);
+        ExecutionContextHandler.setExecutionContextValueByKey(ecValue, formattedDate);
+
     }
 
     /**

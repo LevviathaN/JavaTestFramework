@@ -1,7 +1,7 @@
 @Mobile
 Feature: BPP University Hub Sub Topics and Labels
 
-  @Positive @iPhone @Samsung #TC-867
+  @Positive @SubTopicsMobile @Samsung #TC-867
   Scenario: Hub Sub Topics and Labels_Mobile
     #login to Totara as an Admin
     Given I am on "MD_COMMON_LINKS_TOTARALOGINURL" URL
@@ -148,17 +148,17 @@ Feature: BPP University Hub Sub Topics and Labels
     And I execute "arguments[0].click()" JS code for "ICAEW Accounting Full" "BPP Digital Student Applications Menu link"
 #    When I click on the "Totara ICAEW Course" link by JS
     And I click on the "Turn editing on" "BPP Digital Admin Value attribute button"
-    And I click on the "Totara Automation Mobile Quiz Name Edit Quiz Button" link
-    And I click on the "Totara Automation Mobile Quiz Name Delete Quiz Button" link
-    And I click on the "Moodle Staging Confirm Activity Delete Button" link
+    And I click on the "Totara Automation Mobile Quiz Name Edit Quiz Button" link by JS
+    And I click on the "Totara Automation Mobile Quiz Name Delete Quiz Button" link by JS
+    And I click on the "Moodle Staging Confirm Activity Delete Button" link by JS
     And Browser performs "Refresh" command
     And I wait for "15" seconds
-    And I click on the "Totara Automation Mobile Exp Label Edit button" button
-    And I click on the "Totara Automation Mobile Exp Label Delete Item" link
-    And I click on the "Moodle Staging Confirm Activity Delete Button" link
+    And I click on the "Totara Automation Mobile Exp Label Edit button" button by JS
+    And I click on the "Totara Automation Mobile Exp Label Delete Item" link by JS
+    And I click on the "Moodle Staging Confirm Activity Delete Button" link by JS
     And Browser performs "Refresh" command
     And I wait for "15" seconds
-    And I click on the "Totara Automation Mobile Sub Topic Edit Button" link
-    And I click on the "Totara Automation Mobile Sub Topic Delete Button" link
-    And I click on the "Moodle Staging Confirm Activity Delete Button" link
+    And I click on the "Totara Automation Mobile Sub Topic Edit Button" link by JS
+    And I click on the "Totara Automation Mobile Sub Topic Delete Button" link by JS
+    And I click on the "Moodle Staging Confirm Activity Delete Button" link by JS
     And I wait for "5" seconds
