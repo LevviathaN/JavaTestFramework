@@ -56,6 +56,7 @@ public static ReusableRunner getInstance() {
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CHECK_UNCHECK"),() -> stepDefs.i_check_uncheck(arg1, arg2));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_PRESS_KEY"),() -> stepDefs.i_press_from_keyboard(arg1, arg2));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_VALIDATE_TEXT"),() -> stepDefs.i_validate_text_to_be_displayed_for_element(arg1, arg2));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_VALIDATE_ANY_TEXT"),() -> stepDefs.i_validate_text_to_be_displayed_for_any_element(arg1, arg2));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_REUSABLE_STEP_IF"),() -> stepDefs.i_execute_reusable_step_if(arg1, arg2, arg3));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CLICK_ON_THE_BUTTON_IF"),() -> stepDefs.i_click_on_the_button_if(arg1, arg2, arg3));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_SELECT_FROM_DROPDOWN"),() -> stepDefs.i_select_from_element(arg1, arg2));

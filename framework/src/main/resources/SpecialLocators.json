@@ -20,6 +20,14 @@
     "value": "xpath=//span[text()='PARAMETER']/ancestor::a/parent::li[@class='item']"
   },
   {
+    "name": "Rings Details Page Attribute Select",
+    "value": "xpath=//span[text()='PARAMETER']/parent::label/following-sibling::div/select"
+  },
+  {
+    "name": "Rings Details Page Attribute Select Option",
+    "value": "xpath=//select/option[text()='PARAMETER']"
+  },
+  {
     "name": "Rings Details Page Attribute",
     "value": "xpath=//div[@class='attr-label' and text()='PARAMETER']/following-sibling::div"
   },
@@ -29,14 +37,14 @@
   },
   {
     "name": "button",
-    "value": "xpath=//a[text()='PARAMETER' and @class='action primary']|//*[text()='PARAMETER']"
+    "value": "xpath=//button[text()='PARAMETER']"
   },
   {
     "name": "element",
     "value": "xpath=//*[text()='PARAMETER']"
   },
   {
-    "name": "element the last",
+    "name": "last element",
     "value": "xpath=(//*[text()='PARAMETER'])[last()]"
   },
   {
@@ -48,20 +56,8 @@
     "value": "xpath=//*[@title='PARAMETER']"
   },
   {
-    "name": "element by title two",
-    "value": "xpath=(//*[@title='PARAMETER'])[2]"
-  },
-  {
     "name": "element by type",
     "value": "xpath=//*[@type='PARAMETER']"
-  },
-  {
-    "name": "element by type two",
-    "value": "xpath=(//*[@type='PARAMETER'])[2]"
-  },
-  {
-    "name": "element by type three",
-    "value": "xpath=(//*[@type='PARAMETER'])[3]"
   },
   {
     "name": "element by name",
@@ -76,16 +72,12 @@
     "value": "xpath=//*[@class='PARAMETER']"
   },
   {
-    "name": "element by class first",
-    "value": "xpath=(//*[@class='PARAMETER'])[1]"
-  },
-  {
     "name": "element by data value",
     "value": "xpath=//*[@data-value='PARAMETER']"
   },
   {
-    "name": "exact element",
-    "value": "xpath=//*[normalize-space()=\"PARAMETER\"]"
+    "name": "normalized element",
+    "value": "xpath=//*[normalize-space()='PARAMETER']"
   },
   {
     "name": "inframe element",
@@ -93,62 +85,42 @@
   },
   {
     "name": "link",
-    "value": "xpath=//*[text()='PARAMETER']"
+    "value": "xpath=//a[text()='PARAMETER']"
   },
   {
     "name": "link address",
     "value": "xpath=//a[contains(@href,'PARAMETER')]"
   },
   {
-    "name": "element in label",
+    "name": "text in label",
     "value": "xpath=//label[contains(.,'PARAMETER')]"
   },
   {
-    "name": "message",
-    "value": "xpath=//*[text()='PARAMETER']"
-  },
-  {
-    "name": "message mobile",
-    "value": "xpath=(//*[text()='PARAMETER'])[1]"
-  },
-  {
-    "name": "option",
-    "value": "xpath=//*[text()='PARAMETER']"
-  },
-  {
-    "name": "text",
-    "value": "xpath=//*[text()='PARAMETER']"
-  },
-  {
-    "name": "text contained in A element",
+    "name": "text in link",
     "value": "xpath=//a[contains(text(),'PARAMETER')]"
   },
   {
-    "name": "text contained in P element",
-    "value": "xpath=//p[contains(text(),'PARAMETER')]"
-  },
-  {
-    "name": "contained in P element",
+    "name": "text in paragraph",
     "value": "xpath=//p[contains(.,'PARAMETER')]"
   },
   {
-    "name": "contained in element",
+    "name": "text in element",
     "value": "xpath=//*[contains(.,'PARAMETER')]"
   },
   {
-    "name": "text contained in SPAN element",
+    "name": "text in span",
     "value": "xpath=//span[contains(text(),'PARAMETER')]"
   },
   {
-    "name": "text contained in element",
-    "value": "xpath=//*[contains(text(),'PARAMETER')]"
-  },
-  {
-    "name": "text contained in Option element",
+    "name": "text in option",
     "value": "xpath=//option[contains(text(),'PARAMETER')]"
   },
   {
-    "name": "text in div element",
+    "name": "text in div",
     "value": "xpath=//div[text()='PARAMETER']"
+  },
+  {
+    "name": "text in span",
+    "value": "xpath=//span[text()='PARAMETER']"
   }
 ]

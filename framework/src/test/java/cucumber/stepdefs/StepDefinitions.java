@@ -390,6 +390,21 @@ public class StepDefinitions extends SeleniumHelper {
     }
 
     /**
+     * Definition to validate text from web element
+     *
+     * @param text     : value to be checked
+     * @param element: By locator of element to press key
+     */
+    @Then("^I validate text \"([^\"]*)\" to be displayed for any \"([^\"]*)\" element$")
+    public void i_validate_text_to_be_displayed_for_any_element(String text, String element) {
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(element)
+                .setAction(ActionsWithLocatorAndParameter.VALIDATE_ANY_ELEMENT_TEXT, text)
+                .setReporterLog("Executing step: I validate text " + text + " to be displayed for any " + element + " element")
+                .execute();
+    }
+
+    /**
      * Definition scroll the page to the bottom after page is loaded
      *
      * @author Andrii Yakymchuk

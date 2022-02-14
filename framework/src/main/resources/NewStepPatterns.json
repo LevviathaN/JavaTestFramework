@@ -252,6 +252,10 @@
     "value": "^I validate text \"([^\"]*)\" to be displayed for \"([^\"]*)\" element$"
   },
   {
+    "name": "I_VALIDATE_ANY_TEXT",
+    "value": "^I validate text \"([^\"]*)\" to be displayed for any \"([^\"]*)\" element$"
+  },
+  {
     "name": "I_VALIDATE_TEXT_IF",
     "value": "^I validate text \"([^\"]*)\" to be displayed for \"([^\"]*)\" element if \"([^\"]*)\" \"([^\"]*)\"$"
   },

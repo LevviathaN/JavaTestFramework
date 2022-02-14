@@ -533,6 +533,29 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                     }
                 };
                 break;
+            case VALIDATE_ANY_ELEMENT_TEXT:
+                action = () -> {
+                    String actualValue = "";
+                    Reporter.log("Executing step: I validate " + param + " to be displayed for: " + locatorString);
+                    if (locatorString.equalsIgnoreCase("CHECK_URL")) {
+                        actualValue = SeleniumHelper.driver().getCurrentUrl();
+                        Reporter.log("Validating URL to match :" + param);
+                        assertThat(actualValue, containsString(param));
+                    } else {
+                        boolean textPresentInAnyElement = false;
+                        List<WebElement> elements = findElements(locator);
+                        String newValue = param.replaceAll("''", "\"");
+                        for (WebElement element : elements) {
+                            actualValue = element.getText();
+                            if (actualValue.equals(newValue)) textPresentInAnyElement = true;
+//                            assertThat(actualValue.trim(), Matchers.equalToIgnoringWhiteSpace(param));
+                        }
+                        Assert.assertTrue(textPresentInAnyElement);
+                        BPPLogManager.getLogger().info("Actual value '" + actualValue + "' equals to the case insensitive string " + "'" + newValue + "'");
+                        Reporter.log("<pre>Actual value '" + actualValue + "' equals to the case insensitive string " + "'" + newValue + "'</pre>");
+                    }
+                };
+                break;
             case SELECT_FROM_ELEMENT:
                 action = () -> {
                     if (param.equals("KW_AUTO_SELECT")) {
