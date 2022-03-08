@@ -3,6 +3,7 @@ package ui.utils;
 import CodeEditor.GuiHelper;
 import api.RestApiController;
 import org.jooq.tools.json.ParseException;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.Assert;
@@ -126,6 +127,8 @@ public class BaseUITest {
                 Reporter.updateBrowserStackJob(testResult.toString().contains("FAILURE") ? "fail" : "pass", sessionId);
                 SeleniumHelper.driver().quit();
                 DriverProvider.closeDriver();
+            } else if (DriverProvider.getCurrentBrowserName().toUpperCase().contains("LAMBDA")) {
+                ((JavascriptExecutor) SeleniumHelper.driver()).executeScript("lambda-status=" + (testResult.toString().contains("FAILURE") ? "failed" : "passed"));
             } else {
                 SeleniumHelper.driver().quit();
                 DriverProvider.closeDriver();
