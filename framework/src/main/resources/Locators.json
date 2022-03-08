@@ -14,5 +14,9 @@
   {
     "name": "Rings Details Page Compatible Diamond Shapes Attribute",
     "value": "xpath=//div[@class='attr-label' and text()='Compatible Diamond Shapes']/following-sibling::div//div[@class='attr-value col-6']/span"
+  },
+  {
+    "name": "Diamonds Listing Page View Product Button",
+    "value": "xpath=//a[normalize-space()='View']"
   }
 ]

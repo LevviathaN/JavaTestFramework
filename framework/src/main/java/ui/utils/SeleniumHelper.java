@@ -808,6 +808,20 @@ public class SeleniumHelper {
     }
 
     /**
+     * Method to hover over selected element
+     *
+     * @param sourceElement locator of element to drag from
+     * @param targetElement locator of element to drag to
+     */
+    // Does not work in Firefox because of geckodriver_mac bug
+    // https://stackoverflow.com/questions/40360223/webdriverexception-moveto-did-not-match-a-known-command
+    public void dragAndDrop(By sourceElement, By targetElement) {
+        BPPLogManager.getLogger().info("drag: " + sourceElement + " element to " + targetElement + " element");
+        Actions action = new Actions(driver());
+        action.dragAndDrop(findElement(sourceElement),findElement(targetElement)).perform();
+    }
+
+    /**
      * Method to switch to iFrame on the page
      *
      * @param frameName locator of iFrame you need to switch to

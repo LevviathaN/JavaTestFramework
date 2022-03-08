@@ -60,11 +60,12 @@ public enum UiHandlers {
 
     PF_SCROLL_HANDLER((element, e) -> {
         SeleniumHelper.isHandled.put("pfScrollHandler", false);
-        if(e.getMessage().contains("jss1bndbcl")||
+        if(e.getMessage().contains("Other element would receive the click: <button id=\"gladlyChatDragHandle\"")||
                 e.getMessage().contains("jss1wye7u4")){
             Reporter.log("Handling click overlay by scrolling 300 pixels down");
-            BPPLogManager.getLogger().info("Handling click overlay by scrolling 300 pixels down");
-            SeleniumHelper.scrollBy(0,300);
+            int scrollLength = 100;
+            BPPLogManager.getLogger().info("Handling click overlay by scrolling " + scrollLength + " pixels down");
+            SeleniumHelper.scrollBy(0,scrollLength);
             SeleniumHelper.isHandled.put("pfScrollHandler", true);
         }
     }),

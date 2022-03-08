@@ -5,7 +5,7 @@ Feature: Service Plan
   So that I can order some nice earings.
 
 
-  @Positive @Regression @P1 @Run
+  @Positive @Regression @P1
   Scenario: Service Plan
     Given I am on "https://www.cleanorigin.com" URL
     And I click on the "Accept Cookies" "text in span"

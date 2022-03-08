@@ -86,6 +86,8 @@ public static ReusableRunner getInstance() {
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("BROWSER_CHECKS_FIRST_PARTY_COOKIES"), ()-> stepDefs.check_first_party_cookies());
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_JS_CODE_AND_SAVING_VALUE_AS"), () -> stepDefs.i_execute_js_code_and_saving_value_as(arg1,arg2));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_TRANSFORM_DATE_TO_ANOTHER_PATTERN_SAVING_VALUE_AS"), () -> stepDefs.i_transform_date_to_another_pattern_saving_value_as(arg1, arg2, arg3, arg4));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_VALIDATE_VALUE_RELATION"), () -> stepDefs.i_validate_value_relation(arg1, arg2, arg3));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_DRAG_AND_DROP"), () -> stepDefs.i_drag_and_drop(arg1, arg2));
         //Special stepdefs
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CLICK_ON_ELEMENT_WITH_PARAMETER_SPECIAL"),() -> specialStepDefs.i_click_on_element_with_parameter_special(arg1, arg2));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CLICK_ON_ELEMENT_WITH_PARAMETER_BY_JS_SPECIAL"),() -> specialStepDefs.i_click_on_element_with_parameter_by_js_special(arg1, arg2));
@@ -109,6 +111,7 @@ public static ReusableRunner getInstance() {
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_JS_CODE_IF"), () -> specialStepDefs.i_execute_js_code_if(arg1, arg2, arg3));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("ELEMENT_SPECIAL_CSS_SHOULD_HAVE_VALUE"), ()-> specialStepDefs.element_special_css_should_have_value(arg1, arg2, arg3,arg4));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CAPTURE_DATA_SPECIAL_PARAMETER"), ()-> specialStepDefs.i_capture_text_data_special_as_variable(arg1, arg2, arg3));
+        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_DRAG_AND_DROP_SPECIAL"), ()-> specialStepDefs.i_drag_and_drop_special(arg1, arg2, arg3, arg4));
         //PF Steps
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_GENERATE_NEW_ISBN_CODE"), () ->  pfStepDefs.i_generate_new_isbn_code(arg1));
         stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_API_STEP"), () ->  pfStepDefs.i_execute_api_step(arg1));

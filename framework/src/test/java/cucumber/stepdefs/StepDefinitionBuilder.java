@@ -2,6 +2,7 @@ package cucumber.stepdefs;
 
 import cucumber.reusablesteps.ReusableRunner;
 import cucumber.stepdefs.Actions.*;
+import enums.ProjectRelated.ProjectRelatedScales;
 import org.hamcrest.Matchers;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -14,6 +15,7 @@ import ui.utils.bpp.ExecutionContextHandler;
 import ui.utils.bpp.TestParametersController;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 import static com.jcabi.matchers.RegexMatchers.matchesPattern;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -30,8 +32,11 @@ public class StepDefinitionBuilder extends SeleniumHelper {
     private final SeleniumHelper seleniumHelper = new SeleniumHelper();
     private Conditions conditions = new Conditions();
 
-    private String locatorString; //locator name string. Needed for FOR_EACH action
+    private String locatorNameString; //locator name string. Needed for FOR_EACH action
+    private String locatorNameStringParameter; //parameter(s) of parametrized locators. Needed for FOR_EACH action
+    private String locatorXpathString; //locator xpath value string.
     private By locator; //locator of element (if it`s needed) as Selenium.By object
+    private By secondLocator; //additional locator. Needed for DragAndDrop
     private boolean condition = true; //condition to decide whether step will be executed or skipped with no error.
     private String loop = ""; // if set to FOR or UNTIL, step will be executed in corresponding loop.
     private String loopConditionParameter, loopConditionStatement; // condition to quit the loop
@@ -51,8 +56,19 @@ public class StepDefinitionBuilder extends SeleniumHelper {
      * @param element Locator name string. All simple locators are listed in \src\resources\Locators.json
      */
     public StepDefinitionBuilder setLocator(String element) {
-        locatorString = element;
+        locatorNameString = element;
         locator = initElementLocator(element);
+        locatorXpathString = "xpath=" + locator.toString().substring(10); //todo: will not work if given locator is not xpath
+        return this;
+    }
+
+    /**
+     * Method to add second selenium By locator to the step
+     *
+     * @param element Locator name string. All simple locators are listed in \src\resources\Locators.json
+     */
+    public StepDefinitionBuilder setAnotherLocator(String element) {
+        secondLocator = initElementLocator(element);
         return this;
     }
 
@@ -65,10 +81,68 @@ public class StepDefinitionBuilder extends SeleniumHelper {
      */
     public StepDefinitionBuilder setLocator(String elementLocator, String elementType) {
         if(specialLocatorsMap.containsKey(elementType)) {
+            locatorNameString = elementType;
+            locatorNameStringParameter = elementLocator;
             String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
             String xpathTemplate = specialLocatorsMap.get(elementType);
-            String resultingXpath = xpathTemplate.replaceAll("PARAMETER", processedLocator);
+            String resultingXpath = locatorXpathString = xpathTemplate.replaceAll("PARAMETER", processedLocator);
             locator = initElementLocator(resultingXpath);
+            if(!elementLocator.equals(processedLocator)){
+                Reporter.log("<pre>[input test parameter] " + elementLocator + "' -> '" + processedLocator + "' [output value]</pre>");
+            }
+        } else {
+            Reporter.fail("No such locator template key");
+        }
+        return this;
+    }
+
+    /**
+     * Method to add second selenium 'By' parametrized(special) locator to the step
+     * All parametrized(special) locators are listed in /src/resources/SpecialLocators.json
+     *
+     * @param elementType xpath template, where 'PARAMETER' substring is replaced by elementLocator
+     * @param elementLocator parameter for elementType
+     */
+    public StepDefinitionBuilder setAnotherLocator(String elementLocator, String elementType) {
+        if(specialLocatorsMap.containsKey(elementType)) {
+            String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
+            String xpathTemplate = specialLocatorsMap.get(elementType);
+            String resultingXpath = locatorXpathString = xpathTemplate.replaceAll("PARAMETER", processedLocator);
+            secondLocator = initElementLocator(resultingXpath);
+            if(!elementLocator.equals(processedLocator)){
+                Reporter.log("<pre>[input test parameter] " + elementLocator + "' -> '" + processedLocator + "' [output value]</pre>");
+            }
+        } else {
+            Reporter.fail("No such locator template key");
+        }
+        return this;
+    }
+
+    /**
+     * Method to append a locator to existing one, so that complex relative locators can be created
+     *
+     * @param element Locator name string. All simple locators are listed in \src\resources\Locators.json
+     */
+    public StepDefinitionBuilder appendLocator(String element) {
+        locatorXpathString = locatorXpathString + initElementLocator(element).toString().substring(10); //todo: will not work if given locator is not xpath
+        locator = initElementLocator(locatorXpathString);
+        return this;
+    }
+
+    /**
+     * Method to append a parametrized locator to existing one, so that complex relative locators can be created
+     * All parametrized(special) locators are listed in /src/resources/SpecialLocators.json
+     *
+     * @param elementType xpath template, where 'PARAMETER' substring is replaced by elementLocator
+     * @param elementLocator parameter for elementType
+     */
+    public StepDefinitionBuilder appendLocator(String elementLocator, String elementType) {
+        if(specialLocatorsMap.containsKey(elementType)) {
+            String processedLocator = TestParametersController.checkIfSpecialParameter(elementLocator);
+            String xpathTemplate = specialLocatorsMap.get(elementType);
+            String resultingXpath  = xpathTemplate.replaceAll("PARAMETER", processedLocator);
+            locatorXpathString = locatorXpathString + resultingXpath.substring(6);
+            locator = initElementLocator(locatorXpathString);
             if(!elementLocator.equals(processedLocator)){
                 Reporter.log("<pre>[input test parameter] " + elementLocator + "' -> '" + processedLocator + "' [output value]</pre>");
             }
@@ -254,6 +328,69 @@ public class StepDefinitionBuilder extends SeleniumHelper {
      * Depending on type and number of parameters different overloads of this method will be executed
      * All available actions cn be found under /src/test/java/cucumber/stepdefs/Actions directory
      *
+     * Make sure to specify locator(if applicable) prior to action
+     * All simple locators are listed in /src/resources/Locators.json
+     * All parametrized(special) locators are listed in /src/resources/SpecialLocators.json
+     *
+     * @param actionName name of action to be performed. Taken from ActionsWithTwoParameters.enum
+     * @param param1, param2 - string parameter. Depending on action can be: time to wait in seconds, reusable name, url e.t.c
+     */
+    public StepDefinitionBuilder setAction(ActionsWithThreeParameters actionName, String param1, String param2, String param3) {
+        String parameter1 = TestParametersController.checkIfSpecialParameter(param1);
+        String parameter2 = TestParametersController.checkIfSpecialParameter(param2);
+        String parameter3 = TestParametersController.checkIfSpecialParameter(param3);
+        Reporter.log("<pre>[input test parameter] " + param1 + "' -> '" + parameter1 + "' [output value]</pre>");
+        Reporter.log("<pre>[input test parameter] " + param2 + "' -> '" + parameter2 + "' [output value]</pre>");
+        Reporter.log("<pre>[input test parameter] " + param3 + "' -> '" + parameter3 + "' [output value]</pre>");
+
+        switch (actionName) {
+            case VALIDATE_VALUE_RELATION:
+                action = () -> {
+                    boolean result = false;
+                    BinaryOperation<Float,Float,Boolean> comparator;
+                    switch (param2) {
+                        case "equal to":
+                            comparator = (x,y) -> x==y;
+                            break;
+                        case "more than":
+                            comparator = (x,y) -> x>y;
+                            break;
+                        case "less than":
+                            comparator = (x,y) -> x<y;
+                            break;
+                        case "more or equal to":
+                            comparator = (x,y) -> x>=y;
+                            break;
+                        case "less or equal to":
+                            comparator = (x,y) -> x<=y;
+                            break;
+                        default:
+                            comparator = (x,y) -> x==y;
+                            break;
+                    }
+                    String scaleName = param3.split("\\.")[0];
+                    String scaleValue = param3.split("\\.")[1];
+                    if (!Tools.isNumeric(parameter1) && (ProjectRelatedScales.scalesMap.containsKey(scaleName))) {
+                        int value1 = ProjectRelatedScales.scalesMap.get(scaleName).indexOf(parameter1.toUpperCase());
+                        int value2 = ProjectRelatedScales.scalesMap.get(scaleName).indexOf(scaleValue);
+                        result = comparator.calculate((float) value1, (float) value2);
+                    }else if (Tools.isNumeric(parameter1) && Tools.isNumeric(parameter3)) {
+                        result = comparator.calculate(Float.parseFloat(parameter1),Float.parseFloat(parameter2));
+                    } else {
+                        Reporter.log("not comparable values");
+                    }
+                    Assert.assertTrue(result);
+                };
+                break;
+        }
+        return this;
+    }
+
+    /**
+     * Method to specify action which the step will perform. Mandatory.
+     * Depending on type and number of parameters different overloads of this method will be executed
+     * All available actions cn be found under /src/test/java/cucumber/stepdefs/Actions directory
+     *
      * @param actionName name of action to be performed. Taken from ActionsWithParameterAndTable.enum
      * @param param string parameter. Depending on action can be: reusable name
      * @param table table underneath the step, which can contain modified steps of reusable, or steps to be executed in loop
@@ -264,6 +401,22 @@ public class StepDefinitionBuilder extends SeleniumHelper {
         switch (actionName) {
             case EXECUTE_MODIFIED_REUSABLE:
                 action = () -> ReusableRunner.getInstance().executeReusableModified(parameter,table);
+                break;
+        }
+        return this;
+    }
+
+    /**
+     * Method to specify action which the step will perform. Mandatory.
+     * Depending on type and number of parameters different overloads of this method will be executed
+     * All available actions cn be found under /src/test/java/cucumber/stepdefs/Actions directory
+     *
+     * @param actionName name of action to be performed. Taken from ActionsWithTwoLocators.enum
+     */
+    public StepDefinitionBuilder setAction(ActionsWithTwoLocators actionName) {
+        switch (actionName) {
+            case DRAG_AND_DROP:
+                action = () -> dragAndDrop(locator,secondLocator);
                 break;
         }
         return this;
@@ -285,21 +438,22 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                         List<WebElement> elements = findElements(locator);
                         String xpathLocator = "";
                         BPPLogManager.getLogger().info("There are " + elements.size() + " '" + locator + "' elements found on the page");
+                        int limit = loopLimit==5 ? elements.size() : loopLimit;
                         for(int i = 1; i <= elements.size(); i++) {
                             BPPLogManager.getLogger().info("For " + i + " element");
                             for(String step : table) {
                                 BPPLogManager.getLogger().info("Executing: " + step + " iteration " + i);
-                                if (locatorsMap.containsKey(locatorString)) {
-                                    xpathLocator = locatorsMap.get(locatorString).replace("xpath=","xpath=(") + ")[" + i + "]";
+                                if (locatorsMap.containsKey(locatorNameString)) {
+                                    xpathLocator = locatorsMap.get(locatorNameString).replace("xpath=","xpath=(") + ")[" + i + "]";
                                 } else {
-                                    xpathLocator = "xpath=(//*[text()='" + TestParametersController.checkIfSpecialParameter(locatorString) + "'])[" + i + "]";
+                                    xpathLocator = "xpath=(//*[text()='" + TestParametersController.checkIfSpecialParameter(locatorNameString) + "'])[" + i + "]";
                                 }
                                 ReusableRunner.getInstance().executeStep(step.replace("FOR_ITEM",xpathLocator));
                             }
                         }
                     } else {
-                        Reporter.log("Element '" + locatorString + "' not found");
-                        BPPLogManager.getLogger().info("Element '" + locatorString + "' not found");
+                        Reporter.log("Element '" + locatorNameString + "' not found");
+                        BPPLogManager.getLogger().info("Element '" + locatorNameString + "' not found");
                     }
                 };
                 break;
@@ -477,8 +631,8 @@ public class StepDefinitionBuilder extends SeleniumHelper {
             case VALIDATE_ELEMENT_TEXT:
                 action = () -> {
                     String actualValue = "";
-                    Reporter.log("Executing step: I validate " + param + " to be displayed for: " + locatorString);
-                    if (locatorString.equalsIgnoreCase("CHECK_URL")) {
+                    Reporter.log("Executing step: I validate " + param + " to be displayed for: " + locatorNameString);
+                    if (locatorNameString.equalsIgnoreCase("CHECK_URL")) {
                         actualValue = SeleniumHelper.driver().getCurrentUrl();
                         Reporter.log("Validating URL to match :" + param);
                         assertThat(actualValue, containsString(param));
@@ -536,15 +690,39 @@ public class StepDefinitionBuilder extends SeleniumHelper {
             case VALIDATE_ANY_ELEMENT_TEXT:
                 action = () -> {
                     String actualValue = "";
-                    Reporter.log("Executing step: I validate " + param + " to be displayed for: " + locatorString);
-                    if (locatorString.equalsIgnoreCase("CHECK_URL")) {
+                    Reporter.log("Executing step: I validate " + param + " to be displayed for: " + locatorNameString);
+                    List<WebElement> elements = findElements(locator);
+                    String newValue = param.replaceAll("''", "\"");
+
+                    if (locatorNameString.equalsIgnoreCase("CHECK_URL")) {
                         actualValue = SeleniumHelper.driver().getCurrentUrl();
                         Reporter.log("Validating URL to match :" + param);
                         assertThat(actualValue, containsString(param));
                     } else {
+                        if (param.toUpperCase().startsWith("CONTAINS=")) {
+                            newValue = newValue.substring("CONTAINS=".length());
+                            if (param.contains("EC")) {
+                                String executionContextValue = ExecutionContextHandler.getExecutionContextValueByKey(newValue);
+                                assertThat(actualValue.trim().toLowerCase(), Matchers.containsString(executionContextValue.toLowerCase()));
+                            } else {
+                                assertThat(actualValue.trim(), Matchers.containsString(newValue));
+                                Reporter.log("<pre>Actual value '" + actualValue + "' contains the string " + "'" + newValue + "'</pre>");
+                                BPPLogManager.getLogger().info("Actual value '" + actualValue + "' contains the string " + "'" + newValue + "'");
+                            }
+                        } else if (param.toUpperCase().startsWith("NOT_CONTAINS=")) {
+                            newValue = newValue.substring("NOT_CONTAINS=".length());
+                            if (param.contains("EC")) {
+                                String executionContextValue = ExecutionContextHandler.getExecutionContextValueByKey(newValue);
+                                assertThat(actualValue.trim(), not(Matchers.containsString(executionContextValue)));
+                            } else {
+                                assertThat(actualValue.trim(), not(Matchers.containsString(newValue)));
+                                Reporter.log("<pre>Actual value '" + actualValue + "' not contains the string " + "'" + newValue + "'</pre>");
+                                BPPLogManager.getLogger().info("Actual value '" + actualValue + "' not contains the string " + "'" + newValue + "'");
+                            }
+                        }
                         boolean textPresentInAnyElement = false;
-                        List<WebElement> elements = findElements(locator);
-                        String newValue = param.replaceAll("''", "\"");
+
+
                         for (WebElement element : elements) {
                             actualValue = element.getText();
                             if (actualValue.equals(newValue)) textPresentInAnyElement = true;
@@ -561,9 +739,9 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                     if (param.equals("KW_AUTO_SELECT")) {
                         Reporter.log("Starting random selection from dropdown.");
                         String autoSelectedValue = autoSelectFromDropdown(locator);
-                        Reporter.log("Selected \"" + autoSelectedValue + "\" value from " + locatorString);
+                        Reporter.log("Selected \"" + autoSelectedValue + "\" value from " + locatorNameString);
                     } else {
-                        Reporter.log("Selecting \"" + param + "\" value from " + locatorString);
+                        Reporter.log("Selecting \"" + param + "\" value from " + locatorNameString);
                         selectValueFromDropDown(locator, TestParametersController.checkIfSpecialParameter(param));
                     }
                 };

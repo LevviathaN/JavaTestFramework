@@ -405,6 +405,18 @@ public class StepDefinitions extends SeleniumHelper {
     }
 
     /**
+     * Definition to verify relation between two values (equal to|more than|less than|more or equal to|less or equal to)
+     *
+     */
+    @Then("^I validate \"([^\"]*)\" value is \"(equal to|more than|less than|more or equal to|less or equal to)\" \"([^\"]*)\" value$")
+    public void i_validate_value_relation(String value1, String relation, String value2) {
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setAction(ActionsWithThreeParameters.VALIDATE_VALUE_RELATION, value1, relation, value2)
+                .setReporterLog("Executing step: I validate " + value1 + " value is " + relation + " " + value2 + " value")
+                .execute();
+    }
+
+    /**
      * Definition scroll the page to the bottom after page is loaded
      *
      * @author Andrii Yakymchuk
@@ -759,6 +771,37 @@ public class StepDefinitions extends SeleniumHelper {
     /**
      * Definition to execute a list of steps for each element found on the page by given locator
      *
+     * @param element locator for element you want to click on
+     *                initElementLocator builds locator, depending on input parameter:
+     *                1. Starts with "xpath" or "css" - locator is passed directly into a method
+     *                2. Parameter exists in locators document - locator value is returned from document
+     *                3. None of above - parameter is treated as text value of element: //*[contains(text(), 'parameter')]
+     * @param steps list of steps to execute for each element found on page by given locator
+     *              To perform some action whith iterated element from current iteration, use FOR_ITEM as the locator.
+     *              For example, if you say:
+     *                  For each "OK Button" element:
+     *                  |I click on the "FOR_ITEM" element|
+     *              where "OK Button" is specified in your Locators.json file as "xpath=//button[text()='OK']",
+     *              and there was 2 such elements found by given locator, then "I click on the "FOR_ITEM" element" step
+     *              will be executed 2 times: first on "xpath=(//button[text()='OK'])[1]", and second on
+     *              "xpath=(//button[text()='OK'])[2]" element.
+     * @author Ruslan Levytskyi
+     */
+    @When("^For \"([^\"]*)\" \"([^\"]*)\" elements:$")
+    public void for_some(String number, String element, List<String> steps) {
+        //todo: To be tested properly. Currently works only with simple locators (not special locators)
+        if (number.equals("5")) number = "4"; //crutch, related to functionality of FOR_EACH action
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(element)
+                .setLoopLimit(number)
+                .setAction(ActionsWithLocatorAndTable.FOR_EACH, steps)
+                .setReporterLog("Executing step: For each '" + element + "' element")
+                .execute();
+    }
+
+    /**
+     * Definition to execute a list of steps for each element found on the page by given locator
+     *
      * @param baseFile a base PDF file for comparison
      *
      * @param fileName1 a PDF file downloaded from web platform to compare against
@@ -986,6 +1029,23 @@ public class StepDefinitions extends SeleniumHelper {
         stepDef.setLocator(element)
                 .setAction(ActionsWithLocator.RIGHT_CLICK)
                 .setMessage("Executing step: I perform right mouse click on the '" + element + "'")
+                .execute();
+    }
+
+    /**
+     * Definition to perform drag and drop from one element to another
+     *
+     * @author Ruslan Levytskyi
+     * @param sourceElement locator of element to drag from
+     * @param targetElement locator of element to drag to
+     */
+    @When("^I drag \"([^\"]*)\" element to \"([^\"]*)\" element$")
+    public void i_drag_and_drop(String sourceElement, String targetElement) {
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(sourceElement)
+                .setAnotherLocator(targetElement)
+                .setAction(ActionsWithTwoLocators.DRAG_AND_DROP)
+                .setMessage("Executing step: I drag: '" + sourceElement + "' element to '" + targetElement + "' element")
                 .execute();
     }
 }

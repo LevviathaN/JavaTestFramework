@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import static java.nio.file.StandardOpenOption.CREATE;
 
@@ -295,5 +296,13 @@ public class Tools {
         cal.setTimeInMillis(now);
         cal.add(Calendar.MONTH, 6);
         return cal.getTimeInMillis();
+    }
+
+    public static boolean isNumeric(String strNum) {
+        Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
+        if (strNum == null) {
+            return false;
+        }
+        return pattern.matcher(strNum).matches();
     }
 }

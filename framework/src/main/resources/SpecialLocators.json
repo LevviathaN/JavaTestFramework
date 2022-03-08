@@ -36,6 +36,34 @@
     "value": "xpath=//div[@class='attr-label' and text()='Compatible Diamond Shapes']/following-sibling::div//div[@class='attr-value col-6']/span"
   },
   {
+    "name": "Diamonds Listing Page Filter Item",
+    "value": "xpath=//input[@data-label='PARAMETER']"
+  },
+  {
+    "name": "Diamonds Listing Page Filter From Field",
+    "value": "xpath=//div[text()='PARAMETER']/following-sibling::div//div[@class='slider-from']/input"
+  },
+  {
+    "name": "Diamonds Listing Page Filter To Field",
+    "value": "xpath=//div[text()='PARAMETER']/following-sibling::div//div[@class='slider-to']/input"
+  },
+  {
+    "name": "Diamonds Listing Page Filter From Slider Point",
+    "value": "xpath=//div[text()='PARAMETER']/following-sibling::div//div[@class='noUi-handle noUi-handle-lower']"
+  },
+  {
+    "name": "Diamonds Listing Page Filter To Slider Point",
+    "value": "xpath=//div[text()='PARAMETER']/following-sibling::div//div[@class='noUi-handle noUi-handle-upper']"
+  },
+  {
+    "name": "Diamonds Listing Page Filter Slider Marker",
+    "value": "xpath=//div[@class='noUi-value noUi-value-horizontal noUi-value-large' and text()='PARAMETER']/preceding-sibling::div[1]"
+  },
+  {
+    "name": "Diamonds Details Page Attribute",
+    "value": "xpath=//div[@class='attr-label' and text()='PARAMETER']/following-sibling::div"
+  },
+  {
     "name": "button",
     "value": "xpath=//button[text()='PARAMETER']"
   },
@@ -74,6 +102,10 @@
   {
     "name": "element by data value",
     "value": "xpath=//*[@data-value='PARAMETER']"
+  },
+  {
+    "name": "element by data attribute",
+    "value": "xpath=//*[@data-attr='PARAMETER']"
   },
   {
     "name": "normalized element",

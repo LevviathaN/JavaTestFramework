@@ -256,6 +256,10 @@
     "value": "^I validate text \"([^\"]*)\" to be displayed for any \"([^\"]*)\" element$"
   },
   {
+    "name": "I_VALIDATE_VALUE_RELATION",
+    "value": "^I validate \"([^\"]*)\" value is \"(equal to|more than|less than|more or equal to|less or equal to)\" \"([^\"]*)\" value$"
+  },
+  {
     "name": "I_VALIDATE_TEXT_IF",
     "value": "^I validate text \"([^\"]*)\" to be displayed for \"([^\"]*)\" element if \"([^\"]*)\" \"([^\"]*)\"$"
   },
@@ -318,5 +322,13 @@
   {
     "name": "I_TRANSFORM_DATE_TO_ANOTHER_PATTERN_SAVING_VALUE_AS",
     "value": "^I transform \"([^\"]*)\" date with pattern \"([^\"]*)\" to another \"([^\"]*)\" pattern saving value as \"([^\"]*)\"$"
+  },
+  {
+    "name": "I_DRAG_AND_DROP",
+    "value": "^I drag \"([^\"]*)\" element to \"([^\"]*)\" element$"
+  },
+  {
+    "name": "I_DRAG_AND_DROP_SPECIAL",
+    "value": "^I drag \"([^\"]*)\" \"([^\"]*)\" to \"([^\"]*)\" \"([^\"]*)\"$"
   }
 ]

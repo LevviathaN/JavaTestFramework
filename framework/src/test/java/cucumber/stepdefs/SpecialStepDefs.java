@@ -107,6 +107,22 @@ public class SpecialStepDefs extends SeleniumHelper {
     }
 
     /**
+     * Definition to validate an element on the page if given condition is true
+     *
+     * @param text     : value to be checked
+     * @param elementLocator: By locator of element to press key
+     * @author Ruslan Levytskyi
+     */
+    @When("^I validate text \"([^\"]*)\" to be displayed for any \"([^\"]*)\" \"([^\"]*)\"")
+    public void i_validate_text_to_be_displayed_for_any_element_special(String text, String elementLocator, String elementType) {
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(elementLocator,elementType)
+                .setAction(ActionsWithLocatorAndParameter.VALIDATE_ANY_ELEMENT_TEXT, text)
+                .setReporterLog("Executing step: I validate text " + text + " to be displayed for any '" + elementLocator + "' " + elementType)
+                .execute();
+    }
+
+    /**
      * Definition to set text into the input element
      *
      * @author Ruslan Levytskyi
@@ -596,6 +612,25 @@ public class SpecialStepDefs extends SeleniumHelper {
         } else {
             Reporter.log("Cannot save EC value with an empty key. Check your parameters.");
         }
+    }
+
+    /**
+     * Definition to perform drag and drop from one element to another
+     *
+     * @author Ruslan Levytskyi
+     * @param sourceElementLocator locator of element to drag from
+     * @param sourceElementType locator of element to drag from
+     * @param targetElementLocator locator of element to drag to
+     * @param targetElementType locator of element to drag to
+     */
+    @When("^I drag \"([^\"]*)\" \"([^\"]*)\" to \"([^\"]*)\" \"([^\"]*)\"$")
+    public void i_drag_and_drop_special(String sourceElementLocator, String sourceElementType, String targetElementLocator, String targetElementType) {
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(sourceElementLocator, sourceElementType)
+                .setAnotherLocator(targetElementLocator, targetElementType)
+                .setAction(ActionsWithTwoLocators.DRAG_AND_DROP)
+                .setMessage("Executing step: I drag: '" + sourceElementLocator + " " + sourceElementType + "' to '" + targetElementLocator + " " + targetElementType +  "' element")
+                .execute();
     }
 }
 
