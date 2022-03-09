@@ -6,8 +6,7 @@ Feature: Filters Validation
 
   @Positive @Regression @P1
   Scenario Outline: Ring Filters Validation
-    Given I am on "https://www.cleanorigin.com" URL
-    And I click on the "Accept Cookies" "text in span"
+    Given I execute "Log In To Clean Origin" reusable step
     Then I click on the "Start with a Setting" "link"
     And I click on the "Metal" "Rings Listing Page Filter"
     And I click on the "<metal>" "Rings Listing Page Filter Item"
@@ -35,8 +34,7 @@ Feature: Filters Validation
 
   @Positive @Regression @P1
   Scenario Outline: Diamond Filters Validation
-    Given I am on "https://www.cleanorigin.com" URL
-    And I click on the "Accept Cookies" "text in span"
+    Given I execute "Log In To Clean Origin" reusable step
     Then I click on the "Diamonds" "Navigation Menu Item"
 
     And I click on the "<shape>" "Diamonds Listing Page Filter Item"

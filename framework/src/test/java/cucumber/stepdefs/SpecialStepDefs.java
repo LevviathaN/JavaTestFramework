@@ -40,6 +40,23 @@ public class SpecialStepDefs extends SeleniumHelper {
     }
 
     /**
+     * Definition to click an element if it is present on the page on the page
+     *
+     * @author Ruslan Levytskyi
+     * @param elementLocator name or value of needed element which replaces PARAMETER definiton in SpecialLocators.json
+     * @param elementType xpath template of needed element
+     */
+    @When("^I click on the \"([^\"]*)\" \"([^\"]*)\" if present$")
+    public void i_click_on_element_with_parameter_special_if_present(String elementLocator, String elementType) {
+        //todo: there is an issue with locators that not allow to use '//' or '/descendant::' in locators. Investigate
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(elementLocator,elementType)
+                .setAction(ActionsWithLocator.CLICK_IF_PRESENT)
+                .setMessage("Executing step: I click on the '" + elementLocator + "' " + elementType + " if present")
+                .execute();
+    }
+
+    /**
      * Definition to click an element on the page using JS
      *
      * @author Ruslan Levytskyi

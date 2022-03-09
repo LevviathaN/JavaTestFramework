@@ -1,5 +1,6 @@
 package cucumber;
 
+import cucumber.reusablesteps.ReusableRunner;
 import io.cucumber.testng.CucumberFeatureWrapper;
 import io.cucumber.testng.CucumberOptions;
 import io.cucumber.testng.PickleEventWrapper;
@@ -39,6 +40,7 @@ public class CucumberUITest extends BaseUITest {
         scenarioName = pickleWrapper.getPickleEvent().pickle.getName();
         Reporter.node("Executing: " + scenarioName + " scenario",
                 "It contains " + pickleWrapper.getPickleEvent().pickle.getSteps().size() + " steps");
+        ReusableRunner.getInstance().initiateStepdefsMap(testNGCucumberRunner);
         this.testNGCucumberRunner.runScenario(pickleWrapper.getPickleEvent());
     }
 

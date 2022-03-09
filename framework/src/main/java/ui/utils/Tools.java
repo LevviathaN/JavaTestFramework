@@ -16,6 +16,8 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -304,5 +306,29 @@ public class Tools {
             return false;
         }
         return pattern.matcher(strNum).matches();
+    }
+
+    public static Object getObjectPrivateFinalField (Object obj, String fieldName) {
+        try {
+            Field f = obj.getClass().getDeclaredField(fieldName);
+            f.setAccessible(true);
+            return f.get(obj);
+        }
+        catch (NoSuchFieldException | IllegalAccessException n) {
+            n.printStackTrace();
+            return null;
+        }
+    }
+
+    public static Method getObjectPrivateMethod (Object obj, String methodName) {
+        try {
+            Method f = obj.getClass().getDeclaredMethod(methodName);
+            f.setAccessible(true);
+            return f;
+        }
+        catch (NoSuchMethodException n) {
+            n.printStackTrace();
+            return null;
+        }
     }
 }

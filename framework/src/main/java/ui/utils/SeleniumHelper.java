@@ -30,7 +30,6 @@ public class SeleniumHelper {
 
     public static Map<String,String> specialLocatorsMap;
     public static Map<String,String> locatorsMap;
-    public static Map<String,String> stepPatternsMap;
     public static Map<String,String> stepSignaturesMap;
     public static List<String> reusablesList;
 

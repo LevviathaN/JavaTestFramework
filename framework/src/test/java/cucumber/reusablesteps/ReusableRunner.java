@@ -1,14 +1,14 @@
 package cucumber.reusablesteps;
 
-import cucumber.api.VenusStepDefsAPI;
-import cucumber.productFactory.ProductFactoryStepDefs;
-import cucumber.stepdefs.SpecialStepDefs;
-import cucumber.stepdefs.StepDefinitions;
+import cucumber.runner.Runner;
+import cucumber.runner.ThreadLocalRunnerSupplier;
+import cucumber.runtime.Glue;
+import cucumber.runtime.StepDefinition;
+import io.cucumber.testng.TestNGCucumberRunner;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import ui.utils.SeleniumHelper;
 import ui.utils.BPPLogManager;
 import ui.utils.Reporter;
 import ui.utils.Tools;
@@ -39,102 +39,19 @@ public static ReusableRunner getInstance() {
     return instance.get();
 }
 
-    private ReusableRunner() {
+    private ReusableRunner() {}
 
-        //General stepdefs
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CLICK_ON_THE_BUTTON"),() -> stepDefs.i_click_on_the_button(arg1));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_AM_ON_URL"),() -> stepDefs.i_am_on_url(arg1));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("FILL_THE_FIELD"),() -> stepDefs.fill_field(arg1, arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("WAIT_FOR"),() -> stepDefs.wait_for(arg1));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("HOVER_OVER"),() -> stepDefs.hover_over(arg1));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_SHOULD_SEE_THE_TEXT"),() -> stepDefs.i_should_see_the_text(arg1));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_SHOULD_SEE_THE_MESSAGE_LOCATED_IN_FRAME"),() -> stepDefs.i_should_see_the_message_in_frame(arg1, arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_SHOULD_BE_REDIRECTED_TO_THE_PAGE"),() -> stepDefs.i_should_be_redirected_to_page(arg1));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_REUSABLE_STEP"),() -> stepDefs.i_execute_reusable_step(arg1));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_REMEMBER_TEXT"),() -> stepDefs.i_remember_text(arg1, arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("ELEMENTS_ATTRIBUTE_SHOULD_HAVE_VALUE"),() -> stepDefs.elements_attribute_should_have_value(arg1, arg2, arg3));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CHECK_UNCHECK"),() -> stepDefs.i_check_uncheck(arg1, arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_PRESS_KEY"),() -> stepDefs.i_press_from_keyboard(arg1, arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_VALIDATE_TEXT"),() -> stepDefs.i_validate_text_to_be_displayed_for_element(arg1, arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_VALIDATE_ANY_TEXT"),() -> stepDefs.i_validate_text_to_be_displayed_for_any_element(arg1, arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_REUSABLE_STEP_IF"),() -> stepDefs.i_execute_reusable_step_if(arg1, arg2, arg3));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CLICK_ON_THE_BUTTON_IF"),() -> stepDefs.i_click_on_the_button_if(arg1, arg2, arg3));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_SELECT_FROM_DROPDOWN"),() -> stepDefs.i_select_from_element(arg1, arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_SHOULD_SCROLL_TO_THE_TOP_BOTTOM_OF_THE_PAGE"),() -> stepDefs.i_should_scroll_to_top_bottom_of_the_page(arg1));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_UPLOAD_FILE"),() -> stepDefs.i_upload_file_to_element(arg1, arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_SHOULD_NOT_SEE_ELEMENT"),() -> stepDefs.i_should_not_see_the_element(arg1));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_SHOULD_SEE_MESSAGE_IN_FRAME"),() -> stepDefs.i_should_see_the_message_in_frame(arg1, arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_SWITCH_TO_WINDOW"),() -> stepDefs.i_switch_to_window_with_index(arg1));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CLICK_WITH_JS"), ()-> stepDefs.i_click_with_JS(arg1));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("BROWSER_PERFORMS_COMMAND"), ()-> stepDefs.browser_navigates(arg1));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CAPTURE_DATA"),() -> stepDefs.i_capture_text_data_as_variable(arg1,arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_JS_CODE"),() -> stepDefs.i_execute_js_code(arg1));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_JS_CODE_FOR_ELEMENT"),() -> stepDefs.i_execute_js_code_for_element(arg1, arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_SHOULD_SEE_NUMBER_OF_ELEMENTS"),() -> stepDefs.i_should_see_number_of_elements(arg1, arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CAPTURE_SPECIAL_DATA"), () -> stepDefs.i_capture_special_data(arg1, arg2, arg3));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_SET_TEXT_WITH_JS"), () -> stepDefs.i_set_text_with_js(arg1, arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CAPTURE_URL_AS_VARIABLE"), () -> stepDefs.i_capture_url_as_variable(arg1));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CLICK_ON_ELEMENT_UNTIL"), () -> stepDefs.i_click_on_element_until(arg1, arg2, arg3));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CLICK_ON_THE_BUTTON_WITH_JS_IF"), () -> stepDefs.i_click_on_the_button_with_js_if(arg1, arg2, arg3));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("BROWSER_DELETES_COOKIES"), ()-> stepDefs.delete_cookies());
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("ELEMENT_CSS_SHOULD_HAVE_VALUE"), ()-> stepDefs.element_css_should_have_value(arg1, arg2, arg3));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_COMPARE_PDF"), ()-> stepDefs.i_compare_pdfs(arg1,arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_DOUBLECLICK_ON_THE_BUTTON"), ()-> stepDefs.i_doubleclick_on_the_button(arg1));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("ELEMENT_IS_ENABLED"), ()-> stepDefs.check_element_is_enabled(arg1, arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_PERFORM_RIGHT_MOUSE_CLICK"), ()-> stepDefs.i_right_click_on_element_(arg1));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("BROWSER_GETS_COOKIES"), ()-> stepDefs.get_first_party_cookies());
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("BROWSER_CHECKS_FIRST_PARTY_COOKIES"), ()-> stepDefs.check_first_party_cookies());
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_JS_CODE_AND_SAVING_VALUE_AS"), () -> stepDefs.i_execute_js_code_and_saving_value_as(arg1,arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_TRANSFORM_DATE_TO_ANOTHER_PATTERN_SAVING_VALUE_AS"), () -> stepDefs.i_transform_date_to_another_pattern_saving_value_as(arg1, arg2, arg3, arg4));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_VALIDATE_VALUE_RELATION"), () -> stepDefs.i_validate_value_relation(arg1, arg2, arg3));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_DRAG_AND_DROP"), () -> stepDefs.i_drag_and_drop(arg1, arg2));
-        //Special stepdefs
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CLICK_ON_ELEMENT_WITH_PARAMETER_SPECIAL"),() -> specialStepDefs.i_click_on_element_with_parameter_special(arg1, arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CLICK_ON_ELEMENT_WITH_PARAMETER_BY_JS_SPECIAL"),() -> specialStepDefs.i_click_on_element_with_parameter_by_js_special(arg1, arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CLICK_ON_ELEMENT_WITH_PARAMETER_BY_JS_SPECIAL_IF"),() -> specialStepDefs.i_click_on_element_with_parameter_by_js_special_if(arg1, arg2, arg3,arg4));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_SET_TEXT_SPECIAL"),() -> specialStepDefs.i_set_text_special(arg1, arg2, arg3));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_SET_TEXT_FROM_KEYBOARD_SPECIAL"),() -> specialStepDefs.i_set_text_from_keyboard_special(arg1, arg2, arg3));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_SHOULD_SEE_SPECIAL"),() -> specialStepDefs.i_should_see_special(arg1, arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("ELEMENTS_ATTRIBUTE_SHOULD_HAVE_VALUE_SPECIAL"),() -> specialStepDefs.elements_attribute_should_have_value_special(arg1, arg2, arg3, arg4));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CHECK_UNCHECK_SPECIAL"),() -> specialStepDefs.i_check_uncheck_special(arg1, arg2, arg3));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CHECK_UNCHECK_BY_JS_SPECIAL"),() -> specialStepDefs.i_check_uncheck_by_js_special(arg1, arg2, arg3));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CLICK_ON_ELEMENT_WITH_PARAMETER_SPECIAL_IF"),() -> specialStepDefs.i_click_on_element_with_parameter_special_if(arg1, arg2, arg3, arg4));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_SELECT_FROM_ELEMENT_SPECIAL"),() -> specialStepDefs.i_select_from_element_special(arg1, arg2, arg3));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_SHOULD_SEE_NUMBER_OF_ELEMENTS_SPECIAL"),() -> specialStepDefs.i_should_see_number_of_elements_special(arg1, arg2, arg3));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_JS_CODE_FOR_ELEMENT_SPECIAL"),() -> specialStepDefs.i_execute_js_code_for_element_special(arg1, arg2, arg3));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CLICK_ON_ELEMENT_UNTIL_SPECIAL"),() -> specialStepDefs.i_click_on_element_until_special(arg1, arg2, arg3, arg4));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("HOVER_OVER_ELEMENT_SPECIAL"),() -> specialStepDefs.hover_over_element_special(arg1, arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_VALIDATE_TEXT_IF"), () -> specialStepDefs.i_validate_text_to_be_displayed_for_element_special_if(arg1, arg2, arg3, arg4));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_PRESS_FROM_KEYBOARD_SPECIAL"), () -> specialStepDefs.i_press_from_keyboard_special(arg1, arg2, arg3));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_PERFORM_RIGHT_MOUSE_CLICK_ON_THE_ElEMENT_SPECIAL"), () -> specialStepDefs.i_right_click_on_element_with_parameter_special(arg1,arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get( "I_DOUBLECLICK_ON_THE_ElEMENT_SPECIAL"), () -> specialStepDefs.i_doubleclick_on_element_with_parameter_special(arg1, arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_JS_CODE_IF"), () -> specialStepDefs.i_execute_js_code_if(arg1, arg2, arg3));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("ELEMENT_SPECIAL_CSS_SHOULD_HAVE_VALUE"), ()-> specialStepDefs.element_special_css_should_have_value(arg1, arg2, arg3,arg4));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_CAPTURE_DATA_SPECIAL_PARAMETER"), ()-> specialStepDefs.i_capture_text_data_special_as_variable(arg1, arg2, arg3));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_DRAG_AND_DROP_SPECIAL"), ()-> specialStepDefs.i_drag_and_drop_special(arg1, arg2, arg3, arg4));
-        //PF Steps
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_GENERATE_NEW_ISBN_CODE"), () ->  pfStepDefs.i_generate_new_isbn_code(arg1));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_API_STEP"), () ->  pfStepDefs.i_execute_api_step(arg1));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_API_STEP_SAVING_AS"), () ->  pfStepDefs.i_execute_api_step_saving_as(arg1, arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_EXECUTE_NEGATIVE_API_STEP"), () ->  pfStepDefs.i_execute_negative_api_step(arg1, arg2));
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_VERIFY_THAT_ELEMENT_IS"), () -> pfStepDefs.i_verify_that_element_is(arg1,arg2, arg3));
-        //Venus API stepdefs
-        stepDefsMap.put(SeleniumHelper.stepPatternsMap.get("I_REGISTER_NEW_HUB_ACCOUNT_API"),() -> venusStepDefsAPI.i_register_new_hub_account(arg1));
+    public void initiateStepdefsMap(TestNGCucumberRunner testNGCucumberRunner) {
+        ThreadLocalRunnerSupplier runnerSupplier = (ThreadLocalRunnerSupplier) Tools.getObjectPrivateFinalField(testNGCucumberRunner,"runnerSupplier");
+        Runner runner = runnerSupplier.get();
+        Glue glue = (Glue) Tools.getObjectPrivateFinalField(runner,"glue");
+        Map<String, StepDefinition> stepDefinitionsByPattern = (Map<String, StepDefinition>) Tools.getObjectPrivateFinalField(glue, "stepDefinitionsByPattern");
+        stepDefinitionMap = stepDefinitionsByPattern;
+
     }
 
-    private StepDefinitions stepDefs = new StepDefinitions();
-    private SpecialStepDefs specialStepDefs = new SpecialStepDefs();
-    private ProductFactoryStepDefs pfStepDefs = new ProductFactoryStepDefs();
-    private VenusStepDefsAPI venusStepDefsAPI = new VenusStepDefsAPI();
-
     private ArrayList<String> reusable;
-
-    public HashMap<String, RunReusable> stepDefsMap = new HashMap<>();
-
-    private String arg1 = "";
-    private String arg2 = "";
-    private String arg3 = "";
-    private String arg4 = "";
+    public Map<String, StepDefinition> stepDefinitionMap = new HashMap<>();
 
     /**
      * Execute reusable scenario with some additional steps
@@ -258,26 +175,35 @@ public static ReusableRunner getInstance() {
      */
     public void executeStep(String step) {
         List<String> arguments = Tools.getQuoted(step, '"');
+        String[] args = new String[0];
         if (arguments.toArray().length == 1) {
-            arg1 = arguments.get(0);
+            args = new String[1];
+            args[0] = arguments.get(0);
         } else if (arguments.toArray().length == 2) {
-            arg1 = arguments.get(0);
-            arg2 = arguments.get(1);
+            args = new String[2];
+            args[0] = arguments.get(0);
+            args[1] = arguments.get(1);
         } else if (arguments.toArray().length == 3) {
-            arg1 = arguments.get(0);
-            arg2 = arguments.get(1);
-            arg3 = arguments.get(2);
+            args = new String[3];
+            args[0] = arguments.get(0);
+            args[1] = arguments.get(1);
+            args[2] = arguments.get(2);
         } else if (arguments.toArray().length == 4) {
-            arg1 = arguments.get(0);
-            arg2 = arguments.get(1);
-            arg3 = arguments.get(2);
-            arg4 = arguments.get(3);
+            args = new String[4];
+            args[0] = arguments.get(0);
+            args[1] = arguments.get(1);
+            args[2] = arguments.get(2);
+            args[3] = arguments.get(3);
         }
 
-        for (String regx : stepDefsMap.keySet()) {
+        for (String regx : stepDefinitionMap.keySet()) {
             if (step.matches(regx)) {
                 BPPLogManager.getLogger().info("Executing step: " + step);
-                stepDefsMap.get(regx).runReusable();
+                try {
+                    stepDefinitionMap.get(regx).execute(args);
+                } catch (Throwable throwable) {
+                    throwable.printStackTrace();
+                }
             }
         }
     }
