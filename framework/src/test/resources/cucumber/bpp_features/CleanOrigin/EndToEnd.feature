@@ -1,8 +1,7 @@
-@CleanOrigin @RingBuilder
-Feature: Ring Builder
+@CleanOrigin @EndToEnd
+Feature: End to End
   As an user
-  I want to be able to use Ring Builder functionality
-  So that I can create my custom ring.
+  I want to be able to proceed through all purchase process
 
 
   @Positive @Regression @P1

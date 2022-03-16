@@ -1,8 +1,8 @@
 @CleanOrigin @Checkout
-Feature: Ring Builder
+Feature: Checkout
   As an user
-  I want to be able to use Ring Builder functionality
-  So that I can create my custom ring.
+  I want to be able to proceed with checkout process
+  So that I can purchase and item.
 
 
   @Positive @Regression @P1

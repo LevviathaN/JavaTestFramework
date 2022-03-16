@@ -1,7 +1,7 @@
-@Search
-Feature: Filters Validation
+@CleanOrigin @SearchValidation
+Feature: Search Validation
   As an user
-  I want to be able to filter items on plp
+  I want to be able to search items on the website
 
   @Positive @Regression @P1
   Scenario Outline: Search Validation

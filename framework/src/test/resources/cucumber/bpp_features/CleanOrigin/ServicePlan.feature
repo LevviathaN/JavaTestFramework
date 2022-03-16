@@ -1,4 +1,4 @@
-@ServicePlan
+@CleanOrigin @ServicePlan
 Feature: Service Plan
   As an user
   I want to be able to see Earings page

@@ -1,4 +1,4 @@
-@ServicePlan
+@CleanOrigin @FiltersValidation
 Feature: Filters Validation
   As an user
   I want to be able to filter items on plp
