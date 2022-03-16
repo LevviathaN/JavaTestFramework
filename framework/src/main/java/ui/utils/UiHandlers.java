@@ -70,6 +70,18 @@ public enum UiHandlers {
         }
     }),
 
+    PF_SCROLL_UP_HANDLER((element, e) -> {
+        SeleniumHelper.isHandled.put("pfScrollUpHandler", false);
+        if(e.getMessage().contains("Other element would receive the click: <li class=\"nav-item dropdown\">")||
+                e.getMessage().contains("jss1wye7u4")){
+            Reporter.log("Handling click overlay by scrolling 100 pixels up");
+            int scrollLength = -100;
+            BPPLogManager.getLogger().info("Handling click overlay by scrolling " + scrollLength + " pixels up");
+            SeleniumHelper.scrollBy(0,scrollLength);
+            SeleniumHelper.isHandled.put("pfScrollUpHandler", true);
+        }
+    }),
+
     PF_SCROLL_TO_ELEMENT_HANDLER((element, e) -> {
         SeleniumHelper page = new SeleniumHelper();
         SeleniumHelper.isHandled.put("pfScrollToElementHandler", false);

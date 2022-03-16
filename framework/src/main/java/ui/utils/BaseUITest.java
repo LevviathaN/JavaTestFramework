@@ -128,6 +128,8 @@ public class BaseUITest {
                 DriverProvider.closeDriver();
             } else if (DriverProvider.getCurrentBrowserName().toUpperCase().contains("LAMBDA")) {
                 ((JavascriptExecutor) SeleniumHelper.driver()).executeScript("lambda-status=" + (testResult.toString().contains("FAILURE") ? "failed" : "passed"));
+                SeleniumHelper.driver().quit();
+                DriverProvider.closeDriver();
             } else {
                 SeleniumHelper.driver().quit();
                 DriverProvider.closeDriver();

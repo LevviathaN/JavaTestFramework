@@ -66,6 +66,7 @@ public class TestParametersController {
                     value = ExecutionContextHandler.getExecutionContextValueByKey(s);
                 }
             } else {
+                //todo add warning in report if EC not found
                 Logger.getAnonymousLogger().warning("No such EC variable");
             }
             return value;
@@ -97,7 +98,7 @@ public class TestParametersController {
             }
             for (String data : dataList) { //replace all special parameters with their calculated values in the string
                 String value = retrieversMap.get(retriever).retrieve(data);
-                parameter = parameter.replaceAll(shieldRegexSpecialChars(data) + "([^_]|\\Z)", String.valueOf(value) + "$1");
+                parameter = parameter.replaceAll(shieldRegexSpecialChars(data) + "([^_]|\\Z)", String.valueOf(shieldRegexSpecialChars(value)) + "$1");
                 BPPLogManager.getLogger().info("'" + data + "' " + retriever
                         + " variable was successfully replaced with '" + value + "' in '" + parameter + "' string");
             }

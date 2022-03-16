@@ -212,7 +212,7 @@ public class DriverProvider {
             capabilities.setCapability("platform", "Windows 10");
             capabilities.setCapability("browserName", "Chrome");
             capabilities.setCapability("version", "91.0"); // If this cap isn't specified, it will just get the any available one
-            capabilities.setCapability("resolution","1024x768");
+            capabilities.setCapability("resolution", "1920x1080");
             capabilities.setCapability("build", "First Test");
             capabilities.setCapability("name", "Sample Test");
             capabilities.setCapability("network", true); // To enable network logs

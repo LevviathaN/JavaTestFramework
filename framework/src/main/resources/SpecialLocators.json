@@ -9,7 +9,11 @@
   },
   {
     "name": "Navigation Submenu Item",
-    "value": "xpath=(//a[.='PARAMETER'])[2]"
+    "value": "xpath=//li[@class='nav-item dropdown active']//a[normalize-space()='PARAMETER']"
+  },
+  {
+    "name": "Rings Listing Page Product Item By Name",
+    "value": "xpath=//li[@class='item product product-item']//a[@class='product-item-link' and normalize-space()='PARAMETER']"
   },
   {
     "name": "Rings Listing Page Filter",
@@ -64,8 +68,32 @@
     "value": "xpath=//div[@class='attr-label' and text()='PARAMETER']/following-sibling::div"
   },
   {
+    "name": "Cart Item Attribute",
+    "value": "xpath=//tr[@class='item-info']//dt[text()='PARAMETER']/following-sibling::dd"
+  },
+  {
+    "name": "Cart Builder Ring Attribute",
+    "value": "xpath=(//div[@class='builder-item-row'])[1]//dt[text()='PARAMETER']/following-sibling::dd"
+  },
+  {
+    "name": "Cart Builder Diamond Attribute",
+    "value": "xpath=(//div[@class='builder-item-row'])[2]//dt[text()='PARAMETER']/following-sibling::dd"
+  },
+  {
+    "name": "Cart Totals Element",
+    "value": "xpath=//div[@id='cart-totals']//th[normalize-space()='Tax']/following-sibling::td//span"
+  },
+  {
+    "name": "Footer Link",
+    "value": "xpath=(//div[@class='footer content']//a[text()='PARAMETER'])[1]"
+  },
+  {
     "name": "button",
     "value": "xpath=//button[text()='PARAMETER']"
+  },
+  {
+    "name": "span",
+    "value": "xpath=//span[text()='PARAMETER']"
   },
   {
     "name": "element",

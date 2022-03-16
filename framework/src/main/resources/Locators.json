@@ -1,11 +1,43 @@
 [
   {
-    "name": "Clean Origin ",
-    "value": "xpath=(//a[text()='EC_ACCORDION_TITLE']/following::p)[1]"
+    "name": "Clean Origin Go To Homepage",
+    "value": "xpath=//a[@class='logo']"
+  },
+  {
+    "name": "Builder Pane Ring Price",
+    "value": "xpath=//div[@class='section-label' and text()='Ring Setting']/following-sibling::div/span"
+  },
+  {
+    "name": "Builder Pane Ring Name",
+    "value": "xpath=//div[@class='section-label' and text()='Ring Setting']/../following-sibling::div/div[1]"
+  },
+  {
+    "name": "Builder Pane Ring Change Button",
+    "value": "xpath=//div[@class='section-label' and text()='Ring Setting']/../following-sibling::div/div[2]"
+  },
+  {
+    "name": "Builder Pane Diamond Price",
+    "value": "xpath=//div[@class='section-label' and text()='Diamond']/following-sibling::div/span"
+  },
+  {
+    "name": "Builder Pane Diamond Name",
+    "value": "xpath=//div[@class='section-label' and text()='Diamond']/../following-sibling::div/div[1]"
+  },
+  {
+    "name": "Builder Pane Diamond Change Button",
+    "value": "xpath=//div[@class='section-label' and text()='Diamond']/../following-sibling::div/div[2]"
   },
   {
     "name": "Rings Listing Page Product Item",
     "value": "xpath=//li[@class='item product product-item']"
+  },
+  {
+    "name": "Rings Details Page Name",
+    "value": "xpath=//span[@data-ui-id='page-title-wrapper']"
+  },
+  {
+    "name": "Rings Details Page Price",
+    "value": "xpath=//span[@class='price']"
   },
   {
     "name": "Rings Details Page Collection Attribute",
@@ -18,5 +50,113 @@
   {
     "name": "Diamonds Listing Page View Product Button",
     "value": "xpath=//a[normalize-space()='View']"
+  },
+  {
+    "name": "Diamonds Details Page Name",
+    "value": "xpath=//span[@data-ui-id='page-title-wrapper']"
+  },
+  {
+    "name": "Diamonds Details Page Price",
+    "value": "xpath=//span[@class='price']"
+  },
+  {
+    "name": "Cart Icon",
+    "value": "xpath=//a[@class='action showcart']"
+  },
+  {
+    "name": "Cart Item Name",
+    "value": "xpath=//tr[@class='item-info']//*[@class='product-item-name']/a"
+  },
+  {
+    "name": "Cart Item Price",
+    "value": "xpath=//tbody[@class='cart item']//td[@class='col price']//span[@class='price']"
+  },
+  {
+    "name": "Cart Builder Ring Name",
+    "value": "xpath=(//div[@class='builder-item-row'])[1]//div[@class='builder-item-name h5']/span"
+  },
+  {
+    "name": "Cart Builder Ring Price",
+    "value": "xpath=(//div[@class='builder-item-row'])[1]//div[@class='builder-item-price mb-4']/span/span/span"
+  },
+  {
+    "name": "Cart Builder Diamond Name",
+    "value": "xpath=(//div[@class='builder-item-row'])[2]//div[@class='builder-item-name h5']/span"
+  },
+  {
+    "name": "Cart Builder Diamond Price",
+    "value": "xpath=(//div[@class='builder-item-row'])[2]//div[@class='builder-item-price mb-4']/span/span/span"
+  },
+  {
+    "name": "Cart Remove Item Any",
+    "value": "xpath=//span[normalize-space()='Remove item']"
+  },
+  {
+    "name": "Cart Checkout Button",
+    "value": "xpath=//button[@class='action primary checkout']"
+  },
+  {
+    "name": "Checkout Next Button",
+    "value": "xpath=//button[@data-role='opc-continue']"
+  },
+  {
+    "name": "Checkout First Shipping Method Radiobutton",
+    "value": "xpath=//input[@type='radio']"
+  },
+  {
+    "name": "Checkout Zillion Checkbox",
+    "value": "xpath=//input[@id='inputmodal']"
+  },
+  {
+    "name": "Checkout Accept Zillion Button",
+    "value": "xpath=//button[@class='action primary action-accept zillion']"
+  },
+  {
+    "name": "Home Page Build Your Ring Button",
+    "value": "xpath=//a[.='Build Your Ring']|//a[.='START WITH A DIAMOND']|//a[.='Start with a Setting']|//a[.='Browse Settings']"
+  },
+  {
+    "name": "Home Page Shop Now Button",
+    "value": "xpath=//a[.='Shop Now']"
+  },
+  {
+    "name": "Home Page Learn More Button",
+    "value": "xpath=//a[.='Learn more']"
+  },
+  {
+    "name": "Home Page Start With A Setting",
+    "value": "xpath=//a[.='Start with a Setting']"
+  },
+  {
+    "name": "Home Page Start With A Diamond",
+    "value": "xpath=//a[.='Start with a Diamond']"
+  },
+  {
+    "name": "Home Page Read All Reviews",
+    "value": "xpath=//a[.='Read All Reviews']"
+  },
+  {
+    "name": "Home Page Earrings Link",
+    "value": "xpath=//h5[.='Earrings']"
+  },
+  {
+    "name": "Home Page Necklaces Link",
+    "value": "xpath=//h5[.='Necklaces']"
+  },
+  {
+    "name": "Home Page Rings Link",
+    "value": "xpath=//h5[.='Rings']"
+  },
+  {
+    "name": "Home Page Shop All Studs Button",
+    "value": "xpath=//a[.='SHOP ALL STUDS']"
+  },
+  {
+    "name": "Home Page Why Lab Read More Button",
+    "value": "xpath=(//a[@class='action secondary'][contains(.,'Read More')])[1]"
+  },
+  {
+    "name": "Home Page Find Ring Size Read More Button",
+    "value": "xpath=(//a[@class='action secondary'][contains(.,'Read More')])[2]"
   }
 ]

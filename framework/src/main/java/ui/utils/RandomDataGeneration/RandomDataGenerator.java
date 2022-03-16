@@ -148,6 +148,13 @@ public class RandomDataGenerator {
         generatorsMap.put("SUBSTRING",(s) -> {
             String prenthesis = s.substring(10,s.length()-1);
             String[] operands = prenthesis.split("[,]");
+            //workaround to avoid problems when string contains comma
+            if (!prenthesis.equals(operands[0] + operands[1] + operands[2])) {
+                operands[0] = operands[0] + "," + operands[1];
+                operands[1] = operands[2];
+                operands[2] = prenthesis.split("[,]")[3];
+            }
+
             String actualParameter = (operands[0]);
             int begIndex = operands[1].startsWith("-") ? actualParameter.length() - Integer.parseInt(operands[1].substring(1)) : Integer.parseInt(operands[1]);
             int endIndex = operands[2].startsWith("-") ? actualParameter.length() - Integer.parseInt(operands[2].substring(1)) : Integer.parseInt(operands[2]);

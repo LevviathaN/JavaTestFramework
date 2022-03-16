@@ -508,6 +508,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                         UiHandlers.ACCEPT_ALERT,
                         UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
                         UiHandlers.PF_SCROLL_HANDLER,
+                        UiHandlers.PF_SCROLL_UP_HANDLER,
                         UiHandlers.PAGE_NOT_LOAD_HANDLER,
                         UiHandlers.SF_CLICK_HANDLER,
                         UiHandlers.WAIT_HANDLER,
