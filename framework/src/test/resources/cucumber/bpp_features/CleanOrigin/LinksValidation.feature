@@ -55,6 +55,28 @@ Feature: Links Validation
       |Press Kit|K6iwZrJVj3S5X/|//h2[@class='title-header-view'][contains(.,'Clean Origin')]|
 
   @Positive @Regression @P1
+  Scenario Outline: Signed In User Links Validation
+    Given I execute modified "Log In To Clean Origin" reusable step
+      |7|Delete||
+    And I click on the "xpath=<elementToClick>" element
+    And I wait for "3" seconds
+    And I capture current URL as "EC_CURRENT_URL" variable
+    And I verify that "<url>" element "contains" to "EC_CURRENT_URL" element
+    And I should see the "xpath=<elementToValidate>" element
+
+    Examples:
+      |elementToClick|url              |elementToValidate|
+      |//a[.='test order']      |customer/account/     |//h1[contains(.,'Dashboard')]               |
+      |//li//a[.='Information'] |customer/account/edit/|//h1[contains(.,'Edit Account Information')]|
+      |//li//a[.='Address Book']|customer/address/     |//h1[contains(.,'Address Book')]            |
+      |//li//a[.='My Orders']   |sales/order/history/  |//h1[contains(.,'My Orders')]               |
+      |//li//a[.='My Wishlist'] |wishlist/             |//h1[contains(.,'Wishlist')]                |
+      |//li//a[.='Newsletter']  |newsletter/manage/    |//h1[contains(.,'Newsletter Subscription')] |
+      |//li//a[.='Store Credit']|amstorecredit/        |//h1[contains(.,'Store Credit & Refunds')]  |
+      |(//div[@id='clo-footer-nav']//a[.='Track Your Order'])[1]|sales/order/history/|//h1[contains(.,'My Orders')]|
+      |//li//a[.='Log Out']     |customer/account/logoutSuccess/|//a[.='Sign In']    |
+
+  @Positive @Regression @P1
   Scenario Outline: Menu Links Validation
     Given I execute "Log In To Clean Origin" reusable step
     Then I hover over the "<menu>" "Navigation Menu Item"

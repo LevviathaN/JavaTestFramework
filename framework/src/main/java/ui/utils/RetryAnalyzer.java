@@ -12,6 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class RetryAnalyzer implements IRetryAnalyzer {
 
+    //todo: idea. Adaptive retry: add few seconds timeout before failed step in test
     public static ConcurrentHashMap<String, Integer> counterMap = new ConcurrentHashMap<>();
     public static ConcurrentHashMap<String, String> passMap = new ConcurrentHashMap<>();
     public static int limit = Integer.parseInt(Tools.determineEffectivePropertyValue("retryExecutionLimit"));

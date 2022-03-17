@@ -17,7 +17,7 @@
   },
   {
     "name": "Rings Listing Page Filter",
-    "value": "xpath=//div[@class='filter-options-title' and text()='PARAMETER']"
+    "value": "xpath=//div[@class='filter-options-title' and normalize-space()='PARAMETER']"
   },
   {
     "name": "Rings Listing Page Filter Item",

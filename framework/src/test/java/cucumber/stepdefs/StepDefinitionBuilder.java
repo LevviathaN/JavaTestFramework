@@ -576,6 +576,34 @@ public class StepDefinitionBuilder extends SeleniumHelper {
         //todo: checking if special parameter should be refactored
         //Reporter.log("<pre>[input test parameter] " + param + "' -> '" + parameter + "' [output value]</pre>");
         switch (actionName) {
+            case CLICK_BY_ORDER:
+                action = () -> {
+                    if (isElementPresentAndDisplay(locator)) {
+                        List<WebElement> elements = findElements(locator);
+                        String xpathLocator = "";
+                        BPPLogManager.getLogger().info("There are " + elements.size() + " '" + locator + "' elements found on the page");
+                        if (locatorsMap.containsKey(locatorNameString)) {
+                            xpathLocator = locatorsMap.get(locatorNameString).replace("xpath=","xpath=(") + ")[" + param + "]";
+                        } else {
+                            xpathLocator = "xpath=(//*[text()='" + TestParametersController.checkIfSpecialParameter(locatorNameString) + "'])[" + param + "]";
+                        }
+                        clickOnElement(initElementLocator(xpathLocator),
+                                UiHandlers.PF_SPINNER_HANDLER,
+                                UiHandlers.ACCEPT_ALERT,
+                                UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
+                                UiHandlers.PF_SCROLL_HANDLER,
+                                UiHandlers.PF_SCROLL_UP_HANDLER,
+                                UiHandlers.PAGE_NOT_LOAD_HANDLER,
+                                UiHandlers.SF_CLICK_HANDLER,
+                                UiHandlers.WAIT_HANDLER,
+                                UiHandlers.PF_PREMATURE_MENU_CLICK_HANDLER,
+                                UiHandlers.DEFAULT_HANDLER);
+                    } else {
+                        Reporter.log("Element '" + locatorNameString + "' not found");
+                        BPPLogManager.getLogger().info("Element '" + locatorNameString + "' not found");
+                    }
+                };
+                break;
             case SET_TEXT:
                 action = () -> setText(locator, TestParametersController.checkIfSpecialParameter(param));
                 break;

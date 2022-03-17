@@ -81,6 +81,25 @@ public class StepDefinitions extends SeleniumHelper {
     }
 
     /**
+     * Definition to click an element on the page by order number
+     *
+     * @param element locator for element you want to click on
+     *                initElementLocator builds locator, depending on input parameter:
+     *                1. Starts with "xpath" or "css" - locator is passed directly into a method
+     *                2. Parameter exists in locators document - locator value is returned from document
+     *                3. None of above - parameter is treated as text value of element: //*[contains(text(), 'parameter')]
+     * @author Ruslan Levytskyi
+     */
+    @When("^I click on the \"([^\"]*)\" element by order \"([^\"]*)\"$")
+    public void i_click_on_the_element_by_order(String element, String orderNumber) {
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(element)
+                .setAction(ActionsWithLocatorAndParameter.CLICK_BY_ORDER, orderNumber)
+                .setMessage("Executing step: I click on the '" + element + "' element")
+                .execute();
+    }
+
+    /**
      * Definition to click an element if it is present on the page
      *
      * @param element locator for element you want to click on

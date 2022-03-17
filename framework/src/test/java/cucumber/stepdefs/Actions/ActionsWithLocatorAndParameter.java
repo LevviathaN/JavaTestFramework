@@ -1,6 +1,7 @@
 package cucumber.stepdefs.Actions;
 
 public enum ActionsWithLocatorAndParameter {
+    CLICK_BY_ORDER,
     SET_TEXT,
     SET_TEXT_WITH_JS,
     SET_TEXT_FROM_KEYBOARD,

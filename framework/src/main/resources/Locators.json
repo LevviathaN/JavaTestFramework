@@ -4,6 +4,14 @@
     "value": "xpath=//a[@class='logo']"
   },
   {
+    "name": "Clean Origin Virtual Appointments Link",
+    "value": "xpath=//a[@class='logo']"
+  },
+  {
+    "name": "Virtual Appointments Schedule Now Button",
+    "value": "xpath=//a[@class='action primary schedule_appointment']"
+  },
+  {
     "name": "Builder Pane Ring Price",
     "value": "xpath=//div[@class='section-label' and text()='Ring Setting']/following-sibling::div/span"
   },
@@ -26,6 +34,10 @@
   {
     "name": "Builder Pane Diamond Change Button",
     "value": "xpath=//div[@class='section-label' and text()='Diamond']/../following-sibling::div/div[2]"
+  },
+  {
+    "name": "Builder Pane Clear Ring Button",
+    "value": "xpath=(//a[text()='Clear Ring'])[2]"
   },
   {
     "name": "Rings Listing Page Product Item",
