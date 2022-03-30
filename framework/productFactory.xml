@@ -1,4 +1,4 @@
-<suite name="Suite" parallel="methods" data-provider-thread-count="3" thread-count="1" preserve-order="true">
+<suite name="Suite" parallel="methods" data-provider-thread-count="2" thread-count="1" preserve-order="true">
     <test name="Cucumber Test">
         <classes>
             <class name="cucumber.CucumberUITest" />

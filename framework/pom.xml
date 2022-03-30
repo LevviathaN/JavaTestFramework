@@ -14,7 +14,6 @@
     <version>1.0</version>
 
     <properties>
-        <tests>smoke.xml</tests>
         <tests>productFactory.xml</tests>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <selenium.version>3.141.59</selenium.version>
