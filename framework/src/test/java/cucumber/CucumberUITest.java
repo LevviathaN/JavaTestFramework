@@ -17,7 +17,7 @@ import ui.utils.RetryAnalyzer;
         features = "src/test/resources/cucumber/bpp_features",
         glue = {"cucumber.api", "cucumber.productFactory", "cucumber.stepdefs"},
         tags = {"@ProductFactory and not @BlockedByIssue and not @DoNotRun and not @DataGeneration and not (@CoveredWithApi and not @NeedToBeUI) and not (@PartiallyCoveredWithApi and not @NeedToBeUI)"},
-        plugin = {"pretty"})
+        plugin = {"pretty","json:target/cucumber-reports/Cucumber.json","html:target/cucumber-reports"})
 
 public class CucumberUITest extends BaseUITest {
     private TestNGCucumberRunner testNGCucumberRunner;

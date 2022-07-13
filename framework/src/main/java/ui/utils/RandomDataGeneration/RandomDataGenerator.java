@@ -149,7 +149,7 @@ public class RandomDataGenerator {
             String prenthesis = s.substring(10,s.length()-1);
             String[] operands = prenthesis.split("[,]");
             //workaround to avoid problems when string contains comma
-            if (!prenthesis.equals(operands[0] + operands[1] + operands[2])) {
+            if (!prenthesis.equals(operands[0] + "," + operands[1] + "," + operands[2])) {
                 operands[0] = operands[0] + "," + operands[1];
                 operands[1] = operands[2];
                 operands[2] = prenthesis.split("[,]")[3];

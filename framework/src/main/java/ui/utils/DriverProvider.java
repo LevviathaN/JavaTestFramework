@@ -1,5 +1,6 @@
 package ui.utils;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
@@ -14,6 +15,7 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariOptions;
+import org.testng.annotations.DataProvider;
 import ui.utils.bpp.PropertiesHelper;
 
 import java.io.File;
@@ -72,7 +74,7 @@ public class DriverProvider {
                 folder.mkdir();
             }
 
-            System.setProperty("webdriver.chrome.driver", CHROME_PATH);
+            //System.setProperty("webdriver.chrome.driver", CHROME_PATH);
             ChromeOptions options = new ChromeOptions();
 
             options.addArguments("--test-type");
@@ -97,7 +99,12 @@ public class DriverProvider {
 
             options.setCapability("chrome.prefs", chromePreferences);
             options.setExperimentalOption("prefs", chromePreferences);
-
+            synchronized (DataProvider.class) {
+                if (Tools.determineEffectivePropertyValue("ChromeDriverVersion") == null)
+                    WebDriverManager.chromedriver().setup();
+                else
+                    WebDriverManager.chromedriver().version(Tools.determineEffectivePropertyValue("ChromeDriverVersion")).setup();
+            }
             return new ChromeDriver(options);
         } catch (Exception e) {
             throw new WebDriverException("Unable to launch the browser", e);

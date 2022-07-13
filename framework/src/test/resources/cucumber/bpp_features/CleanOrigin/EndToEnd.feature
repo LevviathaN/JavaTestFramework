@@ -44,15 +44,16 @@ Feature: End to End
     Given I am on "https://www.cleanorigin.com" URL
     And I click on the "Accept Cookies" "text in span"
     Then I hover over the "JEWELRY" "Navigation Menu Item"
-    And I click on the "Diamond Bracelets" "Navigation Submenu Item"
+    And I click on the "Diamond Tennis Bracelets" "Navigation Submenu Item"
     And I click on the "Rings Listing Page Product Item" element
 
     # set bracelet attributes
     And I click on the "Metal" "Rings Details Page Attribute Select"
     And I click on the "14K White Gold" "Rings Details Page Attribute Select Option" if present
     And I click on the "14K Yellow Gold" "Rings Details Page Attribute Select Option" if present
-    And I click on the "Length" "Rings Details Page Attribute Select"
+    And I click on the "Bracelet Length" "Rings Details Page Attribute Select" if present
     And I click on the "Standard" "Rings Details Page Attribute Select Option" if present
+    And I click on the "6”" "Rings Details Page Attribute Select Option" if present
 
     # save data from bracelet PDP and add it to Cart
     And I capture text data "Rings Details Page Name" as "EC_PDP_BRACELET_NAME" variable

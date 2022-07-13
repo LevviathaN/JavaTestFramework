@@ -9,8 +9,8 @@ Feature: Ring Builder
   Scenario: Ring Builder Validation Short
     # open builder and select ring from PLP
     Given I am on "https://www.cleanorigin.com" URL
-    And I click on the "Accept Cookies" "text in span"
-    Then I click on the "Start with a Setting" "link"
+    And I click on the "Accept Cookies" "text in span" if present
+    Then I click on the "Start with a Setting" "button"
     And I click on the "Rings Listing Page Product Item" element
 
     # set ring attributes and add it to Ring
@@ -97,8 +97,8 @@ Feature: Ring Builder
   Scenario: Ring Builder Change Ring
     # open builder and select first ring from PLP
     Given I am on "https://www.cleanorigin.com" URL
-    And I click on the "Accept Cookies" "text in span"
-    Then I click on the "Start with a Setting" "link"
+    And I click on the "Accept Cookies" "text in span" if present
+    Then I click on the "Start with a Setting" "button"
     And I click on the "Rings Listing Page Product Item" element
 
     # set first ring attributes and add it to Ring
@@ -166,8 +166,8 @@ Feature: Ring Builder
   Scenario: Ring Builder Change Diamond
     # open builder and select first ring from PLP
     Given I am on "https://www.cleanorigin.com" URL
-    And I click on the "Accept Cookies" "text in span"
-    Then I click on the "Start with a Setting" "link"
+    And I click on the "Accept Cookies" "text in span" if present
+    Then I click on the "Start with a Setting" "button"
     And I click on the "Rings Listing Page Product Item" element
 
     # set ring attributes and add it to Ring
@@ -239,7 +239,7 @@ Feature: Ring Builder
     And I click on the "Cart Remove Item Any" element if present
     And I click on the "Clean Origin Go To Homepage" element
 
-    Then I click on the "Start with a Setting" "link"
+    Then I click on the "Start with a Setting" "button"
     And I click on the "Rings Listing Page Product Item" element
 
     # set ring attributes and add it to Ring

@@ -7,7 +7,7 @@ Feature: Filters Validation
   @Positive @Regression @P1
   Scenario Outline: Ring Filters Validation
     Given I execute "Log In To Clean Origin" reusable step
-    Then I click on the "Start with a Setting" "link"
+    Then I click on the "Start with a Setting" "button"
     And I click on the "Metal" "Rings Listing Page Filter"
     And I click on the "<metal>" "Rings Listing Page Filter Item"
     And I click on the "Shape" "Rings Listing Page Filter"
@@ -71,5 +71,5 @@ Feature: Filters Validation
 #      |Browser performs "BACK" command                                                               |
 
     Examples:
-      |shape|caratFrom|caratTo|priceFrom|priceTo|cutFrom|cutTo    |colorFrom|colorTo|clarityFrom|clarityTo|
-      |Round|2        |6      |500      |50000  |GOOD   |EXCELLENT|I        |F      |SI1        |VVS2     |
+      |shape|caratFrom|caratTo|priceFrom|priceTo|cutFrom  |cutTo    |colorFrom|colorTo|clarityFrom|clarityTo|
+      |Round|2        |6      |500      |50000  |VERY GOOD|EXCELLENT|I        |F      |SI1        |VVS2     |

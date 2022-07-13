@@ -57,7 +57,7 @@
   },
   {
     "name": "Rings Details Page Compatible Diamond Shapes Attribute",
-    "value": "xpath=//div[@class='attr-label' and text()='Compatible Diamond Shapes']/following-sibling::div//div[@class='attr-value col-6']/span"
+    "value": "xpath=//div[@class='attr-label' and text()='Compatible Diamond Shapes']/following-sibling::div//div[@class='attr-value']/span"
   },
   {
     "name": "Diamonds Listing Page View Product Button",
@@ -125,7 +125,7 @@
   },
   {
     "name": "Home Page Build Your Ring Button",
-    "value": "xpath=//a[.='Build Your Ring']|//a[.='START WITH A DIAMOND']|//a[.='Start with a Setting']|//a[.='Browse Settings']"
+    "value": "xpath=//button[.='Build Your Ring']|//button[.='START WITH A DIAMOND']|//button[.='Start with a Setting']|//button[.='Browse Settings']"
   },
   {
     "name": "Home Page Shop Now Button",
@@ -137,11 +137,11 @@
   },
   {
     "name": "Home Page Start With A Setting",
-    "value": "xpath=//a[.='Start with a Setting']"
+    "value": "xpath=//button[.='Start with a Setting']"
   },
   {
     "name": "Home Page Start With A Diamond",
-    "value": "xpath=//a[.='Start with a Diamond']"
+    "value": "xpath=//button[.='Start with a Diamond']"
   },
   {
     "name": "Home Page Read All Reviews",

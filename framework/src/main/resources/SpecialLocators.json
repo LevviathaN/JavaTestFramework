@@ -45,19 +45,19 @@
   },
   {
     "name": "Diamonds Listing Page Filter From Field",
-    "value": "xpath=//div[text()='PARAMETER']/following-sibling::div//div[@class='slider-from']/input"
+    "value": "xpath=//div[@class='filter-options-title' and contains(.,'PARAMETER')]/following-sibling::div//div[@class='slider-from']/input"
   },
   {
     "name": "Diamonds Listing Page Filter To Field",
-    "value": "xpath=//div[text()='PARAMETER']/following-sibling::div//div[@class='slider-to']/input"
+    "value": "xpath=//div[@class='filter-options-title' and contains(.,'PARAMETER')]/following-sibling::div//div[@class='slider-to']/input"
   },
   {
     "name": "Diamonds Listing Page Filter From Slider Point",
-    "value": "xpath=//div[text()='PARAMETER']/following-sibling::div//div[@class='noUi-handle noUi-handle-lower']"
+    "value": "xpath=//div[@class='filter-options-title' and contains(.,'PARAMETER')]/following-sibling::div//div[@class='noUi-handle noUi-handle-lower']"
   },
   {
     "name": "Diamonds Listing Page Filter To Slider Point",
-    "value": "xpath=//div[text()='PARAMETER']/following-sibling::div//div[@class='noUi-handle noUi-handle-upper']"
+    "value": "xpath=//div[@class='filter-options-title' and contains(.,'PARAMETER')]/following-sibling::div//div[@class='noUi-handle noUi-handle-upper']"
   },
   {
     "name": "Diamonds Listing Page Filter Slider Marker",
