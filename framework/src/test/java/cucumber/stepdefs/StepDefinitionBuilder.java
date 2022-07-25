@@ -12,8 +12,15 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import ui.utils.*;
 import ui.utils.bpp.ExecutionContextHandler;
+import ui.utils.bpp.PreProcessFiles;
 import ui.utils.bpp.TestParametersController;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -401,6 +408,28 @@ public class StepDefinitionBuilder extends SeleniumHelper {
         switch (actionName) {
             case EXECUTE_MODIFIED_REUSABLE:
                 action = () -> ReusableRunner.getInstance().executeReusableModified(parameter,table);
+                break;
+            case EXECUTE_FOR_EACH_CSV_ENTRY:
+                action = () -> {
+                    //get table from csv file
+                    List<List<String>> records = FileIO.parseCsvAsList(PreProcessFiles.ROOT_FOLDER_PATH + "/src/test/resources/csv/" + parameter + ".csv", "\\|");
+                    //get header of the table
+                    List<String> header = records.get(0);
+                    records.remove(0);
+                    for(List<String> row : records) {
+                        //BPPLogManager.getLogger().info("For " + i + " element");
+                        for(Object stepObj : table) {
+                            String step = stepObj.toString();
+                            BPPLogManager.getLogger().info("Executing: " + step);
+                            //replace all table entries with values from table
+                            for (String headerEntry : header) {
+                                step = step.replace("<"+headerEntry+">",row.get(header.indexOf(headerEntry)));
+                            }
+                            //execute step
+                            ReusableRunner.getInstance().executeStep(step);
+                        }
+                    }
+                };
                 break;
         }
         return this;

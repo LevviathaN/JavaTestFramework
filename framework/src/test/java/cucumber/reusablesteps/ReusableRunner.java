@@ -40,7 +40,12 @@ public static ReusableRunner getInstance() {
 }
 
     private ReusableRunner() {}
+    private ArrayList<String> reusable;
+    public Map<String, StepDefinition> stepDefinitionMap = new HashMap<>();
 
+    /**
+     * Get step definitions map from Cucumber runtime
+     * */
     public void initiateStepdefsMap(TestNGCucumberRunner testNGCucumberRunner) {
         ThreadLocalRunnerSupplier runnerSupplier = (ThreadLocalRunnerSupplier) Tools.getObjectPrivateFinalField(testNGCucumberRunner,"runnerSupplier");
         Runner runner = runnerSupplier.get();
@@ -49,9 +54,6 @@ public static ReusableRunner getInstance() {
         stepDefinitionMap = stepDefinitionsByPattern;
 
     }
-
-    private ArrayList<String> reusable;
-    public Map<String, StepDefinition> stepDefinitionMap = new HashMap<>();
 
     /**
      * Execute reusable scenario with some additional steps
@@ -201,8 +203,11 @@ public static ReusableRunner getInstance() {
                 BPPLogManager.getLogger().info("Executing step: " + step);
                 try {
                     stepDefinitionMap.get(regx).execute(args);
-                } catch (Throwable throwable) {
-                    throwable.printStackTrace();
+                } catch (Throwable e) {
+                    e.printStackTrace();
+                    BPPLogManager.getLogger().error(Tools.getStackTrace(e));
+                    Reporter.failTryTakingScreenshot(Tools.getStackTrace(e));
+                    throw new RuntimeException("Failure executing cucumber step");
                 }
             }
         }

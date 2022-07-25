@@ -1,10 +1,10 @@
 package ui.utils;
 
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -45,6 +45,22 @@ public class FileIO {
             BPPLogManager.getLogger().error("Field was not found: " + fieldName);
         }
         return result;
+    }
+
+    public static List<List<String>> parseCsvAsList(String fileName, String delimiter) {
+        List<List<String>> records = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(delimiter);
+                records.add(Arrays.asList(values));
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return records;
     }
 }
 

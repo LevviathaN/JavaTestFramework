@@ -214,6 +214,17 @@ public class SeleniumHelper {
         } else {
             try {
                 int size = textField.getAttribute("value").length();
+                while (size != 0) {
+                    clickOnElement(element,
+                            UiHandlers.PF_SPINNER_HANDLER,
+                            UiHandlers.ACCEPT_ALERT,
+                            UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
+                            UiHandlers.PAGE_NOT_LOAD_HANDLER,
+                            UiHandlers.PF_SCROLL_HANDLER,
+                            UiHandlers.SF_CLICK_HANDLER,
+                            UiHandlers.WAIT_HANDLER,
+                            UiHandlers.DEFAULT_HANDLER);
+                }
 
                 if (size != 0) {
                     clickOnElement(element,

@@ -20,6 +20,9 @@ import java.nio.file.Paths;
 
 import static java.nio.file.StandardOpenOption.CREATE;
 
+/**
+ * Class that creates xml file of all stepdefinitions to use in further in reusable scenarios
+ * */
 @CucumberOptions(
         features = "src/test/resources/cucumber/bpp_features",
         glue = {"cucumber.stepdefs"},
