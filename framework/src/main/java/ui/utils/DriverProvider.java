@@ -74,7 +74,7 @@ public class DriverProvider {
                 folder.mkdir();
             }
 
-            //System.setProperty("webdriver.chrome.driver", CHROME_PATH);
+            System.setProperty("webdriver.chrome.driver", CHROME_PATH);
             ChromeOptions options = new ChromeOptions();
 
             options.addArguments("--test-type");
@@ -99,11 +99,13 @@ public class DriverProvider {
 
             options.setCapability("chrome.prefs", chromePreferences);
             options.setExperimentalOption("prefs", chromePreferences);
-            synchronized (DataProvider.class) {
-                if (Tools.determineEffectivePropertyValue("ChromeDriverVersion") == null)
-                    WebDriverManager.chromedriver().setup();
-                else
-                    WebDriverManager.chromedriver().version(Tools.determineEffectivePropertyValue("ChromeDriverVersion")).setup();
+            if (Tools.determineEffectivePropertyValue("EnableDriverManager").equals("true")) {
+                synchronized (DataProvider.class) {
+                    if (Tools.determineEffectivePropertyValue("ChromeDriverVersion") == null)
+                        WebDriverManager.chromedriver().setup();
+                    else
+                        WebDriverManager.chromedriver().version(Tools.determineEffectivePropertyValue("ChromeDriverVersion")).setup();
+                }
             }
             return new ChromeDriver(options);
         } catch (Exception e) {
@@ -210,6 +212,38 @@ public class DriverProvider {
         }
     }
 
+    static public RemoteWebDriver getEdgeLambdaTest() {
+        String username = "ruslan.levytskyi";
+        String accessKey = "wWJpRHj266Kpt1l4aHi92hyc0rdoEp7WARcW7uEH2CAmcgyLCI";
+
+        try {
+            EdgeOptions options = new EdgeOptions();
+            options.setPageLoadStrategy(PageLoadStrategy.EAGER);
+            options.addArguments("--start-maximized");
+            options.addArguments("--disable-save-password-bubble");
+            options.addArguments("--no-sandbox");
+            options.addArguments("--disable-infobars");
+            options.addArguments("--disable-dev-shm-usage");
+            options.addArguments("--disable-browser-side-navigation");
+            options.addArguments("--disable-gpu");
+            options.addArguments("enable-automation");
+            options.setCapability("browser", "Edge");
+            options.setCapability("browser_version", "latest-4");
+            options.setCapability("os", FileIO.getConfigProperty("os"));
+            options.setCapability("os_version", FileIO.getConfigProperty("os_version"));
+            options.setCapability("resolution", "1920x1080");
+
+            //configure capability to set the job name with Test Case name
+            String testName = Reporter.getCurrentTestName();
+            options.setCapability("name", testName);
+
+            return new RemoteWebDriver(new URL("https://"+username+":"+accessKey+"@hub.lambdatest.com/wd/hub"), options);
+
+        } catch (Exception e) {
+            throw new WebDriverException("Unable to launch the browser. Please check browser name specified in VM options or capabilities!", e);
+        }
+    }
+
     static public RemoteWebDriver getChromeLambdaTest() {
         String username = "ruslan.levytskyi";
         String accessKey = "wWJpRHj266Kpt1l4aHi92hyc0rdoEp7WARcW7uEH2CAmcgyLCI";
@@ -218,7 +252,7 @@ public class DriverProvider {
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("platform", "Windows 10");
             capabilities.setCapability("browserName", "Chrome");
-            capabilities.setCapability("version", "91.0"); // If this cap isn't specified, it will just get the any available one
+            capabilities.setCapability("version", "104.0"); // If this cap isn't specified, it will just get the any available one
             capabilities.setCapability("resolution", "1920x1080");
             capabilities.setCapability("build", "First Test");
             capabilities.setCapability("name", "Sample Test");

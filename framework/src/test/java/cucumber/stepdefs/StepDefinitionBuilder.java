@@ -8,6 +8,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import ui.utils.*;
@@ -156,6 +157,17 @@ public class StepDefinitionBuilder extends SeleniumHelper {
         } else {
             Reporter.fail("No such locator template key");
         }
+        return this;
+    }
+
+    /**
+     * Method to specify element by index if an array of elements was found by given locator
+     *
+     * @param index index to select element
+     */
+    public StepDefinitionBuilder setItemIndex(String index) {
+        locatorXpathString = locatorXpathString.replace("xpath=","xpath=(") + ")[" + TestParametersController.checkIfSpecialParameter(index) + "]";
+        locator = initElementLocator(locatorXpathString);
         return this;
     }
 
@@ -326,6 +338,28 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                     Reporter.log("Saving " + param2 + " with parameter: " + accessToken);
                 };
                 break;
+            case COUNTER:
+                action = () -> {
+                    int counter;
+                    if (param2.equals("increment")) {
+                        if (ExecutionContextHandler.getAllValues().containsKey(param1)) {
+                            counter = Integer.parseInt(ExecutionContextHandler.getExecutionContextValueByKey(param1)) + 1;
+                            ExecutionContextHandler.setExecutionContextValueByKey(param1, String.valueOf(counter));
+                        } else {
+                            ExecutionContextHandler.setExecutionContextValueByKey(param1, "1");
+                        }
+                    } else if (param2.equals("decrement")) {
+                        if (ExecutionContextHandler.getAllValues().containsKey(param1)) {
+                            counter = Integer.parseInt(ExecutionContextHandler.getExecutionContextValueByKey(param1)) - 1;
+                            ExecutionContextHandler.setExecutionContextValueByKey(param1, String.valueOf(counter));
+                        } else {
+                            ExecutionContextHandler.setExecutionContextValueByKey(param1, "-1");
+                        }
+                    } else if (param2.equals("reset")) {
+                        ExecutionContextHandler.setExecutionContextValueByKey(param1, "1");
+                    }
+                };
+                break;
         }
         return this;
     }
@@ -477,7 +511,9 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                                 } else {
                                     xpathLocator = "xpath=(//*[text()='" + TestParametersController.checkIfSpecialParameter(locatorNameString) + "'])[" + i + "]";
                                 }
-                                ReusableRunner.getInstance().executeStep(step.replace("FOR_ITEM",xpathLocator));
+                                step = step.replace("FOR_ITEM",xpathLocator);
+                                step = step.replace("FOR_COUNTER",String.valueOf(i + 1));
+                                ReusableRunner.getInstance().executeStep(step);
                             }
                         }
                     } else {
@@ -534,6 +570,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
             case CLICK:
                 action = () -> clickOnElement(locator,
                         UiHandlers.PF_SPINNER_HANDLER,
+                        UiHandlers.POPUP_HANDLER,
                         UiHandlers.ACCEPT_ALERT,
                         UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
                         UiHandlers.PF_SCROLL_HANDLER,
@@ -549,6 +586,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                     if (seleniumHelper.isElementPresentAndDisplay(locator)) {
                         clickOnElement(locator,
                                 UiHandlers.PF_SPINNER_HANDLER,
+                                UiHandlers.POPUP_HANDLER,
                                 UiHandlers.ACCEPT_ALERT,
                                 UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
                                 UiHandlers.PF_SCROLL_HANDLER,
@@ -563,6 +601,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
             case DOUBLE_CLICK:
                 action = () -> doubleClick(locator,
                         UiHandlers.PF_SPINNER_HANDLER,
+                        UiHandlers.POPUP_HANDLER,
                         UiHandlers.ACCEPT_ALERT,
                         UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
                         UiHandlers.PF_SCROLL_HANDLER,
@@ -586,6 +625,15 @@ public class StepDefinitionBuilder extends SeleniumHelper {
             case ABSENT:
                 action = () -> Assert.assertFalse(seleniumHelper.isElementPresentAndDisplay(locator));
                 break;
+            case OPEN_LINK_IN_NEW_TAB:
+                action = () -> {
+                    String clicklnk = Keys.chord(Keys.CONTROL, Keys.RETURN);
+                    //hoverItem(locator);
+                    //String link = getElementAttribute(locator,"href");
+                    driver().findElement(locator).sendKeys(clicklnk);
+                    switchToWindowByIndex(2);
+                    //openInNewTab(locator);
+                };
         }
         return this;
     }
@@ -612,12 +660,13 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                         String xpathLocator = "";
                         BPPLogManager.getLogger().info("There are " + elements.size() + " '" + locator + "' elements found on the page");
                         if (locatorsMap.containsKey(locatorNameString)) {
-                            xpathLocator = locatorsMap.get(locatorNameString).replace("xpath=","xpath=(") + ")[" + param + "]";
+                            xpathLocator = locatorsMap.get(locatorNameString).replace("xpath=","xpath=(") + ")[" + TestParametersController.checkIfSpecialParameter(param) + "]";
                         } else {
-                            xpathLocator = "xpath=(//*[text()='" + TestParametersController.checkIfSpecialParameter(locatorNameString) + "'])[" + param + "]";
+                            xpathLocator = "xpath=(//*[text()='" + TestParametersController.checkIfSpecialParameter(locatorNameString) + "'])[" + TestParametersController.checkIfSpecialParameter(param) + "]";
                         }
                         clickOnElement(initElementLocator(xpathLocator),
                                 UiHandlers.PF_SPINNER_HANDLER,
+                                UiHandlers.POPUP_HANDLER,
                                 UiHandlers.ACCEPT_ALERT,
                                 UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
                                 UiHandlers.PF_SCROLL_HANDLER,
@@ -873,6 +922,12 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                     }
                 };
                 break;
+            case CAPTURE_ELEMENT_ATTRIBUTE:
+                action = () -> {
+                    String attrValue = findElement(locator).getAttribute(TestParametersController.checkIfSpecialParameter(param1));
+                    ExecutionContextHandler.setExecutionContextValueByKey(param2,attrValue);
+                };
+                break;
         }
         return this;
     }
@@ -914,13 +969,13 @@ public class StepDefinitionBuilder extends SeleniumHelper {
             //todo: add logs to mark iterations if loop is specified
             switch (loop) { //if any loop name is provided(for,until) executes step in corresponding loop
                 case "until":
-                    for (int i = 1; i < loopLimit && !conditions.checkCondition(loopConditionStatement,loopConditionParameter); i++) {
+                    for (int i = 1; (i < loopLimit || loopLimit == 0) && !conditions.checkCondition(loopConditionStatement,loopConditionParameter); i++) {
                         action.execute();
                         sleepFor(5000);
                     }
                     break;
                 case "for":
-                    for (int i = 1; i < loopLimit && conditions.checkCondition(loopConditionStatement,loopConditionParameter); i++) {
+                    for (int i = 1; (i < loopLimit || loopLimit == 0) && conditions.checkCondition(loopConditionStatement,loopConditionParameter); i++) {
                         action.execute();
                     }
                     break;

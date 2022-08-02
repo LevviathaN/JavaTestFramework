@@ -3,7 +3,7 @@ Feature: Search Validation
   As an user
   I want to be able to search items on the website
 
-  @Positive @Regression @P1 @Run
+  @Positive @Regression @P1
   Scenario: Search Validation
     Given I execute "Log In To Clean Origin" reusable step
     And For each "SearchValidation" csv entry:

@@ -64,6 +64,14 @@
     "value": "xpath=//div[@class='noUi-value noUi-value-horizontal noUi-value-large' and text()='PARAMETER']/preceding-sibling::div[1]"
   },
   {
+    "name": "Diamonds Listing Page Item Price By Index",
+    "value": "xpath=(//span[@data-flow-localize='item-price'])[PARAMETER]"
+  },
+  {
+    "name": "Diamonds Listing Page Current Page Text By Page Number",
+    "value": "xpath=(//li[@class='item current']/strong/span[text()='PARAMETER'])[2]"
+  },
+  {
     "name": "Diamonds Details Page Attribute",
     "value": "xpath=//div[@class='attr-label' and text()='PARAMETER']/following-sibling::div"
   },

@@ -16,14 +16,28 @@ import java.util.Map;
 public enum UiHandlers {
 
     PF_SPINNER_HANDLER((element, e) -> {
-        SeleniumHelper.isHandled.put("pfSpinnerHandler", false);
+        SeleniumHelper.isHandled.put("spinnerHandler", false);
         WebDriverWait wait = new WebDriverWait(SeleniumHelper.driver(),Duration.ofSeconds(SeleniumHelper.DEFAULT_TIMEOUT),Duration.ofSeconds(1));
-        if (e.getMessage().contains("opacity: 1; transition: opacity 225ms cubic-bezier")){
-            Reporter.log("Handling PF Spinner");
-            BPPLogManager.getLogger().info("Handling PF Spinner");
+        if (e.getMessage().contains("opacity: 1; transition: opacity 225ms cubic-bezier")
+                || e.getMessage().contains("Other element would receive the click: <div class=\"loading-mask\" data-role=\"loader\">")){
+            Reporter.log("Handling Spinner");
+            BPPLogManager.getLogger().info("Handling Spinner");
             wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@role='progressbar']")));
             SeleniumHelper.clickWithJS(element);
-            SeleniumHelper.isHandled.put("pfSpinnerHandler", true);
+            SeleniumHelper.isHandled.put("spinnerHandler", true);
+            SeleniumHelper.repeatAction = false;
+        }
+    }),
+
+    POPUP_HANDLER((element, e) -> {
+        SeleniumHelper.isHandled.put("popupHandler", false);
+        WebDriverWait wait = new WebDriverWait(SeleniumHelper.driver(),Duration.ofSeconds(SeleniumHelper.DEFAULT_TIMEOUT),Duration.ofSeconds(1));
+        if (e.getMessage().contains("Other element would receive the click: <div id=\"onetrust-button-group")){
+            Reporter.log("Handling Popup");
+            BPPLogManager.getLogger().info("Handling Popup");
+            SeleniumHelper.clickOnElement(By.xpath("//button[@id='onetrust-accept-btn-handler']"));
+            SeleniumHelper.clickWithJS(element);
+            SeleniumHelper.isHandled.put("popupHandler", true);
             SeleniumHelper.repeatAction = false;
         }
     }),
@@ -31,7 +45,7 @@ public enum UiHandlers {
     PF_PREMATURE_MENU_CLICK_HANDLER((element, e) -> {
         SeleniumHelper.isHandled.put("pfPrematureMenuClickHandler", false);
         WebDriverWait wait = new WebDriverWait(SeleniumHelper.driver(),Duration.ofSeconds(SeleniumHelper.DEFAULT_TIMEOUT),Duration.ofSeconds(1));
-        if (e.getMessage().contains("jss5784")){
+        if (e.getMessage().contains("jss5784") || e.getMessage().contains("stale element reference")){
             Reporter.log("Handling PF Premature Menu Item Click");
             BPPLogManager.getLogger().info("Handling PF Premature Menu Item Click");
             SeleniumHelper.sleepFor(3000);
@@ -73,7 +87,8 @@ public enum UiHandlers {
     PF_SCROLL_UP_HANDLER((element, e) -> {
         SeleniumHelper.isHandled.put("pfScrollUpHandler", false);
         if(e.getMessage().contains("Other element would receive the click: <li class=\"nav-item dropdown\">")||
-                e.getMessage().contains("jss1wye7u4")){
+                e.getMessage().contains("jss1wye7u4")||
+                e.getMessage().contains("Other element would receive the click: <a href=\"https://www.cleanorigin.com/our-story/\">")){
             Reporter.log("Handling click overlay by scrolling 100 pixels up");
             int scrollLength = -100;
             BPPLogManager.getLogger().info("Handling click overlay by scrolling " + scrollLength + " pixels up");

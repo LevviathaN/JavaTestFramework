@@ -46,6 +46,14 @@ public class Conditions extends SeleniumHelper {
                 String value1 = TestParametersController.checkIfSpecialParameter(conditionParameter.split(",")[0]);
                 String value2 = TestParametersController.checkIfSpecialParameter(conditionParameter.split(",")[1]);
                 return value1.equals(value2);
+            case "first value is greater":
+                int v1 = Integer.parseInt(TestParametersController.checkIfSpecialParameter(conditionParameter.split(",")[0]));
+                int v2 = Integer.parseInt(TestParametersController.checkIfSpecialParameter(conditionParameter.split(",")[1]));
+                return v1 > v2;
+            case "first value is equal or greater":
+                int p1 = Integer.parseInt(TestParametersController.checkIfSpecialParameter(conditionParameter.split(",")[0]));
+                int p2 = Integer.parseInt(TestParametersController.checkIfSpecialParameter(conditionParameter.split(",")[1]));
+                return p1 >= p2;
             case "Product Factory special element is enabled":
                 elementLocator = conditionParameter.split(",")[0];
                 elementType = conditionParameter.split(",")[1];

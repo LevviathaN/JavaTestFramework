@@ -8,5 +8,6 @@ public enum ActionsWithLocator {
     CLICK_WITH_JS,
     HOVER,
     PRESENT,
-    ABSENT
+    ABSENT,
+    OPEN_LINK_IN_NEW_TAB
 }

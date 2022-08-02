@@ -64,6 +64,14 @@
     "value": "xpath=//a[normalize-space()='View']"
   },
   {
+    "name": "Diamonds Listing Page Next Page Button",
+    "value": "xpath=(//a[@class='action  next'])[2]"
+  },
+  {
+    "name": "Diamonds Listing Page Current Page Text",
+    "value": "xpath=(//li[@class='item current']/strong/span[2])[2]"
+  },
+  {
     "name": "Diamonds Details Page Name",
     "value": "xpath=//span[@data-ui-id='page-title-wrapper']"
   },

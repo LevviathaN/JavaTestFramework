@@ -14,6 +14,7 @@ import org.openqa.selenium.Cookie;
 import org.openqa.selenium.NoSuchWindowException;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.asserts.SoftAssert;
 import ui.utils.SeleniumHelper;
 import ui.utils.*;
 import ui.utils.bpp.ExecutionContextHandler;
@@ -35,6 +36,7 @@ import static org.hamcrest.Matchers.not;
  * Created by Ruslan Levytskyi on 15/3/2019.
  */
 public class StepDefinitions extends SeleniumHelper {
+    public SoftAssert sa = new SoftAssert();
 
 
     @AfterStep
@@ -99,8 +101,9 @@ public class StepDefinitions extends SeleniumHelper {
     public void i_click_on_the_element_by_order(String element, String orderNumber) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setLocator(element)
-                .setAction(ActionsWithLocatorAndParameter.CLICK_BY_ORDER, orderNumber)
-                .setMessage("Executing step: I click on the '" + element + "' element")
+                .setItemIndex(orderNumber)
+                .setAction(ActionsWithLocator.CLICK)
+                .setMessage("Executing step: I click on the '" + element + "' element by order " + orderNumber)
                 .execute();
     }
 
@@ -175,6 +178,22 @@ public class StepDefinitions extends SeleniumHelper {
                 .setMessage("Executing step: I wait for " + seconds + " seconds")
                 .execute();
 }
+
+    /**
+     * Definition to wait for desired amount of seconds if condition is true
+     *
+     * @param seconds amount of seconds you want to wait
+     *                Here we also check if text is EC_ or MD_ of KW_
+     * @author Ruslan Levytskyi
+     */
+    @When("^I wait for \"([^\"]*)\" seconds if \"([^\"]*)\" \"([^\"]*)\"$")
+    public void wait_for_if(String seconds, String conditionParameter, String condition) {
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setCondition(conditionParameter, condition)
+                .setAction(ActionsWithParameter.WAIT,seconds)
+                .setMessage("Executing step: I wait for " + seconds + " seconds")
+                .execute();
+    }
 
     /**
      * Definition to hover over element
@@ -1421,7 +1440,8 @@ public class StepDefinitions extends SeleniumHelper {
     @When("^I execute steps until \"([^\"]*)\" \"([^\"]*)\"$")
     public void i_execute_steps_until(String conditionParameter, String condition, List<String> steps) {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
-        stepDef.setLoop("until", conditionParameter, condition)
+        stepDef.setLoopLimit("0")
+                .setLoop("until", conditionParameter, condition)
                 .setAction(ActionsWithTable.EXECUTE_STEPS, steps)
                 .setReporterLog("Executing step: Execute steps until '" + conditionParameter + " " + condition + "' condition is true")
                 .execute();
@@ -1745,5 +1765,94 @@ public class StepDefinitions extends SeleniumHelper {
         stepDef.setAction(ActionsWithParameterAndTable.EXECUTE_FOR_EACH_CSV_ENTRY,csvName,steps)
                 .setMessage("Executing step: For each '" + csvName + " csv entry:")
                 .execute();
+    }
+
+    @When("^Counter \"([^\"]*)\" \"([^\"]*)\"$")
+    public void counter(String countName, String countAct) {
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setAction(ActionsWithTwoParameters.COUNTER,countName,countAct)
+                .setMessage("Executing step: Counter '" + countName + "' " + countAct)
+                .execute();
+    }
+
+    @When("^Counter \"([^\"]*)\" \"([^\"]*)\" if \"([^\"]*)\" \"([^\"]*)\"$")
+    public void counter_if(String countName, String countAct, String conditionParameter, String condition) {
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setCondition(conditionParameter, condition)
+                .setAction(ActionsWithTwoParameters.COUNTER,countName,countAct)
+                .setMessage("Executing step: Counter '" + countName + "' " + countAct)
+                .execute();
+    }
+
+    @When("^I open \"([^\"]*)\" link in new tab$")
+    public void i_open_in_new_tab(String element) {
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(element)
+                .setAction(ActionsWithLocator.OPEN_LINK_IN_NEW_TAB)
+                .setMessage("Executing step: Open '" + element + "' link in new tab" )
+                .execute();
+    }
+
+    @When("^I open \"([^\"]*)\" \"([^\"]*)\" in new tab$")
+    public void i_open_in_new_tab_special(String elementLocator, String elementType) {
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(elementLocator, elementType)
+                .setAction(ActionsWithLocator.OPEN_LINK_IN_NEW_TAB)
+                .setMessage("Executing step: Open '" + elementLocator + " " + elementType + "' link in new tab" )
+                .execute();
+    }
+
+    @When("^I open \"([^\"]*)\" link in new tab by index \"([^\"]*)\"$")
+    public void i_open_in_new_tab_by_index(String element, String index) {
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(element)
+                .setItemIndex(index)
+                .setAction(ActionsWithLocator.OPEN_LINK_IN_NEW_TAB)
+                .setMessage("Executing step: Open '" + element + "' link in new tab by index " )
+                .execute();
+    }
+
+    @When("^I open \"([^\"]*)\" \"([^\"]*)\" in new tab by index \"([^\"]*)\"$")
+    public void i_open_in_new_tab_by_index_special(String elementLocator, String elementType, String index) {
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setLocator(elementLocator, elementType)
+                .setItemIndex(index)
+                .setAction(ActionsWithLocator.OPEN_LINK_IN_NEW_TAB)
+                .setMessage("Executing step: Open '" + elementLocator + " " + elementType + "' link in new tab" )
+                .execute();
+    }
+
+    /**
+     * Definition to validate items are similar
+     *
+     */
+    @Then("^I verify that \"([^\"]*)\" element \"(equal|contains)\" to \"([^\"]*)\" element$")
+    public void i_verify_that_element_is(String elementOne, String value, String elementTwo) {
+        String resultElement = TestParametersController.checkIfSpecialParameter(elementOne);
+        String startElement = TestParametersController.checkIfSpecialParameter(elementTwo);
+        Reporter.log("Executing step: I verify that " + resultElement + " is "+ value + " to: " + startElement);
+        String currentUrl = getURL();
+        if (value.equals("contains")) {
+            if (!startElement.contains(resultElement)) {
+                Reporter.warn("Mismatch. Element " + startElement + " does not contain " + resultElement + " at " + currentUrl);
+                BPPLogManager.getLogger().error("Mismatch. Element " + startElement + " does not contain " + resultElement + " at " + currentUrl);
+            }
+            sa.assertTrue(startElement.contains(resultElement), currentUrl);
+        } else if (value.equals("equal")) {
+            if (!startElement.equals(resultElement)) {
+                Reporter.warn("Mismatch. Element " + startElement + " is not equal to " + resultElement + " at " + currentUrl);
+                BPPLogManager.getLogger().error("Mismatch. Element " + startElement + " is not equal to " + resultElement + " at " + currentUrl);
+            }
+            sa.assertTrue(resultElement.equals(startElement), currentUrl);
+        }
+    }
+
+    /**
+     * Assert all for sort assertions
+     *
+     */
+    @Then("^I assert all$")
+    public void i_assert_all() { //todo: move assertAll to BaseUiTest
+        sa.assertAll();
     }
 }

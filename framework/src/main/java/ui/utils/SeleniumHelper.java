@@ -4,6 +4,7 @@ import com.google.common.base.Function;
 import org.hamcrest.Matcher;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebElement;
@@ -186,6 +187,11 @@ public class SeleniumHelper {
         }
     }
 
+    public void openInNewTab(By element) {
+        Actions action = new Actions(driver());
+        action.keyDown(Keys.CONTROL).click(findElement(element)).keyUp(Keys.CONTROL).build().perform();
+    }
+
     /**
      * Action clears the entire  text field as Selenium's clear() refuses to work on new chrome versions
      *
@@ -203,6 +209,7 @@ public class SeleniumHelper {
             if (size != 0) {
                 clickOnElement(element,
                         UiHandlers.PF_SPINNER_HANDLER,
+                        UiHandlers.POPUP_HANDLER,
                         UiHandlers.ACCEPT_ALERT,
                         UiHandlers.PF_SCROLL_HANDLER,
                         UiHandlers.PAGE_NOT_LOAD_HANDLER,
@@ -217,6 +224,7 @@ public class SeleniumHelper {
                 while (size != 0) {
                     clickOnElement(element,
                             UiHandlers.PF_SPINNER_HANDLER,
+                            UiHandlers.POPUP_HANDLER,
                             UiHandlers.ACCEPT_ALERT,
                             UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
                             UiHandlers.PAGE_NOT_LOAD_HANDLER,
@@ -229,6 +237,7 @@ public class SeleniumHelper {
                 if (size != 0) {
                     clickOnElement(element,
                             UiHandlers.PF_SPINNER_HANDLER,
+                            UiHandlers.POPUP_HANDLER,
                             UiHandlers.ACCEPT_ALERT,
                             UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
                             UiHandlers.PAGE_NOT_LOAD_HANDLER,
@@ -243,6 +252,7 @@ public class SeleniumHelper {
                 if (size != 0) {
                     clickOnElement(element,
                             UiHandlers.PF_SPINNER_HANDLER,
+                            UiHandlers.POPUP_HANDLER,
                             UiHandlers.ACCEPT_ALERT,
                             UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
                             UiHandlers.PAGE_NOT_LOAD_HANDLER,
@@ -256,6 +266,7 @@ public class SeleniumHelper {
                 if (size != 0) {
                     clickOnElement(element,
                             UiHandlers.PF_SPINNER_HANDLER,
+                            UiHandlers.POPUP_HANDLER,
                             UiHandlers.ACCEPT_ALERT,
                             UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
                             UiHandlers.PAGE_NOT_LOAD_HANDLER,
