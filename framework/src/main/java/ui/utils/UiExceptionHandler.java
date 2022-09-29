@@ -2,13 +2,10 @@ package ui.utils;
 
 import org.openqa.selenium.By;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class UiExceptionHandler {
-    private List<Object> handlers = new ArrayList<>();
+    private static List<Object> handlers = new ArrayList<>();
     private List<String> triggers = new ArrayList<>();
     private By element;
     private Exception e;
@@ -18,4 +15,25 @@ public class UiExceptionHandler {
     //boolean, used by UiHandlers to determine, if you want to repeat Action, on which you had an exception, after running handlers.
     public static boolean repeatAction = true;
 
+    public void handle() {
+
+    }
+
+
+
+    public void addTriggers(String... triggersArray) {
+        triggers.addAll(Arrays.asList(triggersArray));
+    }
+
+    public void setTriggers(String... triggersArray) {
+        triggers = Arrays.asList(triggersArray);
+    }
+
+    public void setElementLocator(By locator) {
+        element = locator;
+    }
+
+    public void setException(Exception ex) {
+        e = ex;
+    }
 }

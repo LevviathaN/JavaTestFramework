@@ -5,9 +5,10 @@ Feature: Search Validation
 
   @Positive @Regression @P1
   Scenario: Search Validation
-    Given I execute "Log In To Clean Origin" reusable step
+    Given I am on "https://reskin.cleanorigin.com/" URL
+    And I click on the "Accept Cookies" "text in span" if present
     And For each "SearchValidation" csv entry:
-      |I click on the "search" "element by id"                     |
+      |I click on the "Search Button" element                     |
       |I set "<searchRequest>" text to the "search" "element by id"|
       |I press "ENTER" for "search" "element by id"                |
       |I wait for "3" seconds                                      |

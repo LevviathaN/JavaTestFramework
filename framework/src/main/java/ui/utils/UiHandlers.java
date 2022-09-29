@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public enum UiHandlers {
 
-    PF_SPINNER_HANDLER((element, e) -> {
+    SPINNER_HANDLER((element, e) -> {
         SeleniumHelper.isHandled.put("spinnerHandler", false);
         WebDriverWait wait = new WebDriverWait(SeleniumHelper.driver(),Duration.ofSeconds(SeleniumHelper.DEFAULT_TIMEOUT),Duration.ofSeconds(1));
         if (e.getMessage().contains("opacity: 1; transition: opacity 225ms cubic-bezier")
@@ -32,11 +32,12 @@ public enum UiHandlers {
     POPUP_HANDLER((element, e) -> {
         SeleniumHelper.isHandled.put("popupHandler", false);
         WebDriverWait wait = new WebDriverWait(SeleniumHelper.driver(),Duration.ofSeconds(SeleniumHelper.DEFAULT_TIMEOUT),Duration.ofSeconds(1));
-        if (e.getMessage().contains("Other element would receive the click: <div id=\"onetrust-button-group")){
+        if (e.getMessage().contains("Other element would receive the click: <div id=\"onetrust-button-group")
+                || e.getMessage().contains("Other element would receive the click: <div id=\"onetrust-group-container")){
             Reporter.log("Handling Popup");
             BPPLogManager.getLogger().info("Handling Popup");
             SeleniumHelper.clickOnElement(By.xpath("//button[@id='onetrust-accept-btn-handler']"));
-            SeleniumHelper.clickWithJS(element);
+            SeleniumHelper.clickOnElement(element);
             SeleniumHelper.isHandled.put("popupHandler", true);
             SeleniumHelper.repeatAction = false;
         }
@@ -158,6 +159,18 @@ public enum UiHandlers {
                 SeleniumHelper.repeatAction = false;
                 SeleniumHelper.isHandled.put("acceptAlert", true);
             }
+    }),
+
+    SKIP_HANDLER((element, e) -> {
+        SeleniumHelper.isHandled.put("skipHandler", false);
+        WebDriverWait wait = new WebDriverWait(SeleniumHelper.driver(),Duration.ofSeconds(SeleniumHelper.DEFAULT_TIMEOUT),Duration.ofSeconds(1));
+        if (e.getMessage().contains("stale element reference")){
+            Reporter.log("Handling by skip");
+            BPPLogManager.getLogger().info("Handling by skip");
+            SeleniumHelper.sleepFor(1000);
+            SeleniumHelper.isHandled.put("skipHandler", true);
+            SeleniumHelper.repeatAction = false;
+        }
     }),
 
     DEFAULT_HANDLER((element, e) -> {

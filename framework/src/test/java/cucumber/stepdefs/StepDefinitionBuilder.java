@@ -16,14 +16,7 @@ import ui.utils.bpp.ExecutionContextHandler;
 import ui.utils.bpp.PreProcessFiles;
 import ui.utils.bpp.TestParametersController;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
 
 import static com.jcabi.matchers.RegexMatchers.matchesPattern;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -49,6 +42,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
     private String loop = ""; // if set to FOR or UNTIL, step will be executed in corresponding loop.
     private String loopConditionParameter, loopConditionStatement; // condition to quit the loop
     private int loopLimit = 5; //restriction for loop execution number
+    private int loopRetryLimit = 3; //restriction for loop iteration retry number
     private Action action; //mandatory. Make sure that if you want to execute action with locator, you need to specify locator prior the action
     private String reporterLog = ""; //log string that will be passed to html extent report
     private String log = ""; //log string that will be passed to console
@@ -212,6 +206,17 @@ public class StepDefinitionBuilder extends SeleniumHelper {
     public StepDefinitionBuilder setLoopLimit(String limit) {
         loopLimit = Integer.parseInt(limit);
         return this;
+    }
+
+    /**
+     * Method to determine if certain loop iteration should be retried
+     */
+    private boolean loopRetry() {
+        if (ExecutionContextHandler.getAllValues().containsKey("NEED_RETRY")) {
+            return Boolean.getBoolean(ExecutionContextHandler.getExecutionContextValueByKey("NEED_RETRY")); //set loopRetry variable if corresponding EC variable is present
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -569,7 +574,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
         switch (actionName) {
             case CLICK:
                 action = () -> clickOnElement(locator,
-                        UiHandlers.PF_SPINNER_HANDLER,
+                        UiHandlers.SPINNER_HANDLER,
                         UiHandlers.POPUP_HANDLER,
                         UiHandlers.ACCEPT_ALERT,
                         UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
@@ -579,13 +584,14 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                         UiHandlers.SF_CLICK_HANDLER,
                         UiHandlers.WAIT_HANDLER,
                         UiHandlers.PF_PREMATURE_MENU_CLICK_HANDLER,
+                        UiHandlers.SKIP_HANDLER,
                         UiHandlers.DEFAULT_HANDLER);
                 break;
             case CLICK_IF_PRESENT:
                 action = () -> {
                     if (seleniumHelper.isElementPresentAndDisplay(locator)) {
                         clickOnElement(locator,
-                                UiHandlers.PF_SPINNER_HANDLER,
+                                UiHandlers.SPINNER_HANDLER,
                                 UiHandlers.POPUP_HANDLER,
                                 UiHandlers.ACCEPT_ALERT,
                                 UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
@@ -594,13 +600,14 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                                 UiHandlers.SF_CLICK_HANDLER,
                                 UiHandlers.WAIT_HANDLER,
                                 UiHandlers.PF_PREMATURE_MENU_CLICK_HANDLER,
+                                UiHandlers.SKIP_HANDLER,
                                 UiHandlers.DEFAULT_HANDLER);
                     }
                 };
                 break;
             case DOUBLE_CLICK:
                 action = () -> doubleClick(locator,
-                        UiHandlers.PF_SPINNER_HANDLER,
+                        UiHandlers.SPINNER_HANDLER,
                         UiHandlers.POPUP_HANDLER,
                         UiHandlers.ACCEPT_ALERT,
                         UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
@@ -608,6 +615,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                         UiHandlers.PAGE_NOT_LOAD_HANDLER,
                         UiHandlers.SF_CLICK_HANDLER,
                         UiHandlers.WAIT_HANDLER,
+                        UiHandlers.SKIP_HANDLER,
                         UiHandlers.DEFAULT_HANDLER);
                 break;
             case RIGHT_CLICK:
@@ -628,11 +636,8 @@ public class StepDefinitionBuilder extends SeleniumHelper {
             case OPEN_LINK_IN_NEW_TAB:
                 action = () -> {
                     String clicklnk = Keys.chord(Keys.CONTROL, Keys.RETURN);
-                    //hoverItem(locator);
-                    //String link = getElementAttribute(locator,"href");
-                    driver().findElement(locator).sendKeys(clicklnk);
+                    findElement(locator).sendKeys(clicklnk);
                     switchToWindowByIndex(2);
-                    //openInNewTab(locator);
                 };
         }
         return this;
@@ -665,7 +670,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                             xpathLocator = "xpath=(//*[text()='" + TestParametersController.checkIfSpecialParameter(locatorNameString) + "'])[" + TestParametersController.checkIfSpecialParameter(param) + "]";
                         }
                         clickOnElement(initElementLocator(xpathLocator),
-                                UiHandlers.PF_SPINNER_HANDLER,
+                                UiHandlers.SPINNER_HANDLER,
                                 UiHandlers.POPUP_HANDLER,
                                 UiHandlers.ACCEPT_ALERT,
                                 UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
@@ -675,6 +680,7 @@ public class StepDefinitionBuilder extends SeleniumHelper {
                                 UiHandlers.SF_CLICK_HANDLER,
                                 UiHandlers.WAIT_HANDLER,
                                 UiHandlers.PF_PREMATURE_MENU_CLICK_HANDLER,
+                                UiHandlers.SKIP_HANDLER,
                                 UiHandlers.DEFAULT_HANDLER);
                     } else {
                         Reporter.log("Element '" + locatorNameString + "' not found");
@@ -966,17 +972,32 @@ public class StepDefinitionBuilder extends SeleniumHelper {
         if(condition){ //
             if (!reporterLog.equals("")) Reporter.log(reporterLog);   //set reporter log if provided
             if (!log.equals("")) BPPLogManager.getLogger().info(log); //set console log if provided
+            int loopRetryCounter = 0;
             //todo: add logs to mark iterations if loop is specified
             switch (loop) { //if any loop name is provided(for,until) executes step in corresponding loop
                 case "until":
                     for (int i = 1; (i < loopLimit || loopLimit == 0) && !conditions.checkCondition(loopConditionStatement,loopConditionParameter); i++) {
+                        ExecutionContextHandler.setExecutionContextValueByKey("NEED_RETRY", "false"); //set default loopRetry EC variable
                         action.execute();
                         sleepFor(5000);
+                        if (loopRetry() && loopRetryCounter < loopRetryLimit) {
+                            i--;
+                            Reporter.log("Retrying previous loop iteration");
+                            BPPLogManager.getLogger().info("Retrying previous loop iteration");
+                        }
+                        loopRetryCounter++;
                     }
                     break;
                 case "for":
                     for (int i = 1; (i < loopLimit || loopLimit == 0) && conditions.checkCondition(loopConditionStatement,loopConditionParameter); i++) {
+                        ExecutionContextHandler.setExecutionContextValueByKey("NEED_RETRY", "false"); //set default loopRetry EC variable
                         action.execute();
+                        if (loopRetry() && loopRetryCounter < loopRetryLimit) {
+                            i--;
+                            Reporter.log("Retrying previous loop iteration");
+                            BPPLogManager.getLogger().info("Retrying previous loop iteration");
+                        }
+                        loopRetryCounter++;
                     }
                     break;
                 default: // if no loop name is provided, execute step as it is

@@ -77,6 +77,7 @@ public class DriverProvider {
             System.setProperty("webdriver.chrome.driver", CHROME_PATH);
             ChromeOptions options = new ChromeOptions();
 
+            //options.addArguments("--headless");
             options.addArguments("--test-type");
             options.addArguments("--start-maximized");
             options.addArguments("--disable-save-password-bubble");

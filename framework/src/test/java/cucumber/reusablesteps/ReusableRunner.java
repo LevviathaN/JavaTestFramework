@@ -196,6 +196,13 @@ public static ReusableRunner getInstance() {
             args[1] = arguments.get(1);
             args[2] = arguments.get(2);
             args[3] = arguments.get(3);
+        } else if (arguments.toArray().length == 5) {
+            args = new String[5];
+            args[0] = arguments.get(0);
+            args[1] = arguments.get(1);
+            args[2] = arguments.get(2);
+            args[3] = arguments.get(3);
+            args[4] = arguments.get(4);
         }
 
         for (String regx : stepDefinitionMap.keySet()) {
@@ -207,7 +214,7 @@ public static ReusableRunner getInstance() {
                     e.printStackTrace();
                     BPPLogManager.getLogger().error(Tools.getStackTrace(e));
                     Reporter.failTryTakingScreenshot(Tools.getStackTrace(e));
-                    throw new RuntimeException("Failure executing cucumber step");
+                    throw new RuntimeException("Failure executing cucumber step: " + step);
                 }
             }
         }

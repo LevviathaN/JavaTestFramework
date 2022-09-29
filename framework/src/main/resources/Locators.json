@@ -13,27 +13,27 @@
   },
   {
     "name": "Builder Pane Ring Price",
-    "value": "xpath=//div[@class='section-label' and text()='Ring Setting']/following-sibling::div/span"
+    "value": "xpath=//div[@id='first']//span[@data-flow-localize='item-price']"
   },
   {
     "name": "Builder Pane Ring Name",
-    "value": "xpath=//div[@class='section-label' and text()='Ring Setting']/../following-sibling::div/div[1]"
+    "value": "xpath=//div[@id='first']//div[@class='product-name']"
   },
   {
     "name": "Builder Pane Ring Change Button",
-    "value": "xpath=//div[@class='section-label' and text()='Ring Setting']/../following-sibling::div/div[2]"
+    "value": "xpath=//div[@id='first']//div[@class='remove-product']"
   },
   {
     "name": "Builder Pane Diamond Price",
-    "value": "xpath=//div[@class='section-label' and text()='Diamond']/following-sibling::div/span"
+    "value": "xpath=//div[@id='second']//span[@data-flow-localize='item-price']"
   },
   {
     "name": "Builder Pane Diamond Name",
-    "value": "xpath=//div[@class='section-label' and text()='Diamond']/../following-sibling::div/div[1]"
+    "value": "xpath=//div[@id='second']//div[@class='product-name']"
   },
   {
     "name": "Builder Pane Diamond Change Button",
-    "value": "xpath=//div[@class='section-label' and text()='Diamond']/../following-sibling::div/div[2]"
+    "value": "xpath=//div[@id='second']//div[@class='remove-product']"
   },
   {
     "name": "Builder Pane Clear Ring Button",
@@ -57,7 +57,11 @@
   },
   {
     "name": "Rings Details Page Compatible Diamond Shapes Attribute",
-    "value": "xpath=//div[@class='attr-label' and text()='Compatible Diamond Shapes']/following-sibling::div//div[@class='attr-value']/span"
+    "value": "xpath=//div[@class='attr-label' and text()='Compatible Diamond Shapes']/following-sibling::div//div[@class='attr-grid-value']/span"
+  },
+  {
+    "name": "Diamonds Listing Page Show Filters Button",
+    "value": "xpath=//span[@data-title='Show Filters']/.."
   },
   {
     "name": "Diamonds Listing Page View Product Button",
@@ -66,6 +70,10 @@
   {
     "name": "Diamonds Listing Page Next Page Button",
     "value": "xpath=(//a[@class='action  next'])[2]"
+  },
+  {
+    "name": "Diamonds Listing Page Fifth Page Button",
+    "value": "xpath=(//ul[@class='items pages-items']/li[@class='item'])[8]"
   },
   {
     "name": "Diamonds Listing Page Current Page Text",
@@ -80,16 +88,36 @@
     "value": "xpath=//span[@class='price']"
   },
   {
+    "name": "Diamonds Details Page Sold Out Badge",
+    "value": "xpath=//div[@class='badge badge-sold-out']"
+  },
+  {
     "name": "Cart Icon",
     "value": "xpath=//a[@class='action showcart']"
   },
   {
     "name": "Cart Item Name",
-    "value": "xpath=//tr[@class='item-info']//*[@class='product-item-name']/a"
+    "value": "xpath=(//strong[@class='product-item-name'])[1]"
+  },
+  {
+    "name": "Cart Second Item Name",
+    "value": "xpath=(//strong[@class='product-item-name'])[2]"
+  },
+  {
+    "name": "Cart Third Item Name",
+    "value": "xpath=(//strong[@class='product-item-name'])[3]"
   },
   {
     "name": "Cart Item Price",
-    "value": "xpath=//tbody[@class='cart item']//td[@class='col price']//span[@class='price']"
+    "value": "xpath=(//span[@class='price-excluding-tax'])[1]"
+  },
+  {
+    "name": "Cart Second Item Price",
+    "value": "xpath=(//span[@class='price-excluding-tax'])[2]"
+  },
+  {
+    "name": "Cart Third Item Price",
+    "value": "xpath=(//span[@class='price-excluding-tax'])[3]"
   },
   {
     "name": "Cart Builder Ring Name",
@@ -136,8 +164,8 @@
     "value": "xpath=//button[.='Build Your Ring']|//button[.='START WITH A DIAMOND']|//button[.='Start with a Setting']|//button[.='Browse Settings']"
   },
   {
-    "name": "Home Page Shop Now Button",
-    "value": "xpath=//a[.='Shop Now']"
+    "name": "Home Page Shop Engagement Button",
+    "value": "xpath=//button[text()='Shop Engagement']"
   },
   {
     "name": "Home Page Learn More Button",
@@ -145,11 +173,11 @@
   },
   {
     "name": "Home Page Start With A Setting",
-    "value": "xpath=//button[.='Start with a Setting']"
+    "value": "xpath=//span[.='Start with a setting']"
   },
   {
     "name": "Home Page Start With A Diamond",
-    "value": "xpath=//button[.='Start with a Diamond']"
+    "value": "xpath=//span[.='start with a diamond']"
   },
   {
     "name": "Home Page Read All Reviews",
@@ -178,5 +206,13 @@
   {
     "name": "Home Page Find Ring Size Read More Button",
     "value": "xpath=(//a[@class='action secondary'][contains(.,'Read More')])[2]"
+  },
+  {
+    "name": "Search Button",
+    "value": "xpath=//label[@for='search']"
+  },
+  {
+    "name": "Search Field",
+    "value": "xpath=//input[@id='search']"
   }
 ]

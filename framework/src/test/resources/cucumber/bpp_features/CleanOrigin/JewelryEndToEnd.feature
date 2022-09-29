@@ -1,5 +1,5 @@
-@CleanOrigin @EndToEnd
-Feature: End to End
+@CleanOrigin @Jewelry @EndToEnd
+Feature: Jewelry End to End
   As an user
   I want to be able to proceed through all purchase process
 
@@ -7,26 +7,34 @@ Feature: End to End
   @Positive @Regression @P1
   Scenario: Earrings E2E
     # open PLP and select earring
-    Given I am on "https://www.cleanorigin.com" URL
-    And I click on the "Accept Cookies" "text in span"
+    Given I am on "https://reskin.cleanorigin.com/" URL
+    And I click on the "Accept Cookies" "text in span" if present
     Then I hover over the "JEWELRY" "Navigation Menu Item"
     And I click on the "Diamond Earrings" "Navigation Submenu Item"
     And I click on the "Rings Listing Page Product Item" element
 
     # set earring attributes
-    And I click on the "Total Carat Weight" "Rings Details Page Attribute Select"
-    And I click on the "0.75" "Rings Details Page Attribute Select Option"
-    And I click on the "Diamond Color" "Rings Details Page Attribute Select"
-    And I click on the "IJ" "Rings Details Page Attribute Select Option"
+    And I click on the "Metal" "Rings Details Page Attribute Select" if present
+    And I click on the "18K White Gold" "Rings Details Page Attribute Select Option" if present
+    And I click on the "14K White Gold" "Rings Details Page Attribute Select Option" if present
+    And I click on the "Total Carat Weight" "Rings Details Page Attribute Select" if present
+    And I click on the "0.75" "Rings Details Page Attribute Select Option" if present
+    And I click on the "Metal" "Rings Details Page Attribute Select" if present
+    And I click on the "18K White Gold" "Rings Details Page Attribute Select Option" if present
+    And I click on the "14K White Gold" "Rings Details Page Attribute Select Option" if present
+    And I click on the "Diamond Color" "Rings Details Page Attribute Select" if present
+    And I click on the "IJ" "Rings Details Page Attribute Select Option" if present
     And I click on the "Prong" "Rings Details Page Attribute Select" if present
     And I click on the "4" "Rings Details Page Attribute Select Option" if present
-    And I click on the "Metal" "Rings Details Page Attribute Select"
-    And I click on the "14K White Gold" "Rings Details Page Attribute Select Option"
+    And I click on the "Post Type" "Rings Details Page Attribute Select" if present
+    And I click on the "Friction / Standard" "Rings Details Page Attribute Select Option" if present
+    And I click on the "Threaded / Screw On and Off" "Rings Details Page Attribute Select Option" if present
+    And I click on the "Metal" "Rings Details Page Attribute Select" if present
 
     # save data from earring PDP and add it to Cart
     And I capture text data "Rings Details Page Name" as "EC_PDP_EARRING_NAME" variable
     And I capture text data "Rings Details Page Price" as "EC_PDP_EARRING_PRICE" variable
-    And I click on the "Add to Bag" "span"
+    And I click on the "Add to Cart" "span"
     And I should scroll to the "top" of the page
     And I click on the "Cart Icon" element
 
@@ -41,10 +49,10 @@ Feature: End to End
   @Positive @Regression @P1
   Scenario: Bracelets E2E
     # open PLP and select bracelet
-    Given I am on "https://www.cleanorigin.com" URL
-    And I click on the "Accept Cookies" "text in span"
+    Given I am on "https://reskin.cleanorigin.com/" URL
+    And I click on the "Accept Cookies" "text in span" if present
     Then I hover over the "JEWELRY" "Navigation Menu Item"
-    And I click on the "Diamond Tennis Bracelets" "Navigation Submenu Item"
+    And I click on the "Tennis bracelets" "Navigation Submenu Item"
     And I click on the "Rings Listing Page Product Item" element
 
     # set bracelet attributes
@@ -58,7 +66,7 @@ Feature: End to End
     # save data from bracelet PDP and add it to Cart
     And I capture text data "Rings Details Page Name" as "EC_PDP_BRACELET_NAME" variable
     And I capture text data "Rings Details Page Price" as "EC_PDP_BRACELET_PRICE" variable
-    And I click on the "Add to Bag" "span"
+    And I click on the "Add to Cart" "span"
     And I should scroll to the "top" of the page
     And I click on the "Cart Icon" element
 
@@ -73,10 +81,10 @@ Feature: End to End
   @Positive @Regression @P1
   Scenario: Pendants E2E
     # open PLP and select pendant
-    Given I am on "https://www.cleanorigin.com" URL
-    And I click on the "Accept Cookies" "text in span"
+    Given I am on "https://reskin.cleanorigin.com/" URL
+    And I click on the "Accept Cookies" "text in span" if present
     Then I hover over the "JEWELRY" "Navigation Menu Item"
-    And I click on the "Diamond Pendants" "Navigation Submenu Item"
+    And I click on the "Pendants" "Navigation Submenu Item"
     And I click on the "Rings Listing Page Product Item" element
 
     # set pendant attributes
@@ -87,7 +95,7 @@ Feature: End to End
     # save data from pendant PDP and add it to Cart
     And I capture text data "Rings Details Page Name" as "EC_PDP_PENDANT_NAME" variable
     And I capture text data "Rings Details Page Price" as "EC_PDP_PENDANT_PRICE" variable
-    And I click on the "Add to Bag" "span"
+    And I click on the "Add to Cart" "span"
     And I should scroll to the "top" of the page
     And I click on the "Cart Icon" element
 

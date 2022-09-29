@@ -147,6 +147,7 @@ public class BaseUITest {
         Reporter.flush();
         ExecutionContextHandler.resetExecutionContextValues();
         RetryAnalyzer.deletePreviousAttemptsFromHtmlReport();
+        //RetryAnalyzer.createReportForAllDiamondsTest();
     }
 
     public static void setExecutionEnvironmentInfo() {

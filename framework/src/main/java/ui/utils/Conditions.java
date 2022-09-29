@@ -21,6 +21,14 @@ public class Conditions extends SeleniumHelper {
     public boolean checkCondition(String condition, String conditionParameter){
         String elementLocator;
         String elementType;
+        String value1 = "", value2 = "";
+        int v1 = 0, v2 = 0;
+        if (conditionParameter.contains(",")) {
+            value1 = TestParametersController.checkIfSpecialParameter(conditionParameter.split(",")[0]);
+            value2 = TestParametersController.checkIfSpecialParameter(conditionParameter.split(",")[1]);
+            v1 = Integer.parseInt(value1);
+            v2 = Integer.parseInt(value2);
+        }
         switch (condition) {
             case "element is present":
                 return isElementPresentAndDisplay(initElementLocator(conditionParameter));
@@ -43,17 +51,13 @@ public class Conditions extends SeleniumHelper {
             case "value is not empty":
                 return !conditionParameter.isEmpty();
             case "values are equal":
-                String value1 = TestParametersController.checkIfSpecialParameter(conditionParameter.split(",")[0]);
-                String value2 = TestParametersController.checkIfSpecialParameter(conditionParameter.split(",")[1]);
                 return value1.equals(value2);
+            case "values are not equal":
+                return !value1.equals(value2);
             case "first value is greater":
-                int v1 = Integer.parseInt(TestParametersController.checkIfSpecialParameter(conditionParameter.split(",")[0]));
-                int v2 = Integer.parseInt(TestParametersController.checkIfSpecialParameter(conditionParameter.split(",")[1]));
                 return v1 > v2;
             case "first value is equal or greater":
-                int p1 = Integer.parseInt(TestParametersController.checkIfSpecialParameter(conditionParameter.split(",")[0]));
-                int p2 = Integer.parseInt(TestParametersController.checkIfSpecialParameter(conditionParameter.split(",")[1]));
-                return p1 >= p2;
+                return v1 >= v2;
             case "Product Factory special element is enabled":
                 elementLocator = conditionParameter.split(",")[0];
                 elementType = conditionParameter.split(",")[1];

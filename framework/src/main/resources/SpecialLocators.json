@@ -5,15 +5,19 @@
   },
   {
     "name": "Navigation Menu Item",
-    "value": "xpath=//li[@class='nav-item dropdown'][contains(.,'PARAMETER')]"
+    "value": "xpath=//ul[@role='menu']//a[text()='PARAMETER']"
   },
   {
     "name": "Navigation Submenu Item",
-    "value": "xpath=//li[@class='nav-item dropdown active']//a[normalize-space()='PARAMETER']"
+    "value": "xpath=//ul[@role='menu' and @aria-expanded='true']//a[contains(normalize-space(),'PARAMETER')]"
   },
   {
     "name": "Rings Listing Page Product Item By Name",
     "value": "xpath=//li[@class='item product product-item']//a[@class='product-item-link' and normalize-space()='PARAMETER']"
+  },
+  {
+    "name": "Rings Listing Page Filter Checkbox",
+    "value": "xpath=//span[text() = 'PARAMETER']/../preceding-sibling::input"
   },
   {
     "name": "Rings Listing Page Filter",
@@ -21,7 +25,7 @@
   },
   {
     "name": "Rings Listing Page Filter Item",
-    "value": "xpath=//span[text()='PARAMETER']/ancestor::a/parent::li[@class='item']"
+    "value": "xpath=//input[@data-label='PARAMETER']"
   },
   {
     "name": "Rings Details Page Attribute Select",
@@ -45,23 +49,27 @@
   },
   {
     "name": "Diamonds Listing Page Filter From Field",
-    "value": "xpath=//div[@class='filter-options-title' and contains(.,'PARAMETER')]/following-sibling::div//div[@class='slider-from']/input"
+    "value": "xpath=//div[text()='PARAMETER']/following-sibling::div//input[@data-role='from-input']"
   },
   {
     "name": "Diamonds Listing Page Filter To Field",
-    "value": "xpath=//div[@class='filter-options-title' and contains(.,'PARAMETER')]/following-sibling::div//div[@class='slider-to']/input"
+    "value": "xpath=//div[text()='PARAMETER']/following-sibling::div//input[@data-role='to-input']"
   },
   {
     "name": "Diamonds Listing Page Filter From Slider Point",
-    "value": "xpath=//div[@class='filter-options-title' and contains(.,'PARAMETER')]/following-sibling::div//div[@class='noUi-handle noUi-handle-lower']"
+    "value": "xpath=//div[text()='PARAMETER']/following-sibling::div//a[contains(@class,'ui-slider-handle')][1]"
   },
   {
     "name": "Diamonds Listing Page Filter To Slider Point",
-    "value": "xpath=//div[@class='filter-options-title' and contains(.,'PARAMETER')]/following-sibling::div//div[@class='noUi-handle noUi-handle-upper']"
+    "value": "xpath=//div[text()='PARAMETER']/following-sibling::div//a[contains(@class,'ui-slider-handle')][2]"
   },
   {
     "name": "Diamonds Listing Page Filter Slider Marker",
-    "value": "xpath=//div[@class='noUi-value noUi-value-horizontal noUi-value-large' and text()='PARAMETER']/preceding-sibling::div[1]"
+    "value": "xpath=//span[@class='ui-slider-label' and text()='PARAMETER']"
+  },
+  {
+    "name": "Diamonds Listing Page Item By Index",
+    "value": "xpath=(//span[@class='product-image-wrapper'])[PARAMETER]"
   },
   {
     "name": "Diamonds Listing Page Item Price By Index",
@@ -73,11 +81,15 @@
   },
   {
     "name": "Diamonds Details Page Attribute",
-    "value": "xpath=//div[@class='attr-label' and text()='PARAMETER']/following-sibling::div"
+    "value": "xpath=//span[@class='label' and text()='PARAMETER']/.."
+  },
+  {
+    "name": "Diamonds Details Page Details",
+    "value": "xpath=//div[@class='additional-attributes-wrapper']//div[@class='attr-label' and text()='PARAMETER']/following-sibling::div"
   },
   {
     "name": "Cart Item Attribute",
-    "value": "xpath=//tr[@class='item-info']//dt[text()='PARAMETER']/following-sibling::dd"
+    "value": "xpath=//dt[text()='PARAMETER']/following-sibling::dd[1]"
   },
   {
     "name": "Cart Builder Ring Attribute",
@@ -89,7 +101,7 @@
   },
   {
     "name": "Cart Totals Element",
-    "value": "xpath=//div[@id='cart-totals']//th[normalize-space()='Tax']/following-sibling::td//span"
+    "value": "xpath=//div[@id='cart-totals']//th[normalize-space()='PARAMETER']/following-sibling::td//span"
   },
   {
     "name": "Footer Link",
@@ -161,7 +173,7 @@
   },
   {
     "name": "text in label",
-    "value": "xpath=//label[contains(.,'PARAMETER')]"
+    "value": "xpath=//label[contains(text(),'PARAMETER')]"
   },
   {
     "name": "text in link",
@@ -169,11 +181,11 @@
   },
   {
     "name": "text in paragraph",
-    "value": "xpath=//p[contains(.,'PARAMETER')]"
+    "value": "xpath=//p[contains(text(),'PARAMETER')]"
   },
   {
     "name": "text in element",
-    "value": "xpath=//*[contains(.,'PARAMETER')]"
+    "value": "xpath=//*[contains(text(),'PARAMETER')]"
   },
   {
     "name": "text in span",
@@ -185,10 +197,10 @@
   },
   {
     "name": "text in div",
-    "value": "xpath=//div[text()='PARAMETER']"
+    "value": "xpath=//div[contains(text(),'PARAMETER')]"
   },
   {
-    "name": "text in span",
-    "value": "xpath=//span[text()='PARAMETER']"
+    "name": "text in button",
+    "value": "xpath=//button[contains(text(),'PARAMETER')]"
   }
 ]

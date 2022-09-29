@@ -4,12 +4,10 @@ import com.google.common.base.Function;
 import org.hamcrest.Matcher;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.*;
-import ui.utils.*;
 import ui.utils.bpp.PreProcessFiles;
 import ui.utils.bpp.TestParametersController;
 
@@ -125,7 +123,7 @@ public class SeleniumHelper {
      */
     public boolean isElementPresentAndDisplay(By by) {
         try {
-            return findElementIgnoreException(by).isDisplayed();
+            return findElementIgnoreException(by,1).isDisplayed();
         } catch (Exception e) {
             return false;
         }
@@ -202,81 +200,26 @@ public class SeleniumHelper {
     //will not be erased completely. Temporary fixed, but the method needs refactoring
     public void clearEntireField(By element) {
         WebElement textField = findElement(element);
-        String textArea = findElement(element).getText();
         String backSpace = Keys.BACK_SPACE.toString();
         if (textField.getAttribute("value") == null) {
+            String textArea = textField.getText();
             int size = textArea.length();
-            if (size != 0) {
-                clickOnElement(element,
-                        UiHandlers.PF_SPINNER_HANDLER,
-                        UiHandlers.POPUP_HANDLER,
-                        UiHandlers.ACCEPT_ALERT,
-                        UiHandlers.PF_SCROLL_HANDLER,
-                        UiHandlers.PAGE_NOT_LOAD_HANDLER,
-                        UiHandlers.SF_CLICK_HANDLER,
-                        UiHandlers.WAIT_HANDLER,
-                        UiHandlers.DEFAULT_HANDLER);
+            while (size > 0 && !(textArea.equals("0"))) {
+                textField.click();
                 IntStream.range(0, size).mapToObj(i -> backSpace).forEach(textField::sendKeys);
+                textArea = textField.getText();
+                size = textArea.length();
             }
         } else {
             try {
-                int size = textField.getAttribute("value").length();
-                while (size != 0) {
-                    clickOnElement(element,
-                            UiHandlers.PF_SPINNER_HANDLER,
-                            UiHandlers.POPUP_HANDLER,
-                            UiHandlers.ACCEPT_ALERT,
-                            UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
-                            UiHandlers.PAGE_NOT_LOAD_HANDLER,
-                            UiHandlers.PF_SCROLL_HANDLER,
-                            UiHandlers.SF_CLICK_HANDLER,
-                            UiHandlers.WAIT_HANDLER,
-                            UiHandlers.DEFAULT_HANDLER);
-                }
-
-                if (size != 0) {
-                    clickOnElement(element,
-                            UiHandlers.PF_SPINNER_HANDLER,
-                            UiHandlers.POPUP_HANDLER,
-                            UiHandlers.ACCEPT_ALERT,
-                            UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
-                            UiHandlers.PAGE_NOT_LOAD_HANDLER,
-                        UiHandlers.PF_SCROLL_HANDLER,
-                        UiHandlers.SF_CLICK_HANDLER,
-                        UiHandlers.WAIT_HANDLER,
-                        UiHandlers.DEFAULT_HANDLER);
-                IntStream.range(0, size).mapToObj(i -> backSpace).forEach(textField::sendKeys);
-            }
-
-                size = textField.getAttribute("value").length();
-                if (size != 0) {
-                    clickOnElement(element,
-                            UiHandlers.PF_SPINNER_HANDLER,
-                            UiHandlers.POPUP_HANDLER,
-                            UiHandlers.ACCEPT_ALERT,
-                            UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
-                            UiHandlers.PAGE_NOT_LOAD_HANDLER,
-                        UiHandlers.PF_SCROLL_HANDLER,
-                        UiHandlers.SF_CLICK_HANDLER,
-                        UiHandlers.WAIT_HANDLER,
-                        UiHandlers.DEFAULT_HANDLER);
-                IntStream.range(0, size).mapToObj(i -> backSpace).forEach(textField::sendKeys);
-            }
-                size = textField.getAttribute("value").length();
-                if (size != 0) {
-                    clickOnElement(element,
-                            UiHandlers.PF_SPINNER_HANDLER,
-                            UiHandlers.POPUP_HANDLER,
-                            UiHandlers.ACCEPT_ALERT,
-                            UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
-                            UiHandlers.PAGE_NOT_LOAD_HANDLER,
-                            UiHandlers.PF_SCROLL_HANDLER,
-                            UiHandlers.SF_CLICK_HANDLER,
-                            UiHandlers.WAIT_HANDLER,
-                            UiHandlers.DEFAULT_HANDLER);
+                String text = textField.getAttribute("value");
+                int size = text.length();
+                while (size > 0 && !(text.equals("0"))) {
+                    textField.click();
                     IntStream.range(0, size).mapToObj(i -> backSpace).forEach(textField::sendKeys);
+                    text = textField.getAttribute("value");
+                    size = text.length();
                 }
-
             } catch (InvalidElementStateException e) {
                 textField.sendKeys("");
             }
@@ -462,6 +405,7 @@ public class SeleniumHelper {
      * @param handlers code from UiHandlers enum, that will be executed, when exception occurs
      */
     public static void clickOnElement(By element, UiHandlers... handlers) {
+        UiExceptionHandler uiHandler = new UiExceptionHandler();
         try {
             (new WebDriverWait(driver(), Duration.ofSeconds(DEFAULT_TIMEOUT)))
                     .until(ExpectedConditions.visibilityOfElementLocated(element));
@@ -470,6 +414,7 @@ public class SeleniumHelper {
             waitForPageToLoad();
             repeatAction = true;
         } catch (Exception e) {
+            //uiHandler.handle();
             for(UiHandlers handler : handlers){
                 handler.getHandler().handle(element, e);
             }
@@ -536,6 +481,7 @@ public class SeleniumHelper {
         } catch (Exception e) {
             BPPLogManager.getLogger().error(Tools.getStackTrace(e));
             Reporter.failTryTakingScreenshot(Tools.getStackTrace(e));
+            //return null;
             throw new RuntimeException("Failure finding element");
         }
     }

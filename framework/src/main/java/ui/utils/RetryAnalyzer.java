@@ -8,6 +8,8 @@ import org.testng.ITestResult;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class RetryAnalyzer implements IRetryAnalyzer {
@@ -63,6 +65,49 @@ public class RetryAnalyzer implements IRetryAnalyzer {
                 e.printStackTrace();
             }
         }
+    }
+
+    public static void createReportForAllDiamondsTest() {
+        String reportFolderPath = Reporter.getReportPath().toString();
+        String filePath = reportFolderPath.concat("/report.html");
+        String diamondPriceMismatchReportPath = reportFolderPath.concat("/diamondPriceMismatchReport.txt");
+        String diamondSoldOutReportPath = reportFolderPath.concat("/diamondSoldOutReport.txt");
+        String diamondEmptyPdpPriceReportPath = reportFolderPath.concat("/diamondEmptyPdpPriceReport.txt");
+        StringBuilder confirmedMismatchBuilder = new StringBuilder();
+        StringBuilder soldOutBuilder = new StringBuilder();
+        StringBuilder emptyPdpPriceBuilder = new StringBuilder();
+
+        try {
+            File inputFile = new File(filePath);
+            org.jsoup.nodes.Document doc = Jsoup.parse(inputFile, "utf-8");
+            Elements testNameElements = doc.getElementsByClass("step-details");
+            for (org.jsoup.nodes.Element element : testNameElements) {
+                if (element.text().contains("Mismatch.")) {
+                    if (element.text().contains("Mismatch. Element $")) {
+                        confirmedMismatchBuilder.append(element.text()).append("\n");
+                    } else {
+                        emptyPdpPriceBuilder.append(element.text()).append("\n");
+                    }
+                }
+                if (element.text().contains("Capturing current url as EC_SOLD_OUT_URL")) {
+                    soldOutBuilder.append(element.parents().first().nextElementSibling().child(2).text()).append("\n");
+                }
+            }
+            FileWriter writer = new FileWriter(diamondPriceMismatchReportPath, false);
+            writer.write(confirmedMismatchBuilder.toString());
+            writer.flush();
+
+            FileWriter writer2 = new FileWriter(diamondSoldOutReportPath, false);
+            writer2.write(soldOutBuilder.toString());
+            writer2.flush();
+
+            FileWriter writer3 = new FileWriter(diamondEmptyPdpPriceReportPath, false);
+            writer3.write(emptyPdpPriceBuilder.toString());
+            writer3.flush();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 }

@@ -310,6 +310,22 @@ public class StepDefinitions extends SeleniumHelper {
     }
 
     /**
+     * Definition to save some text value in EC variable if condition is true
+     *
+     * @param text    text you want to save into a variable
+     * @param varName name of variable in which you want to save text
+     * @author Ruslan Levytskyi
+     */
+    @Then("^I remember \"([^\"]*)\" text as \"([^\"]*)\" variable if \"([^\"]*)\" \"([^\"]*)\"$")
+    public void i_remember_text_if(String text, String varName, String conditionParameter, String condition) {
+        StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
+        stepDef.setCondition(conditionParameter, condition)
+                .setAction(ActionsWithTwoParameters.REMEMBER_TEXT, text, varName)
+                .setReporterLog("Executing step: I remember '" + text + "' text as '" + varName + "' variable if " + conditionParameter + " " + condition)
+                .execute();
+    }
+
+    /**
      * Definition to verify presence of element on the page
      *
      * @param attributeName  name of attribute of element you want to check
@@ -578,7 +594,15 @@ public class StepDefinitions extends SeleniumHelper {
     @And("^I capture text data \"([^\"]*)\" as \"([^\"]*)\" variable$")
     public void i_capture_text_data_as_variable(String element, String executionContext) {
         //todo: StepDefBuilder throws error while trying to get EC  -2021-12-01 17:05:39 [PoolService] ERROR ExecutionContextHandler:35 - Requested EC_BASKET_ID execution context key is absent
-        String value = getTextValueFromField(initElementLocator(element));
+        String value = "";
+        try {
+            value = getTextValueFromField(initElementLocator(element));
+        } catch (Exception e) {
+            Reporter.log("Text capturing failed for '" + element + "'. Waiting for 5 sec and trying again");
+            BPPLogManager.getLogger().info("Text capturing failed for '" + element + "'. Waiting for 5 sec and trying again");
+            wait_for("5");
+            value = getTextValueFromField(initElementLocator(element));
+        }
         Reporter.log("Capturing data from : " + initElementLocator(element) + ": " + executionContext);
         if (!executionContext.equals("")) {
             if (value.equals("")) {
@@ -589,6 +613,40 @@ public class StepDefinitions extends SeleniumHelper {
             ExecutionContextHandler.setExecutionContextValueByKey(executionContext, value);
         } else
             Reporter.log("Cannot save EC value with an empty key. Check your parameters.");
+    }
+
+    /**
+     * Definition to capture text data as EC variable
+     *
+     * @param element          locator of element you want to check if it's visible and soon to put into Execution Context
+     * @param executionContext Name that starts with 'EC_' that is used to store saved text value from element
+     * @author Andrii Yakymchuk
+     */
+    @And("^I capture text data \"([^\"]*)\" as \"([^\"]*)\" variable if \"([^\"]*)\" \"([^\"]*)\"$")
+    public void i_capture_text_data_as_variable_if(String element, String executionContext, String conditionParameter, String condition) {
+        //todo: StepDefBuilder throws error while trying to get EC  -2021-12-01 17:05:39 [PoolService] ERROR ExecutionContextHandler:35 - Requested EC_BASKET_ID execution context key is absent
+        Conditions cond = new Conditions();
+        if (cond.checkCondition(condition,conditionParameter)) {
+            String value = "";
+            try {
+                value = getTextValueFromField(initElementLocator(element));
+            } catch (Exception e) {
+                Reporter.log("Text capturing failed for '" + element + "'. Waiting for 5 sec and trying again");
+                BPPLogManager.getLogger().info("Text capturing failed for '" + element + "'. Waiting for 5 sec and trying again");
+                wait_for("5");
+                value = getTextValueFromField(initElementLocator(element));
+            }
+            Reporter.log("Capturing data from : " + initElementLocator(element) + ": " + executionContext);
+            if (!executionContext.equals("")) {
+                if (value.equals("")) {
+                    Reporter.log("Saving EC key " + executionContext + " with an empty string. No application data found.");
+                } else {
+                    Reporter.log("Saving EC key " + executionContext + " = " + value);
+                }
+                ExecutionContextHandler.setExecutionContextValueByKey(executionContext, value);
+            } else
+                Reporter.log("Cannot save EC value with an empty key. Check your parameters.");
+        }
     }
 
     /**
@@ -705,6 +763,19 @@ public class StepDefinitions extends SeleniumHelper {
             ExecutionContextHandler.setExecutionContextValueByKey(executionContext, getURL());
         } else
             Reporter.log("Cannot save EC value with an empty key. Check your parameters.");
+    }
+
+    @And("^I capture current URL as \"([^\"]*)\" variable if \"([^\"]*)\" \"([^\"]*)\"$")
+    public void i_capture_url_as_variable_if(String executionContext, String conditionParameter, String condition) {
+        Conditions cond = new Conditions();
+        if (cond.checkCondition(condition, conditionParameter)) {
+            Reporter.log("Capturing current url as " + executionContext);
+            if (!executionContext.equals("")) {
+                Reporter.log("Current URL = " + getURL());
+                ExecutionContextHandler.setExecutionContextValueByKey(executionContext, getURL());
+            } else
+                Reporter.log("Cannot save EC value with an empty key. Check your parameters.");
+        }
     }
 
     /**
@@ -1367,13 +1438,14 @@ public class StepDefinitions extends SeleniumHelper {
             String xpathTemplate = specialLocatorsMap.get(elementType);
             String resultingXpath = xpathTemplate.replaceAll("PARAMETER", processedLocator);
             checkCheckboxByJS(initElementLocator(resultingXpath),state,
-                    UiHandlers.PF_SPINNER_HANDLER,
+                    UiHandlers.SPINNER_HANDLER,
                     UiHandlers.ACCEPT_ALERT,
                     UiHandlers.PF_SCROLL_TO_ELEMENT_HANDLER,
                     UiHandlers.PF_SCROLL_HANDLER,
                     UiHandlers.PAGE_NOT_LOAD_HANDLER,
                     UiHandlers.SF_CLICK_HANDLER,
                     UiHandlers.WAIT_HANDLER,
+                    UiHandlers.SKIP_HANDLER,
                     UiHandlers.DEFAULT_HANDLER);
             if(!elementLocator.equals(processedLocator)){
                 Reporter.log("<pre>[input test parameter] " + elementLocator + "' -> '" + processedLocator + "' [output value]</pre>");
@@ -1780,7 +1852,7 @@ public class StepDefinitions extends SeleniumHelper {
         StepDefinitionBuilder stepDef = new StepDefinitionBuilder();
         stepDef.setCondition(conditionParameter, condition)
                 .setAction(ActionsWithTwoParameters.COUNTER,countName,countAct)
-                .setMessage("Executing step: Counter '" + countName + "' " + countAct)
+                .setMessage("Executing step: Counter '" + countName + "' " + countAct + " if '" + conditionParameter + "' " + condition)
                 .execute();
     }
 
@@ -1808,7 +1880,7 @@ public class StepDefinitions extends SeleniumHelper {
         stepDef.setLocator(element)
                 .setItemIndex(index)
                 .setAction(ActionsWithLocator.OPEN_LINK_IN_NEW_TAB)
-                .setMessage("Executing step: Open '" + element + "' link in new tab by index " )
+                .setMessage("Executing step: Open '" + element + "' link in new tab by index " + index)
                 .execute();
     }
 
@@ -1818,7 +1890,7 @@ public class StepDefinitions extends SeleniumHelper {
         stepDef.setLocator(elementLocator, elementType)
                 .setItemIndex(index)
                 .setAction(ActionsWithLocator.OPEN_LINK_IN_NEW_TAB)
-                .setMessage("Executing step: Open '" + elementLocator + " " + elementType + "' link in new tab" )
+                .setMessage("Executing step: Open '" + elementLocator + " " + elementType + "' link in new tab by index " + index)
                 .execute();
     }
 
@@ -1843,7 +1915,35 @@ public class StepDefinitions extends SeleniumHelper {
                 Reporter.warn("Mismatch. Element " + startElement + " is not equal to " + resultElement + " at " + currentUrl);
                 BPPLogManager.getLogger().error("Mismatch. Element " + startElement + " is not equal to " + resultElement + " at " + currentUrl);
             }
-            sa.assertTrue(resultElement.equals(startElement), currentUrl);
+            sa.assertEquals(startElement, resultElement, currentUrl);
+        }
+    }
+
+    /**
+     * Definition to validate items are similar if given condition is true
+     *
+     */
+    @Then("^I verify that \"([^\"]*)\" element \"(equal|contains)\" to \"([^\"]*)\" element if \"([^\"]*)\" \"([^\"]*)\"$")
+    public void i_verify_that_element_if(String elementOne, String value, String elementTwo, String conditionParameter, String condition) {
+        String resultElement = TestParametersController.checkIfSpecialParameter(elementOne);
+        String startElement = TestParametersController.checkIfSpecialParameter(elementTwo);
+        Conditions cond = new Conditions();
+        if (cond.checkCondition(condition,conditionParameter)) {
+            Reporter.log("Executing step: I verify that " + resultElement + " is " + value + " to: " + startElement);
+            String currentUrl = getURL();
+            if (value.equals("contains")) {
+                if (!startElement.contains(resultElement)) {
+                    Reporter.warn("Mismatch. Element " + startElement + " does not contain " + resultElement + " at " + currentUrl);
+                    BPPLogManager.getLogger().error("Mismatch. Element " + startElement + " does not contain " + resultElement + " at " + currentUrl);
+                }
+                sa.assertTrue(startElement.contains(resultElement), currentUrl);
+            } else if (value.equals("equal")) {
+                if (!startElement.equals(resultElement)) {
+                    Reporter.warn("Mismatch. Element " + startElement + " is not equal to " + resultElement + " at " + currentUrl);
+                    BPPLogManager.getLogger().error("Mismatch. Element " + startElement + " is not equal to " + resultElement + " at " + currentUrl);
+                }
+                sa.assertEquals(startElement, resultElement, currentUrl);
+            }
         }
     }
 
