@@ -1,9 +1,0 @@
-{
-  "operationName":"activateInstances",
-  "variables":{
-    "command":{
-      "instanceGroupReference":"EC_INSTANCE_GROUP_REFERENCE"
-    }
-  },
-  "query":"mutation activateInstances($command: ActivateInstancesCommandInput!) { activateInstances(command: $command) { ...instanceStatus __typename }}fragment instanceStatus on Instance { reference status publishedDate availableOnWebsite deactivationReason { description preventReactivation __typename } createdOn createdBy updatedOn updatedBy __typename}"
-}

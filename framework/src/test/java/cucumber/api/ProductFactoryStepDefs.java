@@ -1,4 +1,4 @@
-package cucumber.productFactory;
+package cucumber.api;
 
 import api.RestApiController;
 import io.cucumber.java.en.Given;

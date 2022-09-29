@@ -1,9 +1,0 @@
-{
-  "operationName":"activateCourses",
-  "variables":{
-    "command":{
-      "instanceGroupReference":"EC_INSTANCE_GROUP_REFERENCE"
-    }
-  },
-  "query":"mutation activateCourses($command: ActivateCoursesCommandInput!) { activateCourses(command: $command) { ...courseStatus __typename }}fragment courseStatus on Course { reference status publishedDate deactivationReason { reference description preventReactivation __typename } instanceGroup { reference __typename } numberOfSessions numberOfSteps createdOn createdBy updatedOn updatedBy __typename}"
-}

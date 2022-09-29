@@ -1,7 +1,0 @@
-<suite name="Suite" parallel="methods" data-provider-thread-count="1" thread-count="1" preserve-order="true">
-    <test name=" Salesforce Cucumber Test">
-        <classes>
-            <class name="cucumber.CucumberUITest" />
-        </classes>
-    </test> <!-- test -->
-</suite> <!-- suite -->

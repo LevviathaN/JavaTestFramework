@@ -1,8 +1,0 @@
-{
-  "variables":{
-    "filter":{
-      "courseReference":"EC_COURSE_REFERENCE"
-    }
-  },
-  "query":"query ($filter: FindCourseFilterInput!) { findCourse(filter: $filter) { ...courseStatus feedback { systemName timestamp success message __typename } __typename }}fragment courseStatus on Course { reference status publishedDate deactivationReason { reference description preventReactivation __typename } instanceGroup { reference __typename } numberOfSessions numberOfSteps createdOn createdBy updatedOn updatedBy __typename}"
-}

@@ -1,6 +1,0 @@
-{
-  "client_id":"qaHd2Jot6wuGmldE32mkkDO8HxtMjWfX",
-  "client_secret":"CIbrI7dhlxca0MqPoTbYn5T1F_J3QlmXJmk86OsOAwOAiUdyXRAp0OCDtUpAMmDa",
-  "grant_type":"client_credentials",
-  "audience":"https://bpp-stage.eu.auth0.com/api/v2/"
-}

@@ -1,8 +1,0 @@
-{
-  "variables": {
-    "filter": {
-      "searchTerm": "EC_PAPER_NAME"
-    }
-  },
-  "query": "query ($filter: PaperFilterInput!) { papers(filter: $filter) { pageInfo { hasMore __typename } result { ...paper __typename } __typename }}fragment paper on Paper { reference shortName name description body { reference shortName name levels { reference shortName name __typename } __typename } levels { reference shortName name __typename } expiry { expiryOption expiryWeeks studyMode { reference name __typename } __typename } isCba examSchedule timeInHours createdBy createdOn updatedBy updatedOn __typename}"
-}

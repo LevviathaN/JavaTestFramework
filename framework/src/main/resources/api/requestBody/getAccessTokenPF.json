@@ -1,6 +1,0 @@
-{
-  "client_id":"S2IKmTfukVIwVP9iGu9QezxwxCbVBPKp",
-  "client_secret":"hROLERBfzVAnA4tFSlcpAhoKhBwGfxuhc8LU-R79NgspB7CG7idKgDiS3oci8-v0",
-  "audience":"https://qa.product-factory.bpp.com/api",
-  "grant_type":"client_credentials"
-}

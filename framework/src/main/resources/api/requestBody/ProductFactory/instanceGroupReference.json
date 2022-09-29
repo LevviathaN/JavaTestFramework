@@ -1,6 +1,0 @@
-{
-  "variables": {
-    "instanceGroupReference": "EC_INSTANCE_GROUP_REFERENCE"
-  },
-  "query": "query ($instanceGroupReference: Uuid!) { courses(instanceGroupReference: $instanceGroupReference) { result { ...instanceGroupCourse __typename } __typename }}fragment instanceGroupCourse on Course { reference price paper { reference name body { reference shortName name __typename } __typename } level { reference shortName name __typename } sitting { reference name startDate endDate __typename } courseType { reference description vatRule { reference description __typename } __typename } region { reference name __typename } clients { reference name __typename } numberOfSessions instituteFee status publishedDate createdOn updatedOn __typename}"
-}
